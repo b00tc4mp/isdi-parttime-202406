@@ -1,3 +1,2 @@
-# dotenv environment variables file
-.env
-.env.test
+.DS_Store
+thumbs.db
