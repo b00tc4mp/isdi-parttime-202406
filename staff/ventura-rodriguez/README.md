@@ -2,7 +2,7 @@
 
 ## Git
 
-Estos son mis apuntes de git
+Estos son mis apuntes de git.
 
 ```js
   git status
