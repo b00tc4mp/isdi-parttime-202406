@@ -1,5 +1,5 @@
 // Genera una función de conversion de binario a decimal, el valor pasado por parámetro 
-// debe ser una cadena de caracteres de 0 y 1. Imprime el resultado por pantalla.
+// debe ser una cadena de caracteres de 0 y 1. Imprime por pantalla el resultado.
 
 function binaryToDecimal(binaryNumber) {
   let decimalNumber = parseInt(binaryNumber, 2);
