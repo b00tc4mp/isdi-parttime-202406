@@ -3,10 +3,13 @@
 
 function binaryToDecimal(binary) {
     var decimal = 0;
-  
+    for (let i=binary.length - 1; i>=0; i--) {
+        // going from last position to first position
+        decimal += binary[binary.length-1-i]*2**(i)
+    }
     return decimal;
   }
   
-  var binary = "1110";
+  var binary = "100";
   
   console.log(binary + " en decimal es: " + binaryToDecimal(binary));
