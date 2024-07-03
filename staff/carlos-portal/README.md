@@ -13,7 +13,9 @@ git fetch
 git checkout 
 
 git fetch 
+
 git log 
+
 
  ```
 
