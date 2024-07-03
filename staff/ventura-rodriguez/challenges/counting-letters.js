@@ -1,6 +1,6 @@
 // Crea una funcion llamada 'countingLetters' que admita un parámetro de tipo
 // string y te devuelva el largo de la palabra. Ej: 'hola' ==> 4.
-// NO CHAT GPT
+// NO CHAT GPT - mirar que es TDD
 
 function countingLetters(value) {
   var result;
