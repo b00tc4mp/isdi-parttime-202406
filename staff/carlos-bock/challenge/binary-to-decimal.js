@@ -17,9 +17,10 @@ function binaryToDecimal(binary) {
   function binaryConvertDec(binarynum) {
     var decimal = 0;
 
+    for ( i = 0; i < binary.length; i++ ) {
+        var digit = binary[binary.length - 1 - i];
+        decimal += digit * Math.pow(2, i)
+
+    }
     return decimal;
-  }
-  
-  var binarynum = "1110";
-  
-  console.log(binarynum + " en decimal es: " + binaryConvertDec(binarynum)); */
+  }*/
