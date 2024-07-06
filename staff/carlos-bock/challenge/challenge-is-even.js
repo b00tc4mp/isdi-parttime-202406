@@ -74,3 +74,5 @@ let result7 = isEven(Number.MAX_SAFE_INTEGER + 1)
 console.assert(result7 === true, {result: result7, message: 'Test 7 no pasado'})*/
 
 //}
+
+
