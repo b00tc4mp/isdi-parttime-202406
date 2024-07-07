@@ -1,25 +1,27 @@
-
 // 1. Crea una función que devuelva true o false si el número
 // pasado por parámetro es par o impar. Crea los test correspondientes.
 
 debugger
-{
+
 function isEven(value) {
-  var result
 
-    if (typeof value === 'number' && value % 2 === 0){
-        result = true
-    } else if (typeof value === 'number' && value % 2 !== 0) {
-        result = false
-    } else if (typeof value === 'string' && value.length % 2 === 0) {
-        result = true
-    } else if (typeof value === 'string' && value.length % 2 !== 0) {
-        result = false
+    if (typeof value === 'number'){
+        
+        return value % 2 === 0;
+        
+    } else if (typeof value === 'string') {
+        
+        let countLetters = 0;
+        for(let i = 0; i < value.length; i++){
+            if (value[i] !== ' ') {
+                countLetters += 1
+            }
+        }
+        return countLetters % 2 === 0;
+        
     } else {
-        result = false
+        return `El tipo de dato: ${value} no es válido`
     }
-
-  return result
 }
 
 
@@ -44,4 +46,11 @@ console.assert(result6 === false, {result: result6, message: 'Test 6 no pasado'}
 let result7 = isEven(Number.MAX_SAFE_INTEGER + 1)
 console.assert(result7 === true, {result: result7, message: 'Test 7 no pasado'})
 
-}
+let result8 = isEven(' ho la ')
+console.assert(result8 === true, {result: result8, message: 'Test 8 no pasado'})
+
+let result9 = isEven(' ho laa ')
+console.assert(result9 === false, {result: result9, message: 'Test 9 no pasado'})
+
+let result10 = isEven([1,2])
+console.assert(typeof result10 !== 'boolean', {result: result10, message: 'Test 10 no pasado'})
