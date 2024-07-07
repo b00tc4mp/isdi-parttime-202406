@@ -1,7 +1,6 @@
 // 1. Crea una función que devuelva true o false si el número
 // pasado por parámetro es par o impar. Crea los test correspondientes.
 
-debugger
 
 function isEven(value) {
 
