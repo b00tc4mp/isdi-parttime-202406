@@ -14,7 +14,7 @@ function isEven(valor) {
     return 'False';
     }
     } else {
-    return 'El valor ingresado no es un número ni una cadena de texto';
+    return 'false';
     }
     }
       
