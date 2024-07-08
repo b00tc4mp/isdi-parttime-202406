@@ -1,4 +1,4 @@
-# Git y Github Explicado con un Restaurante.
+# ¡Git y Github Explicado con un Restaurante!
 
 Podemos imaginarnos Git como la forma que tiene un restaurante (¡un gitstaurante!) para gestionar cómo trabajan los distintos chefs en sus tareas y cómo se rastrean y registran los cambios en la cocina.
 
