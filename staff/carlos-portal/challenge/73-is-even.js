@@ -35,5 +35,3 @@ console.assert(result6 === false, {result: result6, message: 'Test 6 no pasado'}
 
 let result7 = isEven(Number.MAX_SAFE_INTEGER + 1)
 console.assert(result7 === true, {result: result7, message: 'Test 7 no pasado'})
-
-}
