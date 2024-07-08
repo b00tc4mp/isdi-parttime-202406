@@ -181,6 +181,7 @@ git pull origin develop
 
 <br/>
 
+<!--TODO Completar!
 ## Ejemplo practico:
 
 - Forkear y clonar el repo
@@ -199,3 +200,8 @@ git pull origin develop
 
 - una vez terminas -> pull request
 (#numeroissue-nombre-rama), asignar a gente para revisar!
+
+
+
+-->
+
