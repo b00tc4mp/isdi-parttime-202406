@@ -34,7 +34,7 @@ function isEven(value) {
                 return result;
             };
         }
-    else if (value > Number. MAX_SAFE_INTEGER) { // I am having trouble making this one work
+    else if (value > Number.MAX_SAFE_INTEGER) { // I am having trouble making this one work
         result = false;
         console.log("the numbers is too big");
         return result; //the test passes for some reason, is this a limitation of JS?
@@ -56,7 +56,6 @@ console.log("line break for customer testing------------");
 let result1 = isEven(1)
 isEven(1);
 console.assert(result1 === false, {result: result1, message: 'Test 1 no pasado'})  
-// I think the client's testing parameters, result1 is not matching the result variable
 
 let result2 = isEven(2)
 console.assert(result2 === true, {result: result2, message: 'Test 2 ha pasado'})
