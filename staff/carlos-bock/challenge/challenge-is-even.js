@@ -1,23 +1,19 @@
 // 1. Crea una función que devuelva true o false si el número
 // pasado por parámetro es par o impar. Crea los test correspondientes.
 
-debugger
-{
+
 function isEven(value) {
     var result
     if (typeof value !== 'number' && typeof value !== 'string') {
         result = false;
-        console.log("wrong data type, please enter a number or string")
     }
     else if (typeof value === 'number') {
         if (value % 2 == 0) {
             result = true;
-            console.log("test passed");;
             return result;
     }
         else {
             result = false;
-            console.log("test failed");
             return result;
         };
     }
@@ -25,33 +21,20 @@ function isEven(value) {
             let i = value.length
             if (i % 2 == 0) {
                 result = true;
-                console.log("test passed");;
                 return result;
         }
             else {
                 result = false;
-                console.log("test failed");
                 return result;
             };
         }
     else if (value > Number.MAX_SAFE_INTEGER) { // I am having trouble making this one work
         result = false;
-        console.log("the numbers is too big");
         return result; //the test passes for some reason, is this a limitation of JS?
     }
     
-    
-}
 
-isEven("this");
-isEven(2);
-isEven(3);
-isEven("failure");
-isEven([1,2,"pie"]);
-isEven(Number.MAX_SAFE_INTEGER) //test fails which is correct
-isEven(Number.MAX_SAFE_INTEGER + 2); // test is passing, likely unpredictable behavior in JS due to max integer
 
-console.log("line break for customer testing------------");
 
 let result1 = isEven(1)
 isEven(1);
