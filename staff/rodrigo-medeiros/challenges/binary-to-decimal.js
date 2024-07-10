@@ -20,3 +20,4 @@ function binaryToDecimal(binary) {
 var binary = "1110";
 
 console.log(binary + " en decimal es: " + binaryToDecimal(binary));
+//
