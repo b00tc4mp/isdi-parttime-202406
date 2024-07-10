@@ -3,18 +3,18 @@ debugger
 function isEven(valor) {
     if (typeof valor === 'number') {
     if (valor % 2 === 0) {
-    return 'True';
+    return true;
     } else {
-    return 'False';
+    return false;
     }
     } else if (typeof valor === 'string') {
     if (valor.length % 2 === 0) {
-    return 'True';
+    return true;
     } else {
-    return 'False';
+    return false;
     }
     } else {
-    return 'false';
+    return false;
     }
     }
       
@@ -39,4 +39,3 @@ function isEven(valor) {
     let result7 = isEven(Number.MAX_SAFE_INTEGER + 1)
     console.assert(result7 === true, {result: result7, message: 'Test 7 no pasado'})
     
-    console.log(result1, result2, result3, result4, result5, result6, result7);
