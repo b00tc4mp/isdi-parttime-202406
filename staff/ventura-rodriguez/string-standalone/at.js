@@ -1,21 +1,16 @@
 //str.at(indice)
 //Version stand alone
 function at(string, index) {
-  // Separo cada uno de mis carácteres y les pongo un numero en orden de izquierda a derecha
-  // Separo cada uno de mis carácteres y les pongo un número en orden en negativo de derecha a izquierda
-  // Con el valor que me pasan por index, macheo el index con el numero que le he puesto a cada uno
-  // de mis carácteeres y devulevo el caracter matcheado
+  if (index === null) return string[0];
 
-  let result = "";
+  let result;
 
   for (let i = 0; i < string.length; i++) {
     const character = string[i];
 
-    if (index === i) {
-      result = character;
-    }
+    if (i === index) result = character;
+    else if (index < 0 && i === string.length + index) result = character;
   }
-
   return result;
 }
 
@@ -26,7 +21,7 @@ console.assert(result1 === "Hello".at(2), {
 });
 
 const result2 = at("Hola", -1);
-console.assert(result2 === "Hola".at(2), {
+console.assert(result2 === "Hola".at(-1), {
   result: result2,
   message: "Test 2 No pasado ",
 });
