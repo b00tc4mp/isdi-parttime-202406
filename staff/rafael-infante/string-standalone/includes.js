@@ -16,9 +16,21 @@ function includes(string, searchString) {
   let result = false;
 
   for (let i = 0; i < string.length; i++) {
-    const characterOfString = string[i];
-
-    if (characterOfString === searchString[0]) result = true;
+    
+    let count = 0
+    for (let j = 0; j < searchString.length; j++){
+      const characterOfString = string[i];
+      const characterOfSearchString = searchString[j]
+      
+      if (characterOfString === characterOfSearchString){
+        count++
+        if (count === searchString.length) return true;
+        i++
+      } else {
+        count = 0;
+        result = false
+      }
+    }
   }
 
   return result;
