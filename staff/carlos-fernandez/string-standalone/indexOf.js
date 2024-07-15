@@ -32,7 +32,7 @@
   
   const result1 = indexOf("Hello, my name is Carl", "l");
   console.assert(result1 === "Hello, my name is Carl".indexOf("l"), { result: result1, message: "Test 1 No pasado ",});
-  debugger
+  
   const result2 = indexOf("Hello, my name is Carl", "ly");
   console.assert(result2 === "Hello, my name is Carl".indexOf("ly"), { result: result2, message: "Test 2 No pasado ",});
   

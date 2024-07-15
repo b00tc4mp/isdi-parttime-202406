@@ -56,11 +56,11 @@ function slice(input, start, end) {
 
 
 
-let result1 = slice('A quien no le va a gustar un imperio romano del siglo I', 26, 55);
+const result1 = slice('A quien no le va a gustar un imperio romano del siglo I', 26, 55);
 console.assert(result1 === 'A quien no le va a gustar un imperio romano del siglo I'.slice(26), {result: result1, message: 'Test 1 no pasado.'});
 
-let result2 = slice('Pim pam toma lacasitos', 13,);
+const result2 = slice('Pim pam toma lacasitos', 13,);
 console.assert(result2 === 'Pim pam toma lacasitos'.slice(13), {result: result2, message: 'Test 2 no pasado.'});
 
-let result3 = slice(['Cuidao', 'con', 'el', 'barro'], 0, 2);
+const result3 = slice(['Cuidao', 'con', 'el', 'barro'], 0, 2);
 console.assert(JSON.stringify(result3) === JSON.stringify(['Cuidao', 'con', 'el', 'barro'].slice(0, 2)), { result: result3, message: 'Test 3 no pasado.' });

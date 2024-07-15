@@ -20,11 +20,11 @@ function endsWith(string, endPosition) {
 
     
 // Pruebas
-let result1 = endsWith('Pikachu', 'u');
+const result1 = endsWith('Pikachu', 'u');
 console.assert(result1 === 'Pikachu'.endsWith('u'), { result: result1, message: 'Test 1 no pasado' });
 
-let result2 = endsWith('Ash Ketchum', 'Ketchum');
+const result2 = endsWith('Ash Ketchum', 'Ketchum');
 console.assert(result2 === 'Ash Ketchum'.endsWith('Ketchum'), { result: result2, message: 'Test 2 no pasado' });
 
-let result3 = endsWith('Prof Oak', null);
+const result3 = endsWith('Prof Oak', null);
 console.assert(result3 === 'Prof Oak'.endsWith(null), { result: result3, message: 'Test 3 no pasado'});
