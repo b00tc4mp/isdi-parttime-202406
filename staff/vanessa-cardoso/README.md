@@ -7,3 +7,5 @@
 3.*lectura del \"codigo binario"*
 
 4.*Aprender \"Excalidrown"*
+
+5.*functions*
