@@ -17,7 +17,6 @@ function includes(string, searchString) {
       let count = 0;
     for (let i = 0; i < string.length; i++) {
       
-  
       for (let j = 0; j < searchString.length; j++) {
           
           const characterOfSearchString = searchString[j];
