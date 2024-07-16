@@ -56,7 +56,7 @@ console.assert(result6 === "world".includes("wod"), {
 });
 
 const result7 = includes("world", "wu");
-console.assert(result7 === "wu".includes("wod"), {
+console.assert(result7 === "world".includes("wu"), {
   result: result7,
   message: "Test 7 No pasado ",
 });
