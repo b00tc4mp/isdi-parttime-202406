@@ -1,11 +1,13 @@
-debugger
-{
 function isEven(value) {
-  var result
-
+  let result 
+  if (typeof value === 'string') {
+      result = (value.length % 2 === 0)
+  } else {
+      result = (value % 2 === 0)
+  }
+  console.log(result)
   return result
 }
-
 
 let result1 = isEven(1)
 console.assert(result1 === false, {result: result1, message: 'Test 1 no pasado'})
@@ -27,5 +29,3 @@ console.assert(result6 === false, {result: result6, message: 'Test 6 no pasado'}
 
 let result7 = isEven(Number.MAX_SAFE_INTEGER + 1)
 console.assert(result7 === true, {result: result7, message: 'Test 7 no pasado'})
-
-}
