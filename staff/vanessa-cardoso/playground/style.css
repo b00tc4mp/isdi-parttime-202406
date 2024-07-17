@@ -1,0 +1,15 @@
+*{
+    background-color: rgb(145, 190, 194);
+}
+
+body {
+    color: blueviolet;
+    font-family: "Bebas Neue", sans-serif;
+    font-style: normal;
+  }
+
+ h1,p, ul, ol {
+    font-size: 30px;
+ }
+
+ 
