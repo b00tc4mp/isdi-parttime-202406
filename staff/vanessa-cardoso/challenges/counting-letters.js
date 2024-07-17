@@ -2,11 +2,9 @@
 //string y te devuelva el largo de la palabra.
 
 function countingLetters(value) {
-    var result;
-
+    
     return  value.length;
-    console.log(result);
-    return result
+    
 }
 
 var result1 = countingLetters('hola')
