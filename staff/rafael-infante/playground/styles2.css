@@ -1,0 +1,16 @@
+/* crear un cleaner */
+html,
+body {
+  margin: 0;  
+
+}
+
+/* meter etiquetas html y normalizarlas aplanarlas */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: 12px;
+}
