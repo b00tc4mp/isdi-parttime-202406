@@ -1,0 +1,6 @@
+function repeat (string, index) {
+    
+    /*
+    
+    */
+ 
