@@ -11,9 +11,8 @@ body {
 
 .box {
   background-color: cornflowerblue;
-  margin-top: 60px;
   width: 400px;
-  height: 10000px;
+  height: 600px;
 }
 
 .box--small {
@@ -23,16 +22,18 @@ body {
 }
 
 .box--middle-size {
-  position: fixed;
-  bottom: 40px;
-  right: 100px;
+  position: relative;
+  z-index: 100;
+  left: 50px;
+  top: 100px;
   background-color: hotpink;
   width: 150px;
   height: 150px;
 }
 
 .box--big {
-  position: absolute;
+  position: relative;
+  z-index: 99;
   background-color: chocolate;
   width: 250px;
   height: 250px;
