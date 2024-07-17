@@ -2,7 +2,9 @@
 html,
 body {
   margin: 0;  
-
+  background-color: rgba(0, 0, 0, 0.429);
+  font-weight: 400;
+  color: rgb(247, 232, 232);
 }
 
 /* meter etiquetas html y normalizarlas aplanarlas */
@@ -12,5 +14,6 @@ h2,
 h3,
 h4,
 h5 {
-  font-size: 12px;
+  font-size: 14px;
 }
+
