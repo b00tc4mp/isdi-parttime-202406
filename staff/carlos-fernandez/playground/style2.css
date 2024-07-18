@@ -40,5 +40,21 @@ body {
 }
 
 .dark {
-    background-color: #7a6c1c;
+    background-color: #d3b822;
+}
+
+.bright {
+    background-color: #fce668;
+}
+
+.semi-bright {
+    background-color: #f8e749;
+}
+
+.branch2 {
+    background-color: #af5f27;
+}
+
+.leaf-brigth {
+    background-color: #4cbe7e;
 }
