@@ -1,12 +1,13 @@
 function isEven(value) {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
       return value % 2 === 0;
-  } else if (typeof value === 'string') {
-      return value.length % 2 === 0;
+  } else if (typeof value === "string") {
+      const noSpace = value.replace(/\s+/g, '')
+      return noSpace.length % 2 === 0;
+  } else {
+      return false;
   }
-  return false;
 }
-
 let result1 = isEven(5);
 console.assert(result1 === false, {result: result1, message: 'Test 1 no pasado'});
 
