@@ -14,9 +14,10 @@ function includes(string, searchString) {
 
     if (countMatches === searchString.length) result = true;
   }
-
   return result;
 }
+
+
 
 const result1 = includes("Hello", "H");
 console.assert(result1 === "Hello".includes("H"), {
@@ -35,8 +36,6 @@ console.assert(result3 === "casoSinIndice".includes(null), {
 result: result3,
 message: "Test 3 No pasado ",
 });
-
-
 
 const result4 = includes("world", "wr");
 console.assert(result4 === "world".includes("wr"), {
