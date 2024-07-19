@@ -8,6 +8,7 @@ function endsWith(string, endPosition) {
     let result = true;
     if (endPosition === null) return false;
     let j = endPosition.length - 1;
+    
     for (let i = string.length - 1; j >= 0; i--) {
         if (endPosition[j] !== string[i]) {
             result = false;
