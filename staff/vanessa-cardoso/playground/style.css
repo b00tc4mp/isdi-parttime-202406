@@ -6,13 +6,26 @@ body {
     color: blueviolet;
     font-family: "Bebas Neue", sans-serif;
     font-style: normal;
-  }
+    
 
- h1,p, ul, ol {
+ h1,p, ul, ol, a {
     font-size: 30px;
  }
 
+button, a {
+   background-color: rgb(228, 214, 23);
+
+}
+
  table{
     color:indianred
+ }
+
+ .escaleira {
+   background: white;
+   width:400px;
+   height: 400px;
+   justify-content: center;
+
  }
  
