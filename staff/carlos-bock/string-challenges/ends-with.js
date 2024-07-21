@@ -30,7 +30,32 @@ function endWith(string, newString, index = 0) {
 }
 
 
-// example code
+//tdd
+const string = 'Cats are the best!';
+
+const result1 = endWith(string, 'best!');
+console.assert(result1 === string.endsWith('best!'), {
+    result: result1,
+    message: "Test 1 No pasado ",
+});
+
+const result2 = endWith(string, 'best', 17);
+console.assert(result2 === string.endsWith('best', 17), {
+    result: result2,
+    message: "Test 2 No pasado ",
+});
+
+const result3 = startWith(string, 'best!', null);
+console.assert(result3 === string.startsWith('best!', null), {
+    result: result3,
+    message: "Test 3 No pasado ",
+});
+
+
+
+// example code from documentation
+
+/*
 const str1 = 'Cats are the best!';
 
 console.log(str1.endsWith('best!'));
@@ -50,3 +75,5 @@ const str = "To be, or not to be, that is the question.";
 console.log(str.endsWith("question.")); // true
 console.log(str.endsWith("to be")); // false
 console.log(str.endsWith("to be", 19)); // true
+
+*/
