@@ -24,9 +24,20 @@ let string3 = "Extra sentence after the hello world phrase."
 let string4 = 3
 let string5 = 4
 
-const result1 = charAt("Hello", 2)
-console.assert(result1 === "Hello".charAt(2), { result: result1, message: "Test 1 No pasado " })
+const result1 = concatanate(string1, string2)
+console.assert(result1 === string1.concat(string2), { result: result1, message: "Test 1 No pasado " })
 
+const result2 = concatanate(string1, string2, string3)
+console.assert(result2 === string1.concat(string2, string3), { result: result2, message: "Test 1 No pasado " })
+
+const result3 = concatanate(string1, string3)
+console.assert(result3 === string1.concat(string3), { result: result3, message: "Test 1 No pasado " })
+
+const result4 = concatanate(string4, string5)
+console.assert(result4 === string4.concat(string5), { result: result4, message: "Test 1 No pasado " })
+
+const result5 = concatanate(string1, null)
+console.assert(result5 === string1.concat(null), { result: result5, message: "Test 1 No pasado " })
 
 // codigo ejemplar
 const str1 = 'Hello';
