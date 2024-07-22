@@ -1,5 +1,5 @@
 
-
+// need to finish this one 
 //si es numero o null meter toda la frase en un array
 
 //split 
@@ -11,11 +11,11 @@
 const str = 'The quick brown fox jumps over the lazy dog.';
 
 const words = str.split(' ');
-console.log(words[3]);
+console.log(words);
 // Expected output: "fox"
 
 const chars = str.split('');
-console.log(chars[8]);
+console.log(chars);
 // Expected output: "k"
 
 const strCopy = str.split();
