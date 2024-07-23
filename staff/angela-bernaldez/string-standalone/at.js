@@ -1,6 +1,7 @@
 //str.at(indice)
 //Version stand alone
 function at(string, index) {
+  
     if (index === null) return string[0];
   
     let result;
@@ -13,6 +14,8 @@ function at(string, index) {
     }
     return result;
   }
+  
+
   
   const result1 = at("Hello", 2);
   console.assert(result1 === "Hello".at(2), {

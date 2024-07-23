@@ -1,7 +1,8 @@
 //str.concat(str1,...,strN) 
 //Version stand alone!
 function concat(...strs) {
-    let result = ""
+
+    let result = ''
     for (let i=0; i < strs.length; i++) {
         result += strs[i]
     }

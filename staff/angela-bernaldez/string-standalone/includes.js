@@ -1,6 +1,7 @@
 //str.includes(searchString)
 //Version stand alone
 function includes(string, searchString) {
+  
   if (searchString === null) return false;
 
   let result = false;
@@ -11,7 +12,7 @@ function includes(string, searchString) {
     for (let j = 0; j < searchString.length; j++) {
       if (string[i + j] === searchString[j]) countMatches++;
     }
-
+    
     if (countMatches === searchString.length) result = true;
   }
   return result;

@@ -1,6 +1,7 @@
 //str.charAt(indice)
 //Version stand alone
 function charAt(string, index) {
+  
     let result = string[index];
   
     if (typeof index !== "number") {
@@ -8,10 +9,11 @@ function charAt(string, index) {
     } else if (index >= string.length) {
       result = "";
     }
-  
     return result;
   }
   
+
+
   const result1 = charAt("Hello", 2);
   console.assert(result1 === "Hello".charAt(2), {
     result: result1,

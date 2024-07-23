@@ -8,8 +8,6 @@ function endsWith(string, searchString, endPosition = string.length) {
     let result = true 
 
     for (let i = 0; i < searchString.length; i++) {
-        console.log(string[endPosition - searchString.length + i])
-        console.log(searchString[i])
         if (string[endPosition - searchString.length + i] !== searchString[i]) { 
             result = false
             break 
