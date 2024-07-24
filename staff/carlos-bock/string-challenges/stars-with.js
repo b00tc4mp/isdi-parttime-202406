@@ -1,4 +1,4 @@
-
+// done 
 
 /* 
     -Method passes a second string and an index, the index tells one what part of the string to start at, 
@@ -55,29 +55,3 @@ console.assert(result3 === string.startsWith("is", 5), {
     result: result3,
     message: "Test 3 No pasado ",
 });
-/*
-const result4 = startWith("This is a String", null);
-console.assert(result3 === "This is a String".startsWith(null), {
-    result: result3,
-    message: "Test 3 No pasado ",
-});
-
-
-
-//examples: 
-const str1 = 'Saturday night plans';
-
-console.log(str1.startsWith('Sat'));
-// Expected output: true
-
-console.log(str1.startsWith('Sat', 3));
-// Expected output: false
-
-
-const str = "To be, or not to be, that is the question.";
-
-console.log(str.startsWith("To be")); // true
-console.log(str.startsWith("not to be")); // false
-console.log(str.startsWith("not to be", 10)); // true
-
-*/

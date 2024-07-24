@@ -1,3 +1,5 @@
+// done  
+
 //for the purposes of this class assume we are working in UTF 8
 //limit scope of this exercise to spanish and english characters. 
 //option 1 is find and map the relevant ascii
@@ -9,30 +11,39 @@
 //Tenemos que correr y asignar valores si el valor de oldString[i] es igual a valor de upperCase[]
 // string[i]
 
-new function toLowerCase(string) {
-    let lowerCase = ["a", "á", "b", "c", "d", "e", "é", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "ñ", "o", "ó", "p", "q", "r", "s", "t", "u", "ú", "v", "w", "x", "y", "z"];
-    let upperCase = ["A", "Á", "B", "C", "D", "E", "É", "F", "G", "H", "I", "Í", "J", "K", "L", "M", "N", "Ñ", "O", "Ó", "P", "Q", "R", "S", "T", "U", "Ú", "V", "W", "X", "Y", "Z"];
-    let newString = [];
+function toLowerCase(string) {
+    const lowerCase = "aábcdeéfghiíjklmnñoópqrstuúvwxyz ";
+    const upperCase = "AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZ ";
+    let newString = "";
 
-    for (let i = 0; i < upperCase.length; i++) {
-
-        for (let j = 0; j < string.length; j++) {
-            if (upperCase[i + j] === string[j]) {
-
-                newString[j] = lowerCase[i];
-
+    for (let i = 0; i < string.length; i++) {
+        for (let j = 0; j < upperCase.length; j++) {
+            if (string[i] === lowerCase[j]) {
+                newString +=lowerCase[j];
+            }
+            else if(string[i] === upperCase[j]) {
+                newString += lowerCase[j];
             }
         }
 
     }
-
+    return newString;
 }
 
-let oldString = "THIS IS A STRING WITH UPPERCASE";
-
-console.log(toLowerCase(oldString));
-
+const oldString = "THIS IS A STRING WITH UPPERCASE";
+const oldString2 = "This Is a Test";
 
 
+const result1 = toLowerCase(oldString);
+console.assert(result1 === oldString.toLowerCase(),{
+  result: result1,
+  message: "Test 1 No pasado ",
+});
+
+const result2 = toLowerCase(oldString2);
+console.assert(result2 === oldString2.toLowerCase(), {
+  result: result2,
+  message: "Test 2 No pasado ",
+});
 
 

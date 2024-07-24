@@ -1,3 +1,5 @@
+// needs work
+
 /*
 
     -Method passes two parameters on string a searchString and an end position
