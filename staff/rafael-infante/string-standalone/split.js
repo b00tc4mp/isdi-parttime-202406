@@ -8,7 +8,7 @@ function split(string, pattern) {
   return result
 }
 
-split('The quick brown', ' ')
+console.log(split('The quick brown', ' '))
 
 function arrayIsEqual(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
@@ -23,13 +23,15 @@ function arrayIsEqual(arr1, arr2) {
   return result
 }
 
-{
-const phrase = ''
-const result1 = split('hello world', ' ');
-console.assert(arrayIsEqual(result1, ['hello', 'world']), {
-  result: result1,
-  message: 'Test 1 no pasado'
-})
-}
+
+const result1 = split('hello world', ' ')
+console.assert(arrayIsEqual(result1, ['hello', 'world']), {result: result1, message: "Test 1 No pasado "})
+
+const result2 = split('hello,cruel,world', ',')
+console.assert(arrayIsEqual(result2, ['hello', 'cruel', 'world']), {result: result2, message: "Test 2 No pasado "})
+
+const result3 = split('hello-cruel-world', '-')
+console.assert(arrayIsEqual(result3, ['hello', 'cruel', 'world']), {result: result3, message: "Test 3 No pasado "})
+
 
 
