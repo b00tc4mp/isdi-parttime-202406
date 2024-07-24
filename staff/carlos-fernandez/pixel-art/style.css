@@ -44,6 +44,8 @@ main {
 .art--pixel:nth-child(125),
 .art--pixel:nth-child(126),
 .art--pixel:nth-child(139),
-.art--pixel:nth-child(140) {
+.art--pixel:nth-child(140),
+.art--pixel:nth-child(78),
+.art--pixel:nth-child(53) {
   background-color: black;
 }
