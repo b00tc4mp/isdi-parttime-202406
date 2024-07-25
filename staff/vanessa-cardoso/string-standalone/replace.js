@@ -2,9 +2,12 @@
    de uma string por outra. 
 */
 
-function replace(string, changeString, newstring){
+function replace(stringOriginal, stringToReplace, newString){
+
+
 
     for(let i = 0; i < string.length; i++) {
+        result 
      
     }
 }
