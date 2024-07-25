@@ -6,13 +6,13 @@ const sum = (...arguments) => {
   }
 
   // Cuerpo function
-  let args = 0;
+  let total = 0;
   for (let i = 0; i < arguments.length; i++) {
     const element = arguments[i];
-    args += element;
+    total += element;
   }
 
-  return args;
+  return total;
 };
 
 console.info("Test 1. Expected output: 6");

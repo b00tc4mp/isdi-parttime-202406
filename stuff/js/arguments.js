@@ -6,13 +6,13 @@ function sum(_) {
   }
 
   // Cuerpo function
-  let args = 0;
+  let total = 0;
   for (let i = 0; i < arguments.length; i++) {
     const element = arguments[i];
-    args += element;
+    total += element;
   }
 
-  return args;
+  return total;
 }
 
 console.info("Test 1. Expected output: 6");
@@ -38,22 +38,3 @@ console.log("////////////////////////////////////");
 console.info("Test 4. Expected output: 11");
 console.debug(sum(1, 10));
 console.log("////////////////////////////////////");
-
-const sum2 = () => {
-  {
-    // arguments
-    for (let i = 0; i < arguments.length; i++) {
-      const element = arguments[i];
-      if (typeof element !== "number") return NaN;
-    }
-
-    // Cuerpo function
-    let args = 0;
-    for (let i = 0; i < arguments.length; i++) {
-      const element = arguments[i];
-      args += element;
-    }
-
-    return args;
-  }
-};
