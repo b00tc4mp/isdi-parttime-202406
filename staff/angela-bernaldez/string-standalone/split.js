@@ -7,6 +7,9 @@ function split(string, separator, limit = undefined) {
   let segmentCount = 0 
   let resultLength = 0 
 
+  // change for loop for a while loop
+  // condicion de parada: o que i<string.length() o que segmentCount>limit-1
+
   for (let i = 0; i < string.length; i++) {
       if (string[i] === separator) {
           result[resultLength] = currentSegment;
