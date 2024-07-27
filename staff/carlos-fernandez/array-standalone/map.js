@@ -5,6 +5,7 @@
 // creamos una funcion en la cual recorremos uno a uno los elementos de la array que nos pasan por parametro
 // y llamamos al esquema de implemetación del usuario pasandole el valor recorrido
 
+// en este caso hay dos parámetros: array [1, 5, 6, 7] y callback, el cual tiene que ser de tipo FUNCIÓN OBLIGATORIAMENTE
 
 function map(array, callback) {
 
