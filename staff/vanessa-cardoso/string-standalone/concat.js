@@ -15,13 +15,13 @@ function concat(...args) {
 
 }
 
-const result1 = concat("Buenos", "dia!");
+const result1 = concat("Buenos", " ", "dia!");
 console.assert(result1 === "Buenos".concat("dia!"), {result: result1, message: "Test 1 No pasado."});
 
 const result2 = concat("Tudo", " ", "bem?");
 console.assert(result2 === "Tudo".concat( " ", "bem?"), {result: result2, message: "Test 2 No pasado."});
 
-const result3 = concat("Tenho", "2 ", "hermanas");
+const result3 = concat("Tenho"," ", "2", " ", "hermanas");
 console.assert(result3 === "Tenho".concat(  "2 ", "hermanas"), {result: result3, message: "Test 3 No pasado."});
 
 
