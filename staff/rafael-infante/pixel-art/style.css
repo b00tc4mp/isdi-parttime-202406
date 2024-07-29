@@ -30,8 +30,8 @@ h1 {
 .art--pixel {
   width: 100%;
   height: 100%;
-  background-color: bisque;
-  border: gray 0.5px dashed;
+  background-color: rgba(215, 127, 65, 0.532);
+  border:rgba(0, 0, 0, 0.514) 0.5px dashed;
 }
 
 .art--pixel:nth-child(19),
