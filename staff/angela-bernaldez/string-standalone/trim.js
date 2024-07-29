@@ -26,20 +26,20 @@ function trim(string) {
 
 
 
-const result1 = toUpperCase(" hello wooooorld     ");
-console.assert(result1 === " hello wooooorld     ".toUpperCase(), {
+const result1 = trim(" hello wooooorld     ");
+console.assert(result1 === " hello wooooorld     ".trim(), {
   result: result1,
   message: "Test 1 No pasado",
 });
 
-const result2 = toUpperCase("         HOLA");
-console.assert(result2 === "         HOLA".toUpperCase(), {
+const result2 = trim("         HOLA");
+console.assert(result2 === "         HOLA".trim(), {
   result: result2,
   message: "Test 2 No pasado",
 });
 
-const result3 = toUpperCase( "ADIOS        ");
-console.assert(result3 === "ADIOS        ".toUpperCase(), {
+const result3 = trim( "ADIOS        ");
+console.assert(result3 === "ADIOS        ".trim(), {
   result: result3,
   message: "Test 3 No pasado",
 });
