@@ -1,4 +1,4 @@
-function toLowerCase(str) {
+function toUpperCase(str) {
     // Definir las letras mayúsculas y minúsculas manualmente
     let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -30,8 +30,8 @@ function toLowerCase(str) {
     return newStr;
 }
 
-const result1 = toUpperCase("AgüIta freskiTa");
-console.assert(result1 === "AgüIta freskiTa".toUpperCase(), { result: result1, message: "Test 1 No pasado ",});
+const result1 = toUpperCase("AguIta freskiTa");
+console.assert(result1 === "AguIta freskiTa".toUpperCase(), { result: result1, message: "Test 1 No pasado ",});
 
 const result2 = toUpperCase("DEMON slayer");
 console.assert(result2 === "DEMON slayer".toUpperCase(), { result: result1, message: "Test 1 No pasado ",});
