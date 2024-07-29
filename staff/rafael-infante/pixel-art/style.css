@@ -1,3 +1,77 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+}
+
 h1 {
-  color: blueviolet
+  color: chocolate;
+  text-align: center;
+  margin-top: 40px;
+  font-family: monospace;
+}
+
+.art {
+  place-self: center;
+  background-color: rgb(197, 167, 90);
+  height: min(450px, 100vw);
+  width: min(450px, 100%);
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.art--pixel {
+  width: 100%;
+  height: 100%;
+  background-color: bisque;
+  border: gray 0.5px dashed;
+}
+
+.art--pixel:nth-child(19),
+.art--pixel:nth-child(20),
+.art--pixel:nth-child(21),
+.art--pixel:nth-child(22),
+.art--pixel:nth-child(23),
+.art--pixel:nth-child(31),
+.art--pixel:nth-child(39) {
+  background-color: rgba(121, 85, 72, 1);
+}
+
+.art--pixel:nth-child(27),
+.art--pixel:nth-child(29),
+.art--pixel:nth-child(36) {
+  background-color: rgb(31, 30, 30);
+}
+
+.art--pixel:nth-child(28),
+.art--pixel:nth-child(30),
+.art--pixel:nth-child(35),
+.art--pixel:nth-child(37),
+.art--pixel:nth-child(38),
+.art--pixel:nth-child(42),
+.art--pixel:nth-child(47),
+.art--pixel:nth-child(60),
+.art--pixel:nth-child(61) {
+  background-color: rgb(253, 207, 211);
+}
+
+.art--pixel:nth-child(43),
+.art--pixel:nth-child(44),
+.art--pixel:nth-child(45),
+.art--pixel:nth-child(46) {
+  background-color: rgb(22, 153, 22);
+}
+
+.art--pixel:nth-child(51),
+.art--pixel:nth-child(52),
+.art--pixel:nth-child(53),
+.art--pixel:nth-child(54) {
+  background-color: blue;
 }
