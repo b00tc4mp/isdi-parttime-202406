@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: 22
       - run: npm install -g surge
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./staff/angela-bernaldez/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
