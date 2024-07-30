@@ -173,6 +173,9 @@ main {
 .art--pixel:nth-child(164),
 .art--pixel:nth-child(165),
 .art--pixel:nth-child(172),
+.art--pixel:nth-child(228),
+.art--pixel:nth-child(229),
+.art--pixel:nth-child(230),
 .art--pixel:nth-child(235),
 .art--pixel:nth-child(236),
 .art--pixel:nth-child(237),
@@ -188,4 +191,9 @@ main {
   background-color: rgb(112, 60, 0);
 }
 
+.art--pixel:nth-child(167),
+.art--pixel:nth-child(170)
+ {
+  background-color: rgb(226, 241, 10);
+}
 
