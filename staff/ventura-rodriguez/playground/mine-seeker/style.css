@@ -1,0 +1,146 @@
+/*  cleanner */
+html,
+body {
+  font-family: sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+address,
+li {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+ol,
+ul {
+  list-style-type: none;
+  margin-block: 0;
+  padding-inline: 0;
+}
+
+.header {
+  background-color: rgb(32, 87, 198);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  height: 96px;
+}
+
+.header--title {
+  font-size: 36px;
+}
+
+.header--player {
+  display: flex;
+  align-items: center;
+}
+
+.header--player--name {
+  font-size: 36px;
+  margin-right: 12px;
+}
+
+.header--player--button {
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.header--player--button:hover {
+  background-color: black;
+  border-color: white;
+}
+
+.header--player--button:hover svg {
+  fill: white;
+}
+
+.center {
+  background-color: blueviolet;
+  height: calc(100vh - 96px - 80px);
+  width: 100vw;
+}
+
+.footer {
+  background-color: rgb(95, 139, 180);
+  padding: 24px 32px;
+  height: 80px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 1fr 1fr;
+}
+
+.footer--legend {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer--legend--element {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100px;
+  font-size: 18px;
+  height: min-content;
+  margin-right: 12px;
+}
+
+.footer--legend--element > svg {
+  margin-inline-start: 20px;
+}
+
+.footer--owner {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.footer--copyright {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+/* SVGs */
+.flag {
+  background-color: red;
+  padding: 4px;
+  border-radius: 8px;
+}
