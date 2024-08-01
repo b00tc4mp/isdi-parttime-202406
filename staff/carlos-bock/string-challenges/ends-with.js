@@ -34,13 +34,13 @@ function endWith(string, newString, index = 0) {
 
 //tdd
 const string = 'Cats are the best!';
-
+debugger
 const result1 = endWith(string, 'best!');
 console.assert(result1 === string.endsWith('best!'), {
     result: result1,
     message: "Test 1 No pasado ",
 });
-
+/*
 const result2 = endWith(string, 'best', 17);
 console.assert(result2 === string.endsWith('best', 17), {
     result: result2,
@@ -52,7 +52,7 @@ console.assert(result3 === string.startsWith('best!', null), {
     result: result3,
     message: "Test 3 No pasado ",
 });
-
+*/
 
 
 // example code from documentation

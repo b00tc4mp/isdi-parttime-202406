@@ -1,4 +1,4 @@
-
+//done
 
 //remueve espacios en blanco del string que estan en los extremos
 //correr string para econtrar espacio 
@@ -8,21 +8,35 @@
 
 function trim(string){
     let newString = "";
-    
+    let index = 0;
+    let lastIndex = 0
     for (let i = 0; i < string.length; i++) {
-        if (string[i] != " ") {
-            newString += string[i];            
+        if (string[i] !== " ") {
+            index = i;
+            break;
+            //newString += string[i];            
         }
     }
+    
+    for (let i = string.length-1; i > 0; i--) {
+        if (string[i] !== " ") {
+            lastIndex = i;
+            break;
+        }
+    }
+
+    for (let i = index; i <= lastIndex; i++) {
+        newString += string[i];
+    }
+    
     return newString;
 }
 
 
-
-const oldString = "    Esta string tiene muchos espacios.    ";
+const oldString = "    Este es un string    ";
 
 const result1 = trim(oldString);
-console.assert(result1 === oldString.trim,{
+console.assert(result1 === oldString.trim(),{
   result: result1,
   message: "Test 1 No pasado ",
 });
