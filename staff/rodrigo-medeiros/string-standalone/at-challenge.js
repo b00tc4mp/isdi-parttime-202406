@@ -27,4 +27,4 @@ const result2 = at("Hola", 2)
 console.assert(result2 === "Hola".at(2), { result: result2, message: "Test 2 No pasado " })
 debugger
 const result3 = at("indexNegativo", -1)
-console.assert(result3 === "indexNegativo".at(-1), { result: result3, message: "Test 3 No pasado " })git 
+console.assert(result3 === "indexNegativo".at(-1), { result: result3, message: "Test 3 No pasado " })
