@@ -26,10 +26,13 @@ function toUpperCase(string) {
   }
   
   const result1 = toUpperCase('hola');
-  console.assert(result1 === "hola".toUpperCase(), { result: result1, message: "Test 1 No pasado ",});
+  console.assert(result1 === "hola".toUpperCase(), { result: result1, message: "Test 1 No pasado "});
+  if (result1 === "hola".toUpperCase()) console.log('Test 1 pasado');
   
   const result2 = toUpperCase('Hola');
-  console.assert(result2 === "Hola".toUpperCase(), { result: result2, message: "Test 2 No pasado ",});
+  console.assert(result2 === "Hola".toUpperCase(), { result: result2, message: "Test 2 No pasado "});
+  if (result2 === "Hola".toUpperCase()) console.log('Test 2 pasado');
   
   const result3 = toUpperCase('HoLAA');
-  console.assert(result3 === "HoLAA".toUpperCase(), { result: result3, message: "Test 3 No pasado ",});
+  console.assert(result3 === "HoLAA".toUpperCase(), { result: result3, message: "Test 3 No pasado "});
+  if (result3 === "HoLAA".toUpperCase()) console.log('Test 3 pasado');
