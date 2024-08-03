@@ -1,41 +1,52 @@
-function split(string, splicer) {
+function split(string, splicer, limit = Infinity) {
     let holder = [];        // Array para almacenar las partes
     let actPart = '';       // Variable para acumular caracteres
-    
+    let partCount = 0;      // Contador de partes
+
     for (let i = 0; i < string.length; i++) {
-        //Verificar el separador
+        // Verificar el separador
         if (string[i] === splicer) {
             // Solo agrega actPart a holder si no está vacío
             if (actPart.length > 0) {
-                //Crea una copia del array holder actual
-                let tempArray = holder;
-                holder = []; //Holder se reinicia
-
-                //Copiar los elementos de tempArray a Holder
-                for (let j = 0; j < tempArray.length; j++) {
-                    holder[j] = tempArray[j];
+                // Crear un nuevo array para `holder` con el tamaño necesario
+                let newHolder = new Array(holder.length + 1);
+                
+                // Copiar los elementos de `holder` al nuevo array
+                for (let j = 0; j < holder.length; j++) {
+                    newHolder[j] = holder[j];
                 }
-                //Agregar actPart al final de Holder
-                holder[holder.length] = actPart;
-                actPart = ''; //Reiniciamos actPart para la siguiente parte
+                // Añadir `actPart` al nuevo array
+                newHolder[holder.length] = actPart;
+                
+                holder = newHolder; // Actualizar `holder` al nuevo array
+                actPart = ''; // Reiniciar actPart para la siguiente parte
+
+                partCount++;
+                // Verificar si alcanzamos el límite
+                if (partCount >= limit - 1) {
+                    break;
+                }
             }
         } else {
             actPart += string[i]; // Acumula el carácter actual en actPart
         }
     }
-    
-    // Agrega la última parte solo si no está vacía al acabar el bucle
+
+    // Agregar la última parte solo si no está vacía al acabar el bucle
     if (actPart.length > 0) {
-        //Crea una copia de holder
-        let tempArray = holder;
-        holder = []; //Reiciniamos para la siguiente parte
-        for (let j = 0; j < tempArray.length; j++) {
-            holder[j] = tempArray[j];
+        // Crear un nuevo array para `holder` con el tamaño necesario
+        let newHolder = new Array(holder.length + 1);
+        
+        // Copiar los elementos de `holder` al nuevo array
+        for (let j = 0; j < holder.length; j++) {
+            newHolder[j] = holder[j];
         }
-        //Metemos actPart al final de holder
-        holder[holder.length] = actPart;
+        // Añadir `actPart` al nuevo array
+        newHolder[holder.length] = actPart;
+        
+        holder = newHolder; // Actualizar `holder` al nuevo array
     }
-    
+
     return holder;
 }
 

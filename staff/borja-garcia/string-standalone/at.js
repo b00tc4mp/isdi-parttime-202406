@@ -14,7 +14,7 @@ function at(string, index) {
 }
 
 const result1 = at('Hello', 2);
-console.assert(reslt1 === 'Hello'.at(2), {
+console.assert(result1 === 'Hello'.at(2), {
     result: result1,
     message: 'Test 1 no pasado'
 });

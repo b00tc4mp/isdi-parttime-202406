@@ -1,19 +1,31 @@
 function indexOf(string, subString) {
-    if (subString === '') return 0;  
+    if (subString === '') return 0;  //Un string vacío se pasa como posición 0
 
     const stringLength = string.length;
     const subStringLength = subString.length;
 
+    // Verificamos que subString sea más pequeño que string
+    if (subStringLength > stringLength) return -1;
+
     for (let i = 0; i <= stringLength - subStringLength; i++) {
-        if (string.subString(i, i + subStringLength) === subString) {
-            return i;
+        let match = true;
+
+        // Verificar si los caracteres de string a partir de i coinciden con subString
+        for (let j = 0; j < subStringLength; j++) {
+            if (string[i + j] !== subString[j]) {
+                match = false;
+            }
+        }
+
+        if (match) {
+            return i; // La cadena existe, devuelve el índice
         }
     }
 
-    return -1;
+    return -1; // No se encuentra la cadena
 }
 
-const result1 ? indexOf('hello', 'll');
+const result1 = indexOf('hello', 'll');
 console.assert(result1 === 'hello'.indexOf('ll'), {
     result: result1,
     message: 'Test 1 no pasado',

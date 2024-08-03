@@ -1,5 +1,16 @@
 function concat(...strings) {
-   return strings.join(' ');
+  let result = '';
+
+  for (let i = 0; i < str1.length; i++) {
+    result += strings[i];
+
+    //Añadimos un espacio entre strings (Para dejarlo más cuqui)
+    if (i < strings.length -1) {
+        result += ' ';
+    }
+  }
+
+  return result;
 }
 
 const result1 = concat('Hello', 'World!');

@@ -1,4 +1,4 @@
-function convertirMinusAMayus(cadena) {
+function toUpperCase(cadena) {
     let mayusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let minusculas = 'abcdefghijklmnopqrstuvwxyz';
     let resultado = '';
@@ -22,19 +22,19 @@ function convertirMinusAMayus(cadena) {
     return resultado;
 }
 
-const result1 = convertirMinusAMayus("HOLA munDO!");
+const result1 = toUpperCase("HOLA munDO!");
 console.assert(result1 === "HOLA MUNDO!", {
     result: result1,
     message: 'Test 1 No pasado'
 });
 
-const result2 = convertirMayusAMinus("JavaScript ES DIVERTIDO");
+const result2 = toUpperCase("JavaScript ES DIVERTIDO");
 console.assert(result2 === "JAVASCRIPT ES DIVERTIDO", {
     result: result2,
     message: 'Test 2 No pasado'
 });
 
-const result3 = convertirMinusAMayus("123 ABC xyz!");
+const result3 = toUpperCase("123 ABC xyz!");
 console.assert(result3 === "123 ABC XYZ!", {
     result: result3,
     message: 'Test 3 No pasado'

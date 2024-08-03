@@ -1,7 +1,12 @@
 function endsWith(word, wordEnd) {
 
-    word = word.toString();
-    wordEnd = wordEnd.toString();
+    if (typeof word === 'number' || typeof word === 'boolean') {
+        word = '' + word;
+    }
+
+    if (typeof wordEnd === 'number' || typeof wordEnd === 'boolean') {
+        wordEnd = '' + wordEnd;
+    }
     
     const wordLength = word.length;
     const wordEndLength = wordEnd.length;

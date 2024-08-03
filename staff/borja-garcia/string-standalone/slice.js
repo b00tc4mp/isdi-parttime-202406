@@ -1,27 +1,23 @@
-function slice(string, start, end) {
-    let resultado = '';
-    if (start < 0) {
-        start = string.length + start;
-    }
-    if (end < 0) {
-        end = string.length + end;
-    }
-    if (start > string.length) {
-        start = string.length;
-    }
-    if (end > string.length) {
-        end = string.length;
+function slice(string, start = 0, end = string.length) {
+    const length = string.length;
+
+    // Ajustar start y end si son negativos o fuera de rango
+    if (start < 0) start = Math.max(0, length + start);
+    if (end < 0) end = Math.max(0, length + end);
+    start = Math.min(length, start);
+    end = Math.min(length, end);
+
+    // Asegurarse de que start no sea mayor que end
+    if (start > end) return '';
+
+    let result = '';
+    for (let i = start; i < end; i++) {
+        result += string[i];
     }
 
-    if(end < start) {
-        end = start;
-    }
-    
-    for (let i = start; i < end; i++) {
-        resultado += string[i];
-    }
-    return resultado;
+    return result;
 }
+
 
 const result1 = slice('Hello world!', 3, 6);
 console.assert (result1 === 'lo ', {
