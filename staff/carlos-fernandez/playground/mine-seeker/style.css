@@ -1,0 +1,90 @@
+/*<uniquifier>: Use a unique and descriptive class name <weight>: Use a value from 200 to 900 */
+
+html,
+body {
+  font-family: "Inconsolata", monospace;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  background: rgb(190, 190, 190);
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+address,
+li {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+ol,
+ul {
+  list-style-type: none;
+  margin-block: 0;
+  padding-inline: 0;
+}
+
+.header {
+    color: white;
+    background-color: rgba(82, 81, 81, 0.524);
+    display: flex;
+    height: 76px;
+    padding: 18px 28px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header--title {
+    font-size: 38px;
+}
+
+.header--player {
+    display: flex;
+    align-items: start ;
+}
+
+.header--player--name {
+    font-size: 26px;
+    margin-right: 4px;
+}
+
+.header--player--button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 20%;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+}
+
+.header--player--button:hover{
+    background-color:rgb(163, 163, 163);
+}
+
+.icon {
+    width: 70%;
+    height: 70%;
+}
+
+.author {
+    font-style: italic;
+    font-size: 8px;
+}
+
