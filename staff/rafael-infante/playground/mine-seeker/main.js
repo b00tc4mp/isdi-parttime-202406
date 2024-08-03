@@ -53,7 +53,7 @@
     minesTotal.innerText = totalMines;
     gamesLost.innerText = lostgames;
     table.innerHTML = `
-      holaa
+    ${printDivs()}
     `
   }
 
