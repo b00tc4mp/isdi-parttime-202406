@@ -19,7 +19,6 @@
         <h1 class="header--title">Mine Seeker</h1>
         <div class="author">By: CarlosLemonCode</div>
       </div>
-
       <div class="header--player">
         <span class="header--player--name" id="displayPlayerName">Player 1</span>
         <button aria-label="edit name" class="header--player--button" type="button" id="changePlayerName">
@@ -39,36 +38,46 @@
         </button>
       </div>
     </header>
-    <div class="center"></div>
-    <!-- <aside>
-      <div>Timer</div>
-      <div>
-        <ul>
-          <h3>Stats</h3>
-          <li><span>Games won: </span> <span> </span></li>
-          <li><span>Games lost: </span> <span> </span></li>
-          <li><span>Games won: </span> <span> </span></li>
-          <li><span>Games won in a row: </span> <span></span></li>
-          <li><span>Clicks: </span> <span> </span></li>
-          <li><span>Récord: </span> <span></span></li>
-        </ul>
-      </div>
-    </aside>
-
-    <main>
-      <section>
-        <div>
+    <div class="center">
+      <aside class="aside">
+        <!--<div class="aside--timer">Timer</div>-->
+          <ul class="aside--stats">
+            <h3 class="aside--stats--title">Stats</h3>
+            <li class="aside--stats--item">
+              <span>Games won: </span> <span>0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Games lost: </span> <span>0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Games won: </span> <span>0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Games won in a row: </span>0<span></span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Clicks: </span> <span>0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Record: </span> <span>0</span>
+            </li>
+          </ul>
+      </aside>
+    
+    <main class="main">
+      <section class="control-panel">
+        <div class="control-panel--stats">
           <span>Mines found: </span> <span>10</span> <span>/</span>
           <span>100</span>
         </div>
-        <div>
+        <div class="control-panel--buttons">
           <button>Restart</button>
           <button>Start game / leave</button>
         </div>
       </section>
-      <section><div id="table"></div></section>
-    </main> -->
-
+      <section class="container-table"><div id="table" class="table"></div></section>
+    </main>
+    </div>
     <footer class="footer">
       <ul class="footer--legend">
         <li class="footer--legend--element"> 
@@ -79,10 +88,16 @@
         </li>
         <li class="footer--legend--element"> 
           <span> Mine </span> 
+          <div class="footer--legend--element--icon">
+            <img src="assets/bomb.png"/>
+          </div>
         </li>
-        <li class="footer--legend--element"> Ground </li>
-        <li class="footer--legend--element"> Number </li>
-        <li class="footer--legend--element"> Blank </li>
+        <li class="footer--legend--element"> 
+          <span> Number </span>
+            <div class="footer--legend--element--icon">
+              <img src="assets/number1.png"/>
+            </div>
+        </li>
       </ul>
       <address class="footer--owner">© CarlosLemonCode</address>
       <span class="footer--copyright">All rights reserved. </span>
