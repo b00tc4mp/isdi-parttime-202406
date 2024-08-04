@@ -43,17 +43,19 @@ ul {
     display: flex;
     height: 76px;
     padding: 18px 28px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 .header--title {
     font-size: 38px;
+    margin-left: 85px;
 }
 
 .header--player {
     display: flex;
     align-items: start ;
+    margin-right: 100px;
 }
 
 .header--player--name {
@@ -86,5 +88,71 @@ ul {
 .author {
     font-style: italic;
     font-size: 8px;
+    margin-left: 85px;
 }
 
+.footer {
+    background-color: rgb(100, 100, 100);
+    color: white;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 73.5px;
+    padding: 18px 28px;
+}
+
+.footer--copyright {
+    color: black;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-content: left;
+    align-items: center;
+}
+
+.center {
+    height: 248px;
+    width: 100%;
+}
+
+.footer--legend {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer--legend--element {
+    width: 86px;
+    font-size: 12px;
+    padding: 0px;
+    height: min-content;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.footer--owner {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 10px;
+}
+
+.footer--legend--element--icon {
+    width: 24px;
+    height: 24px;
+}
+
+.footer--legend--element--icon > img{
+    width: 100%;
+    height: 100%;
+}

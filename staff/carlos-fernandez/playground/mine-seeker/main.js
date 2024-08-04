@@ -1,5 +1,9 @@
 const changePlayerNameButton = document.getElementById("changePlayerName");
+let displayNameSpan = document.getElementById("displayPlayerName");
+
 
 changePlayerNameButton.onclick = () => {
-    prompt('Please enter your name.')
+    const playerName = prompt('Please enter your name.');
+    displayNameSpan.innerText = playerName;
+
 }
