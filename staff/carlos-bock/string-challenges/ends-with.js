@@ -10,72 +10,48 @@
     -Usar un for loop para comparar los valores
 
 */
-function endWith(string, newString, index = 0) {
-    let result = false;
-    let counter = 0;
+function endsWith(string,ending) {
 
-    if (typeof index === 'null') {
-        return result;
+    if (typeof ending != 'string'){
+        return false;
     }
-
-    if (typeof index === 'number') {
-        for (i = 0; i < newString.length; i++) {
-            if (string[index + i] === newString[newString.length + 1 + i]) {
-                counter++;
-                if (counter === newString.length) {
-                    result = true;
-                }
-            }
-        }
-        return result
+    for (i = 0; i < ending.length; i++) {
+        if (string[string.length-ending.length+i] !==ending[i]){
+            return false;
+        } 
+        return true;
     }
 }
 
 
-//tdd
+
 const string = 'Cats are the best!';
-debugger
-const result1 = endWith(string, 'best!');
+const string2 = 'Madrid es la mejor ciudad del mundo';
+    
+const result1 = endsWith(string, 'best!');
 console.assert(result1 === string.endsWith('best!'), {
     result: result1,
     message: "Test 1 No pasado ",
 });
-/*
-const result2 = endWith(string, 'best', 17);
-console.assert(result2 === string.endsWith('best', 17), {
+
+
+const result2 = endsWith(string2, 'mundo');
+console.assert(result2 === string2.endsWith('mundo'), {
     result: result2,
     message: "Test 2 No pasado ",
 });
 
-const result3 = startWith(string, 'best!', null);
-console.assert(result3 === string.startsWith('best!', null), {
+//debugger
+const result3 = endsWith(string2, 'test');
+console.assert(result3 === string2.endsWith('test'), {
     result: result3,
     message: "Test 3 No pasado ",
 });
-*/
+
+const result4 = endsWith(string);
+console.assert(result4 === string.endsWith(), {
+    result: result4,
+    message: "Test 4 No pasado ",
+});
 
 
-// example code from documentation
-
-/*
-const str1 = 'Cats are the best!';
-
-console.log(str1.endsWith('best!'));
-// Expected output: true
-
-console.log(str1.endsWith('best', 17));
-// Expected output: true
-
-const str2 = 'Is this a question?';
-
-console.log(str2.endsWith('question'));
-// Expected output: false
-
-
-const str = "To be, or not to be, that is the question.";
-
-console.log(str.endsWith("question.")); // true
-console.log(str.endsWith("to be")); // false
-console.log(str.endsWith("to be", 19)); // true
-
-*/
