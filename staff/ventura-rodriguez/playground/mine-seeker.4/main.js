@@ -19,7 +19,6 @@
   let foundMines = 0;
   // null = ground // 1 = Number1 // 2 = Number3... // bomb = '*' // flag = '_' // blank = '.'
   const matrix = Array.from({ length: 12 }, () => Array(12).fill(null));
-  let counterClicks = 0;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,7 +46,6 @@
       totalMines = 0;
       foundMines = 0;
       lostGames++;
-      counterClicks = 0;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,8 +56,6 @@
     table.innerHTML = `
       ${printDivs()}
     `;
-    animateDivs();
-    clickCounter.innerText = counterClicks;
   };
 
   function hasNoDuplicates(arr) {
@@ -75,49 +71,48 @@
   }
 
   function printDivs() {
-    const template = (cell) =>
-      `<div class="cell cell__ground" data-cell=${cell} ></div>`;
+    const template = '<div class="cell cell__ground"></div>';
 
     concatString = "";
 
     for (let i = 0; i < 144; i++) {
-      concatString += template(i + 1);
+      concatString += template;
     }
 
     return concatString;
   }
 
-  function animateDivs() {
-    const cells = document.getElementsByClassName("cell");
-
-    // idesas? Siiiiiii
-
-    for (let i = 0; i < cells.length; i++) {
-      const cell = cells[i];
-      // aquí la lógica del click izquierdo
-      cell.onclick = (event) => {
-        counterClicks++;
-
-        // DOM zone
-        clickCounter.innerText = counterClicks;
-      };
-      // aquí la lógica del click derecho
-      cell.oncontextmenu = (event) => {
-        event.preventDefault();
-        counterClicks++;
-
-        // DOM zone
-        clickCounter.innerText = counterClicks;
-      };
-    }
-  }
-
   function locateNumbersAndBlanks(matrix) {
+    // nuestro código para meter los números y los espacios en blanco
+    // analizar la matriz y colocar un valor dependiendo de su posición
+
+    // primero seleccionaremos los espacios sin bomba
+    //
+    // propuesta del contador de si tiene algo al lado
+    // mirar las celdas adyacentes que son 8 para cada una y entonces decidir que poner
+
+    // nos acercamos a las bombas y ponemos los de alrededor
+    // después le metemos los espacios que quedan
+
+    // i = 5  --  j = 5
+
+    // recorremos la matriz y hacemos la parte del contador y ponemos o el blank o el numero correspondiente
+    // si nos encontramos una bomba hacemos "pass"
+    debugger;
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
         const cell = matrix[i][j];
 
         if (cell !== "*") {
+          // matrix[i-1][j-1] diagonal izquierda arriba
+          // matrix[i-1][j] arriba
+          // matrix[i-1][j+1] diagonal derecha arriba
+          // matrix[i+1][j-1] diagonal abajo izquierda
+          // matrix[i+1][j] abajo
+          // matrix[i+1][j+1] diagonal derecha abajo
+          // matrix[i][j-1] izquierda
+          // matrix[i][j+1] derecha
+
           const relativePositions = [
             [-1, -1],
             [-1, 0],
@@ -144,7 +139,21 @@
           matrix[i][j] = counter === 0 ? "." : counter;
         }
       }
+      debugger;
+      console.log(matrix);
     }
+
+    // debugger;
+    // const bombPositions = matrix.reduce((acumulator, array, i) => {
+    //   const result = acumulator.map((element) => element !== null);
+    //   // result es mi array con los true y los false
+    //   // [true, false, true...]
+    //   return result.map((element, j) => (element === true ? [j, i - 1] : null));
+    //   // parámetros son element y j, return el if de si element es === true, en caso de que si
+    //   // retorno coordenadas en caso de que no retorno null
+    // });
+
+    console.log("hello wolrd");
   }
 
   function locateBombs(matrix) {
