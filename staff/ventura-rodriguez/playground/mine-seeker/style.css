@@ -258,5 +258,63 @@ button * {
 }
 
 .cell__ground {
-  background-color: rgb(18, 101, 17);
+  background-color: rgb(18, 101, 17) !important;
+}
+
+.cell__reveal {
+  background-color: rgb(32, 87, 198);
+}
+
+.cell__type1 {
+  background-image: url("assets/number1.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type2 {
+  background-image: url("assets/number2.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type3 {
+  background-image: url("assets/number3.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type4 {
+  background-image: url("assets/number4.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type5 {
+  background-image: url("assets/number5.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type6 {
+  background-image: url("assets/number6.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type7 {
+  background-image: url("assets/number7.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type8 {
+  background-image: url("assets/number8.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__typeB {
+  background-image: url("assets/bomb.png");
+  background-position: 0;
+  background-size: 100%;
 }

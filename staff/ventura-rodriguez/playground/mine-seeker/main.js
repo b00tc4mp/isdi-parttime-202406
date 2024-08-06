@@ -20,6 +20,7 @@
   // null = ground // 1 = Number1 // 2 = Number3... // bomb = '*' // flag = '_' // blank = '.'
   const matrix = Array.from({ length: 12 }, () => Array(12).fill(null));
   let counterClicks = 0;
+  const matrixClasses = Array.from({ length: 12 }, () => Array(12).fill(null));
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,9 +57,10 @@
     minesTotal.innerText = totalMines;
     gamesLost.innerText = lostGames;
     table.innerHTML = `
-      ${printDivs()}
+      ${printDivs(matrix)}
     `;
     animateDivs();
+    updateStats();
     clickCounter.innerText = counterClicks;
   };
 
@@ -74,13 +76,27 @@
     return true;
   }
 
-  function printDivs() {
+  function printDivs(matrix) {
+    // celltype => '.', 1, 2, 3, 4, 5, 6, 7, 8
     const template = (cell) =>
       `<div class="cell cell__ground" data-cell=${cell} ></div>`;
 
     concatString = "";
 
     for (let i = 0; i < 144; i++) {
+      // calcular el cell type
+      // i va a ser un vector que se mueve de 0 a 144, habra que operarlo
+      // para sacar la posición de la matriz
+      const positionMatrix = [Math.floor(i / 12), i % 12];
+
+      const cellType = matrix[positionMatrix[0]][positionMatrix[1]];
+      matrixClasses[positionMatrix[0]][positionMatrix[1]] =
+        cellType === "."
+          ? ""
+          : cellType === "*"
+          ? "cell__typeB"
+          : "cell__type" + cellType;
+
       concatString += template(i + 1);
     }
 
@@ -90,25 +106,55 @@
   function animateDivs() {
     const cells = document.getElementsByClassName("cell");
 
-    // idesas? Siiiiiii
-
     for (let i = 0; i < cells.length; i++) {
       const cell = cells[i];
       // aquí la lógica del click izquierdo
       cell.onclick = (event) => {
-        counterClicks++;
+        // detetar o machear la posición pulsada con mi matrix
+        debugger;
+        // detectar el attributo y localizar la celda de mi matrix a consultar
+        const positionNumber = Number(event.target.dataset.cell);
+        // dividir entre 12 y sacar el resto
+        const positionMatrix = [
+          Math.floor(positionNumber / 12),
+          positionNumber % 12,
+        ];
 
-        // DOM zone
-        clickCounter.innerText = counterClicks;
+        if (matrix[positionMatrix[0]][positionMatrix[1]] !== "*") {
+          // código para desvelar la posición y mostrar el número
+          event.target.classList.remove("cell__ground");
+          event.target.classList.add("cell__reveal");
+          event.target.classList.add(
+            matrixClasses[positionMatrix[0]][positionMatrix[1]]
+          );
+
+          // pinta las clases que toquen
+
+          // el número no está pintado en el front, solo está localizado en la matrix
+        }
+
+        // en cuanlquier caso la casilla se revela
+        // en caso de muerte sale un promp diciendo que has volado por los aires y se descubre todo el tablero
       };
       // aquí la lógica del click derecho
       cell.oncontextmenu = (event) => {
         event.preventDefault();
-        counterClicks++;
-
-        // DOM zone
-        clickCounter.innerText = counterClicks;
       };
+    }
+  }
+
+  function updateStats() {
+    const cells = document.getElementsByClassName("cell");
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      cell.addEventListener("click", () => {
+        counterClicks++;
+        clickCounter.innerText = counterClicks;
+      });
+      cell.addEventListener("contextmenu", () => {
+        counterClicks++;
+        clickCounter.innerText = counterClicks;
+      });
     }
   }
 
