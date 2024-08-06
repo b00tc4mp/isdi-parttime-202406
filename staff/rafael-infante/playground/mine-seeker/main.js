@@ -37,7 +37,7 @@
       started = true;
       foundMines = 0;
       totalMines = 16;
-      prepareGame();
+      locateBombs();
     } else {
       //terminar partida
       stateButton.innerText = "Empezar partida";
@@ -57,7 +57,7 @@
     `
   }
 
-function prepareGame(){
+function locateBombs(){
 
   //Meter las bombas con un numero aleatorio y que no esten repetidas las posiciones
   const randomMines = Array.from(
