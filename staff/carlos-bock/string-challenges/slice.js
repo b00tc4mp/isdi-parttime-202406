@@ -5,12 +5,12 @@
 //si los indices sone negativos se cuentan desde el final del string original. 
 
 function slice(string, index1, index2) {
-    let newString = "";
+  let newString = "";
 
-    for (let i = index1; i < index2; i++) {
-            newString += string[i]; 
-        }
-    return newString;
+  for (let i = index1; i < index2; i++) {
+          newString += string[i]; 
+      }
+  return newString;
 }
 
 
@@ -20,16 +20,8 @@ const indexOne = 6;
 const indexTwo = 12;
 
 
-console.log(slice(string1,indexOne,indexTwo));
-
-const result1 = slice(string1, 1);
-console.assert(result1 === string1.slice(1),{
+const result1 = slice(string1, 1, 3 );
+console.assert(result1 === string1.slice(1, 3),{
   result: result1,
-  message: "Test 1 No pasado ",
-});
-
-const result2 = slice(string1, 1, 3 );
-console.assert(result2 === string1.slice(1, 3),{
-  result: result2,
   message: "Test 1 No pasado ",
 });

@@ -1,7 +1,5 @@
 
-// need to finish this one 
 //si es numero o null meter toda la frase en un array
-
 //split 
 // se resive un string y un patron
 // recorrer candena
@@ -59,7 +57,7 @@ function compare(array1, array2) {
 const str = 'Esta es una oración que tiene que estar split.';
 const pattern = "";
 const pattern2 = " ";
-const pattern3 = "que";
+const pattern3 = "q";
 const pattern4 = "e";
 
 const result1 = split(str, pattern);

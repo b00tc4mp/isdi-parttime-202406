@@ -1,5 +1,3 @@
-// done
-
 // metodo toma el primer paratro y lo reemplaza por el segundo en el string. 
 //me imagino que queremos recorrer el string para buscar el primer prametro
 //luego querré crear un nuevo string que contiene lo que venía tanto antes como después del parametro

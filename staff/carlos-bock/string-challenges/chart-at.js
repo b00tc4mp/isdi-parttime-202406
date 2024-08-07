@@ -1,5 +1,3 @@
-// Carlos 
-
 // str.charAt(indice)
 // version stand alone 
 

@@ -1,5 +1,3 @@
-// done 
-
 /* 
     -Method passes a second string and an index, the index tells one what part of the string to start at, 
         the index defaults to zero if not given as a parameter. 
@@ -33,8 +31,6 @@ function startWith(string, newString, index = 0) {
 }
 
 
-// need to declare a string to run through the alert.
-// restructure the tdd 
 
 const string = "This is a long string";
 
