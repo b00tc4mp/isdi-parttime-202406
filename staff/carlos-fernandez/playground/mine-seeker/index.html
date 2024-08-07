@@ -16,7 +16,7 @@
   <body>
     <header class="header">
       <div>
-        <h1 class="header--title">Mine Seeker</h1>
+        <h1 class="header--title">Mine Seeke<span class="orange--r">r</span></h1>
         <div class="author">By: CarlosLemonCode</div>
       </div>
       <div class="header--player">
@@ -44,13 +44,10 @@
           <ul class="aside--stats">
             <h3 class="aside--stats--title">Stats</h3>
             <li class="aside--stats--item">
-              <span>Games won: </span> <span>0</span>
+              <span>Games won: </span> <span id="gamesWon">0</span>
             </li>
             <li class="aside--stats--item">
-              <span>Games lost: </span> <span>0</span>
-            </li>
-            <li class="aside--stats--item">
-              <span>Games won: </span> <span>0</span>
+              <span>Games lost: </span> <span id="gamesLost">0</span>
             </li>
             <li class="aside--stats--item">
               <span>Games won in a row: </span>0<span></span>
@@ -65,35 +62,35 @@
       </aside>
     
     <main class="main">
-      <section class="control-panel">
-        <div class="control-panel--stats">
-          <span>Mines found: </span> <span>10</span> <span>/</span>
-          <span>100</span>
+      <section class="control--panel">
+        <div class="control--panel--stats">
+          <span>Mines found: </span> <span id="minesFound">10</span> <span>/</span>
+          <span id="totalMines">100</span>
         </div>
-        <div class="control-panel--buttons">
-          <button>Restart</button>
-          <button>Start game / leave</button>
+        <div class="control--panel--buttons">
+          <button id="restartButton" class="contro--pane--buttons--restart">Restart</button>
+          <button id="stateButton" class="contro--pane--buttons--startGame">Start game / leave</button>
         </div>
       </section>
-      <section class="container-table"><div id="table" class="table"></div></section>
+      <section class="container--table"><div id="table" class="table"></div></section>
     </main>
     </div>
     <footer class="footer">
       <ul class="footer--legend">
         <li class="footer--legend--element"> 
-          <span> Flag </span>
+          <span class="orange--f"> F</span><span>lag </span>
           <div class="footer--legend--element--icon">
             <img src="assets/flag.png" />
           </div>
         </li>
         <li class="footer--legend--element"> 
-          <span> Mine </span> 
+          <span class="orange--m"> M</span><span>ine </span> 
           <div class="footer--legend--element--icon">
             <img src="assets/bomb.png"/>
           </div>
         </li>
         <li class="footer--legend--element"> 
-          <span> Number </span>
+          <span class="orange--n"> N</span><span>umber</span>
             <div class="footer--legend--element--icon">
               <img src="assets/number1.png"/>
             </div>
