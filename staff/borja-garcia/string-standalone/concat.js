@@ -1,7 +1,7 @@
 function concat(...strings) {
   let result = '';
 
-  for (let i = 0; i < str1.length; i++) {
+  for (let i = 0; i < strings.length; i++) {
     result += strings[i];
 
     //Añadimos un espacio entre strings (Para dejarlo más cuqui)
