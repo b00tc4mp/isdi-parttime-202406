@@ -14,9 +14,7 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
   let started = false;
-  let winsInARowCounter = 0;
   let lostGames = 0;
-  let wonGames = 0;
   let totalMines = 0;
   let foundMines = 0;
   // null = ground // 1 = Number1 // 2 = Number3... // bomb = '*' // flag = '_' // blank = '.'
@@ -47,7 +45,6 @@
       foundMines = 0;
       lostGames++;
       counterClicks = 0;
-      winsInARowCounter = 0;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,19 +58,6 @@
     animateDivs();
     updateStats();
     clickCounter.innerText = counterClicks;
-    winsInARow.innerText = winsInARowCounter;
-  };
-
-  restartButton.onclick = () => {
-    started = false;
-    stateButton.innerText = "Empezar partida";
-    totalMines = 0;
-    foundMines = 0;
-    counterClicks = 0;
-    minesFound.innerText = "_";
-    minesTotal.innerText = "_";
-    clickCounter.innerText = counterClicks;
-    table.innerHTML = "";
   };
 
   function hasNoDuplicates(arr) {
@@ -112,30 +96,21 @@
       [0, 1],
     ];
     const cells = document.getElementsByClassName("cell");
-    const blanks = [];
     for (let k = 0; k < 8; k++) {
       const position = [
         relativePositions[k][0] + i,
         relativePositions[k][1] + j,
       ];
-      if (
-        position[0] >= 0 &&
-        position[1] >= 0 &&
-        position[0] < 12 &&
-        position[1] < 12
-      ) {
+      if (position[0] >= 0 && position[1] >= 0) {
         const positionNumber = position[0] * 12 + position[1] + 1;
-        const classToAdd = getClassFromMatrix(matrix, position[0], position[1]);
-        const shouldBeAdded =
-          cells[positionNumber - 1].classList.contains("cell__ground");
-        if (classToAdd === null && shouldBeAdded) blanks.push(position);
+
         cells[positionNumber - 1].classList.remove("cell__ground");
         cells[positionNumber - 1].classList.add("cell__reveal");
+        const classToAdd = getClassFromMatrix(matrix, position[0], position[1]);
+
         if (classToAdd) cells[positionNumber - 1].classList.add(classToAdd);
       }
     }
-    if (blanks.length)
-      blanks.forEach((blank) => virus(matrix, blank[0], blank[1]));
   }
 
   function printDivs() {
@@ -160,7 +135,6 @@
       // aquí la lógica del click izquierdo
       cell.onclick = (event) => {
         if (event.target.classList.contains("cell__reveal")) return;
-        if (event.target.classList.contains("cell__flag")) return;
 
         const positionNumber = Number(event.target.dataset.cell - 1);
         const positionMatrix = [
@@ -187,15 +161,17 @@
             foundMines = 0;
             lostGames++;
             counterClicks = 0;
-            winsInARowCounter = 0;
             minesFound.innerText = "_";
             minesTotal.innerText = "_";
             gamesLost.innerText = lostGames;
             clickCounter.innerText = counterClicks;
-            winsInARow.innerText = winsInARowCounter;
             table.innerHTML = "";
           }, 500);
         } else if (matrix[positionMatrix[0]][positionMatrix[1]] === ".") {
+          // cuando hago click en una posición vacía se abre el mapa hasta los números que clickear
+          // revelar posicion más 1 desde la última celda en blanco
+          // una lógica para expandir esa función el tablero y que explote siempre que encuentre
+          // un nuevo espacio en blanco
           virus(matrix, positionMatrix[0], positionMatrix[1]);
           event.target.classList.remove("cell__ground");
           event.target.classList.add("cell__reveal");
@@ -219,60 +195,6 @@
       // aquí la lógica del click derecho
       cell.oncontextmenu = (event) => {
         event.preventDefault();
-        if (event.target.classList.contains("cell__reveal")) return;
-
-        if (event.target.classList.contains("cell__flag")) {
-          event.target.classList.remove("cell__flag");
-          event.target.classList.add("cell__ground");
-          foundMines--;
-        } else {
-          event.target.classList.remove("cell__ground");
-          event.target.classList.add("cell__flag");
-          foundMines++;
-        }
-
-        if (foundMines === 16) {
-          const cells = [...document.getElementsByClassName("cell")];
-
-          const cellsWithFlags = cells.filter((cell) =>
-            cell.classList.contains("cell__flag")
-          );
-
-          const cellsWithFlagsPosition = cellsWithFlags.map((cell) => {
-            const cellNumber = Number(cell.dataset.cell) - 1;
-
-            const cellPosition = [Math.floor(cellNumber / 12), cellNumber % 12];
-
-            return cellPosition;
-          });
-
-          const isWinner = cellsWithFlagsPosition.every(
-            (cell) => matrix[cell[0]][cell[1]] === "*"
-          );
-
-          if (isWinner) {
-            alert("Mucho 'ar tardao' compa'e 🥱");
-            setTimeout(() => {
-              started = false;
-              stateButton.innerText = "Empezar partida";
-
-              wonGames++;
-              totalMines = 0;
-              foundMines = 0;
-              counterClicks = 0;
-              winsInARowCounter++;
-
-              gamesWon.innerText = wonGames;
-              minesFound.innerText = "_";
-              minesTotal.innerText = "_";
-              clickCounter.innerText = counterClicks;
-              winsInARow.innerText = winsInARowCounter;
-              table.innerHTML = "";
-            }, 500);
-          }
-        }
-
-        minesFound.innerText = foundMines;
       };
     }
   }
@@ -353,4 +275,10 @@
   }
 })();
 
-// hacer botón reinicio
+// si se coloca en un banl se deben mostrar todos los blanks
+
+// El funcionamiento del click derecho va a ser poner una flag
+
+// con cada click debemos comprobar que la web sea reactiva
+
+// comprobar la victoria

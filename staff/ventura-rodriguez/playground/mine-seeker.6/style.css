@@ -318,10 +318,3 @@ button * {
   background-position: 0;
   background-size: 100%;
 }
-
-.cell__flag {
-  background-image: url("assets/flag.png");
-  background-position: 0;
-  background-size: 100%;
-  background-color: rgb(18, 101, 17);
-}
