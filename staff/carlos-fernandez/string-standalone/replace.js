@@ -24,10 +24,6 @@ function replace(str, pattern, replacement) {
     return newString;
 }
 
-// Ejemplo de uso:
-const result = replace('Hola que tal', 'tal', 'mal');
-console.log(result); // "Hola que mal"
-
 // Pruebas
 let result1 = replace('Pedro! Pedro! Pedro!', 'Pedro', 'Juan');
 console.assert(result1 === 'Juan! Pedro! Pedro!', { result: result1, message: 'Test 1 no pasado.' });

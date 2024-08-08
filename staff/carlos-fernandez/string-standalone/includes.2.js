@@ -45,7 +45,7 @@ function includes(string, searchString) {
     message: "Test 3 No pasado ",
   });
   
-  debugger
+  
   const result4 = includes("world", "wr");
   console.assert(result4 === "world".includes("wr"), {
     result: result4,

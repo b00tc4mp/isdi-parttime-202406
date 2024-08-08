@@ -29,7 +29,7 @@ function split(str, separator, limit) {
 
         // Si encontramos una coincidencia
         if (match) {
-            newArray.push(newString);
+            newArray[newArray.length] = newString;
             newString = "";
             i += separator.length; // Saltar la longitud del separador
         } else {
@@ -39,7 +39,7 @@ function split(str, separator, limit) {
     }
 
     // Añadir la última parte
-    newArray.push(newString);
+    newArray[newArray.length] = newString;
 
     return newArray;
 }
