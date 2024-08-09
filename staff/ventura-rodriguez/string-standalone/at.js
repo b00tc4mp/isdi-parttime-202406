@@ -6,7 +6,6 @@ function at(string, index) {
   let result;
 
   for (let i = 0; i < string.length; i++) {
-    w;
     const character = string[i];
 
     if (i === index) result = character;
