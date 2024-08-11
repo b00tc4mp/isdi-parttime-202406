@@ -45,7 +45,7 @@ button * {
 }
 
 .header {
-  background-color: rgb(32, 87, 198);
+  background-color: #0D0D0D;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -56,6 +56,11 @@ button * {
 
 .header--title {
   font-size: 36px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 7px;
+  margin-left: 50px;
 }
 
 .header--player {
@@ -64,7 +69,10 @@ button * {
 }
 
 .header--player--name {
-  font-size: 36px;
+  font-size: 24px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
   margin-right: 12px;
 }
 
@@ -93,7 +101,7 @@ button * {
 }
 
 .aside {
-  background-color: #ffb347;
+  background-color: #faaa3b;
   padding: 24px 32px;
   color: black;
   display: flex;
@@ -104,6 +112,7 @@ button * {
 .aside--stats--title {
   font-size: 24px;
   margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .aside--stats--item,
@@ -113,7 +122,7 @@ button * {
 }
 
 .main {
-  background-color: rgb(123, 205, 246);
+  background-color: #B8CCD9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +137,7 @@ button * {
 .control-panel--stats,
 .control-panel--stats * {
   font-size: 18px;
-  color: #2057c6;
+  color: black;
 }
 
 .control-panel--buttons {
@@ -143,25 +152,26 @@ button * {
   width: 100%;
   height: 36px;
   border-radius: 8px;
+  font-weight: 600;
 }
 
 .control-panel--buttons > button:first-child {
-  background-color: #d1510f;
-  color: white;
+  background-color: #eed535;
+  color: black;
 }
 
 .control-panel--buttons > button:first-child:hover {
-  background-color: white;
-  color: #d1510f;
+  background-color: #faaa3b;
+  color: black;
 }
 
 .control-panel--buttons > button:nth-child(2) {
-  background-color: rgb(126, 237, 126);
+  background-color: rgb(103, 248, 130);
 }
 
 .control-panel--buttons > button:nth-child(2):hover {
-  background-color: black;
-  color: rgb(126, 237, 126);
+  background-color: rgb(11, 233, 11);
+  color: black;
 }
 
 .container-table {
@@ -172,7 +182,7 @@ button * {
 }
 
 .footer {
-  background-color: rgb(95, 139, 180);
+  background-color: #5A6773;
   padding: 24px 32px;
   height: 80px;
   color: white;
@@ -220,6 +230,7 @@ button * {
   display: flex;
   justify-content: end;
   align-items: center;
+  font-style: italic;
 }
 
 .footer--copyright {
@@ -230,6 +241,7 @@ button * {
   display: flex;
   justify-content: end;
   align-items: center;
+  font-style: italic;
 }
 
 /* SVGs */
