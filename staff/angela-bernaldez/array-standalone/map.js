@@ -1,7 +1,7 @@
 function map(array, callback) {
 
     if (typeof callback !== 'function') {
-        throw new TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function');
     }
 
     let newArray = []
@@ -15,33 +15,45 @@ function map(array, callback) {
 
 
 
+function arrayIsEqual(arr1, arr2) {
+    if (typeof arr1 !== 'object' || typeof arr2 !== 'object') {
+        throw TypeError('Both input parameters need to be arrays')
+    }
+    if (arr1.length !== arr2.length) return false;
+    let result = true;
+    let i = 0;
+    while (i < arr1.length) {
+      if (arr1[i] !== arr2[i]) {
+          return false;
+      }
+      i++;
+    }
+    return result;
+}
+
+
+
 const array1 = [1, 2, 3];
 const result1 = map(array1, x => x * 2);
-console.assert(JSON.stringify(result1) === JSON.stringify([2, 4, 6]), {
+console.assert(arrayIsEqual(result1, [2, 4, 6]), {
     result: result1,
     message: "Test 1 no pasado",
 });
 
 const result2 = map(array1, x => x /2);
-console.assert(JSON.stringify(result2) === JSON.stringify([0.5, 1, 1.5]), {
+console.assert(arrayIsEqual(result2, [0.5, 1, 1.5]), {
     result: result2,
     message: "Test 2 no pasado",
 });
 
-const result3 = map(array1, x => x /2);
-console.assert(JSON.stringify(result3) === JSON.stringify([0.5, 1, 1.5]), {
+const array2 = [-5,-4,-3,-2,-1,0]
+const result3 = map(array2, x => Math.abs(x));
+console.assert(arrayIsEqual(result3, [5, 4, 3, 2, 1, 0]), {
     result: result3,
     message: "Test 3 no pasado",
 });
 
-const array2 = [-5,-4,-3,-2,-1,0]
-const result4 = map(array2, x => Math.abs(x));
-console.assert(JSON.stringify(result4) === JSON.stringify([5,4,3,2,1,0]), {
-    result: result4,
-    message: "Test 4 no pasado",
-});
-
-// const result5 = map(array1, "hello");
+const result4 = map(array1, "hello");
 // This ensures that function gives an error when a function is not passed as second argument
 
 
