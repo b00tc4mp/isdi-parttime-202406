@@ -141,6 +141,18 @@ button, button * {
     margin-bottom: 12px;
 }
 
+.aside--timer {
+    border: solid orange;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 86px;
+    height: 36px;
+    padding: 0;
+}
+
 .main {
     background-color: rgb(168, 181, 192);
     display: flex;

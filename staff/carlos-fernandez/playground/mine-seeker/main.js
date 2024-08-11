@@ -10,6 +10,7 @@
   const clicks = document.getElementById("clickCounter");
   const winsInARow = document.getElementById("winsInARow");
   const table = document.getElementById("table");
+  const gameTimer = document.getElementById("gameTimer");
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +45,7 @@
       minesFound = 0;
       locateBombs(matrix);
       locateNumbersAndBlanks(matrix);
+      startTimer();
 
     } else {
       // ABANDONAR PARTIDA: cuando hacemos click en Leave game, se cambia a Start game.
@@ -52,6 +54,7 @@
       totalMines = 0;
       minesFound = 0;
       gamesLost++;
+      stopTimer();
     }
 
     ////////////////////////////////////////////////////////////     DOM ZONE   ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +64,30 @@
     gamesLostElement.innerText = gamesLost;
     table.innerHTML = `${printDivs()}`;
   };
+
+  // START TIMER
+  function startTimer() {
+    
+    secondsElapsed = 0; // Reiniciar el contador de tiempo
+   
+    updateTimerDisplay();  // Actualizar la pantalla inmediatamente
+
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      updateTimerDisplay();
+    // Actualiza cada segundo
+    }, 1000); 
+  }
+
+  function stopTimer() {
+    clearInterval(timerInterval); // Detener el temporizador
+  }
+
+  function updateTimerDisplay() {
+    const minutes = Math.floor(secondsElapsed / 60);
+    const seconds = secondsElapsed % 60;
+    gameTimer.innerText = `Time: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
 
 // NO DUPLICATED NUMBERS
   // No puede haber dos ubicaciones de bomba iguales, por lo que crearemos una función que obligue a generar 12 ubicaciones
