@@ -50,26 +50,26 @@
               <span>Games lost: </span> <span id="gamesLost">0</span>
             </li>
             <li class="aside--stats--item">
-              <span>Games won in a row: </span>0<span></span>
+              <span>Games won in a row: </span> <span id="winsInARow">0</span>
             </li>
             <li class="aside--stats--item">
-              <span>Clicks: </span> <span>0</span>
+              <span>Clicks: </span> <span id="clickCounter">0</span>
             </li>
-            <li class="aside--stats--item">
-              <span>Record: </span> <span>0</span>
-            </li>
+            <!--<li class="aside--stats--item">
+              <span>Record: </span> <span id="record">0</span>
+            </li>-->
           </ul>
       </aside>
     
     <main class="main">
       <section class="control--panel">
         <div class="control--panel--stats">
-          <span>Mines found: </span> <span id="minesFound">10</span> <span>/</span>
-          <span id="totalMines">100</span>
+          <span>Mines found: </span> <span id="minesFound">_</span> <span>/</span>
+          <span id="totalMines">_</span>
         </div>
         <div class="control--panel--buttons">
           <button id="restartButton" class="contro--pane--buttons--restart">Restart</button>
-          <button id="stateButton" class="contro--pane--buttons--startGame">Start game / leave</button>
+          <button id="stateButton" class="contro--pane--buttons--startGame">Start game</button>
         </div>
       </section>
       <section class="container--table"><div id="table" class="table"></div></section>
