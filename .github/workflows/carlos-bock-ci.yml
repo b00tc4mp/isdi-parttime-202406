@@ -1,0 +1,16 @@
+name: Deploy Pixel-art
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploying to surge
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install -g surge
+      - run: surge ./staff/carlos-bock/pixel-art/ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.TOKEN_SURGE }}
