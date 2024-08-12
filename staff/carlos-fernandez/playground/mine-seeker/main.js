@@ -7,7 +7,7 @@
   const totalMinesElement = document.getElementById("totalMines");
   const gamesWon = document.getElementById("gamesWon");
   const gamesLostElement = document.getElementById("gamesLost");
-  const clicks = document.getElementById("clickCounter");
+  const clickCounter = document.getElementById("clickCounter");
   const winsInARow = document.getElementById("winsInARow");
   const table = document.getElementById("table");
   const gameTimer = document.getElementById("gameTimer");
@@ -17,14 +17,15 @@
   let started = false;
   let gamesLost = 0;
   let minesFound = 0;
-  let totalMines = 12;
+  let totalMines = 13;
   // null = ground // 1 = Number1 // 2 = Number3... // bomb = '*' // flag = '_' // blank = '.'
-  const matrix = Array(10)
+  const matrix = Array(11)
     .fill()
-    .map(() => Array(10).fill(null)); //crea 10 arrays de 10 espacios
-
+    .map(() => Array(11).fill(null)); //crea 10 arrays de 10 espacios
+  let counterClicks = 0;
+  const matrixClasses = Array.from({ length: 12 }, () => Array(12).fill(null));
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PLAYER NAME
+  // PLAYER NAME
   changePlayerNameButton.onclick = () => {
     const playerName = prompt("Please enter your name.");
     displayNameSpan.innerText = playerName;
@@ -41,12 +42,11 @@
       // INICIAR PARTIDA: cuando hacemos click, el texto se cambia a "Leave game"
       started = true;
       stateButton.innerText = "Leave game";
-      totalMines = 12;
+      totalMines = 13;
       minesFound = 0;
       locateBombs(matrix);
       locateNumbersAndBlanks(matrix);
       startTimer();
-
     } else {
       // ABANDONAR PARTIDA: cuando hacemos click en Leave game, se cambia a Start game.
       started = false;
@@ -55,28 +55,34 @@
       minesFound = 0;
       gamesLost++;
       stopTimer();
+      counterClicks = 0;
     }
+
+    //RESTART BUTTON
+    restartButton.onclick = () => {};
 
     ////////////////////////////////////////////////////////////     DOM ZONE   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     totalMinesElement.innerText = totalMines;
     minesFoundElement.innerText = minesFound;
     gamesLostElement.innerText = gamesLost;
-    table.innerHTML = `${printDivs()}`;
+    table.innerHTML = `${printDivs(matrix)}`;
+    animateDivs();
+    updateStats();
+    clickCounter.innerText = counterClicks;
   };
 
   // START TIMER
   function startTimer() {
-    
     secondsElapsed = 0; // Reiniciar el contador de tiempo
-   
-    updateTimerDisplay();  // Actualizar la pantalla inmediatamente
+
+    updateTimerDisplay(); // Actualizar la pantalla inmediatamente
 
     timerInterval = setInterval(() => {
       secondsElapsed++;
       updateTimerDisplay();
-    // Actualiza cada segundo
-    }, 1000); 
+      // Actualiza cada segundo
+    }, 1000);
   }
 
   function stopTimer() {
@@ -86,10 +92,12 @@
   function updateTimerDisplay() {
     const minutes = Math.floor(secondsElapsed / 60);
     const seconds = secondsElapsed % 60;
-    gameTimer.innerText = `Time: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    gameTimer.innerText = `Time: ${String(minutes).padStart(2, "0")}:${String(
+      seconds
+    ).padStart(2, "0")}`;
   }
 
-// NO DUPLICATED NUMBERS
+  // NO DUPLICATED NUMBERS
   // No puede haber dos ubicaciones de bomba iguales, por lo que crearemos una función que obligue a generar 12 ubicaciones
   // aleatorias diferentes.
   function hasNoDuplicates(arr) {
@@ -108,18 +116,84 @@
     return true;
   }
 
-// CREATING CELLS
-  function printDivs() {
-    const template = '<div class="cell cell__ground"></div>';
+  // CREATING CELLS
+  function printDivs(matrix) {
+    const template = (cell) =>
+      `<div class="cell cell__ground" data-cell=${cell}></div>`;
     concatString = "";
 
-    for (let i = 0; i < 100; i++) {
-      concatString += template;
+    for (let i = 0; i < 121; i++) {
+      // calcular el cell type
+      // i va a ser un vector que se mueve de 0 a 121, habra que operarlo
+      // para sacar la posición de la matriz
+      const positionMatrix = [Math.floor(i / 11), i % 11];
+
+      const cellType = matrix[positionMatrix[0]][positionMatrix[1]];
+      matrixClasses[positionMatrix[0]][positionMatrix[1]] =
+        cellType === "."
+          ? ""
+          : cellType === "*"
+          ? "cell__typeB"
+          : "cell__type" + cellType;
+
+      concatString += template(i + 1);
     }
+
     return concatString;
   }
 
-//LOCATING NUMBERS AND BLANKS
+  // ANIMATING DIVS
+  function animateDivs() {
+    const cells = document.getElementsByClassName("cell");
+
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      // aquí click izquierdo
+      cell.onclick = (event) => {
+        // detectar o match la posición pulsada con mi matrix
+        // detectar el atributo y localizar la celda de mi matrix a consultar
+
+        const positionNumber = Number(event.target.dataset.cell);
+
+        //dividir entre 11 y sacar el resto
+
+        const positionMatrix = [
+          Math.floor(positionNumber / 11),
+          positionNumber % 11,
+        ];
+
+        //código para desvelar la posición y mostrar el número
+        if (matrix[positionMatrix[0]][positionMatrix[1]] !== "*") {
+          event.target.classList.remove("cell__ground");
+          event.target.classList.add("cell__reveal");
+          event.target.classList.add(
+            matrixClasses[positionMatrix[0]][positionMatrix[1]]
+          );
+        }
+      };
+      //aquí click derecho
+      cell.oncontextmenu = (event) => {
+        event.preventDefault();
+      };
+    }
+  }
+
+  // UPDATING STATS
+  function updateStats() {
+    const cells = document.getElementsByClassName("cell");
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      cell.addEventListener("click", () => {
+        counterClicks++;
+        clickCounter.innerText = counterClicks;
+      });
+      cell.addEventListener("contextmenu", () => {
+        counterClicks++;
+      });
+    }
+  }
+
+  //LOCATING NUMBERS AND BLANKS
   function locateNumbersAndBlanks(matrix) {
     // iteramos sobre la fila
     for (let i = 0; i < matrix.length; i++) {
@@ -151,7 +225,9 @@
               // si la fila matrix[i] existe, pasamos a la siguiente comprobación:
               if (
                 // cada vez que una de las relativePositions, sea = "*",
-                matrix[i + relativePositions[k][0]][j + relativePositions[k][1]] === "*"
+                matrix[i + relativePositions[k][0]][
+                  j + relativePositions[k][1]
+                ] === "*"
               ) {
                 // subirá +1 al contador
                 counter++;
@@ -164,40 +240,40 @@
       }
       console.log(matrix);
     }
-}
+  }
 
-//LOCATING BOMBS
-    // función para colocar 12 bombas en el tablero de 100 casillas de forma aleatoria sin que se repitan.
-    function locateBombs(matrix) {
-      let randomPosition = [];
-      let isDuplicated = true; //establecemos esta variable como true
+  //LOCATING BOMBS
+  // función para colocar 12 bombas en el tablero de 100 casillas de forma aleatoria sin que se repitan.
+  function locateBombs(matrix) {
+    let randomPosition = [];
+    let isDuplicated = true; //establecemos esta variable como true
 
-      do {
-        randomPosition = Array.from(
-          { length: totalMines },
-          () => Math.floor(Math.random() * 100) + 1
-        );
-        isDuplicated = !hasNoDuplicates(randomPosition); // si la afirmación de que no haya duplicados es cierta, isDuplicated será false (ya que hemos puesto !)
-      } while (isDuplicated); // si !hasNoDuplicates = false, no te volverá a crear el array de 10 posiciones de bomba.
-     
-      // Mientras que isDuplicated sea true, significa que hay duplicados, por lo tanto se generará un nuevo array con 10 posiciones nuevas hasta que ninguna se repita.
+    do {
+      randomPosition = Array.from(
+        { length: totalMines },
+        () => Math.floor(Math.random() * 120) + 1
+      );
+      isDuplicated = !hasNoDuplicates(randomPosition); // si la afirmación de que no haya duplicados es cierta, isDuplicated será false (ya que hemos puesto !)
+    } while (isDuplicated); // si !hasNoDuplicates = false, no te volverá a crear el array de 10 posiciones de bomba.
 
-      // Este código devuelve un Array con 12 números (porque le hemos dicho que la longitud sea la de totalMines
-      // y totalMines es 12) entre 1 y 99, pero como queremos que sea hasta 100 le sumamos 1 al final.
-      // Los números que esta función devuelva seran las posiciones en las que iran las bombas.
+    // Mientras que isDuplicated sea true, significa que hay duplicados, por lo tanto se generará un nuevo array con 10 posiciones nuevas hasta que ninguna se repita.
 
-      //Ahora vamos a extraer las coordenadas de cada posición, para poder colocarlas en función de la fila y de la columna.
-      randomPosition.forEach((element, i) => {
-        let row = Math.floor(element / 10);
-        let column = element % 10;
-        randomPosition[i] = [row, column];
-      });
+    // Este código devuelve un Array con 12 números (porque le hemos dicho que la longitud sea la de totalMines
+    // y totalMines es 12) entre 1 y 99, pero como queremos que sea hasta 100 le sumamos 1 al final.
+    // Los números que esta función devuelva seran las posiciones en las que iran las bombas.
 
-      for (let i = 0; i < randomPosition.length; i++) {
-        const element = randomPosition[i]; // [row, column]
+    //Ahora vamos a extraer las coordenadas de cada posición, para poder colocarlas en función de la fila y de la columna.
+    randomPosition.forEach((element, i) => {
+      let row = Math.floor(element / 11);
+      let column = element % 11;
+      randomPosition[i] = [row, column];
+    });
 
-        matrix[element[0]][element[1]] = "*";
-      }
-      console.log(matrix);
+    for (let i = 0; i < randomPosition.length; i++) {
+      const element = randomPosition[i]; // [row, column]
+
+      matrix[element[0]][element[1]] = "*";
     }
+    console.log(matrix);
+  }
 })();

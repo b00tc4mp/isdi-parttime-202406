@@ -12,7 +12,7 @@ body {
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1,
@@ -37,263 +37,263 @@ ul {
   padding-inline: 0;
 }
 
-button, button * {
-    cursor: pointer;
+button,
+button * {
+  cursor: pointer;
 }
 
 .header {
-    color: white;
-    background-color: rgba(82, 81, 81, 0.524);
-    display: flex;
-    height: 76px;
-    padding: 18px 28px;
-    justify-content: space-between;
-    align-items: center;
+  color: white;
+  background-color: rgba(82, 81, 81, 0.524);
+  display: flex;
+  height: 76px;
+  padding: 18px 28px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header--title {
-    font-size: 38px;
-    margin-left: 85px;
+  font-size: 38px;
+  margin-left: 85px;
 }
 
 .orange--r {
-    color: orange;
-    font-size: 38px;
+  color: orange;
+  font-size: 38px;
 }
 
 .header--player {
-    display: flex;
-    align-items: start ;
-    margin-right: 100px;
+  display: flex;
+  align-items: start;
+  margin-right: 100px;
 }
 
 .header--player--name {
-    font-size: 26px;
-    margin-right: 4px;
+  font-size: 26px;
+  margin-right: 4px;
 }
 
 .header--player--button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10px;
-    height: 10px;
-    background-color: rgb(226, 226, 226);
-    border-radius: 20%;
-    padding: 0;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(226, 226, 226);
+  border-radius: 20%;
+  padding: 0;
+  border: none;
 }
 
-.header--player--button:hover{
-    background-color:rgb(163, 163, 163);
+.header--player--button:hover {
+  background-color: rgb(163, 163, 163);
 }
 
 .icon {
-    width: 70%;
-    height: 70%;
+  width: 70%;
+  height: 70%;
 }
 
 .author {
-    font-style: italic;
-    font-size: 8px;
-    margin-left: 85px;
-    color: orange;
-    font-weight: 700;
+  font-style: italic;
+  font-size: 8px;
+  margin-left: 85px;
+  color: orange;
+  font-weight: 700;
 }
 
 .center {
-    height: 73vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: max(180px, 20vw) 1fr;
-    grid-template-rows: 1fr;
-    border: outset;
+  height: 73vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: max(180px, 20vw) 1fr;
+  grid-template-rows: 1fr;
+  border: outset;
 }
 
-.contro--pane--buttons--restart:hover{
-    background-color: rgb(255, 255, 124);
+.contro--pane--buttons--restart:hover {
+  background-color: rgb(255, 255, 124);
 }
 
 .contro--pane--buttons--startGame:hover {
-    background-color: rgb(92, 198, 92);
+  background-color: rgb(92, 198, 92);
 }
 
 .aside {
-    background-color: rgb(209, 214, 212);
-    border: outset;
-    padding: 18px 28px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  background-color: rgb(209, 214, 212);
+  border: outset;
+  padding: 18px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.aside--stats--item >span {
-    font-size: 12px;
+.aside--stats--item > span {
+  font-size: 12px;
 }
 
 .aside--stats--item {
-    font-size: 12px;
-    margin-bottom: 12px;
+  font-size: 12px;
+  margin-bottom: 12px;
 }
 
 .aside--stats--title {
-    font-size: 18px;
-    margin-bottom: 12px;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
 .aside--timer {
-    border: solid orange;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 86px;
-    height: 36px;
-    padding: 0;
+  border: solid orange;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 86px;
+  height: 36px;
+  padding: 0;
 }
 
 .main {
-    background-color: rgb(168, 181, 192);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  background-color: rgb(168, 181, 192);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .control--panel {
-    margin-bottom: 5px;
-    width: 250px;
-  }
+  margin-bottom: 5px;
+  width: 250px;
+}
 
 .control--panel--stats,
 .control--panel--stats * {
-    font-size: 18px;
-    margin-left: 7.5px;
-  }
+  font-size: 18px;
+  margin-left: 7.5px;
+}
 
 .control--panel--buttons {
-    margin-top: 8px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 10px;
-  }
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+}
 
-  .control--panel--buttons > button {
-    width: 100%;
-    height: 36px;
-    border-radius: 8px;
-  }
+.control--panel--buttons > button {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+}
 
 .container--table {
-    width: 250px;
-    height: 250px;
-    background-color: rgb(122, 122, 131);
-    border:inset
+  width: 250px;
+  height: 250px;
+  background-color: rgb(122, 122, 131);
+  border: inset;
 }
 
 .footer {
-    background-color: rgb(100, 100, 100);
-    color: white;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 50px;
-    padding: 0px 30px;
+  background-color: rgb(100, 100, 100);
+  color: white;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 50px;
+  padding: 0px 30px;
 }
 
 .footer--legend {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .footer--legend--element {
-    width: 86px;
-    padding: 0px;
-    height: min-content;
-    margin-right: 8px;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+  width: 86px;
+  padding: 0px;
+  height: min-content;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
 }
 
 .footer--legend--element > span {
-    height: min-content;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
 }
 
 .footer--legend--element--icon {
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
 }
 
-.footer--legend--element--icon > img{
-    width: 100%;
-    height: 100%;
-    font-size: 12px;
+.footer--legend--element--icon > img {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
 }
 
 .footer--owner {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
 }
 
 .footer--copyright {
-    color: black;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: black;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .orange--f {
-    color:orange;
+  color: orange;
 }
 
 .orange--m {
-    color: orange;
+  color: orange;
 }
 
 .orange--n {
-    color: orange;
+  color: orange;
 }
 
 .table {
-    width: 100%;
-    height: 100%;
-    display: grid;   
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  border-radius: 10%;
 }
 
 .cell {
-    background-color: rgb(0, 0, 0);
-    width: 24px;
-    height: 24px;
-    border: 1px solid orange;
-    border-radius: 10%;
+  background-color: rgb(0, 0, 0);
+  width: 22px;
+  height: 22px;
+  border: 1px solid orange;
+  border-radius: 10%;
 }
 
 .cell__ground {
-    background-color: gray;
+  background-color: gray;
 }
