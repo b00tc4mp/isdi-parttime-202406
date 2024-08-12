@@ -250,3 +250,21 @@ button * {
   padding: 4px;
   border-radius: 8px;
 }
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+.table {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  
+}
+
+.cell {
+  background-color: rgb(71, 203, 71);
+  width: 25px;
+  height: 25px;
+  border: 1px dotted black;
+}
