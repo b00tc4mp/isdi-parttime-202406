@@ -1,5 +1,9 @@
 function at(array, index) {
 
+    // This method takes an integer value and returns the item at that index, 
+    // allowing for positive and negative integers. 
+    // Negative integers count back from the last item in the array.
+
     if (index == null) index = 0
 
     if (typeof index === 'boolean') index = Number(index)

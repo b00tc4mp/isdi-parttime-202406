@@ -93,7 +93,7 @@ message: "Test 6 no pasado",
 });
 
 const array7 = [false, true, false, true, false, true]
-const result7 =  fill(array7, true, 0, -1)
+const result7 = fill(array7, true, 0, -1)
 
 console.assert(arrayIsEqual(array7, [false, true, false, true, false, true].fill(true, 0, -1)), {
 result: array7,

@@ -1,5 +1,8 @@
 function map(array, callback) {
 
+    // This method creates a new array populated with the results
+    // of calling a provided function on every element in the calling array.
+
     if (typeof callback !== 'function') {
         throw TypeError('Second argument of map needs to be a function');
     }

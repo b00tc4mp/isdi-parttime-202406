@@ -1,19 +1,23 @@
 function concat(...arrays) {
+
+    // This method is used to merge two or more arrays. 
+    // This method does not change the existing arrays, but instead returns a new array.
+    
     let newArray = [];
 
     for (let i = 0; i < arrays.length; i++) {
         if (typeof arrays[i] === 'object' && arrays[i] !== null) {
             if (arrays[i] instanceof Array) {
-                // Si es un array, agregar sus elementos uno a uno recorriendolo
+                // If array, add elements one by one by looping over the array
                 for (let j = 0; j < arrays[i].length; j++) {
                     newArray[newArray.length] = arrays[i][j];
                 }
             } else {
-                // Si es un objeto, agregar el objeto entero (no sus propiedades)
+                // If object, add the object itself 
                 newArray[newArray.length] = arrays[i];
             }
         } else {
-            // Agregar elementos primitivos directamente
+            // otherwise directly add primitive elements (null, undefined, number, boolean, symbol, string and bigint)
             newArray[newArray.length] = arrays[i];
         }
     }
