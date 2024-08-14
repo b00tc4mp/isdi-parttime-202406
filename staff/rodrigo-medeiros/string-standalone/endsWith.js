@@ -50,4 +50,3 @@ console.assert(result4 === "world".endsWith("rd"), {
   result: result4,
   message: "Test 4 No pasado ",
 });
-console.log(result1, result2, result3, result4);
