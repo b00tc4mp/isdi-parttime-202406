@@ -1,4 +1,4 @@
-debugger
+
 function toLowerCase (string) {
     const minusculas = 'abcdefghijklmnopqrstuvwxyz'
     const maiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
