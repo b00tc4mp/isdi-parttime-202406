@@ -1,8 +1,8 @@
 function at(index) {
     if (index === null) return this.value[0];
-  
+    debugger
     let result;
-  
+    debugger
     for (let i = 0; i < this.length; i++) {
       const character = this.value[i];
   
@@ -11,5 +11,5 @@ function at(index) {
     }
     return result;
   }
-  
+  debugger
   module.exports = at;
