@@ -1,4 +1,4 @@
-debugger
+
 function repeatString (string, timesRepeated) {
     if (timesRepeated == Infinity) throw new RangeError;
     timesRepeated = Math.floor(timesRepeated)
