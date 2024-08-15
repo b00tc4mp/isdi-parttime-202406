@@ -1,6 +1,5 @@
 //challenge startsWith
 //Version stand alone
-debugger
 function startsWith(string, startString, index) {
   // tenemos 2 cadenas de caracteres y tenemos que mirar si la segunda cadena de caracteres
   // empieza la primer cadena de caracteres
