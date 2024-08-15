@@ -1,7 +1,5 @@
 
 
-debugger
-
 
 function sliceString(str, characterInicial, characterFinal) {
   let result = '';
