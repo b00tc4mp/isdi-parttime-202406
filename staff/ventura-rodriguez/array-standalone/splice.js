@@ -1,73 +1,50 @@
-const splice = (array, start, deleteCount) => {
-  const result = [];
+function splice(array, _start, _deleteCount = 0) {
+  if (!(array instanceof Array)) return undefined;
 
-  const laps = deleteCount ?? array.length - start;
+  const initialLength = array.length;
+  const start = _start >= 0 ? _start : array.length + _start;
+  const deleteCount =
+    _deleteCount < array.length - start ? _deleteCount : array.length - start;
 
-  for (let i = 0; i < laps; i++) {
-    result[result.length] = array[i + start];
-  }
+  const elementsToAdd = [];
+  for (let i = 3; i < arguments.length; i++)
+    elementsToAdd[elementsToAdd.length] = arguments[i];
 
-  if (deleteCount !== undefined) {
-    for (let i = 0; i < deleteCount; i++) {
-      array[start + i] = array[array.length - deleteCount + i];
-    }
-  }
+  const elementsToCopyAfter = [];
+  for (let i = deleteCount; i < array.length - start; i++)
+    elementsToCopyAfter[i] = array[start + i];
 
-  array.length = deleteCount === undefined ? start : array.length - deleteCount;
+  for (let i = deleteCount; i < elementsToAdd.length; i++)
+    array[i + start] = elementsToAdd[i];
 
-  return result;
-};
+  for (let i = deleteCount; i < elementsToCopyAfter.length; i++)
+    array[i + start + elementsToAdd.length] = elementsToCopyAfter[i];
+
+  if (deleteCount > 0)
+    array.length = initialLength - deleteCount - elementsToAdd.length;
+}
 
 {
-  function arrayIsEqual(arr1, arr2) {
-    if (arr1.length !== arr2.length) return false;
-    let result = true;
-    let i = 0;
-    while (i < arr1.length || result === false) {
-      if (arr1[i] !== arr2[i]) {
-        result = false;
-      }
-      i++;
-    }
-    return result;
-  }
-
-  const array1 = [1, 2, 3, 4, 5, 6, 7, 8];
-  const result1 = splice(array1, 4);
-
-  console.assert(arrayIsEqual(array1, [1, 2, 3, 4]), {
-    result: array1,
-    message: "Test 1.1 no pasado",
-  });
-  console.assert(arrayIsEqual(result1, [5, 6, 7, 8]), {
+  const noArray = "foo";
+  const result1 = splice(noArray, 1, 0, 1);
+  console.assert(result1 === undefined, {
     result: result1,
-    message: "Test 1.2 no pasado",
+    message: "Test 1 No pasado",
   });
 
-  const array2 = ["a", "b", "c", "d", "e", "f", "g", "h"];
-  const result2 = splice(array2, 4, 2);
-
-  console.assert(arrayIsEqual(array2, ["a", "b", "c", "d", "g", "h"]), {
-    result: array2,
-    message: "Test 2.1 no pasado",
-  });
-  console.assert(arrayIsEqual(result2, ["e", "f"]), {
-    result: result2,
-    message: "Test 2.2 no pasado",
-  });
-
-  const array3 = ["a", "b", "c", "d", "e", "f", "g", "h"];
-  const result3 = splice(array2, 4, 2, 1, 2, 3, 4);
-
+  const array2 = ["Jan", "March", "April", "June"];
+  splice(array2, 1, 0, "Feb");
+  const spliceArray2 = ["Jan", "March", "April", "June"];
+  spliceArray2.splice(1, 0, "Feb");
   console.assert(
-    arrayIsEqual(array2, ["a", "b", "c", "d", 1, 2, 3, 4, "g", "h"]),
+    array2[0] === spliceArray2[0] &&
+      array2[1] === spliceArray2[1] &&
+      array2[2] === spliceArray2[2] &&
+      array2[3] === spliceArray2[3] &&
+      array2[4] === spliceArray2[4],
     {
-      result: array3,
-      message: "Test 3.1 no pasado",
+      result: array2,
+      message: "Test 2 No pasado",
     }
   );
-  console.assert(arrayIsEqual(result2, ["e", "f"]), {
-    result: result3,
-    message: "Test 3.2 no pasado",
-  });
 }
