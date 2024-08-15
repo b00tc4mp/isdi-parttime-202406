@@ -54,6 +54,6 @@ function indexOfString(string, searchString, startPosition) {
     
     const result6 = indexOfString("oooo", "oo", 2);
     console.assert(result6 === "oooo".indexOf("oo", 2), {
-      result: result8,
+      result: result6,
       message: "Test 6 No pasado ",
     });
