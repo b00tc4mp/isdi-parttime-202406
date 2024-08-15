@@ -1,4 +1,4 @@
-debugger
+
 function customReplace(str, searchValue, replaceValue) {
     if (typeof str !== 'string') {
         throw new TypeError('First argument must be a string');
