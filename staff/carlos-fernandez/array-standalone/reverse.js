@@ -9,8 +9,6 @@ function reverse(array) {
   return newArray;
 }
 
-reverse(array);
-
 function arraysEqual(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
   for (let i = 0; i < arr1.length; i++) {
@@ -20,22 +18,22 @@ function arraysEqual(arr1, arr2) {
 }
 
 const result1 = reverse([1, 2, 3, 4, 5]);
-const expected1 = "Deep house techno".split("De");
+const expected1 = [5, 4, 3, 2, 1];
 console.assert(arraysEqual(result1, expected1), {
   result: result1,
   message: "Test 1 no pasado",
 });
 
-const result2 = reverse("El detectiu Conan", "");
-const expected2 = "El detectiu Conan".split("");
+const result2 = reverse(["tomato", "paprika", "carrot"]);
+const expected2 = ["carrot", "paprika", "tomato"];
 console.assert(arraysEqual(result2, expected2), {
   result: result2,
   message: "Test 2 no pasado",
 });
 
-const result3 = reverse("Shinoshuke Nohara", " ");
-const expected3 = "Shinosuke Nohara".split(" ");
-console.assert(arraysEqual(result2, expected2), {
-  result: result2,
-  message: "Test 2 no pasado",
+const result3 = reverse([1, 2, " ", undefined]);
+const expected3 = [undefined, " ", 2, 1];
+console.assert(arraysEqual(result3, expected3), {
+  result: result3,
+  message: "Test 3 no pasado",
 });
