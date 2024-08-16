@@ -5,6 +5,8 @@ const concat = require("./concat.js");
 const endsWith = require("./ends-with.js");
 const includes = require("./includes.js");
 const indexOf = require("./index-of.js");
+const repeat = require("./repeat.js");
+const replace = require("./replace.js");
 
 ChainCharacters.prototype.at = at;
 ChainCharacters.prototype.charAt = charAt;
@@ -12,5 +14,7 @@ ChainCharacters.prototype.concat = concat;
 ChainCharacters.prototype.endsWith = endsWith;
 ChainCharacters.prototype.includes = includes;
 ChainCharacters.prototype.indexOf = indexOf;
+ChainCharacters.prototype.repeat = repeat;
+ChainCharacters.prototype.replace = replace;
 
 module.exports = ChainCharacters;
