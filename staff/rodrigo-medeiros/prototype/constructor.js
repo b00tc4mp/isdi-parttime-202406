@@ -16,5 +16,5 @@ function ChainCharacters(value) {
   this.length = _length;
   this.value = value;
 }
-
+debugger
 module.exports = ChainCharacters;
