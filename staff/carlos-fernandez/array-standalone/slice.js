@@ -26,9 +26,11 @@ function slice(array, start = 0, end) {
   if (end === undefined || end > array.length) end = array.length;
 
   let newArray = [];
+  let index = 0;
 
   for (let i = start; i < end; i++) {
-    newArray += array[i];
+    newArray[index] = array[i];
+    index++;
   }
   return newArray;
 }
