@@ -7,6 +7,7 @@ const includes = require("./includes.js");
 const indexOf = require("./index-of.js");
 const repeat = require("./repeat.js");
 const replace = require("./replace.js");
+const startsWith = require("./starts-with.js");
 
 ChainCharacters.prototype.at = at;
 ChainCharacters.prototype.charAt = charAt;
@@ -16,5 +17,6 @@ ChainCharacters.prototype.includes = includes;
 ChainCharacters.prototype.indexOf = indexOf;
 ChainCharacters.prototype.repeat = repeat;
 ChainCharacters.prototype.replace = replace;
+ChainCharacters.prototype.startsWith = startsWith;
 
 module.exports = ChainCharacters;
