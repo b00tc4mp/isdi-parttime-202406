@@ -30,6 +30,6 @@ console.assert(result5 === "world".indexOf("rld", 4), {
 });
 const result6 = new ChainCharacters("oooo").indexOf("oo", 2);
 console.assert(result6 === "oooo".indexOf("oo", 2), {
-  result: result8,
+  result: result6,
   message: "Test 6 No pasado ",
 });

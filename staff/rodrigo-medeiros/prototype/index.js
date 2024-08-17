@@ -8,6 +8,7 @@ const indexOf = require("./index-of.js");
 const repeat = require("./repeat.js");
 const replace = require("./replace.js");
 const startsWith = require("./starts-with.js");
+const toLowerCase = require("./to-lower-case.js");
 
 ChainCharacters.prototype.at = at;
 ChainCharacters.prototype.charAt = charAt;
@@ -18,5 +19,6 @@ ChainCharacters.prototype.indexOf = indexOf;
 ChainCharacters.prototype.repeat = repeat;
 ChainCharacters.prototype.replace = replace;
 ChainCharacters.prototype.startsWith = startsWith;
+ChainCharacters.prototype.toLowerCase = toLowerCase;
 
 module.exports = ChainCharacters;

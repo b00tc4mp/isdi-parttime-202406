@@ -5,4 +5,5 @@ require("./ends-with.test.js");
 require("./includes.test.js");
 require("./index-of.test.js");
 require("./repeat.test.js");
-require("./starts-with.test.js")
+require("./starts-with.test.js");
+require("./to-lower-case.test.js");
