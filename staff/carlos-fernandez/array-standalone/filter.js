@@ -4,7 +4,6 @@
 function filter(array, callback) {
   let result = [];
 
-  debugger;
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
 
