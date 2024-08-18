@@ -31,5 +31,5 @@ const array2 = ['tres', 'cuatro']
 let r1 = array1.concat(array2);
 let r2 = concatArrays(array1, array2)
 arrayIsEqual(r1, r2);
-//expected output is true!
+//expected output is true!!
     

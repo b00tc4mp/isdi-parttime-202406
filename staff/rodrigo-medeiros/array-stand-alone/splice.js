@@ -3,7 +3,7 @@
 // introduzir donde haya salido el array definido en el intervalo de corte entonces
 //quando llegamos a la posicion de start empezamos a cortar y guardamos, cortamos hasta donde dice el contador y devolvemos
 //recogemos y guardamos el final del array y despues introducimos el array nuevo en la posicion donde quitamos el array
-//del intervalo, entonces al final introducimos el final del array original.
+//del intervalo, entonces al final introducimos el final del array original!
 const spliceArray = (array, start, deleteCount = 0, arrayRepuesto = []) => {
   // arrayInicio y arrayEnd no sirvem para nada ahora mismo, o lo usas o lo eliminas
   // falta mofificar el array original solo para dejar los valores que se quedan

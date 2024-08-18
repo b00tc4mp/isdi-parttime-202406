@@ -1,5 +1,5 @@
 // este metodo copia parte del array delimitado por una posicion de inicio, otra de fin, y un punto de
-// start donde se empieza a reemplazar el array original sin modificar su length
+// start donde se empieza a reemplazar el array original sin modificar su length.
 function arrayCopyWithin(array, start, inicialPosition, endPosition = 0) {
   let cutArray = [];
   if (endPosition > array.length) {

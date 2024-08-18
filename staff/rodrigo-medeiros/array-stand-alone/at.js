@@ -43,5 +43,5 @@ function arrayAt (array, position) {
     const result3 = arrayAt(arrayTest1, -1)
     const result4 = arrayTest1.at(-1)
     console.log(arrayIsEqual(result3, result4));
-    //expected output 'true'!
+    //expected output 'true'!!
    
