@@ -10,6 +10,7 @@ const replace = require("./replace.js");
 const startsWith = require("./starts-with.js");
 const toLowerCase = require("./to-lower-case.js");
 const toUpperCase = require("./to-upper-case.js");
+const trim = require("./trim.js");
 
 ChainCharacters.prototype.at = at;
 ChainCharacters.prototype.charAt = charAt;
@@ -22,5 +23,7 @@ ChainCharacters.prototype.replace = replace;
 ChainCharacters.prototype.startsWith = startsWith;
 ChainCharacters.prototype.toLowerCase = toLowerCase;
 ChainCharacters.prototype.toUpperCase = toUpperCase;
+ChainCharacters.prototype.trim = trim;
+
 
 module.exports = ChainCharacters;

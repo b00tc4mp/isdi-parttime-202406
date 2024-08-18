@@ -7,3 +7,4 @@ require("./index-of.test.js");
 require("./repeat.test.js");
 require("./starts-with.test.js");
 require("./to-lower-case.test.js");
+require("./trim.test.js");
