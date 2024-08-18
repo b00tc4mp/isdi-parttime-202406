@@ -1,5 +1,4 @@
 const ChainCharacters = require(".");
-debugger
 const result1 = new ChainCharacters('HELLO WORLD').toLowerCase(this);
 console.assert(result1 === "HELLO WORLD".toLowerCase(), {
   result: result1,

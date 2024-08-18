@@ -3,7 +3,6 @@
  *
  * @returns {string} - Una nueva cadena con todos los caracteres en minúsculas.
  */
-debugger
 function toLowerCase () {
     const minusculas = 'abcdefghijklmnopqrstuvwxyz'
     const maiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

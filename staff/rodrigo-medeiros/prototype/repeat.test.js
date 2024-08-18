@@ -10,7 +10,7 @@ console.assert(result2 === "Hello".repeat(2), {
     result: result2,
   message: "Test 2 No pasado ",
 });
-debugger
+
 const result3 = new ChainCharacters("casoSinIndice").repeat(2);
 console.assert(result3 === "casoSinIndice".repeat(2), {
   result: result3,

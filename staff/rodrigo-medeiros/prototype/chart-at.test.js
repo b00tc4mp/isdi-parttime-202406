@@ -1,6 +1,5 @@
 
 const ChainCharacters = require(".");
-debugger
 const result1 = new ChainCharacters("Hello").charAt(2);
   console.assert(result1 === "Hello".charAt(2), {result: result1, message: "Test 1 No pasado"})
   

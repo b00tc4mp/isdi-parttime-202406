@@ -40,7 +40,6 @@ console.assert(result7 === "world".includes("wu"), {
   result: result7,
   message: "Test 7 No pasado ",
 });
-debugger
 const result8 = new ChainCharacters("oooo").includes("oo");
 console.assert(result8 === "oooo".includes("oo"), {
   result: result8,
