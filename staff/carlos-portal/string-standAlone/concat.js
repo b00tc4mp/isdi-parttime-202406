@@ -9,7 +9,7 @@ function concatenar(...args) {
     return cadena; // El return debe estar fuera del bucle
 }
 
-console.log(concatenar("palabra", "otra", "otrgkmd", "lsdjgnfds"));
+
 
 
 

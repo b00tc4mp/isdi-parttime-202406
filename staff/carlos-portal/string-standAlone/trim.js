@@ -5,15 +5,22 @@
 // devuelve llena 
 
 function trim(string) {
-    let vacía = " ";
+    let start = 0;
+    let end = string.length - 1;
     let llena = "";
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] !== vacía) {
-            llena += string[i];
-        }
+    while (start < string.length && string[start] === " ") {
+        start++;
     }
+    while (end >= 0 && string[end] === " ") {
+        end--;
+    }
+    for (let i = start; i <= end; i++) {
+        llena += string[i];
+    }
+
     return llena;
 }
+
 
 // Caso 1: Cadena con espacios al inicio y al final
 const result1 = trim("  hello world  ");

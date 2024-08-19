@@ -27,16 +27,16 @@ function termina(string, endsw) {
 
 //Tests
 let result1 = termina('console log', 'log');
-console.assert(result1 === 'console log'.termina('log'), { result: result1, message: 'Test 1 no pasado' });
+console.assert(result1 === 'console log'.endsWith('log'), { result: result1, message: 'Test 1 no pasado' });
 let result2 = termina('javascript', 'script');
-console.assert(result2 === 'javascript'.termina('script'), { result: result2, message: 'Test 2 no pasado' });
+console.assert(result2 === 'javascript'.endsWith('script'), { result: result2, message: 'Test 2 no pasado' });
 let result3 = termina('abcde', 'f');
-console.assert(result3 === 'abcde'.termina('e'), { result: result3, message: 'Test 3 no pasado' });
+console.assert(result3 === 'abcde'.endsWith('e'), { result: result3, message: 'Test 3 no pasado' });
 
 let result4 = termina('console log', 'console');
-console.assert(result4 === 'console log'.termina('console'), { result: result4, message: 'Test 4 no pasado' });
+console.assert(result4 === 'console log'.endsWith('console'), { result: result4, message: 'Test 4 no pasado' });
 let result5 = termina('javascript', 'script');
-console.assert(result5 === 'javascript'.termina('java'), { result: result5, message: 'Test 5 no pasado' });
+console.assert(result5 === 'javascript'.endsWith('java'), { result: result5, message: 'Test 5 no pasado' });
 let result6 = termina('abcde', 'f');
-console.assert(result6 === 'abcde'.termina('z'), { result: result6, message: 'Test 6 no pasado' });
+console.assert(result6 === 'abcde'.endsWith('z'), { result: result6, message: 'Test 6 no pasado' });
 

@@ -1,6 +1,5 @@
 let patternFound = ""
-let match = false // que te voy a contar si estas harto tu también de hacer variables match o found
-let indice = -1 // menos 1 porque y si esta en posición 0? 
+
 
 function indice (cadena,patron){
 // busqueda de palabra y devolvemos el indice la coincidencia 

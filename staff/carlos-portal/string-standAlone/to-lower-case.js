@@ -15,13 +15,13 @@ si el caracter que estamos recorriendo no existe en nuestra lista lo obviamos y 
 */
 
 
-let mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇÑ"
-let minusculas = "abcdefghijklmnopqrstuvwxyz"
+
 
 let inLowers = ""
 let string = "Hola Mundo"
 function toLoppercase(string){
-
+const mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇÑ"
+const minusculas = "abcdefghijklmnopqrstuvwxyz"
 for (let i = 0 ; i<string.length; i++)
     // recorremos el string 
     // si el caracter que estamos recorriendo por tanto i no existe en la lista sumamos posicion i 
