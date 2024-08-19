@@ -268,3 +268,61 @@ button * {
   height: 25px;
   border: 1px dotted black;
 }
+
+.cell__reveal {
+  background-color: rebeccapurple;
+}
+
+.cell__type1 {
+  background-image: url("assets/number-1.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type2 {
+  background-image: url("assets/number-2.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type3 {
+  background-image: url("assets/number-3.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type4 {
+  background-image: url("assets/number-4.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type5 {
+  background-image: url("assets/number-5.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type6 {
+  background-image: url("assets/number-6.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type7 {
+  background-image: url("assets/number-7.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__type8 {
+  background-image: url("assets/number-8.png");
+  background-position: 0;
+  background-size: 100%;
+}
+
+.cell__typeB {
+  background-image: url("assets/bomb_icon.png");
+  background-position: 0;
+  background-size: 100%;
+}

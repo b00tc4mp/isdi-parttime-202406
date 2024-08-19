@@ -17,7 +17,7 @@
   let lostgames = 0;
   let totalMines = 0;
   let foundMines = 0;
-
+  let counterClicks = 0;
  
   const matrix =  Array.from({length: 12}, () => Array(12).fill(0));
   // null = ground // 1 = number1 // 2 = number2 ... // bomb = '*' // flag = '_' // blank = '.'
@@ -30,8 +30,6 @@
   };
   
   stateButton.onclick = () => {
-    // montar el tablero dibujado en mi html
-    // colocar las bombas en el sitio adecuado
 
     if (started === false) {
       //inicializar partida
@@ -48,6 +46,7 @@
       foundMines = 0;
       totalMines = 0;
       lostgames++;
+      counterClicks = 0;
     }
 ///////////////////////////////////////////////////////////////////////
 // DOM ZONE
@@ -55,10 +54,13 @@
     minesFound.innerText = foundMines;
     minesTotal.innerText = totalMines;
     gamesLost.innerText = lostgames;
+    clickCounter.innerText = counterClicks;
     table.innerHTML = `
-    ${printDivs()}
+    ${printDivs(matrix)}
     `;
-    console.log(matrix)
+    animateDivs();
+    updateStats();
+    // dar funcionalidad a los divs
   };
 
 function hasNoDuplicates(arr) {
@@ -73,9 +75,53 @@ function hasNoDuplicates(arr) {
   return true;
 }
 
+function animateDivs() {
+  const cells = document.getElementsByClassName('cell');
+
+  for (let i = 0; i < cells.length; i++) {
+    const cell = cells[i];
+    // aqui la logica del click izquierdo
+    cell.onclick = (event) => {
+      // matchear la posicion pulsada con mi matrix
+      // detectar el atributo data y localizar posicion de matrix a consultar
+      const positionNumber = Number(event.target.dataset.cell);
+
+      const positionMatrix = [
+        Math.ceil(positionNumber / 12) - 1, 
+        (positionNumber - 1) % 12
+      ];
+      // revelar la posicion y mostrar el numero
+      if (matrix[positionMatrix[0]][positionMatrix[1]] !== '*') {
+        event.target.classList.remove('cell__ground');
+        event.target.classList.add('cell__reveal');
+      }
+    }
+    // aqui la logica del click derecho
+    cell.oncontextmenu = (event) => {
+      event.preventDefault()
+      
+    }
+  }
+}
+
+// aqui actualizo las stats en pantalla usando listeners
+function updateStats() {
+  const cells = document.getElementsByClassName('cell');
+
+  for (let i = 0; i < cells.length; i++) {
+    const cell = cells[i];
+    cell.addEventListener('click', (event) => {
+      counterClicks++;
+      clickCounter.innerText = counterClicks;
+    })
+    cell.addEventListener('contextmenu', (event) => {
+      counterClicks++;
+      clickCounter.innerText = counterClicks;
+    })
+  }
+}
+
 function locateNumbersAndBlanks(matrix) {
-  // nuestro codigo para meter los numeros y los espacios en blanco
-  // recorrer la matriz resultante y mirar las celdas adyacentes
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
@@ -83,10 +129,6 @@ function locateNumbersAndBlanks(matrix) {
       const cell = matrix[i][j];
 
       if (cell !== '*') {
-        // null = ground // 1 = number1 // 2 = number2 ... // bomb = '*' // flag = '_' // blank = '.'
-        // hago un bucle con k  que itere sobre las celdas adyacentes a matrix[i][j] 
-        // si alguna es bomba le sumo uno al contador
-
         const relativePositions = [
           [-1, -1], [-1, 0], [-1, 1], [1, -1], [1, 0], [1, 1], [0, -1], [0, 1]
         ]
@@ -137,13 +179,31 @@ function locateBombs(matrix) {
   }
 }
 
-function printDivs() {
- const template = '<div class="cell cell__ground"></div>';
+function printDivs(matrix) {
+  // cellType => '.', 1, 2, 3, 4, 5, 6, 7, 8
+ const template = (cell, cellType) => 
+  `<div class="cell cell__ground ${
+    cellType === '.' 
+    ? '' 
+    : cellType === '*' 
+    ? 'cell__typeB' 
+    : 'cell__type' + cellType
+  }" data-cell=${cell}></div>`;
 
  let concatString = "";
 
- for (let i = 0; i < 144; i++) {
-  concatString += template;
+ for (let i = 1; i <= 144; i++) {
+  // calcular el cell type
+  // operar el vector i para sacar la posicion de la matrix
+  const positionMatrix = [
+    Math.ceil(i / 12) - 1, 
+    (i - 1) % 12
+  ]
+
+  const cellType = matrix[positionMatrix[0]][positionMatrix[1]];
+
+
+  concatString += template(i + 1, cellType);
  }
 
  return concatString;
@@ -153,7 +213,7 @@ function printDivs() {
 
 
 // EL funcionamiento es que si pulsamos click izquierdo sobre el mapa desvela la posicion,
-// si es blank pondra blank o el numero correspondiente y si es una bomba petara y se reinicia el tablero
+// si es blank pondra blank o el numero correspondiente y si es una bomba petara, se sumara una partida perdida y se reinicia el tablero
 
 // el funcionamiento del click derecho va a ser poner una flag
 
