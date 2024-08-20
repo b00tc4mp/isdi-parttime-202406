@@ -12,32 +12,18 @@ function reverse(array) {
     return newArray;
 }
 
-const array = [1,2,3,4,5]
-console.log(reverse(array));
-
-
-function arrayIsEqual(arr1, arr2) {
-      if (arr1.length !== arr2.length) return false;
-      let result = true;
-      let i = 0;
-      while (i < arr1.length || result === false) {
-        if (arr1[i] !== arr2[i]) {
-          result = false;
-        }
-        i++;
-      }
-      return result;
-    }
-  
-    const array1 = [1, 2, 3, 4, 5, 6, 7, 8];
-    const result1 = reverse(array1);
-  
-    console.assert(arrayIsEqual(array1, [1, 2, 3, 4]), {
-      result: array1,
-      message: "Test 1.1 no pasado",
-    });
-    console.assert(arrayIsEqual(result1, [5, 6, 7, 8]), {
+const array1 = [1, 2, 3, 4, 5, 6, 7, 8];
+const result1 = reverse(array1);
+const testArray1 = [1, 2, 3, 4, 5, 6, 7, 8];
+const testResult1 = array1.reverse();
+console.assert(
+    result1[0] === testResult1[0] &&
+    result1[1] === testResult1[1] &&
+    result1[2] === testResult1[2] &&
+    result1[result1.length] === testResult1[testResult1.length],
+    {
       result: result1,
-      message: "Test 1.2 no pasado",
+      message: "Test 1 no pasado",
     });
-    
+
+//completado
