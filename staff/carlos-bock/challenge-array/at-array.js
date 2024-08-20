@@ -1,4 +1,3 @@
-// done add asserts
 //at method takes paramater representing the array index
 //if no parameter is passed, index = 0 
 //if parameter is greatter than 0 return array item at that index
@@ -18,14 +17,26 @@ function at(array, index){
 
 }
 
-const array1 = ["this", "array", "has", 5, "items"];
 
-console.log(array1.at(3));
-console.log(at(array1, 3));
+const array1 = [0, 1, 2, 3, 4, 5, 6, 7];
+const result1 = at(array1, 3);
+console.assert(result1 === array1.at(3),{
+  result: result1,
+  message: "Test 1 no pasado",
+});
 
-console.log(array1.at());
-console.log(at(array1));
+const array2 = [0, 1, 2, 3, 4, 5, 6, 7];
+const result2 = at(array2, -2);
+console.assert(result2 === array2.at(-2),{
+  result: result2,
+  message: "Test 2 no pasado",
+});
 
-debugger;
-console.log(array1.at(-2));
-console.log(at(array1,-2));
+const array3 = [0, 1, 2, 3, 4, 5, 6, 7];
+const result3 = at(array3);
+console.assert(result3 === array3.at(),{
+  result: result3,
+  message: "Test 3 no pasado",
+});
+
+//completado

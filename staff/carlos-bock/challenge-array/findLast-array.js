@@ -4,12 +4,10 @@
 function findLast(array,callBack) {
 
     for (let i = array.length-1; i >= 0; i--) {
-
         if(callBack(array[i])) return array[i];
     }
     return undefined;
 }
-
 
 const array1 = [1, 2, 3, 4, 5];
 const result1 = findLast(array1, (element) => element > 4);
@@ -32,3 +30,5 @@ console.assert(result3 === array3.findLast((element) => typeof element === "numb
   result: result3,
   message: "Test 3 No pasado",
 });
+
+//completado

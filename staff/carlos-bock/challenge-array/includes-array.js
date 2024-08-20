@@ -1,7 +1,3 @@
-//done with base cases add console.asserts
-//and check if there are weird index conditions
-
-
 //iterates through an array 
 //if parameter is equal to any element inside the array 
 //return true
@@ -33,9 +29,24 @@ function includes(...argument){
 }
 
 const array1 = ["goku", "sonic", "kakashi", "spiderman"]
+const result1 = includes(array1, "kakashi");
+console.assert(result1 === array1.includes("kakashi"), {
+    result: result1,
+    message: "Test 1 no pasado",
+});
 
-console.log(includes(array1, "kakashi"));
-console.log(includes(array1, "kakashi", 2));
-console.log(includes(array1, "kakashi", 3));
-console.log(array1.includes("kakashi",2));
+const array2 = ["goku", "sonic", "kakashi", "spiderman"]
+const result2 = includes(array2, "kakashi", 2);
+console.assert(result2 === array2.includes("kakashi",2), {
+    result: result2,
+    message: "Test 2 no pasado",
+});
 
+const array3 = ["goku", "sonic", "kakashi", "spiderman"]
+const result3 = includes(array3, "kakashi", 3);
+console.assert(result3 === array3.includes("kakashi",3), {
+    result: result3,
+    message: "Test 3 no pasado",
+});
+
+// completado
