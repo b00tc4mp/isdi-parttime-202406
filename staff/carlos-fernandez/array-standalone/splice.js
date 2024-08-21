@@ -6,7 +6,7 @@ Parámetros:
     3) ...item: son los items a añadir al array
 
 Valor devuelto:
-    - Un array que contiene los elementos eliminadoss
+    - Un array que contiene los elementos eliminados.
     - Si no se ha eliminado ningún elemento, devuelve un array vacío.
 
 Condicionales:
@@ -27,20 +27,55 @@ Pasos:
 function splice(array, start, deleteCount, ...item) {
   if (start > array.length) start = array.length;
   if (start < 0) start = array.length + start;
-  if ((deleteCount = undefined || deleteCount > array.length - start))
-    deleteCount = array.length;
+  if (deleteCount === undefined || deleteCount > array.length - start) {
+    deleteCount = array.length - start;
+  }
   if (deleteCount < 0) deleteCount = 0;
 
   const element = [];
-  let index = 0;
-  for (let i = start; i < array.length; i++) {
-    array.length = array.length + 1;
-    array[start] = item;
-    array[index] = array[index + 1];
-    index++;
+
+  // Copiar los elementos a eliminar en el array `element`
+  for (let i = start; i < start + deleteCount; i++) {
+    element[element.length] = array[i];
   }
+
+  // Desplazar los elementos restantes a la izquierda para cubrir el hueco
+  for (let i = start + deleteCount; i < array.length; i++) {
+    array[i - deleteCount] = array[i];
+  }
+
+  // Ajustar la longitud del array después de eliminar los elementos
+  array.length = array.length - deleteCount;
+
+  // Desplazar los elementos hacia la derecha para hacer espacio para los nuevos elementos
+  for (let i = array.length - 1; i >= start; i--) {
+    array[i + item.length] = array[i];
+  }
+
+  // Insertar los nuevos elementos
+  for (let i = 0; i < item.length; i++) {
+    array[start + i] = item[i];
+  }
+
   return element;
 }
-const arr = ["ratón", "teclado", "monitor", "altavoces"];
-splice(arr, 0, 0, "alfombrilla");
-console.log(arr);
+
+// EXPLICACIÓN DEL CÓDIGO
+
+/*
+Eliminar Elementos:
+
+  - Primero, eliminamos los elementos según start y deleteCount copiándolos en un nuevo array llamado element.
+  - Luego, desplazamos los elementos que vienen después de deleteCount hacia la izquierda para cubrir el hueco.
+
+Ajuste de Longitud:
+
+  - Ajustamos la longitud del array original para reflejar la eliminación.
+
+Desplazamiento de Elementos:
+
+  - Antes de insertar nuevos elementos, desplazamos los elementos existentes a la derecha para hacer espacio.
+
+Inserción de Nuevos Elementos:
+
+  - Insertamos los nuevos elementos (...item) en la posición correcta.*/

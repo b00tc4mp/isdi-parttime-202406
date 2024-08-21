@@ -1,15 +1,13 @@
 // Devuelve el ÍNDICE del PRIMER ELEMENTO de un array que cumpla con la función aportada.
 // De no ser así, devuelve -1.
 
-////////////////////////////FALTA ACABAR//////////////////////////////////
-
 function findIndex(array, callback) {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
 
-    if (callback(array[i])) return array[i];
+    if (callback(element)) return i;
   }
-  return undefined;
+  return -1;
 }
 
 const array1 = [1, 2, 3, 4, 5];

@@ -42,7 +42,10 @@ console.assert(result3 === arr3.some((element) => element * 2), {
 
 const arr4 = [1, 3, 5, 7];
 const result4 = some(arr4, (element) => typeof element === "number");
-console.assert(result4 === arr4.some((element) => element === "number"), {
-  result: result4,
-  message: "Test 4 no pasado",
-});
+console.assert(
+  result4 === arr4.some((element) => typeof element === "number"),
+  {
+    result: result4,
+    message: "Test 4 no pasado",
+  }
+);

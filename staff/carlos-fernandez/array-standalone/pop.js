@@ -5,6 +5,11 @@
    cambiará la longitud del array ya que ahora tiene un valor menos. */
 
 function pop(array) {
+  // Verificamos si el array está vacío
+  if (array.length === 0) {
+    return undefined;
+  }
+
   // Accedemos al último elemento del array y lo guardamos para devolverlo.
   const element = array[array.length - 1];
 
