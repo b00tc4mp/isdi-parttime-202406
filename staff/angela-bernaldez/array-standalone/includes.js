@@ -17,12 +17,12 @@ function includes(array, value, fromIndex = 0) {
     for (let i = fromIndex; i < array.length; i++) {
         if (array[i] === value) return true
     }
-
+    
     return included
 }
 
 
-
+debugger
 const array1 = [1, 2, 3, 4, 5, 6, 7, 8] 
 const result1 = includes(array1, 8)
 
@@ -30,4 +30,4 @@ console.assert(result1 === array1.includes(8), {
 result: result1,
 message: "Test 1 no pasado",
 });
-
+debugger
