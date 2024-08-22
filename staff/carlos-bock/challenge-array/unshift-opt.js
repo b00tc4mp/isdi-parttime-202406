@@ -1,3 +1,4 @@
+//optional 
 //takes array and modifies it by adding an element at the begining
 //create a temp array first value of temparray equals pushed parameter
 //iterate through the array parameter and pass values into the temp array.
@@ -14,6 +15,20 @@ function unShift(array,unShiftItem) {
     array = tempArray;
     return array.length;
 }
+
+function unShift2(array,unShiftItem) {
+    let counter =0 ;
+
+    for (let i = 1; i < array.length+1; i++) {
+        array[counter]= array[i];
+        counter++;
+    }
+    array[0] = unShiftItem;
+    return array;
+}
+
+
+
 
 const array1 = ["this", "array", "has", 5, "items"];
 
