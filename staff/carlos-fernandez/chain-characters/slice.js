@@ -18,38 +18,27 @@ index que nos marca END. */
     4) En caso que end = undefined, end sería igual a INPUT.LENGTH;
     */
 
+function slice(start, end) {
+  // Determinar el tipo de input para iniciar la variable newString en función de si es string o array.
+  let isArray = Array.isArray(this.value);
+  let newString = isArray ? [] : "";
 
-function slice(input, start, end) {
-    // Determinar el tipo de input para iniciar la variable newString en función de si es string o array.
-    let isArray = Array.isArray(input);
-    let newString = isArray ? [] : '';
+  // Determinar valores por defecto y negativos para end
+  if (end === undefined || end > this.length) {
+    end = this.length;
+  }
+  if (end < 0) {
+    end = this.length + end;
+  }
 
-    // Determinar valores por defecto y negativos para end
-    if (end === undefined || end > input.length) {
-        end = input.length;
+  // Recorrer el input desde start hasta end
+  for (let i = start; i < end; i++) {
+    if (isArray) {
+      newString[newString.length] = this.value[i];
+    } else {
+      newString += this.value[i];
     }
-    if (end < 0) {
-        end = input.length + end;
-    }
-
-    // Recorrer el input desde start hasta end
-    for (let i = start; i < end; i++) {
-        if (isArray) {
-            newString[newString.length] = input[i]
-        } else {
-            newString += input[i];
-        }
-    }
-    return newString;
+  }
+  return newString;
 }
-
-
-
-const result1 = slice('A quien no le va a gustar un imperio romano del siglo I', 26, 55);
-console.assert(result1 === 'A quien no le va a gustar un imperio romano del siglo I'.slice(26), {result: result1, message: 'Test 1 no pasado.'});
-
-const result2 = slice('Pim pam toma lacasitos', 13,);
-console.assert(result2 === 'Pim pam toma lacasitos'.slice(13), {result: result2, message: 'Test 2 no pasado.'});
-
-const result3 = slice(['Cuidao', 'con', 'el', 'barro'], 0, 2);
-console.assert(JSON.stringify(result3) === JSON.stringify(['Cuidao', 'con', 'el', 'barro'].slice(0, 2)), { result: result3, message: 'Test 3 no pasado.' });
+module.exports = slice;

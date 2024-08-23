@@ -1,64 +1,56 @@
-function arraysEqual(arr1, arr2) {
-    if (arr1.length !== arr2.length) return false;
-    for (let i = 0; i < arr1.length; i++) {
-        if (arr1[i] !== arr2[i]) return false;
+function split(separator, limit) {
+  let newArray = [];
+  let newString = "";
+  let i = 0;
+
+  // Caso especial cuando el separador es una cadena vacía
+  if (separator === "") {
+    while (i < this.length) {
+      newArray[newArray.length] = this.value[i];
+      i++;
     }
-    return true;
-}
-
-function split(str, separator, limit) {
-   
-    if (separator === '') {
-        return str.split(''); // Usar el método incorporado para manejar este caso específico.
-    }
-
-    let newArray = [];
-    let newString = "";
-    let i = 0;
-    
-    while (i < str.length) {
-        let match = true;
-
-        // Comprobar si el separador coincide
-        for (let j = 0; j < separator.length ; j++) {
-            if (str[i + j] !== separator[j]) {
-                match = false;
-                break;
-            }
-        }
-
-        // Si encontramos una coincidencia
-        if (match) {
-            newArray[newArray.length] = newString;
-            newString = "";
-            i += separator.length; // Saltar la longitud del separador
-        } else {
-            newString += str[i];
-            i++;
-        }
-    }
-
-    // Añadir la última parte
-    newArray[newArray.length] = newString;
-
+    if (limit !== undefined) return newArray.slice(0, limit); // Limitar si es necesario
     return newArray;
+  }
+
+  while (i < this.length) {
+    let match = true;
+
+    // Comprobar si el separador coincide
+    for (let j = 0; j < separator.length; j++) {
+      if (this.value[i + j] !== separator[j]) {
+        match = false;
+        break;
+      }
+    }
+
+    // Si encontramos una coincidencia
+    if (match) {
+      newArray[newArray.length] = newString;
+      newString = "";
+      i += separator.length; // Saltar la longitud del separador
+    } else {
+      newString += this.value[i];
+      i++;
+    }
+  }
+
+  // Añadir la última parte
+  newArray[newArray.length] = newString;
+
+  // Aplicar el límite si es necesario
+  if (limit !== undefined) {
+    return newArray.slice(0, limit);
+  }
+
+  return newArray;
 }
 
-const result1 = split('Deep house techno', 'De');
-const expected1 = 'Deep house techno'.split('De');
-console.assert(arraysEqual(result1, expected1), { result: result1, message: 'Test 1 no pasado' });
-
-const result2 = split('El detectiu Conan', '');
-const expected2 = 'El detectiu Conan'.split('');
-console.assert(arraysEqual(result2, expected2), { result: result2, message: 'Test 2 no pasado' });
-
-const result3 = split('Shinoshuke Nohara', ' ');
-const expected3 = 'Shinosuke Nohara'.split(' ');
-console.assert(arraysEqual(result2, expected2), { result: result2, message: 'Test 2 no pasado' });
+module.exports = split;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// EXPLICACION DEL CÓDIGO 
+// EXPLICACION DEL CÓDIGO
 
 /*
     Esta función agarra el string y lo corta en cuanto encuentra una coincidencia con separator. 
