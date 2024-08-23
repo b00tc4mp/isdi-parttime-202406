@@ -3,8 +3,12 @@ function find(array, callback) {
     // This method returns the first element in the provided array that satisfies the provided testing function. 
     // If no values satisfy the testing function, undefined is returned.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
     
     let found = undefined 

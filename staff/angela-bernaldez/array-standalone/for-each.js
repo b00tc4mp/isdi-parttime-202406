@@ -3,8 +3,12 @@ function forEach(array, callback) {
     // This method executes a provided function once for each array element.
     // This method does not return a new array, it modifies the original array instead
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
     
     let i = 0

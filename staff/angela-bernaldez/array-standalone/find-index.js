@@ -3,8 +3,12 @@ function findIndex(array, callback) {
     // returns the index of the first element in an array that satisfies the provided testing function. 
     // If no elements satisfy the testing function, -1 is returned.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
 
     let index = -1

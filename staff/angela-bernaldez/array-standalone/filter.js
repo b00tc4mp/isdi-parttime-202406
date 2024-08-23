@@ -1,10 +1,13 @@
 function filter(array, callback) {
-    
     // this method creates a shallow copy of a portion of a given array, 
     // filtered down to just the elements from the given array that pass the test implemented by the provided function.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
 
     let newArray = []

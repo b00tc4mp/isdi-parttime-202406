@@ -3,8 +3,12 @@ function map(array, callback) {
     // This method creates a new array populated with the results
     // of calling a provided function on every element in the calling array.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
 
     let newArray = []

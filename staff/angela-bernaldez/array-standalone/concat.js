@@ -2,6 +2,10 @@ function concat(...arrays) {
 
     // This method is used to merge two or more arrays. 
     // This method does not change the existing arrays, but instead returns a new array.
+
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
     
     let newArray = [];
 
@@ -10,15 +14,15 @@ function concat(...arrays) {
             if (arrays[i] instanceof Array) {
                 // If array, add elements one by one by looping over the array
                 for (let j = 0; j < arrays[i].length; j++) {
-                    newArray[newArray.length] = arrays[i][j];
+                    newArray[newArray.length] = arrays[i][j]
                 }
             } else {
                 // If object, add the object itself 
-                newArray[newArray.length] = arrays[i];
+                newArray[newArray.length] = arrays[i]
             }
         } else {
             // otherwise directly add primitive elements (null, undefined, number, boolean, symbol, string and bigint)
-            newArray[newArray.length] = arrays[i];
+            newArray[newArray.length] = arrays[i]
         }
     }
     return newArray;
@@ -61,29 +65,26 @@ console.assert(arrayIsEqual(result2, array3.concat(array4, array5)), {
     message: "Test 2 no pasado",
 });
 
-const result4 = concat(array3, array4, null, undefined);
-console.assert(arrayIsEqual(result4, array3.concat(array4, null, undefined)), {
+const result3 = concat(array3, array4, null, undefined);
+console.assert(arrayIsEqual(result3, array3.concat(array4, null, undefined)), {
+    result: result3,
+    message: "Test 3 no pasado",
+});
+
+const result4 = concat(array3, array4, true, false);
+console.assert(arrayIsEqual(result4, array3.concat(array4, true, false)), {
     result: result4,
     message: "Test 4 no pasado",
 });
 
-const result5 = concat(array3, array4, true, false);
-console.assert(arrayIsEqual(result5, array3.concat(array4, true, false)), {
-    result: result5,
-    message: "Test 5 no pasado",
+const result5 = concat(array3, array4, ['fruit', 'raspeberries']);
+console.assert(arrayIsEqual(result5, array3.concat(array4, ['fruit', 'raspeberries'])), {
+        result: result5,
+        message: "Test 5 no pasado",
 });
 
-const result6 = concat(array3, array4, {'fruit': 'raspeberries'});
-console.assert(
-    JSON.stringify(result6) === JSON.stringify(array3.concat(array4, {'fruit': 'raspeberries'})), 
-    {
-        result: result6,
-        message: "Test 6 no pasado",
-    }
-);
-
-const result7 = concat(array3);
-console.assert(arrayIsEqual(result7, array3.concat()), {
-    result: result7,
-    message: "Test 7 no pasado",
+const result6 = concat(array3);
+console.assert(arrayIsEqual(result6, array3.concat()), {
+    result: result6,
+    message: "Test 6 no pasado",
 });

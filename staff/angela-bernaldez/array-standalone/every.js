@@ -5,8 +5,12 @@ function every(array, callback) {
     // true if all element pass the test
     // false otherwise (if at least one element does not pass the test)
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (typeof callback !== 'function') {
-        throw TypeError('Second argument of map needs to be a function');
+        throw TypeError('Second argument of map needs to be a function')
     }
 
     let result = true

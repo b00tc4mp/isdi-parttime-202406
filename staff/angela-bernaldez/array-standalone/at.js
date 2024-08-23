@@ -4,6 +4,10 @@ function at(array, index) {
     // allowing for positive and negative integers. 
     // Negative integers count back from the last item in the array.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     if (index == null) index = 0
 
     if (typeof index === 'boolean') index = Number(index)

@@ -1,27 +1,31 @@
 function fill(array, value, start = 0, end = array.length) {
 
-  // The fill() method of Array instances changes all elements 
-  // within a range of indices in an array to a static value. It returns the modified array.
+    // The fill() method of Array instances changes all elements 
+    // within a range of indices in an array to a static value. It returns the modified array.
 
-  // Handle negative start index
-  if (start < 0) start = Math.max(start + array.length, 0);
-  
-  // Handle negative end index
-  if (end < 0) end += array.length;
-  
-  // Ensure end does not exceed array length
-  end = Math.min(end, array.length);
+    if (!(array instanceof Array)) {
+      throw new TypeError('The provided value is not an array')
+    }
 
-  // cases where original array is returned and nothing else needs to be executed
-  if (start >= array.length || end <= start) return array
+    // Handle negative start index
+    if (start < 0) start = Math.max(start + array.length, 0)
 
-  // loop through array to change corresponding elements according to start and end if provided 
-  // otherwise, change the whole array
-  for (let i = start; i < end; i++) {
-      array[i] = value
-  }
+    // Handle negative end index
+    if (end < 0) end += array.length
 
-  return array
+    // Ensure end does not exceed array length
+    end = Math.min(end, array.length)
+
+    // Return the original array if start is greater than or equal to end
+    if (start >= end) return array
+
+    // loop through array to change corresponding elements according to start and end if provided 
+    // otherwise, change the whole array
+    for (let i = start; i < end; i++) {
+        array[i] = value
+    }
+
+    return array
 }
 
 

@@ -7,8 +7,12 @@ function indexOf(array, searchElement, fromIndex = 0) {
     // If fromIndex < -array.length or fromIndex is omitted, 0 is used, causing the entire array to be searched.
     // If fromIndex >= array.length, the array is not searched and -1 is returned.
 
+    if (!(array instanceof Array)) {
+        throw new TypeError('The provided value is not an array')
+    }
+
     // handle negative cases
-    if (fromIndex < 0) fromIndex = Math.max(fromIndex + array.length, 0);
+    if (fromIndex < 0) fromIndex = Math.max(fromIndex + array.length, 0)
 
     // handle fromIndex being outside array.length 
     if (fromIndex > array.length) return -1
