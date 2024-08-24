@@ -3,7 +3,7 @@ function concat(...arrays) {
     // This method is used to merge two or more arrays. 
     // This method does not change the existing arrays, but instead returns a new array.
 
-    if (!(array instanceof Array)) {
+    if (!(arrays[0] instanceof Array)) {
         throw new TypeError('The provided value is not an array')
     }
     

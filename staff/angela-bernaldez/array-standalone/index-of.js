@@ -18,7 +18,6 @@ function indexOf(array, searchElement, fromIndex = 0) {
     if (fromIndex > array.length) return -1
 
     for (let i = fromIndex; i < array.length; i++) {
-        console.log(array[i])
         if (array[i] === searchElement) return i
     }
     

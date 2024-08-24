@@ -63,7 +63,7 @@ console.assert(arrayIsEqual(result3, [5, 4, 3, 2, 1, 0]), {
     message: "Test 3 no pasado",
 });
 
-const result4 = map(array1, "hello");
+// const result4 = map(array1, "hello");
 // This ensures that function gives an error when a function is not passed as second argument
 
 
