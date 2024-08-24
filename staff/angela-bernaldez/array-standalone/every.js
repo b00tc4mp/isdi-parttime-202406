@@ -5,6 +5,8 @@ function every(array, callback) {
     // true if all element pass the test
     // false otherwise (if at least one element does not pass the test)
 
+    // callback should return a truthy value to indicate the element passes the test, and a falsy value otherwise.
+
     if (!(array instanceof Array)) {
         throw new TypeError('The provided value is not an array')
     }
@@ -28,37 +30,36 @@ function every(array, callback) {
 const array1 = [1, 2, 3, 4, 5, 6, 7, 8]
 const isPositive = (currentValue) => currentValue >= 0
 const result1 = every(array1, isPositive)
-
 console.assert(result1 === array1.every(isPositive), {
-result: result1,
-message: "Test 1 no pasado",
+    result: result1,
+    message: "Test 1 no pasado",
 });
 
 const isNegative = (currentValue) => currentValue < 0;
 const result2 = every(array1, isNegative)
 console.assert(result2 === array1.every(isNegative), {
-result: result2,
-message: "Test 2 no pasado",
+    result: result2,
+    message: "Test 2 no pasado",
 });
 
 const isEven = (currentValue) => currentValue % 2 === 0 
 const result3 = every(array1, isEven)
 console.assert(result3 === array1.every(isEven), {
-result: result3,
-message: "Test 3 no pasado",
+    result: result3,
+    message: "Test 3 no pasado",
 });
 
 const isNumber = (currentValue) => typeof currentValue === 'number'
 const result4 = every(array1, isNumber)
 console.assert(result4 === array1.every(isNumber), {
-result: result4,
-message: "Test 4 no pasado",
+    result: result4,
+    message: "Test 4 no pasado",
 });
 
 const isBoolean = (currentValue) => typeof currentValue === 'boolean'
 const result5 = every(array1, isBoolean)
 console.assert(result5 === array1.every(isBoolean), {
-result: result5,
-message: "Test 5 no pasado",
+    result: result5,
+    message: "Test 5 no pasado",
 });
 

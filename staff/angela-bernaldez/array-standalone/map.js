@@ -3,6 +3,9 @@ function map(array, callback) {
     // This method creates a new array populated with the results
     // of calling a provided function on every element in the calling array.
 
+    // callback is a function to execute for each element in the array. 
+    // Its return value is added as a single element in the new array. 
+
     if (!(array instanceof Array)) {
         throw new TypeError('The provided value is not an array')
     }

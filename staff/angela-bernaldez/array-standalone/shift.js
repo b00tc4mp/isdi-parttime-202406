@@ -46,7 +46,6 @@ const array1 = ['banana', 'apple', 'watermelon', 'plum']
 const shiftArray1 = array1.slice()
 const result1 = shift(array1)
 const shiftResult1 = shiftArray1.shift()
-
 console.assert(arrayIsEqual(array1, shiftArray1) && result1 === shiftResult1, {
     result: result1,
     message: "Test 1 no pasado",
@@ -56,7 +55,6 @@ const array2 = ['lion']
 const shiftArray2 = [...array2]
 const result2 = shift(array2)
 const shiftResult2 = shiftArray2.shift()
-
 console.assert(arrayIsEqual(array2, shiftArray2) && result2 === shiftResult2, {
     result: result2,
     message: "Test 2 no pasado",
@@ -66,7 +64,6 @@ const array3 = [null, undefined, true, false, 0, 1]
 const shiftArray3 = array3.slice()
 const result3 = shift(array3)
 const shiftResult3 = shiftArray3.shift()
-
 console.assert(arrayIsEqual(array3, shiftArray3) && result3 === shiftResult3, {
     result: result3,
     message: "Test 3 no pasado",

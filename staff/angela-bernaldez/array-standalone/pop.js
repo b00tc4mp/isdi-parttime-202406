@@ -43,7 +43,6 @@ const array1 = ['banana', 'apple', 'watermelon', 'plum']
 const popArray1 = array1.slice()
 const result1 = pop(array1)
 const popResult1 = popArray1.pop()
-
 console.assert(arrayIsEqual(array1, popArray1) && result1 === popResult1, {
     result: result1,
     message: "Test 1 no pasado",
@@ -53,7 +52,6 @@ const array2 = ['lion']
 const popArray2 = [...array2]
 const result2 = pop(array2)
 const popResult2 = popArray2.pop()
-
 console.assert(arrayIsEqual(array2, popArray2) && result2 === popResult2, {
     result: result2,
     message: "Test 2 no pasado",
@@ -63,7 +61,6 @@ const array3 = [null, undefined, true, false, 0, 1]
 const popArray3 = array3.slice()
 const result3 = pop(array3)
 const popResult3 = popArray3.pop()
-
 console.assert(arrayIsEqual(array3, popArray3) && result3 === popResult3, {
     result: result3,
     message: "Test 3 no pasado",

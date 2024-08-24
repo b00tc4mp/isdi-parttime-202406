@@ -45,7 +45,6 @@ const array1 = ['banana', 'apple', 'watermelon', 'plum']
 const pushArray1 = array1.slice()
 const result1 = push(array1, 'pear', 'grapes')
 const pushResult1 = pushArray1.push('pear', 'grapes')
-
 console.assert(arrayIsEqual(array1, pushArray1) && result1 === pushResult1, {
     result: result1,
     message: "Test 1 no pasado",
@@ -55,7 +54,6 @@ const array2 = ['banana', 'apple', 'watermelon', 'plum']
 const pushArray2 = array2.slice()
 const result2 = push(array2, undefined, null)
 const pushResult2 = pushArray2.push(undefined, null)
-
 console.assert(arrayIsEqual(array2, pushArray2) && result2 === pushResult2, {
     result: result2,
     message: "Test 2 no pasado",
@@ -65,7 +63,6 @@ const array3 = ['banana', 'apple', 'watermelon', 'plum']
 const pushArray3 = array3.slice()
 const result3 = push(array3)
 const pushResult3 = pushArray3.push()
-
 console.assert(arrayIsEqual(array3, pushArray3) && result3 === pushResult3, {
     result: result3,
     message: "Test 3 no pasado",

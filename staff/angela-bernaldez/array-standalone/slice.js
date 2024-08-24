@@ -48,57 +48,50 @@ function arrayIsEqual(arr1, arr2) {
 
 const array1 = [1, 2, 3, 4, 5, 6, 7, 8]
 const result1 = slice(array1)
-
 console.assert(arrayIsEqual(result1, array1.slice()), {
-result: array1,
-message: "Test 1 no pasado",
+    result: array1,
+    message: "Test 1 no pasado",
 });
 
 const array2 = [-1, -2, -3, -4, -5, -6, -7, -8]
 const result2 = slice(array2, 2)
-
 console.assert(arrayIsEqual(result2, array2.slice(2)), {
-result: array2,
-message: "Test 2 no pasado",
+    result: array2,
+    message: "Test 2 no pasado",
 });
 
 const array3 = [0, 0, 0, 0, 0, 0, 0]
 const result3 = slice(array3, 2, 4)
-
 console.assert(arrayIsEqual(result3, array3.slice(2, 4)), {
-result: array3,
-message: "Test 3 no pasado",
+    result: array3,
+    message: "Test 3 no pasado",
 });
 
 const array4 = [0, 0, 0, 0, 0, 0, 0]
 const result4 =  slice(array4, -4, -2)
-
 console.assert(arrayIsEqual(result4, array4.slice(-4, -2)), {
-result: array4,
-message: "Test 4 no pasado",
+    result: array4,
+    message: "Test 4 no pasado",
 });
 
 const array5 = [0, 0, 0, 0, 0, 0, 0]
 const result5 =  slice(array5, -2, -4)
-
 console.assert(arrayIsEqual(result5, array5.slice(-2, -4)), {
-result: array5,
-message: "Test 5 no pasado",
+    result: array5,
+    message: "Test 5 no pasado",
 });
 
 const array6 = [0, 0, 0, 0, 0, 0, 0]
 const result6 =  slice(array6, 10, -2)
-
 console.assert(arrayIsEqual(result6, array6.slice(10, -2)), {
-result: array6,
-message: "Test 6 no pasado",
+    result: array6,
+    message: "Test 6 no pasado",
 });
 
 const array7 = [false, true, false, true, false, true]
 const result7 = slice(array7, 2, 18)
-
 console.assert(arrayIsEqual(result7, array7.slice(2, 18)), {
-result: array7,
-message: "Test 7 no pasado",
+    result: array7,
+    message: "Test 7 no pasado",
 });
 

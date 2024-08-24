@@ -3,6 +3,8 @@ function forEach(array, callback) {
     // This method executes a provided function once for each array element.
     // This method does not return a new array, it modifies the original array instead
 
+    // callback should return a truthy value to indicate the element passes the test, and a falsy value otherwise.
+
     if (!(array instanceof Array)) {
         throw new TypeError('The provided value is not an array')
     }
@@ -41,7 +43,6 @@ function arrayIsEqual(arr1, arr2) {
 
 const numbers = [1, 11, 21, 31, 41, 51]
 const nearestMultipleOfTen = (currentValue) => Math.round(currentValue/10)*10
-
 const result1 = forEach(numbers, nearestMultipleOfTen)
 console.assert(arrayIsEqual(numbers, [0, 10, 20, 30, 40, 50]), {
     result: result1,
@@ -50,7 +51,6 @@ console.assert(arrayIsEqual(numbers, [0, 10, 20, 30, 40, 50]), {
 
 const items = ['apple', 'banana', 'strawberries', 'cherries']
 const itemsCapitalized = (currentItem) => currentItem.toUpperCase()
-
 const result2 = forEach(items, itemsCapitalized)
 console.assert(arrayIsEqual(items, ['APPLE', 'BANANA', 'STRAWBERRIES', 'CHERRIES']), {
     result: result2,
