@@ -1,21 +1,30 @@
 function Bomb(time) {
   this.time = time;
+  this.exploded = false;
 }
 
 Bomb.prototype.game = function () {
   let id = 0;
   return {
     start: function () {
-      const idSetTimeout = setTimeout(() => {
-        throw new Error("No esperaba nada y aún así me has decepcionado");
-      }, this.time);
+      const idSetTimeout = setTimeout(
+        function () {
+          this.exploded = true;
+          throw new Error("No esperaba nada y aún así me has decepcionado");
+        }.bind(this),
+        this.time
+      );
       id = idSetTimeout;
     }.bind(this),
     reset: function () {
       clearTimeout(id);
-      const idSetTimeout = setTimeout(() => {
-        throw new Error("No esperaba nada y aún así me has decepcionado");
-      }, this.time);
+      const idSetTimeout = setTimeout(
+        function () {
+          this.exploded = true;
+          throw new Error("No esperaba nada y aún así me has decepcionado");
+        }.bind(this),
+        this.time
+      );
       id = idSetTimeout;
     }.bind(this),
     stop: function () {
@@ -32,15 +41,35 @@ const bomb = new Bomb(8000);
 
 const game = bomb.game();
 
-game.start();
+function play() {
+  game.start();
 
-// entre 1 segundo y 10 segundos
-const randomNumber = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
-const randomBoolean = Math.random() >= 0.5;
-
-setTimeout(() => {
-  if (randomBoolean) game.stop();
-  else {
-    game.reset();
+  // calculo entre 1 y 10 segundos
+  function _goodLuck(randomNumber, randomBoolean, callback) {
+    setTimeout(
+      function () {
+        if (this.exploded) return;
+        if (randomBoolean) game.stop();
+        else {
+          game.reset();
+          callback();
+        }
+      }.bind(this),
+      randomNumber
+    );
   }
-}, randomNumber);
+  const goodLuck = _goodLuck.bind(this);
+
+  function foo() {
+    let randomNumber = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+    let randomBoolean = Math.random() >= 0.5;
+    goodLuck(randomNumber, randomBoolean, foo);
+  }
+
+  let randomNumber = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+  let randomBoolean = Math.random() >= 0.5;
+
+  goodLuck(randomNumber, randomBoolean, foo);
+}
+
+play.call(bomb);
