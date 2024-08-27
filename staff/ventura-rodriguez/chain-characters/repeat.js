@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 function repeat(count) {
   let result = "";
 
@@ -5,7 +7,7 @@ function repeat(count) {
     result += this.value;
   }
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = repeat;

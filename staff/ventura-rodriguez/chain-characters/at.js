@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 /**
  * Retrieves the character at the specified index from the `value` array.
  *
@@ -10,7 +12,7 @@
  * @returns {string} - The character at the specified index.
  */
 function at(index) {
-  if (index === null) return this.value[0];
+  if (index === null) return new ChainCharacters(this.value[0]);
 
   let result;
 
@@ -20,7 +22,7 @@ function at(index) {
     if (i === index) result = character;
     else if (index < 0 && i === this.length + index) result = character;
   }
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = at;

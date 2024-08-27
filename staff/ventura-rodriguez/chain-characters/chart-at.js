@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 /**
  * Retrieves the character at the specified index from the string-like object.
  *
@@ -18,7 +20,7 @@ function charAt(index) {
     result = "";
   }
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = charAt;

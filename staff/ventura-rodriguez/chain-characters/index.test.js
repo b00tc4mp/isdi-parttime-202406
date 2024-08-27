@@ -1,3 +1,4 @@
+require("./contructor.test.js");
 require("./at.test.js");
 require("./chart-at.test.js");
 require("./concat.test.js");
