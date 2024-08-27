@@ -65,5 +65,26 @@ function quickSort(array) {
     // Recursión
     return [...quickSort(left), pivot, ...quickSort(right)];
 }
+//the fastest one and also the slowest
+function luckySort(array) {
+    const shuffled = [...array]; 
 
+    for (let i = 0; i < shuffled.length; i++) {
+        const randomIndex = Math.floor(Math.random() * shuffled.length);
+        
+        //Cambio de manos 
+        let temp = shuffled[i];
+        shuffled[i] = shuffled[randomIndex];
+        shuffled[randomIndex] = temp;
+    }
+    return shuffled;
+}
 
+function luckyBrute(array){
+    let result;
+    const sortedArray = quickSort(array)
+    while (!arrayIsEqual(result,sortedArray)){
+         result = luckySort(array)
+    }
+    return result
+}
