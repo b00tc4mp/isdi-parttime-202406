@@ -22,9 +22,9 @@ console.assert(arraysEqual(result2, expected2), {
   message: "Test 2 no pasado",
 });
 
-const result3 = new ChainCharacters("Shinoshuke Nohara").split(" ");
+const result3 = new ChainCharacters("Shinosuke Nohara").split(" ");
 const expected3 = "Shinosuke Nohara".split(" ");
 console.assert(arraysEqual(result3, expected3), {
-  result: result2,
-  message: "Test 2 no pasado",
+  result: result3,
+  message: "Test 3 no pasado",
 });
