@@ -1,9 +1,9 @@
-//str.replace(pattern, replacement)
-//Version stand alone!
+const ChainCharacters = require("./constructor")
+
 function replace(pattern, replacement) {
 
     if (typeof pattern !== 'string') {
-        throw new Error('Pattern must be a string');
+        throw new Error('Pattern must be a string')
     }
 
     let result = ''
@@ -20,20 +20,17 @@ function replace(pattern, replacement) {
         }
         // If patter is found, it is replaced and index is adjusted
         if (j === pattern.length) {
-            result += replacement;
-            i += pattern.length;
+            result += replacement
+            i += pattern.length
             found = true;
         } else {
             // If pattern not found, current segment is added to the result
-            result += this.value[i];
+            result += this.value[i]
             i++;
         }
     }  
 
-    this.value = result
-    this.length = this.value.length
-
-    return result 
+    return new ChainCharacters(result)
 }
 
 module.exports = replace

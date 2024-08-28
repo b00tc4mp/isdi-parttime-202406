@@ -1,5 +1,5 @@
-//str.repeat(count)
-//Version stand alone!
+const ChainCharacters = require("./constructor.js")
+
 function repeat(count) {
 
     if (count < 0 || count == Infinity) {
@@ -13,10 +13,7 @@ function repeat(count) {
         result += this.value
     }
 
-    this.value = result
-    this.length = this.value.length
-
-    return result   
+    return new ChainCharacters(result)   
 }
 
 module.exports = repeat

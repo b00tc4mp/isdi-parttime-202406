@@ -1,5 +1,5 @@
-//str.charAt(indice)
-//Version stand alone
+const ChainCharacters = require("./constructor.js")
+
 function charAt(index) {
   
     let result = this.value[index];
@@ -9,7 +9,8 @@ function charAt(index) {
     } else if (index >= this.length) {
       result = "";
     }
-    return result;
+    
+    return new ChainCharacters(result)
 }
 
 module.exports = charAt

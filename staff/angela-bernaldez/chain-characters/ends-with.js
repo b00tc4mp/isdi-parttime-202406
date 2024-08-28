@@ -1,5 +1,3 @@
-//str.endsWith(searchString, endPosition)
-//Version stand alone!
 function endsWith(searchString, endPosition = this.length) {
 
     if (typeof searchString !== 'string') return false
@@ -13,7 +11,7 @@ function endsWith(searchString, endPosition = this.length) {
             break 
         }
     }
-    return result   
+    return result
 }
 
 module.exports = endsWith

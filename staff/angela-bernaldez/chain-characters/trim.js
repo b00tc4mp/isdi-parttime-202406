@@ -1,5 +1,5 @@
-//str.trim()
-//Version stand alone!
+const ChainCharacters = require("./constructor")
+
 function trim() {
 
     // The trim() method of String values removes whitespace from both ends of this string 
@@ -22,10 +22,7 @@ function trim() {
         result += this.value[i]
     }
 
-    this.value = result
-    this.length = this.value.length
-
-    return result;
+    return new ChainCharacters(result);
 }
 
 module.exports = trim

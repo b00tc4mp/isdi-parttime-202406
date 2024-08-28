@@ -1,5 +1,5 @@
-//str.split(separator, limit)
-//Version stand alone!
+const ChainCharacters = require("./constructor.js")
+
 function split(separator, limit = undefined) {
 
     let result = []
@@ -26,13 +26,10 @@ function split(separator, limit = undefined) {
 
     // Add the last segment if it hasn't exceeded the limit
     if (limit === undefined || segmentCount < limit) {
-        result[resultLength] = currentSegment;
+        result[resultLength] = currentSegment
     }
 
-    this.value = result
-    this.length = this.value.length
-
-    return result;
+    return new ChainCharacters(result)
 }
 
 module.exports = split

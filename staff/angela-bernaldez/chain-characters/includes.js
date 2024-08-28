@@ -1,5 +1,3 @@
-//str.includes(searchString)
-//Version stand alone
 function includes(searchString) {
   
   if (searchString === null) return false;

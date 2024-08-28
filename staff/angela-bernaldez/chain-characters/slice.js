@@ -1,5 +1,5 @@
-//str.slice(indexStart, indexEnd)
-//Version stand alone!
+const ChainCharecters = require("./constructor.js")
+
 function slice(indexStart, indexEnd = this.length) {
 
     let result = ''
@@ -11,17 +11,14 @@ function slice(indexStart, indexEnd = this.length) {
 
     if (indexStart > this.length) indexStart = this.length
     if (indexEnd > this.length) indexEnd = this.length
-    if (indexStart > indexEnd) return ""
+    if (indexStart > indexEnd) return new ChainCharecters("")
 
 
     for (let i = indexStart; i < indexEnd; i++) {
         result += this.value[i]
     }
 
-    this.value = result
-    this.length = this.value.length
-
-    return result 
+    return new ChainCharecters(result)
 }
 
 module.exports = slice

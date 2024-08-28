@@ -1,5 +1,5 @@
-//str.toLowerCase()
-//Version stand alone!
+const ChainCharacters = require("./constructor.js")
+
 function toLowerCase() {
 
     if (typeof this.value !== 'string') throw new SyntaxError('Invalid or unexpected token')
@@ -21,11 +21,8 @@ function toLowerCase() {
         }
         if (!found) result += this.value[i]
     }
-
-    this.value = result
-    this.length = this.value.length 
-
-    return result;
+    
+    return new ChainCharacters(result);
 }
 
 module.exports = toLowerCase

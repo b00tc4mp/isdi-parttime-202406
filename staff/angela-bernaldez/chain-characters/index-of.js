@@ -1,5 +1,3 @@
-//str.indexOf(searchString, startPosition)
-//Version stand alone!
 function indexOf(searchString, startPosition = 0) {
 
     if (typeof searchString !== 'string') return -1
