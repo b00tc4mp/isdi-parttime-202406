@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 function trim() {
   let result = "";
   let firstPosition = 0;
@@ -8,7 +10,7 @@ function trim() {
 
   for (let i = firstPosition; i <= lastPosition; i++) result += this.value[i];
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = trim;

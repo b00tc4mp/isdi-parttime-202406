@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 function slice(start) {
   let result = "";
 
@@ -5,7 +7,7 @@ function slice(start) {
     result += this.value[i];
   }
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = slice;

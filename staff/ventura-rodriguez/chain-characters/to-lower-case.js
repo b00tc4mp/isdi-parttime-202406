@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 function toLowerCase() {
   let result = "";
   const converter = [
@@ -43,7 +45,7 @@ function toLowerCase() {
     }
   }
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = toLowerCase;

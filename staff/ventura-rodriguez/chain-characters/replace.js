@@ -1,3 +1,5 @@
+const ChainCharacters = require("./contructor");
+
 function replace(strSearch, strRepWith) {
   let strFinal = "";
   let valorEncontrado = false;
@@ -18,7 +20,7 @@ function replace(strSearch, strRepWith) {
       strFinal += this.value[i];
     }
   }
-  return strFinal;
+  return new ChainCharacters(strFinal);
 }
 
 module.exports = replace;
