@@ -1,4 +1,4 @@
-debugger
+
 (() => {
   const changePlayerNameButton = document.getElementById("changePlayerName");
   const displayNameSpan = document.getElementById("displayPlayerName");
@@ -11,6 +11,7 @@ debugger
   const clickCounter = document.getElementById("clickCounter");
   const winsInARow = document.getElementById("winsInARow");
   const table = document.getElementById("table");
+  const display = document.querySelector('#timer');
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,13 +35,12 @@ debugger
     const playerName = prompt("Elige tu nombre de usuario: ");
     displayNameSpan.innerText = playerName;
   };
-
+debugger
   stateButton.onclick = () => {
     if (started === false) {
       // Inicializar la partida
       started = true;
       stateButton.innerText = "Abandonar partida";
-      const display = document.querySelector('#timer');
       updateDisplay(timeRemaining, display); // Muestra el tiempo inicial
       toggleTimer(display, stateButton);      
       foundMines = 0;
@@ -50,11 +50,10 @@ debugger
     } else {
       // Terminar la partida
       started = false;
-      alert("You are Dead 💀");
       stateButton.innerText = "Empezar partida";
-      const display = document.querySelector('#timer');
+      timeRemaining = initialTime
       updateDisplay(timeRemaining, display); // Muestra el tiempo inicial
-      toggleTimer(display, stateButton); 
+      clearInterval(timer);
       totalMines = 0;
       foundMines = 0;
       lostGames++;
@@ -77,8 +76,10 @@ debugger
   };
 
   restartButton.onclick = () => {
-    started = false;
     stateButton.innerText = "Empezar partida";
+    timeRemaining = initialTime;
+    updateDisplay(timeRemaining, display);// Muestra el tiempo inicial
+    clearInterval(timer);
     totalMines = 0;
     foundMines = 0;
     counterClicks = 0;
@@ -86,6 +87,7 @@ debugger
     minesTotal.innerText = "_";
     clickCounter.innerText = counterClicks;
     table.innerHTML = "";
+    started = false;
   };
 
   function updateDisplay(time, display) {
@@ -101,18 +103,21 @@ debugger
 }
 
 function startTimer(display) {
-    timer = setInterval(function () {
-        if (timeRemaining > 0) {
-            timeRemaining--;
-            updateDisplay(timeRemaining, display);
-        } else {
-            alert("You are Dead 💀");
-            clearInterval(timer);
-            isRunning = false;
-            
-        }
-    }, 1000);
+  timer = setInterval(function () {
+      if (timeRemaining > 0) {
+          timeRemaining--;
+          updateDisplay(timeRemaining, display);
+      } else {
+          isRunning = false;
+          clearInterval(timer);
+          timeRemaining = initialTime
+          updateDisplay(timeRemaining, display);
+          
+
+      }
+  }, 1000);
 }
+
 
 function toggleTimer(display, button) {
     if (isRunning) {
@@ -120,12 +125,12 @@ function toggleTimer(display, button) {
         timeRemaining = initialTime; // Reinicia el tiempo a 10 minutos
         updateDisplay(timeRemaining, display); // Actualiza la pantalla
         isRunning = false;
-       
+
     } else {
         if (timeRemaining === initialTime) {
             startTimer(display); // Inicia el temporizador si no está corriendo
             isRunning = true;
-           
+
         }
     }
 }
@@ -237,7 +242,7 @@ function toggleTimer(display, button) {
             alert("F 💀. NOOB VUELVETE A HABBO HOTEL");
             started = false;
             stateButton.innerText = "Empezar partida";
-            const display = document.querySelector('#timer');
+            timeRemaining = initialTime;
             updateDisplay(timeRemaining, display); // Muestra el tiempo inicial
             toggleTimer(display, stateButton); 
             totalMines = 0;
@@ -387,7 +392,7 @@ debugger
   function locateBombs(matrix) {
     let randomNumbers = [];
     let isDuplicated = true;
-    
+
     do {
       randomNumbers = Array.from(
         { length: totalMines},
