@@ -1,3 +1,5 @@
+const ChainCharacters = require(".");
+
 function repeat(num) {
   let result = "";
 
@@ -6,7 +8,7 @@ function repeat(num) {
   for (let i = 0; i < num; i++) {
     result += this.value;
   }
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = repeat;

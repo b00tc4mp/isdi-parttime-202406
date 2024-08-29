@@ -2,6 +2,7 @@
 
 //str.charAt(indice)
 //Version stand alone
+
 function charAt(index) {
   let result = this.value[index];
 

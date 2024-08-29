@@ -1,4 +1,4 @@
-const ChainCharacters = require("./constructor.js");
+const ChainCharacters = require("./constructor");
 
 const at = require("./at.js");
 const charAt = require("./char-at.js");
