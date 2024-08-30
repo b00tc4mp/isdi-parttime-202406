@@ -20,7 +20,7 @@ const splice = (array, start, deleteCount) => {
 };
 
 {
-    function arrayIsEqual(arr1, arr2) {||
+    function arrayIsEqual(arr1, arr2) {
       if (arr1.length !== arr2.length) return false;
       let result = true;
       let i = 0;

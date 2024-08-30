@@ -51,9 +51,9 @@ function arrayIsEqual(arr1, arr2) {
   }
 
 //TDD
-const array1 = [3, 1, 4, 9, 10, 0, 30, 4]
+const array1 = ["a", "z", "l", 3, "b"]
 const result1 = sort(array1);
-const testArray1 = [3, 1, 4, 9, 10, 0, 30, 4]
+const testArray1 = ["a", "z", "l", 3, "b"]
 const testResult1 = array1.sort();
 // añadir el console.assert aquí
 
