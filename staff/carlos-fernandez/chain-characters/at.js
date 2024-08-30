@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 //str.at(indice)
 //Version stand alone
 function at(index) {
@@ -8,7 +10,13 @@ function at(index) {
 
   let result = "";
 
-  if (index === null) return this.value[0];
+  if (
+    (index === null || typeof index === "string") &&
+    typeof this.value === "string"
+  ) {
+    return this.value[0];
+  }
+  if (index > this.length) return undefined;
 
   for (let i = 0; i < this.length; i++) {
     const character = this.value[i];
@@ -19,7 +27,7 @@ function at(index) {
       result = character;
     }
   }
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = at;

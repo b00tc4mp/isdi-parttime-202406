@@ -4,19 +4,14 @@
 // iterar string y sacar carácteres empezando por el último (endPosition.length -1) y en el momento que no coincida o que se acabe
 // la longitud del endPosition, sacar el resultado.
 
-function endsWith(endPosition) {
-  let result = true;
-  if (endPosition === null) return false;
-  let j = endPosition.length - 1;
+function endsWith(searchString, endPosition = this.length) {
+  let subsString = "";
 
-  for (let i = this.length - 1; j >= 0; i--) {
-    if (endPosition[j] !== this.value[i]) {
-      result = false;
-      break;
-    }
-    j--;
+  for (let i = 0; i < searchString.length; i++) {
+    subsString += this.value[endPosition - searchString.length + i];
   }
-  return result;
+
+  return subsString === searchString;
 }
 
 module.exports = endsWith;

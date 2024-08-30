@@ -1,10 +1,10 @@
-const ChainCharacters = require("./constructor");
+const ChainCharacters = require("./constructor.js");
 
 const at = require("./at.js");
 const charAt = require("./char-at.js");
 const concat = require("./concat.js");
 const endsWith = require("./ends-with.js");
-const includes = require("./includes.2.js");
+const includes = require("./includes.js");
 const indexOf = require("./index-of.js");
 const repeat = require("./repeat.js");
 const replace = require("./replace.js");
