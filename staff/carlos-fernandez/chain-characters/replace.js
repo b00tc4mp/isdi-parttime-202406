@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function replace(pattern, replacement) {
   let newString = "";
   let found = false;
@@ -21,6 +23,6 @@ function replace(pattern, replacement) {
     }
   }
 
-  return newString;
+  return new ChainCharacters(newString);
 }
 module.exports = replace;

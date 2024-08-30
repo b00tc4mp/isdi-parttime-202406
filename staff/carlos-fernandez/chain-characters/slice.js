@@ -17,6 +17,7 @@ index que nos marca END. */
     3) En caso que end > INPUT.LENGTH, end sería igual a INPUT.LENGTH;
     4) En caso que end = undefined, end sería igual a INPUT.LENGTH;
     */
+const ChainCharacters = require("./constructor");
 
 function slice(start, end) {
   // Determinar el tipo de input para iniciar la variable newString en función de si es string o array.
@@ -39,6 +40,6 @@ function slice(start, end) {
       newString += this.value[i];
     }
   }
-  return newString;
+  return new ChainCharacters(newString);
 }
 module.exports = slice;

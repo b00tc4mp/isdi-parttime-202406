@@ -1,4 +1,4 @@
-const ChainCharacters = require(".");
+const ChainCharacters = require("./constructor");
 
 function repeat(num) {
   let result = "";
