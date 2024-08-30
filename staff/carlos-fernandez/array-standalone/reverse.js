@@ -1,12 +1,15 @@
 function reverse(array) {
-  let newArray = [];
   let counter = 0;
-
+  let newArray = [];
   for (let i = array.length - 1; i >= 0; i--) {
     newArray[counter] = array[i];
     counter++;
   }
-  return newArray;
+
+  for (let i = 0; i < newArray.length; i++) {
+    array[i] = newArray[i];
+  }
+  return array;
 }
 
 function arraysEqual(arr1, arr2) {
@@ -16,7 +19,7 @@ function arraysEqual(arr1, arr2) {
   }
   return true;
 }
-
+//debugger
 const result1 = reverse([1, 2, 3, 4, 5]);
 const expected1 = [5, 4, 3, 2, 1];
 console.assert(arraysEqual(result1, expected1), {

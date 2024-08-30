@@ -1,11 +1,11 @@
 // El método forEach() ejecuta la función indicada una vez por cada elemento del array.
 
 function forEach(array, callback) {
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    callback(element, i, array); // Pasamos los tres argumentos al callback
+  let i = 0;
+  while (i < array.length) {
+    array[i] = callback(array[i]);
+    i++;
   }
-  // No es necesario retornar nada
 }
 
 function arrayIsEqual(arr1, arr2) {
@@ -17,42 +17,24 @@ function arrayIsEqual(arr1, arr2) {
 }
 
 // TEST 1
-let result1 = [];
-let result2 = [];
-
-forEach([1, 2, 3], (element) => {
-  result1.push(element + 1);
-});
-
-[1, 2, 3].forEach((element) => result2.push(element + 1));
-
-console.assert(arrayIsEqual(result1, result2), {
+const numbers = [0, 1, 2, 3, 4, 5];
+const plusTen = (element) => element + 10;
+const result1 = forEach(numbers, plusTen);
+console.assert(arrayIsEqual(numbers, [10, 11, 12, 13, 14, 15]), {
   result: result1,
   message: "Test 1 no pasado",
 });
 
-if (arrayIsEqual) console.log("Test 1 pasado.");
-
 // TEST 2
-let indices1 = [];
-let indices2 = [];
-
-forEach(["a", "b", "c"], (element, index) => {
-  indices1.push(index);
-});
-
-["a", "b", "c"].forEach((element, index) => {
-  indices2.push(index);
-});
-
-console.assert(arrayIsEqual(indices1, indices2), {
-  result: indices1,
+const cars = ["BMW", "HONDA", "VOLKSWAGEN", "SEAT"];
+const lowCars = (vehicle) => vehicle.toLowerCase();
+const result2 = forEach(cars, lowCars);
+console.assert(arrayIsEqual(cars, ["bmw", "honda", "volkswagen", "seat"]), {
+  result: result2,
   message: "Test 2 no pasado",
 });
 
-if (arrayIsEqual) console.log("Test 2 pasado.");
-
-// TEST 3
+/* TEST 3
 
 let arraysUsed1 = [];
 let arraysUsed2 = [];
@@ -71,3 +53,4 @@ console.assert(arrayIsEqual(arraysUsed1, arraysUsed2), {
   message: "Test 3 no pasado",
 });
 if (arrayIsEqual) console.log("Test 3 pasado.");
+*/

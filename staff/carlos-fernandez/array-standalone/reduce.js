@@ -27,7 +27,6 @@ console.assert(result1 === expected1, {
   expected: expected1,
   message: "Test 1 no pasado: Sumar elementos",
 });
-if (result1 === expected1) console.log("Test 1 pasado");
 
 // TEST 2
 const array2 = ["Hola", " ", "mundo", "!"];
@@ -40,8 +39,6 @@ console.assert(result2 === expected2, {
   message: "Test 2 no pasado: Concatenar strings",
 });
 
-if (result2 === expected2) console.log("Test 2 pasado");
-
 // TEST 3
 const array3 = [{ age: 10 }, { age: 20 }, { age: 30 }];
 const result3 = reduce(array3, (acc, curr) => acc + curr.age, 0); // Suma de las edades
@@ -53,8 +50,6 @@ console.assert(result3 === expected3, {
   message: "Test 3 no pasado: Sumar valores de objetos",
 });
 
-if (result3 === expected3) console.log("Test 3 pasado");
-
 // TEST 4
 const array4 = [];
 const result4 = reduce(array4, (acc, curr) => acc + curr, 100); // Debería devolver el valor inicial
@@ -65,5 +60,3 @@ console.assert(result4 === expected4, {
   expected: expected4,
   message: "Test 4 no pasado: Array vacío con valor inicial",
 });
-
-if (result4 === expected4) console.log("Test 4 pasado");
