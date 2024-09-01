@@ -9,16 +9,16 @@
 // convertir numero en string
 // si el valor el null el resultado es string de null
 
+const ChainCharacters = require("./constructor")
+
 function concat(...strings) {
     let result = this.value;
 
-    let str = '';
     for (let i = 0; i < strings.length; i++) {
-        str += strings[i];
+        result += strings[i];
     }
-        return str;
+        return new ChainCharacters(result);
     }
 
     module.exports = concat
  
-
