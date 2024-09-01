@@ -1,6 +1,5 @@
 const ChainCharacters = require("./constructor.js");
 
-const at = require("./at.js");
 const charAt = require("./char-at.js");
 const concat = require("./concat.js");
 const endsWith = require("./ends-with.js");
@@ -15,7 +14,7 @@ const toLowerCase = require("./to-lower-case.js");
 const toUpperCase = require("./to-upper-case.js");
 const trimStart = require("./trim-start.js");
 const trim = require("./trim.js");
-
+const at = require("./at.js");
 ChainCharacters.prototype.at = at;
 ChainCharacters.prototype.charAt = charAt;
 ChainCharacters.prototype.concat = concat;
