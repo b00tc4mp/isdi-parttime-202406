@@ -19,7 +19,7 @@ function create(data) {
     });
 
     fs.writeFile(
-      path.join(__dirname, "../../bbdd/users.json"),
+      path.join(__dirname, "../../database/users.json"),
       JSON.stringify({ users: users }),
       "utf-8",
       (err) => {
