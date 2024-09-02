@@ -1,4 +1,4 @@
-function ChainCharacter(value) {
+function ChainCharacters(value) {
     let _length = 0;
     while(value[_length]) _length++;
 
@@ -6,4 +6,4 @@ function ChainCharacter(value) {
     this.value = value;
 }
 
-module.exports = ChainCharacter;
+module.exports = ChainCharacters;

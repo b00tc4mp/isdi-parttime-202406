@@ -1,4 +1,4 @@
-
+// posiblemente pegar el código original 
 //si es numero o null meter toda la frase en un array
 //split 
 // se resive un string y un patron
@@ -10,30 +10,32 @@
 // "hola que tal" --> split("l")["ho", " a que tap"]
 // "hola" --> hola.length = 4 ; hola[hola.length - 1] = "a"
 
+const ChainCharacters = require("./constructor");
 
-function split(string, pattern) {
+function split(pattern) {
     const newArray = [];
-    let tempString = "";
+    let tempString = new ChainCharacters("");
+    
 
-    for (let i = 0; i < string.length; i++) {
+    for (let i = 0; i < this.length; i++) {
         
         if (pattern === ""){
-            newArray[i] = string[i]; //para separar por caracteres
-            tempString = ""; 
+            newArray[i] = this.value[i] //para separar por caracteres
+            tempString.value = ""; 
         }
 
-        else if (i === string.length -1 && string[string.length-1] !== pattern  ){
-            tempString += string[i];
-            newArray[newArray.length] = tempString;
+        else if (i === this.length -1 && this.value[this.length-1] !== pattern  ){
+            tempString.value += this.value[i];
+            newArray[newArray.length] = tempString.value;
         }
         
-        else if (pattern === string[i] || i === string.length -1  ){ 
-            newArray[newArray.length] = tempString;
-            tempString = ""; 
+        else if (pattern === this.value[i] || i === this.length -1  ){ 
+            newArray[newArray.length] = tempString.value;
+            tempString.value = ""; 
         }
 
         else {
-            tempString += string[i];
+            tempString += this.value[i];
             //si no toca dividir, ir construyendo tempString
         }
     }
@@ -41,47 +43,4 @@ function split(string, pattern) {
     return newArray;
 }
 
-function compare(array1, array2) {
-    let result = true;
-    let i = 0;
-    if (array1.length !== array2.length) return false;
-    while (i < array1.length) {
-        if (array1[i] !== array2[i]) {
-            result = false;
-        }
-        i++;
-    }
-    return result;
-}
-
-const str = 'Esta es una oración que tiene que estar split.';
-const pattern = "";
-const pattern2 = " ";
-const pattern3 = "q";
-const pattern4 = "e";
-
-const result1 = split(str, pattern);
-const result2 = split(str, pattern2);
-const result3 = split(str, pattern3);
-const result4 = split(str, pattern4);
-
-console.assert(compare(result1, str.split(pattern)),{
-  result: result1,
-  message: "Test 1 No pasado ",
-});
-
-
-console.assert(compare(result2, str.split(pattern2)),{
-    result: result2,
-    message: "Test 2 No pasado ",
-  });
-
-console.assert(compare(result3, str.split(pattern3)),{
-    result: result3,
-    message: "Test 3 No pasado ",
-  });
-
-console.assert(compare(result4, str.split(pattern4)),{
-    result: result4,
-    message: "Test 3 No pasado ",
-  });
+module.exports = split;

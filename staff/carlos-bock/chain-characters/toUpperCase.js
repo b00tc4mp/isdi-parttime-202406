@@ -11,41 +11,25 @@
 //Tenemos que correr y asignar valores si el valor de oldString[i] es igual a valor de upperCase[]
 // string[i]
 
-function toUpperCase(string) {
+const ChainCharacters = require("./constructor");
+
+function toUpperCase() {
     const lowerCase = "aábcdeéfghiíjklmnñoópqrstuúvwxyz.,- ";
     const upperCase = "AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZ.,- ";
     let newString = "";
 
-    for (let i = 0; i < string.length; i++) {
+    for (let i = 0; i < this.length; i++) {
         for (let j = 0; j < upperCase.length; j++) {
-            if (string[i] === lowerCase[j]) {
+            if (this.value[i] === lowerCase[j]) {
                 newString +=upperCase[j];
             }
-            else if (string[i] === upperCase[j]) {
+            else if (this.value[i] === upperCase[j]) {
                 newString += upperCase[j];
             }
         }
 
     }
-    return newString;
+    return new ChainCharacters(newString);
 }
 
-const oldString = "this is a lower case string";
-const oldString2 = "This Is a Test";
-
-
-const result1 = toUpperCase(oldString);
-console.assert(result1 === oldString.toUpperCase(),{
-  result: result1,
-  message: "Test 1 No pasado ",
-});
-
-const result2 = toUpperCase(oldString2);
-console.assert(result2 === oldString2.toUpperCase(), {
-  result: result2,
-  message: "Test 2 No pasado ",
-});
-
-
-
-
+module.exports = toUpperCase;

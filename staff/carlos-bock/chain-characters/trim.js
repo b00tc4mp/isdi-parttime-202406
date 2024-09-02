@@ -6,37 +6,32 @@
 //Si character nos es espacio guardarlo
 //retornar nuevo string
 
-function trim(string){
+const ChainCharacters = require("./constructor");
+
+function trim(){
     let newString = "";
     let index = 0;
     let lastIndex = 0
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] !== " ") {
+    for (let i = 0; i < this.length; i++) {
+        if (this.value[i] !== " ") {
             index = i;
             break;
             //newString += string[i];            
         }
     }
     
-    for (let i = string.length-1; i > 0; i--) {
-        if (string[i] !== " ") {
+    for (let i = this.length-1; i > 0; i--) {
+        if (this.value[i] !== " ") {
             lastIndex = i;
             break;
         }
     }
 
     for (let i = index; i <= lastIndex; i++) {
-        newString += string[i];
+        newString += this.value[i];
     }
     
-    return newString;
+    return new ChainCharacters(newString);
 }
 
-
-const oldString = "    Este es un string    ";
-
-const result1 = trim(oldString);
-console.assert(result1 === oldString.trim(),{
-  result: result1,
-  message: "Test 1 No pasado ",
-});
+module.exports = trim;
