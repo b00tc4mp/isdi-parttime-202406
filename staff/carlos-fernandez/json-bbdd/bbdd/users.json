@@ -1,0 +1,20 @@
+{
+  "user": [
+    {
+      "id": 0,
+      "name": "Carl",
+      "birth_date": "1992-01-04",
+      "email": "carloslemoncode@gmail.com",
+      "phone_number": "+34 666777888",
+      "password": "1234567890"
+    },
+    {
+      "id": 1,
+      "name": "Django",
+      "birth_date": "2011-08-21",
+      "email": "djangounchained@gmail.com",
+      "phone_number": "+34 000111222",
+      "password": "imhungry"
+    }
+  ]
+}
