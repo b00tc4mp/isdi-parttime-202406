@@ -1,6 +1,6 @@
 const ChainCharacters = require("./constructor.js")
 
-function at(index) {
+
   
     if (index === null) return new ChainCharacters(this.value[0]);
   
