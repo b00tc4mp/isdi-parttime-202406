@@ -1,11 +1,11 @@
 {
-  "user": [
+  "users": [
     {
       "id": 0,
       "name": "Carl",
       "birth_date": "1992-01-04",
       "email": "carloslemoncode@gmail.com",
-      "phone_number": "+34 666777888",
+      "phone_number": "+34 111111111",
       "password": "1234567890"
     },
     {
@@ -15,6 +15,22 @@
       "email": "djangounchained@gmail.com",
       "phone_number": "+34 000111222",
       "password": "imhungry"
+    },
+    {
+      "id": 2,
+      "name": "Manuela",
+      "birth_date": "2000-01-19",
+      "email": "manolitaguay@gmail.com",
+      "phone_number": "+34 012345678",
+      "password": "1uno2dos"
+    },
+    {
+      "id": 3,
+      "name": "Rafinha",
+      "birt_date": "1999-09-02",
+      "phone_number": "334445556",
+      "email": "imrafinha@gmail.com",
+      "password": "viniziusucks"
     }
   ]
 }
