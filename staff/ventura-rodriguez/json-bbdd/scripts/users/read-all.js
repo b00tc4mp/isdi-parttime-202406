@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-function read(callback) {
+function readAll(callback) {
   fs.readFile(
-    path.join(__dirname, "../../bbdd/users.json"),
+    path.join(__dirname, "../../database/users.json"),
     "utf-8",
     (err, _data) => {
       if (err) throw err;
@@ -14,4 +14,4 @@ function read(callback) {
   );
 }
 
-module.exports = read;
+module.exports = readAll;

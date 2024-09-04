@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const read = require("./read.js");
+const readAll = require("./read-all.js");
 
-function create(data) {
+function createOne(data) {
   const { name, birthDate, phone, email, password } = data;
-  read((users) => {
+  readAll((users) => {
     const isEmailDuplicated = users.some((user) => user.email === email);
     if (isEmailDuplicated) throw new Error("User already exists");
 
@@ -23,10 +23,12 @@ function create(data) {
       JSON.stringify({ users: users }),
       "utf-8",
       (err) => {
-        console.log(err);
+        if (err) throw err;
       }
     );
   });
 }
 
-module.exports = create;
+module.exports = createOne;
+
+createOne({});
