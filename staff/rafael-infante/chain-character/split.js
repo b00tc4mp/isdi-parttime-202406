@@ -1,6 +1,4 @@
-/* recibo un string y un separador (que es un patron). Debo buscar el patron en la cadena de entrada
-si encuentro el patron lo elimino y divido la cadena en un array dependiendo de lo que tenga antes
-y despues del patron */
+const ChainCharacters = require(".");
 
 function split(pattern) {
   let newArray = [];

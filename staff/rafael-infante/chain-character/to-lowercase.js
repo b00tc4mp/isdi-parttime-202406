@@ -1,9 +1,4 @@
-/* recibo una cadena de caracteres y debo realizar una funcion que cambie de
-mayuscula a minuscula
-- Guardo en una variable las letras mayusculas y en otra las minusculas.
-- declaro una variable donde guardar lo que voy a devolver
-- recorro el string para saber que letras voy a convertir a minuscula
-*/
+const ChainCharacters = require("./constructor");
 
 function toLowerCase() {
     
@@ -20,7 +15,7 @@ function toLowerCase() {
           }
           
       }
-      return inLowers
+      return new ChainCharacters(inLowers)
   }
 
   module.exports = toLowerCase;

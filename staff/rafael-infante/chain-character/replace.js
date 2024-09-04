@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function replace(pattern, replacement){
   let i = 0 
   let j = 0 
@@ -28,7 +30,7 @@ function replace(pattern, replacement){
 
         i++;// seguimos recorriendo la string 
     }
-  return newString;// devolvemos la cadena con los remplazos 
+  return new ChainCharacters(newString);// devolvemos la cadena con los remplazos 
 }
 
 module.exports = replace;

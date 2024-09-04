@@ -1,12 +1,14 @@
+const ChainCharacters = require("./constructor");
+
 function slice(index1, index2) {
   let palabra = ''
       if (this.length > 0) {
           for (let i = index1; i < index2; i++) {
             palabra += this.value[i]
            }
-        return palabra
+        return new ChainCharacters(palabra)
       } else {
-          return '';
+          return new ChainCharacters('');
       }
    
 }
