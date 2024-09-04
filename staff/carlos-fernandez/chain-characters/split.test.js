@@ -14,6 +14,7 @@ console.assert(arraysEqual(result1, expected1), {
   result: result1,
   message: "Test 1 no pasado",
 });
+console.log(result1);
 
 const result2 = new ChainCharacters("El detectiu Conan").split("");
 const expected2 = "El detectiu Conan".split("");

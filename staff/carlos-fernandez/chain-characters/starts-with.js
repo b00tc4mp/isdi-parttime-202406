@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function startsWith(wordStart) {
   // Convertir this.value y wordStart a cadenas
   const stringValue = this.value.toString();

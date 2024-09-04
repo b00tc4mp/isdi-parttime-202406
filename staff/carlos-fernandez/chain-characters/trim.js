@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function trim() {
   let start = 0;
   let end = this.length - 1;
@@ -23,8 +25,7 @@ function trim() {
     result += this.value[i];
   }
 
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = trim;
-// Ejemplo de uso

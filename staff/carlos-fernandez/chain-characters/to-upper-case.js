@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function toUpperCase() {
   // Definir las letras mayúsculas y minúsculas manualmente
   let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -27,7 +29,7 @@ function toUpperCase() {
   }
 
   // Devolver la nueva cadena con todas las mayúsculas convertidas a minúsculas
-  return newStr;
+  return new ChainCharacters(newStr);
 }
 
 module.exports = toUpperCase;

@@ -1,3 +1,5 @@
+const ChainCharacters = require("./constructor");
+
 function split(separator, limit) {
   let newArray = [];
   let newString = "";
@@ -43,7 +45,7 @@ function split(separator, limit) {
     return newArray.slice(0, limit);
   }
 
-  return newArray;
+  return new ChainCharacters(newArray);
 }
 
 module.exports = split;

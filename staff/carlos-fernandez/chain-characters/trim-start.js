@@ -1,5 +1,6 @@
 // string.trimStart()
 // Version standalone
+const ChainCharacters = require("./constructor");
 
 function trimStart() {
   let string = String(this.value);
@@ -16,7 +17,7 @@ function trimStart() {
     }
   }
 
-  return newInput;
+  return new ChainCharacters(newInput);
 }
 
 module.exports = trimStart;
