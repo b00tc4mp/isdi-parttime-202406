@@ -1,4 +1,7 @@
 //str.at(indice)
+
+const ChainCharacters = require("./constructor");
+
 //Version stand alone
 function at(index) {
   
@@ -17,7 +20,7 @@ function at(index) {
       result = characterNegative
     }
   }
-  return result;
+  return new ChainCharacters(result);
 }
 
 module.exports = at;
