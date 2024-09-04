@@ -12,7 +12,7 @@ console.assert(result1.value === string1.concat(string2,string3),{
   result: result1,
   message: "Test 1 No pasado ",
 });
-console.log(result1);
+ 
 const result2 = new ChainCharacters(string4).concat(string5,string6);
 console.assert(result2.value === string4.concat(string5,string6),{
   result: result2,
