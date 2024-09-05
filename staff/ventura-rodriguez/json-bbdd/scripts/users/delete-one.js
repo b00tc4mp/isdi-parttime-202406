@@ -25,5 +25,3 @@ function deleteOne(id, password) {
 }
 
 module.exports = deleteOne;
-
-deleteOne(100, "12345678");

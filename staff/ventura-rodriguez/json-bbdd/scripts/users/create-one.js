@@ -30,5 +30,3 @@ function createOne(data) {
 }
 
 module.exports = createOne;
-
-createOne({});
