@@ -1,5 +1,5 @@
 
-const ChainCharacters = require("./")
+const ChainCharacters = require("./");
 
 const result1 = new ChainCharacters("Hello").includes("H");
 console.assert(result1 === "Hello".includes("H"), {
