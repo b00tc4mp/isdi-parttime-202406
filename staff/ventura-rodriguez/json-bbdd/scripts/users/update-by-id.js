@@ -3,6 +3,7 @@ const path = require("path");
 const read = require("./read-all.js");
 
 function updateById(id, data) {
+  if (typeof id !== "number") throw new TypeError("id is not a number");
   const { name, birthDate, phone } = data;
   read((users) => {
     users.forEach((user) => {

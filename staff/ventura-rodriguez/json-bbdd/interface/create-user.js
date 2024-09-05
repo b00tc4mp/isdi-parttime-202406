@@ -1,28 +1,39 @@
+const readline = require("readline");
 const { users } = require("../scripts");
 
-const user = {
-  name: null,
-  birthDate: null,
-  phone: null,
-  email: null,
-  password: null,
-};
+const rl = readline.createInterface(process.stdin, process.stdout);
 
-let i = 2;
-for (const property in user) {
-  user[property] = process.argv[i];
-  i++;
+const template = [
+  ["Cuál es tu nombre?", "name"],
+  ["Cuál es tu fecha de nacimiento?", "birthDate"],
+  ["Cuál es tu teléfono?", "phone"],
+  ["Cuál es tu email?", "email"],
+  ["Cuál es tu contraseña?", "password"],
+];
+let tupple = [...template];
+
+const user = {};
+
+function prompt(tupple) {
+  rl.question(tupple[0][0], function (answer) {
+    user[tupple[0][1]] = answer;
+    tupple.shift();
+    if (tupple.length > 0) prompt(tupple);
+    else {
+      users.createOne(user, (id) => {
+        console.table({ id });
+        rl.question(
+          "Quieres agregar un nuevo usuario? (yes/no)",
+          function (answer) {
+            if (answer === "yes") {
+              tupple = [...template];
+              prompt(tupple);
+            } else rl.close();
+          }
+        );
+      });
+    }
+  });
 }
 
-console.log(user);
-
-// node staff/ventura-rodriguez/json-bbdd/interface/create-user.js "Pepito" "2001-121-05" "+34 123456789" "pepito@gmail.com" "123456789"
-// node --inspect-brk staff/ventura-rodriguez/json-bbdd/interface/create-user.js "Pepito" "2001-121-05" "+34 123456789" "pepito@gmail.com" "123456789"
-
-// users.createOne({
-//   name: "Pepito",
-//   birthDate: "2001-12-05",
-//   phone: "+34 123456789",
-//   email: "pepito@gmail.com",
-//   password: "12345678",
-// });
+prompt(tupple);

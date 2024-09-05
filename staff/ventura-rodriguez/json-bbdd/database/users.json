@@ -39,6 +39,14 @@
       "phone": "+34 123456789",
       "email": "nosoyrafa2@gmail.com",
       "password": "12345678"
+    },
+    {
+      "id": 5,
+      "name": "ventu",
+      "birth_date": "2000-01-02",
+      "phone": "+32 123456789",
+      "email": "ventu@gmail.com",
+      "password": "123456789"
     }
   ]
 }

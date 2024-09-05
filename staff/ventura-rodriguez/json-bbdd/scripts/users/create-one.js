@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const readAll = require("./read-all.js");
 
-function createOne(data) {
+function createOne(data, callback) {
   const { name, birthDate, phone, email, password } = data;
   readAll((users) => {
     const isEmailDuplicated = users.some((user) => user.email === email);
@@ -24,6 +24,8 @@ function createOne(data) {
       "utf-8",
       (err) => {
         if (err) throw err;
+
+        callback(id);
       }
     );
   });
