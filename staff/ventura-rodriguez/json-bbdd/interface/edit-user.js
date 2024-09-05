@@ -28,15 +28,3 @@ rl.question("Qué usuario quieres editar?", (id) => {
   debugger;
   prompt(tupple, Number(id));
 });
-
-// que usuario quieres editar?
-
-// disclaimer: Introduce solamente los datos de las propiedades que quieras editar
-
-// nuevo nombre? (dejar vacio para no editar)
-
-// nuevo birthDate? (dejar vacio para no editar)
-
-// nuevo phone? (dejar vacio para no editar)
-
-// si alguna propiedad no la quieres editar le das al enter y pasas
