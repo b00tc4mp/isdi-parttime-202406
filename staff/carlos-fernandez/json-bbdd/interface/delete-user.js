@@ -4,7 +4,7 @@ const { users } = require("../scripts");
 const rl = readline.createInterface(process.stdin, process.stdout);
 
 function deleteUser(id) {
-  read((users) => {
+  users.readAll((users) => {
     const user = users.filter((_user) => _user.id === id)[0];
     if (!user) throw new NotFoundError("User not found");
 
