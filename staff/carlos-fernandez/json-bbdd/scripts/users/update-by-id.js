@@ -3,18 +3,18 @@ const path = require("path");
 const read = require("./read-all.js");
 
 function updateById(id, data) {
-  const { name, birthDate, phone } = data;
+  const { name, birthDate, phoneNumber } = data;
   read((users) => {
     users.forEach((user) => {
       if (user.id === id) {
         user.name = name ?? user.name;
         user.birth_date = birthDate ?? user.birth_date;
-        user.phone = phone ?? user.phone;
+        user.phone_number = phoneNumber ?? user.phone_number;
       }
     });
 
     fs.writeFile(
-      path.join(__dirname, "../../database/user.json"),
+      path.join(__dirname, "../../database/users.json"),
       JSON.stringify({ users: users }),
       "utf-8",
       (err) => {
