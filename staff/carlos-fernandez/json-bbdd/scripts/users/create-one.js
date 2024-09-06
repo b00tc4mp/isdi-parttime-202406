@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const readAll = require("./read-all.js");
 
-function createOne(data) {
+function createOne(data, callback) {
   // Copia de los parámetros originales para no trabajar sobre el mismo origen.
   const { name, birthDate, phoneNumber, email, password } = data;
 
@@ -18,7 +18,7 @@ function createOne(data) {
     users.push({
       id,
       name,
-      birt_date: birthDate,
+      birth_date: birthDate,
       phone_number: phoneNumber,
       email,
       password,
@@ -32,11 +32,11 @@ function createOne(data) {
       "utf-8",
       (err) => {
         if (err) throw err;
+
+        callback(id);
       }
     );
   });
 }
 
 module.exports = createOne;
-
-createOne({});
