@@ -3,7 +3,7 @@
     {
       "id": 0,
       "name": "Carl",
-      "birth_date": "",
+      "birth_date": "04-01-1992",
       "email": "carloslemoncode@gmail.com",
       "phone_number": "695506439",
       "password": "1234567890"

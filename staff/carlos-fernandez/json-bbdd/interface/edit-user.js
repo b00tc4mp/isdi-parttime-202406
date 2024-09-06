@@ -1,6 +1,5 @@
 const readline = require("readline");
 const { users } = require("../scripts");
-const { type } = require("os");
 
 const rl = readline.createInterface(process.stdin, process.stdout);
 
@@ -16,7 +15,7 @@ const user = {};
 
 function prompt(tupple, id) {
   rl.question(tupple[0][0], function (answer) {
-    user[tupple[0][1]] = answer;
+    user[tupple[0][1]] = answer === "" ? null : answer;
     tupple.shift();
 
     if (tupple.length > 0) prompt(tupple, id);
@@ -31,7 +30,7 @@ rl.question(
   "Por favor, introduce el id del usuario que quieres editar ",
   function (id) {
     // Si id no es un número lanza error
-    if (isNaN(id)) throw new TypeError("id is not a number");
+    if (isNaN(id)) throw new TypeError("Id is not a number");
     prompt(tupple, Number(id));
   }
 );
