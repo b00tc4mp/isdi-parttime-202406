@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-function read(callback) {
+function readAll(callback) {
   
   fs.readFile(__dirname + '/../../bbdd/users.json', 'utf-8', (err, _data) => {
     if (err) throw err;
@@ -10,4 +10,4 @@ function read(callback) {
   })
 }
 
-module.exports = read;
+module.exports = readAll;
