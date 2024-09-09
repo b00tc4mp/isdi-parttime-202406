@@ -3,7 +3,7 @@ const path = require("path");
 const read = require("./read-all.js");
 const { NotFoundError, CredentialsError } = require("../../errors");
 
-function deleteOne(id, password) {
+function deleteOne(id, password, callback) {
   read((users) => {
     const user = users.filter((_user) => _user.id === id)[0];
     if (!user) throw new NotFoundError("User not found");
@@ -19,6 +19,8 @@ function deleteOne(id, password) {
       "utf-8",
       (err) => {
         if (err) throw err;
+
+        callback(true);
       }
     );
   });
