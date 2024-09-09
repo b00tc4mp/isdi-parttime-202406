@@ -30,6 +30,5 @@ function createOne(data) {
   });
 }
 
-createOne({})
 
 module.exports = createOne;
