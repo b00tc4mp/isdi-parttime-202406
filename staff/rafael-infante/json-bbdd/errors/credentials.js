@@ -7,11 +7,7 @@ function CredentialsError(message) {
   return instance;
 }
 
-CredentialsError.prototype = Object.create(Error.prototype, {
-  constructor: {
-    value: Error,
-  },
-});
+CredentialsError.prototype = Object.create(Error.prototype);
 
 CredentialsError.prototype.name = "NotFoundError";
 

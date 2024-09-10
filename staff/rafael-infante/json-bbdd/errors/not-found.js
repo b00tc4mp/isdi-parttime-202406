@@ -7,11 +7,7 @@ function NotFoundError(message) {
   return instance;
 }
 
-NotFoundError.prototype = Object.create(Error.prototype, {
-  constructor: {
-    value: Error,
-  },
-});
+NotFoundError.prototype = Object.create(Error.prototype);
 
 NotFoundError.prototype.name = "NotFoundError";
 
