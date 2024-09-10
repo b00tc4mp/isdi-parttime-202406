@@ -1,0 +1,22 @@
+{
+  "name": "json-bbdd",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "create-user": "node ./interface/create-user.js",
+    "delete-user": "node ./interface/delete-user.js",
+    "edit-user": "node ./interface/edit-user.js",
+    "list-users": "node ./interface/list-users.js",
+    "show-user": "node ./interface/show-user.js",
+    "test": "mocha ./test/users/create-one.test.js"
+  },
+  "keywords": [],
+  "author": "Ventura Rodríguez",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "10.7.3",
+    "chai": "5.1.1"
+  },
+  "dependencies": {}
+}
