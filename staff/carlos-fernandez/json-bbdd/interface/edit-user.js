@@ -28,9 +28,20 @@ function prompt(tupple, id) {
 
 rl.question(
   "Por favor, introduce el id del usuario que quieres editar ",
-  function (id) {
+  function (_id) {
+    const id = Number(_id);
     // Si id no es un número lanza error
-    if (isNaN(id)) throw new TypeError("Id is not a number");
+    if (
+      typeof id !== "number" ||
+      id < 0 ||
+      id === NaN ||
+      id === Infinity ||
+      !Number.isInteger(id)
+    ) {
+      console.log("Introduce un número válido.");
+      return rl.close();
+    }
+
     prompt(tupple, Number(id));
   }
 );

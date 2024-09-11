@@ -18,7 +18,7 @@
     },
     {
       "id": 2,
-      "name": "Manuela",
+      "name": "Jose Luis",
       "birth_date": "2000-01-19",
       "email": "manolitaguay@gmail.com",
       "phone_number": "+34 012345678",
@@ -27,10 +27,18 @@
     {
       "id": 3,
       "name": "Rafinha",
-      "birt_date": "1999-09-02",
-      "phone_number": "334445556",
+      "birth_date": "1999-12-23",
       "email": "imrafinha@gmail.com",
+      "phone_number": "334445556",
       "password": "viniziusucks"
+    },
+    {
+      "id": 4,
+      "name": "Amansio",
+      "birth_date": "1932-01-14",
+      "phone_number": "+34 01",
+      "email": "vivachina@gmail.com",
+      "password": "me.encanta.china"
     }
   ]
 }

@@ -17,14 +17,6 @@ const user = {};
 function prompt(tupple) {
   rl.question(tupple[0][0], function (answer) {
     user[tupple[0][1]] = answer;
-    if (
-      // si existe user.mail y además NO incluye @gmail, @yahoo o @hotmail, lanza error
-      user.email &&
-      user.email.includes("@gmail.com" || "@yahoo.com" || "@hotmail.com") ===
-        false
-    )
-      throw new TypeError("Not a valid email");
-
     tupple.shift();
     if (tupple.length > 0) prompt(tupple);
     else {
