@@ -2,19 +2,19 @@
 //el metodo devuelve el valor correspondiente al indice de la primara aparición del segundo string. 
 //en caso no hay parametro devuelve un -1
 
-function indexOf() {
+function indexOf(parametro) {
 
     let index = 0;
     
-    if (typeof this.value[1] === 'undefined') {
+    if (typeof parametro === 'undefined') {
         index = -1; 
     } else {
-        for (let i = 0; i < this.value[0].length; i++) {
+        for (let i = 0; i < this.value.length; i++) {
             let counter = 0;
-            for (let j = 0; j < this.value[1].length; j++) {
-                if (this.value[0][i+j] === this.value[1][j]){
+            for (let j = 0; j < parametro.length; j++) {
+                if (this.value[i+j] === parametro[j]){
                     counter++;
-                    if (counter === this.value[1].length) {
+                    if (counter === parametro.length) {
                         index = i;
                         return index
                     }
@@ -28,4 +28,4 @@ function indexOf() {
     return index;
 }
 
-module.export = indexOf;
+module.exports = indexOf;
