@@ -8,7 +8,7 @@ function NotAnIntegerError(message) {
     return instance;
 }
 
-NotAnIntegerError.prototype = Object.create(error.prototype);
+NotAnIntegerError.prototype = Object.create(Error.prototype);
 
 NotAnIntegerError.prototype.name = "NotAnIntegerError";
 

@@ -4,7 +4,7 @@ const path = require("path");
 
 function readAll(callback) {
     fs.readFile(
-        path.join(__dirname, "../../database/users.json"),
+        path.join(__dirname, "/../../json-bbdd/database/users.json"),
         "utf-8",
         (err, _data) => {
           if (err) throw err;
