@@ -32,7 +32,6 @@ describe("Users scripts", function () {
       );
     });
 
-    // happy path
     it("Create a user with reasonable data", function (done) {
       const data = {
         name: "Angela",
@@ -83,6 +82,32 @@ describe("Users scripts", function () {
         assert.equal(err.message, "Email is not valid");
         done();
       }
+    });
+
+    it("Create a user with duplicated email", function (done) {
+      const data = {
+        name: "Angela",
+        birthDate: "2000-01-01",
+        phone: "+34 123456789",
+        email: "duplicated@gmail.com",
+        password: "123456789",
+      };
+      const data2 = {
+        name: "Perico",
+        birthDate: "1992-10-01",
+        phone: "+34 123456789",
+        email: "duplicated@gmail.com",
+        password: "123456789",
+      };
+      users.createOne(data, () => {
+        try {
+          users.createOne(data2, () => {});
+        } catch (err) {
+          assert.isTrue(err instanceof Error);
+          assert.equal(err.message, "Email already in use");
+          done();
+        }
+      });
     });
   });
 });

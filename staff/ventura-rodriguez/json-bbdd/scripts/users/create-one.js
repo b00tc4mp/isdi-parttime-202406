@@ -3,7 +3,7 @@ const path = require("path");
 const readAll = require("./read-all.js");
 const { EmailNotValidError } = require("../../errors");
 
-function createOne(data, callback) {
+async function createOne(data, callback) {
   const { name, birthDate, phone, email, password } = data;
   const emailRegexp = new RegExp(
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -12,7 +12,7 @@ function createOne(data, callback) {
     throw new EmailNotValidError("Email is not valid");
   readAll((users) => {
     const isEmailDuplicated = users.some((user) => user.email === email);
-    if (isEmailDuplicated) throw new Error("User already exists");
+    if (isEmailDuplicated) throw new Error("Email already in use");
 
     const id = users[users.length - 1].id + 1;
     users.push({
