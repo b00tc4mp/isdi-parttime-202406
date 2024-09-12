@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const read = require("./read-all.js");
+const read = require("./read-all.test.js");
 const { NotFoundError, CredentialsError } = require("../..errors");
 
 function deleteOne(id, password, callback) {

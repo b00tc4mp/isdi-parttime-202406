@@ -1,7 +1,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { NotFoundError } = require("../../errors");
+const { NotFoundError } = require("../errors");
 
 function readOne(id, callback) {
     fs.readFile(

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const read = require("./read-all.js");
-const { NotAnIntegerError } = require("../../errors");
+const { NotAnIntegerError } = require("../errors/index.js");
 
 function updateById(id, data) {
     if (typeof id !== "number") throw new TypeError("id is not a number");

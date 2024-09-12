@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const readAll = require("./read-all.js");
-const { EmailNotValidError } = require("../../errors");
+const { EmailNotValidError } = require("../errors/index.js");
 
 function createOne(data, callback) {
     const { name, birthDate, phone, email, password } = data;
