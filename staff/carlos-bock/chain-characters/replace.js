@@ -6,9 +6,10 @@
 //si parametro === a string[i] entonces newString = string[string.length-index] + parametro + string[segunda mitad]
 //resolver primero string al principio 
 
+const ChainCharacters = require("./constructor");
 
-function replace(string, oldPhrase, newPhrase) {
-    const oldString = string;
+function replace(oldPhrase, newPhrase) { //removed string parameter
+    const oldString = this.value;
     let result = false;
     let newString ="";
 
@@ -19,7 +20,7 @@ function replace(string, oldPhrase, newPhrase) {
             let solution = true;
 
          for (let j = 0; j < oldPhrase.length; j++) {
-            if (string[i + j] !== oldPhrase[j]){   
+            if (this.value[i + j] !== oldPhrase[j]){   
                solution = false;
                break;                
             } 
@@ -31,29 +32,11 @@ function replace(string, oldPhrase, newPhrase) {
             i += oldPhrase.length - 1;
             result = true;
         } else {
-            newString += string[i];
+            newString += this.value[i];
         }
     }
 
-    return newString;
+    return new ChainCharacters(newString);
 }
 
-const aString = "My favorite color is blue";
-const oldWord = "blue";
-const newWord = "red";
-
-const stringB = "Cual es el mejor bootcamp";
-const pregunta = "Cual";
-const respuesta = "ISDI";
-
-const result1 = replace(aString, oldWord, newWord);
-console.assert(result1 === aString.replace(oldWord, newWord),{
-  result: result1,
-  message: "Test 1 No pasado ",
-});
-
-const result2 = replace(stringB, pregunta, respuesta);
-console.assert(result2 === stringB.replace(pregunta, respuesta),{
-  result: result2,
-  message: "Test 1 No pasado ",
-});
+module.exports = replace;

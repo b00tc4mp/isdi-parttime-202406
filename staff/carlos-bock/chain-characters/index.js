@@ -5,8 +5,9 @@ const concat = require("./concat.js")
 const endsWith = require("./endsWith.js")
 const includes = require("./includes.js")
 const indexOf = require("./indexOf.js")
+const replace = require("./replace.js")
 const repeat = require("./repeat.js")
-
+const slice = require("./slice.js")
 
 const split = require("./split.js")
 
@@ -22,7 +23,9 @@ ChainCharacters.prototype.concat = concat;
 ChainCharacters.prototype.endsWith = endsWith;
 ChainCharacters.prototype.includes = includes;
 ChainCharacters.prototype.indexOf = indexOf;
+ChainCharacters.prototype.replace = replace;
 ChainCharacters.prototype.repeat = repeat;
+ChainCharacters.prototype.slice = slice;
 
 
 ChainCharacters.prototype.split = split;
