@@ -4,18 +4,18 @@ const read = require("./read-all.js");
 const { NotAnIntegerError } = require("../../errors");
 
 function updateById(id, data) {
-  if (typeof id !== "number") throw new TypeError("Id is not a number");
-  if (isNaN(id) || id < 0 || id === Infinity)
-    throw new RangeError("Id is out of range");
+  if (typeof id !== "number") throw new TypeError("id is not a number");
+  if (id < 0 || id === NaN || id === Infinity)
+    throw new RangeError("id is out of range");
   if (!Number.isInteger(id))
-    throw new NotAnIntegerError("Id is not an integer");
-  const { name, birthDate, phoneNumber } = data;
+    throw new NotAnIntegerError("id is not an integer");
+  const { name, birthDate, phone } = data;
   read((users) => {
     users.forEach((user) => {
       if (user.id === id) {
         user.name = name ?? user.name;
         user.birth_date = birthDate ?? user.birth_date;
-        user.phone_number = phoneNumber ?? user.phone_number;
+        user.phone = phone ?? user.phone;
       }
     });
 

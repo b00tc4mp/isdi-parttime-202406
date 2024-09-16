@@ -1,42 +1,113 @@
+const { users } = require("../../scripts");
 const fs = require("fs");
 const path = require("path");
-const readAll = require("./read-all.test.js");
+const { assert } = require("chai");
+const { EmailNotValidError } = require("../../errors");
 
-function createOne(data, callback) {
-  // Copia de los parámetros originales para no trabajar sobre el mismo origen.
-  const { name, birthDate, phoneNumber, email, password } = data;
+describe("Users scripts", function () {
+  describe("#createOne", function () {
+    let usersBackup = null;
 
-  readAll((users) => {
-    // Método que evalúa si el email de algún elemento del array (en este caso algún user) coincide con el nuevo email.
-    const isEmailDuplicated = users.some((users) => users.email === email);
-
-    //Si el email ya existía con anterioridad, va a lanzar un error.
-    if (isEmailDuplicated) throw new Error("User already exist.");
-
-    // Configuramos un nuevo id para cada nuevo user. Accedemos al ID del último user y le sumamos uno más.
-    const id = users[users.length - 1].id + 1;
-    users.push({
-      id,
-      name,
-      birth_date: birthDate,
-      phone_number: phoneNumber,
-      email,
-      password,
+    before((done) => {
+      fs.readFile(
+        path.join(__dirname, "../../database/users.json"),
+        "utf-8",
+        (err, _data) => {
+          if (err) throw err;
+          const data = JSON.parse(_data);
+          usersBackup = data.users;
+          done();
+        }
+      );
     });
 
-    //creamos los nuevos ususarios con fs.readFile( )
-    fs.writeFile(
-      path.join(__dirname, "../../database/users.json"),
-      // fs.writeFile espera formato string, por eso transformamos a formato string mediante JSON.stringify
-      JSON.stringify({ users: users }),
-      "utf-8",
-      (err) => {
-        if (err) throw err;
+    after(() => {
+      fs.writeFile(
+        path.join(__dirname, "../../database/users.json"),
+        JSON.stringify({ users: usersBackup }),
+        "utf-8",
+        (err) => {
+          if (err) throw err;
+        }
+      );
+    });
 
-        callback(id);
+    it("Create a user with reasonable data", function (done) {
+      const data = {
+        name: "Angela",
+        birthDate: "2000-01-01",
+        phone: "+34 123456789",
+        email: "angela@gmail.com",
+        password: "123456789",
+      };
+      users.createOne(data, (id) => {
+        assert.isNumber(id, "id is not a number");
+        fs.readFile(
+          path.join(__dirname, "../../database/users.json"),
+          "utf-8",
+          (err, _data) => {
+            if (err) throw err;
+            const data = JSON.parse(_data);
+            const user = data.users.filter((_user) => _user.id === id)[0];
+            assert.isObject(user);
+            assert.equal(Object.keys(user).length, 6);
+            assert.isString(user.name);
+            assert.equal(user.name, "Angela");
+            assert.isString(user.birth_date);
+            assert.equal(user.birth_date, "2000-01-01");
+            assert.isString(user.phone);
+            assert.equal(user.phone, "+34 123456789");
+            assert.isString(user.email);
+            assert.equal(user.email, "angela@gmail.com");
+            assert.isString(user.password);
+            assert.equal(user.password, "123456789");
+            done();
+          }
+        );
+      });
+    });
+
+    it("Create a user with invalid email", function (done) {
+      const data = {
+        name: "Angela",
+        birthDate: "2000-01-01",
+        phone: "+34 123456789",
+        email: "angela    @gmail.com",
+        password: "123456789",
+      };
+      try {
+        users.createOne(data, () => {});
+      } catch (err) {
+        assert.isTrue(err instanceof EmailNotValidError);
+        assert.equal(err.message, "Email is not valid");
+        done();
       }
-    );
-  });
-}
+    });
 
-module.exports = createOne;
+    it("Create a user with duplicated email", function (done) {
+      const data = {
+        name: "Angela",
+        birthDate: "2000-01-01",
+        phone: "+34 123456789",
+        email: "duplicated@gmail.com",
+        password: "123456789",
+      };
+      const data2 = {
+        name: "Perico",
+        birthDate: "1992-10-01",
+        phone: "+34 123456789",
+        email: "duplicated@gmail.com",
+        password: "123456789",
+      };
+      users.createOne(data, () => {
+        try {
+          users.createOne(data2, () => {});
+        } catch (err) {
+          assert.isTrue(err instanceof Error);
+          assert.equal(err.message, "Email already in use");
+          done();
+        }
+      });
+    });
+  });
+});

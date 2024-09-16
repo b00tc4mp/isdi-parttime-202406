@@ -2,43 +2,51 @@
   "users": [
     {
       "id": 0,
-      "name": "Carl",
-      "birth_date": "04-01-1992",
-      "email": "carloslemoncode@gmail.com",
-      "phone_number": "695506439",
-      "password": "1234567890"
+      "name": "Limón",
+      "birth_date": "1985-01-04",
+      "phone": "+34 111111111",
+      "email": "limoncode@gmail.com",
+      "password": "12345678"
     },
     {
       "id": 1,
-      "name": "Django",
-      "birth_date": "2011-08-21",
-      "email": "djangounchained@gmail.com",
-      "phone_number": "+34 000111222",
-      "password": "imhungry"
+      "name": "Borja",
+      "birth_date": "1995-08-30",
+      "phone": "+34 987654321",
+      "email": "itspuo@gmail.com",
+      "password": "12345678"
     },
     {
       "id": 2,
-      "name": "Jose Luis",
-      "birth_date": "2000-01-19",
-      "email": "manolitaguay@gmail.com",
-      "phone_number": "+34 012345678",
-      "password": "1uno2dos"
+      "name": "Pepito",
+      "birth_date": "1995-08-30",
+      "phone": "+34 987654321",
+      "email": "foo@gmail.com",
+      "password": "12345678"
     },
     {
       "id": 3,
-      "name": "Rafinha",
-      "birth_date": "1999-12-23",
-      "email": "imrafinha@gmail.com",
-      "phone_number": "334445556",
-      "password": "viniziusucks"
+      "name": "Rafa",
+      "birth_date": "1983-02-07",
+      "phone": "+34 123456789",
+      "email": "nosoyrafa@gmail.com",
+      "password": "12345678"
     },
     {
       "id": 4,
-      "name": "Amansio",
-      "birth_date": "1932-01-14",
-      "phone_number": "+34 01",
-      "email": "vivachina@gmail.com",
-      "password": "me.encanta.china"
+      "name": "Rafa",
+      "birth_date": "1983-02-07",
+      "phone": "+34 123456789",
+      "email": "nosoyrafa2@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 5,
+      "name": "ventu",
+      "birth_date": "2000-01-02",
+      "phone": "+34 987654321",
+      "email": "ventu@gmail.com",
+      "password": "123456789"
     }
   ]
 }

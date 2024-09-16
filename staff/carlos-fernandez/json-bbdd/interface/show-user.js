@@ -4,10 +4,10 @@ const { users } = require("../scripts");
 const rl = readline.createInterface(process.stdin, process.stdout);
 
 rl.question(
-  "Por favor, introduce el id del usuario que quieres consultar. ",
+  "Por favor, introduce el id del usuario que quieres ver",
   function (_id) {
     const id = Number(_id);
-    // Si id no es un número lanza error
+
     if (
       typeof id !== "number" ||
       id < 0 ||
@@ -15,10 +15,12 @@ rl.question(
       id === Infinity ||
       !Number.isInteger(id)
     ) {
-      console.log("Introduce un número válido.");
+      console.log("Introduce un número válido");
       return rl.close();
     }
-    users.readOne(id, (user) => console.table(user));
+
+    users.readOne(id, console.table);
+
     rl.close();
   }
 );

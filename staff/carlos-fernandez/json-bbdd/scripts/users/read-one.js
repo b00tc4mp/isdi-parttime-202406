@@ -13,7 +13,7 @@ function readOne(id, callback) {
 
       const user = data.users.filter((_user) => _user.id === id)[0];
 
-      if (!user) throw new NotFoundError("User not found.");
+      if (!user) throw new NotFoundError("User not found");
 
       callback(user);
     }

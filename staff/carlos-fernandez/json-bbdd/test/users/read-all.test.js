@@ -1,17 +1,21 @@
-const fs = require("fs");
-const path = require("path");
+const { users } = require("../../scripts");
 
-function readAll(callback) {
-  fs.readFile(
-    path.join(__dirname, "../../database/users.json"),
-    "utf-8",
-    (err, _data) => {
-      if (err) throw err;
+var assert = require("assert");
+describe("Users scripts", function () {
+  describe("#readAll", function () {
+    it("Should return a user list", function () {
+      users.readAll((users) => {
+        assert.equal(users instanceof Array, true);
 
-      const data = JSON.parse(_data);
-      callback(data.users);
-    }
-  );
-}
-
-module.exports = readAll;
+        users.forEach((user) => {
+          assert.equal(typeof user.id !== "undefined", true);
+          assert.equal(typeof user.name !== "undefined", true);
+          assert.equal(typeof user.birth_date !== "undefined", true);
+          assert.equal(typeof user.phone !== "undefined", true);
+          assert.equal(typeof user.email !== "undefined", true);
+          assert.equal(typeof user.password !== "undefined", true);
+        });
+      });
+    });
+  });
+});

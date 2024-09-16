@@ -4,11 +4,11 @@ const { users } = require("../scripts");
 const rl = readline.createInterface(process.stdin, process.stdout);
 
 const template = [
-  ["Cuál es tu nombre? ", "name"],
-  ["Cuál es tu fecha de nacimiento? ", "birthDate"],
-  ["Cuál es tu teléfono? ", "phoneNumber"],
-  ["Cuál es tu email? ", "email"],
-  ["Cuál es tu contraseña? ", "password"],
+  ["Cuál es tu nombre?", "name"],
+  ["Cuál es tu fecha de nacimiento?", "birthDate"],
+  ["Cuál es tu teléfono?", "phone"],
+  ["Cuál es tu email?", "email"],
+  ["Cuál es tu contraseña?", "password"],
 ];
 let tupple = [...template];
 

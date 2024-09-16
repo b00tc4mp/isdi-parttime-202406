@@ -1,0 +1,22 @@
+{
+  "name": "json-bbdd",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "create-user": "node ./interface/create-user.js",
+    "delete-user": "node ./interface/delete-user.js",
+    "edit-user": "node ./interface/edit-user.js",
+    "list-user": "node ./interface/list-user.js",
+    "show-user": "node ./interface/show-user.js",
+    "test": "mocha ./test/users/create-one.test.js"
+  },
+  "keywords": [],
+  "author": "CarlosLemonCode",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "10.7.3",
+    "chai": "*"
+  },
+  "dependencies": {}
+}
