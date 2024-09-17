@@ -1,7 +1,4 @@
-const Biblio = require("./contructor");
-
 function at(_index) {
-  if (!(this instanceof Biblio)) return undefined;
   if (!(typeof _index === "number")) return this[0];
   if (this.length < Math.abs(_index)) return undefined;
 
