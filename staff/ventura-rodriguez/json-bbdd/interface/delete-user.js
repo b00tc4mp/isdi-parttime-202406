@@ -26,7 +26,8 @@ rl.question(
           function (answer) {
             if (!answer === "yes") return rl.close();
 
-            users.deleteOne(id, password, (response) => {
+            users.deleteOne(id, password, (err, response) => {
+              if (err) throw err;
               if (response)
                 console.log("El usuario se ha eliminado correctamente");
               else

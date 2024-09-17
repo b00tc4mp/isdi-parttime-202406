@@ -18,8 +18,10 @@ function prompt(tupple, id) {
     tupple.shift();
     if (tupple.length > 0) prompt(tupple, id);
     else {
-      users.updateById(id, user);
-      rl.close();
+      users.updateById(id, user, (err) => {
+        if (err) throw err;
+        rl.close();
+      });
     }
   });
 }

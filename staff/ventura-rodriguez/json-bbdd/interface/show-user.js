@@ -19,8 +19,10 @@ rl.question(
       return rl.close();
     }
 
-    users.readOne(id, console.table);
-
-    rl.close();
+    users.readOne(id, (err, user) => {
+      if (err) throw err;
+      console.table(user);
+      rl.close();
+    });
   }
 );

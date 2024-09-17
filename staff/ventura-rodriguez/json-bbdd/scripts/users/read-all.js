@@ -6,10 +6,10 @@ function readAll(callback) {
     path.join(__dirname, "../../database/users.json"),
     "utf-8",
     (err, _data) => {
-      if (err) throw err;
+      if (err) return callback(err);
 
       const data = JSON.parse(_data);
-      callback(data.users);
+      callback(null, data.users);
     }
   );
 }

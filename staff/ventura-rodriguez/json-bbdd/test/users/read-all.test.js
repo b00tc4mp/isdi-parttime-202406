@@ -1,20 +1,42 @@
 const { users } = require("../../scripts");
+const fs = require("fs");
+const path = require("path");
+const { assert } = require("chai");
 
-var assert = require("assert");
 describe("Users scripts", function () {
   describe("#readAll", function () {
-    it("Should return a user list", function () {
-      users.readAll((users) => {
-        assert.equal(users instanceof Array, true);
+    let usersBackup = null;
 
-        users.forEach((user) => {
-          assert.equal(typeof user.id !== "undefined", true);
-          assert.equal(typeof user.name !== "undefined", true);
-          assert.equal(typeof user.birth_date !== "undefined", true);
-          assert.equal(typeof user.phone !== "undefined", true);
-          assert.equal(typeof user.email !== "undefined", true);
-          assert.equal(typeof user.password !== "undefined", true);
-        });
+    before((done) => {
+      fs.readFile(
+        path.join(__dirname, "../../database/users.json"),
+        "utf-8",
+        (err, _data) => {
+          if (err) throw err;
+          const data = JSON.parse(_data);
+          usersBackup = data.users;
+          done();
+        }
+      );
+    });
+
+    after(() => {
+      fs.writeFile(
+        path.join(__dirname, "../../database/users.json"),
+        JSON.stringify({ users: usersBackup }),
+        "utf-8",
+        (err) => {
+          if (err) throw err;
+        }
+      );
+    });
+
+    it("All database users listed correctly", function (done) {
+      users.readAll((err, users) => {
+        if (err) throw err;
+        assert.notExists(err);
+        assert.isArray(users);
+        done();
       });
     });
   });

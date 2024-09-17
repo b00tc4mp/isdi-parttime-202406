@@ -1,15 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-const read = require("./read-all.js");
+const readAll = require("./read-all.js");
 const { NotFoundError, CredentialsError } = require("../../errors");
 
 function deleteOne(id, password, callback) {
-  read((users) => {
-    const user = users.filter((_user) => _user.id === id)[0];
-    if (!user) throw new NotFoundError("User not found");
+  readAll((err, users) => {
+    if (err) throw err;
+    const user = users?.filter((_user) => _user.id === id)[0];
+    if (!user) return callback(new NotFoundError("User not found"));
 
     if (!(user.password === password))
-      throw new CredentialsError("Password doesn't match");
+      return callback(new CredentialsError("Password doesn't match"));
 
     const newUsers = users.filter((_user) => !(_user.id === id));
 
@@ -18,9 +19,9 @@ function deleteOne(id, password, callback) {
       JSON.stringify({ users: newUsers }),
       "utf-8",
       (err) => {
-        if (err) throw err;
+        if (err) return callback(err);
 
-        callback(true);
+        callback(null, true);
       }
     );
   });
