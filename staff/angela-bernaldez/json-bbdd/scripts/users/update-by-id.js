@@ -1,6 +1,6 @@
 const fs = require("fs")
 const path = require("path")
-const read = require("./read.js")
+const read = require("./read-all.js")
 
 
 

@@ -3,7 +3,7 @@ const path = require("path")
 
 
 
-function read(callback) {
+function readAll(callback) {
 
     fs.readFile(
         path.join(__dirname, "../../database/users.json"),
@@ -17,4 +17,4 @@ function read(callback) {
     )
 }
 
-module.exports = read
+module.exports = readAll

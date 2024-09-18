@@ -1,10 +1,10 @@
 const fs = require("fs")
 const path = require("path")
-const read = require("./read.js")
+const read = require("./read-all.js")
 
 
 
-function create(data) {
+function createOne(data) {
 
     // destructuring the object data to extract its properties
     // user don´t pass id property as they do not know that info
@@ -46,4 +46,4 @@ create({
   password: "holamellamoportal"
 })
 
-module.exports = create
+module.exports = createOne
