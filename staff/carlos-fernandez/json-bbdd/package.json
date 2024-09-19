@@ -7,12 +7,13 @@
     "create-user": "node ./interface/create-user.js",
     "delete-user": "node ./interface/delete-user.js",
     "edit-user": "node ./interface/edit-user.js",
-    "list-user": "node ./interface/list-user.js",
+    "list-users": "node ./interface/list-users.js",
     "show-user": "node ./interface/show-user.js",
-    "test": "mocha ./test/users/create-one.test.js"
+    "test": "mocha ./test/users",
+    "test-inspect": "mocha --inspect-brk ./test/users"
   },
   "keywords": [],
-  "author": "CarlosLemonCode",
+  "author": "Ventura Rodríguez",
   "license": "ISC",
   "devDependencies": {
     "mocha": "10.7.3",
