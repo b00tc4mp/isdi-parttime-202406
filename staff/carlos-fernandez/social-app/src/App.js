@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-        <span className="btn btn-secondary btn-md mt-2">hola chicos</span>
+        <span className="btn btn-secondary btn-md mt-16">hola chicos</span>
       </header>
     </div>
   );
