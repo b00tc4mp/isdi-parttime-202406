@@ -1,7 +1,3 @@
-import Landing from "./Landing.jsx";
+import _Landing from "./Landing.jsx";
 
-const index = {
-  Landing
-}
-
-export default index
+export const Landing = _Landing;

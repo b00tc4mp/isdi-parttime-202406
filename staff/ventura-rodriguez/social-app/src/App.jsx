@@ -1,6 +1,5 @@
 import React from "react";
-import pages from "./pages/index.jsx";
-const { Landing } = pages;
+import { Landing } from "./pages";
 
 function App() {
   return (
