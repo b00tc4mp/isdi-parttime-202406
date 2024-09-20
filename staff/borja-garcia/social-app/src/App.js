@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-
+function MyButton ( {children, className}) {
+  return (
+    <>
+    <button className={className}>{children}</button>
+    </>
+  );
+}
 function App() {
   return (
     <div className="App">
@@ -17,8 +23,8 @@ function App() {
         >
           Learn React
         </a>
-
-        <span className="btn btn-secondary btn-md mt-36">hola chicos</span>
+        <MyButton className="btn btn-secondary btn-md mt-12">hola chicos</MyButton>
+        <span className="btn btn-secondary btn-md mt-12">esto es un error</span>
       </header>
     </div>
   );
