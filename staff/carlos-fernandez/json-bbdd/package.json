@@ -13,11 +13,10 @@
     "test-inspect": "mocha --inspect-brk ./test/users"
   },
   "keywords": [],
-  "author": "Ventura Rodríguez",
+  "author": "Carlos Limón",
   "license": "ISC",
-  "devDependencies": {
-    "mocha": "10.7.3",
-    "chai": "4.5.0"
-  },
-  "dependencies": {}
+  "dependencies": {
+    "chai": "4.5.0",
+    "mocha": "10.7.3"
+  }
 }

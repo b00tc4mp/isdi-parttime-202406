@@ -40,7 +40,8 @@ describe("Users scripts", function () {
         email: "angela@gmail.com",
         password: "123456789",
       };
-      users.createOne(data, (id) => {
+      users.createOne(data, (err, id) => {
+        if (err) throw err;
         assert.isNumber(id, "id is not a number");
         fs.readFile(
           path.join(__dirname, "../../database/users.json"),
@@ -76,7 +77,9 @@ describe("Users scripts", function () {
         password: "123456789",
       };
       try {
-        users.createOne(data, () => {});
+        users.createOne(data, (err) => {
+          if (err) throw err;
+        });
       } catch (err) {
         assert.isTrue(err instanceof EmailNotValidError);
         assert.equal(err.message, "Email is not valid");
@@ -99,13 +102,16 @@ describe("Users scripts", function () {
         email: "duplicated@gmail.com",
         password: "123456789",
       };
-      users.createOne(data, () => {
+      users.createOne(data, (err) => {
+        if (err) throw err;
         try {
-          users.createOne(data2, () => {});
+          users.createOne(data2, (err) => {
+            assert.isTrue(err instanceof Error);
+            assert.equal(err.message, "Email already in use");
+            done();
+          });
         } catch (err) {
-          assert.isTrue(err instanceof Error);
-          assert.equal(err.message, "Email already in use");
-          done();
+          if (err) throw err;
         }
       });
     });
