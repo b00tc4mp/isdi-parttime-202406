@@ -1,5 +1,13 @@
 import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+function MyButton({ children, className }) {
+  return (
+    <>
+      <button className={className}>{children}</button>
+    </>
+  );
+}
 
 function App() {
   return (
@@ -15,9 +23,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn together
         </a>
-        <span className="btn btn-secondary btn-md mt-12">hola chicos</span>
+        <MyButton className="btn btn-secondary btn-md mt-12">
+          hola a todos
+        </MyButton>
       </header>
     </div>
   );
