@@ -1,6 +1,6 @@
 function at(array, index) {
+  if (index === undefined || index === null) return array[0];
   if (index < 0) index = array.length + index;
-  if (index === undefined || index === null) index = 0;
 
   return array[index];
 }
