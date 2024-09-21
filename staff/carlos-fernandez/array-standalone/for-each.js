@@ -1,10 +1,8 @@
 // El método forEach() ejecuta la función indicada una vez por cada elemento del array.
 
 function forEach(array, callback) {
-  let i = 0;
-  while (i < array.length) {
+  for (let i = 0; i < array.length; i++) {
     array[i] = callback(array[i]);
-    i++;
   }
 }
 
