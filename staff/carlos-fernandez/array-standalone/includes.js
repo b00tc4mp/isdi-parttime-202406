@@ -22,10 +22,15 @@ function includes(array, valueToFind, fromIndex = 0) {
   if (fromIndex >= array.length) return false;
   if (array.length + fromIndex < 0) fromIndex = 0;
 
-  for (let i = fromIndex; i < array.length; i++) {
-    if (array[i] === valueToFind) return true;
+  let result = false;
+  let i = fromIndex;
+
+  while (i < array.length && result === false) {
+    if (array[i] === valueToFind) result = true;
+
+    i++;
   }
-  return false;
+  return result;
 }
 
 const array1 = [1, 2, 3, 4, 5];
