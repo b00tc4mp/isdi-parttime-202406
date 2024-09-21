@@ -18,20 +18,16 @@
     5) Si end no existe: end = array.length;
     6) end > array.length: end = array.length */
 
-function slice(array, start = 0, end) {
+function slice(array, start = 0, end = array.length) {
   // Condiciones
   if (start > array.length) return [];
   if (start < 0) start = array.length + start;
   if (end < 0) end = array.length + end;
-  if (end === undefined || end > array.length) end = array.length;
+  if (end > array.length) end = array.length;
 
   let newArray = [];
-  let index = 0;
 
-  for (let i = start; i < end; i++) {
-    newArray[index] = array[i];
-    index++;
-  }
+  for (let i = start; i < end; i++) newArray[newArray.length] = array[i];
   return newArray;
 }
 
