@@ -11,22 +11,12 @@
 
     */
 
-function fill(arr, value, start, end) {
-  if (start === undefined) {
-    start = 0;
-  } else if (start < 0) {
-    start = arr.length + start;
-  }
+function fill(arr, value, start = 0, end = arr.length) {
+  start = start < 0 ? arr.length + start : start;
+  end = end < 0 ? arr.length + end : end;
 
-  if (end === undefined) {
-    end = arr.length;
-  } else if (end < 0) {
-    end = arr.length + end;
-  }
+  for (let i = start; i < end; i++) arr[i] = value;
 
-  for (let i = start; i < end; i++) {
-    arr[i] = value;
-  }
   return arr;
 }
 
