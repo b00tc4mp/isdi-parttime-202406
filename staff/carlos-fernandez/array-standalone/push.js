@@ -12,12 +12,9 @@ se añada el valor que hay dentro de item, por eso asignamos item[i]. */
 function push(array, ...item) {
   let index = array.length;
   // Recorro los items.
-  for (let i = 0; i < item.length; i++) {
-    // Asignamos la última posición del array al primer elemento de item, y así sucesivamente.
-    array[index] = item[i];
-    // array.length aumenta una posición para poder asignar nuevamente el siguiente item
-    index++;
-  }
+  for (let i = 0; i < item.length; i++) array[index + i] = item[i];
+  // Asignamos la última posición del array al primer elemento de item, y así sucesivamente.
+
   return array.length;
 }
 
@@ -55,7 +52,7 @@ const arr6 = [1, 2, 3]; // Un array independiente para comparar
 
 const result3 = push(arr5, 4, 5, 6); // Usas tu función custom 'push'
 const expected3 = arr6.push(4, 5, 6); // Usas el método nativo de 'push'
-
+debugger;
 console.assert(result3 === expected3, {
   result: result3,
   message: "Test 3 no pasado",
