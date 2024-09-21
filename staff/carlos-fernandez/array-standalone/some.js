@@ -11,11 +11,16 @@ Pasos:
 */
 
 function some(array, callback) {
-  for (let i = 0; i < array.length; i++) {
+  let result = false;
+
+  let i = 0;
+
+  while (i < array.length) {
     const element = array[i];
-    if (callback(element)) return true;
+    if (callback(element)) result = true;
+    i++;
   }
-  return false;
+  return result;
 }
 
 // TESTS
