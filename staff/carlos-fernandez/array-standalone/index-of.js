@@ -4,22 +4,24 @@
 /* Recorremos el array hasta encontrar el parámetro que le hemos pasado y devuelve el indice de este.*/
 
 function indexOf(array, searchElement, fromIndex = 0) {
-  if (fromIndex < 0) {
-    fromIndex += array.length;
-  }
+  if (fromIndex >= array.length) return -1;
 
-  if (fromIndex < -array.length) {
-    fromIndex = 0;
-  }
+  fromIndex =
+    fromIndex < 0
+      ? fromIndex + array.length
+      : fromIndex < -array.length
+      ? 0
+      : fromIndex;
 
-  if (fromIndex >= array.length) {
-    return -1;
-  }
+  let result = -1;
+  let i = fromIndex;
 
-  for (let i = fromIndex; i < array.length; i++) {
-    if (array[i] === searchElement) return i;
+  while (i < array.length && result < 0) {
+    if (array[i] === searchElement) result = i;
+
+    i++;
   }
-  return -1;
+  return result;
 }
 
 const array1 = [1, 2, 3, 4, 5];
