@@ -2,12 +2,13 @@
 // De no ser así, devuelve -1.
 
 function find(array, callback) {
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-
-    if (callback(element)) return i;
+  let result = -1;
+  let i = 0;
+  while (i < array.length && result === -1) {
+    if (callback(array[i])) result = i;
+    i++;
   }
-  return -1;
+  return result;
 }
 
 const array1 = [1, 2, 3, 4, 5];
