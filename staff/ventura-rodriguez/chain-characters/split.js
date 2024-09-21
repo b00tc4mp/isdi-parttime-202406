@@ -1,3 +1,10 @@
+/**
+ * Splits the current value into an array of substrings based on the specified separator and limit.
+ *
+ * @param {string} separator - The separator to split on.
+ * @param {number} [limit=Infinity] - The maximum number of elements to return.
+ * @returns {string[]} An array of substrings.
+ */
 function split(separator = 0, limit = Infinity) {
   const result = [];
   let currentSegment = "";

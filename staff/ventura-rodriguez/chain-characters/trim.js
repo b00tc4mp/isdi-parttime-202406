@@ -1,5 +1,10 @@
 const ChainCharacters = require("./contructor");
 
+/**
+ * Removes leading and trailing whitespace from the current value.
+ *
+ * @returns {ChainCharacters} A new ChainCharacters instance with the trimmed value.
+ */
 function trim() {
   let result = "";
   let firstPosition = 0;

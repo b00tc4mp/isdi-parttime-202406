@@ -1,3 +1,9 @@
+/**
+ * Checks if the current value includes the specified substring.
+ *
+ * @param {string} searchString - The substring to search for.
+ * @returns {boolean} True if the current value includes the substring, false otherwise.
+ */
 function includes(searchString) {
   if (searchString === null) return false;
 

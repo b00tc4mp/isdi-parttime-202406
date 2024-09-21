@@ -1,5 +1,10 @@
 const ChainCharacters = require("./contructor");
 
+/**
+ * Converts the current value to uppercase.
+ *
+ * @returns {ChainCharacters} A new ChainCharacters instance with the converted value.
+ */
 function toUpperCase() {
   let result = "";
   const converter = [

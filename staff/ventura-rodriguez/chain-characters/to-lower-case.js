@@ -1,5 +1,10 @@
 const ChainCharacters = require("./contructor");
 
+/**
+ * Converts the current value to lowercase.
+ *
+ * @returns {ChainCharacters} A new ChainCharacters instance with the converted value.
+ */
 function toLowerCase() {
   let result = "";
   const converter = [

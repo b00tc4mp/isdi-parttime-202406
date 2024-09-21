@@ -1,5 +1,12 @@
 const ChainCharacters = require("./contructor");
 
+/**
+ * Replaces all occurrences of a specified substring with another string.
+ *
+ * @param {string} strSearch - The substring to search for.
+ * @param {string} strRepWith - The string to replace the substring with.
+ * @returns {ChainCharacters} A new ChainCharacters instance with the replaced occurrences.
+ */
 function replace(strSearch, strRepWith) {
   let strFinal = "";
   let valorEncontrado = false;
