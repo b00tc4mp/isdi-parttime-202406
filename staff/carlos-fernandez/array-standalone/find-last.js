@@ -3,10 +3,16 @@
    satisfy the testing function, undefined is returned. */
 
 function findLast(array, callback) {
-  for (let i = array.length - 1; i >= 0; i--) {
-    if (callback(array[i])) return array[i];
+  let result = undefined;
+  let i = array.length - 1;
+
+  while (i >= 0 && result === undefined) {
+    const element = array[i];
+    if (callback(element)) result = array[i];
+
+    i--;
   }
-  return undefined;
+  return result;
 }
 
 const array1 = [1, 2, 3, 4, 5];
