@@ -5,9 +5,9 @@ const readOne = require("./read-one.js");
 const updateById = require("./update-by-id.js");
 
 module.exports = {
-  createOne,
-  deleteOne,
-  readAll,
-  readOne,
-  updateById,
+    createOne,
+    deleteOne,
+    readAll,
+    readOne,
+    updateById,
 };
