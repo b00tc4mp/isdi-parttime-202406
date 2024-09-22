@@ -12,10 +12,10 @@ rl.question("Cuál es el rango que deseas ver? (ej: 5-8)", function (answer) {
     return rl.close();
   }
 
-  users.readAll((listUsers) => {
+  users.readAll((err, listUsers) => {
+    if (err) throw err;
     const showList = listUsers.slice(min, max + 1);
     console.table(showList);
+    rl.close();
   });
-
-  rl.close();
 });

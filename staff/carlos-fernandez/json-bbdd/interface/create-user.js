@@ -20,7 +20,8 @@ function prompt(tupple) {
     tupple.shift();
     if (tupple.length > 0) prompt(tupple);
     else {
-      users.createOne(user, (id) => {
+      users.createOne(user, (err, id) => {
+        if (err) throw err;
         console.table({ id });
         rl.question(
           "Quieres agregar un nuevo usuario? (yes/no)",
