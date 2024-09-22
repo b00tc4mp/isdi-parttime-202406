@@ -7,15 +7,15 @@ function readOne(id, callback) {
     path.join(__dirname, "../../database/users.json"),
     "utf-8",
     (err, _data) => {
-      if (err) throw err;
+      if (err) return callback(err);
 
       const data = JSON.parse(_data);
 
       const user = data.users.filter((_user) => _user.id === id)[0];
 
-      if (!user) throw new NotFoundError("User not found");
+      if (!user) return callback(new NotFoundError("User not found"));
 
-      callback(user);
+      callback(null, user);
     }
   );
 }

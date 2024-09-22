@@ -1,13 +1,5 @@
-const createOneTest = require("./create-one.test.js");
-const deleteOneTest = require("./delete-one.test.js");
-const readAllTest = require("./read-all.test.js");
-const readOneTest = require("./read-one.test.js");
-const updateByIdTest = require("./update-by-id.test.js");
-
-module.exports = {
-  createOneTest,
-  deleteOneTest,
-  readAllTest,
-  readOneTest,
-  updateByIdTest,
-};
+require("./users/create-one.test.js");
+require("./users/delete-one.test.js");
+require("./users/read-all.test.js");
+require("./users/read-one.test.js");
+require("./users/update-by-id.test.js");
