@@ -1,7 +1,12 @@
 const Biblio = require("./contructor");
 
+/**
+ * Concatenates the current Biblio instance with the provided arguments.
+ *
+ * @param {...Biblio|*} args - The elements or Biblio instances to concatenate.
+ * @returns {Biblio} A new Biblio instance containing the concatenated elements.
+ */
 function concat() {
-  debugger;
   const result = new Biblio();
   while (result.length < this.length) {
     result[result.length] = this[result.length];
