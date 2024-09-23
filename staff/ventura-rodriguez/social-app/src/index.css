@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black w-screen h-screen max-w-full text-white;
+  @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+}
+
+.prose {
+  @apply text-white;
 }
