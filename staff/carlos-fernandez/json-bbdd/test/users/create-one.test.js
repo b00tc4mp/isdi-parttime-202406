@@ -40,8 +40,7 @@ describe("Users scripts", function () {
         email: "angela@gmail.com",
         password: "123456789",
       };
-      users.createOne(data, (err, id) => {
-        if (err) throw err;
+      users.createOne(data, (id) => {
         assert.isNumber(id, "id is not a number");
         fs.readFile(
           path.join(__dirname, "../../database/users.json"),
