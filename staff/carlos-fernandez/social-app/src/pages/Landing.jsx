@@ -4,12 +4,12 @@ class Landing extends Component {
   render() {
     return (
       <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
-        <div className="flex justify-center items-center h-screen">
-          <div className="mb-9">
+        <div className="place-self-center w-fit">
+          <div className="w-fit mx-auto mb-9">
             <h1 className="text-3xl">Wellcome to MySocialApp</h1>
             <h2 className="text-red-700"> By CarlosLemonCode</h2>
           </div>
-          <div className="flex justify-top items-center h-screen">
+          <div className="grid grid-cols-2 gap-8">
             <button className="btn btn-primary btn-md">
               Ir al formulario de registro
             </button>
