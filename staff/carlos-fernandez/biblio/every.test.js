@@ -5,12 +5,18 @@ describe("Every method", () => {
   it("Use of every method", () => {
     const array1 = [1, 2, 3, 4, 5];
     const arrayBiblio1 = [1, 2, 3, 4, 5];
-    const result1 = array1.every((currentValue) => currentValue < 40);
-    const biblio1 = new Biblio(arrayBiblio1);
-    const resultBiblio1 = biblio1.every((currentValue) => currentValue < 40);
-    assert.equal(result1, resultBiblio1, "this should be working");
+    const result1 = array1.every((currentValue) => currentValue < 40); // true
+    const biblio1 = new Biblio(...arrayBiblio1); // Instancia de Biblio pasando los valores como argumentos
+    const resultBiblio1 = biblio1.every((currentValue) => currentValue < 40); // true
+
+    assert.equal(
+      result1,
+      resultBiblio1,
+      "The every method from Biblio does not work as the Array every method."
+    );
   });
 });
+
 /*
 console.assert(result1 === array1.every((currentValue) => currentValue < 40), {
   result: result1,
