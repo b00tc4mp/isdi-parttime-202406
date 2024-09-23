@@ -1,35 +1,32 @@
-import logo from './logo.svg';
-import "./App.css";
-
-function MyButton({ children, className }) {
-  return (
-    <>
-      <button className={className}>{children}</button>
-    </>
-  );
-}
+import React from "react";
+import { Landing, Login, SignUp } from "./pages";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn together
-        </a>
-        <MyButton className="btn btn-secondary btn-md mt-12">
-          hola a todos
-        </MyButton>
-      </header>
-    </div>
+    <main className="App">
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+      {/* 
+        - Landing
+        - Login
+        - Registro
+        - Home
+        - Feed
+        - Create content
+        - Profile (view)
+        - Profile (edit)
+        - People
+        - Explorer
+        - Settings
+        - Conversations (list)
+        - Conversations (only one)
+        - Notificacions
+      */}
+    </main>
   );
 }
 
