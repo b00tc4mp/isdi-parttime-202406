@@ -1,10 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 
-
-
 function readAll(callback) {
-
     fs.readFile(
         path.join(__dirname, "../../database/users.json"),
         "utf-8",

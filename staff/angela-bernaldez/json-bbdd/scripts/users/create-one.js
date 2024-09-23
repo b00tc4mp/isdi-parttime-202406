@@ -2,10 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const read = require("./read-all.js")
 
-
-
 function createOne(data) {
-
     // destructuring the object data to extract its properties
     // user don´t pass id property as they do not know that info
     const { name, birthDate, phone, email, password } = data;
@@ -31,19 +28,10 @@ function createOne(data) {
           JSON.stringify({ users: users }),
           "utf-8",
           (err) => {
-            console.log(err);
+            if (err) throw err 
           }
         );
       });
 }
-
-
-create({
-  name: "Portal",
-  birthDate: "1995-11-03",
-  phone: "+34 123456789",
-  email: "holaportal@gmail.com",
-  password: "holamellamoportal"
-})
 
 module.exports = createOne

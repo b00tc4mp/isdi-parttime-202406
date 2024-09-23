@@ -2,10 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const read = require("./read-all.js")
 
-
-
 function updateById(id, data) {
-    
     // destructuring the object data to extract its properties
     const { name, birthDate, phone} = data;
     
@@ -23,14 +20,10 @@ function updateById(id, data) {
           JSON.stringify({ users: users }),
           "utf-8",
           (err) => {
-            console.log(err);
+            if (err) throw err 
           }
         );
       });
 }
-
-
-updateById(0, { phone: "+34 111111111" })
-
 
 module.exports = updateById
