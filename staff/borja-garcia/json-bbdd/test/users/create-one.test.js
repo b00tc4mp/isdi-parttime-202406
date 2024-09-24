@@ -4,6 +4,7 @@ const path = require("path");
 const { assert } = require("chai");
 const { EmailNotValidError } = require("../../errors");
 
+
 describe("Users scripts", function () {
   describe("#createOne", function () {
     let usersBackup = null;
@@ -15,6 +16,7 @@ describe("Users scripts", function () {
         (err, _data) => {
           if (err) throw err;
           const data = JSON.parse(_data);
+         // console.log(path.dirname());
           usersBackup = data.users;
           done(); 
         }

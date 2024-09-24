@@ -6,8 +6,8 @@ const updateByIdTest = require("./update-by-id.test.js");
 
 module.exports = {
   createOneTest,
-  deleteOneTest,
-  readAllTest,
-  readOneTest,
-  updateByIdTest,
+ deleteOneTest,
+readAllTest,
+readOneTest,
+updateByIdTest,
 };
