@@ -2,18 +2,18 @@
   "name": "social-app",
   "version": "0.0.0",
   "private": true,
-
-"devDependencies": {
-    "daisyui": "4.12.10",
-    "tailwindcss": "3.4.12",
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.15",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "13.4.0",
-    "@testing-library/user-event": "13.5.0"
-},
-
+    "@testing-library/user-event": "13.5.0",
+    "daisyui": "4.12.10",
+    "tailwindcss": "3.4.12"
+  },
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "web-vitals": "2.1.4"
   },
