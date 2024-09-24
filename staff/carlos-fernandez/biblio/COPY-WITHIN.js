@@ -1,19 +1,20 @@
 const Biblio = require("./constructor.js");
 
 function copyWithin(target, start, end) {
-  let arrTemp = [];
+  const elementsToCopy = new Biblio();
 
   // Guardamos los elementos que luego necesitaremos para copiar en otra parte del array, en un array temporal.
   let i = start;
   while (i < end) {
-    arrTemp[arrTemp.length] = this[i];
+    elementsToCopy[elementsToCopy.length] = this[i];
     i++;
+    elementsToCopy.length++;
   }
 
   /* Recorremos el array temporal y lo copiamos en el array original.*/
   let j = 0;
-  while (j < arrTemp.length) {
-    this[target + j] = arrTemp[j];
+  while (j < elementsToCopy.length) {
+    this[target + j] = elementsToCopy[j];
     j++;
   }
 
