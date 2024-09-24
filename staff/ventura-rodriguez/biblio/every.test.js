@@ -8,16 +8,14 @@ describe("Every method", () => {
   it("Use every evaluating each typeof every element with reasonable values", () => {
     const resultArray = array.every((item) => typeof item === "number");
     const resultBiblio = biblio.every((item) => typeof item === "number");
-    expect(resultBiblio).to.be.true;
-    expect(resultBiblio).to.be.equal(resultArray);
+    expect(resultBiblio).to.be.equal(resultArray).to.be.true;
     expect(biblio.length).to.be.equal(array.length).to.be.equal(8);
   });
 
   it("Use every evaluating if every element is 4 number", () => {
     const resultArray = array.every((item) => item === 4);
     const resultBiblio = biblio.every((item) => item === 4);
-    expect(resultBiblio).to.be.false;
-    expect(resultBiblio).to.be.equal(resultArray);
+    expect(resultBiblio).to.be.equal(resultArray).to.be.false;
     expect(biblio.length).to.be.equal(array.length).to.be.equal(8);
   });
 });

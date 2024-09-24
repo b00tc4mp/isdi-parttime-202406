@@ -1,38 +1,18 @@
-function reduce(array, callbackFn, initialValue = 0) {
-  if (!(array instanceof Array)) return undefined;
-
+/**
+ * Reduces the elements of the Biblio instance to a single value.
+ *
+ * @param {function} callbackFn - The callback function to apply to each element.
+ * @param {*} initialValue - The initial value of the accumulator.
+ * @returns {*} The reduced value.
+ */
+function reduce(callbackFn, initialValue = 0) {
   let accumulator = initialValue;
 
-  for (let i = 0; i < array.length; i++) {
-    accumulator = callbackFn(accumulator, array[i]);
+  for (let i = 0; i < this.length; i++) {
+    accumulator = callbackFn(accumulator, this[i]);
   }
 
   return accumulator;
 }
 
-{
-  const noArray = "foo";
-  const result1 = reduce(
-    noArray,
-    (accumulator, currentValue) => accumulator + currentValue
-  );
-  console.assert(result1 === undefined, {
-    result: result1,
-    message: "Test 1 No pasado",
-  });
-
-  const array2 = [1, 2, 3, 4];
-  const result2 = reduce(
-    array2,
-    (accumulator, currentValue) => accumulator + currentValue,
-    2
-  );
-  const reduceResult2 = array2.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    2
-  );
-  console.assert(result2 === reduceResult2, {
-    result: result2,
-    message: "Test 2 No pasado",
-  });
-}
+module.exports = reduce;
