@@ -17,7 +17,7 @@ function copyWithin(target, start, end) {
     j++;
   }
 
-  return this.value;
+  return this;
 }
 
 module.exports = copyWithin;
