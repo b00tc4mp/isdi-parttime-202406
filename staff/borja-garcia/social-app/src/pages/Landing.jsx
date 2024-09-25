@@ -16,7 +16,7 @@ class Landing extends Component {
               rel="next"
               className="btn btn-primary btn-md"
             >
-              Ir al formulario de registro
+              Regístrate
             </Link>
             <Link
               to="/login"
@@ -24,7 +24,7 @@ class Landing extends Component {
               rel="next"
               className="btn btn-secondary btn-md"
             >
-              Ir al formulario de entrada
+              Inicia Sesión
             </Link>
           </div>
         </div>
