@@ -22,7 +22,13 @@ module.exports = {
         "65%": { filter: "opacity(60%)" },
         "80%": { filter: "opacity(40%)" },
       },
+    bounce: {
+      "0%, 100%": { transform: "translateY(0px)" },
+      "50%": { transform: "translateY(10px)"},
+    }
     },
+  
+
     animation: {
       ...animation,
       "spin-slow": "spin 10s linear infinite",
@@ -48,6 +54,9 @@ module.exports = {
       "1/1": "1 / 1",
       "3/4": "3 / 4",
     },
+    gradients: {
+      'purple-to-orange': 'to right, #8888d9, #ff6600'
+    }
   },
   daisyui: {
     themes: [
