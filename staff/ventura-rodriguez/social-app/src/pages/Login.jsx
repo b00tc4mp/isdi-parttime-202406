@@ -6,8 +6,8 @@ class Login extends Component {
     return (
       <>
         <Header />
-        <LoginForm />
-        <Footer />
+        <LoginForm className="mx-auto" />
+        {/* <Footer /> */}
       </>
     );
   }
