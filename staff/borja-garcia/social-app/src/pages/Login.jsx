@@ -6,11 +6,11 @@ class Login extends Component {
     return (
       <>
         <Header />
-        <LoginForm />
+        <LoginForm className="mx-auto"/>
         <Footer />
       </>
     );
-  }
+  }_Home;
 }
 
 export default Login;
