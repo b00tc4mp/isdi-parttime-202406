@@ -1,10 +1,20 @@
 import React from "react";
-import { Landing } from "./pages";
+import { Landing, Login, SignOut, Page404, SignUp } from "./pages";
+import { Route, Routes, Navigate } from "react-router-dom";
+
 
 function App() {
   return (
     <main className="App">
-      <Landing />
+      
+        <Routes>
+        <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/page404" element={<Page404 />} />
+          <Route path="/sign-out" element={<SignOut />} /> 
+          <Route path="*" element={<Navigate to="/Page404" />} />
+        </Routes>
       {/* 
         - Landing
         - Login
