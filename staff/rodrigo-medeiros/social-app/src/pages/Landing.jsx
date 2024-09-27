@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Landing extends Component {
   render() {
@@ -9,12 +10,22 @@ class Landing extends Component {
             <h1 className="text-3xl">Bienvenido a mi Social App</h1>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <button className="btn btn-primary btn-md">
+            <Link
+            to="/sign-up"
+            target="_self"
+            rel="next"
+            className="btn btn-primary btn-md"
+            >
               Ir al formulario de registro
-            </button>
-            <button className="btn btn-secondary btn-md">
+            </Link>
+            <Link
+            to="/login"
+            target="_self"
+            rel="next"
+            className="btn btn-secondary btn-md"
+            >
               Ir al formulario de entrada
-            </button>
+            </Link>
           </div>
         </div>
       </section>
