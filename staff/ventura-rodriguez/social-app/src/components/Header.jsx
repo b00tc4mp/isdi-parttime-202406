@@ -5,7 +5,7 @@ function Header() {
   return (
     <>
       <header>
-        <nav className="navbar bg-base-100 text-black">
+        <nav className="navbar bg-base-100 text-black bg-secondary">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||

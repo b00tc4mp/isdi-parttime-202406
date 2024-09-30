@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class Page404 extends Component {
   render() {
     return (
-      <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
+      <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid glass">
         <div className="py-12">
           <h1 className="text-[240px] mx-auto w-fit animate-buzzing">404</h1>
           <p className="text-xl mx-auto w-fit animate-bounce">
