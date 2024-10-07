@@ -20,7 +20,7 @@ class Landing extends Component {
 
         {/* Contenido principal */}
         <div className="text-center z-10 mb-9">
-          <h1 className="text-3xl text-black">Wellcome to MySocialApp</h1>
+          <h1 className="text-3xl text-black">Welcome to MySocialApp</h1>
           <h2 className="text-right text-gray">Made by pet lovers</h2>
         </div>
         <div className="flex space-x-4 z-10">
