@@ -42,7 +42,7 @@ function LoginForm({ className, onSubmit }) {
     <>
       <div
         className={classNames(
-          "bg-neutral-800 max-w-screen-sm px-9 py-12",
+          "bg-primary-800 max-w-screen-sm px-9 py-12 shadow-box",
           className
         )}
       >
