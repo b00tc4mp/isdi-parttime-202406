@@ -9,7 +9,8 @@ function Header() {
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||
-              window.location.pathname === "/login"
+              window.location.pathname === "/login" ||
+              window.location.pathname === "/Recuperador"
             ) && <Aside />}
           </div>
           <div className="navbar-center">
@@ -17,7 +18,7 @@ function Header() {
               to="/"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className="btn btn-ghost text-lg hover:bg-transparent bg-primary"
             >
               Social App
             </Link>
@@ -73,12 +74,12 @@ export default Header;
 function Aside() {
   return (
     <>
-      <div className="drawer">
+      <div className="drawer backdrop-sepia">
         <input id="nav-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <label
             htmlFor="nav-drawer"
-            className="drawer-button btn btn-ghost btn-square"
+            className="drawer-button btn btn-ghost btn-square btn-glass "
           >
             <IconMenu />
           </label>

@@ -30,7 +30,10 @@ module.exports = {
       "low-pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       buzzing: "buzzing 2s ease-in-out infinite",
     },
-    fontFamily: fontFamily,
+    fontFamily: {
+      ...fontFamily, // Asegúrate de extender el objeto fontFamily existente.
+      poppins: ['Poppins', 'sans-serif'], // Definición correcta para 'Poppins'.
+    },
     screens: {
       "3xs": { min: "320px" },
       "2xs": { min: "380px" },
@@ -47,6 +50,11 @@ module.exports = {
     aspectRatio: {
       "1/1": "1 / 1",
       "3/4": "3 / 4",
+    },
+    extend: {
+      colors: {
+        customOrange: "#FFB26E", // Aquí añadimos el color personalizado
+      },
     },
   },
   daisyui: {
@@ -85,5 +93,6 @@ module.exports = {
       "sunset",
     ],
   },
+
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

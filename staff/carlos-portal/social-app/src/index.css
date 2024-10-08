@@ -3,27 +3,15 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+  /* Tailwind utilities se aplican directamente aquí */
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  color: white;
+  font-family: monospace;
+  background: linear-gradient(to right, #93c5fd, #7c3aed); /* from-blue-300 to-purple-700 */
 }
 
 .prose {
   @apply text-white;
-}
-@keyframes explode {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-.animate-explosion {
-  animation: explode 0.5s ease-out forwards;
 }

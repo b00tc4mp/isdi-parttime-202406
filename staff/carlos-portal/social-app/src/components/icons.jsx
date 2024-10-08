@@ -25,8 +25,8 @@ export function IconMenu(...props) {
       <svg
         viewBox="0 0 24 24"
         fill="currentColor"
-        height="1em"
-        width="1em"
+        height="2em"
+        width="2em"
         {...props}
       >
         <path fill="none" d="M0 0h24v24H0z" />
