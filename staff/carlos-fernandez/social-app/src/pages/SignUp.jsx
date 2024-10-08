@@ -1,8 +1,13 @@
 import { Component } from "react";
+import { Header } from "../components";
 
 class SignUp extends Component {
   render() {
-    return <>Soy el signup</>;
+    return (
+      <>
+        <Header />
+      </>
+    );
   }
 }
 

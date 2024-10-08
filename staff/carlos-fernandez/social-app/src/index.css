@@ -6,6 +6,25 @@ body {
   @apply bg-black w-screen h-screen max-w-full text-white font-mono;
 }
 
-.prose {
-  @apply text-white;
+@layer components {
+  .prose {
+    @apply text-white;
+  }
+}
+
+@layer base {
+  :root {
+    --header-heigth: 64px;
+  }
+}
+
+/* Estilo personalizado para sombra con retroiluminación de color */
+.shadow-circle {
+  box-shadow: 0 0 60px 30px rgba(255, 0, 200, 0.6),
+    /* Sombra rosa */ 0 0 100px 60px rgba(0, 128, 255, 0.5); /* Sombra azul */
+  background: radial-gradient(
+    circle at right,
+    rgba(0, 128, 255, 0.5),
+    rgba(255, 0, 200, 0.6)
+  );
 }
