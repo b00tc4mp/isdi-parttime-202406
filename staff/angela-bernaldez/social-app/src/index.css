@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+@layer components {
+  .prose {
+    @apply text-white;
+  }
 }
 
-.prose {
-  @apply text-white;
+@layer base {
+  :root {
+    --header-heigth: 64px;
+  }
+
+  body {
+    @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+  }
 }

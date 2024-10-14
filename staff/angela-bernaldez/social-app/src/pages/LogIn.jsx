@@ -1,9 +1,16 @@
-import { Component } from "react";
+import { Component } from "react"
+import { Header, Footer, LogInForm } from "../components"
 
-class Login extends Component {
-  render() {
-    return <>Soy el login</>;
-  }
+class LogIn extends Component {
+    render() {
+        return (
+            <>
+                <Header />
+                <LogInForm />
+                <Footer />
+            </>
+        )
+    }
 }
 
-export default Login;
+export default LogIn

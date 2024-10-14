@@ -1,6 +1,6 @@
 import React from "react";
-import { Landing, Login, SignUp } from "./pages";
-import { Route, Routes } from "react-router-dom";
+import { Landing, Login, SignUp, Page404 } from "./pages";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -9,6 +9,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/not-found" element={<Page404 />} />
+        <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
       {/* 
         - Landing

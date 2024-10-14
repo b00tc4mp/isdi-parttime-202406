@@ -1,10 +1,35 @@
-const { fontFamily, screens } = require("tailwindcss/defaultTheme");
+const {
+  fontFamily,
+  screens,
+  animation,
+  keyframes,
+} = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
   content: ["./src/**/*.{jsx,js}"],
   theme: {
+    keyframes: {
+      ...keyframes,
+      wiggle: {
+        "0%, 100%": { transform: "rotate(-3deg)" },
+        "50%": { transform: "rotate(3deg)" },
+      },
+      buzzing: {
+        "0%, 50%, 72%, 85%, 95%": { filter: "opacity(1)" },
+        "30%, 90%, 100%": { filter: "opacity(0)" },
+        "65%": { filter: "opacity(60%)" },
+        "80%": { filter: "opacity(40%)" },
+      },
+    },
+    animation: {
+      ...animation,
+      "spin-slow": "spin 10s linear infinite",
+      wiggle: "wiggle 2s ease-in-out infinite",
+      "low-pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      buzzing: "buzzing 2s ease-in-out infinite",
+    },
     fontFamily: fontFamily,
     screens: {
       "3xs": { min: "320px" },
