@@ -13,4 +13,7 @@ describe("Biblio testing methods", () => {
   require("./index-of.test.js");
   require("./map.test.js");
   require("./pop.test.js");
+  require("./push.test.js");
+  require("./reduce.test.js");
+  require("./reverse.test.js");
 });

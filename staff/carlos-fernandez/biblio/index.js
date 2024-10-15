@@ -14,6 +14,9 @@ const includes = require("./includes.js");
 const indexOf = require("./index-of.js");
 const map = require("./map.js");
 const pop = require("./pop.js");
+const push = require("./push.js");
+const reduce = require("./reduce.js");
+const reverse = require("./reverse.js");
 
 Biblio.prototype.at = at;
 Biblio.prototype.concat = concat;
@@ -29,5 +32,8 @@ Biblio.prototype.includes = includes;
 Biblio.prototype.indexOf = indexOf;
 Biblio.prototype.map = map;
 Biblio.prototype.pop = pop;
+Biblio.prototype.push = push;
+Biblio.prototype.reduce = reduce;
+Biblio.prototype.reverse = reverse;
 
 module.exports = Biblio;
