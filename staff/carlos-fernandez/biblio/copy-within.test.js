@@ -14,15 +14,3 @@ describe("Copy-within method", () => {
     );
   });
 });
-/*
-    const arr2 = [7, 8, 9, 10, 11, 12];
-    const result2 = arr2.copyWithin(3, 1, 4);
-    const biblio2 = new Biblio(arr2);
-    const resultBiblio2 = biblio2.copyWithin(3, 1, 4);
-    assert.deepEqual(
-      result2,
-      resultBiblio2,
-      "The concat method from Biblio does not work as the Array concat method."
-    );
-  
-*/

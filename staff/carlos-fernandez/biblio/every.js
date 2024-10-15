@@ -1,9 +1,6 @@
 const Biblio = require("./constructor.js");
 
 function every(callback) {
-  // Verificamos si el argumento proporcionado es un array
-  if (!(this instanceof Array)) return undefined;
-
   // Establecemos resultado como true
   let result = true;
 

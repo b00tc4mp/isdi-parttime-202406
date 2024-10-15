@@ -1,40 +1,38 @@
-const { assert } = require("chai");
+const { expect } = require("chai");
 const Biblio = require(".");
 
 describe("Concat method", () => {
-  it("Use of concat method returning two concatenated arrays ", () => {
-    const array1 = ["Willyrex", " sácate"];
-    const array2 = ["una ", "M.O.A.B."];
-    const biblio1 = new Biblio(array1, array2);
-    const result1 = array1.concat(array2);
-    const resultBiblio1 = biblio1.concat(array1, array2);
-    assert.deepEqual(
-      result1,
-      resultBiblio1,
-      "The concat method from Biblio does not work as the Array concat method."
-    );
+  const array = [1, 2];
+  const biblio = new Biblio(1, 2);
 
-    const array5 = ["Walter ", "White "];
-    const array6 = [" Saul", "Goodman"];
-    const biblio3 = new Biblio(array5, array6);
-    const result3 = array5.concat(array6);
-    const resultBiblio3 = biblio3.concat(array5, array6);
-    assert.deepEqual(
-      result3,
-      resultBiblio3,
-      "The concat method from Biblio does not work as the Array concat method."
-    );
+  it("Use concat with only one Biblio parameter", () => {
+    const resultArray = array.concat([3, 4]);
+    const resultBiblio = biblio.concat(new Biblio(3, 4));
+    for (let i = 0; i < resultArray.length; i++)
+      expect(resultBiblio[i]).to.be.equal(resultArray[i]);
+    expect(biblio.length).to.be.equal(array.length).to.be.equal(2);
+    expect(resultBiblio.length).to.be.equal(resultArray.length).to.be.equal(4);
   });
-  it("Use of concat method with an undefined array.", () => {
-    const array3 = ["Damon ", "Salvatore"];
-    const array4 = ["cárgate ", "a ", "Matt"];
-    const biblio2 = new Biblio(array3, array4);
-    const result2 = array3.concat();
-    const resultBiblio2 = biblio2.concat(array3);
-    assert.deepEqual(
-      result2,
-      resultBiblio2,
-      "The concat method from Biblio does not work as the Array concat method."
+
+  it("Use concat with only one not Biblio parameter", () => {
+    const resultArray = array.concat("foo");
+    const resultBiblio = biblio.concat("foo");
+    for (let i = 0; i < resultArray.length; i++)
+      expect(resultBiblio[i]).to.be.equal(resultArray[i]);
+    expect(biblio.length).to.be.equal(array.length).to.be.equal(2);
+    expect(resultBiblio.length).to.be.equal(resultArray.length).to.be.equal(3);
+  });
+
+  it("Use concat with only nultiple and mixed types parameters", () => {
+    const resultArray = array.concat([3, 4], [5, 6], Infinity);
+    const resultBiblio = biblio.concat(
+      new Biblio(3, 4),
+      new Biblio(5, 6),
+      Infinity
     );
+    for (let i = 0; i < resultArray.length; i++)
+      expect(resultBiblio[i]).to.be.equal(resultArray[i]);
+    expect(biblio.length).to.be.equal(array.length).to.be.equal(2);
+    expect(resultBiblio.length).to.be.equal(resultArray.length).to.be.equal(7);
   });
 });
