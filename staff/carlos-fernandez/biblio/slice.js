@@ -7,9 +7,12 @@ function slice(start = 0, end = this.length) {
   if (end < 0) end = this.length + end;
   if (end > this.length) end = this.length;
 
-  let newArray = [];
+  let newArray = new Biblio();
 
-  for (let i = start; i < end; i++) newArray[newArray.length] = this[i];
+  for (let i = start; i < end; i++) {
+    newArray[newArray.length] = this[i];
+    newArray.length++;
+  }
   return newArray;
 }
 
