@@ -16,4 +16,6 @@ describe("Biblio testing methods", () => {
   require("./push.test.js");
   require("./reduce.test.js");
   require("./reverse.test.js");
+  require("./shift.test.js");
+  require("./slice.test.js");
 });

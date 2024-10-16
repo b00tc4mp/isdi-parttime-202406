@@ -17,6 +17,8 @@ const pop = require("./pop.js");
 const push = require("./push.js");
 const reduce = require("./reduce.js");
 const reverse = require("./reverse.js");
+const shift = require("./shift.js");
+const slice = require("./slice.js");
 
 Biblio.prototype.at = at;
 Biblio.prototype.concat = concat;
@@ -35,5 +37,7 @@ Biblio.prototype.pop = pop;
 Biblio.prototype.push = push;
 Biblio.prototype.reduce = reduce;
 Biblio.prototype.reverse = reverse;
+Biblio.prototype.shift = shift;
+Biblio.prototype.slice = slice;
 
 module.exports = Biblio;
