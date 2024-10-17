@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { IconEmail, IconLogin, IconPassword } from "./icons";
 import classNames from "classnames";
-import { EmailNotValidError } from "../tools/errors";
+import { Validator } from "../tools";
 import { useState } from "react";
+import { EmailNotValidError, PasswordNotValidError } from "../tools/errors";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -10,39 +11,38 @@ function LoginForm({ className, onSubmit }) {
 
   const submit = (event) => {
     // manejar la lógica básica de front
-    // validaciones síncronas de los datos
     // eniar los datos en formato correcto al Login
     // de alguna forma quedarse esperando órdenes del login
     event.preventDefault();
 
     const { email: inputEmail, password: inputPassword } = event.target;
 
-    const emailRegexp = new RegExp(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
+    const newErrors = [];
 
-    try {
-      if (!emailRegexp.test(inputEmail.value))
-        throw new EmailNotValidError("Email is not valid");
-
-      onSubmit(event);
-    } catch (error) {
-      if (error.constructor.name === "EmailNotValidError") {
-        setErrors((_errors) =>
-          _errors
-            ? [..._errors, "El email no es válido"]
-            : ["El email no es váido"]
-        );
-        inputEmail.focus();
-      }
+    if (!Validator.password(inputPassword.value)) {
+      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      inputPassword.focus();
     }
+
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new EmailNotValidError("Email is not valid"));
+      inputEmail.focus();
+    }
+
+    setErrors(newErrors.length > 0 ? newErrors : null);
+
+    onSubmit({ email: inputEmail.value, password: inputPassword.value });
+
+    // try {
+    // } catch (error) {
+    // }
   };
 
   return (
     <>
       <div
         className={classNames(
-          "bg-primary-800 max-w-screen-sm px-9 py-12 shadow-box",
+          "bg-neutral-800 max-w-screen-sm px-9 py-12 shadow-box",
           className
         )}
       >
@@ -59,7 +59,14 @@ function LoginForm({ className, onSubmit }) {
               className={classNames(
                 "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
                 {
-                  "input-error": errors,
+                  "input-error bg-error": errors?.some(
+                    (error) => error instanceof EmailNotValidError
+                  ),
+                  "input-success bg-success":
+                    errors instanceof Array &&
+                    !errors?.some(
+                      (error) => error instanceof EmailNotValidError
+                    ),
                 }
               )}
             >
@@ -72,7 +79,21 @@ function LoginForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            <label className="input input-bordered input-ghost glass flex items-center gap-2">
+            <label
+              className={classNames(
+                "input input-bordered input-ghost glass flex items-center gap-2",
+                {
+                  "input-error bg-error": errors?.some(
+                    (error) => error instanceof PasswordNotValidError
+                  ),
+                  "input-success bg-success":
+                    errors instanceof Array &&
+                    !errors?.some(
+                      (error) => error instanceof PasswordNotValidError
+                    ),
+                }
+              )}
+            >
               <IconPassword fill="white" />
               <input
                 type="password"
@@ -83,9 +104,9 @@ function LoginForm({ className, onSubmit }) {
               />
             </label>
           </fieldset>
-          <div id="show-errors">
+          {/* <div id="show-errors">
             <span>{errors}</span>
-          </div>
+          </div> */}
           <div className="mb-5 grid">
             <button
               type="submit"
@@ -94,15 +115,19 @@ function LoginForm({ className, onSubmit }) {
               Iniciar sesión
             </button>
           </div>
-          <div className="text-xs flex justify-between">
+          <div className="text-xs xs:flex xs:justify-between">
             <Link
               to="/recovery-password"
               target="_self"
-              className="link link-secondary"
+              className="link link-secondary max-xs:block max-xs:mb-4"
             >
               ¿Has olvidado la contraseña?
             </Link>
-            <Link to="/sign-up" target="_self" className="link link-secondary">
+            <Link
+              to="/sign-up"
+              target="_self"
+              className="link link-secondary max-xs:block"
+            >
               Formulario de registro
             </Link>
           </div>
