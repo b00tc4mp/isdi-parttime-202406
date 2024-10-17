@@ -12,8 +12,12 @@
   :root {
     --header-heigth: 64px;
   }
-  
+
   body {
-    @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+    @apply bg-black w-screen min-h-screen h-full max-w-full text-white font-mono;
+  }
+
+  html {
+    @apply !bg-black;
   }
 }

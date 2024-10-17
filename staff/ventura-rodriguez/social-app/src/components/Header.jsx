@@ -4,7 +4,7 @@ import { IconMenu } from "./icons";
 function Header() {
   return (
     <>
-      <header>
+      <header className="sticky top-0">
         <nav className="navbar bg-base-100 text-black bg-secondary">
           <div className="navbar-start">
             {!(
