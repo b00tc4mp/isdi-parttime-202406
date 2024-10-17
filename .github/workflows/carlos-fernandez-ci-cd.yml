@@ -17,4 +17,4 @@ jobs:
         run: |
           npm install -g surge
           surge ./staff/carlos-fernandez/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
-        if: github.actor == 'CarlosLemonCode'
+        if: github.repository != 'b00tc4mp/isdi-parttime-202406' && github.actor == 'CarlosLemonCode'

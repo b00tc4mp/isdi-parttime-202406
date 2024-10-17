@@ -17,4 +17,4 @@ jobs:
         run: |
           npm install -g surge
           surge ./staff/ventura-rodriguez/pixel-art ${{ secrets.DOMAIN_SURGE }} --token ${{ secrets.TOKEN_SURGE }}
-        if: github.actor == 'venturars'
+        if: github.repository != 'b00tc4mp/isdi-parttime-202406' && github.actor == 'venturars'
