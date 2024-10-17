@@ -1,0 +1,651 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body {
+    display: flex;
+    width: 95%;
+    height: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgb(244, 244, 248);
+}
+
+.char-title {
+    font: 700;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 4.5em;
+    padding-right: 1em;
+    text-transform: uppercase;
+    color: rgb(237, 77, 18);
+}
+
+.char-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 25px);
+    grid-template-rows: repeat(21, 25px);
+}
+
+.black {
+    background-color: rgb(2, 2, 2);
+}
+
+.black-1 {
+    grid-area: 8 / 1 / 9 / 2;
+}
+
+.black-2 {
+    grid-area: 9 / 1 / 10 / 2;
+}
+
+.black-3 {
+    grid-area: 10 / 1 / 11 / 2;
+}
+
+.black-4 {
+    grid-area: 11 / 1 / 12 / 2;
+}
+
+.black-5 {
+    grid-area: 12 / 2 / 13 / 3;
+}
+
+.black-6 {
+    grid-area: 12 / 3 / 13 / 4;
+}
+
+.black-7 {
+    grid-area: 11 / 4 / 12 / 5;
+}
+
+.black-8 {
+    grid-area: 10 / 3 / 11 / 4;
+}
+
+.black-9 {
+    grid-area: 9 / 3 / 10 / 4;
+}
+
+.black-10 {
+    grid-area: 8 / 3 / 9 / 4;
+}
+
+.black-11 {
+    grid-area: 13 / 2 / 14 / 3;
+}
+
+.black-12 {
+    grid-area: 14 / 2 / 15 / 3;
+}
+
+.black-13 {
+    grid-area: 15 / 3 / 16 / 4;
+}
+
+.black-14 {
+    grid-area: 15 / 4 / 16 / 5;
+}
+
+.black-15 {
+    grid-area: 15 / 5 / 16 / 6;
+}
+
+.black-16 {
+    grid-area: 14 / 5 / 15 / 6;
+}
+
+.black-17 {
+    grid-area: 16 / 4 / 17 / 5;
+}
+
+.black-18 {
+    grid-area: 17 / 4 / 18 / 5;
+}
+
+.black-19 {
+    grid-area: 18 / 5 / 19 / 6;
+}
+
+.black-20 {
+    grid-area: 19 / 4 / 20 / 5;
+}
+
+.black-21 {
+    grid-area: 20 / 4 / 21 / 5;
+}
+
+.black-22 {
+    grid-area: 21 / 5 / 22 / 6;
+}
+
+.black-23 {
+    grid-area: 21 / 6 / 22 / 7;
+}
+
+.black-24 {
+    grid-area: 21 / 7 / 22 / 8;
+}
+
+.black-25 {
+    grid-area: 20 / 6 / 21 / 7;
+}
+
+.black-26 {
+    grid-area: 20 / 8 / 21 / 9;
+}
+
+.black-27 {
+    grid-area: 19 / 9 / 20 / 10;
+}
+
+.black-28 {
+    grid-area: 19 / 10 / 20 / 11;
+}
+
+.black-29 {
+    grid-area: 19 / 11 / 20 / 12;
+}
+
+.black-30 {
+    grid-area: 20 / 12 / 21 / 13;
+}
+
+.black-31 {
+    grid-area: 21 / 13 / 22 / 14;
+}
+
+.black-32 {
+    grid-area: 21 / 14 / 22 / 15;
+}
+
+.black-33 {
+    grid-area: 21 / 15 / 22 / 16;
+}
+
+.black-34 {
+    grid-area: 20 / 14 / 21 / 15;
+}
+
+.black-35 {
+    grid-area: 20 / 16 / 21 / 17;
+}
+
+.black-36 {
+    grid-area: 19 / 16 / 20 / 17;
+}
+
+.black-37 {
+    grid-area: 18 / 15 / 19 / 16;
+}
+
+.black-38 {
+    grid-area: 17 / 16 / 18 / 17;
+}
+
+.black-39 {
+    grid-area: 16 / 16 / 17 / 17;
+}
+
+.black-40 {
+    grid-area: 15 / 16 / 16 / 17;
+}
+
+.black-41 {
+    grid-area: 15 / 17 / 16 / 18;
+}
+
+.black-42 {
+    grid-area: 15 / 15 / 16 / 16;
+}
+
+.black-43 {
+    grid-area: 14 / 15 / 15 / 16;
+}
+
+.black-44 {
+    grid-area: 14 / 18 / 15 / 19;
+}
+
+.black-45 {
+    grid-area: 13 / 18 / 14 / 19;
+}
+
+.black-46 {
+    grid-area: 12 / 17 / 13 / 18;
+}
+
+.black-47 {
+    grid-area: 11 / 16 / 12 / 17;
+}
+
+.black-48 {
+    grid-area: 11 / 15 / 12 / 16;
+}
+
+.black-49 {
+    grid-area: 12 / 14 / 13 / 15;
+}
+
+.black-50 {
+    grid-area: 13 / 13 / 14 / 14;
+}
+
+.black-51 {
+    grid-area: 14 / 12 / 15 / 13;
+}
+
+.black-52 {
+    grid-area: 14 / 11 / 15 / 12;
+}
+
+.black-53 {
+    grid-area: 14 / 10 / 15 / 11;
+}
+
+.black-54 {
+    grid-area: 14 / 9 / 15 / 10;
+}
+
+.black-55 {
+    grid-area: 14 / 8 / 15 / 9;
+}
+
+.black-56 {
+    grid-area: 13 / 7 / 14 / 8;
+}
+
+.black-57 {
+    grid-area: 12 / 6 / 13 / 7;
+}
+
+.black-58 {
+    grid-area: 11 / 5 / 12 / 6;
+}
+
+.black-59 {
+    grid-area: 10 / 5 / 11 / 6;
+}
+
+.black-60 {
+    grid-area: 9 / 5 / 10 / 6;
+}
+
+.black-61 {
+    grid-area: 9 / 6 / 10 / 7;
+}
+
+.black-62 {
+    grid-area: 9 / 7 / 10 / 8;
+}
+
+.black-63 {
+    grid-area: 8 / 7 / 9 / 8;
+}
+
+.black-64 {
+    grid-area: 10 / 7 / 11 / 8;
+}
+
+.black-65 {
+    grid-area: 8 / 5 / 9 / 6;
+}
+
+.black-66 {
+    grid-area: 7 / 5 / 8 / 6;
+}
+
+.black-67 {
+    grid-area: 6 / 5 / 7 / 6;
+}
+
+.black-68 {
+    grid-area: 5 / 6 / 6 / 7;
+}
+
+.black-69 {
+    grid-area: 4 / 6 / 5 / 7;
+}
+
+.black-70 {
+    grid-area: 3 / 7 / 4 / 8;
+}
+
+.black-71 {
+    grid-area: 2 / 8 / 3 / 9;
+}
+
+.black-72 {
+    grid-area: 2 / 9 / 3 / 10;
+}
+
+.black-73 {
+    grid-area: 2 / 10 / 3 / 11;
+}
+
+.black-74 {
+    grid-area: 2 / 11 / 3 / 12;
+}
+
+.black-75 {
+    grid-area: 2 / 12 / 3 / 13;
+}
+
+.black-76 {
+    grid-area: 3 / 13 / 4 / 14;
+}
+
+.black-77 {
+    grid-area: 4 / 14 / 5 / 15;
+}
+
+.black-78 {
+    grid-area: 5 / 14 / 6 / 15;
+}
+
+.black-79 {
+    grid-area: 6 / 15 / 7 / 16;
+}
+
+.black-80 {
+    grid-area: 7 / 15 / 8 / 16;
+}
+
+.black-81 {
+    grid-area: 8 / 15 / 9 / 16;
+}
+
+.black-82 {
+    grid-area: 9 / 15 / 10 / 16;
+}
+
+.black-83 {
+    grid-area: 9 / 14 / 10 / 15;
+}
+
+.black-84 {
+    grid-area: 9 / 13 / 10 / 14;
+}
+
+.black-85 {
+    grid-area: 8 / 13 / 9 / 14;
+}
+
+.black-86 {
+    grid-area: 10 / 13 / 11 / 14;
+}
+
+.black-87 {
+    grid-area: 10 / 15 / 11 / 16;
+}
+
+.orange {
+    background-color: rgb(237, 77, 18);
+}
+
+.orange-1 {
+    grid-area: 6 / 1 / 7 / 2;
+}
+
+.orange-2 {
+    grid-area: 7 / 1 / 8 / 2;
+}
+
+.orange-3 {
+    grid-area: 7 / 3 / 8 / 4;
+}
+
+.orange-4 {
+    grid-area: 6 / 4 / 7 / 5;
+}
+
+.orange-5 {
+    grid-area: 5 / 4 / 6 / 5;
+}
+
+.orange-6 {
+    grid-area: 4 / 3 / 5 / 4;
+}
+
+.orange-7 {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+.orange-8 {
+    grid-area: 5 / 2 / 6 / 3;
+}
+
+.orange-9 {
+    grid-area: 8 / 2 / 9 / 3;
+}
+
+.orange-10 {
+    grid-area: 9 / 2 / 10 / 3;
+}
+
+.orange-11 {
+    grid-area: 10 / 2 / 11 / 3;
+}
+
+.orange-12 {
+    grid-area: 11 / 2 / 12 / 3;
+}
+
+.orange-13 {
+    grid-area: 11 / 3 / 12 / 4;
+}
+
+.orange-14 {
+    grid-area: 12 / 4 / 13 / 6;
+}
+
+.orange-15 {
+    grid-area: 13 / 3 / 14 / 7;
+}
+
+.orange-16 {
+    grid-area: 14 / 3 / 15 / 5;
+}
+
+.orange-17 {
+    grid-area: 14 / 6 / 15 / 8;
+}
+
+.orange-18 {
+    grid-area: 15 / 6 / 16 / 7;
+}
+
+.orange-19 {
+    grid-area: 16 / 5 / 17 / 7;
+}
+
+.orange-20 {
+    grid-area: 17 / 5 / 18 / 8;
+}
+
+.orange-21 {
+    grid-area: 18 / 6 / 19 / 9;
+}
+
+.orange-22 {
+    grid-area: 19 / 5 / 20 / 9;
+}
+
+.orange-23 {
+    grid-area: 20 / 5 / 21 / 6;
+}
+
+.orange-24 {
+    grid-area: 20 / 7 / 21 / 8;
+}
+
+.orange-25 {
+    grid-area: 19 / 12 / 20 / 16;
+}
+
+.orange-26 {
+    grid-area: 20 / 13 / 21 / 14;
+}
+
+.orange-27 {
+    grid-area: 20 / 15 / 21 / 16;
+}
+
+.orange-28 {
+    grid-area: 18 / 12 / 19 / 15;
+}
+
+.orange-29 {
+    grid-area: 17 / 13 / 18 / 16;
+}
+
+.orange-30 {
+    grid-area: 16 / 14 / 17 / 16;
+}
+
+.orange-31 {
+    grid-area: 15 / 14 / 16 / 15;
+}
+
+.orange-32 {
+    grid-area: 14 / 13 / 15 / 15;
+}
+
+.orange-33 {
+    grid-area: 13 / 14 / 14 / 18;
+}
+
+.orange-34 {
+    grid-area: 14 / 16 / 15 / 18;
+}
+
+.orange-35 {
+    grid-area: 12 / 15 / 13 / 17;
+}
+
+.orange-36 {
+    grid-area: 12 / 7 / 13 / 14;
+}
+
+.orange-37 {
+    grid-area: 13 / 8 / 14 / 13;
+}
+
+.orange-38 {
+    grid-area: 11 / 6 / 12 / 15;
+}
+
+.orange-39 {
+    grid-area: 8 / 8 / 11 / 13;
+}
+
+.orange-40 {
+    grid-area: 6 / 6 / 8 / 15;
+}
+
+.orange-41 {
+    grid-area: 4 / 7 / 6 / 14;
+}
+
+.orange-42 {
+    grid-area: 3 / 8 / 4 / 13;
+}
+
+.red {
+    background-color: rgb(177, 26, 26);
+}
+
+.red-1 {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+.red-2 {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.red-3 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.red-4 {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.red-5 {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.red-6 {
+    grid-area: 2 / 5 / 3 / 6;
+}
+
+.red-7 {
+    grid-area: 3 / 5 / 4 / 6;
+}
+
+.red-8 {
+    grid-area: 4 / 5 / 5 / 6;
+}
+
+.red-9 {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+.red-10 {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.red-11 {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+.yellow {
+    background-color: rgb(244, 212, 6);
+}
+
+.yellow-1 {
+    grid-area: 3 / 4 / 4 / 5;
+}
+
+.yellow-2 {
+    grid-area: 4 / 4 / 5 / 5;
+}
+
+.yellow-3 {
+    grid-area: 5 / 3 / 6 / 4;
+}
+
+.yellow-4 {
+    grid-area: 6 / 3 / 7 / 4;
+}
+
+.yellow-5 {
+    grid-area: 6 / 2 / 7 / 3;
+}
+
+.yellow-6 {
+    grid-area: 7 / 2 / 8 / 3;
+}
+
+.yellow-7 {
+    grid-area: 15 / 7 / 17 / 14;
+}
+
+.yellow-8 {
+    grid-area: 17 / 8 / 18 / 13;
+}
+
+.yellow-9 {
+    grid-area: 18 / 9 / 19 / 12;
+}
+
+.blue {
+    background-color: rgb(6, 169, 115);
+}
+
+.blue-1 {
+    grid-area: 10 / 6 / 11 / 7;
+}
+
+.blue-2 {
+    grid-area: 10 / 14 / 11 / 15;
+}
