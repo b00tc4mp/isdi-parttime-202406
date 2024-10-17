@@ -17,4 +17,4 @@ jobs:
         run: |
           npm install -g surge
           surge ./staff/carlos-portal/pixel-art/ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
-        if: github.actor == 'Portaltocoding'
+        if: github.repository != 'b00tc4mp/isdi-parttime-202406' && github.actor == 'Portaltocoding'
