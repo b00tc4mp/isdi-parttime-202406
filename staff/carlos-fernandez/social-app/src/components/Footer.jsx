@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <footer>hola soy el compo de Footer</footer>
+      <footer>hola soy el campo de Footer</footer>
     </>
   );
 }
