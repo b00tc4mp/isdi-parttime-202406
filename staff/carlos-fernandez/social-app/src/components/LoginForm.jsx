@@ -30,7 +30,7 @@ function LoginForm({ className, onSubmit }) {
       if (error.constructor.name === "EmailNotValidError") {
         setErrors((_errors) =>
           _errors
-            ? [..._errors, "El email no es váido"]
+            ? [..._errors, "El email no es válido"]
             : ["El email no es váido"]
         );
         inputEmail.focus();
