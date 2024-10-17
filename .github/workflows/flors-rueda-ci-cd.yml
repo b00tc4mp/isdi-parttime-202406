@@ -1,4 +1,4 @@
-name: Deploy Website
+name: Deploy Pixel-Art Flors
 
 on: [push]
 
@@ -11,6 +11,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
-      - run: npm install -g surge
-      - run: surge ./staff/flors-rueda/pixel-art ${{ secrets.DOMAIN_SURGE }} --token ${{ secrets.TOKEN_SURGE }}
+          node-version: 22
+
+      - name: Deploy to Surge
+        run: |
+          npm install -g surge
+          surge ./staff/flors-rueda/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+        if: github.actor == 'rucev'

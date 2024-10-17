@@ -1,4 +1,4 @@
-name: Deploy Website
+name: Deploy Pixel-Art Carlos Limón
 
 on: [push]
 
@@ -12,5 +12,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 22
-      - run: npm install -g surge
-      - run: surge ./staff/carlos-fernandez/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+
+      - name: Deploy to Surge
+        run: |
+          npm install -g surge
+          surge ./staff/carlos-fernandez/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+        if: github.actor == 'CarlosLemonCode'
