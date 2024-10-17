@@ -1,5 +1,11 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import ES from "../locales/es.json";
+const {
+  pages: {
+    landing: { title, signupButton, loginButton },
+  },
+} = ES;
 
 class Landing extends Component {
   render() {
@@ -8,7 +14,7 @@ class Landing extends Component {
         <div className="place-self-center w-fit max-sm:px-6 relative max-sm:-top-14">
           <div className="w-fit mx-auto mb-9">
             <h1 className="sm:text-3xl max-sm:text-2xl text-center max-xs:text-xl">
-              Bienvenido a mi Social App
+              {title}
             </h1>
           </div>
           <div className="sm:grid sm:grid-cols-2 sm:gap-8 max-sm:flex max-sm:flex-col">
@@ -18,7 +24,7 @@ class Landing extends Component {
               rel="next"
               className="btn btn-primary btn-md max-sm:mb-8"
             >
-              Ir al formulario de registro
+              {signupButton}
             </Link>
             <Link
               to="/login"
@@ -26,7 +32,7 @@ class Landing extends Component {
               rel="next"
               className="btn btn-secondary btn-md"
             >
-              Ir al formulario de entrada
+              {loginButton}
             </Link>
           </div>
         </div>

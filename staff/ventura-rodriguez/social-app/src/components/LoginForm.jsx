@@ -4,14 +4,14 @@ import classNames from "classnames";
 import { Validator } from "../tools";
 import { useState } from "react";
 import { EmailNotValidError, PasswordNotValidError } from "../tools/errors";
+import { FormErrorsSection } from ".";
+import ES from "../locales/es.json";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
-  // recopiar datos y dejar que la lógica de negocio trate esos datos
 
   const submit = (event) => {
     // manejar la lógica básica de front
-    // eniar los datos en formato correcto al Login
     // de alguna forma quedarse esperando órdenes del login
     event.preventDefault();
 
@@ -31,7 +31,8 @@ function LoginForm({ className, onSubmit }) {
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    onSubmit({ email: inputEmail.value, password: inputPassword.value });
+    if (newErrors.length === 0)
+      onSubmit({ email: inputEmail.value, password: inputPassword.value });
 
     // try {
     // } catch (error) {
@@ -50,11 +51,9 @@ function LoginForm({ className, onSubmit }) {
           <div className="grid mb-5">
             <IconLogin className="place-self-center w-16 h-16" />
           </div>
-          <h3 className="text-center mb-8 text-xl">Bienvenido de vuelta</h3>
+          <h3 className="text-center mb-8 text-xl">{ES.loginForm.title}</h3>
           <fieldset className="mb-5">
-            <legend className="mb-4 text-sm">
-              Introduce tus datos de inicio de sesión
-            </legend>
+            <legend className="mb-4 text-sm">{ES.loginForm.subtitle}</legend>
             <label
               className={classNames(
                 "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
@@ -75,7 +74,7 @@ function LoginForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Email"
+                placeholder={ES.loginForm.inputEmail}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -99,20 +98,18 @@ function LoginForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Contraseña"
+                placeholder={ES.loginForm.inputPassword}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
           </fieldset>
-          {/* <div id="show-errors">
-            <span>{errors}</span>
-          </div> */}
+          <FormErrorsSection errors={errors} className="mb-5" />
           <div className="mb-5 grid">
             <button
               type="submit"
               className="place-self-center btn btn-primary btn-block text-base"
             >
-              Iniciar sesión
+              {ES.loginForm.submitButton}
             </button>
           </div>
           <div className="text-xs xs:flex xs:justify-between">
@@ -121,14 +118,14 @@ function LoginForm({ className, onSubmit }) {
               target="_self"
               className="link link-secondary max-xs:block max-xs:mb-4"
             >
-              ¿Has olvidado la contraseña?
+              {ES.loginForm.linkToForgotPasswordPage}
             </Link>
             <Link
               to="/sign-up"
               target="_self"
               className="link link-secondary max-xs:block"
             >
-              Formulario de registro
+              {ES.loginForm.linkToSignupPage}
             </Link>
           </div>
         </form>
