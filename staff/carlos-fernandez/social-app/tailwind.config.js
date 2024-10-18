@@ -12,6 +12,10 @@ module.exports = {
   theme: {
     keyframes: {
       ...keyframes,
+      fadeIn: {
+        "0%": { opacity: "0" },
+        "100%": { opacity: "1" },
+      },
       wiggle: {
         "0%, 100%": { transform: "rotate(-3deg)" },
         "50%": { transform: "rotate(3deg)" },
@@ -25,6 +29,7 @@ module.exports = {
     },
     animation: {
       ...animation,
+      fadeIn: "fadeIn 5s ease-in-out",
       "spin-slow": "spin 10s linear infinite",
       wiggle: "wiggle 2s ease-in-out infinite",
       "low-pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",

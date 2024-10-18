@@ -99,7 +99,7 @@ function LoginForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Contraseña"
+                placeholder={ES.loginForm.inputPassword}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>

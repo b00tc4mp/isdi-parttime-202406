@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Footer, Header, SignUpForm } from "../components";
+import { Footer, Header, SignupForm } from "../components";
 
 class SignUp extends Component {
   render() {
@@ -7,7 +7,7 @@ class SignUp extends Component {
       <>
         <Header />
         <section className="w-screen h-[calc(100vh-var(--header-heigth))] xs:pt-20 max-xs:pt-16 overflow-y-auto">
-          <SignUpForm
+          <SignupForm
             className="mx-auto"
             onSubmit={(event) => {
               console.log(event);

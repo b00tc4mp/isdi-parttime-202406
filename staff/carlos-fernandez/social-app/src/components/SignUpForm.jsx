@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import {
+  IconDateOfBirth,
   IconEmail,
-  IconLogin,
   IconPassword,
-  IconCalendar,
-  IconUser,
+  IconSignup,
+  IconUsername,
 } from "./icons";
 import classNames from "classnames";
-import { EmailNotValidError } from "../tools/errors";
 import { useState } from "react";
 import ES from "../locales/es.json";
 
@@ -19,6 +18,9 @@ function SignupForm({ className, onSubmit }) {
     onSubmit(event);
   };
 
+  // nombre de usuario
+  // edad
+
   return (
     <>
       <div
@@ -29,20 +31,13 @@ function SignupForm({ className, onSubmit }) {
       >
         <form onSubmit={submit}>
           <div className="grid mb-5">
-            <IconLogin className="place-self-center w-16 h-16" />
+            <IconSignup className="place-self-center w-16 h-16" />
           </div>
           <h3 className="text-center mb-8 text-xl">{ES.signupForm.title}</h3>
           <fieldset className="mb-5">
             <legend className="mb-4 text-sm">{ES.signupForm.subtitle}</legend>
-            <label
-              className={classNames(
-                "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                {
-                  "input-error": errors,
-                }
-              )}
-            >
-              <IconUser fill="white" />
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconUsername fill="white" />
               <input
                 type="text"
                 id="username"
@@ -51,15 +46,8 @@ function SignupForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            <label
-              className={classNames(
-                "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                {
-                  "input-error": errors,
-                }
-              )}
-            >
-              <IconCalendar fill="white" />
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconDateOfBirth fill="white" />
               <input
                 type="text"
                 id="dateOfBirth"
@@ -68,14 +56,7 @@ function SignupForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            <label
-              className={classNames(
-                "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                {
-                  "input-error": errors,
-                }
-              )}
-            >
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
               <IconEmail fill="white" />
               <input
                 type="text"
@@ -118,7 +99,7 @@ function SignupForm({ className, onSubmit }) {
             </button>
           </div>
           <div className="text-xs flex justify-end">
-            <Link to="/login" target="_self" className="link link-primary">
+            <Link to="/login" target="_self" className="link link-secondary">
               {ES.signupForm.linkToLoginPage}
             </Link>
           </div>
@@ -128,4 +109,4 @@ function SignupForm({ className, onSubmit }) {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
