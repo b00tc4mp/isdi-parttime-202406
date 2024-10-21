@@ -1,0 +1,39 @@
+{
+  "header": { "title": "Social App" },
+  "formsErrors": {
+    "EmailNotValidError": "El email introducido no es válido",
+    "PasswordNotValidError": "La contraseña introducida no es válida"
+  },
+  "loginForm": {
+    "title": "Bienvenido de vuelta",
+    "subtitle": "Introduce tus datos de inicio de sesión",
+    "inputEmail": "Email",
+    "inputPassword": "Contraseña",
+    "submitButton": "Iniciar sesión",
+    "linkToForgotPasswordPage": "¿Has olvidado la contraseña?",
+    "linkToSignupPage": "Formulario de registro"
+  },
+  "signupForm": {
+    "title": "Únete a nuestra comunidad",
+    "subtitle": "Introduce tus datos para crear tu usuario",
+    "inputUsername": "Nombre de usuario",
+    "inputDateOfBirth": "Fecha de nacimiento",
+    "inputEmail": "Email",
+    "inputPassword": "Contraseña",
+    "inputRepeatPassword": "Repita la contraseña",
+    "submitButton": "Registrarse",
+    "linkToLoginPage": "Formulario de entrada"
+  },
+  "pages": {
+    "landing": {
+      "title": "Bienvenido a mi Social App",
+      "signupButton": "Ir al formulario de registro",
+      "loginButton": "Ir al formulario de entrada"
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Parece que alguien anda algo perdido...",
+      "mainButton": "Volver a la página principal"
+    }
+  }
+}
