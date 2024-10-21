@@ -1,4 +1,4 @@
-onst { expect } = require("chai");
+const { expect } = require("chai");
 const Biblio = require(".");
 
 describe("Map method", () => {
