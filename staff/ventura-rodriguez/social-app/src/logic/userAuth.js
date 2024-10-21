@@ -1,5 +1,11 @@
 import { Validator } from "../tools";
-import { EmailNotValidError, PasswordNotValidError } from "../tools/errors";
+import {
+  BadRequestError,
+  EmailNotValidError,
+  PasswordNotValidError,
+  ServerError,
+  UnexpectedError,
+} from "../tools/errors";
 
 const userAuth = (email, password) => {
   if (!Validator.password(password))
@@ -7,18 +13,20 @@ const userAuth = (email, password) => {
   if (!Validator.email(email))
     throw new EmailNotValidError("Email is not valid");
 
-  // petition http POST
+  return fetch("http://localhost:3030/authh", {
+    method: "GET",
+  })
+    .then((res) => {
+      if (res.status >= 400 && res.status < 500)
+        throw new BadRequestError("Credentials not found");
+      if (res.status >= 500 && res.status < 600)
+        throw new ServerError("Server not work as expected");
+      if (!(res.status >= 200 && res.status < 300)) throw new UnexpectedError();
+      if (!(res.ok === true)) throw new UnexpectedError();
 
-  // Cualquier petición HTTP es asíncrona
-
-  // Recibiremos una respuesta y con eso actuaremos
-
-  // esperamos que consulte con una BBDD y mire si el usuario con email X tiene la password Y
-
-  // que el emial no exista
-  // que el email exista pero el password no sea correcto
-  // que este todo bien
-  console.log({ email, password });
+      return res.json();
+    })
+    .then((data) => data.token);
 };
 
 export default userAuth;

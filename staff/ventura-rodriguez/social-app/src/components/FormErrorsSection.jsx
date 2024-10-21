@@ -2,8 +2,6 @@ import classNames from "classnames";
 import ES from "../locales/es.json";
 
 function FormErrorsSection({ className, errors }) {
-  // errors puede ser un array o null
-  console.log(errors);
   return (
     <>
       {errors instanceof Array && (

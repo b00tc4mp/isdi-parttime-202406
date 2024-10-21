@@ -8,7 +8,8 @@
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
     "daisyui": "4.12.10",
-    "tailwindcss": "3.4.12"
+    "tailwindcss": "3.4.12",
+    "json-server": "1.0.0"
   },
   "dependencies": {
     "classnames": "2.5.1",
@@ -23,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server": "json-server --watch db.json --port 3030"
   },
   "eslintConfig": {
     "extends": [

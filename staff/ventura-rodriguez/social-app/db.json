@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "lucatiel@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": 2,
+      "email": "sif@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": 3,
+      "email": "artorias@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": 4,
+      "email": "moonknight@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": 5,
+      "email": "benhart@gmail.com",
+      "password": "1234abcdA@"
+    }
+  ],
+  "auth": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  }
+}

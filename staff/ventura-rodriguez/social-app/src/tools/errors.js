@@ -15,3 +15,39 @@ export class PasswordNotValidError extends Error {
     }
   }
 }
+
+export class BadRequestError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, BadRequestError);
+    }
+  }
+}
+
+export class ServerError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ServerError);
+    }
+  }
+}
+
+export class UnexpectedError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, UnexpectedError);
+    }
+  }
+}
+
+export class CredentialsError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CredentialsError);
+    }
+  }
+}

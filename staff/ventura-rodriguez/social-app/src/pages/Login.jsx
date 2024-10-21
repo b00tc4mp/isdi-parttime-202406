@@ -1,34 +1,31 @@
 import { Component } from "react";
 import { Footer, Header, LoginForm } from "../components";
 import userAuth from "../logic/userAuth";
+import { useNavigate } from "react-router-dom";
 
-class Login extends Component {
-  onSubmit({ email, password }) {
-    try {
-      userAuth(email, password);
-    } catch (err) {
-      console.error(err);
-    }
+function Login() {
+  const navigate = useNavigate();
 
-    // respuesta del logic
-    // si el auth no sale bien avisa al compo LoginForm para que lance errores
-    // si el auth sale bien redirige al usuario a la home
-  }
+  const onSubmit = ({ email, password }) => {
+    return userAuth(email, password) //
+      .then((token) => {
+        sessionStorage.setItem("token", token);
+        navigate("/home");
+      });
+  };
 
-  render() {
-    return (
-      <>
-        <Header />
-        <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
-          <LoginForm
-            className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
-            onSubmit={this.onSubmit}
-          />
-        </section>
-        {/* <Footer /> */}
-      </>
-    );
-  }
+  return (
+    <>
+      <Header />
+      <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
+        <LoginForm
+          className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
+          onSubmit={onSubmit}
+        />
+      </section>
+      {/* <Footer /> */}
+    </>
+  );
 }
 
 export default Login;
