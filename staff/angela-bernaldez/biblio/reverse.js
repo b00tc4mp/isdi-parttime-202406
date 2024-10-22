@@ -1,4 +1,10 @@
+const Biblio = require("./constructor.js")
+
 function reverse() {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
     
     let start = 0 
     let end = this.length - 1

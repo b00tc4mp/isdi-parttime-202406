@@ -1,23 +1,22 @@
 const Biblio = require("./constructor.js")
 
-function map(callback) {
+function some(callback) {
 
     if (!(this instanceof Biblio)) {
         throw new TypeError('The provided object needs to have been created with Biblio constructor')
     }
 
     if (typeof callback !== 'function') {
-        throw TypeError('Argument of map needs to be a function')
+        throw TypeError('Argument of some needs to be a function')
     }
-
-    let newArray = new Biblio()
+    
+    let result = false
 
     for (let i = 0; i < this.length; i++) {
-        newArray[newArray.length] = callback(this[i])
-        newArray.length++
+        if (callback(this[i])) return true 
     }
 
-    return newArray
+    return result
 }
 
-module.exports = map
+module.exports = some

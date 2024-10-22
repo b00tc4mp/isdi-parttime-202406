@@ -19,6 +19,9 @@ const reduce = require("./reduce.js")
 const reverse = require("./reverse.js")
 const shift = require("./shift.js")
 const slice = require("./slice.js")
+const some = require("./some.js")
+const sort = require("./sort.js")
+const splice = require("./splice.js")
 
 Biblio.prototype.at = at
 Biblio.prototype.concat = concat
@@ -40,5 +43,8 @@ Biblio.prototype.reduce = reduce
 Biblio.prototype.reverse = reverse
 Biblio.prototype.shift = shift
 Biblio.prototype.slice = slice
+Biblio.prototype.some = some
+Biblio.prototype.sort = sort
+Biblio.prototype.splice = splice
 
 module.exports = Biblio 

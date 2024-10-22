@@ -1,4 +1,10 @@
+const Biblio = require("./constructor.js")
+
 function at(index) {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
 
     if (index == null) index = 0
 

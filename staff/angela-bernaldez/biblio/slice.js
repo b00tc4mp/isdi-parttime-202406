@@ -1,6 +1,10 @@
 const Biblio = require("./constructor.js")
 
 function slice(start = 0, end = this.length) {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
     
     let newArray = new Biblio()
 

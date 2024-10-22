@@ -1,4 +1,10 @@
+const Biblio = require("./constructor.js")
+
 function fill(value, start = 0, end = this.length) {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
 
     start = start < 0 ? Math.max(start + this.length, 0) : start;
     end = end < 0 ? end + this.length : Math.min(end, this.length);

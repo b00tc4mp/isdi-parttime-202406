@@ -2,6 +2,10 @@ const Biblio = require("./constructor.js")
 
 function shift() {
 
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
+
     // need to store the first element of the array before modifying the original array
     let result = this[0]
 

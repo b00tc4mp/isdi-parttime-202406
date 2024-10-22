@@ -2,6 +2,10 @@ const Biblio = require("./constructor.js")
 
 function filter(callback) {
 
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
+
     if (typeof callback !== 'function') {
         throw TypeError('Second argument of filter needs to be a function')
     }

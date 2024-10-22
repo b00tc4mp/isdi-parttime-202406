@@ -1,6 +1,11 @@
 const Biblio = require("./constructor.js")
 
 function concat() {
+
+    if (!(this instanceof Biblio)) {
+      throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
+
     const result = new Biblio();
     while (result.length < this.length) {
       result[result.length] = this[result.length];
@@ -17,6 +22,6 @@ function concat() {
       }
     }
     return result;
-  }
+}
 
 module.exports = concat 

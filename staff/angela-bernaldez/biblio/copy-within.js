@@ -1,6 +1,11 @@
 const Biblio = require("./constructor.js")
 
 function copyWithin(_target, _start, _end = this.length) {
+
+    if (!(this instanceof Biblio)) {
+      throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
+
     const elementsToCopy = new Biblio();
   
     const target = _target >= 0 ? _target : this.length + _target;

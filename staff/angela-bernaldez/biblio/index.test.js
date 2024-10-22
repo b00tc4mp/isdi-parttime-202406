@@ -20,4 +20,7 @@ describe("Biblio testing", function () {
     require("./reverse.test.js")
     require("./shift.test.js")
     require("./slice.test.js")
+    require("./some.test.js")
+    require("./sort.test.js")
+    require("./splice.test.js")
 })

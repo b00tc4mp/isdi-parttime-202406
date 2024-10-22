@@ -1,4 +1,10 @@
+const Biblio = require("./constructor.js")
+
 function includes(value, fromIndex = 0) {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
 
     let included = false
 

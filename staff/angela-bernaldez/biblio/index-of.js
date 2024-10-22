@@ -1,4 +1,10 @@
+const Biblio = require("./constructor.js")
+
 function indexOf(searchElement, fromIndex = 0) {
+
+    if (!(this instanceof Biblio)) {
+        throw new TypeError('The provided object needs to have been created with Biblio constructor')
+    }
 
     // handle negative cases
     if (fromIndex < 0) fromIndex = Math.max(fromIndex + this.length, 0)
