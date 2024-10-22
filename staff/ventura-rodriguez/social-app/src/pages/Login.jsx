@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { Footer, Header, LoginForm } from "../components";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";

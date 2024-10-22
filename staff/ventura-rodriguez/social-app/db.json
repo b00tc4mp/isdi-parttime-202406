@@ -1,29 +1,20 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "lucatiel@gmail.com",
-      "password": "1234abcdA@"
-    },
-    {
-      "id": 2,
-      "email": "sif@gmail.com",
-      "password": "1234abcdA@"
-    },
-    {
-      "id": 3,
-      "email": "artorias@gmail.com",
-      "password": "1234abcdA@"
-    },
-    {
-      "id": 4,
-      "email": "moonknight@gmail.com",
-      "password": "1234abcdA@"
-    },
-    {
-      "id": 5,
+      "id": "3903",
+      "username": "lucatiel",
+      "dateOfBirth": null,
       "email": "benhart@gmail.com",
-      "password": "1234abcdA@"
+      "password": "1234abcdA@",
+      "repeatPassword": "1234abcdA@"
+    },
+    {
+      "id": "ed18",
+      "username": "lucatiel2",
+      "dateOfBirth": "",
+      "email": "lucatiel@gmail.com",
+      "password": "aaAA11@@",
+      "repeatPassword": "aaAA11@@"
     }
   ],
   "auth": {

@@ -14,6 +14,12 @@ class Validator {
 
     return regExp.test(value);
   }
+
+  static username(value) {
+    const regExp = new RegExp(/^[a-zA-Z0-9]{1,12}$/);
+
+    return regExp.test(value);
+  }
 }
 
 export default Validator;

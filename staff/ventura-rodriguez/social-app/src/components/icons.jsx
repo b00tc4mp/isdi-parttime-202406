@@ -1,4 +1,8 @@
 export function IconMenu(...props) {
+  // Remove warnings thrown on dev mode
+  delete props[0];
+  delete props[1];
+  //
   return (
     <>
       <svg

@@ -13,7 +13,7 @@ const userAuth = (email, password) => {
   if (!Validator.email(email))
     throw new EmailNotValidError("Email is not valid");
 
-  return fetch("http://localhost:3030/authh", {
+  return fetch("http://localhost:3030/auth", {
     method: "GET",
   })
     .then((res) => {
@@ -26,7 +26,12 @@ const userAuth = (email, password) => {
 
       return res.json();
     })
-    .then((data) => data.token);
+    .then((data) => data.token)
+    .catch((err) => {
+      if (err instanceof TypeError)
+        throw new ServerError("Server in not connected");
+      throw new UnexpectedError();
+    });
 };
 
 export default userAuth;

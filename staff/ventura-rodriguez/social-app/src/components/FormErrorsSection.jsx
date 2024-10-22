@@ -13,7 +13,10 @@ function FormErrorsSection({ className, errors }) {
         >
           {errors.map((error, index) => (
             <li key={index} className="">
-              <span>{ES.formsErrors[error.constructor.name]}</span>
+              <span>
+                {ES.formsErrors[error.constructor.name] ??
+                  ES.formsErrors.default}
+              </span>
             </li>
           ))}
         </ul>

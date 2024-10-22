@@ -51,3 +51,12 @@ export class CredentialsError extends Error {
     }
   }
 }
+
+export class UsernameNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, UsernameNotValidError);
+    }
+  }
+}
