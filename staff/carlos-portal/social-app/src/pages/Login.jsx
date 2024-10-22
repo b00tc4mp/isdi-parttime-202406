@@ -1,23 +1,31 @@
 import { Component } from "react";
 import { Footer, Header, LoginForm } from "../components";
+import userAuth from "../logic/userAuth";
+import { useNavigate } from "react-router-dom";
 
-class Login extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <div className="flex flex-col min-h-screen">
-          {/* Contenedor principal que asegura altura mínima de la pantalla */}
-          <div className="flex-grow flex justify-center items-center">
-            {/* Ajuste del tamaño del LoginForm */}
-            <LoginForm className="w-full max-w-lg h-96  p-8 rounded-lg shadow-lg" />
-          </div>
-          {/* Footer siempre al final de la página */}
-          <Footer />
-        </div>
-      </>
-    );
-  }
+function Login() {
+  const navigate = useNavigate();
+
+  const onSubmit = ({ email, password }) => {
+    return userAuth(email, password) //
+      .then((token) => {
+        sessionStorage.setItem("token", token);
+        navigate("/home");
+      });
+  };
+
+  return (
+    <>
+      <Header />
+      <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
+        <LoginForm
+          className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
+          onSubmit={onSubmit}
+        />
+      </section>
+      {/* <Footer /> */}
+    </>
+  );
 }
 
 export default Login;
