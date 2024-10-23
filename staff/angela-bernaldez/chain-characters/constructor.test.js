@@ -19,3 +19,4 @@ console.assert(result2.value === "Trabaja duro en silencio y deja que tu existo 
     result: result2.value,
     message: "Test 2.2 No pasado ",
 });
+
