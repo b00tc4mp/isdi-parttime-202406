@@ -1,6 +1,7 @@
 require("./at.test.js")
 require("./char-at.test.js")
 require("./concat.test.js")
+require("./constructor.test.js")
 require("./ends-with.test.js")
 require("./includes.test.js")
 require("./index-of.test.js")
