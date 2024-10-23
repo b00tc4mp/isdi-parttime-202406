@@ -1,4 +1,6 @@
 export function IconMenu(...props) {
+  delete props[0];
+  delete props[1];
   return (
     <>
       <svg

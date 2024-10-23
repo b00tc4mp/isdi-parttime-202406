@@ -19,6 +19,22 @@
       "id": "4",
       "email": "moonknight@gmail.com",
       "password": "1234abcdA@"
+    },
+    {
+      "id": "d001",
+      "username": "asdaf",
+      "dateOfBirth": "",
+      "email": "carlosfernandezsoldado@gmail.com",
+      "password": "aaAA1234@",
+      "repeatPassword": "aaAA1234@"
+    },
+    {
+      "id": "b258",
+      "username": "asdaf",
+      "dateOfBirth": "",
+      "email": "carlosfernandezsoldado@gmail.com",
+      "password": "aaAA1234@",
+      "repeatPassword": "aaAA1234@"
     }
   ],
   "auth": {

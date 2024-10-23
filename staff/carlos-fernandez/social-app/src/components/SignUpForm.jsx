@@ -1,6 +1,3 @@
-import classNames from "classnames";
-import { useState } from "react";
-import ES from "../locales/es.json";
 import { Link } from "react-router-dom";
 import {
   IconDateOfBirth,
@@ -9,6 +6,9 @@ import {
   IconSignup,
   IconUsername,
 } from "./icons";
+import classNames from "classnames";
+import { useState } from "react";
+import ES from "../locales/es.json";
 import { Validator } from "../tools";
 import {
   BadRequestError,
@@ -41,7 +41,7 @@ function SignupForm({ className, onSubmit }) {
         new PasswordNotValidError("Password and repeatPassword do not match")
       );
       inputPassword.value = "";
-      inputRepeatPassword = "";
+      inputRepeatPassword.value = "";
       inputPassword.focus();
     }
 
@@ -58,6 +58,11 @@ function SignupForm({ className, onSubmit }) {
       inputEmail.focus();
     }
 
+    // if (!Validator.username(inputUsername.value)) {
+    //   newErrors.push(new UsernameNotValidError("Username is not valid"));
+    //   inputPassword.focus();
+    // }
+
     if (!Validator.username(inputUsername.value)) {
       newErrors.push(new UsernameNotValidError("Username is not valid"));
       inputUsername.focus();
@@ -65,18 +70,18 @@ function SignupForm({ className, onSubmit }) {
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0);
-    onSubmit({
-      username: inputUsername.value,
-      dateOfBirth: inputDateOfBirth.value,
-      email: inputEmail.value,
-      password: inputPassword.value,
-      repeatPassword: inputRepeatPassword.value,
-    }).catch((err) => {
-      if (err instanceof BadRequestError) return setErrors([err]);
-      if (err instanceof ServerError) return setErrors([err]);
-      setErrors([new UnexpectedError()]);
-    });
+    if (newErrors.length === 0)
+      onSubmit({
+        username: inputUsername.value,
+        dateOfBirth: inputDateOfBirth.value,
+        email: inputEmail.value,
+        password: inputPassword.value,
+        repeatPassword: inputRepeatPassword.value,
+      }).catch((err) => {
+        if (err instanceof BadRequestError) return setErrors([err]);
+        if (err instanceof ServerError) return setErrors([err]);
+        setErrors([new UnexpectedError()]);
+      });
   };
 
   return (
