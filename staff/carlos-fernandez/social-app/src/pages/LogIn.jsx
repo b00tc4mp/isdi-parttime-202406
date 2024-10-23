@@ -1,26 +1,28 @@
 import { Component } from "react";
 import { Footer, Header, LoginForm } from "../components";
+import userAuth from "../logic/userAuth";
+import { useNavigate } from "react-router-dom";
 
-class Login extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <section className="w-screen h-[calc(100vh-var(--header-heigth))] xs:pt-20 max-xs:pt-16">
-          <LoginForm
-            className="mx-auto"
-            onSubmit={(event) => {
-              // llamar a la api en busca del usuario con contraseña y correo
-              // si el auth no sale bien avisa al compo LoginForm para que lance errores
-              // si el auth sale bien redirige al usuario a la home
-              console.log(event);
-            }}
-          />
-        </section>
-        {/* <Footer /> */}
-      </>
-    );
-  }
+function Login() {
+  const navigate = useNavigate();
+  const onSubmit = ({ email, password }) => {
+    return userAuth(email, password).then((token) => {
+      sessionStorage.setItem("token", token);
+      navigate("/home");
+    });
+  };
+  return (
+    <>
+      <Header />
+      <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
+        <LoginForm
+          className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
+          onSubmit={onSubmit}
+        />
+      </section>
+      {/* <Footer /> */}
+    </>
+  );
 }
 
 export default Login;

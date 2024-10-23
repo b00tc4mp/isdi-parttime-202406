@@ -2,8 +2,6 @@ import classNames from "classnames";
 import ES from "../locales/es.json";
 
 function FormErrorsSection({ className, errors }) {
-  // errors puede ser un array o null
-  console.log(errors);
   return (
     <>
       {errors instanceof Array && (
@@ -15,7 +13,10 @@ function FormErrorsSection({ className, errors }) {
         >
           {errors.map((error, index) => (
             <li key={index} className="">
-              <span>{ES.formsErrors[error.constructor.name]}</span>
+              <span>
+                {ES.formsErrors[error.constructor.name] ??
+                  ES.formsErrors.default}
+              </span>
             </li>
           ))}
         </ul>

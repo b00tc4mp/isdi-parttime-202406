@@ -1,3 +1,6 @@
+import classNames from "classnames";
+import { useState } from "react";
+import ES from "../locales/es.json";
 import { Link } from "react-router-dom";
 import {
   IconDateOfBirth,
@@ -6,20 +9,75 @@ import {
   IconSignup,
   IconUsername,
 } from "./icons";
-import classNames from "classnames";
-import { useState } from "react";
-import ES from "../locales/es.json";
+import { Validator } from "../tools";
+import {
+  BadRequestError,
+  EmailNotValidError,
+  PasswordNotValidError,
+  ServerError,
+  UnexpectedError,
+  UsernameNotValidError,
+} from "../tools/errors";
+import { FormErrorsSection } from ".";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
 
   const submit = (event) => {
     event.preventDefault();
-    onSubmit(event);
-  };
 
-  // nombre de usuario
-  // edad
+    const {
+      username: inputUsername,
+      dateOfBirth: inputDateOfBirth,
+      email: inputEmail,
+      password: inputPassword,
+      repeatPassword: inputRepeatPassword,
+    } = event.target;
+
+    const newErrors = [];
+
+    if (!(inputPassword.value === inputRepeatPassword.value)) {
+      newErrors.push(
+        new PasswordNotValidError("Password and repeatPassword do not match")
+      );
+      inputPassword.value = "";
+      inputRepeatPassword = "";
+      inputPassword.focus();
+    }
+
+    if (
+      inputPassword.value === inputRepeatPassword.value &&
+      !Validator.password(inputPassword.value)
+    ) {
+      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      inputPassword.focus();
+    }
+
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new EmailNotValidError("Email is not valid"));
+      inputEmail.focus();
+    }
+
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      inputUsername.focus();
+    }
+
+    setErrors(newErrors.length > 0 ? newErrors : null);
+
+    if (newErrors.length === 0);
+    onSubmit({
+      username: inputUsername.value,
+      dateOfBirth: inputDateOfBirth.value,
+      email: inputEmail.value,
+      password: inputPassword.value,
+      repeatPassword: inputRepeatPassword.value,
+    }).catch((err) => {
+      if (err instanceof BadRequestError) return setErrors([err]);
+      if (err instanceof ServerError) return setErrors([err]);
+      setErrors([new UnexpectedError()]);
+    });
+  };
 
   return (
     <>
@@ -87,9 +145,7 @@ function SignupForm({ className, onSubmit }) {
               />
             </label>
           </fieldset>
-          <div id="show-errors">
-            <span>{errors}</span>
-          </div>
+          <FormErrorsSection errors={errors} className="mb-5" />
           <div className="mb-5 grid">
             <button
               type="submit"

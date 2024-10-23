@@ -3,17 +3,21 @@ import { IconEmail, IconLogin, IconPassword } from "./icons";
 import classNames from "classnames";
 import { Validator } from "../tools";
 import { useState } from "react";
-import { EmailNotValidError, PasswordNotValidError } from "../tools/errors";
+import {
+  BadRequestError,
+  EmailNotValidError,
+  PasswordNotValidError,
+  ServerError,
+  UnexpectedError,
+  CredentialsError,
+} from "../tools/errors";
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
-  // recopiar datos y dejar que la lógica de negocio trate esos datos
 
   const submit = (event) => {
-    // manejar la lógica básica de front
-    // de alguna forma quedarse esperando órdenes del login
     event.preventDefault();
 
     const { email: inputEmail, password: inputPassword } = event.target;
@@ -33,11 +37,15 @@ function LoginForm({ className, onSubmit }) {
     setErrors(newErrors.length > 0 ? newErrors : null);
 
     if (newErrors.length === 0)
-      onSubmit({ email: inputEmail.value, password: inputPassword.value });
-
-    // try {
-    // } catch (error) {
-    // }
+      onSubmit({
+        email: inputEmail.value,
+        password: inputPassword.value,
+      }).catch((err) => {
+        if (err instanceof BadRequestError)
+          return setErrors([new CredentialsError()]);
+        if (err instanceof ServerError) return setErrors([err]);
+        setErrors([new UnexpectedError()]);
+      });
   };
 
   return (
