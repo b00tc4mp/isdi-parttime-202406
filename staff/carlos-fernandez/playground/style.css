@@ -1,0 +1,31 @@
+ol {
+  font-size: 14px;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+html, 
+body {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: rgb(28, 27, 27);
+    color: rgb(198, 189, 189);
+  }
+
+  address, a {
+    font-style: normal;
+    color: rgb(198, 189, 189);
+    text-decoration: none;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, address, a {
+    font-size: 14px;
+    font-weight: normal;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+  };
+
+ 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mine Seeker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h1 class="header--title">Mine Seeke<span class="orange--r">r</span></h1>
+        <div class="author">By: CarlosLemonCode</div>
+      </div>
+      <div class="header--player">
+        <span class="header--player--name" id="displayPlayerName">Player 1</span>
+        <button aria-label="edit name" class="header--player--button" type="button" id="changePlayerName">
+            <svg class="icon" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <defs>
+                        <style>.cls-1{fill:none;stroke:#020202;stroke-miterlimit:10;stroke-width:1.9px;}</style>
+                    </defs>
+                    <path class="cls-1" d="M21.51,7.25,8,20.78,2.5,21.5,3.22,16,16.75,2.49a3.34,3.34,0,0,1,2.38-1h0A3.37,3.37,0,0,1,22.5,4.87h0A3.34,3.34,0,0,1,21.51,7.25Z"><path>
+                    <line class="cls-1" x1="14.88" y1="4.36" x2="19.64" y2="9.12"></line>
+                    <path class="cls-1" d="M8,20.77H8L2.5,21.5,3.22,16h0a6.59,6.59,0,0,1,3,1.74A6.59,6.59,0,0,1,8,20.77Z"></path>
+                    <line class="cls-1" x1="17.26" y1="6.74" x2="6.26" y2="17.74"></line>
+                </g>
+            </svg>
+        </button>
+      </div>
+    </header>
+    <div class="center">
+      <aside class="aside">
+        
+          <ul class="aside--stats">
+            <h3 class="aside--stats--title">Stats</h3>
+            <li class="aside--stats--item">
+              <span>Games won: </span> <span id="gamesWon">0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Games lost: </span> <span id="gamesLost">0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Games won in a row: </span> <span id="winsInARow">0</span>
+            </li>
+            <li class="aside--stats--item">
+              <span>Clicks: </span> <span id="clickCounter">0</span>
+            </li>
+            <div class="aside--timer" id="gameTimer">Timer: 00:00</div>
+            <!--<li class="aside--stats--item">
+              <span>Record: </span> <span id="record">0</span>
+            </li>-->
+          </ul>
+      </aside>
+    
+    <main class="main">
+      <section class="control--panel">
+        <div class="control--panel--stats">
+          <span>Mines found: </span> <span id="minesFound">_</span> <span>/</span>
+          <span id="totalMines">_</span>
+        </div>
+        <div class="control--panel--buttons">
+          <button id="restartButton" class="contro--pane--buttons--restart">Restart</button>
+          <button id="stateButton" class="contro--pane--buttons--startGame">Start game</button>
+        </div>
+      </section>
+      <section class="container--table"><div id="table" class="table"></div></section>
+    </main>
+    </div>
+    <footer class="footer">
+      <ul class="footer--legend">
+        <li class="footer--legend--element"> 
+          <span class="orange--f"> F</span><span>lag </span>
+          <div class="footer--legend--element--icon">
+            <img src="assets/flag.png" />
+          </div>
+        </li>
+        <li class="footer--legend--element"> 
+          <span class="orange--m"> M</span><span>ine </span> 
+          <div class="footer--legend--element--icon">
+            <img src="assets/bomb.png"/>
+          </div>
+        </li>
+        <li class="footer--legend--element"> 
+          <span class="orange--n"> N</span><span>umber</span>
+            <div class="footer--legend--element--icon">
+              <img src="assets/number1.png"/>
+            </div>
+        </li>
+      </ul>
+      <address class="footer--owner">© CarlosLemonCode</address>
+      <span class="footer--copyright">All rights reserved. </span>
+    </footer>
+    
+  </body> 
+</html>
