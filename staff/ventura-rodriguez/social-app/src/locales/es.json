@@ -1,0 +1,45 @@
+{
+  "header": { "title": "Social App" },
+  "formsErrors": {
+    "default": "Revisa todos los campos",
+    "EmailNotValidError": "El email introducido no es válido",
+    "PasswordNotValidError": "La contraseña introducida no es válida",
+    "CredentialsError": "No existe ningún usuario con la contraseña introducida",
+    "BadRequestError": "Los datos introducidos no son correctos",
+    "ServerError": "Ha habido un problema inesperado, prueba de nuevo más tarde",
+    "UnexpectedError": "Ha ocurrido un error inesperado, por favor, póngase en contacto con el equipo de soporte",
+    "UsernameNotValidError": "El nombre de usuario no es válido"
+  },
+  "loginForm": {
+    "title": "Bienvenido de vuelta",
+    "subtitle": "Introduce tus datos de inicio de sesión",
+    "inputEmail": "Email",
+    "inputPassword": "Contraseña",
+    "submitButton": "Iniciar sesión",
+    "linkToForgotPasswordPage": "¿Has olvidado la contraseña?",
+    "linkToSignupPage": "Formulario de registro"
+  },
+  "signupForm": {
+    "title": "Únete a nuestra comunidad",
+    "subtitle": "Introduce tus datos para crear tu usuario",
+    "inputUsername": "Nombre de usuario",
+    "inputDateOfBirth": "Fecha de nacimiento",
+    "inputEmail": "Email",
+    "inputPassword": "Contraseña",
+    "inputRepeatPassword": "Repita la contraseña",
+    "submitButton": "Registrarse",
+    "linkToLoginPage": "Formulario de entrada"
+  },
+  "pages": {
+    "landing": {
+      "title": "Bienvenido a mi Social App",
+      "signupButton": "Ir al formulario de registro",
+      "loginButton": "Ir al formulario de entrada"
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Parece que alguien anda algo perdido...",
+      "mainButton": "Volver a la página principal"
+    }
+  }
+}
