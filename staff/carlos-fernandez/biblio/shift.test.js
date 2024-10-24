@@ -10,7 +10,7 @@ describe("shift method", () => {
     assert.equal(
       resultarray1,
       resultbiblio1,
-      "The reduce method from Biblio does not work as the Array at method."
+      "The shift method from Biblio does not work as the Array shift method."
     );
   });
 
@@ -22,7 +22,7 @@ describe("shift method", () => {
     assert.equal(
       resultArray2,
       resultBiblio2,
-      "The at method from Biblio does not work as the Array at method."
+      "The shift method from Biblio does not work as the Array shift method."
     );
   });
 });

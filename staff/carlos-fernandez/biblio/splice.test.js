@@ -10,7 +10,7 @@ describe("Splice method", () => {
     assert.deepEqual(
       resultArray,
       resultBiblio,
-      "The splice method from Biblio does not work as the Array at method."
+      "The splice method from Biblio does not work as the Array splice method."
     );
   });
 
@@ -22,7 +22,7 @@ describe("Splice method", () => {
     assert.deepEqual(
       resultArray,
       resultBiblio,
-      "The splice method from Biblio does not work as the Array at method."
+      "The splice method from Biblio does not work as the Array splice method."
     );
   });
 });

@@ -10,7 +10,7 @@ describe("IndexOf method", () => {
     assert.equal(
       resultarray1,
       resultbiblio1,
-      "The at method from Biblio does not work as the Array at method."
+      "The IndexOf method from Biblio does not work as the Array IndexOf method."
     );
   });
   it("Use of IndexOf method returning value of a reasonable values", () => {
@@ -21,10 +21,10 @@ describe("IndexOf method", () => {
     assert.equal(
       resultArray2,
       resultBiblio2,
-      "The at method from Biblio does not work as the Array at method."
+      "The IndexOf method from Biblio does not work as the Array IndexOf method."
     );
   });
-  it("Use of at method returning value of a null index", () => {
+  it("Use of IndexOf method returning value of a null index", () => {
     const array3 = ["lo", 3, "primero", 2, "todo"];
     const biblio3 = new Biblio("lo", 3, "primero", 2, "todo");
     const resultArray3 = array3.indexOf(2, -1);
@@ -32,7 +32,7 @@ describe("IndexOf method", () => {
     assert.equal(
       resultArray3,
       resultBiblio3,
-      "The at method from Biblio does not work as the Array at method."
+      "The IndexOf method from Biblio does not work as the Array IndexOf method."
     );
   });
 });

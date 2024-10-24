@@ -10,7 +10,7 @@ describe("forEach method", () => {
     assert.equal(
       resultarray1,
       resultbiblio1,
-      "The forEach method from Biblio does not work as the Array at method."
+      "The forEach method from Biblio does not work as the Array forEach method."
     );
   });
   it("Use of forEach method turning all the strings into lowerCase", () => {
@@ -21,7 +21,7 @@ describe("forEach method", () => {
     assert.equal(
       resultArray2,
       resultBiblio2,
-      "The forEach method from Biblio does not work as the Array at method."
+      "The forEach method from Biblio does not work as the Array forEach method."
     );
   });
 });
