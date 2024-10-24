@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+}
+
+@layer components {
+  .prose {
+    @apply text-white;
+  }
+}
+
+@layer base {
+  :root {
+    --header-heigth: 64px;
+  }
+}
+
+/* Estilo personalizado para sombra con retroiluminación de color */
+.shadow-circle {
+  box-shadow: 0 0 150px 50px rgba(255, 0, 200, 0.767),
+    /* Sombra rosa */ 0 0 190px 90px rgba(0, 128, 255, 0.738); /* Sombra azul */
+  background: radial-gradient(
+    circle at right,
+    rgba(0, 128, 255, 0.792),
+    rgba(255, 0, 200, 0.347)
+  );
+}
+
+.shadow-box {
+  box-shadow: /* Sombra rosa */ 0 0 120px 90px rgba(255, 0, 200, 0.452),
+    /* Sombra azul */ 0 0 200px 120px rgba(0, 128, 255, 0.384);
+  background: radial-gradient(
+    circle at right,
+    rgba(0, 128, 255, 0.578),
+    rgba(255, 0, 200, 0.347)
+  );
+}
+
+.section-wrapper {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  box-sizing: border-box; /* Asegura que el padding/margin se comporten bien */
+}
+
+.section-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 128, 255, 0.578) 50%,
+    rgba(255, 0, 200, 0.347) 80%
+  );
+}
