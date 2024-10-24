@@ -18,7 +18,7 @@ import {
   UnexpectedError,
   UsernameNotValidError,
 } from "../tools/errors";
-import { FormErrorsSection } from ".";
+import { DatePicker, FormErrorsSection } from ".";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -109,9 +109,11 @@ function SignupForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
+            {/*  */}
             <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
               <IconDateOfBirth fill="white" />
               <input
+                datepicker
                 type="text"
                 id="dateOfBirth"
                 name="dateOfBirth"
@@ -119,6 +121,13 @@ function SignupForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
+            <DatePicker
+              useRange={false}
+              asSingle={true}
+              placeholder={ES.signupForm.inputDateOfBirth}
+              className="mb-4"
+            />
+            {/*  */}
             <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
               <IconEmail fill="white" />
               <input
