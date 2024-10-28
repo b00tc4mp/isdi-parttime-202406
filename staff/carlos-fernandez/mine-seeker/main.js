@@ -16,14 +16,15 @@
 
   let started = false;
   let gamesLost = 0;
+  let winsInARowCounter = 0;
   let minesFound = 0;
   let totalMines = 13;
   // null = ground // 1 = Number1 // 2 = Number3... // bomb = '*' // flag = '_' // blank = '.'
   const matrix = Array(11)
     .fill()
-    .map(() => Array(11).fill(null)); //crea 10 arrays de 10 espacios
+    .map(() => Array(11).fill(null)); //crea 11 arrays de 11 espacios
   let counterClicks = 0;
-  const matrixClasses = Array.from({ length: 12 }, () => Array(12).fill(null));
+  const matrixClasses = Array.from({ length: 11 }, () => Array(11).fill(null));
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // PLAYER NAME
   changePlayerNameButton.onclick = () => {
@@ -46,7 +47,7 @@
       minesFound = 0;
       locateBombs(matrix);
       locateNumbersAndBlanks(matrix);
-      startTimer();
+      //startTimer();
     } else {
       // ABANDONAR PARTIDA: cuando hacemos click en Leave game, se cambia a Start game.
       started = false;
@@ -54,12 +55,10 @@
       totalMines = 0;
       minesFound = 0;
       gamesLost++;
-      stopTimer();
+      // stopTimer();
       counterClicks = 0;
+      winsInARow = 0;
     }
-
-    //RESTART BUTTON
-    restartButton.onclick = () => {};
 
     ////////////////////////////////////////////////////////////     DOM ZONE   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,35 +69,48 @@
     animateDivs();
     updateStats();
     clickCounter.innerText = counterClicks;
+    winsInARow.innerText = winsInARowCounter;
   };
 
-  // START TIMER
-  function startTimer() {
-    secondsElapsed = 0; // Reiniciar el contador de tiempo
+  //RESTART BUTTON
+  restartButton.onclick = () => {
+    started = false;
+    stateButton.innerText = "Start game";
+    totalMines = 13;
+    minesFound = 0;
+    minesFound.innerText = "_";
+    totalMines.innerText = "_";
+    clickCounter.innerText = counterClicks;
+    table.innerHTML = "";
+  };
 
-    updateTimerDisplay(); // Actualizar la pantalla inmediatamente
+  /////////////////* START TIMER
+  //function startTimer() {
+  //secondsElapsed = 0; // Reiniciar el contador de tiempo
 
-    timerInterval = setInterval(() => {
-      secondsElapsed++;
-      updateTimerDisplay();
-      // Actualiza cada segundo
-    }, 1000);
-  }
+  //updateTimerDisplay(); // Actualizar la pantalla inmediatamente
 
-  function stopTimer() {
-    clearInterval(timerInterval); // Detener el temporizador
-  }
+  //timerInterval = setInterval(() => {
+  //secondsElapsed++;
+  //updateTimerDisplay();
+  // Actualiza cada segundo
+  //}, 1000);
+  //}
 
-  function updateTimerDisplay() {
-    const minutes = Math.floor(secondsElapsed / 60);
-    const seconds = secondsElapsed % 60;
-    gameTimer.innerText = `Time: ${String(minutes).padStart(2, "0")}:${String(
-      seconds
-    ).padStart(2, "0")}`;
-  }
+  //function stopTimer() {
+  //clearInterval(timerInterval); // Detener el temporizador
+  // }
+
+  //function updateTimerDisplay() {
+  //const minutes = Math.floor(secondsElapsed / 60);
+  //const seconds = secondsElapsed % 60;
+  //gameTimer.innerText = `Time: ${String(minutes).padStart(2, "0")}:${String(
+  // seconds
+  //).padStart(2, "0")}`;
+  // }
 
   // NO DUPLICATED NUMBERS
-  // No puede haber dos ubicaciones de bomba iguales, por lo que crearemos una función que obligue a generar 12 ubicaciones
+  // No puede haber dos ubicaciones de bomba iguales, por lo que crearemos una función que obligue a generar 13 ubicaciones
   // aleatorias diferentes.
   function hasNoDuplicates(arr) {
     // Creamos un objeto vacío para rastrear si existe el elemento repetido.
@@ -116,8 +128,58 @@
     return true;
   }
 
+  function getClassFromMatrix(matrix, i, j) {
+    const cellType = matrix[i][j];
+    const classToAdd =
+      cellType === "."
+        ? null
+        : cellType === "*"
+        ? "cell__typeB"
+        : "cell__type" + cellType;
+
+    return classToAdd;
+  }
+
+  function virus(matrix, i, j) {
+    const relativePositions = [
+      [-1, -1],
+      [-1, 0],
+      [-1, 1],
+      [1, -1],
+      [1, 0],
+      [1, 1],
+      [0, -1],
+      [0, 1],
+    ];
+    const cells = document.getElementsByClassName("cell");
+    const blanks = [];
+    for (let k = 0; k < 8; k++) {
+      const position = [
+        relativePositions[k][0] + i,
+        relativePositions[k][1] + j,
+      ];
+      if (
+        position[0] >= 0 &&
+        position[1] >= 0 &&
+        position[0] < 12 &&
+        position[1] < 12
+      ) {
+        const positionNumber = position[0] * 12 + position[1] + 1;
+        const classToAdd = getClassFromMatrix(matrix, position[0], position[1]);
+        const shouldBeAdded =
+          cells[positionNumber - 1].classList.contains("cell__ground");
+        if (classToAdd === null && shouldBeAdded) blanks.push(position);
+        cells[positionNumber - 1].classList.remove("cell__ground");
+        cells[positionNumber - 1].classList.add("cell__reveal");
+        if (classToAdd) cells[positionNumber - 1].classList.add(classToAdd);
+      }
+    }
+    if (blanks.length)
+      blanks.forEach((blank) => virus(matrix, blank[0], blank[1]));
+  }
+
   // CREATING CELLS
-  function printDivs(matrix) {
+  function printDivs() {
     const template = (cell) =>
       `<div class="cell cell__ground" data-cell=${cell}></div>`;
     concatString = "";
