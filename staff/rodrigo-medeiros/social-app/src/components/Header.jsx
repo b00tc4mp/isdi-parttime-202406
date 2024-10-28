@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { IconMenu } from "./icons";
+import ES from "../locales/es.json";
 
 function Header() {
   return (
     <>
-      <header>
-        <nav className="navbar bg-base-100 text-black">
+      <header className="sticky top-0">
+        <nav className="navbar bg-base-100 text-black bg-secondary">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||
@@ -19,7 +20,7 @@ function Header() {
               rel="next"
               className="btn btn-ghost text-lg hover:bg-transparent"
             >
-              Social App
+              {ES.header.title}
             </Link>
           </div>
           <div className="navbar-end">

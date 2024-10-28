@@ -1,25 +1,38 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import ES from "../locales/es.json";
+const {
+  pages: {
+    landing: { title, signupButton, loginButton },
+  },
+} = ES;
 
-class Page404 extends Component {
+class Landing extends Component {
   render() {
     return (
       <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
-        <div className="py-12">
-          <h1 className="text-[240px] mx-auto w-fit animate-buzzing">404</h1>
-          <p className="text-xl mx-auto w-fit animate-bounce">
-            Parece que alguien anda algo perdido...
-          </p>
-          <div className="pt-12 mx-auto w-fit">
+        <div className="place-self-center w-fit max-sm:px-6 relative max-sm:-top-14">
+          <div className="w-fit mx-auto mb-9">
+            <h1 className="sm:text-3xl max-sm:text-2xl text-center max-xs:text-xl">
+              {title}
+            </h1>
+          </div>
+          <div className="sm:grid sm:grid-cols-2 sm:gap-8 max-sm:flex max-sm:flex-col">
             <Link
-              to="/"
+              to="/sign-up"
               target="_self"
               rel="next"
-              className="btn btn-circle btn-lg btn-primary w-52 h-52 p-6 animate-wiggle"
+              className="btn btn-primary btn-md max-sm:mb-8"
             >
-              <span className="leading-relaxed text-lg">
-                Volver a la página principal
-              </span>
+              {signupButton}
+            </Link>
+            <Link
+              to="/login"
+              target="_self"
+              rel="next"
+              className="btn btn-secondary btn-md"
+            >
+              {loginButton}
             </Link>
           </div>
         </div>
@@ -28,4 +41,4 @@ class Page404 extends Component {
   }
 }
 
-export default Page404;
+export default Landing;
