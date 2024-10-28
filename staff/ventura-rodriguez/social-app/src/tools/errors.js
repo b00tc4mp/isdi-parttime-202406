@@ -60,3 +60,12 @@ export class UsernameNotValidError extends Error {
     }
   }
 }
+
+export class DateOfBirthNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, DateOfBirthNotValidError);
+    }
+  }
+}

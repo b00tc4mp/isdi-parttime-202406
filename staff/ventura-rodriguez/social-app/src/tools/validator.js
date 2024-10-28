@@ -20,6 +20,24 @@ class Validator {
 
     return regExp.test(value);
   }
+
+  static dateOfBirth(value) {
+    const dateOfBirthRegExp =
+      /^(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[01])\/\d{4}$/;
+
+    if (!dateOfBirthRegExp.test(value)) return false; // Invalid format
+
+    const [day, month, year] = value.split("/").map(Number);
+    const today = new Date();
+    const birthDate = new Date(year, month - 1, day); // Months are 0-indexed
+
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (age < 18 || (age === 18 && monthDiff < 0)) return false; // Not 18 years old yet
+
+    return true;
+  }
 }
 
 export default Validator;

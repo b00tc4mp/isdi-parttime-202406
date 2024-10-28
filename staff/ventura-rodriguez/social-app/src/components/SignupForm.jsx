@@ -6,6 +6,7 @@ import ES from "../locales/es.json";
 import { Validator } from "../tools";
 import {
   BadRequestError,
+  DateOfBirthNotValidError,
   EmailNotValidError,
   PasswordNotValidError,
   ServerError,
@@ -28,7 +29,6 @@ function SignupForm({ className, onSubmit }) {
       password: inputPassword,
       repeatPassword: inputRepeatPassword,
     } = event.target;
-    debugger;
 
     const newErrors = [];
 
@@ -36,6 +36,7 @@ function SignupForm({ className, onSubmit }) {
       newErrors.push(
         new PasswordNotValidError("Password and repeatPassword do not match")
       );
+      newErrors[newErrors.length - 1].order = 4;
       inputPassword.value = "";
       inputRepeatPassword.value = "";
       inputPassword.focus();
@@ -46,21 +47,25 @@ function SignupForm({ className, onSubmit }) {
       !Validator.password(inputPassword.value)
     ) {
       newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
       inputPassword.focus();
     }
 
     if (!Validator.email(inputEmail.value)) {
       newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 3;
       inputEmail.focus();
     }
 
-    // if (!Validator.username(inputUsername.value)) {
-    //   newErrors.push(new UsernameNotValidError("Username is not valid"));
-    //   inputPassword.focus();
-    // }
+    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
+      // inputDateOfBirth.focus();
+    }
 
     if (!Validator.username(inputUsername.value)) {
       newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
       inputUsername.focus();
     }
 
