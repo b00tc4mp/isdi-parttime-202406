@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  IconDateOfBirth,
-  IconEmail,
-  IconPassword,
-  IconSignup,
-  IconUsername,
-} from "./icons";
+import { IconEmail, IconPassword, IconSignup, IconUsername } from "./icons";
 import classNames from "classnames";
 import { useState } from "react";
 import ES from "../locales/es.json";
@@ -19,6 +13,7 @@ import {
   UsernameNotValidError,
 } from "../tools/errors";
 import { DatePicker, FormErrorsSection } from ".";
+import moment from "moment";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -33,6 +28,7 @@ function SignupForm({ className, onSubmit }) {
       password: inputPassword,
       repeatPassword: inputRepeatPassword,
     } = event.target;
+    debugger;
 
     const newErrors = [];
 
@@ -110,7 +106,7 @@ function SignupForm({ className, onSubmit }) {
               />
             </label>
             {/*  */}
-            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+            {/* <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
               <IconDateOfBirth fill="white" />
               <input
                 datepicker
@@ -120,12 +116,17 @@ function SignupForm({ className, onSubmit }) {
                 placeholder={ES.signupForm.inputDateOfBirth}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
-            </label>
+            </label> */}
             <DatePicker
               useRange={false}
               asSingle={true}
               placeholder={ES.signupForm.inputDateOfBirth}
               className="mb-4"
+              inputId="dateOfBirth"
+              inputName="dateOfBirth"
+              displayFormat="DD/MM/YYYY"
+              startFrom={moment().subtract(18, "years").toDate()}
+              maxDate={moment().subtract(18, "years").toDate()}
             />
             {/*  */}
             <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
