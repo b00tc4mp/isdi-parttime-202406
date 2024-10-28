@@ -123,9 +123,9 @@ function SignupForm({ className, onSubmit }) {
             </label>
             */}
             <DatePicker
-              useRange={false}
-              asSingle={true}
-              placeholder={ES.signupForm.inputDateOfBirth}
+              //useRange={false}
+              // asSingle={true}
+              //placeholder={ES.signupForm.inputDateOfBirth}
               className="mb-4"
             />
             {/*  */}
