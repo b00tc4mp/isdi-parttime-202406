@@ -49,6 +49,7 @@ const registerUser = ({
     })
     .then((data) => data.id)
     .catch((err) => {
+      console.log("cath logic");
       if (err instanceof TypeError)
         throw new ServerError("Server in not connected");
       throw new UnexpectedError();

@@ -1,15 +1,30 @@
+import { useContext } from "react";
 import { Footer, Header, SignupForm } from "../components";
 import registerUser from "../logic/registerUser";
 import { useNavigate } from "react-router-dom";
+import { ModalContext } from "../context";
 
 function SignUp() {
   const navigate = useNavigate();
+  const { openErrorModal } = useContext(ModalContext.Context);
 
   const onSubmit = (data) => {
-    return registerUser(data) //
-      .then(() => {
-        navigate("/login");
+    try {
+      return registerUser(data)
+        .then(() => {
+          navigate("/login");
+        })
+        .catch((err) => {
+          //
+        });
+    } catch (error) {
+      openErrorModal({
+        title: "hola chicos",
+        paragraph: "este es mi mensaje de error",
       });
+      return false;
+      throw error;
+    }
   };
 
   return (
@@ -22,6 +37,16 @@ function SignUp() {
         />
       </section>
       {/* <Footer /> */}
+      {/*  */}
+      <button
+        className="btn"
+        onClick={() => {
+          //
+          onSubmit({});
+        }}
+      >
+        open modal
+      </button>
     </>
   );
 }

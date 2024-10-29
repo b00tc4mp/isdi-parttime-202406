@@ -3,7 +3,7 @@ import ES from "../locales/es.json";
 
 function FormErrorsSection({ className, errors }) {
   errors?.sort((a, b) => a.order - b.order);
-  debugger;
+
   return (
     <>
       {errors instanceof Array && (
