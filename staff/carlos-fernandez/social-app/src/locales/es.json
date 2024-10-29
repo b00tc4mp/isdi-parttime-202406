@@ -30,7 +30,8 @@
     "inputPassword": "Contraseña",
     "inputRepeatPassword": "Repita la contraseña",
     "submitButton": "Registrarse",
-    "linkToLoginPage": "Formulario de entrada"
+    "linkToLoginPage": "Formulario de entrada",
+    "passwordRegexp": "Debe contener al menos una mayúscula, un carácter especial y una longitud mínima de 8 carácteres"
   },
   "pages": {
     "landing": {

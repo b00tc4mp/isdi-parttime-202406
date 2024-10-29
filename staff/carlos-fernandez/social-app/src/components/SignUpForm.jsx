@@ -174,7 +174,7 @@ function SignupForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder={ES.signupForm.inputPassword}
+                placeholder={ES.signupForm.inputPassword + "*"}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -198,8 +198,15 @@ function SignupForm({ className, onSubmit }) {
               {ES.signupForm.submitButton}
             </button>
           </div>
-          <div className="text-xs flex justify-end">
-            <Link to="/login" target="_self" className="link link-secondary">
+          <div className="flex items-start justify-between text-xs">
+            <p className="text-gray-500">
+              {"*" + ES.signupForm.passwordRegexp}
+            </p>
+            <Link
+              to="/login"
+              target="_self"
+              className="link link-secondary text-right w-full max-w-[180px]"
+            >
               {ES.signupForm.linkToLoginPage}
             </Link>
           </div>
