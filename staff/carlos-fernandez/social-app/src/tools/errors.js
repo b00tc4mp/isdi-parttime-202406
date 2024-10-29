@@ -16,6 +16,15 @@ export class PasswordNotValidError extends Error {
   }
 }
 
+export class RepeatedPasswordNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, RepeatedPasswordNotValidError);
+    }
+  }
+}
+
 export class BadRequestError extends Error {
   constructor(message) {
     super(message);
@@ -57,6 +66,15 @@ export class UsernameNotValidError extends Error {
     super(message);
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, UsernameNotValidError);
+    }
+  }
+}
+
+export class DateOfBirthNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, DateOfBirthNotValidError);
     }
   }
 }

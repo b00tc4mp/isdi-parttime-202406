@@ -1,6 +1,7 @@
 import { Validator } from "../tools";
 import {
   BadRequestError,
+  DateOfBirthNotValidError,
   EmailNotValidError,
   PasswordNotValidError,
   ServerError,
@@ -22,6 +23,8 @@ const registerUser = ({
   if (password === repeatPassword && !Validator.password(password))
     throw new PasswordNotValidError("Password is not valid");
   if (!Validator.email(email)) throw new EmailNotValidError("Email not valid");
+  if (!Validator.dateOfBirth(dateOfBirth))
+    throw new DateOfBirthNotValidError("DateOfBirth is not valid");
   if (!Validator.username(username))
     throw new UsernameNotValidError("Username not valid");
 

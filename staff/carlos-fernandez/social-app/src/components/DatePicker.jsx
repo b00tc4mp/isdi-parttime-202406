@@ -1,30 +1,44 @@
 import classNames from "classnames";
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import ES from "../locales/es.json";
 
-const DatePicker = ({ className, placeholder }) => {
+const DatePicker = ({
+  className,
+  placeholder,
+  inputId,
+  inputName,
+  popoverDirection,
+  useRange,
+  asSingle,
+
+  displayFormat,
+  startFrom,
+  minDate,
+  maxDate,
+}) => {
   const [value, setValue] = useState({
     startDate: null,
     endDate: null,
   });
 
   return (
-    <div
-      className={classNames("datepicker relative", className)}
-      style={{ zIndex: 1 }}
-    >
+    <label className={classNames("datepicker block", className)}>
       <Datepicker
-        primaryColor={"fuchsia"}
-        useRange={false}
-        asSingle={true}
         value={value}
         onChange={(newValue) => setValue(newValue)}
-        placeholder={ES.signupForm.inputDateOfBirth}
-        popoverDirection="down"
-        displayFormat="DD/MM/YYYY"
+        primaryColor={"fuchsia"}
+        placeholder={placeholder}
+        inputId={inputId}
+        inputName={inputName}
+        useRange={useRange}
+        asSingle={asSingle}
+        popoverDirection={popoverDirection}
+        displayFormat={displayFormat}
+        startFrom={startFrom}
+        maxDate={maxDate}
+        minDate={minDate}
       />
-    </div>
+    </label>
   );
 };
 

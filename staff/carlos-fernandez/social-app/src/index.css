@@ -7,6 +7,9 @@ body {
 }
 
 @layer components {
+  .datepicker {
+    @apply relative z-10;
+  }
   .datepicker > div {
     @apply !input !input-bordered !input-ghost !glass;
   }
@@ -14,8 +17,10 @@ body {
     @apply !text-base !pl-[28px] !h-full !ring-0 !grow focus:!text-white placeholder:!text-white placeholder:!text-opacity-70;
   }
   .datepicker > div > button {
-    @apply !left-0 !w-10 !px-4 !text-white
-    /* @apply col-span-1 col-start-1 row-start-1; */;
+    @apply !left-0 !w-10 !px-4 !text-white;
+  }
+  .datepicker > div > div > div {
+    @apply !bg-neutral-800;
   }
 }
 

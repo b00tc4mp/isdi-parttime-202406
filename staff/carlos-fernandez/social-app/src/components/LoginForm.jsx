@@ -26,11 +26,13 @@ function LoginForm({ className, onSubmit }) {
 
     if (!Validator.password(inputPassword.value)) {
       newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
       inputPassword.focus();
     }
 
     if (!Validator.email(inputEmail.value)) {
       newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
       inputEmail.focus();
     }
 
