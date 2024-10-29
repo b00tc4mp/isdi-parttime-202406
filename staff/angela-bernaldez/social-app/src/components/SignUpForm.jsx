@@ -1,157 +1,185 @@
 import { Link } from "react-router-dom"
-import { IconEmail, IconLogin, IconPassword, IconCalendar, IconUser } from "./icons"
+import { IconEmail, IconPassword, IconSignup, IconUsername } from "./icons";
 import classNames from "classnames"
-import { EmailNotValidError } from "../tools/errors"
 import { useState } from "react"
+import ES from "../locales/es.json";
+import { Validator } from "../tools";
+import {
+  BadRequestError,
+  DateOfBirthNotValidError,
+  EmailNotValidError,
+  PasswordNotValidError,
+  ServerError,
+  UnexpectedError,
+  UsernameNotValidError,
+} from "../tools/errors";
+import { DatePicker, FormErrorsSection } from ".";
+import moment from "moment";
 
-function LoginForm({ className, onSubmit }) {
-    const [errors, setErrors] = useState(null) // variable de lectura (errors), función de escritura (setErrors)
+function SignUpForm({ className, onSubmit }) {
+  const [errors, setErrors] = useState(null);
 
-    // en un componente tenemos:
-    // presentacion: CSS
-    // estructura: HTML
-    // lógica front: javascript (la logica asociada al componente)
+  const submit = (event) => {
+    event.preventDefault();
 
-    // recoger datos y dejar que la lógica de negocio trate esos datos
+    const {
+      username: inputUsername,
+      dateOfBirth: inputDateOfBirth,
+      email: inputEmail,
+      password: inputPassword,
+      repeatPassword: inputRepeatPassword,
+    } = event.target;
 
-    const submit = (event) => {
-        // manejar lógica básica de front
-        // validaciones síncronas de los datos 
-        // enviar los datos en formato correcto al login
-        // de alguna forma quedarse esperando órdenes del login
-        event.preventDefault()
+    // create empty array/list to store errors
+    const newErrors = [];
 
-        const { email: inputEmail, password: inputPassword } = event.target
-        const emailRegexp = new RegExp(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-
-        try {
-            if (!emailRegexp.test(inputEmail.value))
-              throw new EmailNotValidError("Email is not valid");
-      
-            onSubmit(event);
-          } catch (error) {
-            if (error.constructor.name === "EmailNotValidError") {
-              setErrors((_errors) =>
-                _errors
-                  ? [..._errors, "El email no es válido"]
-                  : ["El email no es válido"]
-              );
-              inputEmail.focus();
-            }
-          }
-        };
-
-    return (
-        <>
-          <div
-            className={classNames(
-              "bg-neutral-800 max-w-screen-sm px-9 py-12",
-              className
-            )}
-          >
-            <form onSubmit={submit}>
-              <div className="grid mb-5">
-                <IconLogin className="place-self-center w-16 h-16" />
-              </div>
-              <h3 className="text-center mb-8 text-xl">Únete a nuestra comunidad</h3>
-              <fieldset className="mb-5">
-                <legend className="mb-4 text-sm">
-                  Introduce tus datos para crear usuario
-                </legend>
-                <label
-                  className={classNames(
-                    "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                    {
-                      "input-error": errors,
-                    }
-                  )}
-                >
-                  <IconUser fill="white" />
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Nombre de usuario"
-                    className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                  />
-                </label>
-                <label
-                    className={classNames(
-                      "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                      {
-                        "input-error": errors,
-                      }
-                    )}
-                >
-                  <IconCalendar fill="white" />
-                  <input
-                    type="text"
-                    id="dateOfBirth"
-                    name="dateOfBirth"
-                    placeholder="Fecha de nacimiento"
-                    className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                  />
-                </label>
-                <label
-                  className={classNames(
-                    "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
-                    {
-                      "input-error": errors,
-                    }
-                  )}
-                >
-                  <IconEmail fill="white" />
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                  />
-                </label>
-                <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                  <IconPassword fill="white" />
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                  />
-                </label >
-                <label className="input input-bordered input-ghost glass flex items-center gap-2">
-                  <IconPassword fill="white" />
-                  <input
-                    type="password"
-                    id="repeatPassword"
-                    name="repeatPassword"
-                    placeholder="Repetir contraseña"
-                    className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                  />
-                </label>
-              </fieldset>
-              <div id="show-errors">
-                <span>{errors}</span>
-              </div>
-              <div className="mb-5 grid">
-                <button
-                  type="submit"
-                  className="place-self-center btn btn-primary btn-block text-base"
-                >
-                  Registrarse
-                </button>
-              </div>
-              <div className="text-xs flex justify-end">
-                <Link to="/login" target="_self" className="link link-primary">
-                  Formulario de entrada
-                </Link>
-              </div>
-            </form>
-          </div>
-        </>
+    if (!(inputPassword.value === inputRepeatPassword.value)) {
+      newErrors.push(new PasswordNotValidError("Password and repeatPassword do not match")
       );
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    }
+
+    if (inputPassword.value === inputRepeatPassword.value && !Validator.password(inputPassword.value)) {
+      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.focus();
+    }
+
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 3;
+      inputEmail.focus();
+    }
+
+    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
+      // inputDateOfBirth.focus();
+    }
+
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
+      inputUsername.focus();
+    }
+
+    // if errors happened, keep them. if not, set newErrors to null
+    setErrors(newErrors.length > 0 ? newErrors : null);
+
+    if (newErrors.length === 0)
+      onSubmit({
+        username: inputUsername.value,
+        dateOfBirth: inputDateOfBirth.value,
+        email: inputEmail.value,
+        password: inputPassword.value,
+        repeatPassword: inputRepeatPassword.value,
+      }).catch((err) => {
+        if (err instanceof BadRequestError) return setErrors([err]);
+        if (err instanceof ServerError) return setErrors([err]);
+        setErrors([new UnexpectedError()]);
+      });
+  };
+
+  return (
+    <>
+      <div
+        className={classNames(
+          "bg-neutral-800 max-w-screen-sm px-9 py-12",
+          className
+        )}
+      >
+        <form onSubmit={submit}>
+          <div className="grid mb-5">
+            <IconSignup className="place-self-center w-16 h-16" />
+          </div>
+          <h3 className="text-center mb-8 text-xl">{ES.signupForm.title}</h3>
+          <fieldset className="mb-5">
+            <legend className="mb-4 text-sm">{ES.signupForm.subtitle}</legend>
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconUsername fill="white" />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder={ES.signupForm.inputUsername}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+            </label>
+            {/*
+              <IconDateOfBirth fill="white" />
+              <input
+                datepicker
+                type="text"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                placeholder={ES.signupForm.inputDateOfBirth}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+             */}  
+            <DatePicker
+              useRange={false}
+              asSingle={true}
+              placeholder={ES.signupForm.inputDateOfBirth}
+              className="mb-4"
+              inputId="dateOfBirth"
+              inputName="dateOfBirth"
+              displayFormat="DD/MM/YYYY"
+              startFrom={moment().subtract(18, "years").toDate()}
+              maxDate={moment().subtract(18, "years").toDate()}
+            />
+            {/*  */}
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconEmail fill="white" />
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder={ES.signupForm.inputEmail}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+            </label>
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconPassword fill="white" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder={ES.signupForm.inputPassword}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+            </label>
+            <label className="input input-bordered input-ghost glass flex items-center gap-2">
+              <IconPassword fill="white" />
+              <input
+                type="password"
+                id="repeatPassword"
+                name="repeatPassword"
+                placeholder={ES.signupForm.inputRepeatPassword}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+            </label>
+          </fieldset>
+          <FormErrorsSection errors={errors} className="mb-5" />
+          <div className="mb-5 grid">
+            <button
+              type="submit"
+              className="place-self-center btn btn-primary btn-block text-base"
+            >
+              {ES.signupForm.submitButton}
+            </button>
+          </div>
+          <div className="text-xs flex justify-end">
+            <Link to="/login" target="_self" className="link link-secondary">
+              {ES.signupForm.linkToLoginPage}
+            </Link>
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }
 
-export default LoginForm;
+export default SignUpForm;
