@@ -8,7 +8,10 @@ const {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
-  content: ["./src/**/*.{jsx,js}"],
+  content: [
+    "./src/**/*.{jsx,js}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.{js,ts}",
+  ],
   theme: {
     keyframes: {
       ...keyframes,
