@@ -30,57 +30,65 @@ function SignUpForm({ className, onSubmit }) {
       repeatPassword: inputRepeatPassword,
     } = event.target;
 
-    // create empty array/list to store errors
     const newErrors = [];
 
-    if (!(inputPassword.value === inputRepeatPassword.value)) {
-      newErrors.push(new PasswordNotValidError("Password and repeatPassword do not match")
-      );
-      newErrors[newErrors.length - 1].order = 4;
-      inputPassword.value = "";
-      inputRepeatPassword.value = "";
-      inputPassword.focus();
-    }
+    // if (!(inputPassword.value === inputRepeatPassword.value)) {
+    //   newErrors.push(
+    //     new PasswordNotValidError("Password and repeatPassword do not match")
+    //   );
+    //   newErrors[newErrors.length - 1].order = 4;
+    //   inputPassword.value = "";
+    //   inputRepeatPassword.value = "";
+    //   inputPassword.focus();
+    // }
 
-    if (inputPassword.value === inputRepeatPassword.value && !Validator.password(inputPassword.value)) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
-      newErrors[newErrors.length - 1].order = 4;
-      inputPassword.focus();
-    }
+    // if (
+    //   inputPassword.value === inputRepeatPassword.value &&
+    //   !Validator.password(inputPassword.value)
+    // ) {
+    //   newErrors.push(new PasswordNotValidError("Password is not valid"));
+    //   newErrors[newErrors.length - 1].order = 4;
+    //   inputPassword.focus();
+    // }
 
-    if (!Validator.email(inputEmail.value)) {
-      newErrors.push(new EmailNotValidError("Email is not valid"));
-      newErrors[newErrors.length - 1].order = 3;
-      inputEmail.focus();
-    }
+    // if (!Validator.email(inputEmail.value)) {
+    //   newErrors.push(new EmailNotValidError("Email is not valid"));
+    //   newErrors[newErrors.length - 1].order = 3;
+    //   inputEmail.focus();
+    // }
 
-    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
-      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
-      newErrors[newErrors.length - 1].order = 2;
-      // inputDateOfBirth.focus();
-    }
+    // if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+    //   newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+    //   newErrors[newErrors.length - 1].order = 2;
+    //   // inputDateOfBirth.focus();
+    // }
 
-    if (!Validator.username(inputUsername.value)) {
-      newErrors.push(new UsernameNotValidError("Username is not valid"));
-      newErrors[newErrors.length - 1].order = 1;
-      inputUsername.focus();
-    }
+    // if (!Validator.username(inputUsername.value)) {
+    //   newErrors.push(new UsernameNotValidError("Username is not valid"));
+    //   newErrors[newErrors.length - 1].order = 1;
+    //   inputUsername.focus();
+    // }
 
-    // if errors happened, keep them. if not, set newErrors to null
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0)
-      onSubmit({
-        username: inputUsername.value,
-        dateOfBirth: inputDateOfBirth.value,
-        email: inputEmail.value,
-        password: inputPassword.value,
-        repeatPassword: inputRepeatPassword.value,
-      }).catch((err) => {
-        if (err instanceof BadRequestError) return setErrors([err]);
-        if (err instanceof ServerError) return setErrors([err]);
-        setErrors([new UnexpectedError()]);
-      });
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          username: inputUsername.value,
+          dateOfBirth: inputDateOfBirth.value,
+          email: inputEmail.value,
+          password: inputPassword.value,
+          repeatPassword: inputRepeatPassword.value,
+        }).catch((err) => {
+          if (err instanceof BadRequestError) return setErrors([err]);
+          if (err instanceof ServerError) return setErrors([err]);
+          setErrors([new UnexpectedError()]);
+        });
+      } catch (err) {
+        err.order = 1;
+        setErrors([err]);
+      }
+    }
   };
 
   return (
