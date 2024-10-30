@@ -27,7 +27,7 @@ const registerUser = ({
   if (!Validator.username(username))
     throw new UsernameNotValidError("Username is not valid");
 
-  return fetch("http://localhost:3030/users", {
+  return fetch(`${process.env.REACT_APP_API_URL}users`, {
     method: "POST",
     body: JSON.stringify({
       username,
