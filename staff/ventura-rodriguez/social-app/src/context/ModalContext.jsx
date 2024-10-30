@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import ES from "../locales/es.json";
 
 const Context = createContext(null);
 
@@ -8,15 +9,21 @@ function Provider({ children }) {
     paragraph: "",
   });
 
-  const openErrorModal = ({ title, paragraph }) => {
-    if (title === "" || paragraph === "") throw new Error();
-    setData({ title, paragraph });
+  const openModalError = (error) => {
+    setData({
+      title:
+        ES.modalErrors[error.constructor.name]?.title ??
+        ES.modalErrors.default.title,
+      paragraph:
+        ES.modalErrors[error.constructor.name]?.paragraph ??
+        ES.modalErrors.default.paragraph,
+    });
     setTimeout(() => document.getElementById("modalError").showModal(), 0);
   };
 
   return (
     <>
-      <Context.Provider value={{ openErrorModal }}>
+      <Context.Provider value={{ openModalError }}>
         {children}
         <dialog id="modalError" className="modal">
           <div className="modal-box bg-secondary text-secondary-content">
@@ -39,9 +46,16 @@ function Provider({ children }) {
   );
 }
 
+export const useModalError = () => {
+  const { openModalError } = useContext(Context);
+
+  return openModalError;
+};
+
 const ModalContext = {
   Context,
   Provider,
+  useModalError,
 };
 
 export default ModalContext;

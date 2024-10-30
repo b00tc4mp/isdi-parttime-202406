@@ -38,16 +38,22 @@ function LoginForm({ className, onSubmit }) {
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0)
-      onSubmit({
-        email: inputEmail.value,
-        password: inputPassword.value,
-      }).catch((err) => {
-        if (err instanceof BadRequestError)
-          return setErrors([new CredentialsError()]);
-        if (err instanceof ServerError) return setErrors([err]);
-        setErrors([new UnexpectedError()]);
-      });
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          email: inputEmail.value,
+          password: inputPassword.value,
+        }).catch((err) => {
+          if (err instanceof BadRequestError)
+            return setErrors([new CredentialsError()]);
+          if (err instanceof ServerError) return setErrors([err]);
+          setErrors([new UnexpectedError()]);
+        });
+      } catch (err) {
+        err.order = 1;
+        setErrors([err]);
+      }
+    }
   };
 
   return (

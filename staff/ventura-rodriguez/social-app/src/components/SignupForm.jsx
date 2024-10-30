@@ -32,42 +32,42 @@ function SignupForm({ className, onSubmit }) {
 
     const newErrors = [];
 
-    // if (!(inputPassword.value === inputRepeatPassword.value)) {
-    //   newErrors.push(
-    //     new PasswordNotValidError("Password and repeatPassword do not match")
-    //   );
-    //   newErrors[newErrors.length - 1].order = 4;
-    //   inputPassword.value = "";
-    //   inputRepeatPassword.value = "";
-    //   inputPassword.focus();
-    // }
+    if (!(inputPassword.value === inputRepeatPassword.value)) {
+      newErrors.push(
+        new PasswordNotValidError("Password and repeatPassword do not match")
+      );
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    }
 
-    // if (
-    //   inputPassword.value === inputRepeatPassword.value &&
-    //   !Validator.password(inputPassword.value)
-    // ) {
-    //   newErrors.push(new PasswordNotValidError("Password is not valid"));
-    //   newErrors[newErrors.length - 1].order = 4;
-    //   inputPassword.focus();
-    // }
+    if (
+      inputPassword.value === inputRepeatPassword.value &&
+      !Validator.password(inputPassword.value)
+    ) {
+      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.focus();
+    }
 
-    // if (!Validator.email(inputEmail.value)) {
-    //   newErrors.push(new EmailNotValidError("Email is not valid"));
-    //   newErrors[newErrors.length - 1].order = 3;
-    //   inputEmail.focus();
-    // }
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 3;
+      inputEmail.focus();
+    }
 
-    // if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
-    //   newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
-    //   newErrors[newErrors.length - 1].order = 2;
-    //   // inputDateOfBirth.focus();
-    // }
+    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
+      // inputDateOfBirth.focus();
+    }
 
-    // if (!Validator.username(inputUsername.value)) {
-    //   newErrors.push(new UsernameNotValidError("Username is not valid"));
-    //   newErrors[newErrors.length - 1].order = 1;
-    //   inputUsername.focus();
-    // }
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
+      inputUsername.focus();
+    }
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
@@ -116,18 +116,6 @@ function SignupForm({ className, onSubmit }) {
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            {/*  */}
-            {/* <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-              <IconDateOfBirth fill="white" />
-              <input
-                datepicker
-                type="text"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                placeholder={ES.signupForm.inputDateOfBirth}
-                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-              />
-            </label> */}
             <DatePicker
               useRange={false}
               asSingle={true}

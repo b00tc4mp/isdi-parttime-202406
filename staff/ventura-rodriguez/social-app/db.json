@@ -15,6 +15,54 @@
       "email": "lucatiel@gmail.com",
       "password": "aaAA11@@",
       "repeatPassword": "aaAA11@@"
+    },
+    {
+      "id": "8b2c",
+      "username": "Ventura",
+      "dateOfBirth": "03/10/2006",
+      "email": "ventura@gmail.com",
+      "password": "1224abcdA@",
+      "repeatPassword": "1224abcdA@"
+    },
+    {
+      "id": "a908",
+      "username": "",
+      "dateOfBirth": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": ""
+    },
+    {
+      "id": "7623",
+      "username": "lucatiel",
+      "dateOfBirth": null,
+      "email": "benhart@gmail.com",
+      "password": "1234abcdA@",
+      "repeatPassword": "1234abcdA@"
+    },
+    {
+      "id": "2cc1",
+      "username": "",
+      "dateOfBirth": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": ""
+    },
+    {
+      "id": "542e",
+      "username": "",
+      "dateOfBirth": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": ""
+    },
+    {
+      "id": "b8ac",
+      "username": "ventura",
+      "dateOfBirth": "02/10/2006",
+      "email": "ventura@gmail.com",
+      "password": "1234abcdA@",
+      "repeatPassword": "1234abcdA@"
     }
   ],
   "auth": {
