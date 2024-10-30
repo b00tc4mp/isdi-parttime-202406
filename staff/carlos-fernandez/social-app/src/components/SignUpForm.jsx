@@ -93,18 +93,24 @@ function SignupForm({ className, onSubmit }) {
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0)
-      onSubmit({
-        username: inputUsername.value,
-        dateOfBirth: inputDateOfBirth.value,
-        email: inputEmail.value,
-        password: inputPassword.value,
-        repeatPassword: inputRepeatPassword.value,
-      }).catch((err) => {
-        if (err instanceof BadRequestError) return setErrors([err]);
-        if (err instanceof ServerError) return setErrors([err]);
-        setErrors([new UnexpectedError()]);
-      });
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          username: inputUsername.value,
+          dateOfBirth: inputDateOfBirth.value,
+          email: inputEmail.value,
+          password: inputPassword.value,
+          repeatPassword: inputRepeatPassword.value,
+        }).catch((err) => {
+          if (err instanceof BadRequestError) return setErrors([err]);
+          if (err instanceof ServerError) return setErrors([err]);
+          setErrors([new UnexpectedError()]);
+        });
+      } catch (err) {
+        err.order = 1;
+        setErrors([err]);
+      }
+    }
   };
 
   return (

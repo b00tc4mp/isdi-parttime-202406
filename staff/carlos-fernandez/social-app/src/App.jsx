@@ -1,23 +1,22 @@
 import React from "react";
 import { Landing, LogIn, SignUp, SignOut, Page404, Home } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { ModalContext } from "./context";
 
 function App() {
   return (
-    <main className="App">
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-out" element={<SignOut />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/not-found" element={<Page404 />} />
-        <Route path="*" element={<Navigate to="/not-found" />} />
-      </Routes>
-      {/* 
-        - Landing
-        - Login
-        - Registro
+    <ModalContext.Provider>
+      <main className="App">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-out" element={<SignOut />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/not-found" element={<Page404 />} />
+          <Route path="*" element={<Navigate to="/not-found" />} />
+        </Routes>
+        {/* 
         - Home
         - Feed
         - Create content
@@ -29,8 +28,9 @@ function App() {
         - Conversations (list)
         - Conversations (only one)
         - Notificacions
-      */}
-    </main>
+        */}
+      </main>
+    </ModalContext.Provider>
   );
 }
 
