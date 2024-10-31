@@ -32,8 +32,8 @@
   "loginForm": {
     "title": "Bienvenido de vuelta",
     "subtitle": "Introduce tus datos de inicio de sesión",
-    "inputEmail": "Email",
-    "inputPassword": "Contraseña",
+    "inputEmail": { "placeholder": "Email" },
+    "inputPassword": { "placeholder": "Contraseña" },
     "submitButton": "Iniciar sesión",
     "linkToForgotPasswordPage": "¿Has olvidado la contraseña?",
     "linkToSignupPage": "Formulario de registro"
@@ -41,11 +41,14 @@
   "signupForm": {
     "title": "Únete a nuestra comunidad",
     "subtitle": "Introduce tus datos para crear tu usuario",
-    "inputUsername": "Nombre de usuario",
-    "inputDateOfBirth": "Fecha de nacimiento",
-    "inputEmail": "Email",
-    "inputPassword": "Contraseña",
-    "inputRepeatPassword": "Repita la contraseña",
+    "inputUsername": { "placeholder": "Nombre de usuario" },
+    "inputDateOfBirth": { "placeholder": "Fecha de nacimiento" },
+    "inputEmail": { "placeholder": "Email" },
+    "inputPassword": {
+      "placeholder": "Contraseña",
+      "helpText": "La contraseña debe tener números letras, mayúsculas y símbolos"
+    },
+    "inputRepeatPassword": { "placeholder": "Repita la contraseña" },
     "submitButton": "Registrarse",
     "linkToLoginPage": "Formulario de entrada"
   },

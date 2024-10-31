@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IconEmail, IconLogin, IconPassword } from "./icons";
 import classNames from "classnames";
 import { Validator } from "../tools";
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   BadRequestError,
   CredentialsError,
@@ -91,7 +91,7 @@ function LoginForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder={ES.loginForm.inputEmail}
+                placeholder={ES.loginForm.inputEmail.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -115,7 +115,7 @@ function LoginForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder={ES.loginForm.inputPassword}
+                placeholder={ES.loginForm.inputPassword.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -151,4 +151,4 @@ function LoginForm({ className, onSubmit }) {
   );
 }
 
-export default LoginForm;
+export default memo(LoginForm);
