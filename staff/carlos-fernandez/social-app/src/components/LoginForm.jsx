@@ -5,11 +5,11 @@ import { Validator } from "../tools";
 import { useState } from "react";
 import {
   BadRequestError,
+  CredentialsError,
   EmailNotValidError,
   PasswordNotValidError,
   ServerError,
   UnexpectedError,
-  CredentialsError,
 } from "../tools/errors";
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
@@ -38,16 +38,22 @@ function LoginForm({ className, onSubmit }) {
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0)
-      onSubmit({
-        email: inputEmail.value,
-        password: inputPassword.value,
-      }).catch((err) => {
-        if (err instanceof BadRequestError)
-          return setErrors([new CredentialsError()]);
-        if (err instanceof ServerError) return setErrors([err]);
-        setErrors([new UnexpectedError()]);
-      });
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          email: inputEmail.value,
+          password: inputPassword.value,
+        }).catch((err) => {
+          if (err instanceof BadRequestError)
+            return setErrors([new CredentialsError()]);
+          if (err instanceof ServerError) return setErrors([err]);
+          setErrors([new UnexpectedError()]);
+        });
+      } catch (err) {
+        err.order = 1;
+        setErrors([err]);
+      }
+    }
   };
 
   return (
@@ -85,7 +91,7 @@ function LoginForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Email"
+                placeholder={ES.loginForm.inputEmail}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>

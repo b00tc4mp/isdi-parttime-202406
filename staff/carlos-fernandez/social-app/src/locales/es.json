@@ -12,6 +12,24 @@
     "UsernameNotValidError": "El nombre de usuario no es válido",
     "DateOfBirthNotValidError": "La fecha de nacimiento no es válida"
   },
+  "modalErrors": {
+    "default": {
+      "title": "Algo anda mal...",
+      "paragraph": "No toques por qué tocas."
+    },
+    "ServerError": {
+      "title": "Error de servidor",
+      "paragraph": "Tenemos huelga de oompa loompas vuelva más tarde"
+    },
+    "UnexpectedError": {
+      "title": "Error inesperado",
+      "paragraph": "Nosotros tampoco sabemos que ha pasado, buenas tardes"
+    },
+    "BadRequestError": {
+      "title": "Datos incorrectos",
+      "paragraph": "Esperamos que al menos sepas como te llamas para registrarte en la app."
+    }
+  },
   "loginForm": {
     "title": "Bienvenido de vuelta",
     "subtitle": "Introduce tus datos de inicio de sesión",

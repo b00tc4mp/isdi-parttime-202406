@@ -1,5 +1,5 @@
 import React from "react";
-import { Landing, LogIn, SignUp, SignOut, Page404, Home } from "./pages";
+import { Landing, LogIn, SignUp, Page404, Home } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ModalContext } from "./context";
 
@@ -11,7 +11,6 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-out" element={<SignOut />} />
           <Route path="/home" element={<Home />} />
           <Route path="/not-found" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/not-found" />} />

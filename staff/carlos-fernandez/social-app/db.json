@@ -35,6 +35,22 @@
       "email": "carlosfernandezsoldado@gmail.com",
       "password": "aaAA1234@",
       "repeatPassword": "aaAA1234@"
+    },
+    {
+      "id": "0725",
+      "username": "asdaf",
+      "dateOfBirth": "01/11/2006",
+      "email": "asdaaaaa@ogma.com",
+      "password": "aaAA1234@",
+      "repeatPassword": "aaAA1234@"
+    },
+    {
+      "id": "3d2c",
+      "username": "carlinh",
+      "dateOfBirth": "01/08/2006",
+      "email": "carlosfernandezsoldado@gmail.com",
+      "password": "aaAA1234@",
+      "repeatPassword": "aaAA1234@"
     }
   ],
   "auth": {

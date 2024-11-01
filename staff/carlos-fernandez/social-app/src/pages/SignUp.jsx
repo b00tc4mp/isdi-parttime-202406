@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Footer, Header, SignupForm } from "../components";
+import { useModalError } from "../context/ModalContext";
 import registerUser from "../logic/registerUser";
 import { useNavigate } from "react-router-dom";
-import { ModalContext } from "../context";
 
 function SignUp() {
   const navigate = useNavigate();
-  const { openErrorModal } = useContext(ModalContext.Context);
+  const openModalError = useModalError();
 
   const onSubmit = (data) => {
     try {
@@ -15,14 +14,9 @@ function SignUp() {
           navigate("/login");
         })
         .catch((err) => {
-          //
+          openModalError(err);
         });
     } catch (error) {
-      openErrorModal({
-        title: "hola chicos",
-        paragraph: "este es mi mensaje de error",
-      });
-      return false;
       throw error;
     }
   };
@@ -34,19 +28,6 @@ function SignUp() {
         <SignupForm className="mx-auto" onSubmit={onSubmit} />
       </section>
       {/* <Footer /> */}
-      {/*  */}
-      <div className="fixed bottom-5 left-5 z-50">
-        {" "}
-        {/* Places button in the bottom right */}
-        <button
-          className="btn"
-          onClick={() => {
-            onSubmit({});
-          }}
-        >
-          open modal
-        </button>
-      </div>
     </>
   );
 }

@@ -10,7 +10,6 @@ const DatePicker = ({
   popoverDirection,
   useRange,
   asSingle,
-
   displayFormat,
   startFrom,
   minDate,

@@ -28,7 +28,7 @@ const registerUser = ({
   if (!Validator.username(username))
     throw new UsernameNotValidError("Username not valid");
 
-  return fetch("http://localhost:3030/users", {
+  return fetch(`${process.env.REACT_APP_API_URL}users`, {
     method: "POST",
     body: JSON.stringify({
       username,
@@ -52,7 +52,7 @@ const registerUser = ({
     .catch((err) => {
       if (err instanceof TypeError)
         throw new ServerError("Server is not connected");
-      throw new UnexpectedError();
+      throw new err();
     });
 };
 

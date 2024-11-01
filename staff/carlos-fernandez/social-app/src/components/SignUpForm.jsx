@@ -60,8 +60,9 @@ function SignupForm({ className, onSubmit }) {
       !(inputPassword.value === inputRepeatPassword.value) &&
       !Validator.password(inputPassword.value)
     ) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
       newErrors[newErrors.length - 1].order = 4;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
       inputPassword.focus();
 
       // Doesn't match && valid
