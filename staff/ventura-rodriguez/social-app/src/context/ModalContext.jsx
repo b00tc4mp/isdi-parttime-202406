@@ -5,8 +5,8 @@ const Context = createContext(null);
 
 function Provider({ children }) {
   const [data, setData] = useState({
-    title: "",
-    paragraph: "",
+    title: "hola",
+    paragraph: "que tal todo",
   });
 
   const openModalError = (error) => {
@@ -26,14 +26,14 @@ function Provider({ children }) {
       <Context.Provider value={{ openModalError }}>
         {children}
         <dialog id="modalError" className="modal">
-          <div className="modal-box bg-secondary text-secondary-content">
+          <div className="modal-box bg-error text-error-content">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
             </form>
             <h3 className="font-bold text-lg">{data.title}</h3>
-            <div className="prose prose-sm text-secondary-content">
+            <div className="prose prose-sm text-error-content">
               <p className="py-4">{data.paragraph}</p>
             </div>
           </div>

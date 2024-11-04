@@ -170,7 +170,7 @@ function SignupForm({ className, onSubmit }) {
                   onClick={() => showPassword("showpassword", "password")}
                 >
                   <IconHidePassword className="swap-on w-6 h-6" />
-                  <IconShowPassword className="swap-of w-6 h-6" />
+                  <IconShowPassword className="swap-off w-6 h-6" />
                 </button>
               </label>
               <div className="label">
