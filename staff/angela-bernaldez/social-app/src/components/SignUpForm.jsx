@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom"
-import { IconEmail, IconPassword, IconSignup, IconUsername } from "./icons";
-import classNames from "classnames"
-import { useState } from "react"
+import { Link } from "react-router-dom";
+import {
+  IconEmail,
+  IconHidePassword,
+  IconPassword,
+  IconShowPassword,
+  IconSignup,
+  IconUsername,
+} from "./icons";
+import classNames from "classnames";
+import { memo, useState } from "react";
 import ES from "../locales/es.json";
 import { Validator } from "../tools";
 import {
@@ -32,42 +39,42 @@ function SignUpForm({ className, onSubmit }) {
 
     const newErrors = [];
 
-    // if (!(inputPassword.value === inputRepeatPassword.value)) {
-    //   newErrors.push(
-    //     new PasswordNotValidError("Password and repeatPassword do not match")
-    //   );
-    //   newErrors[newErrors.length - 1].order = 4;
-    //   inputPassword.value = "";
-    //   inputRepeatPassword.value = "";
-    //   inputPassword.focus();
-    // }
+    if (!(inputPassword.value === inputRepeatPassword.value)) {
+      newErrors.push(
+        new PasswordNotValidError("Password and repeatPassword do not match")
+      );
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    }
 
-    // if (
-    //   inputPassword.value === inputRepeatPassword.value &&
-    //   !Validator.password(inputPassword.value)
-    // ) {
-    //   newErrors.push(new PasswordNotValidError("Password is not valid"));
-    //   newErrors[newErrors.length - 1].order = 4;
-    //   inputPassword.focus();
-    // }
+    if (
+      inputPassword.value === inputRepeatPassword.value &&
+      !Validator.password(inputPassword.value)
+    ) {
+      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.focus();
+    }
 
-    // if (!Validator.email(inputEmail.value)) {
-    //   newErrors.push(new EmailNotValidError("Email is not valid"));
-    //   newErrors[newErrors.length - 1].order = 3;
-    //   inputEmail.focus();
-    // }
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 3;
+      inputEmail.focus();
+    }
 
-    // if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
-    //   newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
-    //   newErrors[newErrors.length - 1].order = 2;
-    //   // inputDateOfBirth.focus();
-    // }
+    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
+      // inputDateOfBirth.focus();
+    }
 
-    // if (!Validator.username(inputUsername.value)) {
-    //   newErrors.push(new UsernameNotValidError("Username is not valid"));
-    //   newErrors[newErrors.length - 1].order = 1;
-    //   inputUsername.focus();
-    // }
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
+      inputUsername.focus();
+    }
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
@@ -91,6 +98,14 @@ function SignUpForm({ className, onSubmit }) {
     }
   };
 
+  const showPassword = (buttonSelector, inputSelector) => {
+    document
+      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+      .classList.toggle("swap-active");
+    const element = document.getElementById(inputSelector);
+    element.type = element.type === "text" ? "password" : "text";
+  };
+
   return (
     <>
       <div
@@ -112,25 +127,14 @@ function SignUpForm({ className, onSubmit }) {
                 type="text"
                 id="username"
                 name="username"
-                placeholder={ES.signupForm.inputUsername}
+                placeholder={ES.signupForm.inputUsername.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            {/*
-              <IconDateOfBirth fill="white" />
-              <input
-                datepicker
-                type="text"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                placeholder={ES.signupForm.inputDateOfBirth}
-                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-              />
-             */}  
             <DatePicker
               useRange={false}
               asSingle={true}
-              placeholder={ES.signupForm.inputDateOfBirth}
+              placeholder={ES.signupForm.inputDateOfBirth.placeholder}
               className="mb-4"
               inputId="dateOfBirth"
               inputName="dateOfBirth"
@@ -145,29 +149,56 @@ function SignUpForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder={ES.signupForm.inputEmail}
+                placeholder={ES.signupForm.inputEmail.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
-            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-              <IconPassword fill="white" />
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder={ES.signupForm.inputPassword}
-                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
-              />
-            </label>
+            <div className="form-control mb-4">
+              <label className="input input-bordered input-ghost glass flex items-center gap-2">
+                <IconPassword fill="white" />
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder={ES.signupForm.inputPassword.placeholder}
+                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                />
+                <button
+                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                  type="button"
+                  data-showpassword="true"
+                  onClick={() => showPassword("showpassword", "password")}
+                >
+                  <IconHidePassword className="swap-on w-6 h-6" />
+                  <IconShowPassword className="swap-of w-6 h-6" />
+                </button>
+              </label>
+              <div className="label">
+                <span className="label-text-alt text-white">
+                  {ES.signupForm.inputPassword.helpText}
+                </span>
+              </div>
+            </div>
             <label className="input input-bordered input-ghost glass flex items-center gap-2">
               <IconPassword fill="white" />
               <input
                 type="password"
                 id="repeatPassword"
                 name="repeatPassword"
-                placeholder={ES.signupForm.inputRepeatPassword}
+                placeholder={ES.signupForm.inputRepeatPassword.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
+              <button
+                className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                type="button"
+                data-showrepeatpassword="true"
+                onClick={() =>
+                  showPassword("showrepeatpassword", "repeatPassword")
+                }
+              >
+                <IconHidePassword className="swap-on w-6 h-6" />
+                <IconShowPassword className="swap-of w-6 h-6" />
+              </button>
             </label>
           </fieldset>
           <FormErrorsSection errors={errors} className="mb-5" />
@@ -190,4 +221,4 @@ function SignUpForm({ className, onSubmit }) {
   );
 }
 
-export default SignUpForm;
+export default memo(SignUpForm);

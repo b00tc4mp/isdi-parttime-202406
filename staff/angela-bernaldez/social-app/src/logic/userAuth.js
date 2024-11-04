@@ -13,7 +13,7 @@ const userAuth = (email, password) => {
   if (!Validator.email(email))
     throw new EmailNotValidError("Email is not valid");
 
-  return fetch("http://localhost:3030/auth", {
+  return fetch(`${process.env.REACT_APP_API_URL}auth`, {
     method: "GET",
   })
     .then((res) => {

@@ -10,7 +10,7 @@ import {
   UnexpectedError,
   UsernameNotValidError,
 } from "../tools/errors";
-import { useState } from "react"
+import { memo, useState } from "react";
 import { Validator } from "../tools"
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
@@ -42,16 +42,22 @@ function LogInForm({ className, onSubmit }) {
 
         setErrors(newErrors.length > 0 ? newErrors : null)
 
-        if (newErrors.length === 0) 
-          onSubmit({ 
-            email: inputEmail.value, 
-            password: inputPassword.value
-        }).catch((err) => {
-          if (err instanceof BadRequestError)
-            return setErrors([new CredentialsError()]);
-          if (err instanceof ServerError) return setErrors([err]);
-          setErrors([new UnexpectedError()]);
-        });
+        if (newErrors.length === 0) {
+          try {
+            onSubmit({
+              email: inputEmail.value,
+              password: inputPassword.value,
+            }).catch((err) => {
+              if (err instanceof BadRequestError)
+                return setErrors([new CredentialsError()]);
+              if (err instanceof ServerError) return setErrors([err]);
+              setErrors([new UnexpectedError()]);
+            });
+          } catch (err) {
+            err.order = 1;
+            setErrors([err]);
+          }
+        }
     }
 
     return (
@@ -89,7 +95,7 @@ function LogInForm({ className, onSubmit }) {
                   type="text"
                   id="email"
                   name="email"
-                  placeholder={ES.loginForm.inputEmail}
+                  placeholder={ES.loginForm.inputEmail.placeholder}
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
               </label>
@@ -113,7 +119,7 @@ function LogInForm({ className, onSubmit }) {
                   type="password"
                   id="password"
                   name="password"
-                  placeholder={ES.loginForm.inputPassword}
+                  placeholder={ES.loginForm.inputPassword.placeholder}
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
               </label>
@@ -150,4 +156,4 @@ function LogInForm({ className, onSubmit }) {
   }
   
 
-export default LogInForm;
+  export default memo(LogInForm)
