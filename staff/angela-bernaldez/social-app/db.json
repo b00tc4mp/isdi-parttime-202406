@@ -31,6 +31,14 @@
       "email": "borjapo@gmail.com",
       "password": "Jueves1!",
       "repeatPassword": "Jueves1!"
+    },
+    {
+      "id": "f3bf",
+      "username": "angelahola",
+      "dateOfBirth": "01/11/2006",
+      "email": "angela@gmail.com",
+      "password": "Hola123!",
+      "repeatPassword": "Hola123!"
     }
   ],
   "auth": {

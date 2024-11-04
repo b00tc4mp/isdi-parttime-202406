@@ -10,6 +10,7 @@ function Provider({ children }) {
   });
 
   const openModalError = (error) => {
+
     setData({
       title:
         ES.modalErrors[error.constructor.name]?.title ??

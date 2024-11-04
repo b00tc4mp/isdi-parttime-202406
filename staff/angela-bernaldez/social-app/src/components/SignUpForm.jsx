@@ -77,6 +77,7 @@ function SignUpForm({ className, onSubmit }) {
     }
 
     setErrors(newErrors.length > 0 ? newErrors : null);
+    debugger
 
     if (newErrors.length === 0) {
       try {
