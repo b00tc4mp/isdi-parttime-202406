@@ -51,6 +51,14 @@
       "email": "carlosfernandezsoldado@gmail.com",
       "password": "aaAA1234@",
       "repeatPassword": "aaAA1234@"
+    },
+    {
+      "id": "0b20",
+      "username": "HolaAngela",
+      "dateOfBirth": "01/11/2006",
+      "email": "carlosfernandezsoldado@gmail.com",
+      "password": "aaAA1234@",
+      "repeatPassword": "aaAA1234@"
     }
   ],
   "auth": {

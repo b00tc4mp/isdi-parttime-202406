@@ -1,16 +1,14 @@
-import { Component } from "react";
 import { Footer, Header } from "../components";
+import { withPermissions } from "../hocs";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        Soy home
-        <Footer />
-      </>
-    );
-  }
+function Home() {
+  return (
+    <>
+      <Header />
+      Soy home
+      <Footer />
+    </>
+  );
 }
 
-export default Home;
+export default withPermissions(Home);

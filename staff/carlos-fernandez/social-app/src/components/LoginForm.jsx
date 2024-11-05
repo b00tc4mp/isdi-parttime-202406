@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
-import { IconEmail, IconLogin, IconPassword } from "./icons";
+import {
+  IconEmail,
+  IconHidePassword,
+  IconLogin,
+  IconPassword,
+  IconShowPassword,
+} from "./icons";
 import classNames from "classnames";
 import { Validator } from "../tools";
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   BadRequestError,
   CredentialsError,
@@ -56,11 +62,19 @@ function LoginForm({ className, onSubmit }) {
     }
   };
 
+  const showPassword = (buttonSelector, inputSelector) => {
+    document
+      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+      .classList.toggle("swap-active");
+    const element = document.getElementById(inputSelector);
+    element.type = element.type === "text" ? "password" : "text";
+  };
+
   return (
     <>
       <div
         className={classNames(
-          "bg-neutral-800 max-w-screen-sm px-9 py-12 shadow-box",
+          "bg-neutral-800 max-w-screen-sm px-9 py-12 shadow-box overflow-y-auto",
           className
         )}
       >
@@ -91,7 +105,7 @@ function LoginForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder={ES.loginForm.inputEmail}
+                placeholder={ES.loginForm.inputEmail.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -115,9 +129,18 @@ function LoginForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder={ES.loginForm.inputPassword}
+                placeholder={ES.loginForm.inputPassword.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
+              <button
+                className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                type="button"
+                data-showpassword="true"
+                onClick={() => showPassword("showpassword", "password")}
+              >
+                <IconHidePassword className="swap-on w-6 h-6" />
+                <IconShowPassword className="swap-off w-6 h-6" />
+              </button>
             </label>
           </fieldset>
           <FormErrorsSection errors={errors} className="mb-5" />
@@ -151,4 +174,4 @@ function LoginForm({ className, onSubmit }) {
   );
 }
 
-export default LoginForm;
+export default memo(LoginForm);

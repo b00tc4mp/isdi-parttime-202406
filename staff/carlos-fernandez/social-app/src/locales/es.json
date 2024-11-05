@@ -4,7 +4,6 @@
     "default": "Revisa todos los campos",
     "EmailNotValidError": "El email introducido no es válido",
     "PasswordNotValidError": "La contraseña introducida no es válida",
-    "RepeatedPasswordNotValidError": "Las contraseñas no coinciden",
     "CredentialsError": "No existe ningún usuario con la contraseña introducida",
     "BadRequestError": "Los datos introducidos no son correctos",
     "ServerError": "Ha habido un problema inesperado, prueba de nuevo más tarde",
@@ -33,8 +32,8 @@
   "loginForm": {
     "title": "Bienvenido de vuelta",
     "subtitle": "Introduce tus datos de inicio de sesión",
-    "inputEmail": "Email",
-    "inputPassword": "Contraseña",
+    "inputEmail": { "placeholder": "Email" },
+    "inputPassword": { "placeholder": "Contraseña" },
     "submitButton": "Iniciar sesión",
     "linkToForgotPasswordPage": "¿Has olvidado la contraseña?",
     "linkToSignupPage": "Formulario de registro"
@@ -42,14 +41,16 @@
   "signupForm": {
     "title": "Únete a nuestra comunidad",
     "subtitle": "Introduce tus datos para crear tu usuario",
-    "inputUsername": "Nombre de usuario",
-    "inputDateOfBirth": "Fecha de nacimiento",
-    "inputEmail": "Email",
-    "inputPassword": "Contraseña",
-    "inputRepeatPassword": "Repita la contraseña",
+    "inputUsername": { "placeholder": "Nombre de usuario" },
+    "inputDateOfBirth": { "placeholder": "Fecha de nacimiento" },
+    "inputEmail": { "placeholder": "Email" },
+    "inputPassword": {
+      "placeholder": "Contraseña *",
+      "helpText": "* La contraseña debe tener números letras, mayúsculas y símbolos"
+    },
+    "inputRepeatPassword": { "placeholder": "Repita la contraseña" },
     "submitButton": "Registrarse",
-    "linkToLoginPage": "Formulario de entrada",
-    "passwordRegexp": "Debe contener al menos una mayúscula, un carácter especial y una longitud mínima de 8 carácteres"
+    "linkToLoginPage": "Formulario de entrada"
   },
   "pages": {
     "landing": {
