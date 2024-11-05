@@ -3,8 +3,9 @@ import { Footer, Header, SignupForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import registerUser from "../logic/registerUser";
 import { useNavigate } from "react-router-dom";
+import { withPermissions } from "../hocs";
 
-function SignUp() {
+function Signup() {
   const navigate = useNavigate();
   const openModalError = useModalError();
 
@@ -39,4 +40,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default withPermissions(Signup);

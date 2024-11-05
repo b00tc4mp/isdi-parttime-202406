@@ -197,7 +197,7 @@ function SignupForm({ className, onSubmit }) {
                 }
               >
                 <IconHidePassword className="swap-on w-6 h-6" />
-                <IconShowPassword className="swap-of w-6 h-6" />
+                <IconShowPassword className="swap-off w-6 h-6" />
               </button>
             </label>
           </fieldset>

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import ES from "../locales/es.json";
+import { withPermissions } from "../hocs";
 const {
   pages: {
     landing: { title, signupButton, loginButton },
@@ -41,4 +42,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default withPermissions(Landing);

@@ -1,17 +1,20 @@
 import { Navigate } from "react-router-dom";
+import { useRole } from "../context/RoleContext";
 
-export function Permissions({ children, isLogged, redirectPath }) {
-  if (!isLogged) return <Navigate to={redirectPath} replace />;
+export function Permissions({ children, role: _role, redirectPath }) {
+  const { role } = useRole();
+
+  if (!(_role === role)) return <Navigate to={redirectPath} replace />;
 
   return <>{children}</>;
 }
 
 const withPermissions = (Component) => {
   return (props) => {
-    const { isLogged, redirectPath, ...restProps } = props;
+    const { role, redirectPath, ...restProps } = props;
     return (
       <>
-        <Permissions isLogged={isLogged} redirectPath={redirectPath}>
+        <Permissions role={role} redirectPath={redirectPath}>
           <Component {...restProps} />
         </Permissions>
       </>

@@ -2,13 +2,13 @@ import { Footer, Header } from "../components";
 import { withPermissions } from "../hocs";
 import useUserData from "../hooks/useUserData";
 
-function Home() {
+function ProfileEdit() {
   const [user, setUser] = useUserData();
 
   return (
     <>
       <Header />
-      Soy Home
+      Soy Profile edit
       <br />
       {user.id}
       <br />
@@ -22,4 +22,4 @@ function Home() {
   );
 }
 
-export default withPermissions(Home);
+export default withPermissions(ProfileEdit);
