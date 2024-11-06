@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom"
-import { IconEmail, IconLogin, IconPassword } from "./icons"
+import {
+  IconEmail,
+  IconHidePassword,
+  IconLogin,
+  IconPassword,
+  IconShowPassword,
+} from "./icons";
 import classNames from "classnames"
 import {
   BadRequestError,
@@ -59,6 +65,14 @@ function LogInForm({ className, onSubmit }) {
           }
         }
     }
+
+    const showPassword = (buttonSelector, inputSelector) => {
+      document
+        .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+        .classList.toggle("swap-active");
+      const element = document.getElementById(inputSelector);
+      element.type = element.type === "text" ? "password" : "text";
+    };
 
     return (
       <>
@@ -122,6 +136,15 @@ function LogInForm({ className, onSubmit }) {
                   placeholder={ES.loginForm.inputPassword.placeholder}
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
+                <button
+                className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                type="button"
+                data-showpassword="true"
+                onClick={() => showPassword("showpassword", "password")}
+              >
+                <IconHidePassword className="swap-on w-6 h-6" />
+                <IconShowPassword className="swap-off w-6 h-6" />
+              </button>
               </label>
             </fieldset>
             <FormErrorsSection errors={errors} className="mb-5" />

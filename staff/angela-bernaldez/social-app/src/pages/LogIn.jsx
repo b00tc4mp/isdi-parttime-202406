@@ -1,26 +1,37 @@
+import { useMemo } from "react";
 import { Footer, Header, LogInForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
+import { useRole } from "../context/RoleContext";
+import { withPermissions } from "../hocs";
 
 function LogIn() {
   const navigate = useNavigate();
   const openModalError = useModalError();
 
-  const onSubmit = ({ email, password }) => {
-    try {
-      return userAuth(email, password) //
-        .then((token) => {
-          sessionStorage.setItem("token", token);
-          navigate("/home");
-        })
-        .catch((err) => {
-          openModalError(err);
-        });
-    } catch (error) {
-      throw error;
-    }
-  };
+  debugger
+
+  const { refreshRole } = useRole();
+  const onSubmit = useMemo(
+    () =>
+      ({ email, password }) => {
+        try {
+          return userAuth(email, password) //
+            .then((token) => {
+              sessionStorage.setItem("token", token);
+              refreshRole();
+              navigate("/home");
+            })
+            .catch((err) => {
+              openModalError(err);
+            });
+        } catch (error) {
+          throw error;
+        }
+      },
+    [navigate, openModalError]
+  );
 
   return (
     <>
@@ -36,4 +47,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default withPermissions(LogIn);
