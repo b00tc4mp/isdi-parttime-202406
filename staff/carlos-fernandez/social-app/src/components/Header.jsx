@@ -1,24 +1,21 @@
 import { Link } from "react-router-dom";
 import { IconMenu } from "./icons";
 import ES from "../locales/es.json";
+import { useRole } from "../context/RoleContext";
 
 function Header() {
+  const { role } = useRole();
   return (
     <>
       <header>
-        <nav className="navbar bg-base-100 text-black bg-secondary">
-          <div className="navbar-start">
-            {!(
-              window.location.pathname === "/sign-up" ||
-              window.location.pathname === "/login"
-            ) && <Aside />}
-          </div>
+        <nav className="navbar bg-base-100 text-black rgba-background">
+          <div className="navbar-start">{role === "user" && <Aside />}</div>
           <div className="navbar-center">
             <Link
               to="/"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className="btn btn-ghost text-xl hover:scale-105"
             >
               {ES.header.title}
             </Link>
@@ -74,7 +71,7 @@ export default Header;
 function Aside() {
   return (
     <>
-      <div className="drawer">
+      <div className="drawer text-white">
         <input id="nav-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <label
@@ -90,7 +87,7 @@ function Aside() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 py-6 !bg-base-100">
+          <ul className="menu bg-base-200 text-base-content min-h-full w-80 py-6">
             <li>
               <a>Sidebar Item 1</a>
             </li>

@@ -29,39 +29,15 @@
       "repeatPassword": "aaAA1234@"
     },
     {
-      "id": "b258",
-      "username": "asdaf",
-      "dateOfBirth": "",
-      "email": "carlosfernandezsoldado@gmail.com",
-      "password": "aaAA1234@",
-      "repeatPassword": "aaAA1234@"
-    },
-    {
       "id": "0725",
       "username": "asdaf",
       "dateOfBirth": "01/11/2006",
       "email": "asdaaaaa@ogma.com",
       "password": "aaAA1234@",
       "repeatPassword": "aaAA1234@"
-    },
-    {
-      "id": "3d2c",
-      "username": "carlinh",
-      "dateOfBirth": "01/08/2006",
-      "email": "carlosfernandezsoldado@gmail.com",
-      "password": "aaAA1234@",
-      "repeatPassword": "aaAA1234@"
-    },
-    {
-      "id": "0b20",
-      "username": "HolaAngela",
-      "dateOfBirth": "01/11/2006",
-      "email": "carlosfernandezsoldado@gmail.com",
-      "password": "aaAA1234@",
-      "repeatPassword": "aaAA1234@"
     }
   ],
   "auth": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.d001"
   }
 }

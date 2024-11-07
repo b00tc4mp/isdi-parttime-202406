@@ -1,5 +1,12 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import ES from "../locales/es.json";
+import { withPermissions } from "../hocs";
+const {
+  pages: {
+    landing: { title, signupButton, loginButton },
+  },
+} = ES;
 
 class Landing extends Component {
   render() {
@@ -14,9 +21,7 @@ class Landing extends Component {
               {/* Contenedor de los encabezados */}
               <div className="flex flex-col items-center mb-9">
                 {/* Encabezado h1 centrado */}
-                <h1 className="text-3xl text-white text-center">
-                  Welcome to MySocialApp
-                </h1>
+                <h1 className="text-3xl text-white text-center">{title}</h1>
                 {/* Encabezado h2 justo debajo y alineado a la derecha */}
                 <h2 className="text-center text-gray self-end">
                   Made by pet lovers
@@ -31,7 +36,7 @@ class Landing extends Component {
                   rel="next"
                   className="btn btn-primary btn-md"
                 >
-                  Ir al formulario de registro
+                  {signupButton}
                 </Link>
                 <Link
                   to="/login"
@@ -39,7 +44,7 @@ class Landing extends Component {
                   rel="next"
                   className="btn btn-secondary btn-md"
                 >
-                  Ir al formulario de entrada
+                  {loginButton}
                 </Link>
               </div>
             </div>
@@ -55,4 +60,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default withPermissions(Landing);
