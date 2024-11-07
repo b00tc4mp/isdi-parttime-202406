@@ -13,7 +13,7 @@ Your final project will be a culmination of all the technologies you've used so 
 ### **Methodology**:
 - **Git Flow** *(develop vs feature branches)*
 - **Issue Tracking** *(GitHub issues, commit messages)*
-- **Testing** *(test specifications)*
+- **Testing** *(specs)*
 - **Code Coverage** *(80% coverage)*
 
 ### **Server-Side**:
