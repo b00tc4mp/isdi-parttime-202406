@@ -1,1 +1,6 @@
-
+{
+  "users": [
+    { "username": "Angela", "password": "holaAngela" },
+    { "username": "Portal", "password": "algoritmia" }
+  ]
+}

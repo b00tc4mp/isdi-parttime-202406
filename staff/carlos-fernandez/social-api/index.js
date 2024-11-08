@@ -11,32 +11,52 @@ const port = 4321;
 
 const jsonBodyParser = bodyParser.json();
 
-const users = [];
-
-server.get("/", (req, res) => {
-    fs.readFile(
-        path.join(__dirname, "./db/users.json"),
-        "utf-8",
-    (err, _data) => {
-      if (err) console.log(err);
-
-      const data = JSON.parse(_data);
-      callback(null, data.users);
-    }
-  );
-}
-  res.send
-});
 // params = {username: flors}
 server.post("/users", jsonBodyParser, (req, res) => {
   const { username, password } = req.body;
 
-  users.push({ username, password });
-  res.send("User registered correctly");
+  fs.readFile(
+    path.join(__dirname, "./db/users.json"),
+    "utf-8",
+    (err, _data) => {
+      if (err) {
+        throw new Error(err);
+      }
+
+      const data = JSON.parse(_data);
+      const users = data.users;
+
+      //Existe el usuario?
+      const userDuplicated = users.some((user) => user.username === username);
+      if (userDuplicated) throw new Error("Username already in use");
+
+      //Añadir nuevo usuario a la lista users
+      users.push({ username, password }),
+        fs.writeFile(
+          path.join(__dirname, "./db/users.json"),
+          JSON.stringify({ users: users }),
+          "utf-8",
+          (err) => {
+            if (err) return callback(err);
+
+            res.send("User registered correctly");
+          }
+        );
+    }
+  );
 });
 
 server.get("/users", (req, res) => {
-  res.send(users);
+  fs.readFile(
+    path.join(__dirname, "./db/users.json"),
+    "utf-8",
+    (err, _data) => {
+      if (err) throw new Error(err);
+
+      const data = JSON.parse(_data);
+      res.send(data.users);
+    }
+  );
 });
 
 server.patch("/users", jsonBodyParser, (req, res) => {
