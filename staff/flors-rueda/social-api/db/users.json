@@ -1,1 +1,16 @@
-[{"username":"percy","password":"palito"},{"username":"percy","password":"palito"},"hola"]
+[
+    {
+        "id": 1731089558093,
+        "username": "percy",
+        "dateOfBirth": "15-11-2019",
+        "email": "perritobonito@mail.com",
+        "password": "palitos"
+    },
+    {
+        "id": 1731090353058,
+        "username": "thunder",
+        "dateOfBirth": "20-07-2020",
+        "email": "gatoagresivo@mail.com",
+        "password": "morderhumanos"
+    }
+]
