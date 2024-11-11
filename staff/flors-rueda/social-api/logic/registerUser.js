@@ -1,4 +1,4 @@
-import storage from '../db/storage.js'
+import storage from '../db/sync-storage.js'
 
 export default (username, dateOfBirth, email, password) => {
     //TODO validar tipo de input, regex, etc ---> si falla lanzar error
