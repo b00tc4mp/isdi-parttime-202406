@@ -2,7 +2,7 @@ import fs from 'fs';
 
 export default {
     getUsers(callback) {
-        fs.readFile('./users.json', 'utf-8', (error, data) => {
+        fs.readFile('./db/users.json', 'utf-8', (error, data) => {
             if (error) {
                 console.error('Error reading users data:', error);
                 return callback(error);
@@ -18,7 +18,7 @@ export default {
     },
 
     addUser(user, callback) {
-        fs.readFile('./users.json', 'utf-8', (error, data) => {
+        fs.readFile('./db/users.json', 'utf-8', (error, data) => {
             if (error) {
                 console.error('Error reading users data:', error);
                 return callback(error);
@@ -29,7 +29,7 @@ export default {
                 users.push(user);
 
                 const json = JSON.stringify(users, null, 2);
-                fs.writeFile('./users.json', json, (error) => {
+                fs.writeFile('./db/users.json', json, (error) => {
                     if (error) {
                         console.error('Error writing users data:', error);
                         return callback(error);
