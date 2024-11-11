@@ -1,6 +1,9 @@
-{
-  "users": [
-    { "username": "Angela", "password": "holaAngela" },
-    { "username": "Portal", "password": "algoritmia" }
-  ]
-}
+[
+  {
+    "id": 1731328226459,
+    "username": "percy",
+    "dateOfBirth": "15-11-2019",
+    "email": "perritobonito@mail.com",
+    "password": "palitos"
+  }
+]
