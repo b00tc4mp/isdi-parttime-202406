@@ -2,7 +2,7 @@ import _Home from "./Home.jsx";
 import _Landing from "./Landing.jsx";
 import _Login from "./Login.jsx";
 import _Page404 from "./Page404.jsx";
-import _Signup from "./Signup.jsx";
+import _Signup from "./SignUp.jsx";
 
 export const Home = _Home;
 export const Landing = _Landing;
