@@ -54,3 +54,10 @@ Out of ideas? Check out the READMEs of recent final projects for inspiration!
 - [ShowConnect](https://github.com/b00tc4mp/isdi-parttime-202403/blob/5f5a8f6efb36007ebace575551a948ffb36d5aa9/staff/jorge-hernandez/project/README.md#diff-d537994824f2fcb3af71829795a5442f3891bf69f0ea840a686eaaed8baab67b)
 - [Connecttoo](https://github.com/GoteoMamez/isdi-parttime-202403/blob/feature/project/staff/mateo-gomez/project/doc/Readme.md)
 - [Dnd master complement](https://github.com/jordi1094/isdi-parttime-202403/blob/feature/project/staff/jordi-isern/project/doc/README.md)
+
+
+**Some "backend-heavy" projects**
+
+- [b-Elevenzsd](https://github.com/sarad11/isdi-parttime-202303/tree/feature/fullstack/staff/sara-dominguez/project/doc)
+- [HiInit-Web-Terminal](https://github.com/abelpriem/HiInit-Web-Terminal)
+- [Tiddy-APP](https://github.com/pankelix/Tiddy-APP)
