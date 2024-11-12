@@ -15,6 +15,10 @@ export default {
         const json = JSON.stringify(users);
 
         fs.writeFileSync('./db/users.json', json);
+    },
+    saveUsers(newUsersArray) {
+        const json = JSON.stringify(newUsersArray);
+        fs.writeFileSync('./db/users.json', json);
     }
 }
 
