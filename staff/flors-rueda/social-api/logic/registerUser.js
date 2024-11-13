@@ -7,10 +7,9 @@ export default (username, dateOfBirth, email, password) => {
     Validator.email(email);
     Validator.password(password);
 
-
+    //then.catch (promesas)
     const userNameDuplicated = storage.users.some((user) => user.username === username);
     if (userNameDuplicated) throw new Errors.DuplicityError("Username already in use");
-    // throw new Errors.DuplicationError("Username already in use");
 
     const userEmailDuplicated = storage.users.some((user) => user.email === email);
     if (userEmailDuplicated) throw new Errors.DuplicityError("Email already in use");
@@ -24,5 +23,4 @@ export default (username, dateOfBirth, email, password) => {
     }
 
     storage.users = user;
-
 }
