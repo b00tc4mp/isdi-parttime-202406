@@ -5,6 +5,7 @@ import deleteUser from "./deleteUser.js";
 import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
 import updateUsername from "./updateUsername.js";
+import authenticateUser from "./authenticateUser.js";
 
 
 export default {
@@ -14,5 +15,6 @@ export default {
     deleteUser,
     updateEmail,
     updatePassword,
-    updateUsername
+    updateUsername,
+    authenticateUser
 }

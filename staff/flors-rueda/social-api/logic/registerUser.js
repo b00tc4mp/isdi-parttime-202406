@@ -1,5 +1,6 @@
-import storage from '../db/async-storage.js'
-import { Validator, Errors } from 'social-common'
+import storage from '../db/async-storage.js';
+import { Validator, Errors } from 'social-common';
+import bcrypt from 'bcrypt';
 
 export default (username, dateOfBirth, email, password) => {
     Validator.username(username);
@@ -8,22 +9,26 @@ export default (username, dateOfBirth, email, password) => {
     Validator.password(password);
 
     return storage.getUsers()
-        .then(users => {
-            if (users.some(user => user.username === username)) {
+        .then(patatas => {
+            if (patatas.some(user => user.username === username)) {
                 throw new Errors.DuplicityError("Username already in use");
             }
-            if (users.some(user => user.email === email)) {
+            if (patatas.some(user => user.email === email)) {
                 throw new Errors.DuplicityError("Email already in use");
             }
 
-            const user = {
-                id: Date.now(),
-                username,
-                dateOfBirth,
-                email,
-                password
-            };
+            return bcrypt.hash(password, 15)
+                .then((cryptPassword) => {
 
-            return storage.addUser(user);
+                    const user = {
+                        id: Date.now(),
+                        username,
+                        dateOfBirth,
+                        email,
+                        password: cryptPassword
+                    };
+
+                    return storage.addUser(user);
+                }).catch((error) => { throw new Errors.UnexpectedError(error.message) })
         })
 };
