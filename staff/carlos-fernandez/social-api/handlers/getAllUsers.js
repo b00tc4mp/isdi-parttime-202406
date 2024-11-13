@@ -3,14 +3,12 @@ import logic from "../logic/index.js";
 
 export default (req, res, next) => {
   const { authorization } = req.headers;
-  const { idRequested } = req.params;
-
-  const idLogged = Number(authorization.split(" ")[1]);
+  const id = Number(authorization.split(" ")[1]);
 
   try {
-    const requestedUser = logic.getOneUser(idLogged, Number(idRequested));
+    const users = logic.getAllUsers(id);
 
-    res.status(202).send(requestedUser);
+    res.status(202).send(users);
   } catch (error) {
     next(error);
   }

@@ -1,6 +1,11 @@
 import registerUser from "./registerUser.js";
-import storage from "../db/storage.js";
+import storage from "../db/sync-storage.js";
 
-registerUser("percy", "15-11-2019", "perritobonito@mail.com", "palitos");
+registerUser(
+  "              ",
+  "15-11-2019",
+  "perritobonito@mail.com",
+  "palitos"
+);
 
 console.log(storage.users);

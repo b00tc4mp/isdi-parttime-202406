@@ -1,9 +1,11 @@
 import getOneUser from "./getOneUser.js";
-import getUsers from "./getUsers.js";
+import getAllUsers from "./getAllUsers.js";
 import registerUser from "./registerUser.js";
+import updateUsername from "./updateUsername.js";
 
 export default {
   getOneUser,
-  getUsers,
+  getAllUsers,
   registerUser,
+  updateUsername,
 };
