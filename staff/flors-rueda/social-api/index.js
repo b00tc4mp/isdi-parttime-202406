@@ -3,7 +3,7 @@
 
 import express, { json } from 'express';
 import handlers from './handlers/index.js';
-import handleErrors from './middlewares/handleErrors.js';
+import { errorHandler } from './middlewares/index.js';
 
 const server = express();
 const port = 4321;
@@ -16,8 +16,7 @@ server.get('/users', handlers.getAllUsers);
 
 server.get('/users/:idRequested', handlers.getOneUser);
 
-//TODO (Flors) Arregla esto
-server.use(handleErrors)
+server.use(errorHandler)
 
 
 //TODO: Añadir un delete, patch username, patch email, patch password
