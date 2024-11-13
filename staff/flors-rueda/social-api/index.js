@@ -16,10 +16,15 @@ server.get('/users', handlers.getAllUsers);
 
 server.get('/users/:idRequested', handlers.getOneUser);
 
-server.use(errorHandler)
+server.patch('/users/username', jsonBodyParser, handlers.updateUsername);
 
+server.patch('/users/email', jsonBodyParser, handlers.updateEmail);
 
-//TODO: Añadir un delete, patch username, patch email, patch password
+server.patch('/users/password', jsonBodyParser, handlers.updatePassword);
+
+server.delete('/users', jsonBodyParser, handlers.deleteUser);
+
+server.use(errorHandler);
 
 server.listen(port, () => {
     console.log(`Server running on port:`, port)

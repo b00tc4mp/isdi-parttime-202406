@@ -1,4 +1,3 @@
-import { Errors } from "social-common";
 import logic from "../logic/index.js";
 
 export default (req, res, next) => {
@@ -8,7 +7,7 @@ export default (req, res, next) => {
     try {
         const users = logic.getAllUsers(id);
 
-        res.status(202).send(users);
+        res.status(200).send(users);
     } catch (error) {
         next(error)
     }

@@ -1,1 +1,16 @@
-[{"id":1731089558093,"username":"percy","dateOfBirth":"15-11-2019","email":"perritobonito@mail.com","password":"palitos"},{"id":1731435528897,"username":"percys","dateOfBirth":"15-11-2019","email":"perritobonitos@mail.com","password":"palitos"},{"id":1731440594109,"username":"charchi","dateOfBirth":"20/07/1995","email":"char@mail.com","password":"123456789"}]
+[
+    {
+        "id": 1731089558093,
+        "username": "percy",
+        "dateOfBirth": "15-11-2019",
+        "email": "perritobonito@mail.com",
+        "password": "palitos"
+    },
+    {
+        "id": 1731435528897,
+        "username": "percys",
+        "dateOfBirth": "15-11-2019",
+        "email": "perritobonitos@mail.com",
+        "password": "palitos"
+    }
+]
