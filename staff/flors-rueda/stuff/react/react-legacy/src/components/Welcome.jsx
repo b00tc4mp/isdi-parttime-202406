@@ -4,15 +4,15 @@ class Welcome extends Component {
 
 
     componentDidMount() {
-        console.log('POKEMON: component did mount');
+        console.log('WELCOME: component did mount');
     }
 
     componentWillUnmount() {
-        console.log('POKEMON: component will unmount');
+        console.log('WELCOME: component will unmount');
     }
 
     componentDidUpdate() {
-        console.log('POKEMON: component got updated');
+        console.log('WELCOME: component got updated');
     }
 
     render() {
