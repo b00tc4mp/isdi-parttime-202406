@@ -6,11 +6,14 @@ import express, { json } from 'express';
 import handlers from './handlers/index.js';
 import { errorHandler } from './middlewares/index.js';
 import 'dotenv/config'
+import cors from 'cors'
 
 
 const server = express();
 
 const jsonBodyParser = json();
+
+server.use(cors())
 
 server.post('/users', jsonBodyParser, /*Más middlewares*/ handlers.registerUser);
 
