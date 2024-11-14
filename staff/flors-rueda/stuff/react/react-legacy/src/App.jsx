@@ -3,19 +3,26 @@ import Welcome from './components/Welcome';
 import Loader from './components/Loader';
 import Pokemon from './components/Pokemon'
 import Randomizer from './components/Randomizer';
+import Footer from './components/Footer';
 
-class App extends Component {
+class App extends Component { //const App = ({infoUser}) =>
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: null,
-      loading: true,
+      pokemon: null, // const [pokemon, setPokemon] = useState(null)
+      loading: false, // const [loading, setLoading] = useState(false)
     };
   };
 
+  /*
+  useEffect(( ) => {
+    console.log('APP: component got updated');
+  }, [pokemon, loading])
+  
+  */
+
   componentDidMount() {
     console.log('APP: component did mount');
-    this.setState({ loading: false })
   };
 
   componentWillUnmount() {
@@ -50,8 +57,9 @@ class App extends Component {
           }
         </div>
         {
-          !loading && <Randomizer setRandomPokemon={(newState) => this.setState(newState)} />
+          !loading && <Randomizer setRandomPokemon={(newState) => this.setState(newState)} pokemon={pokemon} loading={loading} />
         }
+        <Footer />
       </div>
     );
   }

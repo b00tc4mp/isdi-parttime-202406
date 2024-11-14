@@ -1,21 +1,33 @@
-import { Component } from 'react';
 import Welcome from './components/Welcome';
 import Loader from './components/Loader';
 import Pokemon from './components/Pokemon'
 import Randomizer from './components/Randomizer';
+import { useState, useEffect } from 'react';
 
-class App extends Component {
+const App = () => {
+  const [pokemon, setPokemon] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  /*
   constructor(props) {
     super(props);
     this.state = {
       pokemon: null,
-      loading: true,
+      loading: false,
     };
-  };
+  };*/
 
+  useEffect(() => {
+    console.log('APP: component did mount');
+  }, [])
+
+  useEffect(() => {
+    console.log('APP: component got updated');
+  }, [pokemon, loading])
+
+  /*
   componentDidMount() {
     console.log('APP: component did mount');
-    this.setState({ loading: false })
   };
 
   componentWillUnmount() {
@@ -24,37 +36,36 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log('APP: component got updated');
-  };
+  };*/
 
 
+  /*
+    render() {
+      const { pokemon, loading } = this.state;*/
 
-  render() {
-    const { pokemon, loading } = this.state;
-
-    return (
-      <div className='flex w-full h-full justify-center items-center flex-col pt-16'>
-        <h1 className='font-extrabold text-2xl'>Random Pokémon</h1>
-        <div className='flex w-full flex-col justify-center items-center pb-4'>
-          {
-            loading ?
+  return (
+    <div className='flex w-full h-full justify-center items-center flex-col pt-16'>
+      <h1 className='font-extrabold text-2xl'>Random Pokémon</h1>
+      <div className='flex w-full flex-col justify-center items-center pb-4'>
+        {
+          loading ?
+            (
+              <Loader />
+            )
+            :
+            pokemon ?
               (
-                <Loader />
+                <Pokemon pokemon={pokemon} />
               )
               :
-              pokemon ?
-                (
-                  <Pokemon pokemon={pokemon} />
-                )
-                :
-                <Welcome />
-          }
-        </div>
-        {
-          !loading && <Randomizer setRandomPokemon={(newState) => this.setState(newState)} />
+              <Welcome />
         }
       </div>
-    );
-  }
+      {
+        !loading && <Randomizer propSetPokemon={setPokemon} propSetLoading={setLoading} />
+      }
+    </div>
+  );
 }
 
 export default App

@@ -1,45 +1,37 @@
 import { Component } from 'react';
 import getRandomPokemon from '../logic/getRandomPokemon';
+import { useEffect } from 'react';
 
-class Randomizer extends Component {
-    fetchRandomPokemon = () => {
-        this.props.setRandomPokemon({ loading: true });
+const Randomizer = ({ propSetPokemon, propSetLoading }) => {
+
+    const fetchRandomPokemon = () => {
+        propSetLoading(true);
         getRandomPokemon()
             .then((pokeData) => {
-                this.props.setRandomPokemon({
-                    pokemon: pokeData,
-                    loading: false,
-                });
+                propSetPokemon(pokeData);
+                propSetLoading(false);
             })
             .catch((error) => {
                 alert(error.message);
-                this.props.setRandomPokemon({ loading: false });
+                propSetLoading(false);
             });
     };
 
-    componentDidMount() {
-        console.log('APP: component did mount');
-    };
 
-    componentWillUnmount() {
-        console.log('APP: component will unmount');
-    };
-
-    componentDidUpdate() {
-        console.log('APP: component got updated');
-    };
+    useEffect(() => {
+        console.log('Randomizer: component did mount');
+    }, [])
 
 
 
-    render() {
-        return (
-            <button
-                className='shadow-sm border border-s px-4 hover:shadow-md'
-                onClick={this.fetchRandomPokemon}>
-                Randomize Pokémon
-            </button>
-        );
-    }
+    return (
+        <button
+            className='shadow-sm border border-s px-4 hover:shadow-md'
+            onClick={fetchRandomPokemon}>
+            Randomize Pokémon
+        </button>
+    );
 }
+
 
 export default Randomizer

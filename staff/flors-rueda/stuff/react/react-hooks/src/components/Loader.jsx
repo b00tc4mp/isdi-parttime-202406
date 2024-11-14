@@ -1,31 +1,26 @@
 import { Component } from 'react';
+import { useEffect } from 'react';
 
-class Loader extends Component {
-    componentDidMount() {
-        console.log('Loader: component did mount')
-    }
+const Loader = () => {
 
-    componentWillUnmount() {
-        console.log('Loader: component will unmount')
-    }
+    useEffect(() => {
+        console.log('Loader: component did mount');
+    }, [])
 
-    componentDidUpdate() {
-        console.log('Loader: component got updated')
-    }
 
-    render() {
-        return (
-            <>
-                <p className='font-bold text-xl pb-5'>
-                    Loading...
-                </p>
-                <img
-                    src='loading.png'
-                    alt='loading'
-                    className='w-56 h-56'
-                />
-            </>)
-    }
+
+    return (
+        <>
+            <p className='font-bold text-xl pb-5'>
+                Loading...
+            </p>
+            <img
+                src='loading.png'
+                alt='loading'
+                className='w-56 h-56'
+            />
+        </>)
 }
+
 
 export default Loader

@@ -18,18 +18,16 @@ class Randomizer extends Component {
     };
 
     componentDidMount() {
-        console.log('APP: component did mount');
+        console.log('Randomizer: component did mount');
     };
 
     componentWillUnmount() {
-        console.log('APP: component will unmount');
+        console.log('Randomizer: component will unmount');
     };
 
     componentDidUpdate() {
-        console.log('APP: component got updated');
+        console.log('Randomizer: component got updated');
     };
-
-
 
     render() {
         return (
