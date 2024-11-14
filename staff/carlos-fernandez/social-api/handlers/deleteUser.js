@@ -2,15 +2,14 @@ import logic from "../logic/index.js";
 
 export default (req, res, next) => {
   const { authorization } = req.headers;
-  //De donde viene idRequested??
-  const { idRequested } = req.params;
 
   const idLogged = Number(authorization.split(" ")[1]);
+  const { password } = req.body;
 
   try {
-    const requestedUser = logic.getOneUser(idLogged, Number(idRequested));
+    logic.deleteUser(idLogged, password);
 
-    res.status(200).send(requestedUser);
+    res.status(200).send();
   } catch (error) {
     next(error);
   }

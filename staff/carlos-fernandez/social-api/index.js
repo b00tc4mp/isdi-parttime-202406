@@ -1,5 +1,6 @@
 // https://expressjs.com/es/starter/hello-world.html
 // https://expressjs.com/en/resources/middleware/body-parser.html
+// https://www.npmjs.com/package/dotenv
 
 import express, { json } from "express";
 import handlers from "./handlers/index.js";
@@ -10,7 +11,11 @@ const server = express();
 
 const jsonBodyParser = json();
 
-server.post("/users", jsonBodyParser, handlers.registerUser);
+server.post(
+  "/users",
+  jsonBodyParser,
+  /*Más middlewares*/ handlers.registerUser
+);
 
 server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
 
@@ -18,10 +23,15 @@ server.get("/users", handlers.getAllUsers);
 
 server.get("/users/:idRequested", handlers.getOneUser);
 
-//TODO (Flors) Arregla esto
-server.use(errorHandler);
+server.patch("/users/username", jsonBodyParser, handlers.updateUsername);
 
-//TODO: Añadir un delete, patch username, patch email, patch password
+server.patch("/users/email", jsonBodyParser, handlers.updateEmail);
+
+server.patch("/users/password", jsonBodyParser, handlers.updatePassword);
+
+server.delete("/users", jsonBodyParser, handlers.deleteUser);
+
+server.use(errorHandler);
 
 server.listen(process.env.PORT, () => {
   console.log(`Server running on port:`, process.env.PORT);
