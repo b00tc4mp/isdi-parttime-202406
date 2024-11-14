@@ -114,4 +114,11 @@ export class ContentError extends Error {
   }
 }
 
-/*TODO añadir Content, Confirmation*/
+export class ConfirmationError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ConfirmationError);
+    }
+  }
+}
