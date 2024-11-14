@@ -380,3 +380,17 @@ However, React does prioritize when certain hooks are executed during the render
 
 - useState is executed during the render phase (when React builds the virtual DOM).
 - useEffect is executed during after the render phase (after the DOM has been updated).
+
+
+## To hook or not to hook
+
+React keeps evolving to a more easy to use and understand code, that's why a future feature called React Compiler will simplify even more the use of hooks, leaving some like `useMemo` or `useCallback` outdated as the use of Class Components is nowadays.
+
+
+## References and Docs
+
+- [React Legacy Docs](https://legacy.reactjs.org/docs/getting-started.html)
+- [React Docs](https://react.dev/learn)
+- [React Compiler](https://react.dev/learn/react-compiler)
+- [A Deep Dive Into React Fiber](https://blog.logrocket.com/deep-dive-react-fiber/)
+- [React Hooks vs. Classes: The Ultimate Comparison [with Code Examples]](https://www.bitovi.com/blog/react-hooks-vs-classes-the-ultimate-comparison)
