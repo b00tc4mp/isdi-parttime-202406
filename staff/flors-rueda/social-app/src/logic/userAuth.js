@@ -1,4 +1,4 @@
-import { Validator } from "../tools";
+/*import { Validator } from "../tools";
 import {
   BadRequestError,
   EmailNotValidError,
@@ -33,5 +33,5 @@ const userAuth = (email, password) => {
       throw new UnexpectedError();
     });
 };
-
-export default userAuth;
+*/
+export default 'hola';
