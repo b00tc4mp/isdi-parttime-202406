@@ -1,8 +1,7 @@
 import { Errors } from "social-common";
 
-export default (error, req, res) => {
-  console.log("HOLA3!", error);
-  let errorStatus = 418;
+export default (error, req, res, next) => {
+  let errorStatus = 500;
 
   if (
     error instanceof Errors.EmailNotValidError ||
@@ -26,5 +25,5 @@ export default (error, req, res) => {
     errorStatus = 404;
   }
 
-  res.status(errorStatus).send(`${error.constructor.name}: ${error.message}`);
+  res.status(errorStatus).send(`${error.constructor.name}: ${error.message}.`);
 };
