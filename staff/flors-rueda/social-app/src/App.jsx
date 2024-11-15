@@ -3,10 +3,10 @@ import { Landing, Login, Signup, Page404, Home } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ModalContext } from "./context";
 import { useUpdate } from "react-use";
+import logic from "./logic";
 
 function App() {
   const update = useUpdate();
-  const isLogged = Boolean(sessionStorage.getItem("token"));
 
   return (
     <ModalContext.Provider>
@@ -17,7 +17,7 @@ function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route
             path="/home"
-            element={<Home isLogged={isLogged} redirectPath="/login" />}
+            element={<Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
           <Route path="/not-found" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/not-found" />} />

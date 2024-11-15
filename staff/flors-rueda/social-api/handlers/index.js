@@ -6,6 +6,7 @@ import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
 import updateUsername from "./updateUsername.js";
 import authenticateUser from "./authenticateUser.js";
+import getAuthUser from "./getAuthUser.js";
 
 
 export default {
@@ -16,5 +17,6 @@ export default {
     updateEmail,
     updatePassword,
     updateUsername,
-    authenticateUser
+    authenticateUser,
+    getAuthUser
 }

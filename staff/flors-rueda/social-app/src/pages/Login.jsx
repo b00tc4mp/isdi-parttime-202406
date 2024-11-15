@@ -13,8 +13,7 @@ function Login({ updateFather }) {
       ({ email, password }) => {
         try {
           return userAuth(email, password) //
-            .then((token) => {
-              sessionStorage.setItem("token", token);
+            .then(() => {
               updateFather();
               navigate("/home");
             })

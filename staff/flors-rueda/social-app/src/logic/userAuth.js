@@ -1,37 +1,29 @@
-/*import { Validator } from "../tools";
-import {
-  BadRequestError,
-  EmailNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-} from "../tools/errors";
+import { Validator, Errors } from "social-common";
 
 const userAuth = (email, password) => {
-  if (!Validator.password(password))
-    throw new PasswordNotValidError("Password is not valid");
-  if (!Validator.email(email))
-    throw new EmailNotValidError("Email is not valid");
+  Validator.password(password)
+  Validator.email(email)
 
-  return fetch(`${process.env.REACT_APP_API_URL}auth`, {
-    method: "GET",
+  return fetch(`${process.env.REACT_APP_API_URL}users/auth`, {
+    method: "POST",
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
   })
     .then((res) => {
-      if (res.status >= 400 && res.status < 500)
-        throw new BadRequestError("Credentials not found");
-      if (res.status >= 500 && res.status < 600)
-        throw new ServerError("Server not work as expected");
-      if (!(res.status >= 200 && res.status < 300)) throw new UnexpectedError();
-      if (!(res.ok === true)) throw new UnexpectedError();
+      if (res.status !== 200)
+        throw new Errors.BadRequestError(res.json());
 
       return res.json();
     })
-    .then((data) => data.token)
+    .then((token) => sessionStorage.setItem("token", token))
     .catch((err) => {
       if (err instanceof TypeError)
-        throw new ServerError("Server in not connected");
-      throw new UnexpectedError();
+        throw new Errors.ServerError("Server in not connected");
+      throw new Errors.UnexpectedError();
     });
 };
-*/
-export default 'hola';
+
+
+export default userAuth;

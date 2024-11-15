@@ -47,5 +47,12 @@
         "dateOfBirth": "11/10/2006",
         "email": "carlosa@mail.com",
         "password": "$2b$15$GIj/uIIirtUjvzQpP2VkKOSvtw/eKEI47hlZi4eeDvfS2VfEt4/Ia"
+    },
+    {
+        "id": 1731691076141,
+        "username": "cosmo",
+        "dateOfBirth": "31/10/2006",
+        "email": "cosmo@gato.com",
+        "password": "$2b$15$NRZqHWvndKrFqv2laHPs5eu8GSI5y8VqnFqTnSVJOPOn213Sfk56i"
     }
 ]

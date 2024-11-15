@@ -1,5 +1,7 @@
 import { Errors } from "social-common";
 
+
+//TODO: funciona??
 export default (error, req, res, next) => {
     let errorStatus = 500;
 
@@ -16,5 +18,5 @@ export default (error, req, res, next) => {
         errorStatus = 404;
     }
 
-    res.status(errorStatus).send(`${error.constructor.name}: ${error.message}.`);
+    res.status(errorStatus).json(error.constructor.name, error.message);
 }
