@@ -1,22 +1,24 @@
 import * as Errors from "./errors.js";
 
-
 class Validator {
   static email(value) {
-    if (typeof value !== 'string') throw new TypeError("Email is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Email is empty");
+    if (typeof value !== "string") throw new TypeError("Email is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Email is empty");
 
     const regExp = new RegExp(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
 
-    if (!regExp.test(value)) throw new Errors.EmailNotValidError("Email format is not valid");
-
+    if (!regExp.test(value))
+      throw new Errors.EmailNotValidError("Email format is not valid");
   }
 
   static password(value) {
-    if (typeof value !== 'string') throw new TypeError("Password is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Password is empty");
+    if (typeof value !== "string")
+      throw new TypeError("Password is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Password is empty");
 
     /*const regExp = new RegExp(
       /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;"'<>?,./~`-])(?=.{8,})/
@@ -25,15 +27,19 @@ class Validator {
   }
 
   static username(value) {
-    if (typeof value !== 'string') throw new TypeError("Username is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Username is empty");
+    if (typeof value !== "string")
+      throw new TypeError("Username is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Username is empty");
     const regExp = new RegExp(/^[a-zA-Z0-9]{1,12}$/);
-    if (!regExp.test(value)) throw new Errors.UsernameNotValidError("Username format is not valid")
+    if (!regExp.test(value))
+      throw new Errors.UsernameNotValidError("Username format is not valid");
   }
 
   static dateOfBirth(value) {
-    if (typeof value !== 'string') throw new TypeError("Date is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Date is empty");
+    if (typeof value !== "string") throw new TypeError("Date is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Date is empty");
 
     /*TODO: (FLORS) que hace este regex?!?
     
@@ -46,6 +52,11 @@ class Validator {
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");*/
+  }
+
+  static confirmationPassword(value1, value2) {
+    if (!(value1 === value2))
+      throw Errors.ConfirmationError("Passwords do not match");
   }
 }
 

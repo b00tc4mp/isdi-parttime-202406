@@ -36,11 +36,11 @@ export class DateOfBirthNotValidError extends Error {
   }
 }
 
-export class RepeatedPasswordNotValidError extends Error {
+export class ConfirmationError extends Error {
   constructor(message) {
     super(message);
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, RepeatedPasswordNotValidError);
+      Error.captureStackTrace(this, ConfirmationError);
     }
   }
 }

@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "react-tailwindcss-datepicker": "1.7.2",
     "react-use": "17.5.1",
+    "social-common": "link:..\\social-common",
     "web-vitals": "2.1.4"
   },
   "scripts": {
