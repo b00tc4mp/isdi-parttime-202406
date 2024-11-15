@@ -30,6 +30,7 @@ const registerUser = ({
     body: JSON.stringify(user)
   })
     .then((res) => {
+      //TODO corregir mensaje de error porque el .json es asincrono
       if (res.status !== 201) throw new Errors.ServerError(res.json());
 
       return;

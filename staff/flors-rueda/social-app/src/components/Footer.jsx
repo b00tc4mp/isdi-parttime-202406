@@ -1,7 +1,9 @@
 function Footer() {
+
+  //TODO: mover abajo
   return (
     <>
-      <footer>hola soy el compo de Footer</footer>
+      <footer className="hidden">hola soy el compo de Footer</footer>
     </>
   );
 }
