@@ -25,10 +25,6 @@ server.get("/users/:idRequested", handlers.getOneUser);
 
 server.patch("/users/username", jsonBodyParser, handlers.updateUsername);
 
-server.patch("/users/email", jsonBodyParser, handlers.updateEmail);
-
-server.patch("/users/password", jsonBodyParser, handlers.updatePassword);
-
 server.delete("/users", jsonBodyParser, handlers.deleteUser);
 
 server.use(errorHandler);
