@@ -1,5 +1,6 @@
 import storage from "../db/async-storage.js";
 import { Validator, Errors } from "social-common";
+import bcrypt from "bcrypt";
 
 export default (username, dateOfBirth, email, password) => {
   Validator.username(username);
@@ -15,13 +16,22 @@ export default (username, dateOfBirth, email, password) => {
       throw new Errors.DuplicityError("Email already in use");
     }
 
-    const user = {
-      id: Date.now(),
-      username,
-      dateOfBirth,
-      email,
-      password,
-    };
-    return storage.addUser(user);
+    // Se procesa 15 veces
+    return bcrypt
+      .hash(password, 15)
+      .then((cryptPassword) => {
+        const user = {
+          id: Date.now(),
+          username,
+          dateOfBirth,
+          email,
+          password: cryptPassword,
+        };
+
+        return storage.addUser(user);
+      })
+      .catch((error) => {
+        throw new Errors.UnexpectedError(error.message);
+      });
   });
 };

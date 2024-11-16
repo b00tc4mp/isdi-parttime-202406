@@ -21,7 +21,7 @@ const registerUser = ({
   password,
   repeatPassword,
 }) => {
-  Validator.username(usename);
+  Validator.username(username);
   Validator.dateOfBirth(dateOfBirth);
   Validator.email(email);
   Validator.password(password);
@@ -44,7 +44,7 @@ const registerUser = ({
     })
     .catch((error) => {
       if (error instanceof TypeError)
-        throw new ServerError("Server is not connected");
+        throw new Errors.ServerError("Server is not connected");
       throw new error();
     });
 };

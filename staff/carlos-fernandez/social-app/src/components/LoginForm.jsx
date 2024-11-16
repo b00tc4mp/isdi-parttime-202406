@@ -9,14 +9,7 @@ import {
 import classNames from "classnames";
 import { Validator } from "../tools";
 import { memo, useState } from "react";
-import {
-  BadRequestError,
-  CredentialsError,
-  EmailNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-} from "../tools/errors";
+import { Errors } from "social-common";
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
 
@@ -31,13 +24,13 @@ function LoginForm({ className, onSubmit }) {
     const newErrors = [];
 
     if (!Validator.password(inputPassword.value)) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
       newErrors[newErrors.length - 1].order = 2;
       inputPassword.focus();
     }
 
     if (!Validator.email(inputEmail.value)) {
-      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
       newErrors[newErrors.length - 1].order = 1;
       inputEmail.focus();
     }
@@ -50,10 +43,10 @@ function LoginForm({ className, onSubmit }) {
           email: inputEmail.value,
           password: inputPassword.value,
         }).catch((err) => {
-          if (err instanceof BadRequestError)
-            return setErrors([new CredentialsError()]);
-          if (err instanceof ServerError) return setErrors([err]);
-          setErrors([new UnexpectedError()]);
+          if (err instanceof Errors.BadRequestError)
+            return setErrors([new Errors.CredentialsError()]);
+          if (err instanceof Errors.ServerError) return setErrors([err]);
+          setErrors([new Errors.UnexpectedError()]);
         });
       } catch (err) {
         err.order = 1;
@@ -90,12 +83,12 @@ function LoginForm({ className, onSubmit }) {
                 "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
                 {
                   "input-error bg-error": errors?.some(
-                    (error) => error instanceof EmailNotValidError
+                    (error) => error instanceof Errors.EmailNotValidError
                   ),
                   "input-success bg-success":
                     errors instanceof Array &&
                     !errors?.some(
-                      (error) => error instanceof EmailNotValidError
+                      (error) => error instanceof Errors.EmailNotValidError
                     ),
                 }
               )}
@@ -114,12 +107,12 @@ function LoginForm({ className, onSubmit }) {
                 "input input-bordered input-ghost glass flex items-center gap-2",
                 {
                   "input-error bg-error": errors?.some(
-                    (error) => error instanceof PasswordNotValidError
+                    (error) => error instanceof Errors.PasswordNotValidError
                   ),
                   "input-success bg-success":
                     errors instanceof Array &&
                     !errors?.some(
-                      (error) => error instanceof PasswordNotValidError
+                      (error) => error instanceof Errors.PasswordNotValidError
                     ),
                 }
               )}
