@@ -25,5 +25,5 @@ export default (error, req, res, next) => {
     errorStatus = 404;
   }
 
-  res.status(errorStatus).send(`${error.constructor.name}: ${error.message}.`);
+  res.status(errorStatus).json(error.constructor.name, error.message);
 };

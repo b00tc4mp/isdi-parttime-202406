@@ -3,22 +3,19 @@ import { Footer, Header, LoginForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
-import { useRole } from "../context/RoleContext";
 import { withPermissions } from "../hocs";
 
 function Login() {
   const navigate = useNavigate();
   const openModalError = useModalError();
-  const { refreshRole } = useRole();
 
   const onSubmit = useMemo(
     () =>
       ({ email, password }) => {
         try {
-          return userAuth(email, password)
-            .then((token) => {
-              sessionStorage.setItem("token", token);
-              refreshRole();
+          return userAuth(email, password) //
+            .then(() => {
+              updateFather();
               navigate("/home");
             })
             .catch((err) => {

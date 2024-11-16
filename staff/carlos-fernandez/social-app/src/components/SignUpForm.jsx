@@ -10,17 +10,7 @@ import {
 import classNames from "classnames";
 import { memo, useState } from "react";
 import ES from "../locales/es.json";
-import { Validator } from "../tools";
-import {
-  BadRequestError,
-  EmailNotValidError,
-  DateOfBirthNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-  UsernameNotValidError,
-  RepeatedPasswordNotValidError,
-} from "../tools/errors";
+import { Validator, Errors } from "social-common";
 import { DatePicker, FormErrorsSection } from ".";
 import moment from "moment";
 
@@ -42,21 +32,23 @@ function SignupForm({ className, onSubmit }) {
 
     //////////////////////// USERNAME ERROR ////////////////////////
     if (!Validator.username(inputUsername.value)) {
-      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
       newErrors[newErrors.length - 1].order = 1;
       inputUsername.focus();
     }
 
     //////////////////////// DATE OF BIRTH ERROR ////////////////////////
     if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
-      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors.push(
+        new Errors.DateOfBirthNotValidError("DateOfBirth is not valid")
+      );
       newErrors[newErrors.length - 1].order = 2;
       //inputDateOfBirth.focus();
     }
 
     //////////////////////// EMAIL ERROR ////////////////////////
     if (!Validator.email(inputEmail.value)) {
-      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
       newErrors[newErrors.length - 1].order = 3;
       inputEmail.focus();
     }
@@ -78,7 +70,7 @@ function SignupForm({ className, onSubmit }) {
       Validator.password(inputPassword)
     ) {
       newErrors.push(
-        new RepeatedPasswordNotValidError(
+        new Errors.RepeatedPasswordNotValidError(
           "Password and repeatPassword do not match"
         )
       );
@@ -92,7 +84,7 @@ function SignupForm({ className, onSubmit }) {
       inputPassword.value === inputRepeatPassword.value &&
       !Validator.password(inputPassword.value)
     ) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
       newErrors[newErrors.length - 1].order = 4;
       inputPassword.value = "";
       inputRepeatPassword.value = "";
@@ -110,9 +102,10 @@ function SignupForm({ className, onSubmit }) {
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((err) => {
-          if (err instanceof BadRequestError) return setErrors([err]);
-          if (err instanceof ServerError) return setErrors([err]);
-          setErrors([new UnexpectedError()]);
+          if (err instanceof Errors.BadRequestError)
+            return setErrors([new Errors.CredentialsError()]);
+          if (err instanceof Errors.ServerError) return setErrors([err]);
+          setErrors([new Errors.UnexpectedError()]);
         });
       } catch (err) {
         err.order = 1;

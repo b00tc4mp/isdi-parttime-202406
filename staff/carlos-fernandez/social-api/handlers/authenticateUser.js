@@ -18,7 +18,7 @@ export default (req, res, next) => {
           process.env.JWT_SECRET
         );
 
-        res.status(200).send(token);
+        res.status(200).json(token);
       })
       .catch((error) => next(error));
   } catch (error) {

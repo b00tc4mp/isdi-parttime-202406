@@ -7,9 +7,8 @@ import {
   IconShowPassword,
 } from "./icons";
 import classNames from "classnames";
-import { Validator } from "../tools";
 import { memo, useState } from "react";
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common";
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
 

@@ -10,8 +10,12 @@ import {
 } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ModalContext, RoleContext } from "./context";
+import { useUpdate } from "react-use";
+import logic from "./logic";
 
 function App() {
+  const update = useUpdate();
+
   return (
     <RoleContext.Provider>
       <ModalContext.Provider>
@@ -31,7 +35,9 @@ function App() {
             />
             <Route
               path="/home"
-              element={<Home role="user" redirectPath="/login" />}
+              element={
+                <Home isLogged={logic.isUserLoggedIN()} redirectPath="/login" />
+              }
             />
             <Route
               path="/profile"

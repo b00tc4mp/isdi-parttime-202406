@@ -1,19 +1,5 @@
 import { Validator, Errors } from "social-common";
 
-/*
-
-Ya no importamos esto desde /tools/errors, ya que hemos instalado social-common y lo importamos desde ahí
-
-import {
-  BadRequestError,
-  DateOfBirthNotValidError,
-  EmailNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-  UsernameNotValidError,
-} from "../tools/errors";*/
-
 const registerUser = ({
   username,
   dateOfBirth,
@@ -28,24 +14,29 @@ const registerUser = ({
   Validator.password(repeatPassword);
   Validator.confirmationPassword(password, repeatPassword);
 
+  const user = {
+    username,
+    "date-of-birth": dateOfBirth,
+    email,
+    password,
+  };
+
   return fetch(`${process.env.REACT_APP_API_URL}users`, {
     method: "POST",
-    body: JSON.stringify({
-      username,
-      "date-of-birth": dateOfBirth,
-      email,
-      password,
-    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(user),
   })
     .then((res) => {
-      if (!(res.ok === true)) throw new Errors.ServerError(res.json());
+      if (res.status !== 201) throw new Errors.ServerError(res.json());
 
-      return res.json();
+      return;
     })
     .catch((error) => {
       if (error instanceof TypeError)
-        throw new Errors.ServerError("Server is not connected");
-      throw new error();
+        throw new Errors.ServerError("Server in not connected");
+      throw error;
     });
 };
 

@@ -6,10 +6,13 @@ import express, { json } from "express";
 import handlers from "./handlers/index.js";
 import { errorHandler } from "./middlewares/index.js";
 import "dotenv/config";
+import cors from "cors";
 
 const server = express();
 
 const jsonBodyParser = json();
+
+server.use(cors());
 
 server.post(
   "/users",
@@ -18,6 +21,8 @@ server.post(
 );
 
 server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
+
+server.get("/users/auth", handlers.getAuthUser);
 
 server.get("/users", handlers.getAllUsers);
 

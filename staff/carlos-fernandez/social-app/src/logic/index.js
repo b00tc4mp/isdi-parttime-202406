@@ -1,11 +1,13 @@
-import getUser from "./getUserData.js";
 import registerUser from "./registerUser.js";
 import userAuth from "./userAuth.js";
+import isUserLoggedIn from "./isUserLoggedIn.js";
+import logout from "./logout.js";
 
 const logic = {
-  getUser,
   registerUser,
   userAuth,
+  isUserLoggedIn,
+  logout,
 };
 
 export default logic;
