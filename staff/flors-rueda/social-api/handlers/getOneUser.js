@@ -9,7 +9,7 @@ export default (req, res, next) => {
     try {
         const requestedUser = logic.getOneUser(id, username);
 
-        res.status(200).send(requestedUser);
+        res.status(200).send({ user: requestedUser });
     } catch (error) {
         next(error)
     }

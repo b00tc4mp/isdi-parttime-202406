@@ -38,11 +38,11 @@ const registerUser = ({
         */
     .then((res) => {
       if (res.status === 201) return;
-      return res.json();
-    })
-    .then(body => {
-      const constructor = Errors[body.name]
-      throw new constructor(`${body.message}`);
+      return res.json()
+        .then(body => {
+          const constructor = Errors[body.name]
+          throw new constructor(`${body.message}`);
+        })
     })
     .catch((error) => {
       if (error instanceof TypeError)

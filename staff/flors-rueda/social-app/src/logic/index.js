@@ -4,6 +4,8 @@ import isUserLoggedIn from "./isUserLoggedIn.js";
 import logout from "./logout.js";
 import getAuthUsername from "./getAuthUsername.js";
 import updateUsername from "./updateUsername.js";
+import updateEmail from "./updateEmail.js";
+import updatePassword from "./updatePassword.js";
 
 const logic = {
   registerUser,
@@ -11,7 +13,9 @@ const logic = {
   isUserLoggedIn,
   logout,
   getAuthUsername,
-  updateUsername
+  updateUsername,
+  updateEmail,
+  updatePassword
 };
 
 export default logic;

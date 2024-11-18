@@ -7,9 +7,9 @@ export default (req, res, next) => {
     const { id } = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET)
 
     try {
-        const username = logic.getAuthUser(Number(id));
+        const user = logic.getAuthUser(Number(id));
 
-        res.status(200).json(username);
+        res.status(200).json(user);
     } catch (error) {
         next(error)
     }

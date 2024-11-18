@@ -7,7 +7,7 @@ export default (req, res, next) => {
     try {
         const users = logic.getAllUsers(id);
 
-        res.status(200).send(users);
+        res.status(200).json({ users: users });
     } catch (error) {
         next(error)
     }

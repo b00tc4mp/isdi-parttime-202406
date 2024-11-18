@@ -1,17 +1,17 @@
 import { Errors, Validator } from "social-common"
 
-export default (username) => {
-    //Validator.username(username);
+export default (email) => {
+    Validator.email(email);
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users/username`, {
+    return fetch(`${process.env.REACT_APP_API_URL}users/email`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ username: username })
+        body: JSON.stringify({ email: email })
     })
         .then((res) => {
             if (res.status === 200) return;
