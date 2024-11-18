@@ -12,12 +12,14 @@ const userAuth = (email, password) => {
     body: JSON.stringify({ email, password })
   })
     .then((res) => {
-      if (res.status !== 200)
-        throw new Errors.BadRequestError(res.json());
-
+      if (res.status === 200) return res.json()
+        .then(token => sessionStorage.setItem("token", token));
       return res.json();
     })
-    .then((token) => sessionStorage.setItem("token", token))
+    .then(body => {
+      const constructor = Errors[body.name]
+      throw new constructor(`${body.message}`);
+    })
     .catch((err) => {
       if (err instanceof TypeError)
         throw new Errors.ServerError("Server in not connected");

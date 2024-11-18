@@ -1,7 +1,7 @@
 import { Errors, Validator } from "social-common"
 
 export default (username) => {
-    Validator.username(username);
+    //Validator.username(username);
 
     const token = sessionStorage.getItem("token");
 
@@ -14,13 +14,15 @@ export default (username) => {
         body: JSON.stringify({ username: username })
     })
         .then((res) => {
-            //TODO corregir mensaje de error porque el .json es asincrono
-            if (res.status !== 200) throw new Errors.ServerError(res.json());
-
-            return;
+            if (res.status === 200) return;
+            return res.json();
+        })
+        .then(body => {
+            const constructor = Errors[body.name]
+            throw new constructor(`${body.message}`);
         })
         .catch((error) => {
-            if (error instanceof TypeError)
+            if (error instanceof Errors.BadRequestError)
                 throw new Errors.ServerError("Server in not connected");
             throw error;
         });

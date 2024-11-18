@@ -2,9 +2,11 @@
 import { useNavigate } from "react-router-dom";
 import { withPermissions } from "../hocs"
 import logic from "../logic";
+import { useModalError } from "../context/ModalContext";
 
 function ProfileSettings() {
     const navigate = useNavigate();
+    const openModalError = useModalError()
 
     const onSubmitUsername = (event) => {
         event.preventDefault();
@@ -12,7 +14,7 @@ function ProfileSettings() {
 
         logic.updateUsername(username)
             .then(() => navigate('/home'))
-            .catch((error) => console.log(error))
+            .catch((error) => openModalError(error))
     }
 
     return (<main className="px-4 pt-6 pb-10">

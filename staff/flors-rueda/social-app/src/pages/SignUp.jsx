@@ -8,7 +8,7 @@ function SignUp() {
   const navigate = useNavigate();
   const openModalError = useModalError();
 
-  const onSubmit = useMemo( //preguntar a ventu ¿por qué?
+  const onSubmit = useMemo(
     () => (data) => {
       try {
         return registerUser(data)

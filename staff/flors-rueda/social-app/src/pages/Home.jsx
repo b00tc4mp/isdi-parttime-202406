@@ -2,14 +2,20 @@ import { useEffect, useState } from "react";
 import { withPermissions } from "../hocs";
 import logic from "../logic";
 import { Errors } from "social-common";
+import { useModalError } from "../context/ModalContext";
 
 function Home({ noche }) {
   const [username, setUsername] = useState(null);
+  const openModalError = useModalError();
 
   useEffect(() => {
-    logic.getAuthUsername()
-      .then((user) => setUsername(user.username))
-      .catch((error) => { throw new Errors.ServerError(`whoops: ${error.message}`) })
+    try {
+      logic.getAuthUsername()
+        .then((_username) => setUsername(_username))
+        .catch((error) => { openModalError(error) })
+    } catch (error) {
+      openModalError(error)
+    }
   }, [])
 
   return (

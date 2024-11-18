@@ -9,10 +9,20 @@ export default () => {
             Authorization: `Bearer ${token}`
         }
     })
-        .then((res) => {
+        /*.then((res) => {
+            TODO: explain this change!
             if (res.status !== 200) throw new Errors.ServerError();
 
             return res.json()
+        })*/
+        .then((res) => {
+            if (res.status === 200) return res.json()
+                .then(user => user.username)
+            return res.json();
+        })
+        .then(body => {
+            const constructor = Errors[body.name]
+            throw new constructor(`${body.message}`);
         })
         .catch((error) => {
             if (error instanceof TypeError)
