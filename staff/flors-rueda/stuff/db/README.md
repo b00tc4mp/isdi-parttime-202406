@@ -102,6 +102,8 @@ $ ./bin/mongod.exe --dbpath data
 
 ## Mongo-shell
 
+- Download ZIP
+
 ```sh
 Flors@Phoenix MINGW64 ~/workspace
 $ unzip mongo
@@ -178,6 +180,31 @@ users
 social> db.users.find()
 ```
 
-# Uso de Mongo:
+# Uso de MongoDB:
 
-## Primero el servidor:
+- Primero lanzamos el **servidor**, abriendo **un terminal de Bash**:
+
+```sh
+Flors@Phoenix MINGW64 ~
+$ cd workspace/
+
+Flors@Phoenix MINGW64 ~/workspace
+$ cd mongodb-win32-x86_64-windows-8.0.3/
+
+Flors@Phoenix MINGW64 ~/workspace/mongodb-win32-x86_64-windows-8.0.3
+$ ./bin/mongod.exe --dbpath data
+
+```
+
+- Luego el **shell**, en **otro terminal de Bash diferente**:
+
+```sh
+Flors@Phoenix MINGW64 ~
+$ cd workspace/
+
+Flors@Phoenix MINGW64 ~/workspace
+$ cd mongosh-2.3.3-win32-x64/
+
+Flors@Phoenix MINGW64 ~/workspace/mongosh-2.3.3-win32-x64
+$ ./bin/mongosh.exe
+```
