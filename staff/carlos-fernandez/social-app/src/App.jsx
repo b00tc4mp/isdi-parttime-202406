@@ -41,7 +41,7 @@ function App() {
             <Route
               path="/home"
               element={
-                <Home isLogged={logic.isUserLoggedIN()} redirectPath="/login" />
+                <Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />
               }
             />
             <Route
