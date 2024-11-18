@@ -1,22 +1,20 @@
 import { Errors } from "social-common";
 
-
-//TODO: funciona??
 export default (error, req, res, next) => {
-    let errorStatus = 500;
+    let code = 500;
 
     if (error instanceof Errors.EmailNotValidError || error instanceof Errors.UsernameNotValidError || error instanceof Errors.DateOfBirthNotValidError || error instanceof Errors.PasswordNotValidError || error instanceof Errors.ContentError) {
-        errorStatus = 400;
+        code = 400;
     }
     if (error instanceof Errors.CredentialsError || error instanceof Errors.AuthError) {
-        errorStatus = 401;
+        code = 401;
     }
     if (error instanceof Errors.DuplicityError) {
-        errorStatus = 409;
+        code = 409;
     }
     if (error instanceof Errors.ExistenceError) {
-        errorStatus = 404;
+        code = 404;
     }
 
-    res.status(errorStatus).json(error.constructor.name, error.message);
+    res.status(code).json({ name: error.constructor.name, message: error.message });
 }
