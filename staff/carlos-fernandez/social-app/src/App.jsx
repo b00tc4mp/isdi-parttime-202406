@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
+  Home,
   Landing,
   LogIn,
-  SignUp,
   Page404,
-  Home,
-  Profile,
-  ProfileEdit,
+  ProfileSettings,
+  SignOut,
+  SignUp,
 } from "./pages";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { ModalContext, RoleContext } from "./context";
 import { useUpdate } from "react-use";
 import logic from "./logic";
+import { Footer, Header } from "./components";
 
 function App() {
   const update = useUpdate();
+  const location = useLocation();
+
+  useEffect(() => {}, [location.pathname]);
 
   return (
     <RoleContext.Provider>
       <ModalContext.Provider>
         <main className="App">
+          {logic.isUserLoggedIn() && <Header />}
           <Routes>
             <Route
               path="/"
@@ -40,12 +45,13 @@ function App() {
               }
             />
             <Route
-              path="/profile"
-              element={<Profile role="user" redirectPath="/login" />}
-            />
-            <Route
-              path="/profile.edit"
-              element={<ProfileEdit role="user" redirectPath="/login" />}
+              path="/settings"
+              element={
+                <ProfileSettings
+                  isLogged={logic.isUserLoggedIn()}
+                  redirectPath="/login"
+                />
+              }
             />
             <Route path="/not-found" element={<Page404 />} />
             <Route path="*" element={<Navigate to="/not-found" />} />
@@ -63,6 +69,7 @@ function App() {
         - Notificacions
         */}
         </main>
+        {logic.isUserLoggedIn() && <Footer />}
       </ModalContext.Provider>
     </RoleContext.Provider>
   );

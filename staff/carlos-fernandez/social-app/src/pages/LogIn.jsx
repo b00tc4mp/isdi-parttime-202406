@@ -5,7 +5,7 @@ import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
 import { withPermissions } from "../hocs";
 
-function Login() {
+function Login({ updateFather }) {
   const navigate = useNavigate();
   const openModalError = useModalError();
 

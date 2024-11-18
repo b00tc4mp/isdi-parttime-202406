@@ -70,9 +70,7 @@ function SignupForm({ className, onSubmit }) {
       Validator.password(inputPassword)
     ) {
       newErrors.push(
-        new Errors.RepeatedPasswordNotValidError(
-          "Password and repeatPassword do not match"
-        )
+        new Errors.PasswordNotValidError("Passwords doesn't match")
       );
       newErrors[newErrors.length - 1].order = 4;
       inputPassword.value = "";
