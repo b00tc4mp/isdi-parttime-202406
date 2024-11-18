@@ -23,7 +23,7 @@ server.get('/users/auth', handlers.getAuthUser)
 
 server.get('/users', handlers.getAllUsers);
 
-server.get('/users/:idRequested', handlers.getOneUser);
+server.get('/users/:username', handlers.getOneUser);
 
 server.patch('/users/username', jsonBodyParser, handlers.updateUsername);
 

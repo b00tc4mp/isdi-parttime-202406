@@ -6,8 +6,8 @@ import logic from "../logic";
 function Header() {
   return (
     <>
-      <header className="sticky top-0">
-        <nav className="navbar bg-base-100 text-black bg-secondary">
+      <header className="sticky top-0 z-10">
+        <nav className="navbar text-black bg-secondary">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||
@@ -69,8 +69,6 @@ function Header() {
 
 export default Header;
 
-
-//TODO componetizar más chiquito
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //                                    COMPONENTS                                              //
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +99,7 @@ function Aside() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="menu bg-base-200 text-base-content min-h-full w-80 pt-6 pb-24 !bg-base-100 flex flex-col justify-between">
+          <div className="menu bg-base-200 text-base-content min-h-full w-80 pt-6 pb-24 flex flex-col justify-between">
             <ul>
               <li>
                 <Link to={'/settings'}>Mi Perfil</Link>
