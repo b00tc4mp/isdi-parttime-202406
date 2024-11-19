@@ -1,17 +1,15 @@
 import { Errors, Validator } from "social-common";
-import storage from "../db/sync-storage.js"
+import storage from "../data/sync-storage.js"
+import data from "../data/index.js";
+import { ObjectId } from "mongodb";
 
 export default (id, newUsername) => {
     Validator.username(newUsername);
+    //todo add id validator
 
-    const users = storage.users;
-
-    const userIndex = users.findIndex(user => user.id === id);
-    if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone");
-
-    users[userIndex].username = newUsername
-
-
-
-    storage.saveUsers(users);
+    return data.users.updateOne({ _id: new ObjectId(id) }, { $set: { username: newUsername } })
+        .then((info) => {
+            if (info.matchedCount !== 1) throw new Errors.AuthError("User id don't belong to anyone");
+        })
+        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
 }

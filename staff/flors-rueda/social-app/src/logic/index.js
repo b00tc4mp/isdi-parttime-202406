@@ -6,6 +6,7 @@ import getAuthUsername from "./getAuthUsername.js";
 import updateUsername from "./updateUsername.js";
 import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
+import deleteUser from "./deleteUser.js"
 
 const logic = {
   registerUser,
@@ -15,7 +16,8 @@ const logic = {
   getAuthUsername,
   updateUsername,
   updateEmail,
-  updatePassword
+  updatePassword,
+  deleteUser
 };
 
 export default logic;

@@ -9,9 +9,13 @@ export default (req, res, next) => {
     const { username } = req.body
 
     try {
-        logic.updateUsername(Number(id), username);
+        logic.updateUsername(id, username)
+            .then(() => {
+                res.status(200).send();
+            })
+            .catch(error => next(error))
 
-        res.status(200).send();
+
     } catch (error) {
         next(error)
     }

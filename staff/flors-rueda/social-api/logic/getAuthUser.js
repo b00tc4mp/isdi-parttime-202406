@@ -1,11 +1,14 @@
 import { Errors } from "social-common";
-import storage from "../db/sync-storage.js";
+import data from "../data/index.js";
+import { ObjectId } from "mongodb";
 
 export default (id) => {
-    const users = storage.users;
+    //TODO: Validar id
 
-    const userRequested = users.filter((user) => user.id === id)[0];
-    if (!userRequested) throw new Errors.AuthError("User id don't belong to anyone");
-
-    return { username: userRequested.username };
+    return data.users.findOne({ _id: new ObjectId(id) })
+        .then((user) => {
+            if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+            return user.username;
+        })
+        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
 };

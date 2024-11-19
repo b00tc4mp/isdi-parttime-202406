@@ -15,10 +15,10 @@ function App() {
 
   return (
     <ModalContext.Provider>
-      <main className="App">
+      <main className="h-fit min-h-full">
         {logic.isUserLoggedIn() && <Header />}
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={logic.isUserLoggedIn() ? <Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" /> : <Landing />} />
           <Route path="/login" element={<Login updateFather={update} />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route

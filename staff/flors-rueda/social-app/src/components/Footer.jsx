@@ -2,7 +2,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="absolute bottom-0 z-0">hola soy el compo de Footer</footer>
+      <footer className="absolute z-0 hidden">hola soy el compo de Footer</footer>
     </>
   );
 }
