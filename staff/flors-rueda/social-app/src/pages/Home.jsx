@@ -19,7 +19,7 @@ function Home({ noche }) {
   }, [])
 
   return (
-    <main className="text-3xl full-view">
+    <main className="text-3xl min-h-screen px-8 pt-3 pb-5">
       {username ? `Hola ${username}` : `¿Y tu quién eres?`}
     </main>
   );

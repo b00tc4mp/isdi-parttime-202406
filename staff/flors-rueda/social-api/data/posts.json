@@ -1,0 +1,8 @@
+[
+    {
+        "author": "id de un usuario",
+        "content": "texto 175 palabras",
+        "like": "array id usuario que le ha dado like",
+        "date": "Date"
+    }
+]

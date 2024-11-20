@@ -7,6 +7,7 @@ import updateUsername from "./updateUsername.js";
 import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
 import deleteUser from "./deleteUser.js"
+import createPost from "./createPost.js";
 
 const logic = {
   registerUser,
@@ -17,7 +18,8 @@ const logic = {
   updateUsername,
   updateEmail,
   updatePassword,
-  deleteUser
+  deleteUser,
+  createPost
 };
 
 export default logic;
