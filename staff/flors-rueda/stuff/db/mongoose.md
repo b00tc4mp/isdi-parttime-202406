@@ -2,7 +2,7 @@
 
 ## ¿Qué es?
 
-Mongoose es una biblioteca de [ODM (Object Document Mapper)](https://www.dctacademy.com/blog/what-is-object-document-mapper-odm) diseñada para trabajar con MongoDB en aplicaciones de Node. Si bien puedes usar el controlador oficial de MongoDB directamente, Mongoose ofrece una serie de ventajas que lo hacen ser un plus interesante en muchas situaciones.
+Mongoose es una libreria de [ODM (Object Document Mapper)](https://www.dctacademy.com/blog/what-is-object-document-mapper-odm) diseñada para trabajar con MongoDB en aplicaciones de Node. Si bien puedes usar el controlador oficial de MongoDB directamente, Mongoose ofrece una serie de ventajas que lo hacen ser un plus interesante en muchas situaciones.
 
 ## Ventajas de usar Mongoose
 
@@ -43,4 +43,5 @@ Aunque usa una abstracción superior, sigue permitiendo el uso de tipos de datos
 
 ## Docs de Mongoose
 
-[Link a la documentación oficial de mongoose](https://mongoosejs.com/docs/guide.html)
+- [Link a la documentación oficial de mongoose](https://mongoosejs.com/docs/guide.html)
+- [Más sobre diferencias entre MongoDB y mongoose](https://www.scaler.com/topics/mongoose-vs-mongodb/)
