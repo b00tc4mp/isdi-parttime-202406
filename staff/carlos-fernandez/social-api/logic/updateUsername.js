@@ -1,5 +1,5 @@
 import { Errors, Validator } from "social-common";
-import storage from "../db/sync-storage.js";
+import storage from "../data/sync-storage.js";
 
 export default (id, newUsername) => {
   Validator.username(newUsername);

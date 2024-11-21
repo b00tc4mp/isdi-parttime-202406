@@ -1,5 +1,5 @@
 import { Errors } from "social-common";
-import storage from "../data/sync-storage";
+import storage from "../data/sync-storage.js";
 
 export default (id) => {
   const users = storage.users;
