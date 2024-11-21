@@ -1,11 +1,12 @@
 import { Errors } from "social-common";
-import data from "../data/index.js";
-import { ObjectId } from "mongodb";
+import models from "../data/models.js";
+
+const { User } = models;
 
 export default (id) => {
     //TODO: Validar id
 
-    return data.users.findOne({ _id: new ObjectId(id) })
+    return User.findById(id)
         .then((user) => {
             if (!user) throw new Errors.AuthError("User id don't belong to anyone");
             return user.username;

@@ -7,25 +7,14 @@ import handlers from './handlers/index.js';
 import { errorHandler, verifyToken } from './middlewares/index.js';
 import 'dotenv/config'
 import cors from 'cors'
-import { MongoClient } from 'mongodb';
 import { Errors } from 'social-common';
-import data from './data/index.js';
+import mongoose from 'mongoose';
 
-
-const mongo = new MongoClient(process.env.MONGO_URI)
 
 try {
-    mongo.connect()
+    mongoose.connect(process.env.MONGO_URI)
         .then(() => {
             console.info(`connected to db: ${process.env.MONGO_URI}`);
-
-            const db = mongo.db('social');
-
-            const users = db.collection('users');
-            const posts = db.collection('posts');
-
-            data.users = users;
-            data.posts = posts;
 
             const server = express();
 
@@ -33,26 +22,37 @@ try {
 
             server.use(cors())
 
+            //Funciona en mongoose
             server.post('/users', jsonBodyParser, /*Más middlewares*/ handlers.registerUser);
 
+            //Funciona en mongoose
             server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
+            //Funciona en mongoose
             server.get('/users/auth', verifyToken, handlers.getAuthUser)
 
+            //ni mongo ni na
             server.get('/users', verifyToken, handlers.getAllUsers);
 
+            //ni mongo ni na
             server.get('/users/:username', verifyToken, handlers.getOneUser);
 
+            //mongo
             server.patch('/users/username', verifyToken, jsonBodyParser, handlers.updateUsername);
 
+            //ni mongo ni na
             server.patch('/users/email', verifyToken, jsonBodyParser, handlers.updateEmail);
 
+            //ni mongo ni na            
             server.patch('/users/password', verifyToken, jsonBodyParser, handlers.updatePassword);
 
+            //mongo            
             server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser);
 
+            //mongo
             server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost);
 
+            //mongo
             server.get('/posts', verifyToken, handlers.getAllPosts)
 
             server.use(errorHandler);

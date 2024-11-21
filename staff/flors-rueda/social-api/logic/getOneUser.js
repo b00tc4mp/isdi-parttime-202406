@@ -1,7 +1,7 @@
 import { Errors } from "social-common";
-import storage from "../data/sync-storage.js";
 
 export default (id, username) => {
+    /*
     const users = storage.users;
 
     const userLogged = users.some((user) => user.id === id);
@@ -10,5 +10,5 @@ export default (id, username) => {
     const userRequested = users.filter((user) => user.username === username)[0];
     if (!userRequested) throw new Errors.ExistenceError("User not found");
 
-    return { username: userRequested.username, email: userRequested.email };
+    return { username: userRequested.username, email: userRequested.email };*/
 };

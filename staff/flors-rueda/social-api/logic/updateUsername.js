@@ -1,5 +1,4 @@
 import { Errors, Validator } from "social-common";
-import storage from "../data/sync-storage.js"
 import data from "../data/index.js";
 import { ObjectId } from "mongodb";
 
