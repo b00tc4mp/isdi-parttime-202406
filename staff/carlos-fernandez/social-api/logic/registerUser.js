@@ -1,4 +1,4 @@
-import storage from "../db/async-storage.js";
+import storage from "../data/async-storage.js";
 import { Validator, Errors } from "social-common";
 import bcrypt from "bcrypt";
 

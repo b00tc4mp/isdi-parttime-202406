@@ -1,5 +1,5 @@
 import registerUser from "./registerUser.js";
-import storage from "../db/sync-storage.js";
+import storage from "../data/sync-storage.js";
 
 registerUser(
   "              ",
