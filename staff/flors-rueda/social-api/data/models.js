@@ -28,6 +28,11 @@ const UserSchema = new Schema({
     }
 });
 
+/* TODO: POST: Crear el esquema
+    ¿Qué incluye? ¿autor, contenido, fecha, comentarios?
+    PISTA PARA AUTHOR: usar ref para poder usar populate
+    https://mongoosejs.com/docs/populate.html
+*/
 const User = mongoose.model('User', UserSchema);
 
 export default {

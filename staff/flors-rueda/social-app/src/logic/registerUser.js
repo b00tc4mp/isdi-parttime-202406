@@ -29,13 +29,6 @@ const registerUser = ({
     },
     body: JSON.stringify(user)
   })
-    /* TODO: explain this change!
-      .then((res) => {
-        if (res.status !== 201) throw new Errors.ServerError(res.json());
-  
-        return;
-      })
-        */
     .then((res) => {
       if (res.status === 201) return;
       return res.json()

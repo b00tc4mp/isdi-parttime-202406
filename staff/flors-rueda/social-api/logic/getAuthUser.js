@@ -4,7 +4,6 @@ import models from "../data/models.js";
 const { User } = models;
 
 export default (id) => {
-    //TODO: Validar id
 
     return User.findById(id)
         .then((user) => {

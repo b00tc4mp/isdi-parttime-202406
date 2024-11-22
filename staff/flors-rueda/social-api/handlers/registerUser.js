@@ -1,6 +1,6 @@
 import logic from "../logic/index.js"
 
-//TODO investigar porque no me captura los errores
+//investigar porque no me captura los errores
 
 export default (req, res, next) => {
     const { username, 'date-of-birth': dateOfBirth, email, password } = req.body
