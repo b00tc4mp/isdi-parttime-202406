@@ -1,1 +1,23 @@
-{"users":[{"username":"rafa","password":"cookie"}]}
+[
+    {
+        "id": 1731089558093,
+        "username": "percy",
+        "dateOfBirth": "15-11-2019",
+        "email": "perritobonito@mail.com",
+        "password": "palitos"
+    },
+    {
+        "id": 1731090353058,
+        "username": "thunder",
+        "dateOfBirth": "20-07-2020",
+        "email": "gatoagresivo@mail.com",
+        "password": "morderhumanos"
+    }, 
+    {
+        "id": 1731355227916,
+        "username": "charchi",
+        "dateOfBirth": "20-07-1995",
+        "email": "char@mail.com",
+        "password": "123456789"
+    }
+]
