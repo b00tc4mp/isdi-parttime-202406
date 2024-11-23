@@ -7,13 +7,12 @@ const DatePicker = ({
   placeholder,
   inputId,
   inputName,
-  popoverDirection,
   useRange,
   asSingle,
   displayFormat,
-  startFrom,
-  minDate,
   maxDate,
+  minDate,
+  startFrom,
 }) => {
   const [value, setValue] = useState({
     startDate: null,
@@ -25,13 +24,12 @@ const DatePicker = ({
       <Datepicker
         value={value}
         onChange={(newValue) => setValue(newValue)}
-        primaryColor={"fuchsia"}
+        primaryColor="pink"
         placeholder={placeholder}
         inputId={inputId}
         inputName={inputName}
         useRange={useRange}
         asSingle={asSingle}
-        popoverDirection={popoverDirection}
         displayFormat={displayFormat}
         startFrom={startFrom}
         maxDate={maxDate}

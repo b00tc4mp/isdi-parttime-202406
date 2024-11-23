@@ -1,17 +1,27 @@
-import getAuthUsername from "./getAuthUsername.js";
+import registerUser from "./registerUser.js";
+import userAuth from "./userAuth.js";
 import isUserLoggedIn from "./isUserLoggedIn.js";
 import logout from "./logout.js";
-import registerUser from "./registerUser.js";
+import getAuthUsername from "./getAuthUsername.js";
 import updateUsername from "./updateUsername.js";
-import userAuth from "./userAuth.js";
+import updateEmail from "./updateEmail.js";
+import updatePassword from "./updatePassword.js";
+import deleteUser from "./deleteUser.js";
+import createPost from "./createPost.js";
+import getAllPosts from "./getAllPosts.js";
 
 const logic = {
-  getAuthUsername,
+  registerUser,
+  userAuth,
   isUserLoggedIn,
   logout,
-  registerUser,
+  getAuthUsername,
   updateUsername,
-  userAuth,
+  updateEmail,
+  updatePassword,
+  deleteUser,
+  createPost,
+  getAllPosts,
 };
 
 export default logic;

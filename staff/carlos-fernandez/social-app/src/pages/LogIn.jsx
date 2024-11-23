@@ -3,7 +3,6 @@ import { Footer, Header, LoginForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
-import { withPermissions } from "../hocs";
 
 function Login({ updateFather }) {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function Login({ updateFather }) {
     () =>
       ({ email, password }) => {
         try {
-          return userAuth(email, password) //
+          return userAuth(email, password)
             .then(() => {
               updateFather();
               navigate("/home");
@@ -31,9 +30,9 @@ function Login({ updateFather }) {
   return (
     <>
       <Header />
-      <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:pt-20 overflow-y-auto">
+      <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
         <LoginForm
-          className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
+          className="shadow-box mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"
           onSubmit={onSubmit}
         />
       </section>
@@ -42,4 +41,4 @@ function Login({ updateFather }) {
   );
 }
 
-export default withPermissions(Login);
+export default Login;

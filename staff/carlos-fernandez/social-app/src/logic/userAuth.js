@@ -5,21 +5,25 @@ const userAuth = (email, password) => {
   Validator.email(email);
 
   return fetch(`${process.env.REACT_APP_API_URL}users/auth`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
-      if (res.status !== 200) throw new Errors.BadRequestError(res.json());
-
-      return res.json();
+      if (res.status === 200)
+        return res
+          .json()
+          .then((body) => sessionStorage.setItem("token", body.token));
+      return res.json().then((body) => {
+        const constructor = Errors[body.name];
+        throw new constructor(`${body.message}`);
+      });
     })
-    .then((token) => sessionStorage.setItem("token", token))
     .catch((err) => {
       if (err instanceof TypeError)
-        throw new Errors.ServerError("Server is not connected");
+        throw new Errors.ServerError("Server in not connected");
       throw new Errors.UnexpectedError();
     });
 };

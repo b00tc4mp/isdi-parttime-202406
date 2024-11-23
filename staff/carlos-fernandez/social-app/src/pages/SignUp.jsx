@@ -3,7 +3,6 @@ import { Footer, Header, SignupForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import registerUser from "../logic/registerUser";
 import { useNavigate } from "react-router-dom";
-import { withPermissions } from "../hocs";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -30,11 +29,11 @@ function SignUp() {
     <>
       <Header />
       <section className="w-screen h-[calc(100vh-var(--header-heigth))] xs:py-16 max-xs:pt-16 overflow-y-auto">
-        <SignupForm className="mx-auto" onSubmit={onSubmit} />
+        <SignupForm className=" shadow-box mx-auto" onSubmit={onSubmit} />
       </section>
       {/* <Footer /> */}
     </>
   );
 }
 
-export default withPermissions(SignUp);
+export default SignUp;

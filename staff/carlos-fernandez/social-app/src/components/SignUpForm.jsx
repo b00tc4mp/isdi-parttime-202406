@@ -30,63 +30,45 @@ function SignupForm({ className, onSubmit }) {
 
     const newErrors = [];
 
-    //////////////////////// USERNAME ERROR ////////////////////////
-    if (!Validator.username(inputUsername.value)) {
-      newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
-      newErrors[newErrors.length - 1].order = 1;
-      inputUsername.focus();
-    }
-
-    //////////////////////// DATE OF BIRTH ERROR ////////////////////////
-    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+    if (!(inputPassword.value === inputRepeatPassword.value)) {
       newErrors.push(
-        new Errors.DateOfBirthNotValidError("DateOfBirth is not valid")
+        new Errors.PasswordNotValidError(
+          "Password and repeatPassword do not match"
+        )
       );
-      newErrors[newErrors.length - 1].order = 2;
-      //inputDateOfBirth.focus();
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
     }
 
-    //////////////////////// EMAIL ERROR ////////////////////////
+    if (
+      inputPassword.value === inputRepeatPassword.value &&
+      !Validator.password(inputPassword.value)
+    ) {
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
+      inputPassword.focus();
+    }
+
     if (!Validator.email(inputEmail.value)) {
       newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
       newErrors[newErrors.length - 1].order = 3;
       inputEmail.focus();
     }
 
-    //////////////////////// PASSWORD ERROR ////////////////////////
-    if (
-      //Doesn't match && not valid
-      !(inputPassword.value === inputRepeatPassword.value) &&
-      !Validator.password(inputPassword.value)
-    ) {
-      newErrors[newErrors.length - 1].order = 4;
-      inputPassword.value = "";
-      inputRepeatPassword.value = "";
-      inputPassword.focus();
-
-      // Doesn't match && valid
-    } else if (
-      !(inputPassword.value === inputRepeatPassword.value) &&
-      Validator.password(inputPassword)
-    ) {
+    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
       newErrors.push(
-        new Errors.PasswordNotValidError("Passwords doesn't match")
+        new Errors.DateOfBirthNotValidError("DateOfBirth is not valid")
       );
-      newErrors[newErrors.length - 1].order = 4;
-      inputPassword.value = "";
-      inputRepeatPassword.value = "";
-      inputPassword.focus();
+      newErrors[newErrors.length - 1].order = 2;
+      // inputDateOfBirth.focus();
+    }
 
-      // Match && not valid
-    } else if (
-      inputPassword.value === inputRepeatPassword.value &&
-      !Validator.password(inputPassword.value)
-    ) {
-      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
-      newErrors[newErrors.length - 1].order = 4;
-      inputPassword.value = "";
-      inputRepeatPassword.value = "";
-      inputPassword.focus();
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
+      inputUsername.focus();
     }
 
     setErrors(newErrors.length > 0 ? newErrors : null);
@@ -100,8 +82,7 @@ function SignupForm({ className, onSubmit }) {
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((err) => {
-          if (err instanceof Errors.BadRequestError)
-            return setErrors([new Errors.CredentialsError()]);
+          if (err instanceof Errors.BadRequestError) return setErrors([err]);
           if (err instanceof Errors.ServerError) return setErrors([err]);
           setErrors([new Errors.UnexpectedError()]);
         });
@@ -124,7 +105,7 @@ function SignupForm({ className, onSubmit }) {
     <>
       <div
         className={classNames(
-          "bg-neutral-800 max-w-screen-sm px-9 py-12 shadow-box",
+          "bg-neutral-800 max-w-screen-sm px-9 py-12",
           className
         )}
       >
@@ -151,8 +132,7 @@ function SignupForm({ className, onSubmit }) {
               placeholder={ES.signupForm.inputDateOfBirth.placeholder}
               className="mb-4"
               inputId="dateOfBirth"
-              inputName={"dateOfBirth"}
-              popoverDirection="down"
+              inputName="dateOfBirth"
               displayFormat="DD/MM/YYYY"
               startFrom={moment().subtract(18, "years").toDate()}
               maxDate={moment().subtract(18, "years").toDate()}
@@ -188,6 +168,11 @@ function SignupForm({ className, onSubmit }) {
                   <IconShowPassword className="swap-off w-6 h-6" />
                 </button>
               </label>
+              <div className="label">
+                <span className="label-text-alt text-white">
+                  {ES.signupForm.inputPassword.helpText}
+                </span>
+              </div>
             </div>
             <label className="input input-bordered input-ghost glass flex items-center gap-2">
               <IconPassword fill="white" />
@@ -207,7 +192,7 @@ function SignupForm({ className, onSubmit }) {
                 }
               >
                 <IconHidePassword className="swap-on w-6 h-6" />
-                <IconShowPassword className="swap-off w-6 h-6" />
+                <IconShowPassword className="swap-of w-6 h-6" />
               </button>
             </label>
           </fieldset>
@@ -220,20 +205,10 @@ function SignupForm({ className, onSubmit }) {
               {ES.signupForm.submitButton}
             </button>
           </div>
-          <div className="flex items-start justify-between text-xs">
-            <div className="label">
-              <span className="label-text-alt text-gray-500">
-                {ES.signupForm.inputPassword.helpText}
-              </span>
-
-              <Link
-                to="/login"
-                target="_self"
-                className="link link-secondary text-right w-full max-w-[180px]"
-              >
-                {ES.signupForm.linkToLoginPage}
-              </Link>
-            </div>
+          <div className="text-xs flex justify-end">
+            <Link to="/login" target="_self" className="link link-secondary">
+              {ES.signupForm.linkToLoginPage}
+            </Link>
           </div>
         </form>
       </div>

@@ -66,7 +66,7 @@ function LoginForm({ className, onSubmit }) {
     <>
       <div
         className={classNames(
-          "bg-neutral-800 max-w-screen-sm px-9 py-12 shadow-box overflow-y-auto",
+          "bg-neutral-800 max-w-screen-sm px-9 py-12",
           className
         )}
       >
