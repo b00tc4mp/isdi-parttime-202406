@@ -2,13 +2,12 @@ import logic from "../logic/index.js";
 
 export default (req, res, next) => {
   const id = req.id;
-  const { username } = req.body;
 
   try {
     logic
-      .updateUsername(id, username)
-      .then(() => {
-        res.status(200).send();
+      .getAllPosts(id)
+      .then((posts) => {
+        res.status(200).json({ posts: posts });
       })
       .catch((error) => next(error));
   } catch (error) {

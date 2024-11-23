@@ -1,12 +1,15 @@
 import { Errors } from "social-common";
-import storage from "../data/sync-storage.js";
+import models from "../data/models.js";
+
+const { User } = models;
 
 export default (id) => {
-  const users = storage.users;
-
-  const userRequested = users.filter((user) => user.id === id)[0];
-  if (!userRequested)
-    throw new Errors.AuthError("User id don't belong to anyone");
-
-  return { username: userRequested.username };
+  return User.findById(id)
+    .then((user) => {
+      if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+      return user.username;
+    })
+    .catch((error) => {
+      throw new Errors.UnexpectedError(error.message);
+    });
 };

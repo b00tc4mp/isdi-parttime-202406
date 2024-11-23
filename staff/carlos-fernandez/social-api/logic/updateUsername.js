@@ -1,16 +1,21 @@
 import { Errors, Validator } from "social-common";
-import storage from "../data/sync-storage.js";
+import data from "../data/index.js";
+import { ObjectId } from "mongodb";
 
 export default (id, newUsername) => {
   Validator.username(newUsername);
 
-  const users = storage.users;
+  //TODO: UPDATES: Hacer / Migrar los updates a mongoose. Posibles metodos:
+  // https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()
+  // https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()
 
-  const userIndex = users.findIndex((user) => user.id === id);
-  if (userIndex === -1)
-    throw new Errors.AuthError("User id don't belong to anyone");
-
-  users[userIndex].username = newUsername;
-
-  storage.saveUsers(users);
+  return data.users
+    .updateOne({ _id: new ObjectId(id) }, { $set: { username: newUsername } })
+    .then((info) => {
+      if (info.matchedCount !== 1)
+        throw new Errors.AuthError("User id don't belong to anyone");
+    })
+    .catch((error) => {
+      throw new Errors.UnexpectedError(error.message);
+    });
 };
