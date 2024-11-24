@@ -1,7 +1,10 @@
+import { Errors } from "social-common";
 import logic from "../logic/index.js"
 
-export default (req, res) => {
-    const { username, dateOfBirth, email, password } = req.body
+export default (req, res, next) => {
+    const { username, 'date-of-birth': dateOfBirth, email, password } = req.body
+
+    console.log('hola1')
 
     try {
         logic.registerUser(username, dateOfBirth, email, password);
@@ -13,6 +16,8 @@ export default (req, res) => {
         } else {
             res.status(418).send(error.message)
         }
+        console.log('hola2', error instanceof Errors.EmailNotValidError)
+        next(error)
     }
 }
 

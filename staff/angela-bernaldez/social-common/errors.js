@@ -72,6 +72,34 @@ export class CredentialsError extends Error {
 
 /* TODO añadir Duplicity, Existence, Auth */
 
+export class DuplicityError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, DuplicityError);
+      }
+    }
+}
+  
+  export class ExistenceError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, ExistenceError);
+      }
+    }
+  }
+  
+  export class AuthError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, AuthError);
+      }
+    }
+}
+  
+
 /* OTHER ERRORS */
 
 export class UnexpectedError extends Error {
@@ -83,5 +111,14 @@ export class UnexpectedError extends Error {
     }
 }
 
+
+export class ContentError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, ContentError);
+      }
+    }
+}
 
 /* TODO añadir Content, Confirmation */

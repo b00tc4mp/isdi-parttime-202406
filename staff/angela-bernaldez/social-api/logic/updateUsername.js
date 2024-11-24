@@ -1,0 +1,15 @@
+import { Errors, Validator } from "social-common";
+import storage from '../db/sync-storage.js'
+
+export default (id, newUsername) => {
+    Validator.username(newUsername)
+
+    const users = storage.users 
+
+    const userIndex = users.findIndex((user) => user.id === id)
+    if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone")
+
+    users[userIndex].username === newUsername
+
+    storage.saveUsers(users)
+}

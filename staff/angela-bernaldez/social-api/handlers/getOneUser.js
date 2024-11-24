@@ -1,6 +1,7 @@
+import { Errors } from "social-common"
 import logic from "../logic/index.js"
 
-export default (req, res) => {
+export default (req, res, next) => {
     const { authorization } = req.headers
     const { idRequested } = req.params
 
@@ -18,5 +19,6 @@ export default (req, res) => {
         } else {
             res.status(418).send(error.message)
         }
+        next(error)
     }
 }
