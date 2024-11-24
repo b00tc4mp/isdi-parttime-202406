@@ -1,14 +1,16 @@
-import express, { json } from 'express';
-import fs from 'fs';
-import handlers from './handlers/index.js';
-import { errorHandler } from './middlewares/index.js';
+import 'dotenv/config'
+import express, { json } from 'express'
+import fs from 'fs'
+import handlers from './handlers/index.js'
+import { errorHandler } from './middlewares/index.js'
 
 const server = express()
-const port = 4321
 
 const jsonBodyParser = json();
 
-server.post('/users', jsonBodyParser, /*Más middlewares*/ handlers.registerUser)
+server.post('/users', jsonBodyParser, handlers.registerUser)
+
+server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
 server.get('/users', handlers.getAllUsers)
 
@@ -25,6 +27,6 @@ server.use(errorHandler)
 //TODO: Añadir un delete
 
 
-server.listen(port, () => {
-    console.log(`Server running on port:`, port)
+server.listen(process.env.PORT, () => {
+    console.log(`Server running on port:`, process.env.PORT)
 })

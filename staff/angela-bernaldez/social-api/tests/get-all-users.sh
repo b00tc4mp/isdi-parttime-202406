@@ -1,2 +1,2 @@
 curl -X GET http://localhost:4321/users \
-    -H "Authorization: Bearer 1731355227916" -v
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MzEwODk1NTgwOTMiLCJpYXQiOjE3MzI0NzU5MTZ9.JusE3JoneODsd-IPT-pM5HmdtKlWEkCnDdPyEUfi4WM" -v
