@@ -1,4 +1,4 @@
-import storage from '../db/sync-storage.js'
+import storage from '../db/async-storage.js'
 import { Validator, Errors } from 'social-common'
 
 export default (username, dateOfBirth, email, password) => {
@@ -8,20 +8,21 @@ export default (username, dateOfBirth, email, password) => {
     Validator.email(email)
     Validator.password(password)
 
-    // then/catch (promises)
-    const userNameDuplicated = storage.users.some((user) => user.username === username)
-    // if (userNameDuplicated) throw new Errors.DuplicityError("Username already in use")
-
-    const userEmailDuplicated = storage.users.some((user) => user.email === email);
-    if (userEmailDuplicated) throw new Errors.DuplicityError("Email already in use")
-
-    const user = {
-        id: Date.now(),
-        username,
-        dateOfBirth,
-        email,
-        password
-    }
-
-    storage.users = user;
+    return storage.getUsers()
+        .then(users => {
+            if (users.some(user => user.username === username)) {
+                throw new Errors.DuplicityError("Username already in use")
+            }
+            if (users.some(user => user.email === email)) {
+                throw new Errors.DuplicityError("Email already in use")
+            }
+            const user = {
+                id: Date.now(),
+                username,
+                dateOfBirth,
+                email,
+                password
+            }
+            return storage.addUser(user);
+        })
 }
