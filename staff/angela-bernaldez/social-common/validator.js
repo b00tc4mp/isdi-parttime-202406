@@ -41,10 +41,10 @@ class Validator {
         if (typeof value !== 'string') throw new TypeError("Date is not a string");
         if (value.trim().length <= 0) throw new Errors.ContentError("Date is empty");
 
-        const dateOfBirthRegExp =
+        /* const dateOfBirthRegExp =
           /^(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[01])\/\d{4}$/;
     
-        if (!dateOfBirthRegExp.test(value)) throw new Errors.DateOfBirthNotValidError("Date format is not valid")
+        if (!dateOfBirthRegExp.test(value)) throw new Errors.DateOfBirthNotValidError("Date format is not valid") */
     
         const [day, month, year] = value.split("/").map(Number);
         const today = new Date();

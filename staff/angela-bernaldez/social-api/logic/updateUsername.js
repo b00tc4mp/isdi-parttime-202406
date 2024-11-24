@@ -7,9 +7,11 @@ export default (id, newUsername) => {
     const users = storage.users 
 
     const userIndex = users.findIndex((user) => user.id === id)
+    
     if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone")
 
-    users[userIndex].username === newUsername
+    users[userIndex].username = newUsername
 
     storage.saveUsers(users)
 }
+

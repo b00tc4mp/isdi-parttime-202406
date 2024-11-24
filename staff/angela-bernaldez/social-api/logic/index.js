@@ -13,5 +13,5 @@ export default {
     registerUser,
     updateEmail,
     updatePassword, 
-    updateUsername
+    updateUsername,
 }
