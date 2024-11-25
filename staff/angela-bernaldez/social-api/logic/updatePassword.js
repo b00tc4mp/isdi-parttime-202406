@@ -1,5 +1,5 @@
 import { Errors, Validator } from "social-common"
-import storage from "../db/async-storage.js"
+import storage from "../data/async-storage.js";
 import bcrypt from "bcrypt"
 
 export default (id, newPassword, oldPassword) => {

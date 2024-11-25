@@ -1,37 +1,57 @@
 import cors from 'cors'
 import 'dotenv/config'
 import express, { json } from 'express'
-import fs from 'fs'
 import handlers from './handlers/index.js'
 import { errorHandler } from './middlewares/index.js'
+import { MongoClient } from 'mongodb';
+import { Errors } from 'social-common';
+import data from './data/index.js';
 
-const server = express()
+const mongo = new MongoClient(process.env.MONGO_URI)
 
-const jsonBodyParser = json()
+try {
+    mongo.connect()
+        .then(() => {
+            console.info(`connected to db: ${process.env.MONGO_URI}`)
 
-server.use(cors())
+            const db = mongo.db('social')
 
-server.post('/users', jsonBodyParser, handlers.registerUser)
+            const users = db.collection('users')
 
-server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
+            data.users = users
 
-server.get('/users/auth', handlers.getAuthUser)
+            const server = express()
 
-server.get('/users', handlers.getAllUsers)
+            server.use(cors())
 
-server.get('/users/:username', handlers.getOneUser)
+            server.post('/users', jsonBodyParser, /*Más middlewares*/ handlers.registerUser)
 
-server.patch('/users/email', jsonBodyParser, handlers.updateEmail);
+            server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
-server.patch('/users/password', jsonBodyParser, handlers.updatePassword)
+            server.get('/users/auth', handlers.getAuthUser)
 
-server.patch('/users/username', jsonBodyParser, handlers.updateUsername)
+            server.get('/users', handlers.getAllUsers)
 
-server.use(errorHandler)
+            server.get('/users/:username', handlers.getOneUser)
 
-//TODO: Añadir un delete
+            server.patch('/users/username', jsonBodyParser, handlers.updateUsername)
 
+            server.patch('/users/email', jsonBodyParser, handlers.updateEmail)
 
-server.listen(process.env.PORT, () => {
-    console.log(`Server running on port:`, process.env.PORT)
-})
+            server.patch('/users/password', jsonBodyParser, handlers.updatePassword)
+
+            server.delete('/users', jsonBodyParser, handlers.deleteUser)
+
+            server.use(errorHandler)
+
+            server.listen(process.env.PORT, () => {
+                console.log(`Server running on port:`, process.env.PORT)
+            })
+
+        })
+        .catch(error => {
+            throw new Errors.ServerError(`db error: ${error.message}`)
+        })
+} catch (error) {
+    throw new Errors.UnexpectedError(error.message)
+}

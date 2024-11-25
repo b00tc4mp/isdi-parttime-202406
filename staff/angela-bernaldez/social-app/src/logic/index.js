@@ -1,3 +1,4 @@
+import deleteUser from "./deleteUser.js"
 import getAuthUsername from "./getAuthUsername.js"
 import isUserLoggedIn from "./isUserLoggedIn.js"
 import logout from "./logout.js"
@@ -8,6 +9,7 @@ import updatePassword from "./updatePassword.js"
 import updateUsername from "./updateUsername.js"
 
 const logic = {
+  deleteUser,
   getAuthUsername,
   isUserLoggedIn,
   logout,

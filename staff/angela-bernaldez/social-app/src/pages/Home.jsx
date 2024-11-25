@@ -22,7 +22,7 @@ function Home({ noche }) {
 
   const [user, setUser] = useUserData();
   return (
-    <main className="text-3xl">
+    <main className="text-3xl full-view">
       {username ? `Hola ${username}` : `¿Y tu quién eres?`}
     </main>
   )

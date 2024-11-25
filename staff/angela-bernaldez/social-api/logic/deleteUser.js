@@ -1,16 +1,23 @@
 import { Errors, Validator } from "social-common";
-import storage from '../db/sync-storage.js'
+import data from "../data/index.js";
+import { ObjectId } from "mongodb";
+import bcrypt from "bcrypt";
 
 export default (id, password) => {
     Validator.password(password)
 
-    const users = storage.users 
-
-    const userIndex = users.findIndex(user => user.id === id)
-    if (userIndex == -1) throw new Errors.AuthError("User id don't belong to anyone")
-    if (users[userIndex].password !== pasword) throw new Errors.CredentialsError("Wrong credentials")
-
-    users.splice(userIndex, 1)
-
-    storage.saveUsers(users)
+    return data.users.findOne({ _id: new ObjectId(id) })
+        .then(user => {
+            if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+            return bcrypt.compare(password, user.password)
+                .then(isPasswordValid => {
+                    if (!isPasswordValid) throw new Errors.CredentialsError("Wrong credentials");
+                    return data.users.deleteOne({ _id: new ObjectId(id) })
+                        .then((info) => {
+                            if (info.deletedCount !== 1) throw new Errors.UnexpectedError("Something went wrong");
+                            return;
+                        })
+                })
+        })
+        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
 }

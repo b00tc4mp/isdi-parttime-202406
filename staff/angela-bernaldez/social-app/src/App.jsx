@@ -13,21 +13,19 @@ function App() {
 
   return (
     <ModalContext.Provider>
-      <main className="App">
+      <main className="h-fit min-h-full">
         {logic.isUserLoggedIn() && <Header />}
         <Routes>
           <Route
-            path="/"
-            element={<Landing role="visitor" redirectPath="/home" />}
-          />
-          <Route
-            path="/login"
-            element={<LogIn role="visitor" redirectPath="/home" />}
-          />
-          <Route
-            path="/sign-up"
-            element={<SignUp role="visitor" redirectPath="/home" />}
-          />
+              path="/" 
+              element={logic.isUserLoggedIn() ? <Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" /> : <Landing />} 
+            />
+          <Route 
+            path="/login" 
+            element={<Login updateFather={update} />} />
+          <Route 
+            path="/sign-up" 
+            element={<Signup />} />
           <Route
             path="/home"
             element={<Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
@@ -36,8 +34,13 @@ function App() {
             path="/settings"
             element={<ProfileSettings isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
-          <Route path="/not-found" element={<Page404 />} />
-          <Route path="*" element={<Navigate to="/not-found" />} />
+          <Route 
+            path="/not-found" 
+            element={<Page404 />} />
+          <Route 
+            path="*" 
+            element={<Navigate to="/not-found" />} 
+          />
         </Routes>
       </main>
       {logic.isUserLoggedIn() && <Footer />}
