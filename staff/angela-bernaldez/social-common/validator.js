@@ -12,6 +12,8 @@ class Validator {
 
         if (!regExp.test(value)) throw new Errors.EmailNotValidError("Email format is not valid")
 
+        return true
+
     }
 
     static password(value) {
@@ -24,6 +26,8 @@ class Validator {
         );
     
         return regExp.test(value) */
+
+        return true
     }
 
     static username(value) {
@@ -34,6 +38,8 @@ class Validator {
         const regExp = new RegExp(/^[a-zA-Z0-9]{1,12}$/);
     
         if (!regExp.test(value)) throw new Errors.UsernameNotValidError("Username format is not valid")
+
+        return true
     }
 
     static dateOfBirth(value) {
@@ -54,7 +60,15 @@ class Validator {
         const monthDiff = today.getMonth() - birthDate.getMonth();
     
         if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed")
+
+        return true
     }
+
+    static confirmationPassword(value1, value2) {
+        if (value1 !== value2) throw Errors.ConfirmationError("Passwords do not match")
+
+        return true 
+    } 
 }
 
 export default Validator 

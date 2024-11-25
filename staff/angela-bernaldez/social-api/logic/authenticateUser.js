@@ -22,5 +22,4 @@ export default (email, password) => {
                 return users[userIndex].id
             }).catch((error) => { throw new Errors.UnexpectedError(error.message) }) 
         })
-
 }
