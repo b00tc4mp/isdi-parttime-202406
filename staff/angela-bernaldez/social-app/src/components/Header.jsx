@@ -6,8 +6,8 @@ import logic from "../logic"
 function Header() {
   return (
     <>
-      <header className="sticky top-0">
-        <nav className="navbar bg-base-100 text-black bg-secondary">
+      <header className="sticky top-0 z-10">
+        <nav className="navbar text-black bg-secondary">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||
