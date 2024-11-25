@@ -15,6 +15,8 @@ server.post('/users', jsonBodyParser, handlers.registerUser)
 
 server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
+server.get('/users/auth', handlers.getAuthUser)
+
 server.get('/users', handlers.getAllUsers)
 
 server.get('/users/:idRequested', handlers.getOneUser)

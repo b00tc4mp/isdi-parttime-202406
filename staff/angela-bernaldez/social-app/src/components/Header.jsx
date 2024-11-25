@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { IconMenu } from "./icons";
-import ES from "../locales/es.json";
+import { Link, useNavigate } from "react-router-dom"
+import { IconMenu } from "./icons"
+import ES from "../locales/es.json"
+import logic from "../logic"
 
 function Header() {
   return (
@@ -72,6 +73,14 @@ export default Header;
 //                                    COMPONENTS                                              //
 ////////////////////////////////////////////////////////////////////////////////////////////////
 function Aside() {
+
+  const navigate = useNavigate()
+
+  const onLogoutClick = () => {
+    logic.logout();
+    navigate('/login')
+  }
+
   return (
     <>
       <div className="drawer">
@@ -90,14 +99,21 @@ function Aside() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 py-6 !bg-base-100">
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
-          </ul>
+          <div className="menu bg-base-200 text-base-content min-h-full w-80 pt-6 pb-24 !bg-base-100 flex flex-col justify-between">
+            <ul>
+              <li>
+                <a>Sidebar Item 1</a>
+              </li>
+              <li>
+                <a>Sidebar Item 2</a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <button onClick={onLogoutClick}>Logout</button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </>

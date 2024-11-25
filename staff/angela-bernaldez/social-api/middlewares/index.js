@@ -1,4 +1,4 @@
-import errorHandler from "./handleError.js"
+import errorHandler from "./errorHandler.js"
 
 export {
     errorHandler

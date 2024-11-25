@@ -18,9 +18,8 @@ function LogIn() {
       ({ email, password }) => {
         try {
           return userAuth(email, password) //
-            .then((token) => {
-              sessionStorage.setItem("token", token);
-              refreshRole();
+          .then(() => {
+              updateFather();
               navigate("/home");
             })
             .catch((err) => {
