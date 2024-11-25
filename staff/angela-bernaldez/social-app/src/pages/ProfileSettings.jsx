@@ -48,41 +48,41 @@ function ProfileSettings() {
             })
     }
 
-    return (<main className="h-full px-4 pt-6 pb-10 flex flex-col gap-5">
+    return (<main className="min-h-screen h-fit px-8 pt-6 pb-10 flex flex-col gap-5">
         <section>
             <h1 className="text-2xl font-semibold">Editar Nombre de Usuario</h1>
             <form className="flex flex-col gap-2" onSubmit={onSubmitUsername}>
                 <label htmlFor="username">Elige tu nuevo nombre:</label>
-                <input className="w-80 bg-gray-500" id="username" type="text" placeholder="nuevoNombre"></input>
-                <button type="submit" className="self-start border px-1 bg-green-500 hover:bg-pink-300">Guardar Nombre</button>
+                <input className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="username" type="text" placeholder="nuevoNombre"></input>
+                <button type="submit" className="self-start btn btn-secondary">Guardar Nombre</button>
             </form>
         </section>
         <section>
             <h1 className="text-2xl font-semibold">Editar Email</h1>
             <form className="flex flex-col gap-2" onSubmit={onSubmitEmail}>
                 <label htmlFor="email">Elige tu nuevo email:</label>
-                <input className="w-80 bg-gray-500" id="email" type="email" placeholder="nuevo@email.com"></input>
-                <button type="submit" className="self-start border px-1 bg-green-500 hover:bg-pink-300">Guardar Email</button>
+                <input className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="email" type="email" placeholder="nuevo@email.com"></input>
+                <button type="submit" className="self-start btn btn-secondary">Guardar Email</button>
             </form>
         </section>
         <section>
             <h1 className="text-2xl font-semibold">Editar Contraseña</h1>
             <form className="flex flex-col gap-2" onSubmit={onSubmitPassword}>
                 <label htmlFor="new">Elige tu nueva contraseña:</label>
-                <input className="w-80 bg-gray-500" id="new" type="password"></input>
+                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="new" type="password"></input>
                 <label htmlFor="confirm">Repite tu nueva contraseña:</label>
-                <input className="w-80 bg-gray-500" id="confirm" type="password"></input>
+                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="confirm" type="password"></input>
                 <label htmlFor="old">Confirma el cambio con tu antigua contraseña:</label>
-                <input className="w-80 bg-gray-500" id="old" type="password"></input>
-                <button type="submit" className="self-start border px-1 bg-green-500 hover:bg-pink-300">Guardar Contraseña</button>
+                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="old" type="password"></input>
+                <button type="submit" className="self-start btn btn-secondary">Guardar Contraseña</button>
             </form>
         </section>
         <section>
             <h1 className="text-2xl font-semibold">Eliminar Cuenta</h1>
             <form className="flex flex-col gap-2" onSubmit={onSubmitDelete}>
                 <label htmlFor="password">Confirma que quieres eliminar tu cuenta con tu contraseña laralalalala :D </label>
-                <input className="w-80 bg-gray-500" id="password" type="password"></input>
-                <button type="submit" className="self-start border px-1 bg-red-500 hover:bg-blue-300">Eliminar Cuenta</button>
+                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="password" type="password"></input>
+                <button type="submit" className="self-start btn btn-primary">Eliminar Cuenta</button>
             </form>
         </section>
 

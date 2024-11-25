@@ -2,7 +2,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import express, { json } from 'express'
 import handlers from './handlers/index.js'
-import { errorHandler } from './middlewares/index.js'
+import { errorHandler, verifyToken } from './middlewares/index.js'
 import { MongoClient } from 'mongodb';
 import { Errors } from 'social-common';
 import data from './data/index.js';
@@ -17,8 +17,10 @@ try {
             const db = mongo.db('social')
 
             const users = db.collection('users')
+            const posts = db.collection('posts');
 
             data.users = users
+            data.posts = posts
 
             const server = express()
 
@@ -28,19 +30,23 @@ try {
 
             server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
-            server.get('/users/auth', handlers.getAuthUser)
+            server.get('/users/auth', verifyToken, handlers.getAuthUser)
 
-            server.get('/users', handlers.getAllUsers)
+            server.get('/users', verifyToken, handlers.getAllUsers)
 
-            server.get('/users/:username', handlers.getOneUser)
+            server.get('/users/:username', verifyToken, handlers.getOneUser)
 
-            server.patch('/users/username', jsonBodyParser, handlers.updateUsername)
+            server.patch('/users/username', verifyToken, jsonBodyParser, handlers.updateUsername)
 
-            server.patch('/users/email', jsonBodyParser, handlers.updateEmail)
+            server.patch('/users/email', verifyToken, jsonBodyParser, handlers.updateEmail)
 
-            server.patch('/users/password', jsonBodyParser, handlers.updatePassword)
+            server.patch('/users/password', verifyToken, jsonBodyParser, handlers.updatePassword)
 
-            server.delete('/users', jsonBodyParser, handlers.deleteUser)
+            server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser);
+
+            server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost);
+
+            server.get('/posts', verifyToken, handlers.getAllPosts)
 
             server.use(errorHandler)
 
