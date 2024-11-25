@@ -10,7 +10,6 @@ function LogIn({ updateFather }) {
 
   debugger
 
-  const { refreshRole } = useRole();
   const onSubmit = useMemo(
     () =>
       ({ email, password }) => {

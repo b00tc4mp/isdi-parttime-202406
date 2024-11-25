@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { withPermissions } from "../hocs"
 import logic from "../logic"
 import { useModalError } from "../context/ModalContext"
 
@@ -90,4 +89,4 @@ function ProfileSettings() {
     </main>)
 }
 
-export default withPermissions(ProfileSettings)
+export default ProfileSettings

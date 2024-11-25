@@ -79,7 +79,7 @@ function SignUpForm({ className, onSubmit }) {
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((err) => {
-          if (err instanceof Errorrs.BadRequestError) return setErrors([err]);
+          if (err instanceof Errors.BadRequestError) return setErrors([err]);
           if (err instanceof Errors.ServerError) return setErrors([err]);
           setErrors([new Errors.UnexpectedError()]);
         });

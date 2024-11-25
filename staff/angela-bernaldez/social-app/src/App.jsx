@@ -1,7 +1,9 @@
 import React, { useEffect } from "react"
-import { Landing, Login, Signup, Page404, Home, ProfileSettings } from "./pages"
+import { Landing, LogIn, SignUp, Page404, Home, ProfileSettings } from "./pages"
 import { Route, Routes, Navigate, useLocation } from "react-router-dom"
 import { ModalContext } from "./context"
+import { useUpdate } from "react-use"
+import logic from "./logic"
 import { Footer, Header } from "./components"
 
 
@@ -22,10 +24,10 @@ function App() {
             />
           <Route 
             path="/login" 
-            element={<Login updateFather={update} />} />
+            element={<LogIn updateFather={update} />} />
           <Route 
             path="/sign-up" 
-            element={<Signup />} />
+            element={<SignUp />} />
           <Route
             path="/home"
             element={<Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
