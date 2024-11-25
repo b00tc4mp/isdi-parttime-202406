@@ -23,15 +23,17 @@ const registerUser = ({username, dateOfBirth, email, password, repeatPassword}) 
     body: JSON.stringify(user)
     })
     .then((res) => {
-      //TODO corregir mensaje de error porque el .json es asincrono
-      if (res.status !== 201) throw new Errors.ServerError(res.json())
-
-      return 
+      if (res.status === 201) return;
+      return res.json();
+    })
+    .then(body => {
+      const constructor = Errors[body.name]
+      throw new constructor(`${body.message}`)
     })
     .catch((error) => {
       if (error instanceof TypeError)
         throw new Errors.ServerError("Server in not connected")
-      throw error;
+      throw error
     })
 }
 
