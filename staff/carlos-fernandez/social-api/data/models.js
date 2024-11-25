@@ -35,6 +35,31 @@ const UserSchema = new Schema({
 */
 const User = mongoose.model("User", UserSchema);
 
+const PostsSchema = new Schema(
+  {
+    author: {
+      type: String,
+      ref: "user",
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      // esto crea una fecha automática para cuándo se ha creado
+    },
+    images: {
+      type: [String],
+    },
+    comments: [{ type: ObjectId, ref: "Comment" }],
+  },
+  { timestamps: true }
+);
+
+const Post = mongoose.model("Post", PostsSchema);
+
 export default {
   User,
+  Post,
 };

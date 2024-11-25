@@ -1,16 +1,17 @@
 import { Errors, Validator } from "social-common";
+import data from "../data/index.js";
 
 export default (id, newEmail) => {
-  /* Validator.email(newEmail);
- 
-     const users = storage.users;
- 
-     const userIndex = users.findIndex(user => user.id === id);
-     if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone");
- 
-     users[userIndex].email = newEmail
- 
- 
- 
-     storage.saveUsers(users);*/
+  //Validate email format
+  Validator.email(newEmail);
+
+  return data.users
+    .findByIdAndUpdate(id, { $set: { email: newEmail } })
+    .then((info) => {
+      if (info.matchedCount !== 1)
+        throw new Errors.AuthError("User id doesn't belong to anyone");
+    })
+    .catch((error) => {
+      throw new Errors.UnexpectedError(error.message);
+    });
 };
