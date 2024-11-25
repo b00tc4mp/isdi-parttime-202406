@@ -1,15 +1,6 @@
 import React, { useEffect } from "react"
 import { Landing, Login, Signup, Page404, Home, ProfileSettings } from "./pages"
 import { Route, Routes, Navigate, useLocation } from "react-router-dom"
-import {
-  Landing,
-  LogIn,
-  SignUp,
-  Page404,
-  Home,
-  Profile,
-  ProfileEdit,
-} from "./pages"
 import { ModalContext } from "./context"
 import { Footer, Header } from "./components"
 

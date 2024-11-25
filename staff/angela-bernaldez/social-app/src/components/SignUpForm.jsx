@@ -50,7 +50,7 @@ function SignUpForm({ className, onSubmit }) {
     }
 
     if (!Validator.email(inputEmail.value)) {
-      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
       newErrors[newErrors.length - 1].order = 3;
       inputEmail.focus();
     }
