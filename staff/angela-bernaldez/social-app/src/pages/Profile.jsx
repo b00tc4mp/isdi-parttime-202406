@@ -1,5 +1,4 @@
 import { Footer, Header } from "../components";
-import { withPermissions } from "../hocs";
 import useUserData from "../hooks/useUserData";
 
 function Profile() {
@@ -22,4 +21,4 @@ function Profile() {
   );
 }
 
-export default withPermissions(Profile);
+export default Profile

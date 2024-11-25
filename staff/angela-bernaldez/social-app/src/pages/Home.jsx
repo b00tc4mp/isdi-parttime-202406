@@ -1,25 +1,24 @@
-import { Footer, Header } from "../components";
-import { withPermissions } from "../hocs";
-import useUserData from "../hooks/useUserData";
+import useUserData from "../hooks/useUserData"
+import { useEffect, useState } from "react"
+import logic from "../logic"
+import { Errors } from "social-common"
 
-function Home() {
+function Home({ noche }) {
+
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    logic.getAuthUsername()
+      .then((user) => setUsername(user.username))
+      .catch((error) => { throw new Errors.ServerError(`whoops: ${error.message}`) })
+  }, [])
 
   const [user, setUser] = useUserData();
   return (
-    <>
-      <Header />
-      Soy Home
-      <br />
-      {user.id}
-      <br />
-      {user.username}
-      <br />
-      {user.dateOfBirth}
-      <br />
-      {user.email}
-      {/* <Footer /> */}
-    </>
-  );
+    <main className="text-3xl">
+      {username ? `Hola ${username}` : `¿Y tu quién eres?`}
+    </main>
+  )
 }
 
-export default withPermissions(Home);
+export default Home

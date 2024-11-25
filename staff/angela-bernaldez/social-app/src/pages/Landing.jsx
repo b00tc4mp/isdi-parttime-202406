@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { withPermissions } from "../hocs";
 
 class Landing extends Component {
   render() {
@@ -34,4 +33,4 @@ class Landing extends Component {
   }
 }
 
-export default withPermissions(Landing);
+export default Landing

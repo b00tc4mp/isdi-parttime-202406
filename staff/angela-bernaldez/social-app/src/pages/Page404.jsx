@@ -1,5 +1,5 @@
-import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Component } from "react"
+import { Link } from "react-router-dom"
 
 class Page404 extends Component {
   render() {
@@ -28,4 +28,4 @@ class Page404 extends Component {
   }
 }
 
-export default Page404;
+export default Page404

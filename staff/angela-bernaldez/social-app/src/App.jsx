@@ -1,5 +1,6 @@
-import React from "react"
-import logic from "./logic"
+import React, { useEffect } from "react"
+import { Landing, Login, Signup, Page404, Home, ProfileSettings } from "./pages"
+import { Route, Routes, Navigate, useLocation } from "react-router-dom"
 import {
   Landing,
   LogIn,
@@ -9,15 +10,20 @@ import {
   Profile,
   ProfileEdit,
 } from "./pages"
-import { Route, Routes, Navigate } from "react-router-dom"
 import { ModalContext } from "./context"
+import { Footer, Header } from "./components"
+
 
 function App() {
   const update = useUpdate()
+  const location = useLocation()
+
+  useEffect(() => {}, [location.pathname])
 
   return (
     <ModalContext.Provider>
       <main className="App">
+        {logic.isUserLoggedIn() && <Header />}
         <Routes>
           <Route
             path="/"
@@ -35,20 +41,15 @@ function App() {
             path="/home"
             element={<Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
+          <Route
+            path="/settings"
+            element={<ProfileSettings isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
+          />
           <Route path="/not-found" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
-        {/* 
-      - Feed
-      - Create content
-      - People
-      - Explorer
-      - Settings
-      - Conversations (list)
-      - Conversations (only one)
-      - Notificacions
-      */}
       </main>
+      {logic.isUserLoggedIn() && <Footer />}
     </ModalContext.Provider>
   );
 }

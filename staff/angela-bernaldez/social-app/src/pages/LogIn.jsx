@@ -3,8 +3,6 @@ import { Footer, Header, LogInForm } from "../components";
 import { useModalError } from "../context/ModalContext";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
-import { useRole } from "../context/RoleContext";
-import { withPermissions } from "../hocs";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -46,4 +44,4 @@ function LogIn() {
   );
 }
 
-export default withPermissions(LogIn);
+export default LogIn
