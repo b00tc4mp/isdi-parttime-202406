@@ -1,6 +1,5 @@
 import { Errors, Validator } from "social-common";
 import data from "../data/index.js";
-import { ObjectId } from "mongodb";
 import bcrypt from "bcrypt";
 
 export default (id, password) => {

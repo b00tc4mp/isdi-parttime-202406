@@ -1,6 +1,5 @@
 import { Errors, Validator } from "social-common";
 import bcrypt from "bcrypt";
-import User from "../models/User.js";
 
 export default (id, newPassword, oldPassword) => {
   Validator.password(newPassword);

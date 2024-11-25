@@ -4,11 +4,11 @@ import getAllUsers from "./getAllUsers.js";
 import deleteUser from "./deleteUser.js";
 import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
-import updateUsername from "./updateUsername.js";
+//import updateUsername from "./updateUsername.js";
 import authenticateUser from "./authenticateUser.js";
 import getAuthUser from "./getAuthUser.js";
 import createPost from "./createPost.js";
-import getAllPosts from "./getAllPosts.js";
+//import getAllPosts from "./getAllPosts.js";
 
 export default {
   registerUser,
@@ -17,9 +17,9 @@ export default {
   deleteUser,
   updateEmail,
   updatePassword,
-  updateUsername,
+  //updateUsername,
   authenticateUser,
   getAuthUser,
   createPost,
-  getAllPosts,
+  //getAllPosts,
 };

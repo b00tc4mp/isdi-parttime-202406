@@ -38,16 +38,13 @@ const User = mongoose.model("User", UserSchema);
 const PostsSchema = new Schema(
   {
     author: {
-      type: String,
-      ref: "user",
+      type: ObjectId,
+      ref: "User",
       required: true,
     },
     content: {
       type: String,
       required: true,
-    },
-    createdAt: {
-      // esto crea una fecha automática para cuándo se ha creado
     },
     images: {
       type: [String],

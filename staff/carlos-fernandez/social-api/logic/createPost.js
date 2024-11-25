@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import data from "../data/index.js";
 import { Errors } from "social-common";
 
