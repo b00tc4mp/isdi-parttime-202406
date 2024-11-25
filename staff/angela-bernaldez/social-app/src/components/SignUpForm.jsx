@@ -10,16 +10,7 @@ import {
 import classNames from "classnames";
 import { memo, useState } from "react";
 import ES from "../locales/es.json";
-import { Validator } from "../tools";
-import {
-  BadRequestError,
-  DateOfBirthNotValidError,
-  EmailNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-  UsernameNotValidError,
-} from "../tools/errors";
+import { Errors, Validator } from "social-common"
 import { DatePicker, FormErrorsSection } from ".";
 import moment from "moment";
 
@@ -41,7 +32,7 @@ function SignUpForm({ className, onSubmit }) {
 
     if (!(inputPassword.value === inputRepeatPassword.value)) {
       newErrors.push(
-        new PasswordNotValidError("Password and repeatPassword do not match")
+        new Errors.PasswordNotValidError("Password and repeatPassword do not match")
       );
       newErrors[newErrors.length - 1].order = 4;
       inputPassword.value = "";
@@ -53,7 +44,7 @@ function SignUpForm({ className, onSubmit }) {
       inputPassword.value === inputRepeatPassword.value &&
       !Validator.password(inputPassword.value)
     ) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"))
       newErrors[newErrors.length - 1].order = 4;
       inputPassword.focus();
     }
@@ -65,13 +56,13 @@ function SignUpForm({ className, onSubmit }) {
     }
 
     if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
-      newErrors.push(new DateOfBirthNotValidError("DateOfBirth is not valid"));
+      newErrors.push(new Errors.DateOfBirthNotValidError("DateOfBirth is not valid"))
       newErrors[newErrors.length - 1].order = 2;
       // inputDateOfBirth.focus();
     }
 
     if (!Validator.username(inputUsername.value)) {
-      newErrors.push(new UsernameNotValidError("Username is not valid"));
+      newErrors.push(new Errors.UsernameNotValidError("Username is not valid"))
       newErrors[newErrors.length - 1].order = 1;
       inputUsername.focus();
     }
@@ -88,9 +79,9 @@ function SignUpForm({ className, onSubmit }) {
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((err) => {
-          if (err instanceof BadRequestError) return setErrors([err]);
-          if (err instanceof ServerError) return setErrors([err]);
-          setErrors([new UnexpectedError()]);
+          if (err instanceof Errorrs.BadRequestError) return setErrors([err]);
+          if (err instanceof Errors.ServerError) return setErrors([err]);
+          setErrors([new Errors.UnexpectedError()]);
         });
       } catch (err) {
         err.order = 1;
