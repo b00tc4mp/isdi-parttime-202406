@@ -1,3 +1,4 @@
+import cors from 'cors'
 import 'dotenv/config'
 import express, { json } from 'express'
 import fs from 'fs'
@@ -6,7 +7,9 @@ import { errorHandler } from './middlewares/index.js'
 
 const server = express()
 
-const jsonBodyParser = json();
+const jsonBodyParser = json()
+
+server.use(cors())
 
 server.post('/users', jsonBodyParser, handlers.registerUser)
 
