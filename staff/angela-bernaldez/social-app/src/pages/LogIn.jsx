@@ -15,7 +15,7 @@ function LogIn({ updateFather }) {
     () =>
       ({ email, password }) => {
         try {
-          return userAuth(email, password) //
+          return userAuth(email, password) 
           .then(() => {
               updateFather();
               navigate("/home");

@@ -10,7 +10,7 @@ export default (req, res, next) => {
     try {
         const users = logic.getAllUsers(id);
 
-        res.status(200).send(users);
+        res.status(200).json({ users: users })
     } catch (error) {
         // to propagate errors to the next middleware or to the global error handler.
         next(error)

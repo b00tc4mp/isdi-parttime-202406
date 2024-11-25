@@ -1,17 +1,28 @@
-import { Errors, Validator } from "social-common";
-import storage from '../db/sync-storage.js'
+import { Errors, Validator } from "social-common"
+import storage from "../db/async-storage.js"
+import bcrypt from "bcrypt"
 
 export default (id, newPassword, oldPassword) => {
     Validator.password(newPassword)
     Validator.password(oldPassword)
 
-    const users = storage.users
+    return storage.getUsers()
+        .then((users) => {
+            const userIndex = users.findIndex(user => user.id === id);
+            if (userIndex === -1) throw new Errors.ExistenceError('No user with this email')
 
-    const userIndex = users.findIndex((user) => user.id === id)
-    if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone")
-    if (users[userIndex].password !== oldPassword) throw new Errors.CredentialsError("Wrong credentials");
+            return bcrypt.compare(oldPassword, users[userIndex].password)
+                .then((isPasswordValid) => {
+                    if (!isPasswordValid) throw new Errors.CredentialsError('Wrong Password');
 
-    users[userIndex].password = newPassword
+                    return bcrypt.hash(newPassword, 15)
+                        .then((cryptPassword) => {
 
-    storage.saveUsers(users)
+                            users[userIndex].password = cryptPassword;
+
+                            return storage.saveUsers(users)
+                        })
+                        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
+                }).catch((error) => { throw new Errors.UnexpectedError(error.message) })
+        })
 }

@@ -3,6 +3,8 @@ import isUserLoggedIn from "./isUserLoggedIn.js"
 import logout from "./logout.js"
 import registerUser from "./registerUser.js"
 import userAuth from "./userAuth.js"
+import updateEmail from "./updateEmail.js"
+import updatePassword from "./updatePassword.js"
 import updateUsername from "./updateUsername.js"
 
 const logic = {
@@ -11,6 +13,8 @@ const logic = {
   logout,
   registerUser,
   userAuth,
+  updateEmail,
+  updatePassword,
   updateUsername,
 };
 
