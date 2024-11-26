@@ -1,4 +1,5 @@
 import * as Errors from "./errors.js";
+import { ObjectId } from "mongoose";
 
 class Validator {
   static email(value) {
@@ -67,6 +68,12 @@ class Validator {
       throw Errors.ConfirmationError("Passwords do not match");
 
     return true;
+  }
+
+  static id(id) {
+    if (typeof id !== "string") {
+      throw new Errors.ContentError("Invalid ID format");
+    }
   }
 }
 

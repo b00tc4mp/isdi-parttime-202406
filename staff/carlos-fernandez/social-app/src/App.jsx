@@ -63,19 +63,7 @@ function App() {
           <Route path="/not-found" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
-        {/* 
-        - Home
-        - Feed
-        - Create content
-        - Profile (view)
-        - Profile (edit)
-        - People
-        - Explorer
-        - Settings
-        - Conversations (list)
-        - Conversations (only one)
-        - Notificacions
-        */}
+
         {logic.isUserLoggedIn() && location.pathname !== "/new-post" && (
           <button
             onClick={() => navigate("/new-post")}

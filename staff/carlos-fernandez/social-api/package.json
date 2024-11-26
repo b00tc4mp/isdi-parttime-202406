@@ -4,10 +4,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node .",
     "inspect": "node --inspect-brk index.js",
-    "test-inspect": "mocha --inspect-brk ./logic/*.spec.js",
-    "test": "mocha ./logic/createPost.spec.js"
+    "test-inspect": "mocha --inspect-brk ./logic/updateEmail.spec.js",
+    "test": "mocha --timeout 5000 ./logic/updateEmail.spec.js"
   },
   "keywords": [],
   "author": "",
