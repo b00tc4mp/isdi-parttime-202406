@@ -45,8 +45,6 @@ class Validator {
     if (typeof value !== 'string') throw new TypeError("Date is not a string");
     if (value.trim().length <= 0) throw new Errors.ContentError("Date is empty");
 
-    /*REGEX:: MM/DD/YYYY
-    
     const dateOfBirthRegExp =
       /^(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[01])\/\d{4}$/;
 
@@ -59,13 +57,46 @@ class Validator {
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
 
-    if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");*/
+    if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");
 
     return true;
   }
 
   static confirmationPassword(value1, value2) {
     if (value1 !== value2) throw Errors.ConfirmationError("Passwords do not match")
+
+    return true;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////
+  static id(value) {
+    if (typeof value !== 'string') throw new TypeError("Id is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Id is empty");
+
+    return true;
+  }
+
+  static content(value) {
+    if (typeof value !== 'string') throw new TypeError("Content is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Content is empty");
+    if (value.length > 120) throw new Errors.ContentError("Content is too long");
+
+    return true;
+  }
+
+  static bio(value) {
+    if (typeof value !== 'string') throw new TypeError("Bio is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Bio is empty");
+    if (value.length > 100) throw new Errors.ContentError("Bio is too long");
+
+    return true;
+  }
+
+  static img(value) {
+    if (typeof value !== 'string') throw new TypeError("Img link is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Img link is empty");
+    if (!value.startsWith('http')) throw new ValidationError(`Invalid link img`);
+    //comprobar que valida tipo .png, .jpg, .webp, .gif
 
     return true;
   }

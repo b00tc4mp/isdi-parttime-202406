@@ -1,16 +1,15 @@
 import { Errors, Validator } from "social-common";
+import models from "../data/models.js";
+
+const { User } = models;
 
 export default (id, newEmail) => {
-    /* Validator.email(newEmail);
- 
-     const users = storage.users;
- 
-     const userIndex = users.findIndex(user => user.id === id);
-     if (userIndex === -1) throw new Errors.AuthError("User id don't belong to anyone");
- 
-     users[userIndex].email = newEmail
- 
- 
- 
-     storage.saveUsers(users);*/
+    Validator.email(newEmail);
+    Validator.id(id);
+
+    return User.findByIdAndUpdate(id, { email: newEmail })
+        .then((user) => {
+            if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+        })
+
 }

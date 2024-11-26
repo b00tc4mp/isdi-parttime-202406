@@ -1,26 +1,20 @@
 import { ObjectId } from "mongodb"
 import data from "../data/index.js"
-import { Errors } from "social-common"
+import { Errors, Validator } from "social-common"
+import models from "../data/models.js"
+
+const { User, Post } = models;
 
 export default (id) => {
-    //validar id, validar texto contento;
+    Validator.id(id);
 
-    return data.users.findOne({ _id: new ObjectId(id) })
+    return User.findById(id)
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
-            return data.posts.find().toArray()
+            return Post.find({ visibility: "public" }, 'author content likes images createdAt').lean()
                 .then(posts => {
-                    posts.forEach(post => {
-                        post.id = post._id.toString();
-                        delete post._id
-                        data.users.findOne({ _id: post.author })
-                            .then((user) => {
-                                post.author = user.username
-                            })
-                            .catch(error => { throw new Errors.UnexpectedError(error.message) })
-                    });
                     return posts
                 })
+                .catch(error => { throw new Errors.UnexpectedError(error.message) })
         })
-        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
 }

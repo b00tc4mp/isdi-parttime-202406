@@ -1,14 +1,20 @@
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common";
+import models from "../data/models.js";
 
+const { User } = models;
 
 export default (id) => {
-    /*const users = storage.users;
+    Validator.id(id);
 
-    const userExists = users.some((user) => user.id === id);
-    if (!userExists) throw new Errors.AuthError("User id don't belong to anyone");
-
-    const cleanUsers = users.map((user) => {
-        return { username: user.username, dateOfBirth: user.dateOfBirth };
-    });
-    return cleanUsers;*/
-};
+    return User.findById(id)
+        .then(user => {
+            if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+            return User.find({}, 'username avatar').lean()
+                .then(users => {
+                    return users.map(user => {
+                        delete user._id
+                        return user;
+                    })
+                })
+        })
+}

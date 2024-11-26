@@ -1,9 +1,10 @@
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common";
 import models from "../data/models.js";
 
 const { User } = models;
 
 export default (id) => {
+    Validator.id(id);
 
     return User.findById(id)
         .then((user) => {

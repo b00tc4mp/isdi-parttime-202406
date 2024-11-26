@@ -47,7 +47,7 @@ describe('authenticateUser', () => {
         return authenticateUser('nombre@mail.com', 'contraseña-aleatoria1')
             .then(() => { })
             .catch(error => {
-                expect(error.message).to.be.equal('No user with this email')
+                expect(error.message).to.equal('No user with this email')
             })
     })
 
@@ -65,7 +65,7 @@ describe('authenticateUser', () => {
                         return authenticateUser('nombre@mail.com', 'contraseña-incorrecta')
                             .then(() => { })
                             .catch(error => {
-                                expect(error.message).to.be.equal('Wrong Password')
+                                expect(error.message).to.equal('Wrong Password')
                             })
                     })
             })
@@ -78,7 +78,7 @@ describe('authenticateUser', () => {
         try {
             authenticateUser(12345, 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email is not a string')
+            expect(error.message).to.equal('Email is not a string')
         }
     })
 
@@ -86,7 +86,7 @@ describe('authenticateUser', () => {
         try {
             authenticateUser('  ', 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email is empty')
+            expect(error.message).to.equal('Email is empty')
         }
     })
 
@@ -94,7 +94,7 @@ describe('authenticateUser', () => {
         try {
             authenticateUser('i am not an email :D', 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email format is not valid')
+            expect(error.message).to.equal('Email format is not valid')
         }
     })
 
@@ -102,7 +102,7 @@ describe('authenticateUser', () => {
         try {
             authenticateUser('email@mail.com', 12345)
         } catch (error) {
-            expect(error.message).to.be.equal('Password is not a string')
+            expect(error.message).to.equal('Password is not a string')
         }
     })
 
@@ -110,7 +110,7 @@ describe('authenticateUser', () => {
         try {
             authenticateUser('email@mail.com', '     ')
         } catch (error) {
-            expect(error.message).to.be.equal('Password is empty')
+            expect(error.message).to.equal('Password is empty')
         }
     })
 

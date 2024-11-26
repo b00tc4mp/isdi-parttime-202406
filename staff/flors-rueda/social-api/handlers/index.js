@@ -9,6 +9,8 @@ import authenticateUser from "./authenticateUser.js";
 import getAuthUser from "./getAuthUser.js";
 import createPost from "./createPost.js";
 import getAllPosts from "./getAllPosts.js";
+import updateAvatar from "./updateAvatar.js";
+import updateBio from "./updateBio.js";
 
 
 export default {
@@ -22,5 +24,7 @@ export default {
     authenticateUser,
     getAuthUser,
     createPost,
-    getAllPosts
+    getAllPosts,
+    updateAvatar,
+    updateBio
 }
