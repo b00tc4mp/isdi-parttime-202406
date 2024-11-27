@@ -8,7 +8,7 @@ export default (id, content) => {
     return data.users.findOne({ _id: new ObjectId(id) })
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
-            data.posts.insertOne({
+            return data.posts.insertOne({
                 author: user._id,
                 content: content,
                 publicationDate: new Date(),

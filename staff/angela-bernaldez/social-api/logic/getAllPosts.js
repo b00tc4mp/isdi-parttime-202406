@@ -8,7 +8,7 @@ export default (id) => {
     return data.users.findOne({ _id: new ObjectId(id) })
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
-            data.posts.find().toArray()
+            return data.posts.find().toArray()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString();

@@ -1,5 +1,6 @@
 import createPost from "./createPost.js"
 import deleteUser from "./deleteUser.js"
+import getAllPosts from "./getAllPosts.js"
 import getAuthUsername from "./getAuthUsername.js"
 import isUserLoggedIn from "./isUserLoggedIn.js"
 import logout from "./logout.js"
@@ -12,6 +13,7 @@ import updateUsername from "./updateUsername.js"
 const logic = {
   createPost,
   deleteUser,
+  getAllPosts,
   getAuthUsername,
   isUserLoggedIn,
   logout,

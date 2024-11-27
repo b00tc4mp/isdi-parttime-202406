@@ -12,8 +12,7 @@ function Home({ noche }) {
   useEffect(() => {
     try {
       logic.getAuthUsername()
-        .then((_username) => {
-          setUsername(_username)
+        .then((_username) => {setUsername(_username)
           logic.getAllPosts()
             .then((_posts) => {
               setPosts(_posts)
@@ -30,6 +29,13 @@ function Home({ noche }) {
   return (
     <main className="text-3xl min-h-screen px-8 pt-3 pb-5">
       {username ? `Hola ${username}` : `¿Y tu quién eres?`}
+      <section>
+        {
+          posts.length > 0 && posts.map((post, index) => {
+            return <article key={index}>{post.content}</article>
+          })
+        }
+      </section>
     </main>
   )
 }
