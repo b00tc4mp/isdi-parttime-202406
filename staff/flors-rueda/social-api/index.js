@@ -46,7 +46,7 @@ try {
 
             server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost);
 
-            server.get('/posts', verifyToken, handlers.getAllPosts)
+            server.get('/posts', verifyToken, handlers.getAllPublicPosts)
 
             server.use(errorHandler);
 

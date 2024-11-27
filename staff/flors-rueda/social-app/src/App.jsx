@@ -5,6 +5,7 @@ import { ModalContext } from "./context";
 import { useUpdate } from "react-use";
 import logic from "./logic";
 import { Footer, Header } from "./components";
+import Profile from "./pages/Profile";
 
 function App() {
   const update = useUpdate();
@@ -30,27 +31,15 @@ function App() {
             path="/settings"
             element={<ProfileSettings isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route path="/new-post" element={<NewPost />} />
           <Route path="/not-found" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
-        {/* 
-        - Home
-        - Feed
-        - Create content
-        - Profile (view)
-        - Profile (edit)
-        - People
-        - Explorer
-        - Settings
-        - Conversations (list)
-        - Conversations (only one)
-        - Notificacions
-        */}
         {(logic.isUserLoggedIn() && location.pathname !== '/new-post') &&
           <button
             onClick={() => navigate('/new-post')}
-            className="text-5xl text-red-500 border rounded-full px-5 fixed bottom-14 bg-green-500 hover:bg-teal-400 right-0">+</button>
+            className="text-5xl fixed bottom-14 right-0 btn btn-ghost hover:btn-neutral">+</button>
         }
         {logic.isUserLoggedIn() && <Footer />}
       </main>

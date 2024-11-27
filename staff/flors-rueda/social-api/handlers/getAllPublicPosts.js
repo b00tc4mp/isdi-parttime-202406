@@ -4,7 +4,7 @@ export default (req, res, next) => {
     const id = req.id;
 
     try {
-        logic.getAllPosts(id)
+        logic.getAllPublicPosts(id)
             .then(posts => {
                 res.status(200).json({ posts: posts })
             })

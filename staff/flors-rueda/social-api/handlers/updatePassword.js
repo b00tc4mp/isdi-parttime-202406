@@ -6,9 +6,9 @@ export default (req, res, next) => {
     const { 'old-password': oldPassword, 'new-password': newPassword } = req.body
 
     try {
-        logic.updatePassword(Number(id), newPassword, oldPassword);
-
-        res.status(200).send();
+        logic.updatePassword(id, newPassword, oldPassword)
+            .then(() => res.status(200).send())
+            .catch(() => next(error))
     } catch (error) {
         next(error)
     }

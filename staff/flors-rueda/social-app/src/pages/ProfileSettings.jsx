@@ -17,32 +17,20 @@ function ProfileSettings() {
             .catch((error) => openModalError(error))
     }
 
-    const onSubmitEmail = (event) => {
+    const onSubmitAvatar = (event) => {
         event.preventDefault();
-        const email = event.target.email.value;
+        const avatar = event.target.avatar.value;
 
-        logic.updateEmail(email)
+        logic.updateAvatar(avatar)
             .then(() => navigate('/home'))
             .catch((error) => openModalError(error))
     }
 
-    const onSubmitPassword = (event) => {
+    const onSubmitBio = (event) => {
         event.preventDefault();
-        const oldPassword = event.target.old.value;
-        const newPassword = event.target.new.value;
-        const confirmPassword = event.target.confirm.value;
-
-        logic.updatePassword(oldPassword, newPassword, confirmPassword)
-            .then(() => navigate('/home'))
-            .catch((error) => openModalError(error))
-    }
-
-    const onSubmitDelete = (event) => {
-        event.preventDefault();
-        const password = event.target.password.value;
-        logic.deleteUser(password)
+        const bio = event.target.bio.value;
+        logic.updateBio(bio)
             .then(() => {
-                logic.logout();
                 navigate('/');
             })
             .catch(error => {
@@ -60,31 +48,19 @@ function ProfileSettings() {
             </form>
         </section>
         <section>
-            <h1 className="text-2xl font-semibold">Editar Email</h1>
-            <form className="flex flex-col gap-2" onSubmit={onSubmitEmail}>
-                <label htmlFor="email">Elige tu nuevo email:</label>
-                <input className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="email" type="email" placeholder="nuevo@email.com"></input>
-                <button type="submit" className="self-start btn btn-secondary">Guardar Email</button>
+            <h1 className="text-2xl font-semibold">Editar Avatar</h1>
+            <form className="flex flex-col gap-2" onSubmit={onSubmitAvatar}>
+                <label htmlFor="email">Elige tu nuevo avatar:</label>
+                <input className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="avatar" type="url" placeholder="url del avatar"></input>
+                <button type="submit" className="self-start btn btn-secondary">Guardar Avatar</button>
             </form>
         </section>
         <section>
-            <h1 className="text-2xl font-semibold">Editar Contraseña</h1>
-            <form className="flex flex-col gap-2" onSubmit={onSubmitPassword}>
-                <label htmlFor="new">Elige tu nueva contraseña:</label>
-                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="new" type="password"></input>
-                <label htmlFor="confirm">Repite tu nueva contraseña:</label>
-                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="confirm" type="password"></input>
-                <label htmlFor="old">Confirma el cambio con tu antigua contraseña:</label>
-                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="old" type="password"></input>
-                <button type="submit" className="self-start btn btn-secondary">Guardar Contraseña</button>
-            </form>
-        </section>
-        <section>
-            <h1 className="text-2xl font-semibold">Eliminar Cuenta</h1>
-            <form className="flex flex-col gap-2" onSubmit={onSubmitDelete}>
-                <label htmlFor="password">Confirma que quieres eliminar tu cuenta con tu contraseña laralalalala :D </label>
-                <input placeholder="*****" className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4" id="password" type="password"></input>
-                <button type="submit" className="self-start btn btn-primary">Eliminar Cuenta</button>
+            <h1 className="text-2xl font-semibold">Editar Bio</h1>
+            <form className="flex flex-col gap-2" onSubmit={onSubmitBio}>
+                <label htmlFor="bio">Elige tu nueva bio:</label>
+                <textarea placeholder="cuenta tu vida" className="textarea textarea-bordered bg-gray-800" id="bio" />
+                <button type="submit" className="self-start btn btn-secondary">Guardar Bio</button>
             </form>
         </section>
 

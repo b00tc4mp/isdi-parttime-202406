@@ -12,6 +12,7 @@ export default (id) => {
             return User.find({}, 'username avatar').lean()
                 .then(users => {
                     return users.map(user => {
+                        user.id = user._id.toString();
                         delete user._id
                         return user;
                     })

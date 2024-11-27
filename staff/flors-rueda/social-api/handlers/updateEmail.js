@@ -5,9 +5,11 @@ export default (req, res, next) => {
     const { email } = req.body
 
     try {
-        logic.updateEmail(Number(id), email);
-
-        res.status(200).send();
+        logic.updateEmail(id, email)
+            .then(() => {
+                res.status(200).send();
+            })
+            .catch(error => next(error))
     } catch (error) {
         next(error)
     }

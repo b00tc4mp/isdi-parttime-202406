@@ -29,7 +29,15 @@ const UserSchema = new Schema({
     bio: {
         type: String,
         maxLength: 100
-    }
+    },
+    followers: [{
+        type: ObjectId,
+        ref: "User" //¡Esto va en String!
+    }],
+    following: [{
+        type: ObjectId,
+        ref: "User"
+    }]
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -37,7 +45,7 @@ const User = mongoose.model('User', UserSchema);
 const PostSchema = new Schema({
     author: {
         type: ObjectId,
-        ref: User,
+        ref: "User",
         required: true
     },
     content: {
@@ -48,7 +56,7 @@ const PostSchema = new Schema({
     },
     likes: [{
         type: ObjectId,
-        ref: User
+        ref: "User"
     }],
     images: [{
         type: String

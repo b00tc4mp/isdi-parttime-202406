@@ -102,7 +102,10 @@ function Aside() {
           <div className="menu bg-base-200 text-base-content min-h-full w-80 pt-6 pb-24 flex flex-col justify-between">
             <ul>
               <li>
-                <Link to={'/settings'}>Mi Perfil</Link>
+                <Link to={'/settings'}>Configuración</Link>
+              </li>
+              <li>
+                <Link to={'/security'}>Seguridad</Link>
               </li>
               <li>
                 <a>Sidebar Item 2</a>

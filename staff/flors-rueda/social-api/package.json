@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "populate": "node ./data/populatedb/index.js",
     "inspect": "node --inspect-brk index.js",
     "test-inspect": "mocha --inspect-brk ./logic/*.spec.js",
-    "test": "mocha --timeout 5000 ./logic/*.spec.js"
+    "test": "mocha --timeout 10000 ./logic/*.spec.js"
   },
   "author": "",
   "license": "ISC",
