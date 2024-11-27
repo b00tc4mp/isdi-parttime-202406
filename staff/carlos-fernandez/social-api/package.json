@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node .",
     "inspect": "node --inspect-brk index.js",
-    "test-inspect": "mocha --inspect-brk ./logic/updateEmail.spec.js",
-    "test": "mocha --timeout 5000 ./logic/updateEmail.spec.js"
+    "test-inspect": "mocha --inspect-brk ./logic/updatePassword.spec.js",
+    "test": "mocha --timeout 5000 ./logic/updatePassword.spec.js"
   },
   "keywords": [],
   "author": "",

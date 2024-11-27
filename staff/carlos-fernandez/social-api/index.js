@@ -22,26 +22,20 @@ try {
 
       server.use(cors());
 
-      //Funciona en mongoose
       server.post(
         "/users",
         jsonBodyParser,
         /*Más middlewares*/ handlers.registerUser
       );
 
-      //Funciona en mongoose
       server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
 
-      //Funciona en mongoose
       server.get("/users/auth", verifyToken, handlers.getAuthUser);
 
-      //ni mongo ni na
       server.get("/users", verifyToken, handlers.getAllUsers);
 
-      //ni mongo ni na
       server.get("/users/:username", verifyToken, handlers.getOneUser);
 
-      //mongo
       server.patch(
         "/users/username",
         verifyToken,
@@ -49,7 +43,6 @@ try {
         handlers.updateUsername
       );
 
-      //ni mongo ni na
       server.patch(
         "/users/email",
         verifyToken,
@@ -57,7 +50,6 @@ try {
         handlers.updateEmail
       );
 
-      //ni mongo ni na
       server.patch(
         "/users/password",
         verifyToken,
@@ -65,13 +57,24 @@ try {
         handlers.updatePassword
       );
 
-      //mongo
+      server.patch(
+        "/users/bio",
+        verifyToken,
+        jsonBodyParser,
+        handlers.updateBio
+      );
+
+      server.patch(
+        "/users/avatar",
+        verifyToken,
+        jsonBodyParser,
+        handlers.updateAvatar
+      );
+
       server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
 
-      //mongo
       server.post("/posts", verifyToken, jsonBodyParser, handlers.createPost);
 
-      //mongo
       server.get("/posts", verifyToken, handlers.getAllPosts);
 
       server.use(errorHandler);
