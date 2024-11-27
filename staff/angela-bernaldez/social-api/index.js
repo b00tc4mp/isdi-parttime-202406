@@ -24,9 +24,11 @@ try {
 
             const server = express()
 
+            const jsonBodyParser = json()
+
             server.use(cors())
 
-            server.post('/users', jsonBodyParser, /*Más middlewares*/ handlers.registerUser)
+            server.post('/users', jsonBodyParser, handlers.registerUser)
 
             server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 

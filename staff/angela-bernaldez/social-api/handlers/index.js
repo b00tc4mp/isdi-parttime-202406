@@ -1,4 +1,5 @@
 import authenticateUser from "./authenticateUser.js";
+import createPost from "./createPost.js";
 import deleteUser from "./deleteUser.js";
 import getAllUsers from "./getAllUsers.js";
 import getAuthUser from "./getAuthUser.js";
@@ -10,6 +11,7 @@ import updateUsername from "./updateUsername.js";
 
 export default {
     authenticateUser,
+    createPost,
     deleteUser,
     getAllUsers,
     getAuthUser,
