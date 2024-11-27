@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Comment from "./Comment";
+import logic from "../logic";
 
 function PostCard({ post }) {
     const [isLiked, setLiked] = useState(post.isLiked);
@@ -7,16 +8,23 @@ function PostCard({ post }) {
     const [isFollowed, setFollowed] = useState(post.author.isFollowed)
 
     const onLikeClick = () => {
-        //AÑADIR LLAMADA AL BACK
-
-        if (isLiked) setLikes(likes - 1)
-        else setLikes(likes + 1);
-        setLiked(!isLiked);
+        try {
+            logic.toggleLike(post.id)
+                .then(() => {
+                    if (isLiked) setLikes(likes - 1)
+                    else setLikes(likes + 1);
+                    setLiked(!isLiked);
+                })
+                .catch(error => console.log(error))
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 
+    //
+
     const onFollowClick = () => {
-        //AÑADIR LLAMADA AL BACK
 
         setFollowed(!isFollowed);
     }
@@ -24,8 +32,15 @@ function PostCard({ post }) {
     const onSubmitComment = (event) => {
         event.preventDefault();
         const comment = event.target.comment.value;
-        console.log(comment)
-        event.target.reset()
+        try {
+            logic.createComment(post.id, comment)
+                .then(() => {
+                    //TODO Renderizar de nuevo los commentarios publicados: pista usar useEffect
+                    event.target.reset()
+                })
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <article className="card bg-neutral shadow-xl w-full flex-col rounded-md">
@@ -35,10 +50,10 @@ function PostCard({ post }) {
                         <div className="flex flex-row gap-4 justify-center items-center">
                             <div className="avatar">
                                 <div className="w-14 h-14 rounded-xl">
-                                    <img src="https://printler.com/media/photo/174893-2.jpg" />
+                                    <img src={post.author.avatar} />
                                 </div>
                             </div>
-                            <p className="text-accent">{`post.author.username`}</p>
+                            <p className="text-accent">{post.author.username}</p>
                         </div>
                         <button onClick={onFollowClick} className={`text-xs rounded-xl btn ${isFollowed ? 'btn-primary' : 'btn-success'}`}>{isFollowed ? 'Dejar de seguir' : 'Seguir'}</button>
                     </div>
@@ -71,7 +86,7 @@ function PostCard({ post }) {
                 <input type="checkbox" />
                 <div className="collapse-title text-xl font-medium">Commentarios</div>
                 <div className="collapse-content w-full">
-                    <Comment />
+                    <Comment />{/*TODO: Hay que traerse los comentarios... llegan con el getAllPublicPosts que ya tenemos hecho? Podemos usar populate para rellenar la info del user?*/}
                     <form className="flex flex-col gap-2" onSubmit={onSubmitComment}>
                         <label htmlFor="comment" className="text-sm pt-7">Deja tu comentario:</label>
                         <textarea placeholder="no le faltes al respeto a nadie, imbécil" className="textarea textarea-bordered bg-gray-800" id="comment" />

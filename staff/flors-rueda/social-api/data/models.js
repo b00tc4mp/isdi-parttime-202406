@@ -42,6 +42,18 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+const CommentSchema = new Schema({
+    author: {
+        type: ObjectId,
+        ref: "User",
+        required: true
+    },
+    comment: {
+        type: String,
+        maxLength: 80,
+    }
+}, { timestamps: true })
+
 const PostSchema = new Schema({
     author: {
         type: ObjectId,
@@ -65,7 +77,8 @@ const PostSchema = new Schema({
         type: String,
         enum: ["followers", "private", "public"],
         required: true
-    }
+    },
+    comments: [CommentSchema]
 }, { timestamps: true })
 
 

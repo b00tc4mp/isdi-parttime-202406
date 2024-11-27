@@ -11,6 +11,8 @@ import createPost from "./createPost.js";
 import getAllPublicPosts from "./getAllPublicPosts.js";
 import updateAvatar from "./updateAvatar.js";
 import updateBio from "./updateBio.js";
+import toggleLike from "./toggleLike.js";
+import createComment from "./createComment.js";
 
 
 export default {
@@ -26,5 +28,7 @@ export default {
     createPost,
     getAllPublicPosts,
     updateAvatar,
-    updateBio
+    updateBio,
+    toggleLike,
+    createComment
 }

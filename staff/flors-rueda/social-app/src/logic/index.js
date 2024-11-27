@@ -12,6 +12,8 @@ import getAllPublicPosts from "./getAllPublicPosts.js";
 import getAllUsers from "./getAllUsers.js";
 import updateAvatar from "./updateAvatar.js";
 import updateBio from "./updateBio.js";
+import toggleLike from "./toggleLike.js";
+import createComment from "./createComment.js";
 
 const logic = {
   registerUser,
@@ -27,7 +29,9 @@ const logic = {
   getAllPublicPosts,
   getAllUsers,
   updateAvatar,
-  updateBio
+  updateBio,
+  toggleLike,
+  createComment
 };
 
 export default logic;
