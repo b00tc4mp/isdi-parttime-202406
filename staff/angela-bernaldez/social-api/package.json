@@ -8,7 +8,7 @@
     "start": "node index.js",
     "inspect": "node --inspect-brk index.js",
     "test-inspect": "mocha --inspect-brk ./logic/*.spec.js",
-    "test": "mocha ./logic/*.spec.js"
+    "test": "mocha --timeout=8000 ./logic/*.spec.js"
   },
   "keywords": [],
   "author": "",

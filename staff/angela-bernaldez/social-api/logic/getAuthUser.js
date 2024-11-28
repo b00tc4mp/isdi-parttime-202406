@@ -5,7 +5,6 @@ const { User } = models
 
 export default (id) => {
 
-
     return User.findById(id)
     .then((user) => {
         if (!user) throw new Errors.AuthError("User id don't belong to anyone");

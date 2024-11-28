@@ -1,5 +1,8 @@
-// TODO refactor so instead of "true" or "false" it already launches the error if needed (returns nothing if everythin is fine)
 import * as Errors from "./errors.js";
+
+//TODO: VALIDATORS: Hemos añadido logicas y vamos a añadir incluso un nuevo esquema...
+// Teniendo en cuenta que es buena practica validar todo lo que llega como argumento a una función de las logicas,
+// hay que crear un nuevo metodo estatico para cada tipo de input
 
 class Validator {
     static email(value) {
