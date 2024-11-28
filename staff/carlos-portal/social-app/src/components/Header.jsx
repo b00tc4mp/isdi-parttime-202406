@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconMenu } from "./icons";
+import ES from "../locales/es.json";
+import logic from "../logic";
 
 function Header() {
   return (
     <>
-      <header>
-        <nav className="navbar bg-base-100 text-black">
+      <header className="sticky top-0 z-10">
+        <nav className="navbar text-black bg-secondary">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||
-              window.location.pathname === "/login" ||
-              window.location.pathname === "/Recuperador"
+              window.location.pathname === "/login"
             ) && <Aside />}
           </div>
           <div className="navbar-center">
@@ -18,9 +19,9 @@ function Header() {
               to="/"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent bg-primary"
+              className="btn btn-ghost text-lg hover:bg-transparent"
             >
-              Social App
+              {ES.header.title}
             </Link>
           </div>
           <div className="navbar-end">
@@ -72,14 +73,22 @@ export default Header;
 //                                    COMPONENTS                                              //
 ////////////////////////////////////////////////////////////////////////////////////////////////
 function Aside() {
+  const navigate = useNavigate();
+
+  const onLogoutClick = () => {
+    logic.logout();
+    navigate('/login')
+  }
+
+
   return (
     <>
-      <div className="drawer backdrop-sepia">
+      <div className="drawer">
         <input id="nav-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <label
             htmlFor="nav-drawer"
-            className="drawer-button btn btn-ghost btn-square btn-glass "
+            className="drawer-button btn btn-ghost btn-square"
           >
             <IconMenu />
           </label>
@@ -90,14 +99,21 @@ function Aside() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 py-6 !bg-base-100">
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
-          </ul>
+          <div className="menu bg-base-200 text-base-content min-h-full w-80 pt-6 pb-24 flex flex-col justify-between">
+            <ul>
+              <li>
+                <Link to={'/settings'}>Mi Perfil</Link>
+              </li>
+              <li>
+                <a>Sidebar Item 2</a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <button onClick={onLogoutClick}>Logout</button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </>

@@ -2,6 +2,8 @@ import classNames from "classnames";
 import ES from "../locales/es.json";
 
 function FormErrorsSection({ className, errors }) {
+  errors?.sort((a, b) => a.order - b.order);
+
   return (
     <>
       {errors instanceof Array && (
@@ -13,7 +15,10 @@ function FormErrorsSection({ className, errors }) {
         >
           {errors.map((error, index) => (
             <li key={index} className="">
-              <span>{ES.formsErrors[error.constructor.name]}</span>
+              <span>
+                {ES.formsErrors[error.constructor.name] ??
+                  ES.formsErrors.default}
+              </span>
             </li>
           ))}
         </ul>

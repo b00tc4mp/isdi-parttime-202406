@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import { IconEmail, IconLogin, IconPassword } from "./icons";
-import classNames from "classnames";
-import { Validator } from "../tools";
-import { useState } from "react";
 import {
-  BadRequestError,
-  CredentialsError,
-  EmailNotValidError,
-  PasswordNotValidError,
-  ServerError,
-  UnexpectedError,
-} from "../tools/errors";
+  IconEmail,
+  IconHidePassword,
+  IconLogin,
+  IconPassword,
+  IconShowPassword,
+} from "./icons";
+import classNames from "classnames";
+import { memo, useState } from "react";
+import { Errors, Validator } from "social-common";
 import { FormErrorsSection } from ".";
 import ES from "../locales/es.json";
 
@@ -25,27 +23,43 @@ function LoginForm({ className, onSubmit }) {
     const newErrors = [];
 
     if (!Validator.password(inputPassword.value)) {
-      newErrors.push(new PasswordNotValidError("Password is not valid"));
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
       inputPassword.focus();
     }
 
     if (!Validator.email(inputEmail.value)) {
-      newErrors.push(new EmailNotValidError("Email is not valid"));
+      newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
       inputEmail.focus();
     }
 
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0)
-      onSubmit({
-        email: inputEmail.value,
-        password: inputPassword.value,
-      }).catch((err) => {
-        if (err instanceof BadRequestError)
-          return setErrors([new CredentialsError()]);
-        if (err instanceof ServerError) return setErrors([err]);
-        setErrors([new UnexpectedError()]);
-      });
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          email: inputEmail.value,
+          password: inputPassword.value,
+        }).catch((err) => {
+          if (err instanceof Errors.BadRequestError)
+            return setErrors([new Errors.CredentialsError()]);
+          if (err instanceof Errors.ServerError) return setErrors([err]);
+          setErrors([new Errors.UnexpectedError()]);
+        });
+      } catch (err) {
+        err.order = 1;
+        setErrors([err]);
+      }
+    }
+  };
+
+  const showPassword = (buttonSelector, inputSelector) => {
+    document
+      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+      .classList.toggle("swap-active");
+    const element = document.getElementById(inputSelector);
+    element.type = element.type === "text" ? "password" : "text";
   };
 
   return (
@@ -68,12 +82,12 @@ function LoginForm({ className, onSubmit }) {
                 "input input-bordered input-ghost glass flex items-center gap-2 mb-4",
                 {
                   "input-error bg-error": errors?.some(
-                    (error) => error instanceof EmailNotValidError
+                    (error) => error instanceof Errors.EmailNotValidError
                   ),
                   "input-success bg-success":
                     errors instanceof Array &&
                     !errors?.some(
-                      (error) => error instanceof EmailNotValidError
+                      (error) => error instanceof Errors.EmailNotValidError
                     ),
                 }
               )}
@@ -83,7 +97,7 @@ function LoginForm({ className, onSubmit }) {
                 type="text"
                 id="email"
                 name="email"
-                placeholder={ES.loginForm.inputEmail}
+                placeholder={ES.loginForm.inputEmail.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
             </label>
@@ -92,12 +106,12 @@ function LoginForm({ className, onSubmit }) {
                 "input input-bordered input-ghost glass flex items-center gap-2",
                 {
                   "input-error bg-error": errors?.some(
-                    (error) => error instanceof PasswordNotValidError
+                    (error) => error instanceof Errors.PasswordNotValidError
                   ),
                   "input-success bg-success":
                     errors instanceof Array &&
                     !errors?.some(
-                      (error) => error instanceof PasswordNotValidError
+                      (error) => error instanceof Errors.PasswordNotValidError
                     ),
                 }
               )}
@@ -107,9 +121,18 @@ function LoginForm({ className, onSubmit }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder={ES.loginForm.inputPassword}
+                placeholder={ES.loginForm.inputPassword.placeholder}
                 className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
               />
+              <button
+                className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                type="button"
+                data-showpassword="true"
+                onClick={() => showPassword("showpassword", "password")}
+              >
+                <IconHidePassword className="swap-on w-6 h-6" />
+                <IconShowPassword className="swap-off w-6 h-6" />
+              </button>
             </label>
           </fieldset>
           <FormErrorsSection errors={errors} className="mb-5" />
@@ -143,4 +166,4 @@ function LoginForm({ className, onSubmit }) {
   );
 }
 
-export default LoginForm;
+export default memo(LoginForm);

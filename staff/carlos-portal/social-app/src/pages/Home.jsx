@@ -1,27 +1,28 @@
-import { Component } from "react";
-import { Footer, Header } from "../components";
+import { useEffect, useState } from "react";
+import { withPermissions } from "../hocs";
+import logic from "../logic";
+import { Errors } from "social-common";
+import { useModalError } from "../context/ModalContext";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <h2 className="text-4xl">All the database stuff</h2>
-        
-        <ul className="bg-neutral">
-          <li>Bienvenido @"Your Name"</li>
-          <li>"Main photo"</li>
-          <li>"Main description"</li>
-          <li>"Last Update"</li>
-          <li>"Update Status"</li>
-          <li>"All nav buttons"</li>
-          <li>"Delete Account"</li>            
-                
-        </ul>
-        <Footer />
-      </>
-    );
-  }
+function Home({ noche }) {
+  const [username, setUsername] = useState(null);
+  const openModalError = useModalError();
+
+  useEffect(() => {
+    try {
+      logic.getAuthUsername()
+        .then((_username) => setUsername(_username))
+        .catch((error) => { openModalError(error) })
+    } catch (error) {
+      openModalError(error)
+    }
+  }, [])
+
+  return (
+    <main className="text-3xl min-h-screen px-8 pt-3 pb-5">
+      {username ? `Hola ${username}` : `¿Y tu quién eres?`}
+    </main>
+  );
 }
 
-export default Home;
+export default withPermissions(Home);
