@@ -11,6 +11,7 @@ describe('getAuthUser', () => {
 
     before(() => mongoose.connect(process.env.MONGO_URI_TEST));
     afterEach(() => User.deleteMany());
+    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
     it('returns user username if exists', () => {
         const user = {

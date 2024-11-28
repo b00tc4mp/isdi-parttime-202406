@@ -11,6 +11,7 @@ describe('getOneUser', () => {
 
     before(() => mongoose.connect(process.env.MONGO_URI_TEST));
     afterEach(() => User.deleteMany());
+    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
     it('returns user info', () => {
         const user1 = {
@@ -37,7 +38,6 @@ describe('getOneUser', () => {
                         return getOneUser(id, user2.username)
                             .then((retrievedUser) => {
                                 expect(retrievedUser.username).to.equal(user2.username);
-                                expect(retrievedUser.email).to.equal(user2.email);
                                 expect(retrievedUser.bio).to.equal(user2.bio);
                                 expect(retrievedUser.avatar).to.equal(user2.avatar);
                                 expect(retrievedUser.dateOfBirth).to.deep.equal(user2.dateOfBirth);

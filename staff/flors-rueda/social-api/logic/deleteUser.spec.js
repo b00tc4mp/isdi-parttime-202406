@@ -12,6 +12,7 @@ describe('deleteUser', () => {
 
     before(() => mongoose.connect(process.env.MONGO_URI_TEST));
     afterEach(() => User.deleteMany());
+    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
     it('deletes user if exists and password is correct', () => {
         return bcrypt.hash('123456789', 1)

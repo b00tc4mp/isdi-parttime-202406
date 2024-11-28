@@ -12,6 +12,7 @@ describe('registerUser', () => {
 
     before(() => mongoose.connect(process.env.MONGO_URI_TEST));
     afterEach(() => User.deleteMany());
+    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
     it('creates a user', () => {
         return registerUser('example', '04/04/1994', 'mail@mail.com', 'contraseña!2')
@@ -25,6 +26,7 @@ describe('registerUser', () => {
                     })
             })
     })
+
 
     // + Unhappy paths asincronos
 
