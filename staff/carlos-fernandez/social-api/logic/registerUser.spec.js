@@ -28,5 +28,3 @@ describe("register user", () => {
     });
   });
 });
-
-console.log(storage.users);

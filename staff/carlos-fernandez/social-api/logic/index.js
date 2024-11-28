@@ -8,7 +8,7 @@ import updatePassword from "./updatePassword.js";
 import authenticateUser from "./authenticateUser.js";
 import getAuthUser from "./getAuthUser.js";
 import createPost from "./createPost.js";
-//import getAllPosts from "./getAllPosts.js";
+//import getAllPublicPosts from "./getAllPublicPosts.js";
 
 export default {
   registerUser,
@@ -21,5 +21,5 @@ export default {
   authenticateUser,
   getAuthUser,
   createPost,
-  //getAllPosts,
+  //getAllPublicPosts,
 };

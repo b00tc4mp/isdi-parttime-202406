@@ -14,13 +14,14 @@ export default (id, username) => {
       // Es para obtener sólo los datos indicados??
       return User.findOne(
         { username: username },
-        "username avatar bio dateOfBirth email"
+        "username dateOfBirth email avatar bio"
       ).lean();
     })
     .then((user) => {
       // Pasamos el id a string para poder eliminarlo porque no queremos que se vea
       user.id = user._id.toString();
       delete user._id;
+      debugger;
       return user;
     });
 };

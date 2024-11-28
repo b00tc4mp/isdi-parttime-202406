@@ -26,6 +26,10 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
   },
+  bio: {
+    type: String,
+    maxLength: 100,
+  },
 });
 
 /* TODO: POST: Crear el esquema

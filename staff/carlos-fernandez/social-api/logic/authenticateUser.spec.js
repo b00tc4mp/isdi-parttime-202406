@@ -31,7 +31,6 @@ describe("authenticateUser", () => {
       return User.create(user).then((user) => {
         return authenticateUser("nombre@mail.com", "123456789").then((id) => {
           expect(id).to.equal(user._id.toString());
-          done();
         });
       });
     });
