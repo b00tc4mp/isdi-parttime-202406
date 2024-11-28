@@ -74,6 +74,38 @@ class Validator {
     if (typeof id !== "string") {
       throw new Errors.ContentError("Invalid ID format");
     }
+    return true;
+  }
+
+  static content(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Content is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Content is empty");
+    if (value.length > 120)
+      throw new Errors.ContentError("Content is too long");
+
+    return true;
+  }
+
+  static img(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Img link is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Img link is empty");
+    if (!value.startsWith("http"))
+      throw new ValidationError(`Invalid link img`);
+    //comprobar que valida tipo .png, .jpg, .webp, .gif
+
+    return true;
+  }
+
+  static bio(value) {
+    if (typeof value !== "string") throw new TypeError("Bio is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Bio is empty");
+    if (value.length > 100) throw new Errors.ContentError("Bio is too long");
+
+    return true;
   }
 }
 

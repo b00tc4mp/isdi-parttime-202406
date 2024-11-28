@@ -44,10 +44,19 @@ const PostsSchema = new Schema(
     },
     content: {
       type: String,
+      maxLength: 120,
+      minLength: 1,
       required: true,
     },
-    images: {
-      type: [String],
+    images: [
+      {
+        type: String,
+      },
+    ],
+    visibility: {
+      type: String,
+      enum: ["followers", "private", "public"],
+      required: true,
     },
     comments: [{ type: ObjectId, ref: "Comment" }],
   },

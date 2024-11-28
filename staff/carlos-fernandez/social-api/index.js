@@ -57,19 +57,19 @@ try {
         handlers.updatePassword
       );
 
-      server.patch(
+      /*server.patch(
         "/users/bio",
         verifyToken,
         jsonBodyParser,
         handlers.updateBio
-      );
+      );*/
 
-      server.patch(
+      /*server.patch(
         "/users/avatar",
         verifyToken,
         jsonBodyParser,
         handlers.updateAvatar
-      );
+      );*/
 
       server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
 
