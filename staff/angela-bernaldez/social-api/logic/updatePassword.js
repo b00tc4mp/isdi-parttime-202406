@@ -1,8 +1,8 @@
 import { Errors, Validator } from "social-common"
-import storage from "../data/async-storage.js";
 import bcrypt from "bcrypt"
 
 export default (id, newPassword, oldPassword) => {
+    /*
     Validator.password(newPassword)
     Validator.password(oldPassword)
 
@@ -25,4 +25,5 @@ export default (id, newPassword, oldPassword) => {
                         .catch((error) => { throw new Errors.UnexpectedError(error.message) })
                 }).catch((error) => { throw new Errors.UnexpectedError(error.message) })
         })
+    */
 }

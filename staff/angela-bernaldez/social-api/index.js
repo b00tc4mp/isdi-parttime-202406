@@ -3,24 +3,14 @@ import 'dotenv/config'
 import express, { json } from 'express'
 import handlers from './handlers/index.js'
 import { errorHandler, verifyToken } from './middlewares/index.js'
-import { MongoClient } from 'mongodb';
 import { Errors } from 'social-common';
-import data from './data/index.js';
+import mongoose from 'mongoose'
 
-const mongo = new MongoClient(process.env.MONGO_URI)
 
 try {
-    mongo.connect()
+    mongoose.connect(process.env.MONGO_URI)
         .then(() => {
             console.info(`connected to db: ${process.env.MONGO_URI}`)
-
-            const db = mongo.db('social')
-
-            const users = db.collection('users')
-            const posts = db.collection('posts');
-
-            data.users = users
-            data.posts = posts
 
             const server = express()
 

@@ -1,16 +1,21 @@
 import { Validator, Errors } from "social-common"
 import bcrypt from "bcrypt"
-import data from "../data/index.js"
+import models from "../data/models.js"
+
+const { User } = models
 
 export default (email, password) => {
     Validator.email(email)
     Validator.password(password)
 
-    return data.users.findOne({ email: email })
+    console.log('auth', 11)
+    return User.findOne({ email: email })
     .then((user) => {
+        console.log('auth', 14)
         if (!user) throw new Errors.ExistenceError('No user with this email');
         return bcrypt.compare(password, user.password)
             .then((isPasswordValid) => {
+                console.log('auth', 18)
 
                 if (!isPasswordValid) throw new Errors.CredentialsError('Wrong Password');
 

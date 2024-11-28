@@ -1,7 +1,8 @@
 import { Errors, Validator } from "social-common";
-import storage from "../data/sync-storage.js"
+
 
 export default (id, newEmail) => {
+    /*
     Validator.email(newEmail)
 
     const users = storage.users
@@ -12,4 +13,5 @@ export default (id, newEmail) => {
     users[userIndex].email = newEmail
 
     storage.saveUsers(users)
+    */
 }
