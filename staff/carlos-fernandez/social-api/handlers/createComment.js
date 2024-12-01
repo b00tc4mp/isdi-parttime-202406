@@ -1,14 +1,14 @@
 import logic from "../logic/index.js";
 
 export default (req, res, next) => {
-  const id = req.id;
+  const userId = req.id;
+  const postId = req.params.id;
+  const { comment } = req.body;
 
   try {
     logic
-      .getAllPosts(id)
-      .then((posts) => {
-        res.status(200).json({ posts: posts });
-      })
+      .createComment(userId, postId, comment)
+      .then(() => res.status(201).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);

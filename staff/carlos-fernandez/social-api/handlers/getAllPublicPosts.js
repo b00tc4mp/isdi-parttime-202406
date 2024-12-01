@@ -5,9 +5,9 @@ export default (req, res, next) => {
 
   try {
     logic
-      .getAllUsers(id)
-      .then((users) => {
-        res.status(200).json({ users: users });
+      .getAllPublicPosts(id)
+      .then((posts) => {
+        res.status(200).json({ posts: posts });
       })
       .catch((error) => next(error));
   } catch (error) {
