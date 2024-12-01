@@ -8,7 +8,12 @@ import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
 import deleteUser from "./deleteUser.js";
 import createPost from "./createPost.js";
-import getAllPosts from "./getAllPosts.js";
+import getAllPublicPosts from "./getAllPublicPosts.js";
+import getAllUsers from "./getAllUsers.js";
+import updateAvatar from "./updateAvatar.js";
+import updateBio from "./updateBio.js";
+import toggleLike from "./toggleLike.js";
+import createComment from "./createComment.js";
 
 const logic = {
   registerUser,
@@ -21,7 +26,12 @@ const logic = {
   updatePassword,
   deleteUser,
   createPost,
-  getAllPosts,
+  getAllPublicPosts,
+  getAllUsers,
+  updateAvatar,
+  updateBio,
+  toggleLike,
+  createComment,
 };
 
 export default logic;

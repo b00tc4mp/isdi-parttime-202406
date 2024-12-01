@@ -1,4 +1,4 @@
-import { Validator, Errors } from "social-common";
+import { Errors, Validator } from "social-common";
 
 export default (password, newPassword, repeatNewPassword) => {
   Validator.password(password);

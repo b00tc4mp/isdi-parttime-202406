@@ -1,24 +1,20 @@
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common";
 
-export default (content, images, visibility) => {
-  //añadir validadores
+export default (avatar) => {
+  Validator.img(avatar);
 
   const token = sessionStorage.getItem("token");
 
-  return fetch(`${process.env.REACT_APP_API_URL}posts`, {
-    method: "POST",
+  return fetch(`${process.env.REACT_APP_API_URL}users/avatar`, {
+    method: "PATCH",
     headers: {
       "Content-type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      content: content,
-      images: images,
-      visibility: visibility,
-    }),
+    body: JSON.stringify({ avatar: avatar }),
   })
     .then((res) => {
-      if (res.status === 201) return;
+      if (res.status === 200) return;
       return res.json().then((body) => {
         const constructor = Errors[body.name];
         throw new constructor(`${body.message}`);
