@@ -45,8 +45,8 @@
     "inputDateOfBirth": { "placeholder": "Fecha de nacimiento" },
     "inputEmail": { "placeholder": "Email" },
     "inputPassword": {
-      "placeholder": "Contraseña *",
-      "helpText": "* La contraseña debe tener números letras, mayúsculas y símbolos"
+      "placeholder": "Contraseña",
+      "helpText": "La contraseña debe tener números letras, mayúsculas y símbolos"
     },
     "inputRepeatPassword": { "placeholder": "Repita la contraseña" },
     "submitButton": "Registrarse",
