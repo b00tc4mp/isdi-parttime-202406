@@ -30,16 +30,38 @@ const UserSchema = new Schema({
     type: String,
     maxLength: 100,
   },
+  followers: [
+    {
+      type: ObjectId,
+      ref: "User", //¡Esto va en String!
+    },
+  ],
+  following: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
-/* TODO: POST: Crear el esquema
-    ¿Qué incluye? ¿autor, contenido, fecha, comentarios?
-    PISTA PARA AUTHOR: usar ref para poder usar populate
-    https://mongoosejs.com/docs/populate.html
-*/
 const User = mongoose.model("User", UserSchema);
 
-const PostsSchema = new Schema(
+const CommentSchema = new Schema(
+  {
+    author: {
+      type: ObjectId,
+      ref: "User",
+      required: true,
+    },
+    comment: {
+      type: String,
+      maxLength: 80,
+    },
+  },
+  { timestamps: true }
+);
+
+const PostSchema = new Schema(
   {
     author: {
       type: ObjectId,
@@ -52,6 +74,12 @@ const PostsSchema = new Schema(
       minLength: 1,
       required: true,
     },
+    likes: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
     images: [
       {
         type: String,
@@ -62,12 +90,12 @@ const PostsSchema = new Schema(
       enum: ["followers", "private", "public"],
       required: true,
     },
-    comments: [{ type: ObjectId, ref: "Comment" }],
+    comments: [CommentSchema],
   },
   { timestamps: true }
 );
 
-const Post = mongoose.model("Post", PostsSchema);
+const Post = mongoose.model("Post", PostSchema);
 
 export default {
   User,

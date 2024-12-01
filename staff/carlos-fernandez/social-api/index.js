@@ -71,9 +71,9 @@ try {
         handlers.updateAvatar
       );*/
 
-      server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
+      // server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
 
-      server.post("/posts", verifyToken, jsonBodyParser, handlers.createPost);
+      // server.post("/posts", verifyToken, jsonBodyParser, handlers.createPost);
 
       server.get("/posts", verifyToken, handlers.getAllPosts);
 
