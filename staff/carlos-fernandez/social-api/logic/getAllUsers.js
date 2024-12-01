@@ -1,17 +1,21 @@
-import { Errors } from "social-common";
-import data from "../data/models.js";
+import { Errors, Validator } from "social-common";
+import models from "../data/models.js";
+
+const { User } = models;
 
 export default (id) => {
-  //ID valid?
-  if (!ObjectId.isValid(id)) throw new Errors.ExistenceError("Id not valid");
+  Validator.id(id);
 
-  return data.users
-    .findOne({ _id: new ObjectId(id) })
-    .then((user) => {
-      if (!user) throw new Errors.ExistenceError("User does not exist");
-      return { username: user.username, dateOfBirth: user.dateOfBirth };
-    })
-    .catch((error) => {
-      throw new Errors.UnexpectedError(error.message);
-    });
+  return User.findById(id).then((user) => {
+    if (!user) throw new Errors.AuthError("User id don't belong to anyone");
+    return User.find({}, "username avatar")
+      .lean()
+      .then((users) => {
+        return users.map((user) => {
+          user.id = user._id.toString();
+          delete user._id;
+          return user;
+        });
+      });
+  });
 };

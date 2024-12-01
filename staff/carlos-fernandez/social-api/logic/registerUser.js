@@ -12,10 +12,11 @@ export default (username, dateOfBirth, email, password) => {
 
   return User.findOne({ username: username }).then((user) => {
     if (user) throw new Errors.DuplicityError("Username already in use");
-    User.findOne({ email: email })
-      .then((user) => {
-        if (user) throw new Errors.DuplicityError("Email already in use");
-        return bcrypt.hash(password, 15).then((cryptPassword) => {
+    return User.findOne({ email: email }).then((user) => {
+      if (user) throw new Errors.DuplicityError("Email already in use");
+      return bcrypt
+        .hash(password, 15)
+        .then((cryptPassword) => {
           const user = {
             username,
             dateOfBirth: new Date(dateOfBirth),
@@ -24,10 +25,11 @@ export default (username, dateOfBirth, email, password) => {
           };
 
           return User.create(user);
+        })
+
+        .catch((error) => {
+          throw new Errors.UnexpectedError(error.message);
         });
-      })
-      .catch((error) => {
-        throw new Errors.UnexpectedError(error.message);
-      });
+    });
   });
 };

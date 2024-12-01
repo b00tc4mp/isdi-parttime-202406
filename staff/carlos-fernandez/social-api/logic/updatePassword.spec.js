@@ -1,40 +1,30 @@
+import "dotenv/config";
 import updatePassword from "./updatePassword.js";
-import { expect } from "chai";
+import { describe, it } from "mocha";
 import models from "../data/models.js";
 import mongoose from "mongoose";
-import "dotenv/config";
+import { expect } from "chai";
 import bcrypt from "bcrypt";
-import { describe, it } from "mocha";
 
 const { User } = models;
 
-describe("Update password", () => {
-  before(() => {
-    mongoose.connect(process.env.MONGO_URI_TEST);
-  });
-
-  // Limpia la base de datos antes de empezar
+describe("updatePassword", () => {
+  before(() => mongoose.connect(process.env.MONGO_URI_TEST));
   afterEach(() => User.deleteMany());
+  after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
-  it("should update the password of a valid user", () => {
-    //encriptamos contraseña y creamos modelo de usuario
-    return bcrypt.hash("oldpassword", 1).then((cryptPassword) => {
+  it("updates password", () => {
+    return bcrypt.hash("123456789", 1).then((cryptPassword) => {
       const user = {
-        username: "testuser",
-        email: "oldemail@example.com",
-        dateOfBirth: new Date("01/01/2000"),
+        username: "NombreTest",
+        dateOfBirth: new Date("07/20/1995"),
+        email: "nombre@mail.com",
         password: cryptPassword,
       };
-
-      // creamos usuario y obtenemos su id
       return User.create(user).then((user) => {
         const id = user._id.toString();
-
-        //pasamos la función updatePassword
-        return updatePassword(id, "newpassword", "oldpassword").then(() => {
-          //Buscamos el usuario
-          return User.findOne({ username: "testuser" }).then((user) => {
-            // aseguramos que la newPassword se ha encriptado bien y se ha actualizado
+        return updatePassword(id, "newpassword", "123456789").then(() => {
+          return User.findOne({ username: "NombreTest" }).then((user) => {
             return bcrypt
               .compare("newpassword", user.password)
               .then((isPasswordValid) => {

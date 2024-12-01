@@ -57,25 +57,34 @@ try {
         handlers.updatePassword
       );
 
-      /*server.patch(
+      server.patch(
         "/users/bio",
         verifyToken,
         jsonBodyParser,
         handlers.updateBio
-      );*/
+      );
 
-      /*server.patch(
+      server.patch(
         "/users/avatar",
         verifyToken,
         jsonBodyParser,
         handlers.updateAvatar
-      );*/
+      );
 
-      // server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
+      server.delete("/users", verifyToken, jsonBodyParser, handlers.deleteUser);
 
-      // server.post("/posts", verifyToken, jsonBodyParser, handlers.createPost);
+      server.post("/posts", verifyToken, jsonBodyParser, handlers.createPost);
 
-      server.get("/posts", verifyToken, handlers.getAllPosts);
+      server.get("/posts", verifyToken, handlers.getAllPublicPosts);
+
+      server.patch("/posts/:id", verifyToken, handlers.toggleLike);
+
+      server.post(
+        "/comments/post/:id/",
+        verifyToken,
+        jsonBodyParser,
+        handlers.createComment
+      );
 
       server.use(errorHandler);
 

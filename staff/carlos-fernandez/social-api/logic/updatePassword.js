@@ -10,25 +10,22 @@ export default (id, newPassword, oldPassword) => {
   Validator.password(oldPassword);
 
   return User.findById(id).then((user) => {
-    // Si usuario no existe
-    if (!user)
-      throw new Errors.ExistenceError("User id doesn't belong to anyone");
+    if (!user) throw new Errors.ExistenceError("No user with this email");
 
-    // Verificar la contraseña actual
-    return bcrypt.compare(oldPassword, user.password).then((isMatch) => {
-      if (!isMatch)
-        throw new Errors.CredentialsError("Old password is incorrect");
+    return bcrypt
+      .compare(oldPassword, user.password)
+      .then((isPasswordValid) => {
+        if (!isPasswordValid)
+          throw new Errors.CredentialsError("Wrong Password");
 
-      // Hashear la nueva contraseña
-      return bcrypt
-        .hash(newPassword, 10)
-        .then((hashedPassword) => {
-          // Actualizar la contraseña en la base de datos
-          return User.findByIdAndUpdate(id, { password: hashedPassword });
-        })
-        .catch((error) => {
-          throw new Errors.UnexpectedError(error.message);
-        });
-    });
+        return bcrypt
+          .hash(newPassword, 15)
+          .then((cryptPassword) => {
+            return User.findByIdAndUpdate(id, { password: cryptPassword });
+          })
+          .catch((error) => {
+            throw new Errors.UnexpectedError(error.message);
+          });
+      });
   });
 };
