@@ -14,6 +14,7 @@ import updateAvatar from "./updateAvatar.js";
 import updateBio from "./updateBio.js";
 import toggleLike from "./toggleLike.js";
 import createComment from "./createComment.js";
+import toggleFollow from "./toggleFollow.js";
 
 const logic = {
   registerUser,
@@ -31,7 +32,8 @@ const logic = {
   updateAvatar,
   updateBio,
   toggleLike,
-  createComment
+  createComment,
+  toggleFollow
 };
 
 export default logic;

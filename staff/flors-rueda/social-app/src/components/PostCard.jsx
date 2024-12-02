@@ -2,7 +2,7 @@ import { useState } from "react";
 import Comment from "./Comment";
 import logic from "../logic";
 
-function PostCard({ post }) {
+function PostCard({ post, onNewComment }) {
     const [isLiked, setLiked] = useState(post.isLiked);
     const [likes, setLikes] = useState(post.likes.length);
     const [isFollowed, setFollowed] = useState(post.author.isFollowed)
@@ -21,12 +21,16 @@ function PostCard({ post }) {
         }
 
     }
-
-    //
-
     const onFollowClick = () => {
+        try {
+            logic.toggleFollow(post.author.username)
+                .then(() => { setFollowed(!isFollowed); })
+                .catch(error => console.log(error))
+        } catch (error) {
+            console.log(error)
+        }
 
-        setFollowed(!isFollowed);
+
     }
 
     const onSubmitComment = (event) => {
@@ -35,8 +39,8 @@ function PostCard({ post }) {
         try {
             logic.createComment(post.id, comment)
                 .then(() => {
-                    //TODO Renderizar de nuevo los commentarios publicados: pista usar useEffect
-                    event.target.reset()
+                    onNewComment();
+                    event.target.reset();
                 })
         } catch (error) {
             console.log(error)
@@ -67,7 +71,7 @@ function PostCard({ post }) {
                 </div>
 
                 {
-                    post.images.length > 0 &&
+                    post.images.length !== 0 &&
                     <figure className="px-10 py-10 md:w-1/4">
                         <div className="carousel carousel-vertical items-center w-1/4 md:w-full h-36 rounded-sm">
                             {
@@ -84,9 +88,14 @@ function PostCard({ post }) {
 
             <div className="collapse -mt-12 w-full">
                 <input type="checkbox" />
-                <div className="collapse-title text-xl font-medium">Commentarios</div>
+                <div className="collapse-title text-xl font-medium">Comentarios {post.comments.length > 0 && `(${post.comments.length})`}</div>
                 <div className="collapse-content w-full">
-                    <Comment />{/*TODO: Hay que traerse los comentarios... llegan con el getAllPublicPosts que ya tenemos hecho? Podemos usar populate para rellenar la info del user?*/}
+                    {
+                        post.comments.length > 0 ?
+                            post.comments.map((comment) => { return <Comment key={comment.id} comment={comment} /> })
+                            :
+                            <p className="text-sm font-bold">Aún no hay comentarios</p>
+                    }
                     <form className="flex flex-col gap-2" onSubmit={onSubmitComment}>
                         <label htmlFor="comment" className="text-sm pt-7">Deja tu comentario:</label>
                         <textarea placeholder="no le faltes al respeto a nadie, imbécil" className="textarea textarea-bordered bg-gray-800" id="comment" />

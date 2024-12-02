@@ -52,6 +52,8 @@ try {
 
             server.post('/comments/post/:id/', verifyToken, jsonBodyParser, handlers.createComment)
 
+            server.patch('/users/follow/:username', verifyToken, handlers.toggleFollow);
+
             server.use(errorHandler);
 
             server.listen(process.env.PORT, () => {
