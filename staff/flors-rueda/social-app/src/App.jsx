@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { Landing, Login, Signup, Page404, Home, ProfileSettings, NewPost } from "./pages";
+import { Landing, Login, Signup, Page404, Home, ProfileSettings, NewPost, WorldPosts, Profile } from "./pages";
 import { Route, Routes, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ModalContext } from "./context";
 import { useUpdate } from "react-use";
 import logic from "./logic";
 import { Footer, Header } from "./components";
-import Profile from "./pages/Profile";
+import ProfileSecurity from "./pages/ProfileSecurity";
 
 function App() {
   const update = useUpdate();
@@ -28,8 +28,16 @@ function App() {
             element={<Home isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
           <Route
+            path="/world"
+            element={<WorldPosts isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
+          />
+          <Route
             path="/settings"
             element={<ProfileSettings isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
+          />
+          <Route
+            path="/security"
+            element={<ProfileSecurity isLogged={logic.isUserLoggedIn()} redirectPath="/login" />}
           />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/new-post" element={<NewPost />} />

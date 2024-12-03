@@ -13,6 +13,7 @@ export default (loggedUserId, usernameToFollow) => {
             return User.findOne({ username: usernameToFollow })
                 .then((userToFollow) => {
                     if (!userToFollow) throw new Errors.ExistenceError('user with this username does not exist')
+                    if (userToFollow._id.toString() === loggedUserId) throw new Errors.DuplicityError('user can not follow themself')
                     const index = loggedUser.following.indexOf(userToFollow._id);
                     if (index === -1) {
                         loggedUser.following.push(userToFollow._id);

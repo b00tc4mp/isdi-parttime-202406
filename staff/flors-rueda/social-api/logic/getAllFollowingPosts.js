@@ -9,8 +9,8 @@ export default (id) => {
     return User.findById(id)
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
-            return Post.find({ visibility: "public" }, 'author content likes images createdAt comments').populate('author', 'username avatar').populate({ path: 'comments', populate: { path: 'author' } }).sort({ createdAt: -1 }).lean()
-                //TODO check populate options for nested docs    
+
+            return Post.find({ visibility: ["followers", "public"], author: user.following }, 'author content likes images createdAt comments').populate('author', 'username avatar').populate({ path: 'comments', populate: { path: 'author' } }).sort({ createdAt: -1 }).lean()
                 .then(posts => {
                     return posts.map(post => {
 
@@ -23,9 +23,7 @@ export default (id) => {
                         post.id = post._id.toString();
                         delete post._id;
 
-                        post.author.isFollowed = user.following.some(userId => userId.toString() === post.author.id)
-
-                        post.author.itsYou = post.author.id === id
+                        post.author.isFollowed = true;
 
                         if (post.comments.length > 0) {
                             post.comments.map((comment) => {

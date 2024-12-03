@@ -54,6 +54,8 @@ try {
 
             server.patch('/users/follow/:username', verifyToken, handlers.toggleFollow);
 
+            server.get('/posts/following', verifyToken, handlers.getAllFollowingPosts)
+
             server.use(errorHandler);
 
             server.listen(process.env.PORT, () => {

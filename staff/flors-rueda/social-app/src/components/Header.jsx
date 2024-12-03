@@ -108,7 +108,7 @@ function Aside() {
                 <Link to={'/security'}>Seguridad</Link>
               </li>
               <li>
-                <a>Sidebar Item 2</a>
+                <Link to={'/world'}>Publicaciones Globales</Link>
               </li>
             </ul>
             <ul>

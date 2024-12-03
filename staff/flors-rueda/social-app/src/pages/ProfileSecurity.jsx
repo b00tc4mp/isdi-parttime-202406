@@ -4,7 +4,7 @@ import { withPermissions } from "../hocs"
 import logic from "../logic";
 import { useModalError } from "../context/ModalContext";
 
-function ProfileSettings() {
+function ProfileSecurity() {
     const navigate = useNavigate();
     const openModalError = useModalError()
 
@@ -74,4 +74,4 @@ function ProfileSettings() {
     </main>)
 }
 
-export default withPermissions(ProfileSettings);
+export default withPermissions(ProfileSecurity);

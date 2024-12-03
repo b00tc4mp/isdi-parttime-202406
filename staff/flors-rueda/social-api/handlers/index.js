@@ -14,6 +14,7 @@ import updateBio from "./updateBio.js";
 import toggleLike from "./toggleLike.js";
 import createComment from "./createComment.js";
 import toggleFollow from "./toggleFollow.js";
+import getAllFollowingPosts from "./getAllFollowingPosts.js";
 
 
 export default {
@@ -32,5 +33,6 @@ export default {
     updateBio,
     toggleLike,
     createComment,
-    toggleFollow
+    toggleFollow,
+    getAllFollowingPosts
 }

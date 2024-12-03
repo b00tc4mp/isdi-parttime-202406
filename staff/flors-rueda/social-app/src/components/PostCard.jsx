@@ -2,10 +2,9 @@ import { useState } from "react";
 import Comment from "./Comment";
 import logic from "../logic";
 
-function PostCard({ post, onNewComment }) {
+function PostCard({ post, refreshPosts }) {
     const [isLiked, setLiked] = useState(post.isLiked);
     const [likes, setLikes] = useState(post.likes.length);
-    const [isFollowed, setFollowed] = useState(post.author.isFollowed)
 
     const onLikeClick = () => {
         try {
@@ -24,7 +23,9 @@ function PostCard({ post, onNewComment }) {
     const onFollowClick = () => {
         try {
             logic.toggleFollow(post.author.username)
-                .then(() => { setFollowed(!isFollowed); })
+                .then(() => {
+                    refreshPosts()
+                })
                 .catch(error => console.log(error))
         } catch (error) {
             console.log(error)
@@ -39,7 +40,7 @@ function PostCard({ post, onNewComment }) {
         try {
             logic.createComment(post.id, comment)
                 .then(() => {
-                    onNewComment();
+                    refreshPosts();
                     event.target.reset();
                 })
         } catch (error) {
@@ -50,7 +51,7 @@ function PostCard({ post, onNewComment }) {
         <article className="card bg-neutral shadow-xl w-full flex-col rounded-md">
             <div className="w-full flex flex-col content-center md:flex-row md:justify-between">
                 <div className="card-body items-start flex-col w-full md:w-4/5">
-                    <div className="flex flex-row justify-between w-full">
+                    <div className="flex flex-col md:flex-row justify-between w-full">
                         <div className="flex flex-row gap-4 justify-center items-center">
                             <div className="avatar">
                                 <div className="w-14 h-14 rounded-xl">
@@ -59,8 +60,11 @@ function PostCard({ post, onNewComment }) {
                             </div>
                             <p className="text-accent">{post.author.username}</p>
                         </div>
-                        <button onClick={onFollowClick} className={`text-xs rounded-xl btn ${isFollowed ? 'btn-primary' : 'btn-success'}`}>{isFollowed ? 'Dejar de seguir' : 'Seguir'}</button>
-                    </div>
+                        {!post.author.itsYou &&
+                            <button onClick={onFollowClick} className={`self-end text-xs w-36 rounded-xl btn ${post.author.isFollowed ? 'btn-primary' : 'btn-success'}`}>
+                                {post.author.isFollowed ? 'Dejar de seguir' : 'Seguir'}
+                            </button>
+                        }</div>
                     <p className="text-2xl pl-16">{post.content}</p>
                     <p className="flex gap-1">
                         <button onClick={onLikeClick} className={`text-3xl ${isLiked ? 'text-pink-600 hover:text-gray-400' : 'text-gray-400 hover:text-pink-600'}`} > {isLiked ? '❤' : '♡'}</button>

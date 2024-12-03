@@ -5,7 +5,7 @@ import { Errors } from "social-common";
 import { useModalError } from "../context/ModalContext";
 import PostCard from "../components/PostCard";
 
-function Profile() {
+function Home() {
   const [username, setUsername] = useState(null);
   const [posts, setPosts] = useState([]);
   const openModalError = useModalError();
@@ -28,7 +28,7 @@ function Profile() {
 
   useEffect(() => {
     try {
-      logic.getAllPublicPosts()
+      logic.getAllFollowingPosts()
         .then((_posts) => {
           setPosts(_posts)
         })
@@ -47,7 +47,7 @@ function Profile() {
       <section className="flex flex-col gap-5 w-full pt-10">
         {
           posts.length > 0 && posts.map((post) => {    //onNewComment = () =>{ setStamp(Date.now()) }
-            return <PostCard key={post.id} post={post} onNewComment={() => setStamp(Date.now())} />
+            return <PostCard key={post.id} post={post} refreshPosts={() => setStamp(Date.now())} />
           })
         }
       </section>
@@ -55,4 +55,4 @@ function Profile() {
   );
 }
 
-export default withPermissions(Profile);
+export default withPermissions(Home);
