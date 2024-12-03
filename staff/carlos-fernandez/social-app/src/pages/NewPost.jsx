@@ -42,9 +42,9 @@ function NewPost() {
   };
 
   return (
-    <div className="min-h-screen px-8 pt-3 pb-5">
+    <div className="min-h-screen px-48 pt-3 pb-5 mt-20">
       <h1 className="5xl">¿En qué estás pensando?</h1>
-      <form className="flex flex-col w-full gap-2" onSubmit={submitPost}>
+      <form className="flex flex-col min-w-full gap-2" onSubmit={submitPost}>
         <textarea
           required={true}
           id="content"
