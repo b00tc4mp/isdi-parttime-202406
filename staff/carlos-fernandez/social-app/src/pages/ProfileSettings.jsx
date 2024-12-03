@@ -41,52 +41,62 @@ function ProfileSettings() {
   };
 
   return (
-    <main className="min-h-screen h-fit pt-6 pb-10 flex flex-col gap-5 shadow-circle">
-      <section className="px-72">
-        <h1 className="text-2xl font-semibold">Editar Bio</h1>
-        <form className="flex flex-col gap-2" onSubmit={onSubmitBio}>
-          <label htmlFor="bio">Elige tu nueva bio:</label>
-          <textarea
-            placeholder="cuenta tu vida"
-            className="textarea textarea-bordered bg-gray-800"
-            id="bio"
-          />
-          <button type="submit" className="self-start btn btn-secondary">
-            Guardar Bio
-          </button>
-        </form>
-      </section>
-      <section className="flex justify-around">
-        <div>
+    <main className="min-h-screen flex justify-center items-center gap-16 px-16 shadow-box">
+      {/* Primera sección: centrada verticalmente */}
+      <section className="flex flex-col gap-10 w-1/3">
+        <div className="flex flex-col items-center">
           <h1 className="text-2xl font-semibold">Editar Nombre de Usuario</h1>
-          <form className="flex flex-col gap-2" onSubmit={onSubmitUsername}>
+          <form
+            className="flex flex-col gap-2 w-full"
+            onSubmit={onSubmitUsername}
+          >
             <label htmlFor="username">Elige tu nuevo nombre:</label>
             <input
-              className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4"
+              className="w-full input input-bordered input-ghost glass"
               id="username"
               type="text"
-              placeholder="nuevoNombre"
-            ></input>
-            <button type="submit" className="self-start btn btn-secondary">
+              placeholder="Introduce tu nuevo nombre"
+            />
+            <button type="submit" className="btn btn-secondary mt-2">
               Guardar Nombre
             </button>
           </form>
         </div>
-        <div>
+
+        <div className="flex flex-col items-center">
           <h1 className="text-2xl font-semibold">Editar Avatar</h1>
-          <form className="flex flex-col gap-2" onSubmit={onSubmitAvatar}>
-            <label htmlFor="email">Elige tu nuevo avatar:</label>
+          <form
+            className="flex flex-col gap-2 w-full"
+            onSubmit={onSubmitAvatar}
+          >
+            <label htmlFor="avatar">Elige tu nuevo avatar:</label>
             <input
-              className="w-80 input input-bordered input-ghost glass flex items-center gap-2 mb-4"
+              className="w-full input input-bordered input-ghost glass"
               id="avatar"
               type="url"
-              placeholder="url del avatar"
-            ></input>
-            <button type="submit" className="self-start btn btn-secondary">
+              placeholder="URL del avatar"
+            />
+            <button type="submit" className="btn btn-secondary mt-2">
               Guardar Avatar
             </button>
           </form>
         </div>
+      </section>
+
+      {/* Segunda sección: a la derecha y centrada */}
+      <section className="flex flex-col justify-center w-1/3">
+        <h1 className="text-2xl font-semibold text-center">Editar Bio</h1>
+        <form className="flex flex-col gap-2" onSubmit={onSubmitBio}>
+          <label htmlFor="bio">Elige tu nueva bio:</label>
+          <textarea
+            placeholder="Cuenta tu vida"
+            className="textarea textarea-bordered bg-gray-800"
+            id="bio"
+          />
+          <button type="submit" className="btn btn-secondary mt-2">
+            Guardar Bio
+          </button>
+        </form>
       </section>
     </main>
   );

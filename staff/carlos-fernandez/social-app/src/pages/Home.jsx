@@ -45,7 +45,9 @@ function Profile() {
 
   return (
     <main className="text-3xl min-h-screen px-8 pt-3 pb-5">
-      {username ? `Hola ${username}` : `¿Y tu quién eres?`}
+      {username
+        ? `Hola ${username}, hay chuches esperándote`
+        : `¿Y tu quién eres?`}
       <section className="flex flex-col gap-5 w-full pt-10">
         {posts.length > 0 &&
           posts.map((post) => {
