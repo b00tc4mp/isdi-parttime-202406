@@ -3,22 +3,22 @@ import { withPermissions } from "../hocs";
 import logic from "../logic";
 import { Errors } from "social-common";
 import { useModalError } from "../context/ModalContext";
-import PostCard from "../components/PostCard";
+import { useParams } from "react-router-dom";
 
-function Profile() {
+function Home({ noche }) {
   const [username, setUsername] = useState(null);
   const [posts, setPosts] = useState([]);
   const openModalError = useModalError();
+  const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
+    console.log(id);
     try {
       logic
         .getAuthUsername()
         .then((_username) => {
           setUsername(_username);
-          logic.getAllPublicPosts().then((_posts) => {
-            setPosts(_posts);
-          });
         })
         .catch((error) => {
           console.log(error);
@@ -32,14 +32,14 @@ function Profile() {
   return (
     <main className="text-3xl min-h-screen px-8 pt-3 pb-5">
       {username ? `Hola ${username}` : `¿Y tu quién eres?`}
-      <section className="flex flex-col gap-5 w-full pt-10">
+      <section>
         {posts.length > 0 &&
-          posts.map((post) => {
-            return <PostCard key={post.id} post={post} />;
+          posts.map((post, index) => {
+            return <article key={index}>{post.content}</article>;
           })}
       </section>
     </main>
   );
 }
 
-export default withPermissions(Profile);
+export default withPermissions(Home);
