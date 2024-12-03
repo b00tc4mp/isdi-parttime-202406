@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
     "inspect": "node --inspect-brk index.js",
     "test-inspect": "mocha --inspect-brk ./logic/getOneUser.spec.js",
     "test": "mocha --timeout 10000 ./logic/*.spec.js"

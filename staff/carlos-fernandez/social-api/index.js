@@ -22,11 +22,7 @@ try {
 
       server.use(cors());
 
-      server.post(
-        "/users",
-        jsonBodyParser,
-        /*Más middlewares*/ handlers.registerUser
-      );
+      server.post("/users", jsonBodyParser, handlers.registerUser);
 
       server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
 
@@ -84,6 +80,12 @@ try {
         verifyToken,
         jsonBodyParser,
         handlers.createComment
+      );
+
+      server.patch(
+        "/users/follow/:username",
+        verifyToken,
+        handlers.toggleFollow
       );
 
       server.use(errorHandler);
