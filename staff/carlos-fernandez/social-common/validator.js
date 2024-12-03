@@ -1,5 +1,4 @@
 import * as Errors from "./errors.js";
-import { ObjectId } from "mongoose";
 
 class Validator {
   static email(value) {
@@ -48,17 +47,21 @@ class Validator {
     if (value.trim().length <= 0)
       throw new Errors.ContentError("Date is empty");
 
-    /*TODO: (FLORS) que hace este regex?!?
-    
     const dateOfBirthRegExp =
       /^(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[01])\/\d{4}$/;
-    if (!dateOfBirthRegExp.test(value)) throw new Errors.DateOfBirthNotValidError("Date format is not valid"); // Invalid format
+
+    if (!dateOfBirthRegExp.test(value))
+      throw new Errors.DateOfBirthNotValidError("Date format is not valid"); // Invalid format
+
     const [day, month, year] = value.split("/").map(Number);
     const today = new Date();
     const birthDate = new Date(year, month - 1, day); // Months are 0-indexed
+
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");*/
+
+    if (age < 18 || (age === 18 && monthDiff < 0))
+      throw new RangeError("Age not allowed");
 
     return true;
   }
@@ -70,10 +73,10 @@ class Validator {
     return true;
   }
 
-  static id(id) {
-    if (typeof id !== "string") {
-      throw new Errors.ContentError("Invalid ID format");
-    }
+  static id(value) {
+    if (typeof value !== "string") throw new TypeError("Id is not a string");
+    if (value.trim().length <= 0) throw new Errors.ContentError("Id is empty");
+
     return true;
   }
 
