@@ -1,17 +1,19 @@
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common";
 
-export default () => {
+export default (password) => {
+    Validator.password(password);
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}posts/public`, {
-        method: 'GET',
+    return fetch(`${process.env.REACT_APP_API_URL}users`, {
+        method: 'DELETE',
         headers: {
+            'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
-        }
+        },
+        body: JSON.stringify({ password: password })
     })
         .then((res) => {
-            if (res.status === 200) return res.json()
-                .then(body => body.posts)
+            if (res.status === 200) return;
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]

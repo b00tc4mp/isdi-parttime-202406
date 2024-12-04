@@ -3,7 +3,7 @@ import { Errors } from "social-common";
 export default () => {
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}posts/public`, {
+    return fetch(`${process.env.REACT_APP_API_URL}posts/following`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`

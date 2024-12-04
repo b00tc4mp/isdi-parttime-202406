@@ -3,7 +3,7 @@ import { Errors } from "social-common";
 export default () => {
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}posts/public`, {
+    return fetch(`${process.env.REACT_APP_API_URL}users/auth`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -11,7 +11,7 @@ export default () => {
     })
         .then((res) => {
             if (res.status === 200) return res.json()
-                .then(body => body.posts)
+                .then(user => user.username)
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]
@@ -19,9 +19,8 @@ export default () => {
                 })
         })
         .catch((error) => {
-            if (error instanceof Errors.BadRequestError)
+            if (error instanceof TypeError)
                 throw new Errors.ServerError("Server in not connected");
             throw error;
-
-        })
+        });
 }

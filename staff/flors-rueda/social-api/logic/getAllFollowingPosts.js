@@ -10,7 +10,15 @@ export default (id) => {
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
 
-            return Post.find({ visibility: ["followers", "public"], author: user.following }, 'author content likes images createdAt comments').populate('author', 'username avatar').populate({ path: 'comments', populate: { path: 'author' } }).sort({ createdAt: -1 }).lean()
+            return Post.find({
+                $or: [
+                    { visibility: { $in: ["followers", "public"] },/* author: { $in: user.following }*/ },
+                    { author: id }
+                ]
+            }, 'author content likes images createdAt comments')
+                .populate('author', 'username avatar')
+                .populate({ path: 'comments', populate: { path: 'author' } })
+                .sort({ createdAt: -1 }).lean()
                 .then(posts => {
                     return posts.map(post => {
 

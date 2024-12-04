@@ -28,7 +28,7 @@ try {
 
             server.get('/users/auth', verifyToken, handlers.getAuthUser)
 
-            server.get('/users', verifyToken, handlers.getAllUsers);
+            server.get('/users/:search', verifyToken, handlers.getUsers);
 
             server.get('/users/:username', verifyToken, handlers.getOneUser);
 
@@ -44,17 +44,25 @@ try {
 
             server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser);
 
+            server.patch('/users/follow/:username', verifyToken, handlers.toggleFollow);
+
             server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost);
 
-            server.get('/posts', verifyToken, handlers.getAllPublicPosts);
+            server.get('/posts/public', verifyToken, handlers.getAllPublicPosts);
+
+            server.get('/posts/:id', verifyToken, handlers.getPost);
+
+            server.put('/posts/:id', verifyToken, jsonBodyParser, handlers.updatePost);
+
+            server.delete('/posts/:id', verifyToken, handlers.deletePost);
+
+            server.get('/posts/following', verifyToken, handlers.getAllFollowingPosts);
+
+            server.get('/posts/user/:id', verifyToken, handlers.getAllPostsByOneUser);
 
             server.patch('/posts/:id', verifyToken, handlers.toggleLike);
 
-            server.post('/comments/post/:id/', verifyToken, jsonBodyParser, handlers.createComment)
-
-            server.patch('/users/follow/:username', verifyToken, handlers.toggleFollow);
-
-            server.get('/posts/following', verifyToken, handlers.getAllFollowingPosts)
+            server.post('/comments/post/:id', verifyToken, jsonBodyParser, handlers.createComment);
 
             server.use(errorHandler);
 

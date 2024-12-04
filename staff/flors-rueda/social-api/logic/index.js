@@ -1,6 +1,6 @@
 import registerUser from "./registerUser.js";
 import getOneUser from "./getOneUser.js";
-import getAllUsers from "./getAllUsers.js";
+import getUsers from "./getUsers.js";
 import deleteUser from "./deleteUser.js";
 import updateEmail from "./updateEmail.js";
 import updatePassword from "./updatePassword.js";
@@ -15,11 +15,15 @@ import toggleLike from "./toggleLike.js";
 import createComment from "./createComment.js";
 import toggleFollow from "./toggleFollow.js";
 import getAllFollowingPosts from "./getAllFollowingPosts.js";
+import getAllPostsByOneUser from "./getAllPostsByOneUser.js";
+import getPost from "./getPost.js";
+import deletePost from "./deletePost.js";
+import updatePost from "./updatePost.js";
 
 export default {
     registerUser,
     getOneUser,
-    getAllUsers,
+    getUsers,
     deleteUser,
     updateEmail,
     updatePassword,
@@ -33,5 +37,9 @@ export default {
     toggleLike,
     createComment,
     toggleFollow,
-    getAllFollowingPosts
+    getAllFollowingPosts,
+    getAllPostsByOneUser,
+    getPost,
+    deletePost,
+    updatePost
 }

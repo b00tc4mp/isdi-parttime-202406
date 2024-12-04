@@ -2,10 +2,10 @@ import logic from "../logic/index.js"
 
 export default (req, res, next) => {
     const id = req.id;
-    const { password } = req.body
+    const postId = req.params.id
 
     try {
-        logic.deleteUser(id, password)
+        logic.deletePost(id, postId)
             .then(() => {
                 res.status(200).send();
             }).catch(error => next(error))

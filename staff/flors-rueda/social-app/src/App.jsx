@@ -15,6 +15,23 @@ function App() {
   useEffect(() => {
   }, [location.pathname])
 
+  /*
+  TODO:
+  - componetizar navbar
+  - limpiar app --> segundo routes en <Home />
+  - vistas de publicaciones:
+  -- Home --> mias + seguir
+  -- Global --> todos los users
+  -- Perfil --> las de ese user que tienes permiso para ver
+  - Crear vista perfil 
+  - Añadir editar-eliminar posts a menu propio
+  - Hook useRef en dialogs
+  - Feedback de errores en formulario
+  - Fallo si no se pasan fotos al crear un post?
+  - Barra de búsqueda de users?? Vista de todos los users
+  
+  */
+
   return (
     <ModalContext.Provider>
       <main className="h-fit min-h-screen overflow-hidden">

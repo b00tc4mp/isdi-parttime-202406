@@ -55,7 +55,10 @@ function SignupForm({ className, onSubmit }) {
       inputEmail.focus();
     }
 
-    if (!Validator.dateOfBirth(inputDateOfBirth.value)) {
+    const DayMonthYear = inputDateOfBirth.value.split('/')
+    const date = `${DayMonthYear[1]}/${DayMonthYear[0]}/${DayMonthYear[2]}`
+
+    if (!Validator.dateOfBirth(date)) {
       newErrors.push(new Errors.DateOfBirthNotValidError("DateOfBirth is not valid"));
       newErrors[newErrors.length - 1].order = 2;
       // inputDateOfBirth.focus();
@@ -73,7 +76,7 @@ function SignupForm({ className, onSubmit }) {
       try {
         onSubmit({
           username: inputUsername.value,
-          dateOfBirth: inputDateOfBirth.value,
+          dateOfBirth: date,
           email: inputEmail.value,
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,

@@ -1,17 +1,16 @@
-import { Errors } from "social-common";
+import { Errors, Validator } from "social-common"
 
 export default () => {
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}posts/public`, {
+    return fetch(`${process.env.REACT_APP_API_URL}users`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
-        }
+        },
     })
         .then((res) => {
-            if (res.status === 200) return res.json()
-                .then(body => body.posts)
+            if (res.status === 200) return;
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]
@@ -22,6 +21,5 @@ export default () => {
             if (error instanceof Errors.BadRequestError)
                 throw new Errors.ServerError("Server in not connected");
             throw error;
-
-        })
+        });
 }
