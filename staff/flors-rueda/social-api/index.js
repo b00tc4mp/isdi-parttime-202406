@@ -50,7 +50,7 @@ try {
 
             server.get('/posts/public', verifyToken, handlers.getAllPublicPosts);
 
-            server.get('/posts/:id', verifyToken, handlers.getPost);
+            server.get('/posts/post/:id', verifyToken, handlers.getPost);
 
             server.put('/posts/:id', verifyToken, jsonBodyParser, handlers.updatePost);
 

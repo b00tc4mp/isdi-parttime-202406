@@ -1,2 +1,2 @@
 curl -X GET http://localhost:4321/posts/following \
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTA5YzI5NjM4ODU2NDRhZmJiYjIwYiIsImlhdCI6MTczMzMzNjk3OH0.R5rvMjqBjNk3qBf16S8aBXzLadHGtVf37P88h5QKXCw"
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTFkMmQ3OWIzM2I2N2ZlMzhmZjRiOSIsImlhdCI6MTczMzQxODY5NX0.2ine79XyS1JF-QkZPZL_ninQNhIBqfxJ2Io2uJ8KK7I"
