@@ -1,17 +1,20 @@
-import { Errors, Validator } from "social-common"
+import { Errors } from "social-common";
 
-export default () => {
+export default (postId, content, images, visibility) => {
+    //añadir validadores
+
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users`, {
-        method: 'GET',
+    return fetch(`${process.env.REACT_APP_API_URL}posts/${postId}`, {
+        method: 'PUT',
         headers: {
+            'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
+        body: JSON.stringify({ content: content, images: images, visibility: visibility })
     })
         .then((res) => {
-            if (res.status === 200) return res.json()
-                .then(body => body.users)
+            if (res.status === 201) return;
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]

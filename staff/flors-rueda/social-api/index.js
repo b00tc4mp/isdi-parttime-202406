@@ -30,7 +30,7 @@ try {
 
             server.get('/users/:search', verifyToken, handlers.getUsers);
 
-            server.get('/users/:username', verifyToken, handlers.getOneUser);
+            server.get('/users/user/:username', verifyToken, handlers.getOneUser);
 
             server.patch('/users/username', verifyToken, jsonBodyParser, handlers.updateUsername);
 

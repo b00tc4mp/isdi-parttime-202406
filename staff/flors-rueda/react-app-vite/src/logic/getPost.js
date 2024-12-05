@@ -1,9 +1,9 @@
 import { Errors, Validator } from "social-common"
 
-export default () => {
+export default (id) => {
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users`, {
+    return fetch(`${process.env.REACT_APP_API_URL}posts/post/${id}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -11,7 +11,7 @@ export default () => {
     })
         .then((res) => {
             if (res.status === 200) return res.json()
-                .then(body => body.users)
+                .then(body => body.post)
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]
