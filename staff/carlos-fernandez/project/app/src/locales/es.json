@@ -1,0 +1,10 @@
+{
+  "header": { "title": "Do.oking" },
+  "pages": {
+    "landing": {
+      "title": "Bienvenido a Doogking",
+      "signupButton": "Ir al formulario de registro",
+      "loginButton": "Ir al formulario de entrada"
+    }
+  }
+}
