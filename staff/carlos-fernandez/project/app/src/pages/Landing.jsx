@@ -11,8 +11,15 @@ function Landing() {
     <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
       {/* Contenedor principal, usa flex y justify-center para centrar todo */}
       <div className="flex flex-col justify-center items-center h-full w-full">
-        {/* Contenedor circular */}
-        <div className="relative flex justify-center items-center bg-gray-800 rounded-full w-[500px] h-[500px] p-10 shadow-circle">
+        {/* Contenedor pequeño 1 */}
+        <div className="absolute top-3.5 left-64 rounded-full w-[200px] h-[200px] p-10 shadow-circle"></div>
+        {/* Contenedor pequeño 2 */}
+        <div className="absolute bottom-1/4 left-96 rounded-full w-[80px] h-[80px] p-10 shadow-circle"></div>
+        {/* Contenedor pequeño 3 */}
+        <div className="absolute bottom-1/4 right-32 rounded-full w-[120px] h-[120px] p-10 shadow-circle"></div>
+
+        {/* Contenedor grande */}
+        <div className="relative flex justify-center items-center rounded-full w-[500px] h-[500px] p-10 shadow-circle">
           {/* Contenedor interno con los encabezados y botones */}
           <div className="flex flex-col items-center">
             {/* Contenedor de los encabezados */}
@@ -29,7 +36,7 @@ function Landing() {
                 to="/sign-up"
                 target="_self"
                 rel="next"
-                className="btn btn-primary btn-md"
+                className="btn custom-signup-btn"
               >
                 {signupButton}
               </Link>
@@ -37,13 +44,17 @@ function Landing() {
                 to="/login"
                 target="_self"
                 rel="next"
-                className="btn btn-primary btn-md"
+                className="btn custom-login-btn"
               >
                 {loginButton}
               </Link>
             </div>
           </div>
         </div>
+        {/* Texto al pie de la pantalla */}
+        <p className="absolute bottom-5 text-xs text-gray-500 text-center">
+          By CarlosLemonCode
+        </p>
       </div>
     </section>
   );

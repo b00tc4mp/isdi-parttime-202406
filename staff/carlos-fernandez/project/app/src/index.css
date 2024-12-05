@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+  @apply bg-white w-screen h-screen max-w-full text-white font-mono;
 }
 
 @layer components {
@@ -30,6 +30,17 @@ body {
   }
 }
 
+/* Estilos para los botones de Landing page */
+.custom-login-btn {
+  background-color: rgb(146, 44, 124);
+  color: white;
+}
+
+.custom-signup-btn {
+  background-color: rgba(26, 84, 143, 0.886);
+  color: white;
+}
+
 /* Background color del HEADER */
 .rgba-background {
   background: radial-gradient(
@@ -41,13 +52,7 @@ body {
 
 /* Estilo personalizado para sombra con retroiluminación de color */
 .shadow-circle {
-  box-shadow: 0 0 150px 50px rgba(255, 0, 200, 0.767),
-    /* Sombra rosa */ 0 0 190px 90px rgba(0, 128, 255, 0.738); /* Sombra azul */
-  background: radial-gradient(
-    circle at right,
-    rgba(0, 128, 255, 0.792),
-    rgba(255, 0, 200, 0.347)
-  );
+  background: rgb(255, 111, 224);
 }
 
 .shadow-box {

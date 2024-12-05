@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      common:
+        specifier: ^0.2.5
+        version: 0.2.5
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -656,6 +659,9 @@ packages:
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
+
+  common@0.2.5:
+    resolution: {integrity: sha512-bjuztiY8Wcz2V9dPpa0XdF0unGWqAGsnyKDGV7g6xDcaZfpufRrxV35qhuhjwv1h0jEPeiCHWKAQFLj702jGnA==}
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -2249,6 +2255,8 @@ snapshots:
   color-name@1.1.4: {}
 
   commander@4.1.1: {}
+
+  common@0.2.5: {}
 
   concat-map@0.0.1: {}
 
