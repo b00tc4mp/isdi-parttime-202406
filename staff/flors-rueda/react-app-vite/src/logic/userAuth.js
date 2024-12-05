@@ -4,7 +4,7 @@ const userAuth = (email, password) => {
   Validator.password(password)
   Validator.email(email)
 
-  return fetch(`${process.env.REACT_APP_API_URL}users/auth`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
     method: "POST",
     headers: {
       'Content-type': 'application/json'

@@ -6,7 +6,7 @@ export default (postId, comment) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}comments/post/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}comments/post/${postId}`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',

@@ -5,7 +5,7 @@ export default (email) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users/email`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users/email`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',

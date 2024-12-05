@@ -22,7 +22,7 @@ const registerUser = ({
   }
 
 
-  return fetch(`${process.env.REACT_APP_API_URL}users`, {
+  return fetch(`${import.meta.env.VITE_API_URL}users`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'

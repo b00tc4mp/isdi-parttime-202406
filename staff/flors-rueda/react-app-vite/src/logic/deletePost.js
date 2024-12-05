@@ -3,7 +3,7 @@ import { Errors, Validator } from "social-common";
 export default (postId) => {
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}post/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}post/${postId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`

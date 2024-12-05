@@ -1,9 +1,9 @@
-import Home from "./Home";
-import Login from "./Login";
-import Register from "./Register";
+import Session from "./Session";
+import SignIn from "./SignIn";
+import NotFound from "./NotFound";
 
-export default {
-    Home,
-    Login,
-    Register
+export {
+    Session,
+    SignIn,
+    NotFound
 }

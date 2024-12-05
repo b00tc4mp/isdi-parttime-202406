@@ -8,7 +8,7 @@ export default (password, newPassword, repeatNewPassword) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users/password`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users/password`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',

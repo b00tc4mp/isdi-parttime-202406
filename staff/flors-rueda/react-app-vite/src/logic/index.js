@@ -16,6 +16,7 @@ import toggleLike from "./toggleLike.js";
 import createComment from "./createComment.js";
 import toggleFollow from "./toggleFollow.js";
 import getAllFollowingPosts from "./getAllFollowingPosts.js";
+import getOneUser from "./getOneUser.js";
 
 const logic = {
   registerUser,
@@ -35,7 +36,8 @@ const logic = {
   toggleLike,
   createComment,
   toggleFollow,
-  getAllFollowingPosts
+  getAllFollowingPosts,
+  getOneUser
 };
 
 export default logic;

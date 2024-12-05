@@ -52,13 +52,13 @@ try {
 
             server.get('/posts/post/:id', verifyToken, handlers.getPost);
 
-            server.put('/posts/:id', verifyToken, jsonBodyParser, handlers.updatePost);
-
-            server.delete('/posts/:id', verifyToken, handlers.deletePost);
-
             server.get('/posts/following', verifyToken, handlers.getAllFollowingPosts);
 
             server.get('/posts/user/:id', verifyToken, handlers.getAllPostsByOneUser);
+
+            server.put('/posts/:id', verifyToken, jsonBodyParser, handlers.updatePost);
+
+            server.delete('/posts/:id', verifyToken, handlers.deletePost);
 
             server.patch('/posts/:id', verifyToken, handlers.toggleLike);
 

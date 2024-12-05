@@ -5,7 +5,7 @@ export default (avatar) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users/avatar`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users/avatar`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',

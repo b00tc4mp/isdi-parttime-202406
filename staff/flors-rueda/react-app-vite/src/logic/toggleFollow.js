@@ -5,7 +5,7 @@ export default (username) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}users/follow/${username}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users/follow/${username}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`

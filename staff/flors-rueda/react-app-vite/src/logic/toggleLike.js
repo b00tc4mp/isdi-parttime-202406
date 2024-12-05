@@ -5,7 +5,7 @@ export default (postId) => {
 
     const token = sessionStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_URL}posts/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}posts/${postId}`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',
