@@ -58,7 +58,7 @@ describe('Authenticate user', () => {
                         return authenticateUser('nombre@mail.com', 'contraseña-incorrecta')
                             .then(() => { })
                             .catch(error => {
-                                expect(error.message).to.be.equal('Wrong Password')
+                                expect(error.message).to.equal('Wrong Password')
                             })
                     })
             })
@@ -71,7 +71,7 @@ describe('Authenticate user', () => {
         try {
             authenticateUser(12345, 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email is not a string')
+            expect(error.message).to.equal('Email is not a string')
         }
     })
 
@@ -79,7 +79,7 @@ describe('Authenticate user', () => {
         try {
             authenticateUser('  ', 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email is empty')
+            expect(error.message).to.equal('Email is empty')
         }
     })
 
@@ -87,7 +87,7 @@ describe('Authenticate user', () => {
         try {
             authenticateUser('i am not an email :D', 'contraseña-aleatoria1')
         } catch (error) {
-            expect(error.message).to.be.equal('Email format is not valid')
+            expect(error.message).to.equal('Email format is not valid')
         }
     })
 
@@ -95,7 +95,7 @@ describe('Authenticate user', () => {
         try {
             authenticateUser('email@mail.com', 12345)
         } catch (error) {
-            expect(error.message).to.be.equal('Password is not a string')
+            expect(error.message).equal('Password is not a string')
         }
     })
 
@@ -104,7 +104,7 @@ describe('Authenticate user', () => {
         try {
             authenticateUser('email@mail.com', '     ')
         } catch (error) {
-            expect(error.message).to.be.equal('Password is empty')
+            expect(error.message).to.equal('Password is empty')
         }
     })
 })

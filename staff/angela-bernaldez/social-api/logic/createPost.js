@@ -1,18 +1,27 @@
 import { ObjectId } from "mongodb"
-import data from "../data/index.js"
-import { Errors } from "social-common"
+import { Errors, Validator } from "social-common"
+import models from "../data/models.js"
 
-export default (id, content) => {
-    //validar id, validar texto contento;
+const { User, Post } = models 
 
-    return data.users.findOne({ _id: new ObjectId(id) })
+export default (id, content, images, visibility) => {
+    Validator.id(id)
+    Validator.content(content)
+
+    if (images) images.forEach(image => {
+        Validator.img(image)
+    })
+    //Validator.visibility
+
+    return User.findById(id)
         .then((user) => {
             if (!user) throw new Errors.ExistenceError('user does not exist');
-            return data.posts.insertOne({
+            return Post.create({
                 author: user._id,
                 content: content,
-                publicationDate: new Date(),
-            })
+                images: images ? images : [],
+                visibility: visibility ? visibility : 'public',
+                likes: []
+            }).catch((error) => { throw new Errors.UnexpectedError(error.message) })
         })
-        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
 }

@@ -1,16 +1,21 @@
-import { Errors } from "social-common"
+import { Errors, Validator } from "social-common"
+import models from "../data/models.js"
 
+const { User } = models
 
 export default (id, username) => {
-    /*
-    const users = storage.users
+    Validator.id(id)
+    Validator.username(username)
 
-    const userLogged = users.some((user) => user.id === id)
-    if (!userLogged) throw new Errors.AuthError("User id don't belong to anyone")
-
-    const userRequested = users.filter((user) => user.username === username)[0]
-    if (!userRequested) throw new Errors.ExistenceError("User not found")
-
-    return { username: userRequested.username, email: userRequested.email } */
+    return User.findById(id)
+    .then((user) => {
+        if (!user) throw new Errors.AuthError("User id don't belong to anyone")
+        return User.findOne({ username: username }, 'username avatar bio dateOfBirth email').lean()
+            .then(user => {
+                user.id = user._id.toString()
+                delete user._id
+                return user
+            })
+    })
 }
 

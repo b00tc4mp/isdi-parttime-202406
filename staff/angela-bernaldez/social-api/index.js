@@ -34,9 +34,13 @@ try {
 
             server.patch('/users/password', verifyToken, jsonBodyParser, handlers.updatePassword)
 
-            server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser);
+            server.patch('/users/bio', verifyToken, jsonBodyParser, handlers.updateBio)
 
-            server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost);
+            server.patch('/users/avatar', verifyToken, jsonBodyParser, handlers.updateAvatar)
+
+            server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
+
+            server.post('/posts', verifyToken, jsonBodyParser, handlers.createPost)
 
             server.get('/posts', verifyToken, handlers.getAllPosts)
 
