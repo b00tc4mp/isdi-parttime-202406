@@ -62,3 +62,23 @@ export class ConfirmationError extends Error {
     }
   }
 }
+
+/* SERVER ERRORS (on client side) */
+
+export class BadRequestError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, BadRequestError);
+    }
+  }
+}
+
+export class ServerError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ServerError);
+    }
+  }
+}

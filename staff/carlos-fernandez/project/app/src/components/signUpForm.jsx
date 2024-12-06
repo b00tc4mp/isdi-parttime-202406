@@ -5,6 +5,7 @@ import ES from "../locales/es.json";
 import { Validator, Errors } from "common";
 import { FormErrorsSection } from ".";
 import moment from "moment";
+import { IconSignup } from "./icons";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -49,10 +50,82 @@ function SignupForm({ className, onSubmit }) {
       inputPhoneNumber.focus();
     }
 
+    if (!Validator.email(inputEmail)) {
+      newErrors.push(
+        new Errors.EmailNotValidError("Email format is not valid")
+      );
+      newErrors[newErrors.length - 1].order = 5;
+      inputEmail.focus();
+    }
+
+    if (!Validator.password(inputPassword)) {
+      newErrors.push(
+        new Errors.PasswordNotValidError("Password format is not valid")
+      );
+      newErrors[newErrors.length - 1].order = 5;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    }
     if (!(inputPassword.value === inputRepeatPassword.value)) {
       newErrors.push(
         new Errors.PasswordNotValidError("Las contraseñas no coindicen.")
       );
+      newErrors[newErrors.length - 1].order = 5;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    }
+
+    setErrors(newErrors.length > 0 ? newErrors : null);
+
+    if (newErrors.length === 0) {
+      try {
+        onSubmit({
+          username: inputUsername.value,
+          surname: inputsurname.value,
+          phoneNumber: inputPhoneNumber.value,
+          nif: inputNif.value,
+          email: inputEmail.value,
+          password: inputPassword.value,
+          repeatPassword: inputRepeatPassword.value,
+        }).catch((error) => {
+          if (error instanceof Errors.BadRequestError)
+            return setErrors([error]);
+          if (error instanceof Errors.ServerError) return setErrors([error]);
+          setErrors([new Errors.UnexpectedError()]);
+        });
+      } catch (error) {
+        error.order = 1;
+        setErrors([error]);
+      }
     }
   };
+
+  const showPassword = (buttonSelector, inputSelector) => {
+    document
+      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+      .classList.toggle("swap-active");
+    const element = document.getElementById(inputSelector);
+    element.type = element.type === "text" ? "password" : "text";
+  };
+
+  //////////////////////////////////////////////////////////////////////////   CONSTRUCCIÓN FORMULARIO   ///////////////////////////////////////////////////////////////////////
+
+  return (
+    <>
+      <div
+        className={classNames(
+          "bg-neutral-900 max-w-screen-sm px-9 py-12",
+          className
+        )}
+      >
+        <form onSubmit={submit}>
+          <div className="grid mb-5">
+            <IconSignup className="place-self-center w-16 h-16" />
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }

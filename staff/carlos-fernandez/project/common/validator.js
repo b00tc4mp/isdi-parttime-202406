@@ -24,6 +24,22 @@ class Validator {
     return true;
   }
 
+  static phoneNumber(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Phone number is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Phone number is empty");
+
+    const strictPhoneRegex = /^\+?\d{1,3}\s?\(?\d{1,4}\)?[-.\s]?\d{3,10}$/;
+
+    if (!strictPhoneRegex.test(value))
+      throw new Errors.PhoneNumberNotValidError(
+        "Phone number format is not valid"
+      );
+
+    return true;
+  }
+
   static nif(value) {
     if (typeof value !== "string") throw new TypeError("DNI is not a string");
     if (value.length !== 9) {
@@ -42,22 +58,6 @@ class Validator {
     if (letter !== calculatedLetter) {
       throw new Error("DNI is not valid");
     }
-
-    return true;
-  }
-
-  static phoneNumber(value) {
-    if (typeof value !== "string")
-      throw new TypeError("Phone number is not a string");
-    if (value.trim().length <= 0)
-      throw new Errors.ContentError("Phone number is empty");
-
-    const strictPhoneRegex = /^\+?\d{1,3}\s?\(?\d{1,4}\)?[-.\s]?\d{3,10}$/;
-
-    if (!strictPhoneRegex.test(value))
-      throw new Errors.PhoneNumberNotValidError(
-        "Phone number format is not valid"
-      );
 
     return true;
   }
