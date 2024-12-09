@@ -116,7 +116,7 @@ function SignupForm({ className, onSubmit }) {
     <>
       <div
         className={classNames(
-          "bg-neutral-900 max-w-screen-sm px-9 py-12",
+          "bg-neutral-800 max-w-screen-sm px-9 py-12",
           className
         )}
       >
