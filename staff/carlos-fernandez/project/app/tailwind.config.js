@@ -13,6 +13,11 @@ module.exports = {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.{js,ts}",
   ],
   theme: {
+    extend: {
+      colors: {
+        customBackground: "rgb(243, 236, 217)",
+      },
+    },
     keyframes: {
       ...keyframes,
       fadeIn: {

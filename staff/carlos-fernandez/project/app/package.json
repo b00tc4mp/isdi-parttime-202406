@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.11.3",
     "classnames": "^2.5.1",
     "common": "^0.2.5",
     "moment": "^2.30.1",

@@ -7,7 +7,7 @@ function Header() {
   return (
     <>
       <header className="sticky top-0 z-10">
-        <nav className="navbar text-black bg-secondary">
+        <nav className="navbar text-black header-color">
           <div className="navbar-start">
             {!(
               window.location.pathname === "/sign-up" ||

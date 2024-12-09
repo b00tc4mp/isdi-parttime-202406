@@ -1,4 +1,5 @@
 import { Landing, SignUp } from "./pages";
+import ModalContext from "./context/ModalContext";
 import {
   Route,
   Routes,
@@ -8,10 +9,12 @@ import {
 } from "react-router-dom";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/sign-up" element={<SignUp />} />
-    </Routes>
+    <ModalContext.Provider>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+    </ModalContext.Provider>
   );
 }
 

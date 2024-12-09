@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white w-screen h-screen max-w-full text-white font-mono;
+  @apply bg-customBackground w-screen h-screen max-w-full text-white font-mono;
 }
 
 @layer components {
@@ -42,17 +42,13 @@ body {
 }
 
 /* Background color del HEADER */
-.rgba-background {
-  background: radial-gradient(
-    circle at right,
-    rgba(0, 128, 255, 0.886),
-    rgba(255, 0, 200, 0.66)
-  );
+.header-color {
+  background: rgb(239, 121, 157);
 }
 
 /* Estilo personalizado para sombra con retroiluminación de color */
 .shadow-circle {
-  background: rgb(255, 111, 224);
+  background: rgb(239, 121, 157);
 }
 
 .shadow-box {
