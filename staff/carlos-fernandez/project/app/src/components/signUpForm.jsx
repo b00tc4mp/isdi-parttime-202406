@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
+import {
+  IconEmail,
+  IconHidePassword,
+  IconPassword,
+  IconShowPassword,
+  IconSignup,
+  IconUsername,
+} from "./icons";
 import classNames from "classnames";
 import { memo, useState } from "react";
 import ES from "../locales/es.json";
 import { Validator, Errors } from "common";
-import { FormErrorsSection } from ".";
-import moment from "moment";
-import { IconSignup } from "./icons";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -124,6 +129,20 @@ function SignupForm({ className, onSubmit }) {
           <div className="grid mb-5">
             <IconSignup className="place-self-center w-16 h-16" />
           </div>
+          <h3 className="text-center mb-8 text-xl">{ES.signupForm.title}</h3>
+          <fieldset className="mb-5">
+            <legend className="mb-4 text-sm">{ES.signupForm.subtitle}</legend>
+            <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <IconUsername fill="white" />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder={ES.signupForm.inputUsername.placeholder}
+                className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+              />
+            </label>
+          </fieldset>
         </form>
       </div>
     </>

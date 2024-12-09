@@ -1,4 +1,4 @@
-import Landing from "./pages/Landing";
+import { Landing, SignUp } from "./pages";
 import {
   Route,
   Routes,
@@ -10,6 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/sign-up" element={<SignUp />} />
     </Routes>
   );
 }

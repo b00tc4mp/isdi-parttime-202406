@@ -1,10 +1,43 @@
 {
-  "header": { "title": "Do.oking" },
+  "header": { "title": "Do.ogking" },
   "pages": {
     "landing": {
       "title": "Bienvenido a Doogking",
       "signupButton": "Ir al formulario de registro",
       "loginButton": "Ir al formulario de entrada"
+    }
+  },
+  "signupForm": {
+    "title": "Únete a nuestra comunidad",
+    "subtitle": "Introduce tus datos para crear tu usuario",
+    "inputUsername": { "placeholder": "Nombre" },
+    "inputSurname": { "placeholder": "Apellido" },
+    "inputDateOfBirth": { "placeholder": "Fecha de nacimiento" },
+    "inputEmail": { "placeholder": "Email" },
+    "inputPassword": {
+      "placeholder": "Contraseña",
+      "helpText": "La contraseña debe tener números letras, mayúsculas y símbolos"
+    },
+    "inputRepeatPassword": { "placeholder": "Repita la contraseña" },
+    "submitButton": "Registrarse",
+    "linkToLoginPage": "Formulario de entrada"
+  },
+  "modalErrors": {
+    "default": {
+      "title": "Algo anda mal...",
+      "paragraph": "No toques por qué tocas."
+    },
+    "ServerError": {
+      "title": "Error de servidor",
+      "paragraph": "Tenemos huelga de oompa loompas vuelva más tarde"
+    },
+    "UnexpectedError": {
+      "title": "Error inesperado",
+      "paragraph": "Nosotros tampoco sabemos que ha pasado, buenas tardes"
+    },
+    "BadRequestError": {
+      "title": "Datos incorrectos",
+      "paragraph": "Esperamos que al menos sepas como te llamas para registrarte en la app."
     }
   }
 }

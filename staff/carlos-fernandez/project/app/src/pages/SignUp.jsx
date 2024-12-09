@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 import { SignupForm } from "../components";
 import { useNavigate } from "react-router-dom";
-import { openModalError } from "../context/ModalContext";
+import { useModalError } from "../context/ModalContext";
 
 function SignUp() {
   const navigate = useNavigate();
+  const openModalError = useModalError();
 
   const onSubmit = useMemo(
     () => (data) => {

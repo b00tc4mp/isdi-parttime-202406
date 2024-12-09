@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IconMenu } from "./icons";
 import ES from "../locales/es.json";
-import logic from "../logic";
+//import logic from "../logic";
 
 function Header() {
   return (
