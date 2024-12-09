@@ -129,3 +129,5 @@ function SignupForm({ className, onSubmit }) {
     </>
   );
 }
+
+export default SignupForm;
