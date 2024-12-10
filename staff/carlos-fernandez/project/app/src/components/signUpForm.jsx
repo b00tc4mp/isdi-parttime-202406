@@ -20,10 +20,10 @@ function SignupForm({ className, onSubmit }) {
 
   const submit = (event) => {
     event.preventDefault();
-    debugger;
+
     const {
       username: inputUsername,
-      surname: inputsurname,
+      surname: inputSurname,
       phoneNumber: inputPhoneNumber,
       nif: inputNif,
       email: inputEmail,
@@ -33,33 +33,49 @@ function SignupForm({ className, onSubmit }) {
 
     const newErrors = [];
 
-    if (!Validator.username(inputUsername.value)) {
+    const regExp = /^[A-Z][a-z]+$/;
+
+    if (!regExp.test(inputUsername.value)) {
       newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
       newErrors[newErrors.length - 1].order = 1;
-      inputPhoneNumber.focus();
+      inputUsername.focus();
     }
 
-    if (!Validator.surname(inputsurname.value)) {
+    if (!regExp.test(inputSurname.value)) {
       newErrors.push(new Errors.SurnameNotValidError("Surname is not valid"));
       newErrors[newErrors.length - 1].order = 2;
-      inputPhoneNumber.focus();
+      inputSurname.focus();
     }
 
-    if (!Validator.phoneNumber(inputPhoneNumber.value)) {
+    const strictPhoneRegex = /^\+?\d{1,3}\s?\(?\d{1,4}\)?[-.\s]?\d{3,10}$/;
+    if (inputPhoneNumber.value.trim().length <= 0) {
       newErrors.push(
-        new Errors.PhoneNumberNotValidError("Phone number is not valid")
+        new Errors.PhoneNumberNotValidError("Phone number is empty")
+      );
+      newErrors[newErrors.length - 1].order = 3;
+      inputPhoneNumber.focus();
+    } else if (!strictPhoneRegex.test(inputPhoneNumber.value)) {
+      newErrors.push(
+        new Errors.PhoneNumberNotValidError("Phone number format is not valid")
       );
       newErrors[newErrors.length - 1].order = 3;
       inputPhoneNumber.focus();
     }
 
-    if (!Validator.nif(inputNif.value)) {
+    if (inputNif.value.length !== 9) {
       newErrors.push(new Errors.NifNotValidError("DNI format is not valid"));
       newErrors[newErrors.length - 1].order = 4;
-      inputPhoneNumber.focus();
+      inputNif.focus();
     }
 
-    if (!Validator.email(inputEmail.value)) {
+    const regExpEmail = new RegExp(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    if (inputEmail.value.trim().length <= 0) {
+      newErrors.push(new Errors.EmailNotValidError("Email is empty"));
+      newErrors[newErrors.length - 1].order = 5;
+      inputEmail.focus();
+    } else if (!regExpEmail.test(inputEmail.value)) {
       newErrors.push(
         new Errors.EmailNotValidError("Email format is not valid")
       );
@@ -67,44 +83,51 @@ function SignupForm({ className, onSubmit }) {
       inputEmail.focus();
     }
 
-    if (!Validator.password(inputPassword.value)) {
-      newErrors.push(
-        new Errors.PasswordNotValidError("Password format is not valid")
-      );
+    const regExpPassword = new RegExp(
+      /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;"'<>?,./~`-])(?=.{8,})/
+    );
+    if (inputPassword.value.trim().length <= 0) {
+      newErrors.push(new Errors.PasswordNotValidError("Password is empty"));
+      newErrors[newErrors.length - 1].order = 5;
+      inputPassword.value = "";
+      inputRepeatPassword.value = "";
+      inputPassword.focus();
+    } else if (!regExpPassword.test(inputPassword.value)) {
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
       newErrors[newErrors.length - 1].order = 5;
       inputPassword.value = "";
       inputRepeatPassword.value = "";
       inputPassword.focus();
     }
     if (!(inputPassword.value === inputRepeatPassword.value)) {
-      newErrors.push(
-        new Errors.PasswordNotValidError("Las contraseñas no coindicen.")
-      );
+      newErrors.push(new Errors.ConfirmationError("Passwords doesn't match"));
       newErrors[newErrors.length - 1].order = 5;
       inputPassword.value = "";
       inputRepeatPassword.value = "";
       inputPassword.focus();
     }
-
+    console.log(newErrors);
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (newErrors.length === 0) {
+    if (errors === null) {
       try {
         onSubmit({
           username: inputUsername.value,
-          surname: inputsurname.value,
+          surname: inputSurname.value,
           phoneNumber: inputPhoneNumber.value,
           nif: inputNif.value,
           email: inputEmail.value,
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((error) => {
+          console.log(error);
           if (error instanceof Errors.BadRequestError)
             return setErrors([error]);
           if (error instanceof Errors.ServerError) return setErrors([error]);
           setErrors([new Errors.UnexpectedError()]);
         });
       } catch (error) {
+        console.log(error);
         error.order = 1;
         setErrors([error]);
       }

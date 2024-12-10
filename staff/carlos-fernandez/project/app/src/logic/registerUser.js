@@ -26,7 +26,7 @@ const registerUser = ({
     email,
     password,
   };
-
+  /*
   return fetch(`${process.env.REACT_APP_API_URL}users`, {
     method: "POST",
     headers: {
@@ -45,7 +45,7 @@ const registerUser = ({
       if (error instanceof TypeError)
         throw new Errors.ServerError("Serves is not connected");
       throw error;
-    });
+    });*/
 };
 
 export default registerUser;

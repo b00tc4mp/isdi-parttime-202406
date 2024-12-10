@@ -1,20 +1,35 @@
 {
+  "formsErrors": {
+    "default": "Revisa todos los campos",
+    "UsernameNotValidError": "El nombre no es válido",
+    "SurnameNotValidError": " El apellido no es válido",
+    "PhoneNumberNotValidError": "El número de teléfono no es válido",
+    "NifNotValidError": "La identificación no es válida",
+    "EmailNotValidError": "El email introducido no es válido",
+    "PasswordNotValidError": "La contraseña introducida no es válida",
+    "CredentialsError": "No existe ningún usuario con la contraseña introducida",
+    "BadRequestError": "Los datos introducidos no son correctos",
+    "ServerError": "Ha habido un problema inesperado, prueba de nuevo más tarde",
+    "UnexpectedError": "Ha ocurrido un error inesperado, por favor, póngase en contacto con el equipo de soporte",
+    "DateOfBirthNotValidError": "La fecha de nacimiento no es válida",
+    "ConfirmationError": "Las contraseñas no coinciden"
+  },
   "modalErrors": {
     "default": {
       "title": "Algo anda mal...",
-      "paragraph": "No toques por qué tocas."
+      "paragraph": "Intentalo de nuevo más tarde."
     },
     "ServerError": {
       "title": "Error de servidor",
-      "paragraph": "Tenemos huelga de oompa loompas vuelva más tarde"
+      "paragraph": "Estamos trabajando en ello"
     },
     "UnexpectedError": {
       "title": "Error inesperado",
-      "paragraph": "Nosotros tampoco sabemos que ha pasado, buenas tardes"
+      "paragraph": "Intentalo de nuevo más tarde."
     },
     "BadRequestError": {
       "title": "Datos incorrectos",
-      "paragraph": "Esperamos que al menos sepas como te llamas para registrarte en la app."
+      "paragraph": "Los datos introducidos son incorrectos"
     }
   }
 }

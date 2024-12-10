@@ -34,11 +34,21 @@ body {
 .custom-login-btn {
   background-color: rgb(146, 44, 124);
   color: white;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.custom-login-btn:hover {
+  background-color: rgb(207, 70, 171); /* Change background on hover */
 }
 
 .custom-signup-btn {
   background-color: rgba(26, 84, 143, 0.886);
   color: white;
+  transition: filter 0.3s ease; /* Add transition for hover effect */
+}
+
+.custom-signup-btn:hover {
+  filter: blur(3px); /* Apply blur on hover */
 }
 
 /* Background color del HEADER */
