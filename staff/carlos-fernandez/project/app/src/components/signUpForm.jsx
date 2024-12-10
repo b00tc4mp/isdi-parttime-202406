@@ -14,7 +14,7 @@ import classNames from "classnames";
 import { memo, useState } from "react";
 import { Validator, Errors } from "common";
 import { FormErrorsSection } from ".";
-//import ReactToolTip from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -193,7 +193,11 @@ function SignupForm({ className, onSubmit }) {
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
                 <IconPassword fill="white" />
+                <Tooltip id="my-tooltip" />
                 <input
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content="Debe contener al menos 8 carácteres, mayúscula y carácteres especiales"
+                  data-tooltip-place="top"
                   type="text"
                   id="username"
                   name="username"

@@ -7,6 +7,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import "react-tooltip/dist/react-tooltip.css";
 function App() {
   return (
     <ModalContext.Provider>
