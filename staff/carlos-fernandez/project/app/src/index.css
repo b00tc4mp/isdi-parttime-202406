@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-customBackground w-screen h-screen max-w-full text-white font-mono;
+  @apply bg-customBackground w-screen h-screen max-w-full text-white font-sans;
 }
 
 @layer components {
@@ -47,8 +47,12 @@ body {
 }
 
 /* Estilo personalizado para sombra con retroiluminación de color */
-.shadow-circle {
+.bg-pink {
   background: rgb(239, 121, 157);
+}
+
+.bg-circle {
+  background: rgb(243, 236, 217);
 }
 
 .shadow-box {

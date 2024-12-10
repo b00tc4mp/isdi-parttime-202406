@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {
   IconEmail,
   IconHidePassword,
-  IconLogin,
   IconPassword,
   IconShowPassword,
   IconSignup,
@@ -21,7 +20,7 @@ function SignupForm({ className, onSubmit }) {
 
   const submit = (event) => {
     event.preventDefault();
-
+    debugger;
     const {
       username: inputUsername,
       surname: inputsurname,
@@ -33,19 +32,20 @@ function SignupForm({ className, onSubmit }) {
     } = event.target;
 
     const newErrors = [];
-    if (!Validator.username(inputUsername)) {
+
+    if (!Validator.username(inputUsername.value)) {
       newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
       newErrors[newErrors.length - 1].order = 1;
       inputPhoneNumber.focus();
     }
 
-    if (!Validator.surname(inputsurname)) {
+    if (!Validator.surname(inputsurname.value)) {
       newErrors.push(new Errors.SurnameNotValidError("Surname is not valid"));
       newErrors[newErrors.length - 1].order = 2;
       inputPhoneNumber.focus();
     }
 
-    if (!Validator.phoneNumber(inputPhoneNumber)) {
+    if (!Validator.phoneNumber(inputPhoneNumber.value)) {
       newErrors.push(
         new Errors.PhoneNumberNotValidError("Phone number is not valid")
       );
@@ -53,13 +53,13 @@ function SignupForm({ className, onSubmit }) {
       inputPhoneNumber.focus();
     }
 
-    if (!Validator.nif(inputNif)) {
+    if (!Validator.nif(inputNif.value)) {
       newErrors.push(new Errors.NifNotValidError("DNI format is not valid"));
       newErrors[newErrors.length - 1].order = 4;
       inputPhoneNumber.focus();
     }
 
-    if (!Validator.email(inputEmail)) {
+    if (!Validator.email(inputEmail.value)) {
       newErrors.push(
         new Errors.EmailNotValidError("Email format is not valid")
       );
@@ -67,7 +67,7 @@ function SignupForm({ className, onSubmit }) {
       inputEmail.focus();
     }
 
-    if (!Validator.password(inputPassword)) {
+    if (!Validator.password(inputPassword.value)) {
       newErrors.push(
         new Errors.PasswordNotValidError("Password format is not valid")
       );
@@ -147,6 +147,7 @@ function SignupForm({ className, onSubmit }) {
                   type="text"
                   id="username"
                   name="username"
+                  autoComplete="username"
                   placeholder="Nombre"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
@@ -155,8 +156,9 @@ function SignupForm({ className, onSubmit }) {
                 <IconUsername fill="white" />
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="surname"
+                  name="surname"
+                  autoComplete="family-name"
                   placeholder="Apellidos"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
@@ -165,8 +167,9 @@ function SignupForm({ className, onSubmit }) {
                 <IconPhone fill="white" />
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  autoComplete="tel"
                   placeholder="Número de teléfono"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
@@ -175,8 +178,9 @@ function SignupForm({ className, onSubmit }) {
                 <IconNif fill="white" />
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="nif"
+                  name="nif"
+                  autoComplete="off"
                   placeholder="DNI/NIF"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
@@ -185,32 +189,44 @@ function SignupForm({ className, onSubmit }) {
                 <IconEmail fill="white" />
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="email"
+                  name="email"
+                  autoComplete="email"
                   placeholder="Email"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
                 <IconPassword fill="white" />
-                <Tooltip id="my-tooltip" />
+                <Tooltip id="passwordTooltip" />
                 <input
-                  data-tooltip-id="my-tooltip"
+                  data-tooltip-id="passwordTooltip"
                   data-tooltip-content="Debe contener al menos 8 carácteres, mayúscula y carácteres especiales"
                   data-tooltip-place="top"
-                  type="text"
-                  id="username"
-                  name="username"
+                  type="password"
+                  id="password"
+                  name="password"
+                  autoComplete="off"
                   placeholder="Contraseña"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
+                <button
+                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                  type="button"
+                  data-showpassword="true"
+                  onClick={() => showPassword("showpassword", "password")}
+                >
+                  <IconHidePassword className="swap-on w-6 h-6" />
+                  <IconShowPassword className="swap-of w-6 h-6" />
+                </button>
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
                 <IconPassword fill="white" />
                 <input
-                  type="text"
-                  id="username"
-                  name="username"
+                  type="password"
+                  id="repeatPassword"
+                  name="repeatPassword"
+                  autoComplete="off"
                   placeholder="Repita la contraseña"
                   className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
                 />
