@@ -43,7 +43,7 @@ async function fetchCityCoordinates(city) {
 // it is working now!!!!
 //fetchWeatherData(40.4165, -3.7026)
 
-fetchCityCoordinates('Ciudad Rodrigo')
+fetchCityCoordinates('Brighton')
     .then(coordinates => {
         if (coordinates) {
             console.log('Latitude:', coordinates.latitude)
@@ -52,7 +52,7 @@ fetchCityCoordinates('Ciudad Rodrigo')
         } else {
             console.log('No se pudieron obtener las coordenadas')
         }
-    });
+});
 
 //fetchWeatherData(lat, lon)
 
@@ -61,3 +61,13 @@ fetchCityCoordinates('Ciudad Rodrigo')
 - SHOW COORDINATES OF THE CITY IN THE FRONT
 - SHOW ALTITUDE OF THE CITY IN THE FRONT
 */
+
+// formas de hacer llamadas a APIs
+// fetch nativa de javascript
+// axios que es una libreria -> deberiamos añadir al README q la estamos usando
+// xmlhttprequest 
+
+
+
+// poner todo dentro de api
+// separar en diferentes carpetas dentro de api
