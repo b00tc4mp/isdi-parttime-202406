@@ -15,7 +15,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customBackground: "rgb(243, 236, 217)",
+        customBackground: "rgb(253, 204, 225)",
         textPinkColor: "rgb(239, 121, 157)",
       },
     },
