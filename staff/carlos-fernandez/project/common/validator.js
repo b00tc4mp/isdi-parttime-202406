@@ -83,10 +83,10 @@ class Validator {
     if (value.trim().length <= 0)
       throw new Errors.ContentError("Password is empty");
 
-    /*const regExp = new RegExp(
-          /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;"'<>?,./~`-])(?=.{8,})/
-        );
-        return regExp.test(value);*/
+    const regExp = new RegExp(
+      /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;"'<>?,./~`-])(?=.{8,})/
+    );
+    return regExp.test(value);
 
     return true;
   }
