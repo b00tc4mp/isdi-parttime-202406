@@ -21,7 +21,7 @@ function Header() {
               rel="next"
               className="btn btn-ghost text-lg hover:bg-transparent"
             >
-              {ES.header.title}
+              Doo(g)king
             </Link>
           </div>
           <div className="navbar-end">

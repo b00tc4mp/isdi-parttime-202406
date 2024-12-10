@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-import ES from "../locales/es.json";
-const {
-  pages: {
-    landing: { title, signupButton, loginButton },
-  },
-} = ES;
 
 function Landing() {
   return (
@@ -25,7 +19,9 @@ function Landing() {
             {/* Contenedor de los encabezados */}
             <div className="flex flex-col items-center mb-9">
               {/* Encabezado h1 centrado */}
-              <h1 className="text-3xl text-white text-center">{title}</h1>
+              <h1 className="text-3xl text-white text-center">
+                Bienvenido a Doo(g)king
+              </h1>
               {/* Encabezado h2 justo debajo y alineado a la derecha */}
               <h2 className="text-center text-gray self-end">
                 Made by pet lovers
@@ -38,7 +34,7 @@ function Landing() {
                 rel="next"
                 className="btn custom-signup-btn"
               >
-                {signupButton}
+                Ir al formulario de registro
               </Link>
               <Link
                 to="/login"
@@ -46,7 +42,7 @@ function Landing() {
                 rel="next"
                 className="btn custom-login-btn"
               >
-                {loginButton}
+                Iniciar sesión
               </Link>
             </div>
           </div>
