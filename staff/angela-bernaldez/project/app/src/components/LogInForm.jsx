@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import classNames from 'classnames'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { IconEmail, 
          IconHidePassword,
          IconLogIn,
@@ -29,6 +29,14 @@ function LogInForm({ className, onSubmit }) {
         } catch(error) {
             console.log(error)
         }
+    }
+
+    const showPassword = (buttonSelector, inputSelector) => {
+        document
+          .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
+          .classList.toggle("swap-active");
+        const element = document.getElementById(inputSelector)
+        element.type = element.type === "text" ? "password" : "text"
     }
     return (
         <>
@@ -121,7 +129,7 @@ function LogInForm({ className, onSubmit }) {
                   Forgot your password?
                 </Link>
                 <Link
-                  to="/sign-up"
+                  to="/signup"
                   target="_self"
                   className="link link-secondary max-xs:block"
                 >
@@ -135,4 +143,4 @@ function LogInForm({ className, onSubmit }) {
 
 }
 
-export default LogInForm
+export default memo(LogInForm)
