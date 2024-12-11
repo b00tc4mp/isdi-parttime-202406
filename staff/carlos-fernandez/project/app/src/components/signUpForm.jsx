@@ -33,8 +33,52 @@ function SignupForm({ className, onSubmit }) {
 
     const newErrors = [];
 
-    const regExp = /^[A-Z][a-z]+$/;
+    if (!Validator.username(inputUsername.value)) {
+      newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
+      newErrors[newErrors.length - 1].order = 1;
+    }
 
+    if (!Validator.surname(inputSurname.value)) {
+      newErrors.push(new Errors.SurnameNotValidError("Surname is not valid"));
+      newErrors[newErrors.length - 1].order = 2;
+    }
+
+    if (!Validator.phoneNumber(inputPhoneNumber.value)) {
+      newErrors.push(
+        new Errors.PhoneNumberNotValidError("Phone number is not valid")
+      );
+      newErrors[newErrors.length - 1].order = 3;
+    }
+
+    if (!Validator.nif(inputNif.value)) {
+      newErrors.push(new Errors.NifNotValidError("Nif is not valid"));
+      newErrors[newErrors.length - 1].order = 4;
+    }
+
+    if (!Validator.email(inputEmail.value)) {
+      newErrors.push(new Errors.EmailNotValidError("Email is not valid"));
+      newErrors[newErrors.length - 1].order = 5;
+    }
+
+    if (!Validator.password(inputPassword.value)) {
+      newErrors.push(new Errors.PasswordNotValidError("Password is not valid"));
+      newErrors[newErrors.length - 1].order = 6;
+    }
+
+    if (!Validator.password(inputRepeatPassword.value)) {
+      newErrors.push(
+        new Errors.PasswordNotValidError("Repeated password is not valid")
+      );
+      newErrors[newErrors.length - 1].order = 7;
+    }
+
+    if (inputPassword.value !== inputRepeatPassword.value) {
+      newErrors.push(new Errors.ConfirmationError("Passwords doesn't match"));
+      newErrors[newErrors.length - 1].order = 8;
+    }
+    {
+      /**
+    const regExp = /^[A-Z][a-z]+$/;
     if (!regExp.test(inputUsername.value)) {
       newErrors.push(new Errors.UsernameNotValidError("Username is not valid"));
       newErrors[newErrors.length - 1].order = 1;
@@ -106,10 +150,12 @@ function SignupForm({ className, onSubmit }) {
       inputRepeatPassword.value = "";
       inputPassword.focus();
     }
-    console.log(newErrors);
+*/
+    }
+
     setErrors(newErrors.length > 0 ? newErrors : null);
 
-    if (errors === null) {
+    if (newErrors.length === 0) {
       try {
         onSubmit({
           username: inputUsername.value,
@@ -120,20 +166,17 @@ function SignupForm({ className, onSubmit }) {
           password: inputPassword.value,
           repeatPassword: inputRepeatPassword.value,
         }).catch((error) => {
-          console.log(error);
           if (error instanceof Errors.BadRequestError)
             return setErrors([error]);
           if (error instanceof Errors.ServerError) return setErrors([error]);
           setErrors([new Errors.UnexpectedError()]);
         });
       } catch (error) {
-        console.log(error);
         error.order = 1;
         setErrors([error]);
       }
     }
   };
-
   const showPassword = (buttonSelector, inputSelector) => {
     document
       .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
@@ -287,5 +330,4 @@ function SignupForm({ className, onSubmit }) {
     </>
   );
 }
-
-export default SignupForm;
+export default memo(SignupForm);

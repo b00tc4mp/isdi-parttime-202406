@@ -10,7 +10,6 @@ function SignUp() {
 
   const onSubmit = useMemo(
     () => (data) => {
-      console.log(data);
       try {
         return registerUser(data)
           .then(() => {
