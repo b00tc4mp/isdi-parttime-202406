@@ -31,6 +31,8 @@ function SignupForm({ className, onSubmit }) {
       repeatPassword: inputRepeatPassword,
     } = event.target;
 
+    {
+      /** 
     const newErrors = [];
 
     if (!Validator.username(inputUsername.value)) {
@@ -76,6 +78,9 @@ function SignupForm({ className, onSubmit }) {
       newErrors.push(new Errors.ConfirmationError("Passwords doesn't match"));
       newErrors[newErrors.length - 1].order = 8;
     }
+*/
+    }
+
     {
       /**
     const regExp = /^[A-Z][a-z]+$/;
@@ -150,31 +155,27 @@ function SignupForm({ className, onSubmit }) {
       inputRepeatPassword.value = "";
       inputPassword.focus();
     }
-*/
+    setErrors(newErrors.length > 0 ? newErrors : null);
+    */
     }
 
-    setErrors(newErrors.length > 0 ? newErrors : null);
-
-    if (newErrors.length === 0) {
-      try {
-        onSubmit({
-          username: inputUsername.value,
-          surname: inputSurname.value,
-          phoneNumber: inputPhoneNumber.value,
-          nif: inputNif.value,
-          email: inputEmail.value,
-          password: inputPassword.value,
-          repeatPassword: inputRepeatPassword.value,
-        }).catch((error) => {
-          if (error instanceof Errors.BadRequestError)
-            return setErrors([error]);
-          if (error instanceof Errors.ServerError) return setErrors([error]);
-          setErrors([new Errors.UnexpectedError()]);
-        });
-      } catch (error) {
-        error.order = 1;
-        setErrors([error]);
-      }
+    try {
+      onSubmit({
+        username: inputUsername.value,
+        surname: inputSurname.value,
+        phoneNumber: inputPhoneNumber.value,
+        nif: inputNif.value,
+        email: inputEmail.value,
+        password: inputPassword.value,
+        repeatPassword: inputRepeatPassword.value,
+      }).catch((error) => {
+        if (error instanceof Errors.BadRequestError) return setErrors([error]);
+        if (error instanceof Errors.ServerError) return setErrors([error]);
+        setErrors([new Errors.UnexpectedError()]);
+      });
+    } catch (error) {
+      error.order = 1;
+      setErrors([error]);
     }
   };
   const showPassword = (buttonSelector, inputSelector) => {
