@@ -63,6 +63,15 @@ export class ConfirmationError extends Error {
   }
 }
 
+export class ExistenceError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ExistenceError);
+    }
+  }
+}
+
 /* SERVER ERRORS (on client side) */
 
 export class BadRequestError extends Error {
@@ -107,6 +116,15 @@ export class UnexpectedError extends Error {
     super(message);
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, ServerError);
+    }
+  }
+}
+
+export class CredentialsError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CredentialsError);
     }
   }
 }
