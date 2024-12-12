@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "populate": "node ./data/populatedb/index.js",
+    "inspect": "node --inspect-brk index.js",
+    "test": "mocha --timeout 10000 ./logic/*.spec.js",
+    "test-coverage": "c8 --reporter=html --reporter=text mocha --timeout 10000 ./logic/*.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,7 @@
     "bcrypt": "^5.1.1",
     "c8": "^10.1.2",
     "chai": "^5.1.2",
+    "common": "link:..\\common",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",

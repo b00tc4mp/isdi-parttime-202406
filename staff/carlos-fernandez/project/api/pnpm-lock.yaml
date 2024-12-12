@@ -17,6 +17,9 @@ importers:
       chai:
         specifier: ^5.1.2
         version: 5.1.2
+      common:
+        specifier: link:..\common
+        version: link:../common
       cors:
         specifier: ^2.8.5
         version: 2.8.5

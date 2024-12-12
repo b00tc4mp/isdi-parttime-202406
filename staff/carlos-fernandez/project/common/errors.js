@@ -91,3 +91,31 @@ export class ContentError extends Error {
     }
   }
 }
+
+export class DuplicityError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, DuplicityError);
+    }
+  }
+}
+
+/* OTHER ERRORS  */
+export class UnexpectedError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ServerError);
+    }
+  }
+}
+
+export class ContentError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ContentError);
+    }
+  }
+}
