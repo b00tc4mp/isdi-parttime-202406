@@ -10,7 +10,15 @@ const { ObjectId } = Types;
 
 describe("Register user", () => {
   before(() => mongoose.connect(process.env.MONGO_URI_TEST));
-  // afterEach(() => User.deleteMany());
+  afterEach((done) => {
+    User.deleteMany()
+      .then(() => {
+        console.log("HOLA");
+        done();
+      })
+      .catch(done);
+  });
+  after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
   it("Creates a new user", () => {
     return registerUser(
@@ -30,6 +38,54 @@ describe("Register user", () => {
         expect(user.email).to.equal("carlos@gmail.com");
         expect(user._id).to.be.instanceOf(ObjectId);
       });
+    });
+  });
+
+  it("Fails when nif already exists", () => {
+    return User.create({
+      username: "Juan",
+      surname: "Lopez",
+      phoneNumber: "777777777",
+      nif: "38878569J",
+      email: "juan@gmail.com",
+      password: "hashedpassword",
+    }).then(() => {
+      registerUser(
+        "Carlos",
+        "Palibez",
+        "666333555",
+        "38878569J",
+        "carl@gmail.com",
+        "hashedpassword"
+      )
+        .then(() => {})
+        .catch((error) => {
+          expect(error.message).to.equal("Nif already in use");
+        });
+    });
+  });
+
+  it("Fails when email already exists", () => {
+    return User.create({
+      username: "Juan",
+      surname: "Lopez",
+      phoneNumber: "777777777",
+      nif: "38878569Z",
+      email: "juan@gmail.com",
+      password: "hashedpassword",
+    }).then(() => {
+      registerUser(
+        "Carlos",
+        "Martinez",
+        "612345678",
+        "38795701Z",
+        "juan@gmail.com",
+        "hashedpassword"
+      )
+        .then(() => {})
+        .catch((error) => {
+          expect(error.message).to.equal("Email already in use");
+        });
     });
   });
 });

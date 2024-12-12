@@ -35,7 +35,7 @@ const UserSchema = new Schema({
   dogs: [
     {
       type: ObjectId,
-      ref: "User",
+      ref: "Dog",
     },
   ],
 });
@@ -43,6 +43,12 @@ const UserSchema = new Schema({
 const User = mongoose.model("User", UserSchema);
 
 const DogSchema = new Schema({
+  humans: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
   dogName: {
     type: String,
     required: true,
