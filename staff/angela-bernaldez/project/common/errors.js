@@ -27,14 +27,7 @@ export class UsernameNotValidError extends Error {
     }
 }
   
-export class DateOfBirthNotValidError extends Error {
-    constructor(message) {
-        super(message);
-        if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, DateOfBirthNotValidError);
-        }
-    }
-}
+
 */
 
 /*SERVER ERRORS (on client side)*/
@@ -69,7 +62,7 @@ export class CredentialsError extends Error {
         }
     }
 }
-  
+*/
 export class DuplicityError extends Error {
     constructor(message) {
         super(message);
@@ -78,7 +71,7 @@ export class DuplicityError extends Error {
         }
     }
 }
-  
+/*
 export class ExistenceError extends Error {
     constructor(message) {
         super(message);

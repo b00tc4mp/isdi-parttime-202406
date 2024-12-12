@@ -34,6 +34,10 @@ const LocationSchema = new Schema({
 const Location = mongoose.model('Location', LocationSchema)
 
 const UserSchema = new Schema({
+    username: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -51,3 +55,10 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('User', UserSchema)
 
+export default {
+    Location, 
+    User
+}
+
+// si quiero añadir cuantas personas x ejemplo tienen como fav una ciudad
+// tengo que hacer referencia en el esquema de localizaciones a los users tb 
