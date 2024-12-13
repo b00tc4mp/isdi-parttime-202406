@@ -1,3 +1,7 @@
+
+// REVIEW if ContentError is needed
+// May need to add/create aditional errors
+
 /*FORMAT ERRORS*/
 export class EmailNotValidError extends Error {
     constructor(message) {
@@ -17,7 +21,7 @@ export class PasswordNotValidError extends Error {
     }
 }
   
-/*
+
 export class UsernameNotValidError extends Error {
     constructor(message) {
         super(message);
@@ -28,10 +32,8 @@ export class UsernameNotValidError extends Error {
 }
   
 
-*/
-
 /*SERVER ERRORS (on client side)*/
-/*
+
 export class BadRequestError extends Error {
     constructor(message) {
         super(message);
@@ -49,11 +51,8 @@ export class ServerError extends Error {
         }
     }
 }
-*/
-
   
 /*SERVER ERRORS (on server side)*/
-
 export class CredentialsError extends Error {
     constructor(message) {
         super(message);
@@ -71,7 +70,6 @@ export class DuplicityError extends Error {
         }
     }
 }
-/*
 export class ExistenceError extends Error {
     constructor(message) {
         super(message);
@@ -89,10 +87,8 @@ export class AuthError extends Error {
         }
     }
 }
-*/
 
 /*OTHER ERRORS*/
-
 export class UnexpectedError extends Error {
     constructor(message) {
         super(message);
@@ -101,7 +97,7 @@ export class UnexpectedError extends Error {
         }
     }
 }
-/*
+
 export class ContentError extends Error {
     constructor(message) {
         super(message);
@@ -119,4 +115,4 @@ export class ConfirmationError extends Error {
         }
     }
 }
-*/
+
