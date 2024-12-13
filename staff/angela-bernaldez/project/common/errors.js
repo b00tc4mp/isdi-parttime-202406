@@ -53,7 +53,7 @@ export class ServerError extends Error {
 
   
 /*SERVER ERRORS (on server side)*/
-/*
+
 export class CredentialsError extends Error {
     constructor(message) {
         super(message);
@@ -62,7 +62,7 @@ export class CredentialsError extends Error {
         }
     }
 }
-*/
+
 export class DuplicityError extends Error {
     constructor(message) {
         super(message);
@@ -92,7 +92,7 @@ export class AuthError extends Error {
 */
 
 /*OTHER ERRORS*/
-/*
+
 export class UnexpectedError extends Error {
     constructor(message) {
         super(message);
@@ -101,7 +101,7 @@ export class UnexpectedError extends Error {
         }
     }
 }
-  
+/*
 export class ContentError extends Error {
     constructor(message) {
         super(message);

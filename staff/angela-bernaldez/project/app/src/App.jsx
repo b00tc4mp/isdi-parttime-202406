@@ -2,6 +2,9 @@ import { Landing, LogIn, SignUp } from './pages'
 import { Route, Routes } from 'react-router-dom'
 import { ModalContext } from './context'
 
+// import.meta.env. when using env variables
+// env variables need to start with VITE_
+
 function App() {
 
   return (
