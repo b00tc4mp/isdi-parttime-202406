@@ -1,4 +1,4 @@
-import { Landing, SignUp } from "./pages";
+import { Landing, SignUp, Login } from "./pages";
 import ModalContext from "./context/ModalContext";
 import {
   Route,
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </ModalContext.Provider>
   );
