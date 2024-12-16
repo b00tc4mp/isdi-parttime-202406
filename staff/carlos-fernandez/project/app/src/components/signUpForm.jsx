@@ -66,7 +66,7 @@ function SignupForm({ className, onSubmit }) {
       <div className="flex justify-center w-full rounded-lg">
         <div
           className={classNames(
-            "bg-neutral-800 w-[48rem] px-9 py-12 rounded-lg",
+            "custom-box w-[48rem] px-9 py-12 rounded-xl",
             className
           )}
         >
@@ -74,14 +74,14 @@ function SignupForm({ className, onSubmit }) {
             <div className="grid mb-5">
               <IconSignup className="place-self-center w-16 h-16" />
             </div>
-            <h3 className="text-center mb-8 text-xl">
+            <h3 className="text-center mb-8 text-xl text-black">
               ¡Encantado de saber de ti!
             </h3>
             <fieldset className="mb-5">
-              <legend className="mb-4 text-sm">
+              <legend className="mb-4 text-sm text-black">
                 Por favor, introduce tus datos para crear tu usuario
               </legend>
-              <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
+              <label className="input  input-bordered input-ghost glass flex items-center gap-2 mb-4">
                 <IconUsername fill="white" />
                 <input
                   type="text"
@@ -89,7 +89,7 @@ function SignupForm({ className, onSubmit }) {
                   name="username"
                   autoComplete="username"
                   placeholder="Nombre"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-black placeholder:text-black placeholder:text-opacity-70"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">

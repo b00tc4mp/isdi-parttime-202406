@@ -30,25 +30,26 @@ body {
   }
 }
 
-/* Estilos para los botones de Landing page */
+/* Estilos base para los botones */
 .custom-login-btn {
-  background-color: rgb(146, 44, 124);
+  background-color: rgb(46, 81, 156);
   color: white;
-  transition: background-color 0.3s ease; /* Add transition for hover effect */
-}
-
-.custom-login-btn:hover {
-  background-color: rgb(207, 70, 171); /* Change background on hover */
+  transition: filter 0.3s ease, background-color 0.3s ease;
 }
 
 .custom-signup-btn {
-  background-color: rgba(26, 84, 143, 0.886);
+  background-color: rgb(121, 38, 103);
   color: white;
-  transition: filter 0.3s ease; /* Add transition for hover effect */
+  transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+/* Cambia el color de fondo de los botones al pasar el ratón */
+.custom-login-btn:hover {
+  background-color: rgb(78, 127, 233);
 }
 
 .custom-signup-btn:hover {
-  filter: blur(3px); /* Apply blur on hover */
+  background-color: rgb(207, 70, 171);
 }
 
 /* Background color del HEADER */
@@ -62,6 +63,13 @@ body {
 
 .bg-circle {
   background: rgb(243, 236, 217);
+}
+
+/* Formulario sign up */
+.custom-box {
+  border: 3px solid rgb(239, 121, 157); /* Borde del color deseado */
+  box-shadow: 0 0 200px 20px rgba(239, 121, 157, 0.5); /* Retroiluminación */
+  transition: box-shadow 0.3s ease; /* Suaviza el efecto al interactuar */
 }
 
 .shadow-box {
