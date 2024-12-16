@@ -4,7 +4,7 @@ import { useModalError } from "../context/ModalContext";
 import userAuth from "../logic/userAuth";
 import { useNavigate } from "react-router-dom";
 
-function Login({ updateFather }) {
+function Login({}) {
   const navigate = useNavigate();
   const openModalError = useModalError();
 
@@ -14,10 +14,13 @@ function Login({ updateFather }) {
         try {
           return userAuth(email, password)
             .then(() => {
-              updateFather();
+              {
+                /**updateFather(); */
+              }
               navigate("/home");
             })
             .catch((err) => {
+              console.log(err.message);
               openModalError(err);
             });
         } catch (error) {

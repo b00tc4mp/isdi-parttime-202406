@@ -3,8 +3,8 @@ import { Validator, Errors } from "common";
 const userAuth = (email, password) => {
   Validator.email(email);
   Validator.password(password);
-  debugger;
-  return fetch(`${import.meta.env.REACT_APP_API_URL}users/auth`, {
+  console.log(import.meta.env.VITE_APP_API_URL);
+  return fetch(`${import.meta.env.VITE_APP_API_URL}users/auth`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",

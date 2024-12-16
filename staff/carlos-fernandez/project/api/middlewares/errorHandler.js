@@ -2,7 +2,7 @@ import { Errors } from "common";
 
 export default (error, req, res, next) => {
   let code = 500;
-  console.log("Errors object:", Errors);
+
   if (
     error instanceof Errors.EmailNotValidError ||
     error instanceof Errors.UsernameNotValidError ||
