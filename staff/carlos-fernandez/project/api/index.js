@@ -20,6 +20,8 @@ try {
 
       server.post("/users", jsonBodyParser, handlers.registerUser);
 
+      server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {

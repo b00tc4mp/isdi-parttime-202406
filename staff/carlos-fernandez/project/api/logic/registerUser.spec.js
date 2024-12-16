@@ -13,7 +13,6 @@ describe("Register user", () => {
   afterEach((done) => {
     User.deleteMany()
       .then(() => {
-        console.log("HOLA");
         done();
       })
       .catch(done);
