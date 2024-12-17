@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { Header, SignupForm } from "../components";
+import { Header, SignupForm } from "../../components";
 import { useNavigate } from "react-router-dom";
-import { useModalError } from "../context/ModalContext";
-import registerUser from "../logic/registerUser";
+import { useModalError } from "../../context/ModalContext";
+import registerUser from "../../logic/registerUser";
 
 function SignUp() {
   const navigate = useNavigate();

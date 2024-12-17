@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Landing() {
+function UserAccess() {
   return (
     <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
       {/* Contenedor principal, usa flex y justify-center para centrar todo */}
@@ -63,4 +63,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default UserAccess;

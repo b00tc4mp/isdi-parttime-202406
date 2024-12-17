@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { Header, LoginForm } from "../components";
-import { useModalError } from "../context/ModalContext";
-import userAuth from "../logic/userAuth";
+import { Header, LoginForm } from "../../components";
+import { useModalError } from "../../context/ModalContext";
+import userAuth from "../../logic/userAuth";
 import { useNavigate } from "react-router-dom";
 
 function Login({}) {
@@ -14,9 +14,6 @@ function Login({}) {
         try {
           return userAuth(email, password)
             .then(() => {
-              {
-                /**updateFather(); */
-              }
               navigate("/home");
             })
             .catch((err) => {
