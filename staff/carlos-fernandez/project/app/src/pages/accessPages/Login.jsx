@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Header, LoginForm } from "../../components";
+import { LoginForm } from "../../components";
 import { useModalError } from "../../context/ModalContext";
 import userAuth from "../../logic/userAuth";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +29,6 @@ function Login({}) {
 
   return (
     <>
-      <Header />
       <section className="w-screen h-full min-h-[calc(100vh-var(--header-heigth))] sm:py-20">
         <LoginForm
           className="mx-auto max-sm:min-h-[calc(100vh-var(--header-heigth))]"

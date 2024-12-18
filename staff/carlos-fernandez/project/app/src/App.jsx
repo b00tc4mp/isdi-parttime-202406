@@ -1,4 +1,5 @@
 import { AboutUs, Faq, Home, Rates, Services } from "./pages/commonPages";
+import { Header } from "./components";
 import { EnterPages, ProfilePages } from "./pages";
 import logic from "./logic";
 import ModalContext from "./context/ModalContext";
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <ModalContext.Provider>
-      {/** HEADER  */}
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />

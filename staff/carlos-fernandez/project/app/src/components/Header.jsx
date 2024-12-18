@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IconMenu } from "./icons";
 import ES from "../locales/es.json";
+import { UserAreaBtn } from "./UserAreaBtn";
 //import logic from "../logic";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <>
       <header className="sticky top-0 z-10 bg-headerColor">
@@ -15,6 +17,16 @@ function Header() {
               alt="Doo(g)king Logo"
               className=" ml-10 w-auto h-auto max-w-[200px] max-h-[200px]"
             ></img>
+            <div className="ml-10 ">
+              {/**<UserAreaBtn /> */}
+
+              <button
+                onClick={() => navigate("/user-access")}
+                className=" px-4 py-2 bg-customBackground text-textPinkColor font-bold rounded transform transition-transform hover:scale-110"
+              >
+                Área clientes
+              </button>
+            </div>
           </div>
           <div className="navbar-center">
             <Link

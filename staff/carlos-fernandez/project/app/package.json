@@ -13,6 +13,7 @@
     "bootstrap-icons": "^1.11.3",
     "classnames": "^2.5.1",
     "common": "link:..\\common",
+    "flowbite-react": "^0.10.2",
     "moment": "^2.30.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

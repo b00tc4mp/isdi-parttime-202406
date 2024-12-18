@@ -43,6 +43,16 @@ body {
   transition: filter 0.3s ease, background-color 0.3s ease;
 }
 
+.navbar-center .btn {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Escala los links al pasar el ratón */
+.navbar-center .btn:hover {
+  transform: scale(1.1); /* Incrementa el tamaño un 10% */
+  color: rgb(239, 121, 157); /* Cambia opcionalmente el color */
+}
+
 /* Cambia el color de fondo de los botones al pasar el ratón */
 .custom-login-btn:hover {
   background-color: rgb(78, 127, 233);

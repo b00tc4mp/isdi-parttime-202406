@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Header, SignupForm } from "../../components";
+import { SignupForm } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { useModalError } from "../../context/ModalContext";
 import registerUser from "../../logic/registerUser";
@@ -26,7 +26,6 @@ function SignUp() {
   );
   return (
     <>
-      <Header />
       <section className="w-screen h-[calc(100vh-var(--header-heigth))] xs:py-3 max-xs:pt-16 overflow-y-auto">
         <SignupForm onSubmit={onSubmit} />
       </section>
