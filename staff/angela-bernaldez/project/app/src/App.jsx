@@ -1,22 +1,20 @@
-import { Landing, LogIn, SignUp } from './pages'
-import { Route, Routes } from 'react-router-dom'
-import { ModalContext } from './context'
-
-// import.meta.env. when using env variables
-// env variables need to start with VITE_
+import Public from './pages/Public.jsx'
+import logic from './logic'
+import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router'
 
 function App() {
 
+  const [tokenUpdated, setTokenUpdated] = useState(Date.now())
+
+  useEffect(() => { }, [tokenUpdated])
+
   return (
-    <ModalContext.Provider>
       <main>
         <Routes>
-          <Route path='/' element={<Landing />}/>
-          <Route path='/login' element={<LogIn />}/>
-          <Route path='/signup' element={<SignUp />}/>
+          <Route path='/*' element={logic.isUserLoggedIn() ? <h1>add session component</h1> : <Public onUserLoggedIn={() => setTokenUpdated(Date.now())} />} />
         </Routes>
       </main>
-    </ModalContext.Provider>
   )
 }
 

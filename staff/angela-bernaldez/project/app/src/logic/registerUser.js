@@ -1,6 +1,6 @@
 import { Errors } from 'common'
 
-const registerUser = ({ username, email, password, repeatPassword}) => {
+const registerUser = ( username, email, password, repeatPassword ) => {
     // TODO: add validators
 
     const user = {
@@ -9,12 +9,16 @@ const registerUser = ({ username, email, password, repeatPassword}) => {
         password
     }
 
-    return fetch(`${process.env.VITE_API_URL}users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({
+            username,
+            email,
+            password
+        })
     })
     .then((res) => {
         if (res.status === 201) return
@@ -30,3 +34,5 @@ const registerUser = ({ username, email, password, repeatPassword}) => {
         throw error
     })
 }
+
+export default registerUser

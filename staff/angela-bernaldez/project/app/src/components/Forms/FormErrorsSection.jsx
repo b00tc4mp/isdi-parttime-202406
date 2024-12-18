@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import EN from '../locals/en.json'
+import EN from '../../locals/en.json'
 
 
 function FormErrorsSection({ className, errors }) {
