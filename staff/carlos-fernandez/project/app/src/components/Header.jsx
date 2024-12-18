@@ -6,26 +6,70 @@ import ES from "../locales/es.json";
 function Header() {
   return (
     <>
-      <header className="sticky top-0 z-10">
-        <nav className="navbar text-black header-color">
-          <div className="navbar-start">
-            {!(
-              window.location.pathname === "/sign-up" ||
-              window.location.pathname === "/login"
-            ) && <Aside />}
+      <header className="sticky top-0 z-10 bg-headerColor">
+        <nav className="navbar text-black ">
+          {/** */}
+          <div className="navbar-start ">
+            <img
+              src="https://dosrosaspetresort.es/wp-content/uploads/2024/08/cropped-logovertical.png"
+              alt="Doo(g)king Logo"
+              className=" ml-10 w-auto h-auto max-w-[200px] max-h-[200px]"
+            ></img>
           </div>
           <div className="navbar-center">
             <Link
-              to="/"
+              to="/home"
               target="_self"
               rel="next"
               className="btn btn-ghost text-lg hover:bg-transparent"
             >
+              Inicio
+            </Link>
+            <Link
+              to="/about-us"
+              target="_self"
+              rel="next"
+              className="btn btn-ghost text-lg hover:bg-transparent"
+            >
+              Sobre nosotros
+            </Link>
+            <Link
+              to="/services"
+              target="_self"
+              rel="next"
+              className="btn btn-ghost text-lg hover:bg-transparent"
+            >
+              Servicios
+            </Link>
+            <Link
+              to="/rates"
+              target="_self"
+              rel="next"
+              className="btn btn-ghost text-lg hover:bg-transparent"
+            >
+              Tarifas
+            </Link>
+            <Link
+              to="/faq"
+              target="_self"
+              rel="next"
+              className="btn btn-ghost text-lg hover:bg-transparent"
+            >
+              FAQ
+            </Link>
+          </div>
+          <div className="navbar-end ">
+            <Link
+              to="/"
+              target="_self"
+              rel="next"
+              className=" mr-16 btn btn-ghost text-lg hover:bg-transparent"
+            >
               Doo(g)king
             </Link>
           </div>
-          <div className="navbar-end">
-            {/* <button className="btn btn-ghost btn-circle">
+
+          {/* <button className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -60,7 +104,6 @@ function Header() {
                 <span className="badge badge-xs badge-primary indicator-item"></span>
               </div>
             </button> */}
-          </div>
         </nav>
       </header>
     </>

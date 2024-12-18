@@ -4,7 +4,7 @@ function UserAccess() {
   return (
     <section className="w-full h-full min-w-[100vw] min-h-[100vh] grid">
       {/* Contenedor principal, usa flex y justify-center para centrar todo */}
-      <div className="flex flex-col justify-center items-center h-full w-full bg-backgroundColor">
+      <div className="flex flex-col justify-center items-center h-full w-full bg-headerColor">
         {/* Círculo pequeño 1 top-left */}
         <div className="absolute rounded-full bg-circle sm:top-[7rem] sm:left-[51rem] sm:w-[70px] sm:h-[70px]"></div>
         {/* Círculo pequeño 1 top-left */}

@@ -15,8 +15,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customBackground: "rgb(253, 204, 225)",
+        customBackground: "rgb(243, 236, 217)",
         textPinkColor: "rgb(239, 121, 157)",
+        headerColor: "rgb(255, 203, 225)",
       },
     },
     keyframes: {
