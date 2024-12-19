@@ -22,6 +22,8 @@ try {
 
       server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
 
+      server.get("/users/username", verifyToken, handlers.getUsername);
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {
