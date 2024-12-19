@@ -1,4 +1,5 @@
 import * as Errors from "./errors.js";
+import mongoose from "mongoose";
 
 class Validator {
   static username(value) {
@@ -100,8 +101,10 @@ class Validator {
 
   static id(value) {
     if (typeof value !== "string") throw new TypeError("Id is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Id is empty");
-
+    if (value.trim().length === 0) throw new Errors.ContentError("Id is empty");
+    if (!mongoose.Types.ObjectId.isValid(value)) {
+      throw new Errors.CredentialsError("Invalid ID format");
+    }
     return true;
   }
 

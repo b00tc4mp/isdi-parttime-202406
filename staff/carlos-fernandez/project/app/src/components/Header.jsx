@@ -18,14 +18,14 @@ function Header() {
               className=" ml-10 w-auto h-auto max-w-[200px] max-h-[200px]"
             ></img>
             <div className="ml-10 ">
-              {/**<UserAreaBtn /> */}
-
+              <UserAreaBtn />
+              {/**
               <button
                 onClick={() => navigate("/user-access")}
                 className=" px-4 py-2 bg-customBackground text-textPinkColor font-bold rounded transform transition-transform hover:scale-110"
               >
                 Área clientes
-              </button>
+              </button>*/}
             </div>
           </div>
           <div className="navbar-center">
