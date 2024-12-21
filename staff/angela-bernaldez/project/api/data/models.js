@@ -5,7 +5,7 @@ const { Schema, Types } = mongoose
 const { ObjectId } = Types
 
 const LocationSchema = new Schema({
-    locationName: {
+    name: {
         type: String,
         required: true
     },

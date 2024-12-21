@@ -24,7 +24,7 @@ function LogInForm({ onUserLoggedIn }) {
         try {
             logic.authenticateUser(email.value, password.value)
                 .then(() => {
-                    navigate('/');
+                    navigate('/')
                     onUserLoggedIn()
                 })
                 .catch((error) => alert(error.message))
