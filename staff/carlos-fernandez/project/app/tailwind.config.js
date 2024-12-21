@@ -18,10 +18,19 @@ module.exports = {
         customBackground: "rgb(243, 236, 217)",
         textPinkColor: "rgb(239, 121, 157)",
         headerColor: "rgb(255, 203, 225)",
+        darkPink: "rgb(235, 63, 115, 0.821)",
       },
     },
     keyframes: {
       ...keyframes,
+      expandShadow: {
+        "0%": {
+          boxShadow: "0 0 0 0 rgba(255, 203, 225))",
+        },
+        "100%": {
+          boxShadow: "0 0 800px 300px rgba(255, 203, 225)",
+        },
+      },
       fadeIn: {
         "0%": { opacity: "0" },
         "100%": { opacity: "1" },
@@ -39,6 +48,7 @@ module.exports = {
     },
     animation: {
       ...animation,
+      expandShadow: "expandShadow 1s ease-out forwards",
       fadeIn: "fadeIn 5s ease-in-out",
       "spin-slow": "spin 10s linear infinite",
       wiggle: "wiggle 2s ease-in-out infinite",

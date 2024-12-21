@@ -59,85 +59,85 @@ function SignupForm({ className, onSubmit }) {
     element.type = element.type === "text" ? "password" : "text";
   };
 
-  //////////////////////////////////////////////////////////////////////////   CONSTRUCCIÓN FORMULARIO   ///////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////   CONSTRUCCIÓN FORMULARIO   ////////////////////////////////////////////
 
   return (
     <>
       <div className="flex justify-center w-full rounded-lg">
         <div
           className={classNames(
-            "custom-box w-[48rem] px-9 py-12 rounded-xl",
+            "animate-expandShadow w-[48rem] px-9 py-12 rounded-xl",
             className
           )}
         >
           <form onSubmit={submit}>
             <div className="grid mb-5">
-              <IconSignup className="place-self-center w-16 h-16" />
+              <IconSignup className="place-self-center w-16 h-16 text-textPinkColor" />
             </div>
             <h3 className="text-center mb-8 text-xl text-black">
-              ¡Encantado de saber de ti!
+              ¡Encantados de saber de ti!
             </h3>
             <fieldset className="mb-5">
               <legend className="mb-4 text-sm text-black">
                 Por favor, introduce tus datos para crear tu usuario
               </legend>
-              <label className="input  input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconUsername fill="white" />
+              <label className="input input-bordered focus:border-pink-800 input-ghost glass flex items-center gap-2 mb-4">
+                <IconUsername fill="" />
                 <input
                   type="text"
                   id="username"
                   name="username"
                   autoComplete="username"
                   placeholder="Nombre"
-                  className="grow focus:text-black placeholder:text-black placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconUsername fill="white" />
+                <IconUsername fill="" />
                 <input
                   type="text"
                   id="surname"
                   name="surname"
                   autoComplete="family-name"
                   placeholder="Apellidos"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconPhone fill="white" />
+                <IconPhone fill="" />
                 <input
                   type="text"
                   id="phoneNumber"
                   name="phoneNumber"
                   autoComplete="tel"
                   placeholder="Número de teléfono"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconNif fill="white" />
+                <IconNif fill="" />
                 <input
                   type="text"
                   id="nif"
                   name="nif"
                   autoComplete="off"
                   placeholder="DNI/NIF"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconEmail fill="white" />
+                <IconEmail fill="" />
                 <input
                   type="text"
                   id="email"
                   name="email"
                   autoComplete="email"
                   placeholder="Email"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconPassword fill="white" />
+                <IconPassword fill="" />
                 <Tooltip id="passwordTooltip" />
                 <input
                   data-tooltip-id="passwordTooltip"
@@ -148,30 +148,30 @@ function SignupForm({ className, onSubmit }) {
                   name="password"
                   autoComplete="off"
                   placeholder="Contraseña"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
                 <button
-                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
                   type="button"
                   data-showpassword="true"
                   onClick={() => showPassword("showpassword", "password")}
                 >
                   <IconHidePassword className="swap-on w-6 h-6" />
-                  <IconShowPassword className="swap-of w-6 h-6" />
+                  <IconShowPassword className="swap-off w-6 h-6" />
                 </button>
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
-                <IconPassword fill="white" />
+                <IconPassword fill="" />
                 <input
                   type="password"
                   id="repeatPassword"
                   name="repeatPassword"
                   autoComplete="off"
                   placeholder="Repita la contraseña"
-                  className="grow focus:text-white placeholder:text-white placeholder:text-opacity-70"
+                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                 />
                 <button
-                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-white"
+                  className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
                   type="button"
                   data-showrepeatpassword="true"
                   onClick={() =>
@@ -179,7 +179,7 @@ function SignupForm({ className, onSubmit }) {
                   }
                 >
                   <IconHidePassword className="swap-on w-6 h-6" />
-                  <IconShowPassword className="swap-of w-6 h-6" />
+                  <IconShowPassword className="swap-off w-6 h-6" />
                 </button>
               </label>
             </fieldset>
@@ -188,7 +188,7 @@ function SignupForm({ className, onSubmit }) {
             <div className="mb-5 grid">
               <button
                 type="submit"
-                className="place-self-center btn btn-primary btn-block text-base"
+                className="place-self-center btn bg-textPinkColor hover:bg-darkPink btn-block text-base"
               >
                 Regístrate
               </button>

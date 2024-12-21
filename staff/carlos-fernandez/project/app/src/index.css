@@ -73,8 +73,7 @@ body {
 /* Formulario sign up */
 .custom-box {
   border: 3px solid rgb(239, 121, 157); /* Borde del color deseado */
-  box-shadow: 0 0 200px 20px rgba(239, 121, 157, 0.5); /* Retroiluminación */
-  transition: box-shadow 0.3s ease; /* Suaviza el efecto al interactuar */
+  box-shadow: 0 0 400px 200px rgba(239, 121, 157, 0.5); /* Retroiluminación */
 }
 
 .shadow-box {
