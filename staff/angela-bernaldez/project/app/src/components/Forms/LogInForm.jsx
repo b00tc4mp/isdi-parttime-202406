@@ -18,13 +18,11 @@ function LogInForm({ onUserLoggedIn }) {
         event.preventDefault()
 
         const { email, password } = event.target
-
-        debugger
-
+        
         try {
             logic.authenticateUser(email.value, password.value)
                 .then(() => {
-                    navigate('/')
+                    navigate('/home')
                     onUserLoggedIn()
                 })
                 .catch((error) => alert(error.message))

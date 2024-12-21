@@ -3,8 +3,6 @@ import { Errors } from 'common'
 const authenticateUser = ( email, password ) => {
     // TODO: add validators
 
-    debugger
-
     return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
         method: 'POST',
         headers: {

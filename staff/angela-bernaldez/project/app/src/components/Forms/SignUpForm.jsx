@@ -9,8 +9,6 @@ function SignUpForm() {
 
         const { username, email, password, repeatPassword } = event.target
 
-        debugger
-
         try {
             logic.registerUser(username.value, email.value, password.value, repeatPassword.value)
                 .then(() => {
