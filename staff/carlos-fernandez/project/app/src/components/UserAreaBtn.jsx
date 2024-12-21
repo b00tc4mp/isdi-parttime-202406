@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import logic from "../logic";
 
 export function UserAreaBtn() {
+  const [username, setUsername] = useState(null);
   const navigate = useNavigate();
-  {
-    /** useeffect 
-    usestate almacenando nombre de usuario */
-  }
+
+  useEffect(() => {
+    logic
+      .getUsername()
+      .then((name) => setUsername(name))
+      .catch((error) => {
+        console.error("Error fetching username:", error.message);
+        setUsername(null);
+      });
+  }, []);
 
   return (
     <div className="navbar bg-headerColor rounded-box">
@@ -18,7 +26,8 @@ export function UserAreaBtn() {
               role="button"
               className="btn btn-ghost rounded-btn text-black text-xl"
             >
-              Bienvenido, X
+              {/* Si tarda en cargar el nombre, ver sólo "bienvenido" */}
+              Bienvenido {username}
             </div>
             <ul
               tabIndex={0}
@@ -40,7 +49,17 @@ export function UserAreaBtn() {
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("/home")}>Salir</button>
+                <button
+                  onClick={() => {
+                    {
+                      /* Al hacer click en SALIR: limpiar token y navegar a home */
+                    }
+                    sessionStorage.clear();
+                    navigate("/home");
+                  }}
+                >
+                  Salir
+                </button>
               </li>
             </ul>
           </div>
