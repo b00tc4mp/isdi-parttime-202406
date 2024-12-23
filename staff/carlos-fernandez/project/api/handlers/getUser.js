@@ -5,10 +5,8 @@ export default (req, res, next) => {
 
   try {
     logic
-      .getUsername(id)
-      .then((requestedUsername) =>
-        res.status(200).send({ username: requestedUsername })
-      )
+      .getUser(id)
+      .then((requestedUser) => res.status(200).send({ user: requestedUser }))
       .catch((error) => next(error));
   } catch (error) {
     next(error);
