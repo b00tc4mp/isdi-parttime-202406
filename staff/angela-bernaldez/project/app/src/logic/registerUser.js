@@ -14,11 +14,7 @@ const registerUser = ( username, email, password, repeatPassword ) => {
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify({
-            username,
-            email,
-            password
-        })
+        body: JSON.stringify(user)
     })
     .then((res) => {
         if (res.status === 201) return

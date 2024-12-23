@@ -30,13 +30,13 @@ describe('addUserLocation', () => {
                         return addUserLocation(userId, locationData)
                             .then((userModified) => {
                                 return Location.findOne({ name: 'Brighton', latitude: 51, longitude: -0.5})
-                                .then((newLocation) => {
-                                    expect(userModified.favLocations[userModified.favLocations.length - 1]).to.deep.equal(newLocation._id)
-                                    expect(newLocation.name).to.equal('Brighton')
-                                    expect(newLocation.latitude).to.equal(51)
-                                    expect(newLocation.longitude).to.equal(-0.5)
-                                    expect(newLocation.altitude).to.equal(40)
-                                })
+                                    .then((newLocation) => {
+                                        expect(userModified.favLocations[userModified.favLocations.length - 1]).to.deep.equal(newLocation._id)
+                                        expect(newLocation.name).to.equal('Brighton')
+                                        expect(newLocation.latitude).to.equal(51)
+                                        expect(newLocation.longitude).to.equal(-0.5)
+                                        expect(newLocation.altitude).to.equal(40)
+                                    })
                             })
                     })
             })
