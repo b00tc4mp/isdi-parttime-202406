@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { UserAreaBtn } from "./UserAreaBtn";
+import { UserAreaBtn } from "./buttons/UserAreaBtn";
 
 function Header() {
   const navigate = useNavigate();

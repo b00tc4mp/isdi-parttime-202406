@@ -5,11 +5,11 @@ import {
   IconLogin,
   IconPassword,
   IconShowPassword,
-} from "./icons";
+} from "../icons";
 import classNames from "classnames";
 import { memo, useState } from "react";
 import { Errors, Validator } from "common";
-import { FormErrorsSection } from ".";
+import { FormErrorsSection } from "..";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -69,13 +69,13 @@ function LoginForm({ className, onSubmit }) {
                   "input input-bordered input-ghost glass flex items-center gap-2 mb-4"
                 )}
               >
-                <IconEmail fill="white" />
+                <IconEmail fill="pink" />
                 <input
                   type="text"
                   id="email"
                   name="email"
                   placeholder="Email"
-                  className="grow focus:text-white placeholder:text-gray-600 placeholder:text-opacity-70"
+                  className="grow focus:text-gray text-gray-700 placeholder:text-gray-600 placeholder:text-opacity-70"
                 />
               </label>
               <label
@@ -83,13 +83,13 @@ function LoginForm({ className, onSubmit }) {
                   "input input-bordered input-ghost glass flex items-center gap-2 mb-4"
                 )}
               >
-                <IconPassword fill="white" />
+                <IconPassword fill="pink" />
                 <input
                   type="password"
                   id="password"
                   name="password"
                   placeholder="Contraseña"
-                  className="grow focus:text-white placeholder:text-gray-600 placeholder:text-opacity-70"
+                  className="grow focus:text-gray text-gray-700 placeholder:text-gray-600 placeholder:text-opacity-70"
                 />
                 <button
                   className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"

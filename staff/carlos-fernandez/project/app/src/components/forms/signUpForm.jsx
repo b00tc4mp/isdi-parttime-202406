@@ -8,11 +8,11 @@ import {
   IconUsername,
   IconPhone,
   IconNif,
-} from "./icons";
+} from "../icons";
 import classNames from "classnames";
 import { memo, useState } from "react";
 import { Validator, Errors } from "common";
-import { FormErrorsSection } from ".";
+import { FormErrorsSection } from "..";
 import { Tooltip } from "react-tooltip";
 
 function SignupForm({ className, onSubmit }) {

@@ -29,6 +29,9 @@ body {
     --header-heigth: 64px;
   }
 }
+body.modal-open {
+  background-color: rgb(243, 236, 217) !important;
+}
 
 /* Estilos base para los botones */
 .custom-login-btn {

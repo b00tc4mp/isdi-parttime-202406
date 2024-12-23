@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import logic from "../logic";
+import logic from "../../logic";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 export function UserAreaBtn() {
   const [username, setUsername] = useState(null);
@@ -15,6 +16,15 @@ export function UserAreaBtn() {
         setUsername(null);
       });
   }, []);
+
+  const handleLogout = async () => {
+    const result = await ConfirmationModal({});
+
+    if (result.isConfirmed) {
+      sessionStorage.clear();
+      navigate("/home");
+    }
+  };
 
   return (
     <div className="navbar bg-headerColor rounded-box">
@@ -49,17 +59,7 @@ export function UserAreaBtn() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    {
-                      /* Al hacer click en SALIR: limpiar token y navegar a home */
-                    }
-                    sessionStorage.clear();
-                    navigate("/home");
-                  }}
-                >
-                  Salir
-                </button>
+                <button onClick={handleLogout}>Salir</button>
               </li>
             </ul>
           </div>
