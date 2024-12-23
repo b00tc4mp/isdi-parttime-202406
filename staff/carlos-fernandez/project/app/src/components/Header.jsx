@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAreaBtn } from "./buttons/UserAreaBtn";
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   {
     /* Ya tenemos el middleware verifyToken, pero así nos ahorramos llamadas a la API */
@@ -39,7 +40,9 @@ function Header() {
               to="/home"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className={`btn btn-ghost text-lg hover:bg-transparent ${
+                location.pathname === "/home" ? "active" : ""
+              }`}
             >
               Inicio
             </Link>
@@ -47,7 +50,9 @@ function Header() {
               to="/about-us"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className={`btn btn-ghost text-lg hover:bg-transparent ${
+                location.pathname === "/about-us" ? "active" : ""
+              }`}
             >
               Sobre nosotros
             </Link>
@@ -55,7 +60,9 @@ function Header() {
               to="/services"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className={`btn btn-ghost text-lg hover:bg-transparent ${
+                location.pathname === "/services" ? "active" : ""
+              }`}
             >
               Servicios
             </Link>
@@ -63,7 +70,9 @@ function Header() {
               to="/rates"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className={`btn btn-ghost text-lg hover:bg-transparent ${
+                location.pathname === "/rates" ? "active" : ""
+              }`}
             >
               Tarifas
             </Link>
@@ -71,7 +80,9 @@ function Header() {
               to="/faq"
               target="_self"
               rel="next"
-              className="btn btn-ghost text-lg hover:bg-transparent"
+              className={`btn btn-ghost text-lg hover:bg-transparent ${
+                location.pathname === "/faq" ? "active" : ""
+              }`}
             >
               FAQ
             </Link>

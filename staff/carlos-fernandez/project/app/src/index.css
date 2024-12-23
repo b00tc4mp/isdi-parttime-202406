@@ -33,6 +33,14 @@ body.modal-open {
   background-color: rgb(243, 236, 217) !important;
 }
 
+/*******************************************     HEADER   ************************************************************/
+
+.active {
+  /* Your desired styling for the active link, e.g., */
+  font-weight: bold;
+  color: rgb(239, 121, 157);
+}
+
 /* Estilos base para los botones */
 .custom-login-btn {
   background-color: rgb(46, 81, 156);
