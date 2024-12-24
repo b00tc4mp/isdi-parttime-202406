@@ -1,7 +1,7 @@
 import "dotenv/config";
-import registerUser from "./registerUser.js";
+import registerUser from "../registerUser.js";
 import { describe, it } from "mocha";
-import models from "../data/models.js";
+import models from "../../data/models.js";
 import mongoose, { Types } from "mongoose";
 import { expect } from "chai";
 

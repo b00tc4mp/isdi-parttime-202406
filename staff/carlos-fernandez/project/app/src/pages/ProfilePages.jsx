@@ -9,7 +9,6 @@ function ProfilePages() {
         <Route path="/my-pets" element={<MyPets />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/my-reservations" element={<MyReservations />} />
-        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Outlet />
     </div>

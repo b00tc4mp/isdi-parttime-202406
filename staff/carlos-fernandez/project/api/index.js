@@ -24,6 +24,8 @@ try {
 
       server.get("/users/username", verifyToken, handlers.getUsername);
 
+      server.get("/users/me", verifyToken, handlers.getUser);
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {
