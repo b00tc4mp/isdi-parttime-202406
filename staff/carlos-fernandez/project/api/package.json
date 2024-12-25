@@ -9,7 +9,7 @@
     "populate": "node ./data/populatedb/index.js",
     "inspect": "node --inspect-brk index.js",
     "test": "mocha --timeout 10000 ./logic/tests/*.spec.js",
-    "test-coverage": "c8 --reporter=html --reporter=text mocha --timeout 10000 ./logic/*.spec.js"
+    "test-coverage": "c8 --reporter=html --reporter=text mocha --timeout 10000 ./logic/tests/*.spec.js"
   },
   "keywords": [],
   "author": "",

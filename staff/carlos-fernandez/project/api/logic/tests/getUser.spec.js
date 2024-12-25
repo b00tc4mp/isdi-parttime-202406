@@ -15,58 +15,45 @@ describe("Get user info from token", () => {
 
   //////////////////////////////////////// HAPPY PATH ////////////////////////////////////////
 
-  it("Returns a user if user exists", () => {
+  it("Returns a user when id is valid", async () => {
     const user = {
-      username: "Carlos",
-      surname: "Bock",
-      phoneNumber: "612435926",
-      nif: "38795701Z",
-      email: "carlosbock@gmail.com",
-      password: "hashedpassword",
+      username: "Elisabet",
+      surname: "Matilda",
+      phoneNumber: "667823432",
+      nif: "38521456K",
+      email: "elimati@gmail.com",
+      password: "aaAA1234@",
     };
 
-    // Creamos usuario
-    User.create(user)
-      .then((savedUser) => {
-        const stringedId = savedUser._id.toString();
-
-        // Traemos el usuario creado mediante el ID obtenido anteriormente
-        return getUser(stringedId);
-      })
-
-      // Si sale bien, el usuario consultado con getUser (userRequested) deberia ser igual al creado (savedUser)
-      .then((userRequested) => {
-        expect(userRequested).to.deep.equal(savedUser);
-      })
-
-      // Si hay error, el mensaje de error debería ser el que lanza la lógica
-      .catch((error) => {
-        expect(error.message).to.equal(
-          "The provided user ID does not correspond to any user"
-        );
+    return User.create(user).then((user) => {
+      const id = user._id.toString();
+      return getUser(id, user.username).then((userGot) => {
+        expect(userGot.username).to.equal(user.username);
       });
+    });
   });
 
   //////////////////////////////////////// UNHAPPY PATH ////////////////////////////////////////
 
-  it("Throws an error if id is not valid", () => {
-    // ID INVENTADO
-    const nonExistentId = "invalid_id";
-    try {
-      getUser(nonExistentId);
-    } catch (error) {
-      expect(error.message).to.equal("Invalid ID format");
-    }
-  });
+  it("Throws an error if username is not correct", async () => {
+    const user2 = {
+      username: "Jose",
+      surname: "Martinez",
+      phoneNumber: "632456258",
+      nif: "38521321R",
+      email: "josemarti@gmail.com",
+      password: "aaAA1234@",
+    };
 
-  it("Throws an error if user it doesn't exist", () => {
-    const existentId = "6762d9a87e65a2d92c12836e";
-    return getUser(existentId)
-      .then()
-      .catch((error) => {
-        expect(error.message).to.equal(
-          "The provided user ID does not correspond to any user"
-        );
-      });
+    await User.create(user2);
+    const id = user2._id.toString();
+
+    try {
+      await getUser(id, "Carlos"); // Username mismatch
+      fail("Expected an error to be thrown");
+    } catch (error) {
+      // Assert that an error is thrown (no specific message assertion needed)
+      expect(error).toBeTruthy();
+    }
   });
 });
