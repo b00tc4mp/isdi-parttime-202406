@@ -8,7 +8,7 @@ import {
 } from "../icons";
 import classNames from "classnames";
 import { memo, useState } from "react";
-import { Errors, Validator } from "common";
+import { Errors } from "common";
 import { FormErrorsSection } from "..";
 
 function LoginForm({ className, onSubmit }) {

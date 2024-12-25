@@ -18,6 +18,7 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+
   nif: {
     type: String,
     required: true,
