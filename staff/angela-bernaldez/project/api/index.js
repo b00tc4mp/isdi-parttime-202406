@@ -18,6 +18,8 @@ mongoose.connect(process.env.MONGO_URI)
 
     server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
+    server.get('/users/auth', verifyToken, handlers.getUser)
+
     // review paths here
     server.get('/users/:userId/locations', verifyToken, handlers.getAllUserLocations)
 

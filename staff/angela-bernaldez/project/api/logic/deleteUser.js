@@ -10,7 +10,7 @@ export default (id, password) => {
 
     return User.findById(id)
         .then(user => {
-            if (!user) throw new Errors.AuthError("User id don't belong to anyone")
+            if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             return bcrypt.compare(password, user.password)
                 .then(isPasswordValid => {
                     if (!isPasswordValid) throw new Errors.CredentialsError("Wrong credentials")
