@@ -40,6 +40,7 @@ export default (id, locationData) => {
                         }
                     })
                     .catch((error) => {
+                        // change this to a specific type of error
                         console.log(error)
                     })
                 })

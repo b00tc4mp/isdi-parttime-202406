@@ -11,6 +11,9 @@ importers:
       axios:
         specifier: ^1.7.9
         version: 1.7.9
+      openmeteo:
+        specifier: ^1.1.4
+        version: 1.1.4
       recharts:
         specifier: ^2.14.1
         version: 2.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -20,6 +23,10 @@ packages:
   '@babel/runtime@7.26.0':
     resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
+
+  '@openmeteo/sdk@1.18.0':
+    resolution: {integrity: sha512-rcx3dY4kC3KHndHi4gETJi3QpETf/GriaktoG47YVEMbZ0lXm8G9Ki8qWasXWogSP15F6REET4Z+E/aPw86Crw==}
+    engines: {node: '>=12.0'}
 
   '@types/d3-array@3.2.1':
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
@@ -126,6 +133,9 @@ packages:
     resolution: {integrity: sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==}
     engines: {node: '>=6.0.0'}
 
+  flatbuffers@24.12.23:
+    resolution: {integrity: sha512-dLVCAISd5mhls514keQzmEG6QHmUUsNuWsb4tFafIUwvvgDjXhtfAYSKOzt5SWOy+qByV5pbsDZ+Vb7HUOBEdA==}
+
   follow-redirects@1.15.9:
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
     engines: {node: '>=4.0'}
@@ -164,6 +174,10 @@ packages:
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+
+  openmeteo@1.1.4:
+    resolution: {integrity: sha512-TalTDl0M7JJoeRTf+rWiFZ9SLvoxm7KkFLOQqcSjCiYs+bVMhax1qtryJqeZ1RF4W4Xfsgcl9x+VC1z39ULCxA==}
+    engines: {node: '>=12.0'}
 
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
@@ -225,6 +239,10 @@ snapshots:
   '@babel/runtime@7.26.0':
     dependencies:
       regenerator-runtime: 0.14.1
+
+  '@openmeteo/sdk@1.18.0':
+    dependencies:
+      flatbuffers: 24.12.23
 
   '@types/d3-array@3.2.1': {}
 
@@ -319,6 +337,8 @@ snapshots:
 
   fast-equals@5.0.1: {}
 
+  flatbuffers@24.12.23: {}
+
   follow-redirects@1.15.9: {}
 
   form-data@4.0.1:
@@ -344,6 +364,11 @@ snapshots:
       mime-db: 1.52.0
 
   object-assign@4.1.1: {}
+
+  openmeteo@1.1.4:
+    dependencies:
+      '@openmeteo/sdk': 1.18.0
+      flatbuffers: 24.12.23
 
   prop-types@15.8.1:
     dependencies:

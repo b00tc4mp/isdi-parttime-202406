@@ -12,4 +12,5 @@ export default (id) => {
             delete user._id
             return user
         })
+        // add catch
 }
