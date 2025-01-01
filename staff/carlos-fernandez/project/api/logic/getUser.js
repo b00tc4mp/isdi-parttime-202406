@@ -9,9 +9,8 @@ const { User } = models;
  * @returns {Promise<object>} - El usuario asociado al token.
  */
 
-export default (id, username) => {
+export default (id) => {
   Validator.id(id);
-  Validator.username(username);
 
   return User.findById(id)
     .then((user) => {
@@ -19,19 +18,10 @@ export default (id, username) => {
         throw new Errors.AuthError(
           "The provided user ID does not correspond to any user"
         );
-      } else if (user.username !== username) {
-        return null; // Or throw a specific UsernameNotFound error
       }
-      return User.findOne(
-        { username: username },
-        "username surname phoneNumber nif email password"
-      )
-        .lean()
-        .then((user) => {
-          user.id = user._id.toString();
-          delete user._id;
-          return user;
-        });
+      user.id = user._id.toString();
+      delete user._id;
+      return user;
     })
     .catch((error) => {
       throw new Errors.UnexpectedError(error.message);

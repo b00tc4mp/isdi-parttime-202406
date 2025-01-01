@@ -27,14 +27,14 @@ describe("Get user info from token", () => {
 
     return User.create(user).then((user) => {
       const id = user._id.toString();
-      return getUser(id, user.username).then((userGot) => {
+      return getUser(id).then((userGot) => {
         expect(userGot.username).to.equal(user.username);
       });
     });
   });
 
   //////////////////////////////////////// UNHAPPY PATH ////////////////////////////////////////
-
+  /*
   it("Throws an error if username is not correct", async () => {
     const user2 = {
       username: "Jose",
@@ -45,15 +45,34 @@ describe("Get user info from token", () => {
       password: "aaAA1234@",
     };
 
-    await User.create(user2);
-    const id = user2._id.toString();
+    const createdUser = await User.create(user2);
+    const id = createdUser._id.toString();
 
     try {
-      await getUser(id, "Carlos"); // Username mismatch
-      fail("Expected an error to be thrown");
+      await getUser(id); // Username incorrecto
     } catch (error) {
-      // Assert that an error is thrown (no specific message assertion needed)
-      expect(error).toBeTruthy();
+      // Validar que el error corresponde a un username no válido
+      expect(error.message).to.equal("Username not found");
     }
   });
+
+  it("Throws an error if id is not correct", async () => {
+    const user3 = {
+      username: "Paco",
+      surname: "Martinez",
+      phoneNumber: "632456258",
+      nif: "38521321R",
+      email: "pacomarti@gmail.com",
+      password: "aaAA1234@",
+    };
+
+    const createdUser2 = await User.create(user3);
+    const id = "asdfa";
+
+    try {
+      await getUser(id, "Paco");
+    } catch (error) {
+      expect(error.message).to.equal("Invalid ID format");
+    }
+  });*/
 });

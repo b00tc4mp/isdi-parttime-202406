@@ -13,8 +13,9 @@ describe("Update password", () => {
   afterEach(() => User.deleteMany());
   after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
-  it("Updates password", () => {
-    return bcrypt.hash("aaAA1234@", 10).then((cryptPassword) => {
+  it("Updates password", async () => {
+    try {
+      const cryptPassword = await bcrypt.hash("aaAA1234@", 10);
       const user = {
         username: "Testname",
         surname: "Surnametest",
@@ -23,19 +24,22 @@ describe("Update password", () => {
         email: "testemail@mail.com",
         password: cryptPassword,
       };
-      return User.create(user).then((user) => {
-        const id = user._id.toString();
-        return updatePassword(id, "aAaA1234@", "aaAA1234@").then(() => {
-          return User.findOne({ username: "Testname" }).then((user) => {
-            return bcrypt
-              .compare("aAaA1234@", user.password)
-              .then((isPasswordValid) => {
-                expect(isPasswordValid).to.be.true;
-              });
-          });
-        });
-      });
-    });
+      const createdUser = await User.create(user);
+      const id = createdUser._id.toString();
+
+      await updatePassword(id, "aAaA1234@", "aaAA1234@");
+
+      const updatedUser = await User.findOne({ username: "Testname" });
+      const isPasswordValid = await bcrypt.compare(
+        "aAaA1234@",
+        updatedUser.password
+      );
+
+      expect(isPasswordValid).to.be.true;
+    } catch (error) {
+      console.error("Error updating password:", error);
+      throw error;
+    }
   });
 
   /////////////////////////////////////// UNHAPPY PATH ///////////////////////////////////////
