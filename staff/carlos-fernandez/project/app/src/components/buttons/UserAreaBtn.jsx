@@ -37,7 +37,7 @@ export function UserAreaBtn() {
               className="btn btn-ghost rounded-btn text-black text-xl"
             >
               {/* Si tarda en cargar el nombre, ver sólo "bienvenido" */}
-              Bienvenido {username}
+              Bienvenid@ {username}
             </div>
             <ul
               tabIndex={0}

@@ -3,7 +3,7 @@ import { Header } from "./components";
 import { EnterPages, ProfilePages } from "./pages";
 import logic from "./logic";
 import ModalContext from "./context/ModalContext";
-import { Outlet, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 
 function App() {
