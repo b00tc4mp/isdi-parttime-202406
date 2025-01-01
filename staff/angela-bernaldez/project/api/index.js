@@ -5,6 +5,8 @@ import handlers from './handlers/index.js'
 import { errorHandler, verifyToken } from './middlewares/index.js'
 import 'dotenv/config'
 
+// change port from 4321 to another number :)
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {

@@ -61,7 +61,7 @@ export function IconEmail(props) {
     );
   }
   
-export function IconUsername(props) {
+export function IconUser(props) {
     return (
         <svg
         stroke="currentColor"
