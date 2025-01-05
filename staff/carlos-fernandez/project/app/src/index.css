@@ -73,6 +73,7 @@ body.modal-open {
   background-color: rgb(207, 70, 171);
 }
 
+/********************************************** Fondos *******************************************/
 .bg-pink {
   background: rgb(239, 121, 157);
 }
@@ -81,7 +82,7 @@ body.modal-open {
   background: rgb(243, 236, 217);
 }
 
-/* Formulario sign up */
+/********************************************** Formulario sign up *******************************************/
 .custom-box {
   border: 3px solid rgb(239, 121, 157); /* Borde del color deseado */
   box-shadow: 0 0 400px 200px rgba(239, 121, 157, 0.5); /* Retroiluminación */
@@ -119,4 +120,36 @@ body.modal-open {
     rgba(0, 128, 255, 0.578) 50%,
     rgba(255, 0, 200, 0.347) 80%
   );
+}
+
+/********************************************** Resaltar inputs *******************************************/
+
+@keyframes blink {
+  0%,
+  100% {
+    border-color: rgba(255, 0, 200, 0.452);
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
+.blinking-input {
+  animation: blink 1s infinite;
+  border-width: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-out forwards;
 }

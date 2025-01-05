@@ -74,14 +74,14 @@ function SignupForm({ className, onSubmit }) {
             <div className="grid mb-5">
               <IconSignup className="place-self-center w-16 h-16 text-textPinkColor" />
             </div>
-            <h3 className="text-center mb-8 text-xl text-black">
+            <h3 className="text-center mb-8 text-black">
               ¡Encantados de saber de ti!
             </h3>
             <fieldset className="mb-5">
               <legend className="mb-4 text-sm text-black">
                 Por favor, introduce tus datos para crear tu usuario
               </legend>
-              <label className="input input-bordered focus:border-pink-800 input-ghost glass flex items-center gap-2 mb-4">
+              <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
                 <IconUsername fill="" />
                 <input
                   type="text"
@@ -89,7 +89,7 @@ function SignupForm({ className, onSubmit }) {
                   name="username"
                   autoComplete="username"
                   placeholder="Nombre"
-                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
@@ -100,7 +100,7 @@ function SignupForm({ className, onSubmit }) {
                   name="surname"
                   autoComplete="family-name"
                   placeholder="Apellidos"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
@@ -111,7 +111,7 @@ function SignupForm({ className, onSubmit }) {
                   name="phoneNumber"
                   autoComplete="tel"
                   placeholder="Número de teléfono"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
@@ -122,7 +122,7 @@ function SignupForm({ className, onSubmit }) {
                   name="nif"
                   autoComplete="off"
                   placeholder="DNI/NIF"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
@@ -133,7 +133,7 @@ function SignupForm({ className, onSubmit }) {
                   name="email"
                   autoComplete="email"
                   placeholder="Email"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
               </label>
               <label className="input input-bordered input-ghost glass flex items-center gap-2 mb-4">
@@ -148,7 +148,7 @@ function SignupForm({ className, onSubmit }) {
                   name="password"
                   autoComplete="off"
                   placeholder="Contraseña"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
                 <button
                   className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
@@ -168,7 +168,7 @@ function SignupForm({ className, onSubmit }) {
                   name="repeatPassword"
                   autoComplete="off"
                   placeholder="Repita la contraseña"
-                  className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
+                  className="grow focus:text-gray-600  placeholder:text-gray-600 placeholder:text-opacity-90 text-black"
                 />
                 <button
                   className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"

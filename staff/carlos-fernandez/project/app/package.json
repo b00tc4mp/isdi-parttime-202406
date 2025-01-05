@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "bootstrap-icons": "^1.11.3",
     "classnames": "^2.5.1",
     "common": "link:..\\common",
