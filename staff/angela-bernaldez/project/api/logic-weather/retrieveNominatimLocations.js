@@ -18,3 +18,6 @@ export default (locationString) => {
             .catch((error) => { throw new Errors.UnexpectedError(error.message) })
     })
 }
+
+// poner un setTimeOut desde el front 
+// podria hacerlo con ujn boolean de si se puede hacer o no la llamada en funcion de si se harealizado hace menos de 1 seg

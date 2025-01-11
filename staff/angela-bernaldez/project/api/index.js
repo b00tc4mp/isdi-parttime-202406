@@ -23,9 +23,18 @@ mongoose.connect(process.env.MONGO_URI)
     server.get('/users/auth', verifyToken, handlers.getUser)
 
     // review paths here
-    server.get('/users/:userId/locations', verifyToken, handlers.getAllUserLocations)
 
-    server.post('/locations/:userId/', verifyToken, jsonBodyParser, handlers.addUserLocation)
+    // da igual que toods los usaruios tengan la misma ruta
+    // porque entro con un otken asociado a mi usuario
+    // eñ id lo extrae del token
+    // no hace falta sacar el id en el front 
+
+    // pasar el id solo lo haria si quisiera acceder a la info de otro usuario (id diferente)
+    // x ejemplo si quisiera acceder a las localizaciones de mis amigos 
+    // desde el front lo haria accediendo a la info del usuario desde la base de datos 
+    server.get('/users/locations', verifyToken, handlers.getAllUserLocations)
+
+    server.post('/users/locations', verifyToken, jsonBodyParser, handlers.addUserLocation)
 
     server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
 

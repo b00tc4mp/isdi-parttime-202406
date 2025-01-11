@@ -29,7 +29,7 @@ function SignUpForm({ className }) {
     return (
         <div 
           className={classNames(
-            "bg-neutral-800 w-1/3 h-1/2 mx-auto flex flex-col items-center justify-center", 
+            "bg-neutral-800 w-1/3 h-1/2 mx-auto mt-72 flex flex-col items-center justify-center", 
             className 
           )}
         >
