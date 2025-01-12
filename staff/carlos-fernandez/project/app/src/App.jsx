@@ -13,7 +13,7 @@ function App() {
 
   return (
     <ModalContext.Provider>
-      <Header />
+      <Header onUserLoggedOut={() => setTokenUpdated(Date.now())} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
@@ -25,9 +25,7 @@ function App() {
           path="/*"
           element={
             logic.isUserLoggedIn() ? (
-              <ProfilePages
-                onUserLoggedOut={() => setTokenUpdated(Date.now())}
-              />
+              <ProfilePages />
             ) : (
               <EnterPages onUserLoggedIn={() => setTokenUpdated(Date.now())} />
             )

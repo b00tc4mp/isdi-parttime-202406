@@ -26,6 +26,20 @@ try {
 
       server.get("/users/me", verifyToken, handlers.getUser);
 
+      server.patch(
+        "/users/update-phone-number",
+        verifyToken,
+        jsonBodyParser,
+        handlers.updatePhoneNumber
+      );
+
+      server.patch(
+        "/users/update-password",
+        verifyToken,
+        jsonBodyParser,
+        handlers.updatePassword
+      );
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {

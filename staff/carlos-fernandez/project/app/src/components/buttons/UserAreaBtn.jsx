@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import logic from "../../logic";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
-export function UserAreaBtn() {
+export function UserAreaBtn({ onUserLoggedOut }) {
   const [username, setUsername] = useState(null);
   const navigate = useNavigate();
 
@@ -21,6 +21,7 @@ export function UserAreaBtn() {
     const result = await ConfirmationModal({});
 
     if (result.isConfirmed) {
+      onUserLoggedOut();
       sessionStorage.clear();
       navigate("/home");
     }

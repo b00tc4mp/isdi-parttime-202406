@@ -4,7 +4,7 @@ import { useModalError } from "../../context/ModalContext";
 import userAuth from "../../logic/userAuth";
 import { useNavigate } from "react-router-dom";
 
-function Login({}) {
+function Login({ onUserLoggedIn }) {
   const navigate = useNavigate();
   const openModalError = useModalError();
 
@@ -14,6 +14,8 @@ function Login({}) {
         try {
           return userAuth(email, password)
             .then(() => {
+              // Avisar a la app que ha habido un cambio en el token
+              onUserLoggedIn();
               navigate("/home");
             })
             .catch((err) => {

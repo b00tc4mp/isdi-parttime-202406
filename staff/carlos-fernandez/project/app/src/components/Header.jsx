@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAreaBtn } from "./buttons/UserAreaBtn";
 
-function Header() {
+function Header({ onUserLoggedOut }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,7 +24,7 @@ function Header() {
             <div className="ml-10 ">
               {/* Mostrar UserAreaBtn si el usuario está autenticado, caso contrario mostrar el botón de acceso */}
               {isLoggedIn ? (
-                <UserAreaBtn />
+                <UserAreaBtn onUserLoggedOut={onUserLoggedOut} />
               ) : (
                 <button
                   onClick={() => navigate("/user-access")}

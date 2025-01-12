@@ -2,11 +2,14 @@ import { Outlet, Route, Routes } from "react-router";
 import { Login, SignUp, UserAccess } from "./accessPages";
 import NotFound from "./NotFound";
 
-function EnterPages() {
+function EnterPages({ onUserLoggedIn }) {
   return (
     <div>
       <Routes>
-        <Route path="login" element={<Login />} />
+        <Route
+          path="login"
+          element={<Login onUserLoggedIn={onUserLoggedIn} />}
+        />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="user-access" element={<UserAccess />} />
         <Route path="/*" element={<NotFound />} />

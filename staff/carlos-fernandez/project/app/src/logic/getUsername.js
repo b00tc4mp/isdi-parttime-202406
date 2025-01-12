@@ -11,7 +11,7 @@ export default () => {
       // Data ya es user.username entiendo?? O hay que hacer data.username??
       return res.json().then((data) => {
         if (data) {
-          console.log(`Bienvenido, ${data.username}`);
+          console.log(`Bienvenid@, ${data.username}`);
           return data.username;
         } else {
           console.error(data.error);

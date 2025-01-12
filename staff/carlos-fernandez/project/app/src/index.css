@@ -124,32 +124,20 @@ body.modal-open {
 
 /********************************************** Resaltar inputs *******************************************/
 
-@keyframes blink {
+.pulse-shadow {
+  animation: pulse-shadow 1.5s infinite;
+}
+
+@keyframes pulse-shadow {
   0%,
   100% {
-    border-color: rgba(255, 0, 200, 0.452);
+    box-shadow: 0 0 10px rgba(239, 121, 157, 0.5);
   }
   50% {
-    border-color: transparent;
+    box-shadow: 0 0 20px rgba(239, 121, 156, 0.819);
   }
 }
 
-.blinking-input {
-  animation: blink 1s infinite;
-  border-width: 2px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.7s ease-out forwards;
+.text-gray {
+  color: rgb(75, 85, 99);
 }

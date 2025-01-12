@@ -10,7 +10,7 @@ export default (id, newPassword, oldPassword) => {
   Validator.password(oldPassword);
 
   return User.findById(id).then((user) => {
-    if (!user) throw new Errors.ExistenceError("No user with this email");
+    if (!user) throw new Errors.ExistenceError("No user with this ID");
 
     return bcrypt
       .compare(oldPassword, user.password)
