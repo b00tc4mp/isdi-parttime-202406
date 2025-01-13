@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import updatePassword from "../../logic/updatePassword";
+import { showPassword } from "../../logic/showPasswordUtils";
+import { IconHidePassword, IconShowPassword } from "../icons";
 
 function UpdatePasswordSection() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -32,11 +34,21 @@ function UpdatePasswordSection() {
         <label className="input input-bordered flex items-center gap-2 mb-2">
           <input
             type="password"
+            id="currentPassword"
             placeholder="Contraseña Actual"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             autoComplete="current-password"
           />
+          <button
+            className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
+            type="button"
+            data-showpassword="true"
+            onClick={() => showPassword("showpassword", "currentPassword")}
+          >
+            <IconHidePassword className="swap-on w-6 h-6" />
+            <IconShowPassword className="swap-off w-6 h-6" />
+          </button>
         </label>
         <label className="input input-bordered flex items-center gap-2 mb-2">
           <input

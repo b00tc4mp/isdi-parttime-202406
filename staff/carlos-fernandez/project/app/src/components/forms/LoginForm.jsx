@@ -6,6 +6,7 @@ import {
   IconPassword,
   IconShowPassword,
 } from "../icons";
+import { showPassword } from "../../logic/showPasswordUtils";
 import classNames from "classnames";
 import { memo, useState } from "react";
 import { Errors } from "common";
@@ -34,14 +35,6 @@ function LoginForm({ className, onSubmit }) {
       console.log(error);
       setErrors([error]);
     }
-  };
-
-  const showPassword = (buttonSelector, inputSelector) => {
-    document
-      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
-      .classList.toggle("swap-active");
-    const element = document.getElementById(inputSelector);
-    element.type = element.type === "text" ? "password" : "text";
   };
 
   return (
