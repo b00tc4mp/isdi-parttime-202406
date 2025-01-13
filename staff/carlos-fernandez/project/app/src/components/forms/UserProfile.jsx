@@ -6,12 +6,14 @@ import "animate.css";
 import useEditField from "../../hooks/useEditField";
 import { Validator } from "common";
 import updatePhoneNumber from "../../logic/updatePhoneNumber";
+import UpdatePassword from "./UpdatePassword";
 
 function UserProfile({ className }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [showPasswordSection, setShowPasswordSection] = useState(false); // Estado para manejar visibilidad
 
   const phoneEdit = useEditField("");
 
@@ -47,8 +49,8 @@ function UserProfile({ className }) {
         phoneNumber: newPhoneNumber,
       }));
 
-      phoneEdit.setValue(newPhoneNumber); // Ensure input field shows the new value
-      setIsEditing(false); // Exit editing mode
+      phoneEdit.setValue(newPhoneNumber); // Input que muestra el nuevo valor
+      setIsEditing(false); // Ya no está en modo edición
       alert("¡Tu número de teléfono se ha actualizado!");
     } catch (error) {
       console.error("Error al actualizar el teléfono:", error);
@@ -59,7 +61,7 @@ function UserProfile({ className }) {
   };
 
   const handleCancelEditing = () => {
-    phoneEdit.setValue(user.phoneNumber); // Reset to current user's phone number
+    phoneEdit.setValue(user.phoneNumber); // Resetear al número actual
     setIsEditing(false);
   };
 
@@ -133,7 +135,7 @@ function UserProfile({ className }) {
                 onClick={
                   isEditing ? handleCancelEditing : () => setIsEditing(true)
                 }
-                className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
+                className="ml-2 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-800"
               >
                 {isEditing ? "Cancelar" : "Editar"}
               </button>
@@ -172,11 +174,19 @@ function UserProfile({ className }) {
           <div className="flex justify-between">
             <button
               onClick={() => handleUpdatePhoneNumber()}
-              className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+              className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-800"
             >
               Guardar cambios
             </button>
+            <button
+              className="mt-4 px-4 py-2 bg-pink text-white rounded hover:bg-darkPink"
+              // Si passwordSection es true, setealo en false y a la inversa.
+              onClick={() => setShowPasswordSection(!showPasswordSection)}
+            >
+              Editar contraseña
+            </button>
           </div>
+          <div>{showPasswordSection && <UpdatePassword />}</div>
         </div>
       </div>
     </div>
