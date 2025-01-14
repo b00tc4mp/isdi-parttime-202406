@@ -6,7 +6,7 @@ import {
   IconPassword,
   IconShowPassword,
 } from "../icons";
-import { showPassword } from "../../logic/showPasswordUtils";
+import { showPassword } from "../../utils/showPasswordUtils.js";
 import classNames from "classnames";
 import { memo, useState } from "react";
 import { Errors } from "common";

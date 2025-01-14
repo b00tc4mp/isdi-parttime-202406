@@ -69,7 +69,7 @@ function UserProfile({ className }) {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex justify-center w-full rounded-lg text-black mt-6 animate__animated animate__fadeIn">
+    <div className="flex justify-center w-full h-auto rounded-lg text-black mt-6 animate__animated animate__fadeIn">
       <div
         className={classNames(
           "animate-expandShadow w-[32rem] px-9 py-12 rounded-xl",

@@ -49,7 +49,7 @@ const UserSchema = new Schema({
 const User = mongoose.model("User", UserSchema);
 
 const DogSchema = new Schema({
-  humans: [
+  owner: [
     {
       type: ObjectId,
       ref: "User",
@@ -63,8 +63,8 @@ const DogSchema = new Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
+  birthDate: {
+    type: Date,
     required: true,
   },
   sociability: {
@@ -83,7 +83,33 @@ const DogSchema = new Schema({
 
 const Dog = mongoose.model("Dog", DogSchema);
 
+const BookingSchema = new Schema({
+  dogs: [
+    {
+      type: ObjectId,
+      ref: "Dog",
+    },
+  ],
+  owner: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: true,
+  },
+});
+
+const Booking = mongoose.model("Booking", BookingSchema);
+
 export default {
   User,
   Dog,
+  Booking,
 };

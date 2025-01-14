@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import updatePassword from "../../logic/updatePassword";
-import { showPassword } from "../../logic/showPasswordUtils";
+import { showPassword } from "../../utils/showPasswordUtils.js";
 import { IconHidePassword, IconShowPassword } from "../icons";
 
 function UpdatePasswordSection() {
@@ -31,11 +31,11 @@ function UpdatePasswordSection() {
   return (
     <div className="mt-4 p-4 border border-gray-300 rounded-lg">
       <form onSubmit={handleSubmit}>
-        <label className="input input-bordered flex items-center gap-2 mb-2">
+        <label className="input input-bordered flex items-center justify-between gap-6 mb-2">
           <input
             type="password"
             id="currentPassword"
-            placeholder="Contraseña Actual"
+            placeholder="Contraseña actual"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             autoComplete="current-password"
@@ -43,30 +43,53 @@ function UpdatePasswordSection() {
           <button
             className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
             type="button"
-            data-showpassword="true"
-            onClick={() => showPassword("showpassword", "currentPassword")}
+            data-currentPassword="true" // Usamos el id del input
+            onClick={() => showPassword("currentPassword", "currentPassword")}
           >
             <IconHidePassword className="swap-on w-6 h-6" />
             <IconShowPassword className="swap-off w-6 h-6" />
           </button>
         </label>
-        <label className="input input-bordered flex items-center gap-2 mb-2">
+        <label className="input input-bordered flex items-center justify-between gap-2 mb-2">
           <input
             type="password"
-            placeholder="Nueva Contraseña"
+            id="newPassword"
+            placeholder="Nueva contraseña"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             autoComplete="new-password"
           />
+          <button
+            className="swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
+            type="button"
+            data-newPassword="true" // Usamos el id del input
+            onClick={() => showPassword("newPassword", "newPassword")}
+          >
+            <IconHidePassword className="swap-on w-6 h-6" />
+            <IconShowPassword className="swap-off w-6 h-6" />
+          </button>
         </label>
-        <label className="input input-bordered flex items-center gap-2 mb-2">
+        <label className="input input-bordered flex items-center justify-between gap-6 mb-2">
           <input
+            className="flex-1"
             type="password"
-            placeholder="Confirmar Nueva Contraseña"
+            id="confirmNewPassword"
+            placeholder="Confirma la nueva contraseña"
             value={confirmNewPassword}
             onChange={(e) => setConfirmNewPassword(e.target.value)}
             autoComplete="new-password"
           />
+          <button
+            className=" swap swap-flip swap-active btn btn-xs p-2 btn-ghost btn-circle text-gray-400"
+            type="button"
+            data-confirmNewPassword="true" // Usamos el id del input
+            onClick={() =>
+              showPassword("confirmNewPassword", "confirmNewPassword")
+            }
+          >
+            <IconHidePassword className="swap-on w-6 h-6" />
+            <IconShowPassword className="swap-off w-6 h-6" />
+          </button>
         </label>
         {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
         <div className="flex items-center justify-center">

@@ -14,6 +14,7 @@ import { memo, useState } from "react";
 import { Errors } from "common";
 import { FormErrorsSection } from "..";
 import { Tooltip } from "react-tooltip";
+import { showPassword } from "../../utils/showPasswordUtils.js";
 
 function SignupForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -50,13 +51,6 @@ function SignupForm({ className, onSubmit }) {
       console.log(error);
       setErrors([error]);
     }
-  };
-  const showPassword = (buttonSelector, inputSelector) => {
-    document
-      .querySelectorAll(`[data-${buttonSelector}="true"]`)[0]
-      .classList.toggle("swap-active");
-    const element = document.getElementById(inputSelector);
-    element.type = element.type === "text" ? "password" : "text";
   };
 
   ////////////////////////////////////////////   CONSTRUCCIÓN FORMULARIO   ////////////////////////////////////////////
