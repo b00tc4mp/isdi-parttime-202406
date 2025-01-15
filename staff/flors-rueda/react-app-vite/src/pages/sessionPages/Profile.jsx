@@ -13,7 +13,6 @@ function Profile() {
             logic.getOneUser(username)
                 .then((_userData) => {
                     setUserData(_userData)
-                    console.log(_userData)
                 })
                 .catch((error) => alert(error.message))
         } catch (error) {
@@ -23,7 +22,10 @@ function Profile() {
 
     }, [username])
 
-    return <h1>Profile: {userData && userData.username}</h1>
+    return <div className="w-full flex-col px-10 pt-5">
+        <h1>Profile: {userData && userData.username}</h1>
+        <h3>Bio: {userData && userData.bio}</h3>
+    </div>
 }
 
 export default Profile

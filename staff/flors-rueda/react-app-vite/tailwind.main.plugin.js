@@ -60,7 +60,6 @@ module.exports = plugin(function ({ addBase, addComponents }) {
             outline: '0.15rem solid var(--focus)'
         },
         'input[type="date"]': {
-            maxWidth: '8.75rem',
             padding: '0.25rem 0.5rem'
         },
         'button': {
@@ -95,6 +94,9 @@ module.exports = plugin(function ({ addBase, addComponents }) {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '3rem 1.5rem 2rem'
+            },
+            '.alert-background': {
+                backgroundColor: 'rgba(0,0,0,0.5)',
             }
         })
 })

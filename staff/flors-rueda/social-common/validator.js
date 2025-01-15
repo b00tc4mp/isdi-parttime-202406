@@ -45,7 +45,7 @@ class Validator {
     if (typeof value !== 'string') throw new TypeError("Date is not a string");
     if (value.trim().length <= 0) throw new Errors.ContentError("Date is empty");
 
-    const dateOfBirthRegExp =
+    /*const dateOfBirthRegExp =
       /^(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[01])\/\d{4}$/;
 
     if (!dateOfBirthRegExp.test(value)) throw new Errors.DateOfBirthNotValidError("Date format is not valid"); // Invalid format
@@ -57,7 +57,7 @@ class Validator {
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
 
-    if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");
+    if (age < 18 || (age === 18 && monthDiff < 0)) throw new RangeError("Age not allowed");*/
 
     return true;
   }

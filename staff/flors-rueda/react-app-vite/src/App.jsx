@@ -8,8 +8,6 @@ function App() {
 
   useEffect(() => { }, [tokenUpdated])
 
-
-
   return (
     <div>
       <Routes>

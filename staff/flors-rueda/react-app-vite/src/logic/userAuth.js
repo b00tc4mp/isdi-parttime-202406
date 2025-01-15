@@ -20,11 +20,6 @@ const userAuth = (email, password) => {
           throw new constructor(`${body.message}`);
         })
     })
-    .catch((err) => {
-      if (err instanceof TypeError)
-        throw new Errors.ServerError("Server in not connected");
-      throw new Errors.UnexpectedError();
-    });
 };
 
 
