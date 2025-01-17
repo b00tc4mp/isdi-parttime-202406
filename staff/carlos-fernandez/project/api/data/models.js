@@ -53,8 +53,13 @@ const DogSchema = new Schema({
     {
       type: ObjectId,
       ref: "User",
+      required: true,
     },
   ],
+  chip: {
+    type: String,
+    required: true,
+  },
   dogName: {
     type: String,
     required: true,
