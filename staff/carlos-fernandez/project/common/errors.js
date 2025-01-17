@@ -72,6 +72,14 @@ export class ExistenceError extends Error {
   }
 }
 
+export class DateOfBirthNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, DateOfBirthNotValidError);
+    }
+  }
+}
 /* SERVER ERRORS (on client side) */
 
 export class BadRequestError extends Error {
@@ -106,6 +114,15 @@ export class DuplicityError extends Error {
     super(message);
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, DuplicityError);
+    }
+  }
+}
+
+export class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, NotFoundError);
     }
   }
 }

@@ -2,6 +2,7 @@ import * as Errors from "./errors.js";
 import mongoose from "mongoose";
 
 class Validator {
+  ///////////////////////////// USER VALIDATORS /////////////////////////////
   static username(value) {
     if (typeof value !== "string")
       throw new TypeError("Username is not a string");
@@ -136,6 +137,74 @@ class Validator {
     if (value.trim().length <= 0) throw new Errors.ContentError("Bio is empty");
     if (value.length > 100) throw new Errors.ContentError("Bio is too long");
 
+    return true;
+  }
+
+  ///////////////////////////// DOG VALIDATORS /////////////////////////////
+
+  static chip(value) {
+    if (typeof value !== "string") throw new TypeError("Chip is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Chip is empty");
+    const regExp = /^\d{15}$/;
+    if (!regExp.test(value)) {
+      throw new Errors.ContentError("Chip format is not valid");
+    }
+    return true;
+  }
+
+  static dogName(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Dog's name is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Dog's name is empty");
+    if (value.length > 30)
+      throw new Errors.ContentError("Dog's name is too long");
+    return true;
+  }
+
+  static breed(value) {
+    if (typeof value !== "string") throw new TypeError("Breed is not a string");
+    if (value.trim().length <= 0)
+      throw new Errors.ContentError("Breed is empty");
+    if (value.length > 50) throw new Errors.ContentError("Breed is too long");
+    return true;
+  }
+
+  static birthDate(value) {
+    if (typeof value === "string") {
+      value = new Date(value);
+    }
+
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      throw new TypeError("Birth date is not a valid date");
+    }
+
+    const currentDate = new Date();
+    if (value > currentDate) {
+      throw new Errors.DateOfBirthNotValidError(
+        "Birth date cannot be in the future"
+      );
+    }
+
+    return true;
+  }
+
+  static sociability(value) {
+    if (typeof value !== "boolean")
+      throw new TypeError("Sociability is not a boolean");
+    return true;
+  }
+
+  static disease(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Disease is not a string");
+    return true;
+  }
+
+  static allergy(value) {
+    if (typeof value !== "string")
+      throw new TypeError("Allergy is not a string");
     return true;
   }
 }
