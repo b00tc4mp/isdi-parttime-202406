@@ -22,7 +22,12 @@ try {
 
       server.post("/users/auth", jsonBodyParser, handlers.authenticateUser);
 
-      server.post("/users/pets", verifyToken, handlers.registerPet);
+      server.post(
+        "/users/pets",
+        jsonBodyParser,
+        verifyToken,
+        handlers.registerPet
+      );
 
       server.get("/users/username", verifyToken, handlers.getUsername);
 
