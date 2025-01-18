@@ -33,6 +33,8 @@ try {
 
       server.get("/users/me", verifyToken, handlers.getUser);
 
+      server.get("/users/:id/dogs", verifyToken, handlers.getUserDogs);
+
       server.patch(
         "/users/update-phone-number",
         verifyToken,
