@@ -39,7 +39,7 @@ const registerPet = (
       });
     })
     .catch((error) => {
-      if (error instanceof TypError)
+      if (error instanceof TypeError)
         throw new Errors.ServerError("Server is not connected");
       throw error;
     });

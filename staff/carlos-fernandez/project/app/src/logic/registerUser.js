@@ -43,7 +43,7 @@ const registerUser = ({
     })
     .catch((error) => {
       if (error instanceof TypeError)
-        throw new Errors.ServerError("Serves is not connected");
+        throw new Errors.ServerError("Server is not connected");
       throw error;
     });
 };
