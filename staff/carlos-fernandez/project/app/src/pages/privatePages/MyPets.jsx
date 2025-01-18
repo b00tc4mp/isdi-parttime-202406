@@ -1,8 +1,8 @@
 function MyPets() {
   return (
-    <>
-      <div className="text-xl text-black">MIS MASCOTAS</div>
-    </>
+    <div>
+      <h1>MIS MASCOTAS</h1>
+    </div>
   );
 }
 
