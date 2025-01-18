@@ -1,7 +1,7 @@
 import logic from "../logic/index.js";
 
 export default (req, res, next) => {
-  const id = req.params.id; // Asegúrate de que 'id' viene de los parámetros de la solicitud
+  const id = req.params.id || req.id;
 
   logic
     .getUserDogs(id)
