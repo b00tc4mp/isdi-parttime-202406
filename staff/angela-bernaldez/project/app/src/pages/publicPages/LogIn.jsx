@@ -1,4 +1,4 @@
-import LogInForm from "../../components/Forms/LogInForm"
+import LogInForm from '../../components/Forms/LogInForm'
 
 function LogIn({ onUserLoggedIn }) {
     return <div className="flex flex-col gap-3 items-center">

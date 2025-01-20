@@ -1,8 +1,14 @@
+import LocationSearchBox from '../../components/Others/LocationSearchBox'
+
 function Overview() {
     // do something here
-    return <h1>hello add cities here</h1>
+    return <div>
+        <LocationSearchBox />
+    </div>
 
     // bring list of all cities for user logged in
+    // getAllUserLocations is what I need to call
+    
 
     // then render one component (card for each city)
 }

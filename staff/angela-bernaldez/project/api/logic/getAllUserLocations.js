@@ -11,5 +11,8 @@ export default (id) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             return user.favLocations
         })
-        // add catch
+        .catch((error) => {
+            // change this to a specific type of error
+            console.log(error)
+        })
 }

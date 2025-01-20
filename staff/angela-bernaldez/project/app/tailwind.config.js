@@ -54,12 +54,7 @@ module.exports = {
   },
   daisyui: {
     themes: [
-      {
-        dracula: {
-          ...require("daisyui/src/theming/themes")["dracula"],
-
-        },
-      }
+      "aqua"
     ],
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
