@@ -13,6 +13,9 @@ import logic from '../../logic/index.js'
 
 function LogInForm({ onUserLoggedIn, className }) {
 
+    // podria quitarme classNames y quitarlo de argumento
+    // quitar classnames y pasar classname como string dentro (see locationCard ahi esta hecho)
+
     const navigate = useNavigate()
 
     const sendLogInForm = (event) => {

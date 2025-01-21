@@ -13,17 +13,17 @@ const getAllUserLocations = () => {
     .then((res) => {
         if (res.status === 200) return res.json()
             .then(body => body.user.favLocations)
-        return res.json()
-            .then(body => {
-                const constructor = Errors[body.name]
-                throw new constructor(`${body.message}`)
-            })
+                return res.json()
+                    .then(body => {
+                        const constructor = Errors[body.name]
+                        throw new constructor(`${body.message}`)
+                    })
     })
     .catch((error) => {
         if (error instanceof Errors.BadRequestError)
             throw new Errors.ServerError("Server in not connected")
         throw error
-    });
+    })
 }
 
 export default getAllUserLocations
