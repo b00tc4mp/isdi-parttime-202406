@@ -1,10 +1,13 @@
 import { Link, useNavigate } from "react-router"
 import logic from "../../logic"
+import useCustomContext from "../../hooks/useCustomContext"
 
 function NavbarUser({ onUserLoggedOut }) {
     const navigate = useNavigate()
+
     const onLogout = () => {
         logic.logout();
+        console.log(patata)
         navigate('/');
         onUserLoggedOut();
     }

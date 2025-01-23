@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router";
 import logic from "../../logic";
+import useCustomContext from "../../hooks/useCustomContext";
 
 function LoginForm({ onUserLoggedIn }) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { alert, patata } = useCustomContext()
 
     const sendLoginForm = (event) => {
         event.preventDefault();

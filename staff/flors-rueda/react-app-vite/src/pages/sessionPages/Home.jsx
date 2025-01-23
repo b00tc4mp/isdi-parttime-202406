@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import logic from "../../logic"
 import { Link } from "react-router"
+import useCustomContext from "../../hooks/useCustomContext";
 
 function Home() {
     const [posts, setPosts] = useState([]);
+    const { alert } = useCustomContext()
 
     useEffect(() => {
         try {
