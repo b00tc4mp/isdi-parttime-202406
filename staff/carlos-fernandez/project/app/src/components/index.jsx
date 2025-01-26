@@ -21,13 +21,23 @@ import _ConfirmationModal from "./modals/ConfirmationModal.jsx";
 export const ConfirmationModal = _ConfirmationModal;
 
 {
+  /*
+  CARDS
+  */
+}
+
+import _NoPetsMessage from "./cards/NoPetsMessage.jsx";
+import _PetCard from "./cards/PetCard.jsx";
+import _RegisteredDogSuccessfully from "./cards/RegisteredDogSuccessfully.jsx";
+export const NoPetsMessage = _NoPetsMessage;
+export const PetCard = _PetCard;
+export const RegisteredDogSuccessfully = _RegisteredDogSuccessfully;
+
+{
   /* OTHERS */
 }
-import _NoPetsMessage from "./cards/NoPetsMessage.jsx";
-import _RegisteredDogSuccessfully from "./cards/RegisteredDogSuccessfully.jsx";
+
 import _Header from "./Header.jsx";
 import _FormErrorsSection from "./FormErrorsSection.jsx";
-export const NoPetsMessage = _NoPetsMessage;
-export const RegisteredDogSuccessfully = _RegisteredDogSuccessfully;
 export const Header = _Header;
 export const FormErrorsSection = _FormErrorsSection;
