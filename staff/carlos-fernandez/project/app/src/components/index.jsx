@@ -23,7 +23,11 @@ export const ConfirmationModal = _ConfirmationModal;
 {
   /* OTHERS */
 }
+import _NoPetsMessage from "./cards/NoPetsMessage.jsx";
+import _RegisteredDogSuccessfully from "./cards/RegisteredDogSuccessfully.jsx";
 import _Header from "./Header.jsx";
 import _FormErrorsSection from "./FormErrorsSection.jsx";
+export const NoPetsMessage = _NoPetsMessage;
+export const RegisteredDogSuccessfully = _RegisteredDogSuccessfully;
 export const Header = _Header;
 export const FormErrorsSection = _FormErrorsSection;

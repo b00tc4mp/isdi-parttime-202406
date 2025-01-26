@@ -1,4 +1,5 @@
 import getUser from "./getUser.js";
+import getUserDogs from "./getUserDogs.js";
 import getUsername from "./getUsername.js";
 import isUserLoggedIn from "./isUserLoggedIn.js";
 import registerPet from "./registerPet.js";
@@ -9,6 +10,7 @@ import userAuth from "./userAuth.js";
 
 const logic = {
   getUser,
+  getUserDogs,
   getUsername,
   isUserLoggedIn,
   registerPet,

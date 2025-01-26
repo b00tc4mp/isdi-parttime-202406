@@ -15,28 +15,25 @@ function App() {
   return (
     <ModalContext.Provider>
       <Header onUserLoggedOut={() => setTokenUpdated(Date.now())} />
-      <body className={isSuccess ? "blurred" : ""}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/rates" element={<Rates />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/home" element={<Home />} />
-          <Route
-            path="/*"
-            element={
-              logic.isUserLoggedIn() ? (
-                <ProfilePages />
-              ) : (
-                <EnterPages
-                  onUserLoggedIn={() => setTokenUpdated(Date.now())}
-                />
-              )
-            }
-          />
-        </Routes>
-      </body>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/rates" element={<Rates />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/*"
+          element={
+            logic.isUserLoggedIn() ? (
+              <ProfilePages />
+            ) : (
+              <EnterPages onUserLoggedIn={() => setTokenUpdated(Date.now())} />
+            )
+          }
+        />
+      </Routes>
     </ModalContext.Provider>
   );
 }
