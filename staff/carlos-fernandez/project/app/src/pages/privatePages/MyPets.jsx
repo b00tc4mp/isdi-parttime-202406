@@ -6,6 +6,7 @@ import RegisteredDogSuccessfully from "../../components/cards/RegisteredDogSucce
 
 function MyPets() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [formKey, setFormKey] = useState(0); // Clave para reiniciar el formulario
   const openModalError = useModalError();
 
   const onSubmit = useMemo(
@@ -13,9 +14,7 @@ function MyPets() {
       try {
         return registerPet(petData)
           .then(() => {
-            //Actualizamos estado de "registrado satisfactoriamente"
-            setIsSuccess(true);
-            console.log("Mascota registrada exitosamente");
+            setIsSuccess(true); // Mostramos el mensaje de éxito
           })
           .catch((err) => {
             openModalError(err);
@@ -27,12 +26,15 @@ function MyPets() {
     [openModalError]
   );
 
+  const handleCloseSuccess = () => {
+    setIsSuccess(false);
+    setFormKey((prevKey) => prevKey + 1); // Actualizamos la clave para limpiar el formulario
+  };
+
   return (
     <div>
-      {isSuccess && (
-        <RegisteredDogSuccessfully onClose={() => setIsSuccess(false)} />
-      )}
-      <RegisterPetForm onSubmit={onSubmit} />
+      {isSuccess && <RegisteredDogSuccessfully onClose={handleCloseSuccess} />}
+      <RegisterPetForm key={formKey} onSubmit={onSubmit} />
     </div>
   );
 }
