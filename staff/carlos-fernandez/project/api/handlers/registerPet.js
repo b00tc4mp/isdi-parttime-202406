@@ -2,10 +2,10 @@ import logic from "../logic/index.js";
 
 export default (req, res, next) => {
   const { chip, dogName, breed, birthDate, sociability, disease, allergy } =
-    req.body;
+    req.body.dogData;
 
+  const userId = req.id;
   try {
-    const userId = req.id;
     const dogData = {
       chip,
       dogName,

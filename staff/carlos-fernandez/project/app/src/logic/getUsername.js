@@ -8,7 +8,6 @@ export default () => {
     },
   }).then((res) => {
     if (res.status === 200)
-      // Data ya es user.username entiendo?? O hay que hacer data.username??
       return res.json().then((data) => {
         if (data) {
           console.log(`Bienvenid@, ${data.username}`);

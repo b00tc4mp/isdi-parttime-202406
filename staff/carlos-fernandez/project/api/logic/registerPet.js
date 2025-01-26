@@ -24,14 +24,14 @@ export default (id, dogData) => {
     .then((user) => {
       if (!user) throw new Errors.NotFoundError("User not found");
 
-      // Check if a dog with the same chip already exists for this user
+      // Verificamos que no exista una mascota ya con ese chip
       return Dog.findOne({ chip: chip }).then((existingDog) => {
         if (existingDog) {
           throw new Errors.DuplicityError(
             "A dog with the same chip already exists"
           );
         }
-
+        // Creamos un nuevo perro
         const dog = new Dog({
           chip,
           dogName,
@@ -43,7 +43,7 @@ export default (id, dogData) => {
           owner: user._id,
         });
 
-        // Create dog and push to user's schema
+        // Push en el array de perros del usuario
         return dog.save().then((createdDog) => {
           user.dogs.push(createdDog._id);
           return user.save().then(() => createdDog);

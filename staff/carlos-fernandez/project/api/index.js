@@ -24,8 +24,8 @@ try {
 
       server.post(
         "/users/pets",
-        jsonBodyParser,
         verifyToken,
+        jsonBodyParser,
         handlers.registerPet
       );
 

@@ -1,10 +1,14 @@
 import { Validator, Errors } from "common";
 
-const registerPet = (
-  id,
-  { chip, dogName, breed, birthDate, sociability, disease, allergy }
-) => {
-  Validator.id(id);
+const registerPet = ({
+  chip,
+  dogName,
+  breed,
+  birthDate,
+  sociability,
+  disease,
+  allergy,
+}) => {
   Validator.chip(chip);
   Validator.dogName(dogName);
   Validator.breed(breed);
@@ -22,6 +26,7 @@ const registerPet = (
     disease,
     allergy,
   };
+  const token = sessionStorage.getItem("token");
 
   return fetch(`${import.meta.env.VITE_APP_API_URL}users/pets`, {
     method: "POST",
@@ -29,7 +34,7 @@ const registerPet = (
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ id: userId, ...dogData }),
+    body: JSON.stringify({ dogData }),
   })
     .then((res) => {
       if (res.status === 201) return;

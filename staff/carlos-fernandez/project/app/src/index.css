@@ -141,3 +141,39 @@ body.modal-open {
 .text-gray {
   color: rgb(75, 85, 99);
 }
+
+/* Estilos del toggle */
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #4caf50; /* Cambia el color cuando está activado */
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-dot {
+  transform: translateX(100%); /* Mueve el círculo a la derecha */
+}
+
+/* Asegura que el toggle se comporte bien dentro del label */
+.input-bordered {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem; /* Ajusta el padding para que se vea como los inputs */
+}
+
+/*********************************** CLOSE BUTTON ***********************************/
+.green-close {
+  background-color: #4caf50;
+  color: white; /* Para asegurarte de que el texto sea legible */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.green-close:hover {
+  background-color: #45a049;
+}
+
+/*********************************** BORROSO ***********************************/
+.blurred {
+  filter: blur(5px); /* Ajusta el valor de blur según tus preferencias */
+  transition: filter 0.3s ease-in-out; /* Agrega una transición suave */
+}

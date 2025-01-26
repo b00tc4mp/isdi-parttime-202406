@@ -143,13 +143,24 @@ class Validator {
   ///////////////////////////// DOG VALIDATORS /////////////////////////////
 
   static chip(value) {
-    if (typeof value !== "string") throw new TypeError("Chip is not a string");
-    if (value.trim().length <= 0)
+    if (typeof value === "number") {
+      value = value.toString();
+      console.log("Converted chip to string:", value);
+    }
+
+    if (typeof value !== "string") {
+      throw new TypeError("Chip is not a string");
+    }
+
+    if (value.trim().length <= 0) {
       throw new Errors.ContentError("Chip is empty");
+    }
+
     const regExp = /^\d{15}$/;
     if (!regExp.test(value)) {
       throw new Errors.ContentError("Chip format is not valid");
     }
+
     return true;
   }
 

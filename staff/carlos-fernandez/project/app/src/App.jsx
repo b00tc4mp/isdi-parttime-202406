@@ -8,30 +8,35 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [tokenUpdated, setTokenUpdated] = useState(Date.now());
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {}, [tokenUpdated]);
 
   return (
     <ModalContext.Provider>
       <Header onUserLoggedOut={() => setTokenUpdated(Date.now())} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/rates" element={<Rates />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/home" element={<Home />} />
-        <Route
-          path="/*"
-          element={
-            logic.isUserLoggedIn() ? (
-              <ProfilePages />
-            ) : (
-              <EnterPages onUserLoggedIn={() => setTokenUpdated(Date.now())} />
-            )
-          }
-        />
-      </Routes>
+      <body className={isSuccess ? "blurred" : ""}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/rates" element={<Rates />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/home" element={<Home />} />
+          <Route
+            path="/*"
+            element={
+              logic.isUserLoggedIn() ? (
+                <ProfilePages />
+              ) : (
+                <EnterPages
+                  onUserLoggedIn={() => setTokenUpdated(Date.now())}
+                />
+              )
+            }
+          />
+        </Routes>
+      </body>
     </ModalContext.Provider>
   );
 }
