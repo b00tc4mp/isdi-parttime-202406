@@ -16,6 +16,7 @@ module.exports = {
     extend: {
       colors: {
         customBackground: "rgb(243, 236, 217)",
+        customBackgroundDarker: "rgb(180, 200, 225)",
         textPinkColor: "rgb(239, 121, 157)",
         headerColor: "rgb(255, 203, 225)",
         darkPink: "rgb(235, 63, 115, 0.821)",

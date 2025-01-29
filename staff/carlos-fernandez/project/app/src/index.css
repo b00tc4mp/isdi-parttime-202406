@@ -177,3 +177,59 @@ body.modal-open {
   filter: blur(5px); /* Ajusta el valor de blur según tus preferencias */
   transition: filter 0.3s ease-in-out; /* Agrega una transición suave */
 }
+
+/********************************** MY PETS PAGE *******************************/
+
+/* Contenedor principal */
+.mypets-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Contenido dividido en dos columnas */
+.mypets-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Columna izquierda */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  width: 30%; /* Ocupa un tercio del espacio */
+  align-items: flex-start;
+}
+
+/* Lista de tarjetas */
+.pet-list {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.pet-list li {
+  margin-bottom: 10px;
+}
+
+/* Botón AddPets */
+.left-column button {
+  margin-bottom: 20px;
+}
+
+/* Columna derecha 
+.right-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%; 
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}*/

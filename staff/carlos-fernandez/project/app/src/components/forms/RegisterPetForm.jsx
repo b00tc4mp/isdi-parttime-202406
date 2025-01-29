@@ -9,6 +9,7 @@ function RegisterPetForm({ className, onSubmit }) {
   const submit = (event) => {
     event.preventDefault();
 
+    const form = event.target;
     const {
       chip: inputChip,
       dogName: inputDogName,
@@ -17,7 +18,7 @@ function RegisterPetForm({ className, onSubmit }) {
       sociability: inputSociability,
       disease: inputDisease,
       allergy: inputAllergy,
-    } = event.target;
+    } = form;
 
     const dogData = {
       chip: inputChip.value,
@@ -33,19 +34,17 @@ function RegisterPetForm({ className, onSubmit }) {
 
     // Enviamos los datos
     try {
-      onSubmit({
-        chip: inputChip.value,
-        dogName: inputDogName.value,
-        breed: inputBreed.value,
-        birthDate: inputBirthDate.value,
-        sociability: inputSociability.checked, // Es un checkbox
-        disease: inputDisease.value,
-        allergy: inputAllergy.value,
-      }).catch((error) => {
-        if (error instanceof Errors.BadRequestError) return setErrors([error]);
-        if (error instanceof Errors.ServerError) return setErrors([error]);
-        setErrors([new Errors.UnexpectedError()]);
-      });
+      onSubmit(dogData)
+        .then(() => {
+          form.reset();
+          setErrors(null);
+        })
+        .catch((error) => {
+          if (error instanceof Errors.BadRequestError)
+            return setErrors([error]);
+          if (error instanceof Errors.ServerError) return setErrors([error]);
+          setErrors([new Errors.UnexpectedError()]);
+        });
     } catch (error) {
       error.order = 1;
       console.log(error);

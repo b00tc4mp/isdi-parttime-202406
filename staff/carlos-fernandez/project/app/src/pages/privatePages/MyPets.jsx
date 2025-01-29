@@ -8,54 +8,52 @@ import {
   NoPetsMessage,
   PetCard,
 } from "../../components/";
+import AddPets from "../../components/buttons/AddPets.jsx";
 
 function MyPets() {
   const [hasPets, setHasPets] = useState(false); // Estado para verificar si hay mascotas
   const [isAddingPet, setIsAddingPet] = useState(false); // Estado para mostrar el formulario
   const [isSuccess, setIsSuccess] = useState(false); // Estado para mostrar el mensaje de éxito
-  const [formKey, setFormKey] = useState(0); // Reinicia el formulario
+
   const [pets, setPets] = useState([]);
   const openModalError = useModalError();
 
+  const getPets = async () => {
+    try {
+      const petsData = await getUserDogs();
+      setPets(petsData);
+      setHasPets(petsData.length > 0); //Actualizamos según si hay mascotas o no
+    } catch (error) {
+      console.error("Error al cargar las mascotas", err);
+      openModalError(err); // Mostramos el modal de error si ocurre algo
+    }
+  };
   useEffect(() => {
     //Llamada para obtener las mascotas del usuario
-
-    const getPets = async () => {
-      try {
-        const petsData = await getUserDogs();
-        setPets(petsData);
-        setHasPets(petsData.length > 0); //Actualizamos según si hay mascotas o no
-      } catch (error) {
-        console.error("Error al cargar las mascotas", err);
-        openModalError(err); // Mostramos el modal de error si ocurre algo
-      }
-    };
-
     getPets();
   }, [openModalError]);
 
-  const onSubmit = useMemo(
-    () => (petData) => {
-      try {
-        return registerPet(petData)
-          .then(() => {
-            setIsSuccess(true); // Mostramos el mensaje de éxito
-            setIsAddingPet(false); // Hemos registrado mascota, ocultamos el formulario
-            setHasPets(true); // Ahora hay mascotas
-          })
-          .catch((err) => {
-            openModalError(err);
-          });
-      } catch (error) {
-        throw error;
+  const onSubmit = (petData) => {
+    try {
+      if (!registerPet || typeof registerPet !== "function") {
+        throw new Error("registerPet is not a function");
       }
-    },
-    [openModalError]
-  );
-
+      return registerPet(petData)
+        .then(() => {
+          setIsSuccess(true);
+          setHasPets(true);
+          getPets();
+        })
+        .catch((err) => {
+          openModalError(err);
+        });
+    } catch (error) {
+      throw error;
+    }
+  };
   const handleCloseSuccess = () => {
     setIsSuccess(false);
-    setFormKey((prevKey) => prevKey + 1); // Actualizamos la clave para limpiar el formulario
+    // setFormKey((prevKey) => prevKey + 1); // Actualizamos la clave para limpiar el formulario
   };
 
   const handleAddPet = () => {
@@ -63,37 +61,56 @@ function MyPets() {
   };
 
   return (
-    <div>
-      {/*
+    <>
+      <div>
+        {/*
       MENSAJE DE REGISTRO EXITOSO
       */}
-      {isSuccess && <RegisteredDogSuccessfully onClose={handleCloseSuccess} />}
+        {isSuccess && (
+          <RegisteredDogSuccessfully onClose={handleCloseSuccess} />
+        )}
 
-      {/*
+        {/*
   NO HAY MASCOTAS Y NO ESTAMOS AÑADIENDO NINGUNA 
       */}
-      {!hasPets && !isAddingPet && <NoPetsMessage onAddPet={handleAddPet} />}
+        {!hasPets && !isAddingPet && <NoPetsMessage onAddPet={handleAddPet} />}
 
-      {/*
+        {/*
         NO HAY MASCOTAS Y VAMOS A AÑADIR UNA
         */}
-      {!hasPets && isAddingPet && (
-        <RegisterPetForm key={formKey} onSubmit={onSubmit} />
-      )}
+        {isAddingPet && <RegisterPetForm onSubmit={onSubmit} />}
 
-      {/*
+        {/*
       RENDERIZAR LISTA DE MASCOTAS SI EXISTEN
       */}
-      {hasPets && (
-        <ul>
-          {pets.map((pet) => (
-            <li key={pet._id}>
-              <PetCard pet={pet} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+        {hasPets && (
+          <div>
+            <AddPets onSubmit={onSubmit} />
+            <ul>
+              {pets.map((pet) => (
+                <li key={pet._id}>
+                  <PetCard pet={pet} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/*
+        HAY MASCOTAS + REGISTRAR UNA NUEVA
+        
+        {hasPets && isAddingPet && (
+          <ul>
+            {pets.map((pet) => (
+              <li key={pet._id}>
+                <AddPets />
+                <PetCard pet={pet} />
+              </li>
+            ))}
+          </ul>
+        )}*/}
+      </div>
+    </>
   );
 }
 
