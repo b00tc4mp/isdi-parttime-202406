@@ -20,6 +20,7 @@ function LocationSearchBox() {
             setLastCall(dateNow)
             // llamada a la nominatim api 
             // event.target.value
+            const locationString = // call api
             console.log(event.target.value)
         }
     }

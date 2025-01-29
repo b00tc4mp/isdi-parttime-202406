@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 
 // vamos a usar la libreria axios para hacer llamadas a una api externa
 
@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function fetchWeatherData(longitude, latitude, variables) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation`
-    axios.get(url)
+    return fetch(url)
     .then(response => {
         const data = response.data
         if (typeof response.data !== 'object') {
@@ -24,7 +24,7 @@ function fetchWeatherData(longitude, latitude, variables) {
 
 async function fetchCityCoordinates(city) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`
-    return axios.get(url)
+    return fetch(url)
     .then(response => {
         const data = response.data.results[0]
         const { longitude, latitude } = data
