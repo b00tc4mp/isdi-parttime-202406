@@ -2,6 +2,7 @@ import cors from 'cors'
 import express, { json } from 'express'
 import mongoose from 'mongoose'
 import handlers from './handlers/index.js'
+import handlersWeather from './handlers-weather/index.js'
 import { errorHandler, verifyToken } from './middlewares/index.js'
 import 'dotenv/config'
 
@@ -37,6 +38,8 @@ mongoose.connect(process.env.MONGO_URI)
     server.post('/users/locations', verifyToken, jsonBodyParser, handlers.addUserLocation)
 
     server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
+
+    server.get('/users/nominatim-locations/', verifyToken, jsonBodyParser, handlersWeather.retrieveNominatimLocations)
 
     server.use(errorHandler)
 
