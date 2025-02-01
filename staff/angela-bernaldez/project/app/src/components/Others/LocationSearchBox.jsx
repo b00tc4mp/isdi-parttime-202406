@@ -1,45 +1,77 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
+import logicWeather from '../../logic-weather'
+import Select from 'react-select'
 
 function LocationSearchBox() {
 
-    const [lastCall, setLastCall] = useState(Date.now())
-
     const [locations, setLocations] = useState([])
-    // locations se ira actualizando con lo que me vaya devolviendo nominatim api
-    // setLocations(..... de lo que me devuelva la api)
+    const [inputValue, setInputValue] = useState('')    
+    
+    const debounceTimeout = useRef(null) // used to store timeout between different renders
 
-    // renderizar un menu hacia abajo siempre y cuando haya localizaciones o cambios en las loc
+    const handleInputChange = (locationString) => {
+        setInputValue(locationString)
 
-    const onChangeInput = (event) => {
-        event.preventDefault()
-
-        const dateNow = Date.now()
-        console.log(dateNow - lastCall)
-
-        if (dateNow - lastCall > 1000) {
-            setLastCall(dateNow)
-            // llamada a la nominatim api 
-            // event.target.value
-            const locationString = // call api
-            console.log(event.target.value)
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
         }
+
+        debounceTimeout.current = setTimeout(() => {
+
+            if (locationString.trim() === '') {
+                setLocations([])
+                return 
+            }
+            logicWeather.retrieveNominatimLocations(locationString)
+                .then((locationsFound) => {
+                    if (locationsFound && locationsFound.length > 0) {
+                        setLocations(locationsFound.map((item) => ({
+                            label: item.display_name,
+                            value: item.display_name,
+                            fullData: item 
+                        })))
+                    } else {
+                        setLocations([])
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching locations:', error)
+                })
+        }, 1000)
+    }
+
+    const handleSelect = (selectedLocation) => {
+        console.log('Selected location is:', selectedLocation);
+        setInputValue(selectedLocation ? selectedLocation.label : '')
     }
 
     return (
         <div>
-            <input
-                onChange={onChangeInput}
-                type="text"
-                id="locationSearch"
-                placeholder="Search for a city"
-                className="input input-bordered input-ghost glass w-full focus:text-white placeholder:text-white placeholder:text-opacity-70" 
+            <Select
+                className="bg-slate-500 flex flex-row w-[90%] md:w-[80%] h-[8rem] items-center justify-between mb-4"
+                value={inputValue ? { label: inputValue, value: inputValue } : ''} 
+                onInputChange={handleInputChange} 
+                onChange={handleSelect} 
+                options={locations} 
+                placeholder="Search for a location..."  
+                isClearable
+                inputValue={inputValue}  
+                styles={{
+                    control: (provided) => ({
+                        ...provided,
+                        minWidth: '100%',  
+                        maxWidth: '100%', 
+                        width: '100%',    
+                    }),
+                    menu: (provided) => ({
+                        ...provided,
+                        width: '100%',
+                        maxHeight: 300,  
+                        overflowY: 'auto', 
+                    }),
+                }}
             />
-            {/*componente a parte al que le pase como prop locations y lo renderice x cada loc
-            haciendo un map 
-            y le pongo el useEffect con el locations como variable (antes del return)*/}
         </div>
-        // poner un onchange en lugar de onsubmit 
-        // y poner un settimeout
     )
 }
 

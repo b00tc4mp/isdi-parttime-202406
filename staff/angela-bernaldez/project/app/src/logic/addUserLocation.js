@@ -1,12 +1,12 @@
 import { Errors } from 'common'
 
-export default (locationData) => {
+const addUserLocation = (locationData) => {
     // include validators 
 
     const token = sessionStorage.getItem("token")
 
     // aqui hago llamada a la api
-    return fetch(`${import.meta.env.VITE_API_URL}/users/locations`, {
+    return fetch(`${import.meta.env.VITE_API_URL}users/locations`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
@@ -28,3 +28,5 @@ export default (locationData) => {
             throw error
         })
 }
+
+export default addUserLocation

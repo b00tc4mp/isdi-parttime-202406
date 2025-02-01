@@ -1,5 +1,6 @@
 import LocationSearchBox from '../../components/Others/LocationSearchBox'
 import LocationCard from '../../components/Cards/LocationCard'
+import isUserLoggedIn from '../../logic/isUserLoggedIn'
 
 function Overview() {
     // do something here

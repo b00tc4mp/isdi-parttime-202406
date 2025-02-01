@@ -1,18 +1,24 @@
 import { Errors } from 'common'
 
-const getAllUserLocations = () => {
+const retrieveNominatimLocations = (locationString) => {
 
-    // tengo que pasar un isUserLoggedIn o algo asi para asegurarme de que solo sea con la sesion iniciada?
+    // include validators de que sea un string
 
-    return fetch(`${import.meta.env.VITE_API_URL}users/locations`, {
-        method: 'GET',
+    const token = sessionStorage.getItem("token")
+
+    console.log(locationString, 'printing locationString front-end logic')
+
+    return fetch(`${import.meta.env.VITE_API_URL}users/nominatim-locations/`, {
+        method: 'POST',
         headers: {
+            'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
+        body: JSON.stringify({ locationString: locationString })
     })
     .then((res) => {
         if (res.status === 200) return res.json()
-            .then(body => body.user.favLocations)
+            .then(body => body.locationsFound)
                 return res.json()
                     .then(body => {
                         const constructor = Errors[body.name]
@@ -26,4 +32,4 @@ const getAllUserLocations = () => {
     })
 }
 
-export default getAllUserLocations
+export default retrieveNominatimLocations

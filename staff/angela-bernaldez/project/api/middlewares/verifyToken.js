@@ -7,9 +7,6 @@ export default (req, res, next) => {
 
     req.id = id
 
-    console.log(token, 'this is the token')
-    console.log(id, 'id')
-
     next()
 }
 

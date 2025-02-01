@@ -52,14 +52,14 @@ export default (id, locationData) => {
             return Location.findOne({name: name, latitude: latitude, longitude: longitude})
                 .then((location) => {
                     return getOrCreateLocation(location, locationData)
-                    .then((newLocation) => {
-                        const foundLocation = user.favLocations.find((location) => location._id === newLocation._id)
+                        .then((newLocation) => {
+                            const foundLocation = user.favLocations.find((location) => location._id === newLocation._id)
 
-                        if (!foundLocation) {
-                            user.favLocations.push(newLocation._id)
-                            return user.save()
-                        }
-                    })
+                            if (!foundLocation) {
+                                user.favLocations.push(newLocation._id)
+                                return user.save()
+                            }
+                        })
                     .catch((error) => {
                         // change this to a specific type of error
                         console.log(error)

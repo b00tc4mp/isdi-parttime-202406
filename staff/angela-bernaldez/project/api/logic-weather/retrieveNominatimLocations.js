@@ -1,4 +1,5 @@
 import models from '../data/models.js'
+import { Errors } from 'common'
 
 const { User } = models
 
@@ -9,6 +10,8 @@ export default (userId, locationString) => {
     // userId is passed to make sure only registered users can use the api
     
     const nominatim_url = `https://nominatim.openstreetmap.org/search?q=${locationString}&limit=5&format=json`
+
+    console.log(locationString, 'locationString que me esta llegando al back end')
 
     return User.findById(userId)
         .then((user) => {

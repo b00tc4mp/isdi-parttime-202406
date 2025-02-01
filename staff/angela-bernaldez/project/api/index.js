@@ -39,7 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
 
     server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
 
-    server.get('/users/nominatim-locations/', verifyToken, jsonBodyParser, handlersWeather.retrieveNominatimLocations)
+    server.post('/users/nominatim-locations', verifyToken, jsonBodyParser, handlersWeather.retrieveNominatimLocations)
 
     server.use(errorHandler)
 
