@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 import logicWeather from '../../logic-weather'
-import Select from 'react-select'
+import { IconSearch } from '../icons/icons.jsx'
 
 function LocationSearchBox() {
 
@@ -30,6 +30,7 @@ function LocationSearchBox() {
                             value: item.display_name,
                             fullData: item 
                         })))
+                        console.log(locations)
                     } else {
                         setLocations([])
                     }
@@ -41,37 +42,22 @@ function LocationSearchBox() {
     }
 
     const handleSelect = (selectedLocation) => {
-        console.log('Selected location is:', selectedLocation);
+        console.log('Selected location is:', selectedLocation)
+        // llamar a la logica que lleva la nueva localizacion al back
         setInputValue(selectedLocation ? selectedLocation.label : '')
     }
 
+    // intentarlo haciendo combinando dos componentes de daisy
+    // usar un text input -> search box
+    // dropdown menu para las diferentes opciones
+
     return (
-        <div>
-            <Select
-                className="bg-slate-500 flex flex-row w-[90%] md:w-[80%] h-[8rem] items-center justify-between mb-4"
-                value={inputValue ? { label: inputValue, value: inputValue } : ''} 
-                onInputChange={handleInputChange} 
-                onChange={handleSelect} 
-                options={locations} 
-                placeholder="Search for a location..."  
-                isClearable
-                inputValue={inputValue}  
-                styles={{
-                    control: (provided) => ({
-                        ...provided,
-                        minWidth: '100%',  
-                        maxWidth: '100%', 
-                        width: '100%',    
-                    }),
-                    menu: (provided) => ({
-                        ...provided,
-                        width: '100%',
-                        maxHeight: 300,  
-                        overflowY: 'auto', 
-                    }),
-                }}
-            />
-        </div>
+    <div className="w-full">
+        <label className="input input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <IconSearch fillRule="evenodd" />
+        </label>
+    </div>
     )
 }
 
