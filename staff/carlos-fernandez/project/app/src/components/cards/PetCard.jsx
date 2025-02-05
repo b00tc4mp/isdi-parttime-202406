@@ -2,13 +2,13 @@ import React from "react";
 
 function PetCard({ pet }) {
   return (
-    <div className="bg-customBackgroundDarker border border-gray-300 rounded-2xl shadow-lg p-6 w-full max-w-screen-md">
-      <h2 className="text-black font-bold text-3xl">{pet.dogName}</h2>
+    <div className=" bg-customBackgroundBlue border border-gray-300 rounded-2xl shadow-lg p-6 w-full max-w-screen-sm">
+      <h2 className="text-black font-bold text-3xl mb-2">{pet.dogName}</h2>
       <div className="flex w-full max-w-screen-md">
         <div className="w-1/2">
           <p>
             <strong className="text-black">Chip:</strong>
-            <label className="input input-bordered flex items-center gap-2 mb-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="chip"
@@ -22,7 +22,7 @@ function PetCard({ pet }) {
           </p>
           <p>
             <strong className="text-black">Raza:</strong>
-            <label className="input input-bordered flex items-center gap-2 mb-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="breed"
@@ -36,7 +36,7 @@ function PetCard({ pet }) {
           </p>
           <p>
             <strong className="text-black">Fecha de nacimiento:</strong>
-            <label className="input input-bordered flex items-center gap-2 mb-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="birthDate"
@@ -52,7 +52,7 @@ function PetCard({ pet }) {
         <div className="w-1/2">
           <p>
             <strong className="text-black">¿Sociable?</strong>
-            <label className="input input-bordered flex items-center gap-2 mb-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="sociability"
@@ -66,7 +66,7 @@ function PetCard({ pet }) {
           </p>
           <p>
             <strong className="text-black">Enfermedades:</strong>
-            <label className="input input-bordered flex items-center gap-2 mb-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="disease"
@@ -80,7 +80,7 @@ function PetCard({ pet }) {
           </p>
           <p>
             <strong className="text-black">Alergias:</strong>
-            <label className="w-auto input input-bordered flex items-center gap-2 mb-2">
+            <label className="w-auto input input-bordered flex items-center gap-2 mb-2 mr-2">
               <input
                 type="text"
                 id="allergy"

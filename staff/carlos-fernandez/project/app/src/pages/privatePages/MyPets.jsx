@@ -78,7 +78,7 @@ function MyPets() {
         {/*
         NO HAY MASCOTAS Y VAMOS A AÑADIR UNA
         */}
-        {isAddingPet && <RegisterPetForm onSubmit={onSubmit} />}
+        {!hasPets && isAddingPet && <RegisterPetForm onSubmit={onSubmit} />}
 
         {/*
       RENDERIZAR LISTA DE MASCOTAS SI EXISTEN
@@ -86,7 +86,8 @@ function MyPets() {
         {hasPets && (
           <div>
             <AddPets onSubmit={onSubmit} />
-            <ul>
+
+            <ul className="flex justify-self-center">
               {pets.map((pet) => (
                 <li key={pet._id}>
                   <PetCard pet={pet} />
@@ -95,20 +96,6 @@ function MyPets() {
             </ul>
           </div>
         )}
-
-        {/*
-        HAY MASCOTAS + REGISTRAR UNA NUEVA
-        
-        {hasPets && isAddingPet && (
-          <ul>
-            {pets.map((pet) => (
-              <li key={pet._id}>
-                <AddPets />
-                <PetCard pet={pet} />
-              </li>
-            ))}
-          </ul>
-        )}*/}
       </div>
     </>
   );

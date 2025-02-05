@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { memo, useState } from "react";
 import { Errors } from "common";
 import { FormErrorsSection } from "..";
+import { CredentialsError } from "common/errors.js";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -25,6 +26,9 @@ function LoginForm({ className, onSubmit }) {
         email: inputEmail.value,
         password: inputPassword.value,
       }).catch((err) => {
+        if (err instanceof CredentialsError) {
+          return setErrors(new Errors.CredentialsError());
+        }
         if (err instanceof Errors.BadRequestError)
           return setErrors([new Errors.CredentialsError()]);
         if (err instanceof Errors.ServerError) return setErrors([err]);

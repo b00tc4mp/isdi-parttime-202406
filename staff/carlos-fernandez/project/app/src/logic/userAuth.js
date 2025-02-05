@@ -1,8 +1,14 @@
 import { Validator, Errors } from "common";
 
 const userAuth = (email, password) => {
-  Validator.email(email);
-  Validator.password(password);
+  // Validadores en try catch para no dar información de más en las dev tools
+  try {
+    Validator.email(email);
+    Validator.password(password);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
   console.log(import.meta.env.VITE_APP_API_URL);
   return fetch(`${import.meta.env.VITE_APP_API_URL}users/auth`, {
     method: "POST",

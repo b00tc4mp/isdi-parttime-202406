@@ -16,7 +16,7 @@ module.exports = {
     extend: {
       colors: {
         customBackground: "rgb(243, 236, 217)",
-        customBackgroundDarker: "rgb(180, 200, 225)",
+        customBackgroundBlue: "rgb(180, 200, 225)",
         textPinkColor: "rgb(239, 121, 157)",
         headerColor: "rgb(255, 203, 225)",
         darkPink: "rgb(235, 63, 115, 0.821)",
@@ -26,7 +26,7 @@ module.exports = {
       ...keyframes,
       expandShadow: {
         "0%": {
-          boxShadow: "0 0 0 0 rgba(255, 203, 225))",
+          boxShadow: "0 0 0 0 rgba(255, 203, 225)",
         },
         "100%": {
           boxShadow: "0 0 800px 300px rgba(255, 203, 225)",

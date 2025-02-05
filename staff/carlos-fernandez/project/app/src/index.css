@@ -156,7 +156,8 @@ body.modal-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem; /* Ajusta el padding para que se vea como los inputs */
+  padding: 1.5rem;
+  /* Ajusta el padding para que se vea como los inputs */
 }
 
 /*********************************** CLOSE BUTTON ***********************************/

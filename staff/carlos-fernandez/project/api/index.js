@@ -49,6 +49,12 @@ try {
         handlers.updatePassword
       );
 
+      server.delete(
+        "/users/me/pets/delete-dog/:petId",
+        verifyToken,
+        handlers.deleteDog
+      );
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {
