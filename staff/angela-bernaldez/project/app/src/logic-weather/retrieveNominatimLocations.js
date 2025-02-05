@@ -6,8 +6,6 @@ const retrieveNominatimLocations = (locationString) => {
 
     const token = sessionStorage.getItem("token")
 
-    console.log(locationString, 'printing locationString front-end logic')
-
     return fetch(`${import.meta.env.VITE_API_URL}users/nominatim-locations/`, {
         method: 'POST',
         headers: {
