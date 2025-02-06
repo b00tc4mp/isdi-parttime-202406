@@ -53,7 +53,7 @@ describe("Authenticate user", () => {
         return authenticateUser("nametwo@gmail.com", "wrong-password")
           .then(() => {})
           .catch((error) => {
-            expect(error.message).to.equal("Wrong Password");
+            expect(error.message).to.equal("Wrong password");
           });
       });
     });
