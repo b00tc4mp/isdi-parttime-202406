@@ -18,7 +18,7 @@ export default (email, password) => {
         return user._id.toString();
       })
       .catch((error) => {
-        throw new Errors.UnexpectedError(error.message);
+        throw error;
       });
   });
 };

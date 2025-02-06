@@ -24,7 +24,7 @@ export default (error, req, res, next) => {
     code = 404;
   }
 
-  console.error({ name: error.constructor.name, message: error.message });
+  console.log(error);
 
   res
     .status(code)

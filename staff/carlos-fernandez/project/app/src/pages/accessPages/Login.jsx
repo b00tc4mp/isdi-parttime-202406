@@ -19,7 +19,7 @@ function Login({ onUserLoggedIn }) {
               navigate("/home");
             })
             .catch((err) => {
-              console.log(err.message); // Debugging
+              console.log(err.message); // Manda el mensaje de error a las dev tools
               openModalError(err);
             });
         } catch (error) {
