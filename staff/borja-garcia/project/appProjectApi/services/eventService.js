@@ -12,7 +12,7 @@ export const createEvent = async (eventObject, userId) => {
   });
 
   const savedEvent = await event.save();
-  if (!savedEvent) throw new Errors.SaveError("Error al crear el evento");
+  // if (!savedEvent) throw new Errors.SaveError("Error al crear el evento");
   return savedEvent;
 };
 
