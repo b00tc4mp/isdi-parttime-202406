@@ -5,6 +5,7 @@ export default (req, res, next) => {
     req.body.dogData;
 
   const userId = req.id;
+
   try {
     const dogData = {
       chip,

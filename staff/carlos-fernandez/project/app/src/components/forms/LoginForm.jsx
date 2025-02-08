@@ -11,7 +11,7 @@ import classNames from "classnames";
 import { memo, useState } from "react";
 import { Errors } from "common";
 import { FormErrorsSection } from "..";
-import { CredentialsError } from "common/errors.js";
+import { CredentialsError, PasswordNotValidError } from "common/errors.js";
 
 function LoginForm({ className, onSubmit }) {
   const [errors, setErrors] = useState(null);
@@ -26,8 +26,11 @@ function LoginForm({ className, onSubmit }) {
         email: inputEmail.value,
         password: inputPassword.value,
       }).catch((err) => {
+        if (err instanceof PasswordNotValidError) {
+          return setErrors([new Errors.PasswordNotValidError()]);
+        }
         if (err instanceof CredentialsError) {
-          return setErrors(new Errors.CredentialsError());
+          return setErrors([new Errors.CredentialsError()]);
         }
         if (err instanceof Errors.BadRequestError)
           return setErrors([new Errors.CredentialsError()]);
@@ -35,7 +38,6 @@ function LoginForm({ className, onSubmit }) {
         setErrors([new Errors.UnexpectedError()]);
       });
     } catch (error) {
-      error.order = 1;
       console.log(error);
       setErrors([error]);
     }
@@ -99,7 +101,9 @@ function LoginForm({ className, onSubmit }) {
                 </button>
               </label>
             </fieldset>
-            <FormErrorsSection errors={errors} className="mb-5" />
+
+            {errors && <FormErrorsSection errors={errors} className="mb-5" />}
+
             <div className="mb-5 grid">
               <button
                 type="submit"

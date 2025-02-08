@@ -18,20 +18,21 @@ function MyPets() {
   const [pets, setPets] = useState([]);
   const openModalError = useModalError();
 
-  const getPets = async () => {
-    try {
-      const petsData = await getUserDogs();
-      setPets(petsData);
-      setHasPets(petsData.length > 0); //Actualizamos según si hay mascotas o no
-    } catch (error) {
-      console.error("Error al cargar las mascotas", err);
-      openModalError(err); // Mostramos el modal de error si ocurre algo
-    }
+  const refreshPets = () => {
+    getUserDogs()
+      .then((petsData) => {
+        setPets(petsData);
+        setHasPets(petsData.length > 0);
+      })
+      .catch((err) => {
+        console.error("Error al cargar las mascotas", err);
+        throw err;
+      });
   };
+
   useEffect(() => {
-    //Llamada para obtener las mascotas del usuario
-    getPets();
-  }, [openModalError]);
+    refreshPets(); // Cargar las mascotas al montar el componente
+  }, []);
 
   const onSubmit = (petData) => {
     try {
@@ -42,7 +43,7 @@ function MyPets() {
         .then(() => {
           setIsSuccess(true);
           setHasPets(true);
-          getPets();
+          refreshPets();
         })
         .catch((err) => {
           openModalError(err);
@@ -87,10 +88,10 @@ function MyPets() {
           <div>
             <AddPets onSubmit={onSubmit} />
 
-            <ul className="flex justify-self-center">
+            <ul className="flex flex-col justify-self-center">
               {pets.map((pet) => (
                 <li key={pet._id}>
-                  <PetCard pet={pet} />
+                  <PetCard pet={pet} refreshPets={refreshPets} />
                 </li>
               ))}
             </ul>

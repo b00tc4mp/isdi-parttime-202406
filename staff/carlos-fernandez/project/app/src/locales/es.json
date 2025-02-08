@@ -27,10 +27,6 @@
     "UnexpectedError": {
       "title": "Error inesperado",
       "paragraph": "Intentalo de nuevo más tarde."
-    },
-    "BadRequestError": {
-      "title": "Datos incorrectos",
-      "paragraph": "Los datos introducidos son incorrectos"
     }
   }
 }

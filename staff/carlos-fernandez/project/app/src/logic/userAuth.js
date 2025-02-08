@@ -18,6 +18,7 @@ const userAuth = (email, password) => {
         .then((body) => sessionStorage.setItem("token", body.token));
     return res.json().then((body) => {
       const constructor = Errors[body.name];
+
       throw new constructor(`${body.message}`);
     });
   });

@@ -14,12 +14,12 @@ export default (petId, userId) => {
         throw new Errors.ExistenceError("User not found");
       }
 
-      return Dog.findOneAndDelete(petId, { owner: userId }).then(
+      return Dog.findOneAndDelete({ _id: petId, owner: userId }).then(
         (deletedPet) => {
           if (!deletedPet) {
             throw new Errors.ExistenceError("Dog not found");
           }
-
+          console.log("Mascota eliminada: ", deletedPet);
           return deletedPet;
         }
       );
