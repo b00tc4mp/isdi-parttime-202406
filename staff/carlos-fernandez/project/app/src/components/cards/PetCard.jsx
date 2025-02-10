@@ -13,6 +13,18 @@ function PetCard({ pet, refreshPets }) {
         alert(error.message);
       });
   };
+
+  // Formatear la fecha de nacimiento (si existe)
+  const formatDate = (dateString) => {
+    if (!dateString) return "Fecha no disponible";
+    const fecha = new Date(dateString);
+    const dia = fecha.getDate().toString().padStart(2, "0");
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const año = fecha.getFullYear();
+    return `${dia}/${mes}/${año}`;
+  };
+
+  ////////////////////////////////// COMPONENTE //////////////////////////////////
   return (
     <div className="p-8">
       <div className=" bg-customBackgroundBlue border border-gray-300 rounded-2xl shadow-lg p-6 w-full max-w-screen-sm">
@@ -63,7 +75,7 @@ function PetCard({ pet, refreshPets }) {
                   id="birthDate"
                   name="birthDate"
                   autoComplete="birthDate"
-                  placeholder={pet.birthDate}
+                  placeholder={formatDate(pet.birthDate)}
                   className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90"
                   readOnly={true}
                 />
