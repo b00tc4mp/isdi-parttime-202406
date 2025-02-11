@@ -7,7 +7,7 @@ export default (req, res, next) => {
         logic.getAllUserLocations(userId)
         .then(favLocations => {
             // esta es la info que paso a donde hago la llamada del get?
-            res.status(200).json({ locations: favLocations })
+            res.status(200).json({ favLocations: favLocations })
         })
         .catch(error => next(error))
     } catch(error) {

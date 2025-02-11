@@ -14,6 +14,9 @@ describe('getAllUserLocations', () => {
     afterEach(() => User.deleteMany())
     after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
+    // need to modify this test as the logic is returning location from Location
+    // instead of just the id
+
 
     it('returns all user locations when at least one exists', () => {
         return bcrypt.hash('123456789', 1)

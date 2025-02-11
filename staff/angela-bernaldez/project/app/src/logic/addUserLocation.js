@@ -12,7 +12,7 @@ const addUserLocation = (locationData) => {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ locationData: locationData })
+        body: JSON.stringify({ locationData })
     })
         .then((res) => {
             if (res.status === 201) return

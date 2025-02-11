@@ -1,24 +1,46 @@
 import LocationSearchBox from '../../components/Others/LocationSearchBox'
 import LocationCard from '../../components/Cards/LocationCard'
-import isUserLoggedIn from '../../logic/isUserLoggedIn'
+import logic from '../../logic'
+import { useEffect, useState } from 'react'
 
 function Overview() {
     // do something here
 
+    // ARREGLARRRRRRRRRRRRRR
+    const [stamp, setStamp] = useState(Date.now())
+    const [locations, setLocations] = useState([])
+
+    const fetchLocations = () => {
+        console.log('Fetching locations...')
+        return logic.getAllUserLocations()
+            .then((_locations) => {
+                console.log('Locations fetched:', _locations)
+                setLocations(_locations)
+            })
+            .catch((error) => {
+                console.log('Error fetching locations:', error)
+            })
+    }
+
+    useEffect(() => {
+        fetchLocations()
+            .then(() => {
+            })
+    }, [stamp])
+
     return <div className="flex flex-col gap-2 w-full px-14 items-center">
-        <LocationSearchBox />
-        <LocationCard locationName="Sevilla" temperature={15}/>
-        <LocationCard locationName="Madrid" temperature={12}/>
-        <LocationCard locationName="Brighton" temperature={8}/>
+        <LocationSearchBox setStamp={setStamp}/>
+        {/*<LocationCard locationName="Sevilla" temperature={15}/> */}
+        {locations.length > 0 ? (
+                locations.map((location, index) => (
+                    <LocationCard key={index} locationName={location.name} temperature={15} />
+                ))
+            ) : (
+                <p>No locations found</p>  
+        )}
+
     </div>
 
-    // mirar el ejemplo en Home.jsx
-
-    // bring list of all cities for user logged in
-    // getAllUserLocations is what I need to call
-    
-
-    // then render one component (card for each city)
 }
 
 export default Overview

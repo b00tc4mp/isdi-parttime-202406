@@ -1,8 +1,11 @@
 import {useState, useEffect, useRef} from 'react'
 import logicWeather from '../../logic-weather'
+import logic from '../../logic'
 import { IconSearch } from '../icons/icons.jsx'
 
-function LocationSearchBox() {
+function LocationSearchBox({ setStamp }) {
+
+    /// ARREGLAAAR
 
     const [locations, setLocations] = useState([])
     const [inputValue, setInputValue] = useState('')    
@@ -12,8 +15,6 @@ function LocationSearchBox() {
     const handleInputChange = (event) => {
         const newInputValue = event.target.value
         setInputValue(newInputValue)
-
-        console.log('locationString', newInputValue)
 
         if (debounceTimeout.current) {
             clearTimeout(debounceTimeout.current);
@@ -25,15 +26,14 @@ function LocationSearchBox() {
                 setLocations([])
                 return 
             }
-            console.log('printing input value before calling api', newInputValue)
             logicWeather.retrieveNominatimLocations(newInputValue)
                 .then((locationsFound) => {
-                    console.log(locationsFound, 'locations q me devuelve la api')
                     if (locationsFound && locationsFound.length > 0) {
                         setLocations(locationsFound.map((item) => ({
-                            label: item.display_name,
-                            value: item.display_name,
-                            fullData: item 
+                            display_name: item.display_name,
+                            name: item.name,
+                            latitude: item.lat,
+                            longitude: item.lon 
                         })))
                     } else {
                         setLocations([])
@@ -48,38 +48,39 @@ function LocationSearchBox() {
     const handleSelect = (selectedLocation) => {
         console.log('Selected location is:', selectedLocation)
         // llamar a la logica que lleva la nueva localizacion al back
-        setInputValue(selectedLocation ? selectedLocation.label : '')
-        setLocations([])
+        return logic.addUserLocation(selectedLocation)
+            .then(() => {
+                setInputValue('') // para que se muestre vacia la barra de busqueda tras seleccionar localizacion
+                setLocations([])
+                setStamp(Date.now())
+            })
     }
 
-    // intentarlo haciendo combinando dos componentes de daisy
-    // usar un text input -> search box
-    // dropdown menu para las diferentes opciones
-
     return (
-    <div className="w-full">
+    <div className="w-2/3">
         <label className="input input-bordered flex items-center gap-2">
             <input 
                 type="text" 
                 className="grow" 
-                placeholder="Search" 
+                placeholder="Search for a location..." 
                 onChange={handleInputChange}
                 value={inputValue}
             />
             <IconSearch fillRule="evenodd" />
         </label>
-        <ul
-          className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-fit p-4 shadow">
-          {locations.length > 0 && locations.map((location) => {
-            return <li 
-                    key={location.value}
+        {locations.length > 0 && (
+            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-fit p-4 shadow">
+                {locations.map((location, index) => (
+                <li 
+                    key={index}
                     onClick={() => handleSelect(location)}
                     className="text-left p-2 cursor-pointer transition-colors duration-200 hover:bg-gray-200"
                 >
-                    {location.label}
+                    {location.display_name}
                 </li>
-          })}
-        </ul>
+                ))}
+            </ul>
+        )}
     </div>
     )
 }

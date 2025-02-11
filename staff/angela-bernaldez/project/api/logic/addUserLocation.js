@@ -12,7 +12,6 @@ const getOrCreateLocation = async (location, locationData) => {
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
-        altitude: locationData.altitude,
         timeLastUpdated: new Date(),
         // variables: call logic to add variables info
     })
@@ -23,28 +22,7 @@ const getOrCreateLocation = async (location, locationData) => {
 export default (id, locationData) => {
     // add validators
 
-    const { name, latitude, longitude, altitude } = locationData
-
-    /*
-    podria quitar la funcion auxiliar
-    return Location.findOne({ name, latitude, longitude })
-                .then((location) => {
-                    // Si la ubicación no existe, la creamos usando Location.create
-                    if (!location) {
-                        return Location.create({
-                            name,
-                            latitude,
-                            longitude,
-                            altitude,
-                            timeLastUpdated: new Date(),
-                            // Aquí puedes agregar lógica para otras variables adicionales si es necesario
-                        })
-                    }
-                    return location  // Si la ubicación ya existe, la devolvemos tal cual
-                })
-                .then((newLocation) => 
-                    ...)
-    */
+    const { name, latitude, longitude } = locationData
 
     return User.findById(id)
         .then((user) => {
@@ -60,10 +38,10 @@ export default (id, locationData) => {
                                 return user.save()
                             }
                         })
-                    .catch((error) => {
-                        // change this to a specific type of error
-                        console.log(error)
-                    })
+                        .catch((error) => {
+                            // change this to a specific type of error
+                            console.log(error)
+                        })
                 })
         })
 }

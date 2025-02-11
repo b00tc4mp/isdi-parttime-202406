@@ -2,7 +2,7 @@ import { Errors } from 'common'
 
 const getAllUserLocations = () => {
 
-    // tengo que pasar un isUserLoggedIn o algo asi para asegurarme de que solo sea con la sesion iniciada?
+    const token = sessionStorage.getItem("token")
 
     return fetch(`${import.meta.env.VITE_API_URL}users/locations`, {
         method: 'GET',
@@ -12,7 +12,7 @@ const getAllUserLocations = () => {
     })
     .then((res) => {
         if (res.status === 200) return res.json()
-            .then(body => body.user.favLocations)
+            .then(body => body.favLocations)
                 return res.json()
                     .then(body => {
                         const constructor = Errors[body.name]

@@ -17,10 +17,6 @@ const LocationSchema = new Schema({
         type: Number,
         required: true
     }, 
-    altitude: {
-        type: Number,
-        required: true
-    }, 
     timeLastUpdated: {
         type: Date,
         required: true

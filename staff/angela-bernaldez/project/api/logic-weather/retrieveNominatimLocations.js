@@ -11,8 +11,6 @@ export default (userId, locationString) => {
     
     const nominatim_url = `https://nominatim.openstreetmap.org/search?q=${locationString}&limit=5&format=json`
 
-    console.log(locationString, 'locationString que me esta llegando al back end')
-
     return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
@@ -24,7 +22,6 @@ export default (userId, locationString) => {
                             if (!locationsFound || locationsFound.length === 0) {
                                 throw new Error('No locations found')
                             }
-                            console.log(locationsFound)
                             return locationsFound
                         })
                         .catch((error) => { throw new Errors.UnexpectedError(error.message) })
