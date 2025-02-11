@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function UserAccess() {
   return (
-    <section className="w-full h-[calc(100vh-106px)] flex items-center justify-center bg-headerColor">
+    <section className="w-full h-[calc(100vh-122px)] flex items-center justify-center bg-headerColor">
       {/* Círculos decorativos 
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="relative w-full h-full">
@@ -34,7 +34,7 @@ function UserAccess() {
         ></img>
 */}
       {/* Círculo central grande */}
-      <div className="relative flex flex-col justify-center items-center w-[80vw] h-[80vw] max-w-[400px] max-h-[400px] sm:max-w-[500px] sm:max-h-[500px] p-10 bg-circle rounded-full">
+      <div className="relative flex flex-col justify-center items-center w-[80vw] h-[80vw] max-w-[400px] max-h-[400px] sm:max-w-[500px] sm:max-h-[500px] p-10 bg-circle rounded-full animate-expandShadow">
         {/* Contenedor interno con los encabezados y botones */}
         <div className="flex flex-col items-center">
           {/* Contenedor de los encabezados */}

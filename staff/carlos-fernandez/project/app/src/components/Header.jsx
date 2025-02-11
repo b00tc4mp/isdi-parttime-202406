@@ -4,17 +4,24 @@ import { UserAreaBtn } from "./buttons/UserAreaBtn";
 function Header({ onUserLoggedOut }) {
   const navigate = useNavigate();
   const location = useLocation();
+  //const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú
 
   {
     /* Ya tenemos el middleware verifyToken, pero así nos ahorramos llamadas a la API */
   }
   const isLoggedIn = !!sessionStorage.getItem("token");
-
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Alternar entre abrir y cerrar el menú
+  };
   return (
     <>
       <header className="sticky top-0 z-10 bg-headerColor">
-        <nav className="navbar text-black ">
-          {/** */}
+        <nav className="navbar text-black md:flex-row flex-col items-center justify-between p-4">
+          {/* 
+          
+          LOGO Y BOTÓN AREA CLIENTES 
+          
+          */}
           <div className="navbar-start ">
             <img
               src="https://dosrosaspetresort.es/wp-content/uploads/2024/08/cropped-logovertical.png"

@@ -80,6 +80,24 @@ export class DateOfBirthNotValidError extends Error {
     }
   }
 }
+
+export class BookingNotValidError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, BookingNotValidError);
+    }
+  }
+}
+
+export class LimitExceededError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, LimitExceededError);
+    }
+  }
+}
 /* SERVER ERRORS (on client side) */
 
 export class BadRequestError extends Error {

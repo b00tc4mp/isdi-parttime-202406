@@ -218,6 +218,73 @@ class Validator {
       throw new TypeError("Allergy is not a string");
     return true;
   }
+
+  /////////////////////// BOOKING VALIDATORS ///////////////////////
+  /*
+  static bookingDogs(value) {
+    if (!Array.isArray(value)) {
+      throw new TypeError("Dogs must be an array");
+    }
+
+    if (value.length === 0) {
+      throw new Errors.ContentError(
+        "At least one dog is required for a booking."
+      );
+    }
+
+    for (const dogId of value) {
+      Validator.id(dogId);
+    }
+    return true;
+  }*/
+  /*
+  static owner(value) {
+    if (!Array.isArray(value)) {
+      throw new TypeError("Owner must be an array");
+    }
+    if (value.length === 0) {
+      throw new Errors.ContentError(
+        "At least one owner is required for a booking."
+      );
+    }
+
+    for (const ownerId of value) {
+      Validator.id(ownerId);
+    }
+    return true;
+  }*/
+
+  static startDate(value) {
+    if (typeof value === "string") {
+      value = new Date(value);
+    }
+
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      throw new TypeError("Start date is not a valid date");
+    }
+
+    const currentDate = new Date();
+    if (value < currentDate) {
+      throw new Errors.DateNotValidError("Start date cannot be in the past");
+    }
+
+    return true;
+  }
+
+  static endDate(value) {
+    if (typeof value === "string") {
+      value = new Date(value);
+    }
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      throw new TypeError("End date is not a valid date");
+    }
+
+    const currentDate = new Date();
+    if (value < currentDate) {
+      throw new Errors.DateNotValidError("End date cannot be in the past");
+    }
+    return true;
+  }
 }
 
 export default Validator;
