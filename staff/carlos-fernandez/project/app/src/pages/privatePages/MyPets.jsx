@@ -63,7 +63,7 @@ function MyPets() {
 
   return (
     <>
-      <div>
+      <div className="h-[calc(100vh-122px)]">
         {/*
       MENSAJE DE REGISTRO EXITOSO
       */}
@@ -88,7 +88,7 @@ function MyPets() {
           <div>
             <AddPets onSubmit={onSubmit} />
 
-            <ul className="flex flex-col justify-self-center">
+            <ul className="flex flex-col justify-self-center ">
               {pets.map((pet) => (
                 <li key={pet._id}>
                   <PetCard pet={pet} refreshPets={refreshPets} />

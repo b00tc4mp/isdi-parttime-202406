@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/tests/updatePassword.spec.js</title>
+    <title>Code coverage report for logic/tests/deleteDog.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> updatePassword.spec.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> deleteDog.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -125,20 +125,7 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -167,19 +154,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -214,78 +188,65 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config";
-import updatePassword from "../updatePassword.js";
-import { describe, it } from "mocha";
+import deleteDog from "../deleteDog.js";
 import models from "../../data/models.js";
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { expect } from "chai";
-import bcrypt from "bcrypt";
 &nbsp;
-const { User } = models;
+const { User, Dog } = models;
+const { ObjectId } = Types;
 &nbsp;
-describe("Update password", () =&gt; {
+describe("Delete Dog Logic", () =&gt; {
   before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST));
-  afterEach(() =&gt; User.deleteMany());
-  after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
+  let userId;
 &nbsp;
-  it("Updates password", async () =&gt; {
-    try {
-      const cryptPassword = await bcrypt.hash("aaAA1234@", 10);
-      const user = {
-        username: "Testname",
-        surname: "Surnametest",
-        phoneNumber: "666333222",
-        nif: "38878569J",
-        email: "testemail@mail.com",
-        password: cryptPassword,
-      };
-      const createdUser = await User.create(user);
-      const id = createdUser._id.toString();
+  beforeEach(async () =&gt; {
+    // Crear un usuario de prueba antes de cada test
+    const user = await User.create({
+      username: "testuser",
+      surname: "testsurname",
+      phoneNumber: "123456789",
+      nif: "12345678X",
+      email: "test@example.com",
+      password: "password123",
+    });
+    userId = user._id.toString();
 &nbsp;
-      await updatePassword(id, "aAaA1234@", "aaAA1234@");
-&nbsp;
-      const updatedUser = await User.findOne({ username: "Testname" });
-      const isPasswordValid = await bcrypt.compare(
-        "aAaA1234@",
-        updatedUser.password
-      );
-&nbsp;
-      expect(isPasswordValid).to.be.true;
-    } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error updating password:", error);</span>
-<span class="cstat-no" title="statement not covered" >      throw error;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-  });
-&nbsp;
-  /////////////////////////////////////// UNHAPPY PATH ///////////////////////////////////////
-  it("Fails when old password is incorrect", () =&gt; {
-    return bcrypt.hash("aaAA1234@", 10).then((cryptPassword) =&gt; {
-      const user2 = {
-        username: "Testnametwo",
-        surname: "Testsurnametwo",
-        phoneNumber: "622444512",
-        nif: "38521478C",
-        email: "testemailtwo@mail.com",
-        password: cryptPassword,
-      };
-      return User.create(user2).then((user) =&gt; {
-        const id = user._id.toString();
-        return updatePassword(id, "aAAa1234@", "wrongPassword").catch(
-          (error) =&gt; {
-            expect(error).to.exist;
-            expect(error.message).to.equal("Wrong Password");
-          }
-        );
-      });
+    // Crear una mascota asociada al usuario
+    await Dog.create({
+      chip: "123456789012345",
+      dogName: "Django",
+      breed: "Border collie",
+      birthDate: new Date("2013-08-21"),
+      sociability: true,
+      disease: "none",
+      allergy: "none",
+      owner: userId,
     });
   });
 &nbsp;
-  it("Fails when user ID is invalid", () =&gt; {
-    const invalidUserId = "invalidUserId123";
-    // Lo hago así porque es síncrono
-    expect(() =&gt; {
-      updatePassword(invalidUserId, "aAaA1234@", "aaAA1234@");
-    }).to.throw("Invalid ID format");
+  afterEach(async () =&gt; {
+    await Dog.deleteMany();
+    await User.deleteMany();
+  });
+&nbsp;
+  after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
+&nbsp;
+  it("should successfully delete a dog and remove it from the user's dogs array", async () =&gt; {
+    const dog = await Dog.findOne({ owner: userId });
+&nbsp;
+    const petId = dog._id.toString();
+&nbsp;
+    const deletedDog = await deleteDog(petId, userId);
+    console.log(deletedDog);
+    expect(deletedDog).to.be.an("object");
+    expect(deletedDog._id).to.exist; // Ahora se accede a _id después de la verificación de que deletedDog es un objeto
+&nbsp;
+    const updatedUser = await User.findById(userId);
+    expect(updatedUser.dogs).to.be.empty;
+&nbsp;
+    const deletedDogInDB = await Dog.findById(petId);
+    expect(deletedDogInDB).to.be.null;
   });
 });
 &nbsp;</pre></td></tr></table></pre>

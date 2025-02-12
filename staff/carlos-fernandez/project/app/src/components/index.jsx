@@ -38,6 +38,8 @@ export const RegisteredDogSuccessfully = _RegisteredDogSuccessfully;
 }
 
 import _Header from "./Header.jsx";
+import _HeaderMobile from "./HeaderMobile.jsx";
 import _FormErrorsSection from "./FormErrorsSection.jsx";
 export const Header = _Header;
+export const HeaderMobile = _HeaderMobile;
 export const FormErrorsSection = _FormErrorsSection;

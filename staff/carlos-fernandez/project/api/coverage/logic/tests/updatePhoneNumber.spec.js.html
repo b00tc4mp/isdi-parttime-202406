@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/tests/updatePassword.spec.js</title>
+    <title>Code coverage report for logic/tests/updatePhoneNumber.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> updatePassword.spec.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> updatePhoneNumber.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">93.24% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>69/74</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">72.72% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>8/11</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">93.24% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>69/74</span>
             </div>
         
             
@@ -137,13 +137,7 @@
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -189,6 +183,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -207,6 +202,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -214,78 +212,77 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config";
-import updatePassword from "../updatePassword.js";
+import updatePhoneNumber from "../updatePhoneNumber.js";
 import { describe, it } from "mocha";
 import models from "../../data/models.js";
 import mongoose from "mongoose";
 import { expect } from "chai";
-import bcrypt from "bcrypt";
+import { Errors } from "common";
 &nbsp;
 const { User } = models;
 &nbsp;
-describe("Update password", () =&gt; {
+describe("Update phone number", () =&gt; {
   before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST));
   afterEach(() =&gt; User.deleteMany());
   after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
 &nbsp;
-  it("Updates password", async () =&gt; {
+  it("Updates phone number", async () =&gt; {
     try {
-      const cryptPassword = await bcrypt.hash("aaAA1234@", 10);
       const user = {
         username: "Testname",
         surname: "Surnametest",
         phoneNumber: "666333222",
         nif: "38878569J",
         email: "testemail@mail.com",
-        password: cryptPassword,
+        password: "aaAA1234@",
       };
       const createdUser = await User.create(user);
       const id = createdUser._id.toString();
 &nbsp;
-      await updatePassword(id, "aAaA1234@", "aaAA1234@");
+      await updatePhoneNumber(id, "695506439");
 &nbsp;
       const updatedUser = await User.findOne({ username: "Testname" });
-      const isPasswordValid = await bcrypt.compare(
-        "aAaA1234@",
-        updatedUser.password
-      );
 &nbsp;
-      expect(isPasswordValid).to.be.true;
+      expect(updatedUser.phoneNumber).to.be.equal("695506439");
     } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error updating password:", error);</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Error updating phone number:", error);</span>
 <span class="cstat-no" title="statement not covered" >      throw error;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
   });
 &nbsp;
   /////////////////////////////////////// UNHAPPY PATH ///////////////////////////////////////
-  it("Fails when old password is incorrect", () =&gt; {
-    return bcrypt.hash("aaAA1234@", 10).then((cryptPassword) =&gt; {
-      const user2 = {
-        username: "Testnametwo",
-        surname: "Testsurnametwo",
-        phoneNumber: "622444512",
-        nif: "38521478C",
-        email: "testemailtwo@mail.com",
-        password: cryptPassword,
-      };
-      return User.create(user2).then((user) =&gt; {
-        const id = user._id.toString();
-        return updatePassword(id, "aAAa1234@", "wrongPassword").catch(
-          (error) =&gt; {
-            expect(error).to.exist;
-            expect(error.message).to.equal("Wrong Password");
-          }
-        );
-      });
-    });
+&nbsp;
+  it("Throws an error when the user doesn't exist", async () =&gt; {
+    const nonExistentUserId = new mongoose.Types.ObjectId().toString();
+&nbsp;
+    try {
+      await updatePhoneNumber(nonExistentUserId, "695506439");
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >      throw new Error("Expected error not thrown");</span></span>
+    } catch (error) {
+      expect(error).to.be.instanceOf(Errors.ExistenceError);
+      expect(error.message).to.equal("No user with this ID");
+    }
   });
 &nbsp;
-  it("Fails when user ID is invalid", () =&gt; {
-    const invalidUserId = "invalidUserId123";
-    // Lo hago así porque es síncrono
-    expect(() =&gt; {
-      updatePassword(invalidUserId, "aAaA1234@", "aaAA1234@");
-    }).to.throw("Invalid ID format");
+  it("Throws an error when the phone number is not valid", async () =&gt; {
+    try {
+      const user = {
+        username: "Testname",
+        surname: "Surnametest",
+        phoneNumber: "666333222",
+        nif: "38878569J",
+        email: "testemail@mail.com",
+        password: "aaAA1234@",
+      };
+      const createdUser = await User.create(user);
+      const id = createdUser._id.toString();
+&nbsp;
+      await updatePhoneNumber(id, "invalid-phone");
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >      throw new Error("Expected error was not thrown");</span></span>
+    } catch (error) {
+      expect(error).to.be.instanceOf(Errors.PhoneNumberNotValidError);
+      expect(error.message).to.include("Phone number format is not valid");
+    }
   });
 });
 &nbsp;</pre></td></tr></table></pre>

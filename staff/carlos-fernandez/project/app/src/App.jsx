@@ -1,5 +1,5 @@
 import { AboutUs, Faq, Home, Rates, Services } from "./pages/commonPages";
-import { Header } from "./components";
+import { Header, HeaderMobile } from "./components";
 import { EnterPages, ProfilePages } from "./pages";
 import logic from "./logic";
 import ModalContext from "./context/ModalContext";
@@ -14,8 +14,13 @@ function App() {
 
   return (
     <ModalContext.Provider>
-      <Header onUserLoggedOut={() => setTokenUpdated(Date.now())} />
-
+      <div className="hidden lg:block">
+        <Header onUserLoggedOut={() => setTokenUpdated(Date.now())} />
+      </div>
+      <div className="block lg:hidden">
+        <HeaderMobile onUserLoggedOut={() => setTokenUpdated(Date.now())} />
+        {/**   <h1 className="text-black text-5xl">NAVEGACION MOVIL</h1> */}
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />

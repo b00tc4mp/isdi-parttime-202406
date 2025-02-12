@@ -72,7 +72,7 @@ function UserProfile({ className }) {
     <div className="flex justify-center w-full h-auto rounded-lg text-black mt-6 animate__animated animate__fadeIn p-2">
       <div
         className={classNames(
-          "animate-expandShadow w-[32rem] px-9 py-12 rounded-xl",
+          "animate-expandShadow w-full md:w-[32rem] px-9 py-12 rounded-xl",
           className
         )}
       >
@@ -115,7 +115,7 @@ function UserProfile({ className }) {
             <strong>Teléfono:</strong>
             <label
               className={classNames(
-                "input input-bordered flex items-center gap-2 mb-2",
+                "input input-bordered flex justify-between gap-2 mb-2",
                 { "pulse-shadow": isEditing }
               )}
             >
@@ -126,7 +126,7 @@ function UserProfile({ className }) {
                 name="phoneNumber"
                 value={phoneEdit.value}
                 onChange={(e) => phoneEdit.setValue(e.target.value)}
-                className={`grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90 ${
+                className={`flex-grow min-w-0 focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90 ${
                   !phoneEdit.isEditing && "text-gray"
                 }`}
                 readOnly={!isEditing}
@@ -135,7 +135,7 @@ function UserProfile({ className }) {
                 onClick={
                   isEditing ? handleCancelEditing : () => setIsEditing(true)
                 }
-                className="ml-2 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-800"
+                className=" ml-2 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-800"
               >
                 {isEditing ? "Cancelar" : "Editar"}
               </button>

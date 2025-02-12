@@ -10,9 +10,9 @@ function Header({ onUserLoggedOut }) {
     /* Ya tenemos el middleware verifyToken, pero así nos ahorramos llamadas a la API */
   }
   const isLoggedIn = !!sessionStorage.getItem("token");
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Alternar entre abrir y cerrar el menú
-  };
+  // const toggleMenu = () => {
+  //   setIsMenuOpen(!isMenuOpen); // Alternar entre abrir y cerrar el menú
+  // };
   return (
     <>
       <header className="sticky top-0 z-10 bg-headerColor">
@@ -42,12 +42,12 @@ function Header({ onUserLoggedOut }) {
               )}
             </div>
           </div>
-          <div className="navbar-center">
+          <div className="navbar-center ">
             <Link
               to="/home"
               target="_self"
               rel="next"
-              className={`btn btn-ghost text-lg hover:bg-transparent ${
+              className={`btn btn-ghost text-xl hover:bg-transparent ${
                 location.pathname === "/home" ? "active" : ""
               }`}
             >
@@ -57,7 +57,7 @@ function Header({ onUserLoggedOut }) {
               to="/about-us"
               target="_self"
               rel="next"
-              className={`btn btn-ghost text-lg hover:bg-transparent ${
+              className={`btn btn-ghost text-xl hover:bg-transparent ${
                 location.pathname === "/about-us" ? "active" : ""
               }`}
             >
@@ -67,7 +67,7 @@ function Header({ onUserLoggedOut }) {
               to="/services"
               target="_self"
               rel="next"
-              className={`btn btn-ghost text-lg hover:bg-transparent ${
+              className={`btn btn-ghost text-xl hover:bg-transparent ${
                 location.pathname === "/services" ? "active" : ""
               }`}
             >
@@ -77,7 +77,7 @@ function Header({ onUserLoggedOut }) {
               to="/rates"
               target="_self"
               rel="next"
-              className={`btn btn-ghost text-lg hover:bg-transparent ${
+              className={`btn btn-ghost text-xl hover:bg-transparent ${
                 location.pathname === "/rates" ? "active" : ""
               }`}
             >
@@ -87,7 +87,7 @@ function Header({ onUserLoggedOut }) {
               to="/faq"
               target="_self"
               rel="next"
-              className={`btn btn-ghost text-lg hover:bg-transparent ${
+              className={`btn btn-ghost text-xl hover:bg-transparent ${
                 location.pathname === "/faq" ? "active" : ""
               }`}
             >
@@ -99,7 +99,7 @@ function Header({ onUserLoggedOut }) {
               to="/"
               target="_self"
               rel="next"
-              className=" mr-16 btn btn-ghost text-lg hover:bg-transparent"
+              className=" mr-16 btn btn-ghost text-xl hover:bg-transparent"
             >
               Doo(g)king
             </Link>

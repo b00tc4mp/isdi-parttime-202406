@@ -26,7 +26,7 @@ function PetCard({ pet, refreshPets }) {
 
   ////////////////////////////////// COMPONENTE //////////////////////////////////
   return (
-    <div className="p-8">
+    <div className="p-8 ">
       <div className=" bg-customBackgroundBlue border border-gray-300 rounded-2xl shadow-lg p-6 w-full max-w-screen-sm">
         <div className="flex justify-between">
           <h2 className="text-black font-bold text-3xl mb-2">{pet.dogName}</h2>

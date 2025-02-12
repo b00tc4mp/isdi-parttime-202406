@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-customBackground w-screen min-h-fit h-screen max-w-full text-white font-sans;
+  @apply bg-customBackground w-full min-h-fit h-screen max-w-full text-white font-sans;
 }
 
 @layer components {
