@@ -13,7 +13,7 @@ function Landing() {
                 to="/signup"
                 target="_self"
                 rel="next"
-                className="btn btn-primary btn-md"
+                className="btn btn-secondary btn-md"
                 >
                     Go to Sign Up Form
                 </Link>
@@ -21,7 +21,7 @@ function Landing() {
                 to="/login"
                 target="_self"
                 rel="next"
-                className="btn btn-primary btn-md"
+                className="btn btn-secondary btn-md"
                 >
                     Go to Log In Form
                 </Link>

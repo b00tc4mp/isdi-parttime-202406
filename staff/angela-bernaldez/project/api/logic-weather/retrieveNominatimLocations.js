@@ -9,12 +9,12 @@ export default (userId, locationString) => {
 
     // userId is passed to make sure only registered users can use the api
     
-    const nominatim_url = `https://nominatim.openstreetmap.org/search?q=${locationString}&limit=5&format=json`
+    const nominatimUrl = `https://nominatim.openstreetmap.org/search?q=${locationString}&limit=5&format=json`
 
     return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
-            return fetch(nominatim_url)
+            return fetch(nominatimUrl)
                 .then((response) => {
                     if (!response.ok) throw new Error('Unable to stablish connection with Nominatim API')
                     return response.json()

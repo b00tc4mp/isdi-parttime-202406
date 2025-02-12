@@ -33,7 +33,10 @@ module.exports = {
       "low-pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       buzzing: "buzzing 2s ease-in-out infinite",
     },
-    fontFamily: fontFamily,
+    fontFamily: {
+      ...fontFamily,
+      sans: ["Montserrat", "sans-serif"]
+    },
     screens: {
       "3xs": { min: "320px" },
       "2xs": { min: "380px" },
@@ -53,9 +56,17 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: [
-      "aqua"
-    ],
+      themes: [
+        {
+          mytheme: {
+            "primary": "#B1F0F7", 
+            "secondary": "#81BFDA", 
+            "accent": "#F5F0CD",
+            "neutral": "#FADA7A", 
+            "base-100": "#EEF5FF"
+          },
+        },
+      ],
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

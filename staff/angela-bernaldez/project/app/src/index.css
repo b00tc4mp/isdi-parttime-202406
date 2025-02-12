@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-primary w-screen min-h-screen h-full max-w-full text-white font-mono;
+    @apply bg-base-100 w-screen min-h-screen h-full max-w-full text-secondary font-sans;
   }
 
   html {
