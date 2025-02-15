@@ -19,7 +19,6 @@ function App() {
       </div>
       <div className="block lg:hidden">
         <HeaderMobile onUserLoggedOut={() => setTokenUpdated(Date.now())} />
-        {/**   <h1 className="text-black text-5xl">NAVEGACION MOVIL</h1> */}
       </div>
       <Routes>
         <Route path="/" element={<Home />} />

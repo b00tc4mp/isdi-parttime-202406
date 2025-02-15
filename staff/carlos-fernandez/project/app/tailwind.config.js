@@ -21,6 +21,9 @@ module.exports = {
         headerColor: "rgb(255, 203, 225)",
         darkPink: "rgb(235, 63, 115, 0.821)",
       },
+      fontSize: {
+        xxs: "8px",
+      },
     },
     keyframes: {
       ...keyframes,
