@@ -42,7 +42,7 @@ function UserAccess() {
               Made by pet lovers
             </h2>
           </div>
-          <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 items-center text-center">
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 xs:gap-4 items-center text-center ">
             {/* Una columna para movil dos columnas para más grandes */}
             <Link
               to="/sign-up"
@@ -65,7 +65,7 @@ function UserAccess() {
             </Link>
 
             {/* Segunda fila - Una sola columna que ocupa ambas columnas */}
-            <p className="col-span-1 xs:col-span-2 font-bold text-xxs xs:text-xs text-gray-500 text-center mt-0">
+            <p className="col-span-1 xs:col-span-2 font-bold text-xxs xs:text-xs text-gray-500 text-center mt-auto pb-4">
               By CarlosLemonCode
             </p>
           </div>
