@@ -45,7 +45,7 @@ function LoginForm({ className, onSubmit }) {
 
   return (
     <>
-      <div className="flex justify-center w-full rounded-lg">
+      <div className="flex justify-center  w-full rounded-lg">
         <div
           className={classNames(
             " animate-expandShadow bg-customBackground input input-bordered max-w-screen-sm px-9 py-12 h-auto overflow-y",
@@ -112,7 +112,7 @@ function LoginForm({ className, onSubmit }) {
                 Inicia sesión
               </button>
             </div>
-            <div className="text-xs xs:flex xs:justify-between">
+            <div className="text-xs  flex justify-between Sxs:flex xs:justify-between">
               <Link
                 to="/recovery-password"
                 target="_self"

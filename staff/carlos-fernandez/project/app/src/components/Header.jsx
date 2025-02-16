@@ -1,18 +1,31 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAreaBtn } from "./buttons/UserAreaBtn";
+import { useState } from "react";
 
 function Header({ onUserLoggedOut }) {
   const navigate = useNavigate();
   const location = useLocation();
-  //const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú
-
-  {
-    /* Ya tenemos el middleware verifyToken, pero así nos ahorramos llamadas a la API */
-  }
   const isLoggedIn = !!sessionStorage.getItem("token");
-  // const toggleMenu = () => {
-  //   setIsMenuOpen(!isMenuOpen); // Alternar entre abrir y cerrar el menú
-  // };
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Abrir el menú hamburguesa
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => {
+      if (!prev) setIsDropdownOpen(false); // cierra el areaCliente si el menú se abre
+      return !prev;
+    });
+  };
+
+  // Abrir botón área clientes
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => {
+      if (!prev) setIsMenuOpen(false); //cierra el menú si el areaCliente se abre
+      return !prev;
+    });
+  };
+
   return (
     <>
       <header className="sticky top-0 z-10 bg-headerColor">
@@ -31,7 +44,11 @@ function Header({ onUserLoggedOut }) {
             <div className="ml-10 ">
               {/* Mostrar UserAreaBtn si el usuario está autenticado, caso contrario mostrar el botón de acceso */}
               {isLoggedIn ? (
-                <UserAreaBtn onUserLoggedOut={onUserLoggedOut} />
+                <UserAreaBtn
+                  onUserLoggedOut={onUserLoggedOut}
+                  toggleDropdown={toggleDropdown}
+                  isDropdownOpen={isDropdownOpen}
+                />
               ) : (
                 <button
                   onClick={() => navigate("/user-access")}

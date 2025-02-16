@@ -5,6 +5,7 @@ import { useState } from "react";
 function HeaderMobile({ onUserLoggedOut }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const isLoggedIn = !!sessionStorage.getItem("token");
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -24,8 +25,6 @@ function HeaderMobile({ onUserLoggedOut }) {
       return !prev;
     });
   };
-
-  const isLoggedIn = !!sessionStorage.getItem("token");
 
   ////////////////////////////////////////////////// COMPONENTE //////////////////////////////////////////////////
   return (

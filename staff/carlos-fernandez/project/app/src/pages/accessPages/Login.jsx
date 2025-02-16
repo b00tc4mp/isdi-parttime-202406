@@ -47,7 +47,7 @@ function Login({ onUserLoggedIn }) {
     <>
       <section
         style={{ height: `calc(100vh - ${headerHeight}px)` }}
-        className="w-screen  sm:py-10"
+        className="w-screen flex items-center justify-center sm:py-10"
       >
         <LoginForm className="mx-auto " onSubmit={onSubmit} />
       </section>
