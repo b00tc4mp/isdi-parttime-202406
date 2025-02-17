@@ -43,6 +43,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    currentLocation: {
+        type: ObjectId,
+        ref: 'Location'
+    },
     favLocations: [{
         type: ObjectId,
         ref: 'Location'

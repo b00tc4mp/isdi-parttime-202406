@@ -28,6 +28,7 @@ describe('getAllUserLocations', () => {
                     favLocations: [
                         new mongoose.Types.ObjectId(),
                         new mongoose.Types.ObjectId()]
+                    // need to add currentLocation 
                 }
                 return User.create(user)
                     .then((user) => {

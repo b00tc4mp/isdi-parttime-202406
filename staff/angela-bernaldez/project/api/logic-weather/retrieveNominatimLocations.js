@@ -22,6 +22,7 @@ export default (userId, locationString) => {
                             if (!locationsFound || locationsFound.length === 0) {
                                 throw new Error('No locations found')
                             }
+                            console.log(locationsFound)
                             return locationsFound
                         })
                         .catch((error) => { throw new Errors.UnexpectedError(error.message) })

@@ -19,7 +19,7 @@ const getOrCreateLocation = async (location, locationData) => {
     return newLocation
 } 
 
-export default (id, locationData) => {
+export default (id, locationData, isCurrentLocation = false) => {
     // add validators
 
     const { name, latitude, longitude } = locationData
@@ -31,12 +31,15 @@ export default (id, locationData) => {
                 .then((location) => {
                     return getOrCreateLocation(location, locationData)
                         .then((newLocation) => {
+                            // if adding current location, save it or overwrite exisiting one
+                            if (isCurrentLocation) user.currentLocation = newLocation._id
+
                             const foundLocation = user.favLocations.find((location) => location._id === newLocation._id)
 
                             if (!foundLocation) {
                                 user.favLocations.push(newLocation._id)
-                                return user.save()
                             }
+                            return user.save()
                         })
                         .catch((error) => {
                             // change this to a specific type of error

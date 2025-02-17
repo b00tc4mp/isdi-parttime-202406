@@ -26,8 +26,13 @@ describe('addUserLocation', () => {
                 return User.create(user)
                     .then((user) => {
                         const userId = user._id.toString()
-                        const locationData = { name: 'Brighton', latitude: 51, longitude: -0.5, altitude: 40 }
-                        return addUserLocation(userId, locationData)
+                        const locationData = { 
+                            name: 'Brighton', 
+                            latitude: 51, 
+                            longitude: -0.5, 
+                            timeLastUpdated: new Date()}
+                        const isCurrentLocation = false
+                        return addUserLocation(userId, locationData, isCurrentLocation)
                             .then((userModified) => {
                                 return Location.findOne({ name: 'Brighton', latitude: 51, longitude: -0.5})
                                     .then((newLocation) => {
@@ -35,7 +40,6 @@ describe('addUserLocation', () => {
                                         expect(newLocation.name).to.equal('Brighton')
                                         expect(newLocation.latitude).to.equal(51)
                                         expect(newLocation.longitude).to.equal(-0.5)
-                                        expect(newLocation.altitude).to.equal(40)
                                     })
                             })
                     })
@@ -57,10 +61,10 @@ describe('addUserLocation', () => {
                             name: 'Brighton',
                             latitude: 51,
                             longitude: -0.5, 
-                            altitude: 40,
                             timeLastUpdated: new Date()
                         }
-                        return Location.create(locationData)
+                        const isCurrentLocation = false
+                        return Location.create(locationData, isCurrentLocation)
                         .then((newLocation) => {
                             return addUserLocation(userId, locationData)
                                 .then((userModified) => {
@@ -68,7 +72,6 @@ describe('addUserLocation', () => {
                                     expect(newLocation.name).to.equal('Brighton')
                                     expect(newLocation.latitude).to.equal(51)
                                     expect(newLocation.longitude).to.equal(-0.5)
-                                    expect(newLocation.altitude).to.equal(40)
                                 }) 
                         })
                     })

@@ -2,10 +2,10 @@ import logic from '../logic/index.js'
 
 export default (req, res, next) => {
     const userId = req.id
-    const { locationData } = req.body
+    const { locationData, isCurrentLocation } = req.body
 
     try {
-        logic.addUserLocation(userId, locationData)
+        logic.addUserLocation(userId, locationData, isCurrentLocation)
             .then(() => res.status(201).send())
     } catch(error) {
         next(error)

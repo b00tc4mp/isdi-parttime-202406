@@ -2,11 +2,10 @@ import LocationSearchBox from '../../components/Others/LocationSearchBox'
 import LocationCard from '../../components/Cards/LocationCard'
 import logic from '../../logic'
 import { useEffect, useState } from 'react'
+import { useParams } from "react-router"
 
 function Overview() {
-    // do something here
-
-    // ARREGLARRRRRRRRRRRRRR
+ 
     const [stamp, setStamp] = useState(Date.now())
     const [locations, setLocations] = useState([])
 
@@ -27,6 +26,8 @@ function Overview() {
             .then(() => {
             })
     }, [stamp])
+
+    const usuario = logic.getUser()
 
     return (
         <div className="grid grid-rows-2 grid-cols-2 h-screen">

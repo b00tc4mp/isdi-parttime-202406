@@ -48,7 +48,8 @@ function LocationSearchBox({ setStamp }) {
     const handleSelect = (selectedLocation) => {
         console.log('Selected location is:', selectedLocation)
         // llamar a la logica que lleva la nueva localizacion al back
-        return logic.addUserLocation(selectedLocation)
+        const isCurrentLocation = false
+        return logic.addUserLocation(selectedLocation, isCurrentLocation)
             .then(() => {
                 setInputValue('') // para que se muestre vacia la barra de busqueda tras seleccionar localizacion
                 setLocations([])
