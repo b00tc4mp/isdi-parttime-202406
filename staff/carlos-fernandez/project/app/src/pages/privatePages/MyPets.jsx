@@ -37,15 +37,18 @@ function MyPets() {
   const onSubmit = (petData) => {
     try {
       if (!registerPet || typeof registerPet !== "function") {
-        throw new Error("registerPet is not a function");
+        openModalError(new Error("registerPet is not a function"));
+        return;
       }
       return registerPet(petData)
         .then(() => {
           setIsSuccess(true);
           setHasPets(true);
+          setIsAddingPet(false);
           refreshPets();
         })
         .catch((err) => {
+          console.error("Error en el registro de la mascota:", err);
           openModalError(err);
         });
     } catch (error) {
@@ -54,48 +57,61 @@ function MyPets() {
   };
   const handleCloseSuccess = () => {
     setIsSuccess(false);
-    // setFormKey((prevKey) => prevKey + 1); // Actualizamos la clave para limpiar el formulario
   };
 
   const handleAddPet = () => {
-    setIsAddingPet(true); //Para cambiar el estado a añadir mascota
+    setIsAddingPet((prev) => {
+      return !prev; // Alterna el estado correctamente
+    });
   };
 
+  ///////////////////////////////////////////////////// COMPONENTE /////////////////////////////////////////////////////
   return (
     <>
-      <div className="h-[calc(100vh-122px)]">
-        {/*
-      MENSAJE DE REGISTRO EXITOSO
-      */}
+      <div>
+        {/* MENSAJE DE REGISTRO EXITOSO */}
         {isSuccess && (
           <RegisteredDogSuccessfully onClose={handleCloseSuccess} />
         )}
 
-        {/*
-  NO HAY MASCOTAS Y NO ESTAMOS AÑADIENDO NINGUNA 
-      */}
-        {!hasPets && !isAddingPet && <NoPetsMessage onAddPet={handleAddPet} />}
-
-        {/*
-        NO HAY MASCOTAS Y VAMOS A AÑADIR UNA
-        */}
-        {!hasPets && isAddingPet && <RegisterPetForm onSubmit={onSubmit} />}
-
-        {/*
-      RENDERIZAR LISTA DE MASCOTAS SI EXISTEN
-      */}
+        {/* Si hay mascotas, el botón de añadir mascotas SIEMPRE se muestra */}
         {hasPets && (
-          <div>
-            <AddPets onSubmit={onSubmit} />
+          <AddPets
+            onSubmit={onSubmit}
+            onAddPet={handleAddPet}
+            isAddingPet={isAddingPet}
+          />
+        )}
 
-            <ul className="flex flex-col justify-self-center ">
-              {pets.map((pet) => (
-                <li key={pet._id}>
-                  <PetCard pet={pet} refreshPets={refreshPets} />
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Si estamos añadiendo una mascota, mostramos el formulario y ocultamos las mascotas */}
+        {!hasPets ? (
+          isAddingPet ? (
+            <RegisterPetForm onSubmit={onSubmit} onCancel={handleAddPet} />
+          ) : (
+            <NoPetsMessage onAddPet={handleAddPet} />
+          )
+        ) : (
+          <>
+            {/* Si no hay mascotas, mostramos el mensaje */}
+            {!hasPets ? (
+              <NoPetsMessage onAddPet={handleAddPet} />
+            ) : (
+              <>
+                {/* Si NO estamos agregando una mascota, mostramos las PetCards */}
+                {!isAddingPet && (
+                  <div>
+                    <ul className="flex flex-col justify-self-center">
+                      {pets.map((pet) => (
+                        <li key={pet._id}>
+                          <PetCard pet={pet} refreshPets={refreshPets} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            )}
+          </>
         )}
       </div>
     </>

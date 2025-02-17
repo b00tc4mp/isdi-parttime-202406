@@ -66,14 +66,14 @@ function HeaderMobile({ onUserLoggedOut }) {
       
       {/* Links de navegación */}
       <nav
-        className={`absolute bg-customBackground top-[91.02px] ml-8 mr-8 origin-top transition-all duration-300 ease-in-out transform 
+        className={`absolute bg-customBackground top-[91.02px] ml-8 mr-8 rounded-box origin-top transition-all duration-300 ease-in-out transform 
         ${
           isMenuOpen
             ? "scale-y-100 opacity-100"
             : "scale-y-0 opacity-0 pointer-events-none"
         }`}
       >
-        <ul className=" text-xl text-black menu dropdown-content rounded-box z-[1] mt-4 w-52 p-2 shadow-xl">
+        <ul className=" text-xl text-black menu dropdown-content rounded-box z-[1] w-52 p-2 shadow-xl">
           <li>
             <Link to="/home" onClick={toggleMenu} className=" hover:underline">
               Inicio

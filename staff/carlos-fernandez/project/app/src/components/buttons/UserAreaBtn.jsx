@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import logic from "../../logic";
 import ConfirmationModal from "../modals/ConfirmationModal";
@@ -53,22 +54,41 @@ export function UserAreaBtn({
               }`}
             >
               <li>
-                <button onClick={() => navigate("/my-profile")}>
+                <Link
+                  to="/my-profile"
+                  onClick={toggleDropdown}
+                  className="block px-4 py-2 "
+                >
                   Mi perfil
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigate("/my-pets")}>
+                <Link
+                  to="/my-pets"
+                  onClick={toggleDropdown}
+                  className="block px-4 py-2"
+                >
                   Mis mascotas
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigate("/my-reservations")}>
+                <Link
+                  to="/my-reservations"
+                  onClick={toggleDropdown}
+                  className="block px-4 py-2"
+                >
                   Mis reservas
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={handleLogout}>Salir</button>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    toggleDropdown();
+                  }}
+                >
+                  Salir
+                </button>
               </li>
             </ul>
           </div>

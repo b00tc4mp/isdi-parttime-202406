@@ -26,22 +26,25 @@ function PetCard({ pet, refreshPets }) {
 
   ////////////////////////////////// COMPONENTE //////////////////////////////////
   return (
-    <div className="p-8 ">
-      <div className=" bg-customBackgroundBlue border border-gray-300 rounded-2xl shadow-lg p-6 w-full max-w-screen-sm">
-        <div className="flex justify-between">
-          <h2 className="text-black font-bold text-3xl mb-2">{pet.dogName}</h2>
+    <div className="p-4">
+      <div className=" bg-customBackgroundBlue border border-gray-300 rounded-2xl shadow-lg p-1 sm:p-6 ">
+        {/* Contenedor principal en columna en móvil, fila en escritorio */}
+        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-center mb-4">
+          <h2 className="text-black font-bold text-xl sm:text-3xl ml-2 sm:ml-0">
+            {pet.dogName}
+          </h2>
           <button
-            className=" btn-primary bg-textPinkColor hover:bg-darkPink text-white px-6 py-2 rounded-lg "
+            className="bg-textPinkColor hover:bg-darkPink text-white w-auto sm:w-[120px] px-4 py-1 sm:px-6 md:py-2 rounded-lg mt-2 sm:mt-0 ml-2 sm:ml-0"
             onClick={handleDeleteDog}
           >
             Eliminar
           </button>
         </div>
-        <div className="flex w-full max-w-screen-md">
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center">
           <div className="w-1/2">
-            <p>
-              <strong className="text-black">Chip:</strong>
-              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 sm:ml-0">Chip:</strong>
+              <label className="input input-bordered flex items-center gap-2  mb-2 mr-2 ml-2 sm:ml-0">
                 <input
                   type="text"
                   id="chip"
@@ -53,9 +56,9 @@ function PetCard({ pet, refreshPets }) {
                 />
               </label>
             </p>
-            <p>
-              <strong className="text-black">Raza:</strong>
-              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 sm:ml-0">Raza:</strong>
+              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2 ml-2 sm:ml-0">
                 <input
                   type="text"
                   id="breed"
@@ -67,9 +70,11 @@ function PetCard({ pet, refreshPets }) {
                 />
               </label>
             </p>
-            <p>
-              <strong className="text-black">Fecha de nacimiento:</strong>
-              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 sm:ml-0">
+                Fecha de nacimiento:
+              </strong>
+              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2 ml-2 sm:ml-0">
                 <input
                   type="text"
                   id="birthDate"
@@ -83,9 +88,9 @@ function PetCard({ pet, refreshPets }) {
             </p>
           </div>
           <div className="w-1/2">
-            <p>
-              <strong className="text-black">¿Sociable?</strong>
-              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 xs:ml-0">¿Sociable?</strong>
+              <label className="input input-bordered flex items-center gap-2 mb-2 mr-0 xs:mr-2 ml-2 xs:ml-0">
                 <input
                   type="text"
                   id="sociability"
@@ -97,9 +102,9 @@ function PetCard({ pet, refreshPets }) {
                 />
               </label>
             </p>
-            <p>
-              <strong className="text-black">Enfermedades:</strong>
-              <label className="input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 xs:ml-0">Enfermedades:</strong>
+              <label className="input input-bordered flex items-center gap-2 mb-2 mr-0 xs:mr-2 ml-2 xs:ml-0">
                 <input
                   type="text"
                   id="disease"
@@ -111,9 +116,9 @@ function PetCard({ pet, refreshPets }) {
                 />
               </label>
             </p>
-            <p>
-              <strong className="text-black">Alergias:</strong>
-              <label className="w-auto input input-bordered flex items-center gap-2 mb-2 mr-2">
+            <p className="w-fit">
+              <strong className="text-black ml-2 xs:ml-0">Alergias:</strong>
+              <label className="w-auto input input-bordered flex items-center gap-2 mb-2 mr-0 xs:mr-2 ml-2 xs:ml-0">
                 <input
                   type="text"
                   id="allergy"

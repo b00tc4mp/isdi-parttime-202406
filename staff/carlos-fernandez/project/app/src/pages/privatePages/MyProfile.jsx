@@ -3,7 +3,9 @@ import UserProfile from "../../components/forms/UserProfile";
 function MyProfile() {
   return (
     <>
-      <UserProfile />
+      <section className="w-screen flex items-center justify-center sm:py-10">
+        <UserProfile />
+      </section>
     </>
   );
 }
