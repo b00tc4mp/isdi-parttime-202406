@@ -4,7 +4,7 @@ function LocationCard({locationName, temperature}) {
 
     // this component is to be called once for each favlocation for a specfic user
     return (
-        <div className="bg-slate-500 flex flex-row w-full md:w-1/2 lg:w-1/3 h-[8rem] items-center justify-between mb-6">
+        <div className="bg-slate-500 flex flex-row w-full h-[8rem] items-center justify-between mb-6">
             <div className="w-2/3 pl-[1rem]">
                 <h1>{locationName}</h1>
             </div>
