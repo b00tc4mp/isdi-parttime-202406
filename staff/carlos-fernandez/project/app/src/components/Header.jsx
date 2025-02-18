@@ -10,14 +10,6 @@ function Header({ onUserLoggedOut }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Abrir el menú hamburguesa
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => {
-      if (!prev) setIsDropdownOpen(false); // cierra el areaCliente si el menú se abre
-      return !prev;
-    });
-  };
-
   // Abrir botón área clientes
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => {
