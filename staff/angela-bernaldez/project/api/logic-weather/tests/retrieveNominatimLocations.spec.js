@@ -1,8 +1,8 @@
 import 'dotenv/config'
-import retrieveNominatimLocations from './retrieveNominatimLocations.js'
+import retrieveNominatimLocations from '../retrieveNominatimLocations.js'
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import models from '../data/models.js'
+import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 

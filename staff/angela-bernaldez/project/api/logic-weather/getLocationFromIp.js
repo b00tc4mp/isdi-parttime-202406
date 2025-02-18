@@ -17,12 +17,12 @@ export default (userId) => {
                             if (data.status === 'success') {
                                 // not calling the logic to add that location to user.currentLocation here
                                 // as it is prefered to have different functions performing different tasks
-                                const locationDataFromIp = {
+                                const currentLocation = {
                                     name: `${data.city}, ${data.regionName}, ${data.country}`,
                                     latitude: data.lat,
                                     longitude: data.lon
                                 }
-                                return locationDataFromIp
+                                return currentLocation
                             }
                         })
                         .catch((error) => { throw new Errors.UnexpectedError(error.message) })

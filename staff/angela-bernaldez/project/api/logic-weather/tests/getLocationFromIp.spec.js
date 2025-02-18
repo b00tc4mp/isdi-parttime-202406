@@ -1,8 +1,8 @@
 import 'dotenv/config'
-import getLocationFromIp from './getLocationFromIp.js'
+import getLocationFromIp from '../getLocationFromIp.js'
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import models from '../data/models.js'
+import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 

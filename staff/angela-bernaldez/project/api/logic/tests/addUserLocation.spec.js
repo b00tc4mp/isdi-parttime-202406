@@ -1,7 +1,7 @@
 import 'dotenv/config'
-import addUserLocation from './addUserLocation.js'
+import addUserLocation from '../addUserLocation.js'
 import { describe, it } from 'mocha'
-import models from '../data/models.js'
+import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import { expect } from 'chai'
@@ -9,6 +9,13 @@ import { expect } from 'chai'
 const { User, Location } = models
 
 describe('addUserLocation', () => {
+
+    // BEFORE EACH CREAR USUARIO Y LOCATION SI LO NECESITO
+    // Y ASI NO TENGO QUE CREARLO EN CADA TEST INDIVIDUAL 
+    // ANTES DE CADA TEST SE CREA
+    // Y CON EL AFTEREACH SE BORRA
+
+    // CREATE ANOTHER FOLDER INSIDE LOGIC FOR TESTS
 
     before(() => mongoose.connect(process.env.MONGO_URI_TEST))
     afterEach(() => User.deleteMany())

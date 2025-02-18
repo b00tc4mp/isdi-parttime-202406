@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt'
 import 'dotenv/config'
-import getUser from './getUser.js'
+import getUser from '../getUser.js'
 import { describe, it } from 'mocha'
-import models from '../data/models.js'
+import models from '../../data/models.js'
 import mongoose, { Types } from 'mongoose'
 import { expect } from 'chai'
 

@@ -1,6 +1,7 @@
 import LocationSearchBox from '../../components/Others/LocationSearchBox'
 import LocationCard from '../../components/Cards/LocationCard'
 import logic from '../../logic'
+import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
 
@@ -21,13 +22,16 @@ function Overview() {
             })
     }
 
+    const fetchCurrentLocation = () => {
+        console.log('Fetching current location...')
+        // call getCurrentLocation
+    }
+
     useEffect(() => {
         fetchLocations()
             .then(() => {
             })
     }, [stamp])
-
-    const usuario = logic.getUser()
 
     return (
         <div className="grid grid-rows-2 grid-cols-2 h-screen">

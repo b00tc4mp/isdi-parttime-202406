@@ -34,6 +34,8 @@ mongoose.connect(process.env.MONGO_URI)
 
     server.post('/users/nominatim-locations', verifyToken, jsonBodyParser, handlersWeather.retrieveNominatimLocations)
 
+    server.post('/users/current-location', verifyToken, jsonBodyParser, handlersWeather.getLocationFromIp)
+
     server.use(errorHandler)
 
     server.listen(process.env.PORT, () => {
