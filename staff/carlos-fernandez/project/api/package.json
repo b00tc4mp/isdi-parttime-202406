@@ -8,7 +8,7 @@
     "start": "node index.js",
     "populate": "node ./data/populatedb/index.js",
     "inspect": "node --inspect-brk index.js",
-    "test": "mocha --timeout 100000 ./logic/tests/createBooking.spec.js",
+    "test": "mocha --timeout 100000 ./logic/tests/*.spec.js",
     "test-coverage": "c8 --reporter=html --reporter=text mocha --timeout 10000 ./logic/tests/*.spec.js"
   },
   "keywords": [],
