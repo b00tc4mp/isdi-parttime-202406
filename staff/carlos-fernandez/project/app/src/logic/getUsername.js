@@ -10,7 +10,6 @@ export default () => {
     if (res.status === 200)
       return res.json().then((data) => {
         if (data) {
-          console.log(`Bienvenid@, ${data.username}`);
           return data.username;
         } else {
           console.error(data.error);

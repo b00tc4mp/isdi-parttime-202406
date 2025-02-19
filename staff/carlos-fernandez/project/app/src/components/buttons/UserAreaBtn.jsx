@@ -14,8 +14,10 @@ export function UserAreaBtn({
 
   useEffect(() => {
     logic
-      .getUsername()
-      .then((name) => setUsername(name))
+      .getUser()
+      .then((user) => {
+        setUsername(user.username);
+      })
       .catch((error) => {
         console.error("Error fetching username:", error.message);
         setUsername(null);

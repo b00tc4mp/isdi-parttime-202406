@@ -10,7 +10,8 @@ export default () => {
     if (res.status === 200)
       return res.json().then((data) => {
         if (data) {
-          return data;
+          console.log("DATAAAAAA", data);
+          return data.user;
         } else {
           console.error(data.error);
         }
