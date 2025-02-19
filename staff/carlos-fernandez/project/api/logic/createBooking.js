@@ -2,12 +2,12 @@ import models from "../data/models.js";
 import { Errors, Validator } from "common";
 
 const { User, Booking } = models;
-export default ({ userId, dogId, startDate, endDate }) => {
+export default ({ userId, dogs, startDate, endDate }) => {
   Validator.id(userId);
-  if (!Array.isArray(dogId)) {
+  if (!Array.isArray(dogs)) {
     throw new Errors.BookingNotValidError("DogId must be an array");
   }
-  dogId.forEach((dogId) => Validator.id(dogId));
+  dogs.forEach((dogId) => Validator.id(dogId));
   Validator.startDate(startDate);
   Validator.endDate(endDate);
 
@@ -23,7 +23,7 @@ export default ({ userId, dogId, startDate, endDate }) => {
     const userDogs = user.dogs.map((dog) => dog._id.toString());
 
     // Buscamos si hay alguno que no coincida
-    const invalidDogs = dogId.filter((dogId) => !userDogs.includes(dogId));
+    const invalidDogs = dogs.filter((dogId) => !userDogs.includes(dogId));
     if (invalidDogs.length > 0) {
       throw new Errors.CredentialsError("One or more dogs not found");
     }
@@ -63,7 +63,7 @@ export default ({ userId, dogId, startDate, endDate }) => {
 
         return Booking.create({
           owner: userId,
-          dogs: dogId,
+          dogs: dogs,
           startDate: startDate,
           endDate: endDate,
         });

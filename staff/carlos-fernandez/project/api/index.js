@@ -29,6 +29,13 @@ try {
         handlers.registerPet
       );
 
+      server.post(
+        "/users/booking",
+        verifyToken,
+        jsonBodyParser,
+        handlers.createBooking
+      );
+
       server.get("/users/me", verifyToken, handlers.getUser);
 
       server.get("/users/me/mydogs", verifyToken, handlers.getUserDogs);
