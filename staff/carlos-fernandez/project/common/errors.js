@@ -98,6 +98,7 @@ export class LimitExceededError extends Error {
     }
   }
 }
+
 /* SERVER ERRORS (on client side) */
 
 export class BadRequestError extends Error {

@@ -109,18 +109,18 @@ class Validator {
     return true;
   }
 
-  static content(value) {
-    if (typeof value !== "string")
-      throw new TypeError("Content is not a string");
-    if (value.trim().length <= 0)
-      throw new Errors.ContentError("Content is empty");
-    if (value.length > 120)
-      throw new Errors.ContentError("Content is too long");
+  // static content(value) {
+  //   if (typeof value !== "string")
+  //     throw new TypeError("Content is not a string");
+  //   if (value.trim().length <= 0)
+  //     throw new Errors.ContentError("Content is empty");
+  //   if (value.length > 120)
+  //     throw new Errors.ContentError("Content is too long");
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  static img(value) {
+  /* static img(value) {
     if (typeof value !== "string")
       throw new TypeError("Img link is not a string");
     if (value.trim().length <= 0)
@@ -131,15 +131,7 @@ class Validator {
 
     return true;
   }
-
-  static bio(value) {
-    if (typeof value !== "string") throw new TypeError("Bio is not a string");
-    if (value.trim().length <= 0) throw new Errors.ContentError("Bio is empty");
-    if (value.length > 100) throw new Errors.ContentError("Bio is too long");
-
-    return true;
-  }
-
+*/
   ///////////////////////////// DOG VALIDATORS /////////////////////////////
 
   static chip(value) {
@@ -220,7 +212,7 @@ class Validator {
   }
 
   /////////////////////// BOOKING VALIDATORS ///////////////////////
-  /*
+
   static bookingDogs(value) {
     if (!Array.isArray(value)) {
       throw new TypeError("Dogs must be an array");
@@ -236,7 +228,7 @@ class Validator {
       Validator.id(dogId);
     }
     return true;
-  }*/
+  }
   /*
   static owner(value) {
     if (!Array.isArray(value)) {
@@ -265,7 +257,7 @@ class Validator {
 
     const currentDate = new Date();
     if (value < currentDate) {
-      throw new Errors.DateNotValidError("Start date cannot be in the past");
+      throw new Errors.BookingNotValidError("Start date cannot be in the past");
     }
 
     return true;
@@ -281,7 +273,7 @@ class Validator {
 
     const currentDate = new Date();
     if (value < currentDate) {
-      throw new Errors.DateNotValidError("End date cannot be in the past");
+      throw new Errors.BookingNotValidError("End date cannot be in the past");
     }
     return true;
   }
