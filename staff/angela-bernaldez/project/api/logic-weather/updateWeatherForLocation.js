@@ -12,6 +12,8 @@ export default (userId, locationData) => {
     return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
+            // comprobar que esa loc existe para ese usuario 
+            
             return retrieveWeatherData(userId, locationData)
                 .then((weatherData) => {
                     if (!weatherData) new Error('Unable to get data from Weather API')

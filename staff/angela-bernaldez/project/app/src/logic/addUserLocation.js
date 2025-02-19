@@ -1,6 +1,6 @@
 import { Errors } from 'common'
 
-const addUserLocation = (locationData) => {
+const addUserLocation = (locationData, isCurrentLocation = false) => {
     // include validators 
 
     const token = sessionStorage.getItem("token")
@@ -12,7 +12,7 @@ const addUserLocation = (locationData) => {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ locationData })
+        body: JSON.stringify({ locationData, isCurrentLocation })
     })
         .then((res) => {
             if (res.status === 201) return

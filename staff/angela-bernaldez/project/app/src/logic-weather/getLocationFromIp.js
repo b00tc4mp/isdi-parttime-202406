@@ -8,8 +8,7 @@ const getLocationFromIp = () => {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ currentLocation: currentLocation })
+        }
     })
     .then((res) => {
         if (res.status === 200) return res.json()
