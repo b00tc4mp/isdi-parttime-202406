@@ -19,7 +19,7 @@ export default (petId, userId) => {
           if (!deletedPet) {
             throw new Errors.ExistenceError("Dog not found");
           }
-          console.log("Mascota eliminada: ", deletedPet);
+
           return deletedPet;
         }
       );

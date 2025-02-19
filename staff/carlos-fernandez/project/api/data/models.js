@@ -89,22 +89,23 @@ const DogSchema = new Schema({
 const Dog = mongoose.model("Dog", DogSchema);
 
 const BookingSchema = new Schema({
+  owner: {
+    type: ObjectId,
+    ref: "User",
+  },
+
   dogs: [
     {
       type: ObjectId,
       ref: "Dog",
     },
   ],
-  owner: [
-    {
-      type: ObjectId,
-      ref: "User",
-    },
-  ],
+
   startDate: {
     type: Date,
     required: true,
   },
+
   endDate: {
     type: Date,
     required: true,

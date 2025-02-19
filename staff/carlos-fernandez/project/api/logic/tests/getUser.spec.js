@@ -34,7 +34,7 @@ describe("Get user info from token", () => {
   });
 
   //////////////////////////////////////// UNHAPPY PATH ////////////////////////////////////////
-  /*
+
   it("Throws an error if username is not correct", async () => {
     const user2 = {
       username: "Jose",
@@ -74,5 +74,5 @@ describe("Get user info from token", () => {
     } catch (error) {
       expect(error.message).to.equal("Invalid ID format");
     }
-  });*/
+  });
 });

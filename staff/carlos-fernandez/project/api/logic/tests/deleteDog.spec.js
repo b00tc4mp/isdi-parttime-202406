@@ -43,13 +43,14 @@ describe("Delete Dog Logic", () => {
 
   after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
+  ////////////////////////////////////////// HAPPY PATH //////////////////////////////////////////
   it("should successfully delete a dog and remove it from the user's dogs array", async () => {
     const dog = await Dog.findOne({ owner: userId });
 
     const petId = dog._id.toString();
 
     const deletedDog = await deleteDog(petId, userId);
-    console.log(deletedDog);
+
     expect(deletedDog).to.be.an("object");
     expect(deletedDog._id).to.exist; // Ahora se accede a _id después de la verificación de que deletedDog es un objeto
 

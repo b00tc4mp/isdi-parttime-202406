@@ -29,8 +29,6 @@ try {
         handlers.registerPet
       );
 
-      server.get("/users/username", verifyToken, handlers.getUsername);
-
       server.get("/users/me", verifyToken, handlers.getUser);
 
       server.get("/users/me/mydogs", verifyToken, handlers.getUserDogs);
