@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --timeout 50000 ./logic/*.spec.js"
+    "test": "mocha --timeout 50000 ./logic/tests/*.spec.js"
   },
   "keywords": [],
   "author": "",

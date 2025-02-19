@@ -5,12 +5,11 @@ const { Location, User } = models
 export default (userId, locationData) => {
 
     const { name, latitude, longitude } = locationData 
-
-    console.log(userId, 'user id')
-    console.log(typeof userId, 'type of userid')
-
     // add validators
-    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation`
+
+    console.log(userId)
+
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,is_day,precipitation,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,is_day`
 
     return User.findById(userId) 
         .then((user) => {
@@ -28,5 +27,5 @@ export default (userId, locationData) => {
                                 .catch((error) => { throw new Errors.UnexpectedError(error.message) })
                         })
                 })
-        })
+        }) 
 }
