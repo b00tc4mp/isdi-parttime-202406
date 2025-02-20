@@ -1,12 +1,10 @@
-export default function ({ size = 24}) {
+export default function () {
     return (
         <svg 
             id="Capa_1" 
             xmlns="http://www.w3.org/2000/svg" 
             xmlnsXlink="http://www.w3.org/1999/xlink" 
             viewBox="0 0 117.75 117.75">,
-            width={size}
-            height={size} 
         <defs>
             <style>
                 {`
@@ -64,40 +62,40 @@ export default function ({ size = 24}) {
             `}
             </style>
             <linearGradient id="Degradado_sin_nombre_11" data-name="Degradado sin nombre 11" x1="49.12" y1="49.09" x2="68.69" y2="68.66" gradientUnits="userSpaceOnUse">
-                <stop offset=".19" stop-color="#eead1b"/>
-                <stop offset="1" stop-color="#ed6e1c"/>
+                <stop offset=".19" stopColor="#eead1b"/>
+                <stop offset="1" stopColor="#ed6e1c"/>
             </linearGradient>
             <linearGradient id="Degradado_sin_nombre_16" data-name="Degradado sin nombre 16" x1="54.54" y1="29.88" x2="63.42" y2="38.76" gradientUnits="userSpaceOnUse">
-                <stop offset=".34" stop-color="#eead1b"/>
-                <stop offset=".99" stop-color="#ed6e1b"/>
-                <stop offset="1" stop-color="#ed6e1c"/>
+                <stop offset=".34" stopColor="#eead1b"/>
+                <stop offset=".99" stopColor="#ed6e1b"/>
+                <stop offset="1" stopColor="#ed6e1c"/>
             </linearGradient>
             <linearGradient id="Degradado_sin_nombre_18" data-name="Degradado sin nombre 18" x1="55.71" y1="77.77" x2="62.25" y2="89.09" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#eead1b"/>
-                <stop offset=".33" stop-color="#eeab1b"/>
-                <stop offset="1" stop-color="#ed6e1c"/>
+                <stop offset="0" stopColor="#eead1b"/>
+                <stop offset=".33" stopColor="#eeab1b"/>
+                <stop offset="1" stopColor="#ed6e1c"/>
             </linearGradient>
-            <linearGradient id="Degradado_sin_nombre_18-2" data-name="Degradado sin nombre 18" x1="-56.43" y1="-73.16" x2="-46.28" y2="-79.02" gradientTransform="translate(134.89 135.04)" xlink:href="#Degradado_sin_nombre_18"/>
-            <linearGradient id="Degradado_sin_nombre_16-2" data-name="Degradado sin nombre 16" x1="-55.8" y1="-22.54" x2="-46.92" y2="-31.42" gradientTransform="translate(85.78 85.93)" xlink:href="#Degradado_sin_nombre_16"/>
-            <linearGradient id="Degradado_sin_nombre_18-3" data-name="Degradado sin nombre 18" x1="-134.46" y1="-21.01" x2="-131.03" y2="-33.79" gradientTransform="translate(208.99 103.66)" xlink:href="#Degradado_sin_nombre_18"/>
-            <linearGradient id="Degradado_sin_nombre_16-3" data-name="Degradado sin nombre 16" x1="-132.74" y1="28.22" x2="-132.74" y2="15.2" gradientTransform="translate(174.26 19.83)" xlink:href="#Degradado_sin_nombre_16"/>
+            <linearGradient id="Degradado_sin_nombre_18-2" data-name="Degradado sin nombre 18" x1="-56.43" y1="-73.16" x2="-46.28" y2="-79.02" gradientTransform="translate(134.89 135.04)" href="#Degradado_sin_nombre_18"/>
+            <linearGradient id="Degradado_sin_nombre_16-2" data-name="Degradado sin nombre 16" x1="-55.8" y1="-22.54" x2="-46.92" y2="-31.42" gradientTransform="translate(85.78 85.93)" href="#Degradado_sin_nombre_16"/>
+            <linearGradient id="Degradado_sin_nombre_18-3" data-name="Degradado sin nombre 18" x1="-134.46" y1="-21.01" x2="-131.03" y2="-33.79" gradientTransform="translate(208.99 103.66)" href="#Degradado_sin_nombre_18"/>
+            <linearGradient id="Degradado_sin_nombre_16-3" data-name="Degradado sin nombre 16" x1="-132.74" y1="28.22" x2="-132.74" y2="15.2" gradientTransform="translate(174.26 19.83)" href="#Degradado_sin_nombre_16"/>
             <linearGradient id="Degradado_sin_nombre_26" data-name="Degradado sin nombre 26" x1="83.35" y1="27.5" x2="89.06" y2="38.57" gradientTransform="translate(-59.91 65.53) rotate(-10.48)" gradientUnits="userSpaceOnUse">
-                <stop offset=".25" stop-color="#fff"/>
-                <stop offset=".43" stop-color="#edf1fa"/>
-                <stop offset=".8" stop-color="#cddaf3"/>
-                <stop offset="1" stop-color="#c1d1f1"/>
+                <stop offset=".25" stopColor="#fff"/>
+                <stop offset=".43" stopColor="#edf1fa"/>
+                <stop offset=".8" stopColor="#cddaf3"/>
+                <stop offset="1" stopColor="#c1d1f1"/>
             </linearGradient>
             <radialGradient id="Degradado_sin_nombre_40" data-name="Degradado sin nombre 40" cx="99.49" cy="32.67" fx="99.49" fy="32.67" r="14.92" gradientTransform="translate(104.73 164.49) rotate(-143.43) scale(1 .98)" gradientUnits="userSpaceOnUse">
-                <stop offset=".65" stop-color="#c1d1f1"/>
-                <stop offset="1" stop-color="#fff"/>
+                <stop offset=".65" stopColor="#c1d1f1"/>
+                <stop offset="1" stopColor="#fff"/>
             </radialGradient>
             <linearGradient id="Degradado_sin_nombre_30" data-name="Degradado sin nombre 30" x1="95.03" y1="25.37" x2="104.74" y2="37.57" gradientTransform="translate(-59.91 65.53) rotate(-10.48)" gradientUnits="userSpaceOnUse">
-                <stop offset=".17" stop-color="#fff"/>
-                <stop offset=".82" stop-color="#c1d1f1"/>
+                <stop offset=".17" stopColor="#fff"/>
+                <stop offset=".82" stopColor="#c1d1f1"/>
             </linearGradient>
-            <linearGradient id="Degradado_sin_nombre_26-2" data-name="Degradado sin nombre 26" x1="-6.65" y1="143.37" x2="-.94" y2="154.44" gradientTransform="translate(126.38 -99.41) rotate(19.87)" xlink:href="#Degradado_sin_nombre_26"/>
-            <radialGradient id="Degradado_sin_nombre_40-2" data-name="Degradado sin nombre 40" cx="9.49" cy="148.54" fx="9.49" fy="148.54" r="14.92" gradientTransform="translate(-45.11 109.16) rotate(-113.07) scale(1 .98)" xlink:href="#Degradado_sin_nombre_40"/>
-            <linearGradient id="Degradado_sin_nombre_30-2" data-name="Degradado sin nombre 30" x1="5.03" y1="141.24" x2="14.74" y2="153.43" gradientTransform="translate(126.38 -99.41) rotate(19.87)" xlink:href="#Degradado_sin_nombre_30"/>
+            <linearGradient id="Degradado_sin_nombre_26-2" data-name="Degradado sin nombre 26" x1="-6.65" y1="143.37" x2="-.94" y2="154.44" gradientTransform="translate(126.38 -99.41) rotate(19.87)" href="#Degradado_sin_nombre_26"/>
+            <radialGradient id="Degradado_sin_nombre_40-2" data-name="Degradado sin nombre 40" cx="9.49" cy="148.54" fx="9.49" fy="148.54" r="14.92" gradientTransform="translate(-45.11 109.16) rotate(-113.07) scale(1 .98)" href="#Degradado_sin_nombre_40"/>
+            <linearGradient id="Degradado_sin_nombre_30-2" data-name="Degradado sin nombre 30" x1="5.03" y1="141.24" x2="14.74" y2="153.43" gradientTransform="translate(126.38 -99.41) rotate(19.87)" href="#Degradado_sin_nombre_30"/>
         </defs>
         <g>
             <circle className="cls-12" cx="58.91" cy="58.88" r="13.84"/>

@@ -7,12 +7,19 @@
 // tengo que usar el useContext con las alertas personalizadas para los errores x ejemplo
 
 
+// think of which icons go which each weather_code
+// some icons from airycons will not be used as they do not correspond with any weather code
+// use table given in github
+
+
 import ClearIcon from './clear.jsx'
 import MostlyClearIcon from './mostlyClear.jsx'
+import PartlyCloudyIcon from './partlyCloudy.jsx'
 
 const icons = {
     ClearIcon,
-    MostlyClearIcon
+    MostlyClearIcon,
+    PartlyCloudyIcon
 }
 
 export default icons
