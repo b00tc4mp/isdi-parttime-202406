@@ -4,6 +4,7 @@ import logic from '../../logic'
 import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
+import icons from '../../components/icons'
 
 function Overview() {
  
@@ -60,6 +61,7 @@ function Overview() {
                 </div> ) : 
                 (<p>Getting current location...</p>)
                 }
+                <icons.ClearIcon />
             </div>
         
             {/* Columna 2 en la Fila 1 */}

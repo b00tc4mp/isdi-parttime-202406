@@ -21,9 +21,12 @@ const LocationSchema = new Schema({
         type: Date,
         required: true
     },
-    current: [{
-    }],
-    forecast: []
+    current: {
+        type: Object
+    },
+    forecast: {
+        type: Object
+    }
 })
 
 const Location = mongoose.model('Location', LocationSchema)

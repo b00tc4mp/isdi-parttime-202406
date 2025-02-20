@@ -36,7 +36,7 @@ describe('retrieveWeatherData', () => {
                             .then((user) => {
                                 return retrieveWeatherData(user._id, location)
                                     .then((weatherData) => {
-                                        console.log(weatherData.current, 'imprimiendo weather data aqui en el test')
+                                        console.log(weatherData, 'imprimiendo weather data aqui en el test')
                                     })
                             })
                     })
