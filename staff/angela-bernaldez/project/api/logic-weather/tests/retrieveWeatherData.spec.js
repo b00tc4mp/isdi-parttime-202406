@@ -36,7 +36,11 @@ describe('retrieveWeatherData', () => {
                             .then((user) => {
                                 return retrieveWeatherData(user._id, location)
                                     .then((weatherData) => {
-                                        console.log(weatherData, 'imprimiendo weather data aqui en el test')
+                                        // console.log(weatherData)
+                                        // console.log(Object.keys(weatherData))
+                                        // console.log(weatherData, 'imprimiendo weather data aqui en el test')
+                                        expect(weatherData).to.have.property('current')
+                                        expect(weatherData).to.have.property('daily')
                                     })
                             })
                     })

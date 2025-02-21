@@ -4,6 +4,8 @@ export default (req, res, next) => {
     const userId = req.id
     const { locationData, isCurrentLocation } = req.body
 
+    console.log('add user locccc handler', locationData)
+
     try {
         logic.addUserLocation(userId, locationData, isCurrentLocation)
             .then(() => res.status(201).send())

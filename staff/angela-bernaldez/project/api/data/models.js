@@ -24,7 +24,7 @@ const LocationSchema = new Schema({
     current: {
         type: Object
     },
-    forecast: {
+    dailyForecast: {
         type: Object
     }
 })

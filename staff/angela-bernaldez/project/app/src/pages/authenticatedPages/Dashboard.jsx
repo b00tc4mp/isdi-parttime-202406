@@ -16,7 +16,16 @@ function Overview() {
     const fetchLocations = () => {
         return logic.getAllUserLocations()
             .then((_locations) => {
+                // need to update weather data for each location
+                const fifteenMinInMs = 15 * 60 * 1000
+                _locations.map((location) => {
+                    if (location.timeLastUpdated - Date.now() > fifteenMinInMs) {
+                        // need to update location weather data 
+                        
+                    } 
+                })
                 setLocations(_locations)
+
             })
             .catch((error) => {
                 console.log('Error fetching locations:', error)

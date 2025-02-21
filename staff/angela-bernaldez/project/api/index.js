@@ -36,6 +36,8 @@ mongoose.connect(process.env.MONGO_URI)
 
     server.post('/users/current-location', verifyToken, jsonBodyParser, handlersWeather.getLocationFromIp)
 
+    server.post('/users/weather-data', verifyToken, jsonBodyParser, handlersWeather.retrieveWeatherData)
+
     server.use(errorHandler)
 
     server.listen(process.env.PORT, () => {
