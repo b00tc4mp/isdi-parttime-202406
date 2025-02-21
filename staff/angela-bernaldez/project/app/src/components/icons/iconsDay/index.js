@@ -13,15 +13,31 @@
 
 
 import ClearIcon from './clear.jsx'
+import FogIcon from './fog.jsx'
+import IcyFogIcon from './icyFog.jsx'
+import ModerateSnowIcon from './moderateSnow.jsx'
 import MostlyClearIcon from './mostlyClear.jsx'
+import LightSnowIcon from './lightSnow.jsx'
+import OvercastIcon from './overcast.jsx'
 import PartlyCloudyIcon from './partlyCloudy.jsx'
+import SnowGrainIcon from './snowGrain.jsx'
+import ThunderstormIcon from './thunderstorm.jsx'
+import thunderstormHailIcon from './thunderstormHail.jsx'
 
-const icons = {
+const iconsDay = {
     ClearIcon,
+    FogIcon,
+    IcyFogIcon,
+    ModerateSnowIcon,
     MostlyClearIcon,
-    PartlyCloudyIcon
+    LightSnowIcon,
+    OvercastIcon,
+    PartlyCloudyIcon,
+    SnowGrainIcon,
+    ThunderstormIcon,
+    thunderstormHailIcon
 }
 
-export default icons
+export default iconsDay
 
 

@@ -1,5 +1,4 @@
 export default function () {
-    
     return (
         <svg 
             id="Capa_1" 

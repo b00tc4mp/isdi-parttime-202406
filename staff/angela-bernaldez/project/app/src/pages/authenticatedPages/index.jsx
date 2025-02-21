@@ -1,3 +1,3 @@
-import _Overview from './Overview.jsx'
+import _Dashboard from './Dashboard.jsx'
 
-export const Overview = _Overview
+export const Dashboard = _Dashboard
