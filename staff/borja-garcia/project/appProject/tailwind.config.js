@@ -1,6 +1,5 @@
-import daisyui from 'daisyui';
-
 /** @type {import('tailwindcss').Config} */
+import daisyui from 'daisyui'
 export default {
   content: [
     "./index.html",
@@ -8,13 +7,31 @@ export default {
     "./src/styles/main.css"
   ],
   
-  plugins: [
-    daisyui,
-    
-  ],
+  plugins: [daisyui],
   
+  // Configuración de DaisyUI
+  daisyui: {
+    themes: [
+      {
+        maintheme: {
+          "primary": "#2A5C82",
+          "secondary": "#F4A261",
+          "accent": "#6C757D",
+          "neutral": "#3D4451",
+          "base-100": "#F8F9FA",
+        },
+      },
+      "dark" 
+    ],
+  },
+
   theme: {
     extend: {
+      colors: { 
+        primary: '#2A5C82',
+        secondary: '#F4A261',
+        accent: '#6C757D',
+      },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
@@ -35,4 +52,4 @@ export default {
       },
     },
   },
-};
+}

@@ -2,7 +2,7 @@ import * as Errors from "../../errors";
 
 const getEmerContByUser = async (userId) => {
     try {
-        const response = await fetch(`/api/emergency-contacts/user/${userId}`, {
+        const response = await fetch(`/api/emergency-contacts/users/${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

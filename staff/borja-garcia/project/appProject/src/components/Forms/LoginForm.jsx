@@ -1,19 +1,19 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import userAuth from "../../logic/userAuth.js";
 import "../../styles/main.css";
 import { useAuth } from "../../context/AuthContext";
 
-
-const Login = () => {
+const Login = ({ setStamp }) => {
   const navigate = useNavigate();
   const { login } = useAuth();
-
   const userLogin = async (email, password) => {
     try {
-      const jsonToken = await userAuth(email, password); // Asegúrate de que userAuth devuelva el token
+      const jsonToken = await userAuth(email, password);
       console.log("Token Login: " + jsonToken.token);
       login(jsonToken.token);
-      navigate("/home");
+        navigate("/home");
+      setStamp();
     } catch (err) {
       console.error("Error al iniciar sesión:", err);
     }
@@ -23,7 +23,6 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-
     userLogin(email, password);
   };
 

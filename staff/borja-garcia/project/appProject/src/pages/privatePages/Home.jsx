@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 const Home = () => {
+  const { logout } = useAuth();
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-b from-blue-900 via-purple-700 to-pink-800">
       {/* Sidebar */}
@@ -58,15 +60,19 @@ const Home = () => {
           >
             🧑‍💻 Ir a mi Perfil
           </button>
-          <button
+          {/* <button
             className="h-12 bg-purple-500 text-white font-semibold rounded-md shadow-md cursor-pointer hover:bg-purple-600 transition-all duration-200"
             onClick={() => console.log("Explorar opciones")}
           >
             🚀 Explorar Opciones
-          </button>
+          </button> */}
           <button
             className="h-12 bg-red-500 text-white font-semibold rounded-md shadow-md cursor-pointer hover:bg-red-600 transition-all duration-200"
-            onClick={() => console.log("Cerrar sesión")}
+            onClick={() => {
+              logout();
+              window.location.href = "/";
+            }
+            }
           >
             ❌ Cerrar Sesión
           </button>

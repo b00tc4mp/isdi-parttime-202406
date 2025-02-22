@@ -174,7 +174,6 @@ const CalendarComponent = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h1>Mi Calendario 📅</h1>
-
       {/* Botón para mostrar/ocultar el formulario */}
       <button
         onClick={() => setShowForm((prev) => !prev)}
