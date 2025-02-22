@@ -18,6 +18,9 @@ export default (userId, locationData, weatherData) => {
                     // comprobar que loc id esta en user.favlocs o user.current 
                     const isUserLoc = user.favLocations.some(favLoc => favLoc._id === location._id) || (user.currentLocation._id === location._id)
                     if (!isUserLoc) new Error('User does not have the requested location to fetch weather data')
+
+                    // NEED TO MODIFY KEYS HAVING _ WITH CAMELCASE 
+                    // replace wmo_code with wmoCode.
                     location.current = weatherData.current
                     location.dailyForecast = weatherData.daily
                     location.timeLastUpdated = Date.now()

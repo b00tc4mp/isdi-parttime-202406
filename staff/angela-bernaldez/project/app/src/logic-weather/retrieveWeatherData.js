@@ -1,22 +1,22 @@
 import { Errors } from 'common'
 
-const retrieveNominatimLocations = (locationString) => {
-
-    // include validators de que sea un string
+const retrieveWeatherData = (locationData) => {
 
     const token = sessionStorage.getItem("token")
 
-    return fetch(`${import.meta.env.VITE_API_URL}users/nominatim-locations/`, {
+    // necesito userId(sale del token) y locationData
+
+    return fetch(`${import.meta.env.VITE_API_URL}users/weather-data/`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ locationString: locationString })
+        body: JSON.stringify({ locationData: locationData })
     })
     .then((res) => {
         if (res.status === 200) return res.json()
-            .then(body => body.locationsFound)
+            .then(body => body.weatherData)
                 return res.json()
                     .then(body => {
                         const constructor = Errors[body.name]
@@ -30,4 +30,4 @@ const retrieveNominatimLocations = (locationString) => {
     })
 }
 
-export default retrieveNominatimLocations
+export default retrieveWeatherData

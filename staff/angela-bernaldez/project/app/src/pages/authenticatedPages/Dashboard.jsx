@@ -4,9 +4,8 @@ import logic from '../../logic'
 import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
-import iconsDay from '../../components/icons/iconsDay'
 
-function Overview() {
+function Dashboard() {
  
     const [stamp, setStamp] = useState(Date.now())
     const [locations, setLocations] = useState([])
@@ -36,7 +35,14 @@ function Overview() {
             .then((currentLocation) => {
                 return logic.addUserLocation(currentLocation, true)
                     .then(() => {
-                        setCurrentLocation(currentLocation)
+                        return logicWeather.retrieveWeatherData(currentLocation)
+                        .then((weatherData) => {
+                            console.log(weatherData, 'THIS IS WEATHER DATA FROM THE FRONT END')
+                            return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
+                                .then((locationUpdated) => {
+                                    setCurrentLocation(locationUpdated)
+                                })
+                        })
                     })
                     .catch((error) => {
                         // IMPROVE THIS ERROR LATER
@@ -60,6 +66,8 @@ function Overview() {
     return (
         <div className="grid grid-rows-2 grid-cols-2 h-screen">
             {/* Columna 1 en la Fila 1 */}
+            {/* Seria mejor crear un componente y solo pasarle como objeto currentLocation*/}
+            {/* currentLocation contendria toda la info, tanto nombre, como variables*/}
             <div className="col-span-1 text-black">
             Columna 1, Fila 1. Aqui iria la localizacion actual, que es 
                 {currentLocation ? 
@@ -71,7 +79,7 @@ function Overview() {
                 (<p>Getting current location...</p>)
                 }
                 <div className="h-20 w-20">
-                    {logicWeather.getWeatherIcon(0, 1)}
+                    {logicWeather.getWeatherIcon(3, false)}
                 </div>
             </div>
         
@@ -103,4 +111,4 @@ function Overview() {
     )
 }
 
-export default Overview
+export default Dashboard
