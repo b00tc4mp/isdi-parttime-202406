@@ -1,6 +1,5 @@
 import models from "../data/models.js";
 import { Errors, Validator } from "common";
-import getUserDogs from "./getUserDogs.js";
 
 const { User, Dog } = models;
 
@@ -9,8 +8,8 @@ export default (petId, userId) => {
   Validator.id(userId);
 
   return User.findByIdAndUpdate(userId, { $pull: { dogs: petId } })
-    .then(() => {
-      if (!userId) {
+    .then((user) => {
+      if (!user) {
         throw new Errors.ExistenceError("User not found");
       }
 
@@ -19,8 +18,6 @@ export default (petId, userId) => {
           if (!deletedPet) {
             throw new Errors.ExistenceError("Dog not found");
           }
-
-          return deletedPet;
         }
       );
     })

@@ -55,7 +55,7 @@ describe("Create booking", () => {
   it("Creates a booking successfully", () => {
     const bookingData = {
       userId: userId,
-      dogId: [dogId],
+      dogs: [dogId],
       startDate: new Date(Date.UTC(2025, 2, 20)), //Los meses empiezan en 0 (enero=0, febrero=1...)
       endDate: new Date(Date.UTC(2025, 2, 25)),
     };
@@ -76,7 +76,7 @@ describe("Create booking", () => {
   it("Fails when user does not exist", () => {
     const bookingData = {
       userId: new mongoose.Types.ObjectId().toString(),
-      dogId: [dogId],
+      dogs: [dogId],
       startDate: new Date("2025-05-01"),
       endDate: new Date("2025-05-07"),
     };
@@ -95,7 +95,7 @@ describe("Create booking", () => {
   it("Fails when one of the dogs does not exist", () => {
     const bookingData = {
       userId: userId,
-      dogId: [new mongoose.Types.ObjectId().toString()],
+      dogs: [new mongoose.Types.ObjectId().toString()],
       startDate: new Date("2025-05-01"),
       endDate: new Date("2025-05-07"),
     };
@@ -114,7 +114,7 @@ describe("Create booking", () => {
   it("Fails when booking exceeds the daily limit of 50", () => {
     const bookingData = {
       userId: userId,
-      dogId: [dogId],
+      dogs: [dogId],
       startDate: new Date("2025-05-01"),
       endDate: new Date("2025-05-07"),
     };

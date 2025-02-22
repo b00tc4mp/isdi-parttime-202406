@@ -60,6 +60,12 @@ try {
         handlers.deleteDog
       );
 
+      server.delete(
+        "/users/delete-booking",
+        verifyToken,
+        handlers.deleteBooking
+      );
+
       server.use(errorHandler);
 
       server.listen(process.env.PORT, () => {

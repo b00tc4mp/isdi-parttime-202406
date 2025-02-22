@@ -5,7 +5,6 @@ import mongoose, { Types } from "mongoose";
 import { expect } from "chai";
 
 const { User, Dog } = models;
-const { ObjectId } = Types;
 
 describe("Delete Dog Logic", () => {
   before(() => mongoose.connect(process.env.MONGO_URI_TEST));

@@ -1,5 +1,6 @@
 import authenticateUser from "./authenticateUser.js";
 import createBooking from "./createBooking.js";
+import deleteBooking from "./deleteBooking.js";
 import deleteDog from "./deleteDog.js";
 import getUserDogs from "./getUserDogs.js";
 import getUser from "./getUser.js";
@@ -12,6 +13,7 @@ import updatePhoneNumber from "./updatePhoneNumber.js";
 export default {
   authenticateUser,
   createBooking,
+  deleteBooking,
   deleteDog,
   getUserDogs,
   getUser,
