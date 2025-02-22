@@ -1,31 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import getEmerContByUser from "../logic/getEmergencyContactsByUser";
+import RegisterEmergencyContact from "./Forms/contactForm";
 
 const EmergencyContactsDropdown = () => {
   const [contacts, setContacts] = useState([]);
   const { userId } = useAuth();
   const navigate = useNavigate();
 
+  const fetchContacts = async () => {
+    try {
+      const response = await getEmerContByUser(userId);
+      setContacts(response);
+    } catch (err) {
+      console.error("ERROR CAPTURADO:", err);
+      setContacts([]); // Limpia los contactos si hay error
+    }
+  };
+
   useEffect(() => {
     if (!userId) {
       navigate("/login");
       return;
     }
-
-    const fetchContacts = async () => {
-      try {
-        const response = await getEmerContByUser(userId);        
-       
-        setContacts(response);
-      } catch (err) {
-        console.error("ERROR CAPTURADO:", err);
-        setContacts([]); // Limpia los contactos si hay error
-      }
-    };
-
     fetchContacts();
   }, [userId, navigate]);
 
@@ -61,7 +61,10 @@ const EmergencyContactsDropdown = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Lista de Contactos</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        Lista de Contactos
+      </h1>
+      <RegisterEmergencyContact onContactAdded={fetchContacts}/>
       {contacts.length > 0 ? (
         <ContactList contacts={contacts} />
       ) : (

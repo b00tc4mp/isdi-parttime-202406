@@ -5,7 +5,7 @@ import moment from "moment";
 import "../styles/calendar.css"; // Archivo CSS separado para estilos
 import createEvent from "../logic/createEvent";
 import getEventsByUser from "../logic/getEventsByUser";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const localizer = momentLocalizer(moment);
 
@@ -20,7 +20,7 @@ const getCalendarEvent = async (setEvents) => {
       allDay: event.duration === null,
       color: event.color,
       category: event.category,
-      duration: event.duration
+      duration: event.duration,
       /**{
           title: `${newEvent.title} (${newEvent.category})`,
           start,
@@ -30,23 +30,24 @@ const getCalendarEvent = async (setEvents) => {
         }, */
     }));
 
-    return formattedEvents
+    return formattedEvents;
   } catch (err) {
     setEvents([]);
     console.error("Error al obtener los eventos:", err);
   }
-}
+};
 
 const CalendarComponent = () => {
   const [events, setEvents] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getCalendarEvent(setEvents).then((formattedEvents) => {
-      setEvents(formattedEvents);
-    }).catch(error => console.log(error.message))
-    
-   }, []);
+    getCalendarEvent(setEvents)
+      .then((formattedEvents) => {
+        setEvents(formattedEvents);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
 
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -90,8 +91,6 @@ const CalendarComponent = () => {
     }
   };
 
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewEvent((prev) => ({ ...prev, [name]: value }));
@@ -101,19 +100,19 @@ const CalendarComponent = () => {
     if (newEvent.title && newEvent.start && newEvent.end && newEvent.category) {
       const start = new Date(newEvent.start);
       const end = new Date(newEvent.end);
-  
+
       if (end <= start) {
         alert("La fecha de fin debe ser posterior a la fecha de inicio.");
         return;
       }
-  
+
       // Cálculo de duración
       const durationInMs = end - start; // Diferencia en milisegundos
       const durationInMinutes = Math.floor(durationInMs / (1000 * 60)); // Total de minutos
       const hours = Math.floor(durationInMinutes / 60); // Horas completas
       const minutes = durationInMinutes % 60; // Minutos restantes
       const duration = `${hours}h ${minutes}m`; // Duración legible
-  
+
       // Añadir evento al estado local
       setEvents((prevEvents) => [
         ...prevEvents,
@@ -125,27 +124,26 @@ const CalendarComponent = () => {
           duration, // Añadir duración al evento
         },
       ]);
-  
+
       setNewEvent({ title: "", start: "", end: "", category: "" });
       setShowForm(false); // Oculta el formulario después de añadir un evento
-  
+
       // Crear evento en el backend
 
       await createCalendarEvent(
-          newEvent.title,
-          newEvent.start,
-          durationInMs, // Usar la duración calculada
-          "#FFFFFF",
-          newEvent.category,
-        );
-      
+        newEvent.title,
+        newEvent.start,
+        durationInMs, // Usar la duración calculada
+        "#FFFFFF",
+        newEvent.category
+      );
     } else {
       alert("Por favor, completa todos los campos.");
     }
   };
 
   const handleCloseForm = () => {
-    console.log(events)
+    console.log(events);
     setShowForm(false); // Oculta el formulario cuando se cierra
   };
 
@@ -273,29 +271,32 @@ const CalendarComponent = () => {
       )}
 
       {/* Calendario */}
-      {events && <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{
-          height: "40vh",
-          maxWidth: "400px",
-          maxHeight: "400px",
-          margin: "20px 0",
-        }}
-        messages={{
-          next: "Siguiente",
-          previous: "Anterior",
-          today: "Hoy",
-          month: "Mes",
-          week: "Semana",
-          day: "Día",
-          agenda: "Agenda",
-          noEventsInRange: "No hay eventos en este rango.",
-        }}
-      />}
-    </div> );
+      {events && (
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{
+            height: "40vh",
+            maxWidth: "400px",
+            maxHeight: "400px",
+            margin: "20px 0",
+          }}
+          messages={{
+            next: "Siguiente",
+            previous: "Anterior",
+            today: "Hoy",
+            month: "Mes",
+            week: "Semana",
+            day: "Día",
+            agenda: "Agenda",
+            noEventsInRange: "No hay eventos en este rango.",
+          }}
+        />
+      )}
+    </div>
+  );
 };
 
 CalendarComponent.propTypes = {

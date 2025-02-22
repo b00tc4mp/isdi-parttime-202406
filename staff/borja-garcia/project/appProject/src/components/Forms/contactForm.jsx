@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import createEmergencyContact from "../../logic/createEmergencyContact";
 import "../../styles/main.css";
 import { useAuth } from "../../context/AuthContext";
 
-
-const RegisterEmergencyContact = () => {
+const RegisterEmergencyContact = ({ onContactAdded }) => {
     const navigate = useNavigate();
     const [error, setError] = useState("");
-
+    const [showModal, setShowModal] = useState(false);
     const { userId } = useAuth();
 
     useEffect(() => {
@@ -20,14 +20,17 @@ const RegisterEmergencyContact = () => {
     const createEmergencyContactFunc = async (name, phone, relationship, userId) => {
         try {
             await createEmergencyContact(name, phone, relationship, userId);
-            console.log("El contacto de emergencia fue creado correctamente");
-            navigate("/home");
+            console.log("Contacto creado correctamente");
+            setShowModal(false); // Cerrar modal al crear exitosamente
+            if (typeof onContactAdded === "function"){
+                onContactAdded();
+            }
         } catch (err) {
-            console.error("Error al crear el contacto de emergencia:", err);
-            setError(err.message || "Error al crear el contacto de emergencia.");
+            console.error("Error al crear contacto:", err);
+            setError(err.message || "Error al crear el contacto.");
         }
     };
-    
+
     const categories = ["Amigo", "Familiar", "Personal Médico", "Otro"];
 
     const handleSubmit = (event) => {
@@ -38,33 +41,72 @@ const RegisterEmergencyContact = () => {
 
         setError("");
         if (userId) {
-        createEmergencyContactFunc(name, phone, relationship, userId);
+            createEmergencyContactFunc(name, phone, relationship, userId);
         } else {
-            setError("Inicia sesión para continuar")
+            setError("Inicia sesión para continuar");
         }
     };
     
     return (
-        <div className="container">
-            <div className="card">
-                <div className="header">
-                    <h1>Agregar nuevo contacto de emergencia</h1>
-                    <p>Llena el formulario para agregar un nuevo contacto de emergencia</p>
+        <div className="mb-4">
+            <button 
+                className="btn btn-primary"
+                onClick={() => setShowModal(true)}
+            >
+                Agregar Contacto de Emergencia
+            </button>
+
+            <div className={`modal ${showModal ? 'modal-open' : ''}`}>
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg mb-4">Agregar nuevo contacto de emergencia</h3>
+                    
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Nombre completo" 
+                            className="input input-bordered w-full"
+                            required 
+                        />
+                        <input 
+                            type="tel" 
+                            name="phone" 
+                            placeholder="Teléfono" 
+                            className="input input-bordered w-full"
+                            required 
+                        />
+                        <select 
+                            name="relationship" 
+                            className="select select-bordered w-full"
+                            required
+                        >
+                            <option value="" disabled>Selecciona la relación</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
+                        
+                        <div className="modal-action">
+                            <button 
+                                type="button" 
+                                className="btn"
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                type="submit" 
+                                className="btn btn-primary"
+                            >
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+
+                    {error && <div className="text-error mt-4">{error}</div>}
                 </div>
-                <form onSubmit={handleSubmit} className="form">
-                    <input type="text" name="name" placeholder="Nombre completo" required />
-                    <input type="tel" name="phone" placeholder="Teléfono" required />
-                    <select name="relationship" required>
-                        <option value="" disabled>Selecciona la relación</option>
-                        {categories.map((category, index) => (
-                            <option key={index} value={category}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
-                    <button type="submit">Agregar contacto</button>
-                </form>
-                {error && <p className="error">{error}</p>}
             </div>
         </div>
     );
