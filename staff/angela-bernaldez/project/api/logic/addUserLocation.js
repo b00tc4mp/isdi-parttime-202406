@@ -9,6 +9,7 @@ const getOrCreateLocation = async (location, locationData) => {
     // variables añadir las variables que tenga elegidas por defecto
 
     const newLocation = await Location.create({
+        displayName: locationData.displayName,
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
@@ -22,12 +23,12 @@ const getOrCreateLocation = async (location, locationData) => {
 export default (id, locationData, isCurrentLocation = false) => {
     // add validators
 
-    const { name, latitude, longitude } = locationData
+    const { display_name, name, latitude, longitude } = locationData
 
     return User.findById(id)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
-            return Location.findOne({name: name, latitude: latitude, longitude: longitude})
+            return Location.findOne({display_name: display_name, name: name, latitude: latitude, longitude: longitude})
                 .then((location) => {
                     return getOrCreateLocation(location, locationData)
                         .then((newLocation) => {

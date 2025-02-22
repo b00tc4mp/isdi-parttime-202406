@@ -18,7 +18,6 @@ export default (id) => {
             return Location.find({ '_id': {$in: user.favLocations }})
                 .then((locationsFound) => {
                     return locationsFound
-
                     // need to check this works as expected
                 })
         })

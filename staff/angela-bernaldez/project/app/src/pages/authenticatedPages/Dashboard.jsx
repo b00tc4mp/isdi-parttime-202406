@@ -71,8 +71,8 @@ function Overview() {
                 </div> ) : 
                 (<p>Getting current location...</p>)
                 }
-                <div className="h-20 w-20">
-                    <iconsNight.ThunderstormIcon />
+                <div className="h-40 w-40">
+                    <iconsNight.ModerateRainIcon />
                 </div>
             </div>
         

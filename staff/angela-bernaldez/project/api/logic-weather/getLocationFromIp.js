@@ -18,7 +18,8 @@ export default (userId) => {
                                 // not calling the logic to add that location to user.currentLocation here
                                 // as it is prefered to have different functions performing different tasks
                                 const currentLocation = {
-                                    name: `${data.city}, ${data.regionName}, ${data.country}`,
+                                    displayName: `${data.city}, ${data.regionName}, ${data.country}`,
+                                    name: data.city, 
                                     latitude: data.lat,
                                     longitude: data.lon
                                 }

@@ -30,7 +30,7 @@ function LocationSearchBox({ setStamp }) {
                 .then((locationsFound) => {
                     if (locationsFound && locationsFound.length > 0) {
                         setLocations(locationsFound.map((item) => ({
-                            display_name: item.display_name,
+                            displayName: item.display_name,
                             name: item.name,
                             latitude: item.lat,
                             longitude: item.lon 
