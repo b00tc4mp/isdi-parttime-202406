@@ -22,8 +22,8 @@ function UserProfile({ className }) {
       try {
         const userData = await getUser();
         if (userData) {
-          setUser(userData.user);
-          phoneEdit.setValue(userData.user.phoneNumber);
+          setUser(userData);
+          phoneEdit.setValue(userData.phoneNumber);
         } else {
           setError("Error fetching user data");
         }
