@@ -53,7 +53,7 @@ const RegisterEmergencyContact = ({ onContactAdded }) => {
                 className="btn btn-primary"
                 onClick={() => setShowModal(true)}
             >
-                Agregar Contacto de Emergencia
+                Agregar Contacto
             </button>
 
             <div className={`modal ${showModal ? 'modal-open' : ''}`}>
