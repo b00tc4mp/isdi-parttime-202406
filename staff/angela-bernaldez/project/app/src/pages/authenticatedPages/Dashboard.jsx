@@ -5,7 +5,6 @@ import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
 import iconsDay from '../../components/icons/iconsDay'
-import iconsNight from '../../components/icons/iconsNight'
 
 function Overview() {
  
@@ -71,8 +70,8 @@ function Overview() {
                 </div> ) : 
                 (<p>Getting current location...</p>)
                 }
-                <div className="h-40 w-40">
-                    <iconsNight.ModerateRainIcon />
+                <div className="h-20 w-20">
+                    {logicWeather.getWeatherIcon(0, 1)}
                 </div>
             </div>
         
