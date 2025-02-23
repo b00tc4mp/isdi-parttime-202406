@@ -28,7 +28,7 @@ export default (userId, bookingId, dogId) => {
         (dog) => dog.toString() !== dogId
       );
 
-      return Booking.findOneAndUpdate(
+      return Booking.findOneAndDelete(
         { _id: bookingId },
         { dogs: updatedDogs },
         { new: true }

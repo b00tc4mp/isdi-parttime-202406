@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
 export default (req, res, next) => {
-  console.log("MIDDLEWARE VERIFYTOKEN EJECUTANDOSE");
   const token = req.headers.authorization;
   //console.log(token);
   const { id } = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);

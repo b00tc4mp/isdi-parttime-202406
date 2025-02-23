@@ -111,7 +111,7 @@ describe("Create booking", () => {
       });
   });
 
-  it("Fails when booking exceeds the daily limit of 50", () => {
+  it("Fails when the booking limit is exceeded", () => {
     const bookingData = {
       userId: userId,
       dogs: [dogId],
@@ -121,8 +121,8 @@ describe("Create booking", () => {
 
     // Simular que ya existen 50 reservas para la misma fecha
     const bookings = Array.from({ length: 50 }, () => ({
-      owner: userId,
-      dogs: [dogId], // Asegurar que cada reserva tiene al menos un perro
+      owner: new mongoose.Types.ObjectId(), // usuarios distintos
+      dogs: [new mongoose.Types.ObjectId()], // Perros distintos
       startDate: new Date("2025-05-01"),
       endDate: new Date("2025-05-07"),
     }));
@@ -134,14 +134,45 @@ describe("Create booking", () => {
         })
         .then(() => {
           throw new Error(
-            "Test should have thrown an error for exceeding daily booking limit"
+            "Test should have thrown an error for dos already booked in these dates"
           );
         })
         .catch((error) => {
-          expect(error.message).to.match(
-            /Booking limit exceeded on \d{4}-\d{2}-\d{2}/
+          expect(error.message).to.equal(
+            `Booking limit exceeded on 2025-05-01`
           );
         });
     });
+  });
+
+  it("Fails when the selected dog is already booked in these dates", () => {
+    const existingBooking = {
+      owner: userId,
+      dogs: [dogId],
+      startDate: new Date("2025-06-01"),
+      endDate: new Date("2025-06-07"),
+    };
+
+    return Booking.create(existingBooking)
+      .then(() => {
+        const newBooking = {
+          userId: userId,
+          dogs: [dogId], // Mismo perro que en la reserva anterior
+          startDate: new Date("2025-06-01"), // Mismas fechas
+          endDate: new Date("2025-06-07"),
+        };
+
+        return createBooking(newBooking);
+      })
+      .then(() => {
+        throw new Error(
+          "Test should have thrown an error for already booked dog"
+        );
+      })
+      .catch((error) => {
+        expect(error.message).to.equal(
+          "Selected dogs are already booked in these dates"
+        );
+      });
   });
 });
