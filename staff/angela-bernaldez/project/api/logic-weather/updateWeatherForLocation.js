@@ -22,7 +22,9 @@ export default (userId, locationData, weatherData) => {
                     // NEED TO MODIFY KEYS HAVING _ WITH CAMELCASE 
                     // replace wmo_code with wmoCode.
                     location.current = weatherData.current
+                    location.current_units = weatherData.current_units
                     location.dailyForecast = weatherData.daily
+                    location.dailyForecast_units = weatherData.daily_units
                     location.timeLastUpdated = Date.now()
                     return location.save()
                 })

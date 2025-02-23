@@ -3,7 +3,8 @@ import LocationCard from '../../components/Cards/LocationCard'
 import logic from '../../logic'
 import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
-import { useParams } from "react-router"
+import CurrentLocationBox from '../../components/Cards/CurrentLocationBox'
+import { SunInfoBox } from '../../components/Cards'
 
 function Dashboard() {
  
@@ -19,8 +20,10 @@ function Dashboard() {
                 _locations.map((location) => {
                     if (location.timeLastUpdated - Date.now() > fifteenMinInMs) {
                         // need to update location weather data 
-                        
-                    } 
+                        console.log('need to update weather data')
+                    } else {
+                        console.log('there is no need to update weather data')
+                    }
                 })
                 setLocations(_locations)
 
@@ -39,8 +42,8 @@ function Dashboard() {
                         .then((weatherData) => {
                             console.log(weatherData, 'THIS IS WEATHER DATA FROM THE FRONT END')
                             return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
-                                .then((locationUpdated) => {
-                                    setCurrentLocation(locationUpdated)
+                                .then((currentLocation) => {
+                                    setCurrentLocation(currentLocation)
                                 })
                         })
                     })
@@ -69,18 +72,12 @@ function Dashboard() {
             {/* Seria mejor crear un componente y solo pasarle como objeto currentLocation*/}
             {/* currentLocation contendria toda la info, tanto nombre, como variables*/}
             <div className="col-span-1 text-black">
-            Columna 1, Fila 1. Aqui iria la localizacion actual, que es 
                 {currentLocation ? 
-                (<div>
-                    <p>{currentLocation.name}</p>
-                    <p>Latitude: {currentLocation.latitude}</p>
-                    <p>Longitude: {currentLocation.longitude}</p>
+                (<div className="h-full w-full">
+                    <CurrentLocationBox currentLocation={currentLocation}/>
                 </div> ) : 
                 (<p>Getting current location...</p>)
                 }
-                <div className="h-20 w-20">
-                    {logicWeather.getWeatherIcon(3, false)}
-                </div>
             </div>
         
             {/* Columna 2 en la Fila 1 */}
@@ -96,10 +93,7 @@ function Dashboard() {
             </div>
             {/* Fila 2 (Ocupa todo el ancho, con 1/3 y 2/3) */}
             <div className="col-span-2 grid grid-cols-3">
-                {/* Columna 1 (1/3 del ancho) */}
-                <div className="col-span-1">
-                    Columna 1 (1/3 del ancho)
-                </div>
+                <SunInfoBox currentLocation={currentLocation}/>
 
                 {/* Columna 2 (2/3 del ancho) */}
                 <div className="col-span-2">
