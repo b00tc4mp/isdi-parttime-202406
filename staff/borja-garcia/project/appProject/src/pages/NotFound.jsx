@@ -9,7 +9,7 @@ const NotFound = () => {
         <p className="mt-4 text-lg animate-bounce">Parece que alguien anda algo perdido...</p>
         <div className="mt-8">
           <Link
-            to="/home"
+            to="/login"
             className="btn bg-blue-500 text-white font-semibold rounded-full px-6 py-3 shadow-md hover:bg-blue-600 transition-all duration-200 animate-wiggle"
           >
            Volver a la página principal

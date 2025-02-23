@@ -89,4 +89,8 @@ body {
     border: 1px solid #f56565;
     border-radius: 0.25rem;
   }
+
+  .rbc-button-link {
+    z-index: -1;
+  }
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 const Home = () => {
   const { logout } = useAuth();
   return (
@@ -22,17 +22,7 @@ const Home = () => {
             aria-label="Cerrar menú"
           ></label>
           <ul className="menu bg-gray-100 text-gray-800 min-h-full w-max p-4 space-y-4 shadow-lg">
-            <li className="text-lg font-semibold border-b pb-2">
-              🌟 Opciones
-            </li>
-            <li>
-              <Link
-                to="/calendar"
-                className="block px-4 py-2 rounded-md hover:bg-blue-100 transition-all duration-200"
-              >
-                ➡️ Calendario
-              </Link>
-            </li>
+            <li className="text-lg font-semibold border-b pb-2">🌟 Opciones</li>
             <li>
               <Link
                 to="/emergency-contacts"
@@ -41,6 +31,17 @@ const Home = () => {
                 ➡️ Contactos
               </Link>
             </li>
+            <li>
+              <button
+                className="h-12 bg-red-500 text-white font-semibold rounded-md shadow-md cursor-pointer hover:bg-red-600 transition-all duration-200"
+                onClick={() => {
+                  logout();
+                  window.location.href = "/";
+                }}
+              >
+                ❌ Cerrar Sesión
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -48,7 +49,9 @@ const Home = () => {
       {/* Main Content */}
       <div className=" max-w-md bg-white rounded-lg p-6 shadow-2xl">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">¡Hola de nuevo! 🎉</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            ¡Hola de nuevo! 🎉
+          </h1>
           <p className="text-gray-600 mt-2">
             Bienvenido a tu espacio personal. Navega y explora las opciones.
           </p>
@@ -71,8 +74,7 @@ const Home = () => {
             onClick={() => {
               logout();
               window.location.href = "/";
-            }
-            }
+            }}
           >
             ❌ Cerrar Sesión
           </button>

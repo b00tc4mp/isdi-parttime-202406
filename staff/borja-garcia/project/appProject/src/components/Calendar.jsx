@@ -2,72 +2,72 @@ import { useEffect, useState, useRef } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
-import "../styles/calendar.css"; // Archivo CSS separado para estilos
-import createEvent from "../logic/createEvent";
 import getEventsByUser from "../logic/getEventsByUser";
-import PropTypes from "prop-types";
-
+import createEvent from "../logic/createEvent";
+//import CustomCalendarBar from "./CustomCalendarBar";
 const localizer = momentLocalizer(moment);
-
-const getCalendarEvent = async (setEvents) => {
-  try {
-    const fetchedEvents = await getEventsByUser();
-
-    const formattedEvents = fetchedEvents.map((event) => ({
-      title: `${event.eventName} (${event.category})`,
-      start: new Date(event.startDateTime),
-      end: new Date(new Date(event.startDateTime) + event.duration * 60000), // Añadir duración al evento
-      allDay: event.duration === null,
-      color: event.color,
-      category: event.category,
-      duration: event.duration,
-      /**{
-          title: `${newEvent.title} (${newEvent.category})`,
-          start,
-          end,
-          category: newEvent.category,
-          duration, // Añadir duración al evento
-        }, */
-    }));
-
-    return formattedEvents;
-  } catch (err) {
-    setEvents([]);
-    console.error("Error al obtener los eventos:", err);
-  }
-};
 
 const CalendarComponent = () => {
   const [events, setEvents] = useState(null);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    getCalendarEvent(setEvents)
-      .then((formattedEvents) => {
-        setEvents(formattedEvents);
-      })
-      .catch((error) => console.log(error.message));
-  }, []);
-
   const [newEvent, setNewEvent] = useState({
-    title: "",
+    eventName: "", // Renombrado de title a eventName para consistencia
     start: "",
     end: "",
     category: "",
   });
-
-  const [showForm, setShowForm] = useState(false); //Sabe si está abierto el form
-  const formRef = useRef(null); // Genera una referencia para saber si está abierto el form
-
+  const [showForm, setShowForm] = useState(false);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const formRef = useRef(null);
   const categories = ["Ansiedad", "Ataque de Pánico", "Autolesión", "Otro"];
 
+  useEffect(() => {
+    fetchCalendarEvents(); // Renombrado función para claridad y manejo de errores
+  }, []);
+
+  const fetchCalendarEvents = async () => {
+    // Renombrado y mejor manejo de errores
+    try {
+      const formattedEvents = await getCalendarEvent();
+      setEvents(formattedEvents);
+    } catch (error) {
+      console.error("Error fetching calendar events:", error);
+      setError("Failed to load calendar events. Please try again later."); // Mostrar error al usuario
+      setEvents([]); // Asegurar que events no sea null, incluso en error
+    }
+  };
+
+  const getCalendarEvent = async () => {
+    // Eliminado parámetro setEvents, usando estado directamente
+    try {
+      const fetchedEvents = await getEventsByUser();
+
+      const formattedEvents = fetchedEvents.map((event) => ({
+        title: `${event.eventName} (${event.category})`,
+        start: new Date(event.startDateTime),
+        end: new Date(new Date(event.startDateTime) + event.duration * 60000),
+        allDay: event.duration === null,
+        color: event.color,
+        category: event.category,
+        duration: event.duration,
+      }));
+
+      return formattedEvents;
+    } catch (err) {
+      console.error("Error al obtener los eventos:", err);
+      throw err; // Re-lanza el error para ser capturado en fetchCalendarEvents
+    }
+  };
+
   const createCalendarEvent = async (
+    // Mantener parámetros consistentes con lógica backend
     eventName,
     startDateTime,
     duration,
     color,
     category,
-    userId
+    userId // Asumiendo que userId se maneja en backend o se pasa correctamente si necesario
   ) => {
     try {
       await createEvent(
@@ -84,7 +84,8 @@ const CalendarComponent = () => {
         startDateTime: "",
         duration: "",
         category: "",
-      }); // Limpia los campos del formulario después de crear el evento
+      });
+      await fetchCalendarEvents(); // Refrescar eventos para actualizar calendario tras crear evento
     } catch (err) {
       console.error("Error al crear el evento:", err);
       setError(err.message || "Error al crear el evento");
@@ -97,7 +98,13 @@ const CalendarComponent = () => {
   };
 
   const handleAddEvent = async () => {
-    if (newEvent.title && newEvent.start && newEvent.end && newEvent.category) {
+    if (
+      newEvent.eventName &&
+      newEvent.start &&
+      newEvent.end &&
+      newEvent.category
+    ) {
+      // Usar eventName
       const start = new Date(newEvent.start);
       const end = new Date(newEvent.end);
 
@@ -106,35 +113,16 @@ const CalendarComponent = () => {
         return;
       }
 
-      // Cálculo de duración
-      const durationInMs = end - start; // Diferencia en milisegundos
-      const durationInMinutes = Math.floor(durationInMs / (1000 * 60)); // Total de minutos
-      const hours = Math.floor(durationInMinutes / 60); // Horas completas
-      const minutes = durationInMinutes % 60; // Minutos restantes
-      const duration = `${hours}h ${minutes}m`; // Duración legible
+      const durationInMs = end - start;
+      const durationInMinutes = Math.floor(durationInMs / (1000 * 60));
 
-      // Añadir evento al estado local
-      setEvents((prevEvents) => [
-        ...prevEvents,
-        {
-          title: `${newEvent.title} (${newEvent.category})`,
-          start,
-          end,
-          category: newEvent.category,
-          duration, // Añadir duración al evento
-        },
-      ]);
-
-      setNewEvent({ title: "", start: "", end: "", category: "" });
-      setShowForm(false); // Oculta el formulario después de añadir un evento
-
-      // Crear evento en el backend
+      setShowForm(false);
 
       await createCalendarEvent(
-        newEvent.title,
+        newEvent.eventName,
         newEvent.start,
-        durationInMs, // Usar la duración calculada
-        "#FFFFFF",
+        durationInMinutes,
+        null,
         newEvent.category
       );
     } else {
@@ -144,19 +132,19 @@ const CalendarComponent = () => {
 
   const handleCloseForm = () => {
     console.log(events);
-    setShowForm(false); // Oculta el formulario cuando se cierra
+    setShowForm(false);
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (formRef.current && !formRef.current.contains(event.target)) {
-        setShowForm(false); // Oculta el formulario cuando se hace click fuera del mismo
+        setShowForm(false);
       }
     };
 
     const handleEscape = (event) => {
       if (event.key === "Escape") {
-        setShowForm(false); // Oculta el formulario cuando se presiona la tecla Esc
+        setShowForm(false);
       }
     };
 
@@ -169,67 +157,95 @@ const CalendarComponent = () => {
     };
   }, []);
 
+  const handleSelectEvent = (event) => {
+    setSelectedEvent(event);
+    setShowEventModal(true);
+  };
+
+  const handleCloseEventModal = () => {
+    setShowEventModal(false);
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Mi Calendario 📅</h1>
-      {/* Botón para mostrar/ocultar el formulario */}
+    <div className="p-4" style={{ backgRoundColor: "E0F7FA" }}>
+      <h1 className="text-2xl font-semibold mb-4">Mi Calendario </h1>
       <button
         onClick={() => setShowForm((prev) => !prev)}
-        style={{
-          margin: "20px 0",
-          padding: "10px 20px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
+        className="btn btn-primary mb-4"
       >
         {showForm ? "Cerrar Formulario" : "Crear Evento"}
       </button>
-
-      {/* Formulario para crear un nuevo evento con animación */}
+      {error && (
+        <div className="alert alert-error mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2v4m0-4h4m-4-4L8 14m-2 2l2-2m7-2h2m-2-2H5m6 2h6m-6-2H5"
+            />
+          </svg>
+          <span>{error}</span>
+        </div>
+      )}{" "}
+      {/* Display error message */}
       {showForm && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Crear un nuevo evento</h3>
-            <div style={{ marginBottom: "10px" }}>
-              <label>Título:</label>
+        <div className="modal modal-open">
+          <div className="modal-box" ref={formRef}>
+            {" "}
+            {/* Added ref to modal-box, not modal */}
+            <h3 className="font-bold text-lg">Crear un nuevo evento</h3>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Título del evento:</span>{" "}
+                {/* Updated label to eventName */}
+              </label>
               <input
                 type="text"
-                name="title"
-                value={newEvent.title}
+                name="eventName" // Updated name to eventName
+                value={newEvent.eventName} // Updated value to eventName
                 onChange={handleInputChange}
-                style={{ width: "100%", padding: "5px", marginTop: "5px" }}
+                className="input input-bordered w-full"
               />
             </div>
-            <div style={{ marginBottom: "10px" }}>
-              <label>Fecha de inicio:</label>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Fecha de inicio:</span>
+              </label>
               <input
                 type="datetime-local"
                 name="start"
                 value={newEvent.start}
                 onChange={handleInputChange}
-                style={{ width: "100%", padding: "5px", marginTop: "5px" }}
+                className="input input-bordered w-full"
               />
             </div>
-            <div style={{ marginBottom: "10px" }}>
-              <label>Fecha de fin:</label>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Fecha de fin:</span>
+              </label>
               <input
                 type="datetime-local"
                 name="end"
                 value={newEvent.end}
                 onChange={handleInputChange}
-                style={{ width: "100%", padding: "5px", marginTop: "5px" }}
+                className="input input-bordered w-full"
               />
             </div>
-            <div style={{ marginBottom: "10px" }}>
-              <label>Categoría:</label>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Categoría:</span>
+              </label>
               <select
                 name="category"
                 value={newEvent.category}
                 onChange={handleInputChange}
-                style={{ width: "100%", padding: "5px", marginTop: "5px" }}
+                className="select select-bordered w-full"
               >
                 <option value="">Selecciona una categoría</option>
                 {categories.map((category, index) => (
@@ -239,68 +255,102 @@ const CalendarComponent = () => {
                 ))}
               </select>
             </div>
-            <button
-              onClick={handleAddEvent}
-              style={{
-                backgroundColor: "#4CAF50",
-                color: "white",
-                border: "none",
-                padding: "10px",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Añadir Evento
-            </button>
-            <button
-              onClick={handleCloseForm}
-              style={{
-                backgroundColor: "#f44336",
-                color: "white",
-                border: "none",
-                padding: "10px",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Cerrar
-            </button>
-            {error && <p className="error">{error}</p>}
+            <div className="modal-action">
+              <button onClick={handleAddEvent} className="btn btn-success">
+                Añadir Evento
+              </button>
+              <button onClick={handleCloseForm} className="btn">
+                Cerrar
+              </button>
+            </div>
+            {error && <p className="text-red-500 mt-2">{error}</p>}
           </div>
         </div>
       )}
-
-      {/* Calendario */}
       {events && (
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{
-            height: "40vh",
-            maxWidth: "400px",
-            maxHeight: "400px",
-            margin: "20px 0",
-          }}
-          messages={{
-            next: "Siguiente",
-            previous: "Anterior",
-            today: "Hoy",
-            month: "Mes",
-            week: "Semana",
-            day: "Día",
-            agenda: "Agenda",
-            noEventsInRange: "No hay eventos en este rango.",
-          }}
-        />
+        <div className="w-full h-[60vh]">
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            onSelectEvent={handleSelectEvent}
+            culture="es"
+            messages={{
+              next: "Siguiente",
+              previous: "Anterior",
+              today: "Hoy",
+              month: "Mes",
+              week: "Semana",
+              day: "Día",
+              agenda: "Agenda",
+              noEventsInRange: "No hay eventos en este rango.",
+            }}
+            components={{
+              toolbar: (toolbar) => {
+                return(
+                <div style={{ backgroundColor: '#A5D6A7', padding: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: '#424242', fontWeight: 'bold' }}>{toolbar.label}</span>
+                    <div>
+                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.onNavigate('PREV')}>Anterior</button>
+                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.onNavigate('NEXT')}>Siguiente</button>
+                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.today()}>Hoy</button>
+                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.view('month')}>Mes</button>
+                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.view('week')}>Semana</button>
+                 </div>
+                </div>
+                )}
+            }}
+            eventPropGetter={(event) => {
+              // Añadimos eventPropGetter para personalizar colores de eventos
+              let backgroundColor = "#E0F7FA"; // Color por defecto
+              if (event.category === "Ansiedad") {
+                backgroundColor = "#FFDAB9";
+              } else if (event.category === "Ataque de Pánico") {
+                backgroundColor = "#FFB3B3";
+              } else if (event.category === "Autolesión") {
+                backgroundColor = "#D1C4E9";
+              } else if (event.category === "Otro") {
+                backgroundColor = "#C8E6C9";
+              }
+              return {
+                style: {
+                  backgroundColor: backgroundColor,
+                  color: "#424242",
+                  borderRadius: "5px",
+                  border: "0px",
+                },
+              };
+            }}
+          />
+        </div>
+      )}
+      {showEventModal && selectedEvent && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">{selectedEvent.title}</h3>
+            <p>
+              <strong>Categoría:</strong> {selectedEvent.category}
+            </p>
+            <p>
+              <strong>Inicio:</strong>{" "}
+              {moment(selectedEvent.start).format("LLL")}
+            </p>
+            <p>
+              <strong>Fin:</strong> {moment(selectedEvent.end).format("LLL")}
+            </p>
+            <div className="modal-action">
+              <button
+                onClick={handleCloseEventModal}
+                className="btn btn-primary"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
 };
-
-CalendarComponent.propTypes = {
-  userId: PropTypes.string.isRequired,
-};
-
 export default CalendarComponent;
