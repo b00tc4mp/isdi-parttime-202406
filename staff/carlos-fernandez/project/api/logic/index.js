@@ -7,6 +7,7 @@ import getUser from "./getUser.js";
 import getUsername from "./getUsername.js";
 import registerUser from "./registerUser.js";
 import registerPet from "./registerPet.js";
+import removeDogsFromBookings from "./removeDogsFromBookings.js";
 import updatePassword from "./updatePassword.js";
 import updatePhoneNumber from "./updatePhoneNumber.js";
 
@@ -20,6 +21,7 @@ export default {
   getUsername,
   registerUser,
   registerPet,
+  removeDogsFromBookings,
   updatePassword,
   updatePhoneNumber,
 };
