@@ -93,8 +93,12 @@ function Dashboard() {
             </div>
             {/* Fila 2 (Ocupa todo el ancho, con 1/3 y 2/3) */}
             <div className="col-span-2 grid grid-cols-3">
-                <SunInfoBox currentLocation={currentLocation}/>
-
+                {currentLocation ?
+                (<div>
+                    <SunInfoBox currentLocation={currentLocation}/>
+                </div>) :
+                (<p>Getting current location...</p>)
+                }
                 {/* Columna 2 (2/3 del ancho) */}
                 <div className="col-span-2">
                     Columna 2 (2/3 del ancho)
