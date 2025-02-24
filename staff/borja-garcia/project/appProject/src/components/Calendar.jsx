@@ -39,24 +39,29 @@ const CalendarComponent = () => {
   };
 
   const getCalendarEvent = async () => {
-    // Eliminado parámetro setEvents, usando estado directamente
     try {
       const fetchedEvents = await getEventsByUser();
 
-      const formattedEvents = fetchedEvents.map((event) => ({
+      const formattedEvents = fetchedEvents.map((event) => {
+        const startDateTime = new Date(event.startDateTime);
+        const endDateTime = new Date(startDateTime.getTime() + event.duration * 60000);
+
+        return {
         title: `${event.eventName} (${event.category})`,
         start: new Date(event.startDateTime),
-        end: new Date(new Date(event.startDateTime) + event.duration * 60000),
+        end: endDateTime,
         allDay: event.duration === null,
         color: event.color,
         category: event.category,
         duration: event.duration,
-      }));
+    }
+  }
+);
 
       return formattedEvents;
     } catch (err) {
       console.error("Error al obtener los eventos:", err);
-      throw err; // Re-lanza el error para ser capturado en fetchCalendarEvents
+      throw err;
     }
   };
 
