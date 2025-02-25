@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import moment from "moment";
 import getEventsByUser from "../logic/getEventsByUser";
 import createEvent from "../logic/createEvent";
-//import CustomCalendarBar from "./CustomCalendarBar";
+import moment from "moment";
+import "moment/locale/es";
+moment.locale("es");
+moment.updateLocale("es", { week: { dow: 1 } });
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 const CalendarComponent = () => {
@@ -33,7 +35,7 @@ const CalendarComponent = () => {
       setEvents(formattedEvents);
     } catch (error) {
       console.error("Error fetching calendar events:", error);
-      setError("Failed to load calendar events. Please try again later."); // Mostrar error al usuario
+      setError("Aún no hay eventos en tu calendario."); // Mostrar error al usuario
       setEvents([]); // Asegurar que events no sea null, incluso en error
     }
   };
@@ -44,19 +46,20 @@ const CalendarComponent = () => {
 
       const formattedEvents = fetchedEvents.map((event) => {
         const startDateTime = new Date(event.startDateTime);
-        const endDateTime = new Date(startDateTime.getTime() + event.duration * 60000);
+        const endDateTime = new Date(
+          startDateTime.getTime() + event.duration * 60000
+        );
 
         return {
-        title: `${event.eventName} (${event.category})`,
-        start: new Date(event.startDateTime),
-        end: endDateTime,
-        allDay: event.duration === null,
-        color: event.color,
-        category: event.category,
-        duration: event.duration,
-    }
-  }
-);
+          title: `${event.eventName} (${event.category})`,
+          start: new Date(event.startDateTime),
+          end: endDateTime,
+          allDay: event.duration === null,
+          color: event.color,
+          category: event.category,
+          duration: event.duration,
+        };
+      });
 
       return formattedEvents;
     } catch (err) {
@@ -172,8 +175,7 @@ const CalendarComponent = () => {
   };
 
   return (
-    <div className="p-4" style={{ backgRoundColor: "E0F7FA" }}>
-      <h1 className="text-2xl font-semibold mb-4">Mi Calendario </h1>
+    <div className="p-4" style={{ backgroundColor: "E0F7FA" }}>
       <button
         onClick={() => setShowForm((prev) => !prev)}
         className="btn btn-primary mb-4"
@@ -276,11 +278,17 @@ const CalendarComponent = () => {
         <div className="w-full h-[60vh]">
           <Calendar
             localizer={localizer}
+            culture="es"
+            formats={{
+              weekdayFormat: (date, culture, localizer) =>
+                localizer.format(date, "ddd", culture),
+              dayFormat: (date, culture, localizer) =>
+                localizer.format(date, "DD", culture),
+            }}
             events={events}
             startAccessor="start"
             endAccessor="end"
             onSelectEvent={handleSelectEvent}
-            culture="es"
             messages={{
               next: "Siguiente",
               previous: "Anterior",
@@ -293,18 +301,89 @@ const CalendarComponent = () => {
             }}
             components={{
               toolbar: (toolbar) => {
-                return(
-                <div style={{ backgroundColor: '#A5D6A7', padding: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ color: '#424242', fontWeight: 'bold' }}>{toolbar.label}</span>
+                return (
+                  <div
+                    style={{
+                      backgroundColor: "#A5D6A7",
+                      padding: "10px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ color: "#424242", fontWeight: "bold" }}>
+                      {toolbar.label}
+                    </span>
                     <div>
-                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.onNavigate('PREV')}>Anterior</button>
-                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.onNavigate('NEXT')}>Siguiente</button>
-                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.today()}>Hoy</button>
-                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.view('month')}>Mes</button>
-                        <button style={{ backgroundColor: '#E0F7FA', color: '#424242', border: 'none', padding: '8px', margin: '0 5px', cursor: 'pointer' }} onClick={() => toolbar.view('week')}>Semana</button>
-                 </div>
-                </div>
-                )}
+                      <button
+                        style={{
+                          backgroundColor: "#E0F7FA",
+                          color: "#424242",
+                          border: "none",
+                          padding: "8px",
+                          margin: "0 5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => toolbar.onNavigate("PREV")}
+                      >
+                        Anterior
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#E0F7FA",
+                          color: "#424242",
+                          border: "none",
+                          padding: "8px",
+                          margin: "0 5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => toolbar.onNavigate("NEXT")}
+                      >
+                        Siguiente
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#E0F7FA",
+                          color: "#424242",
+                          border: "none",
+                          padding: "8px",
+                          margin: "0 5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => toolbar.today()}
+                      >
+                        Hoy
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#E0F7FA",
+                          color: "#424242",
+                          border: "none",
+                          padding: "8px",
+                          margin: "0 5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => toolbar.view("month")}
+                      >
+                        Mes
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#E0F7FA",
+                          color: "#424242",
+                          border: "none",
+                          padding: "8px",
+                          margin: "0 5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => toolbar.view("week")}
+                      >
+                        Semana
+                      </button>
+                    </div>
+                  </div>
+                );
+              },
             }}
             eventPropGetter={(event) => {
               // Añadimos eventPropGetter para personalizar colores de eventos
@@ -339,10 +418,10 @@ const CalendarComponent = () => {
             </p>
             <p>
               <strong>Inicio:</strong>{" "}
-              {moment(selectedEvent.start).format("LLL")}
+              {moment(selectedEvent.start).format("LLLL")}
             </p>
             <p>
-              <strong>Fin:</strong> {moment(selectedEvent.end).format("LLL")}
+              <strong>Fin:</strong> {moment(selectedEvent.end).format("LLLL")}
             </p>
             <div className="modal-action">
               <button
