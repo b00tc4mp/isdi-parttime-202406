@@ -5,8 +5,6 @@ import { IconSearch } from '../icons/icons.jsx'
 
 function LocationSearchBox({ setStamp }) {
 
-    /// ARREGLAAAR
-
     const [locations, setLocations] = useState([])
     const [inputValue, setInputValue] = useState('')    
     
@@ -58,32 +56,33 @@ function LocationSearchBox({ setStamp }) {
     }
 
     return (
-    <div className="w-2/3">
-        <label className="input input-bordered flex items-center gap-2">
-            <input 
-                type="text" 
-                className="grow" 
-                placeholder="Search for a location..." 
-                onChange={handleInputChange}
-                value={inputValue}
-            />
-            <IconSearch fillRule="evenodd" />
-        </label>
-        {locations.length > 0 && (
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-fit p-4 shadow">
-                {locations.map((location, index) => (
-                <li 
-                    key={index}
-                    onClick={() => handleSelect(location)}
-                    className="text-left p-2 cursor-pointer transition-colors duration-200 hover:bg-gray-200"
-                >
-                    {location.display_name}
-                </li>
-                ))}
-            </ul>
-        )}
-    </div>
+        <div className="w-full relative max-w-[800px]"> 
+            <label className="input input-bordered flex items-center gap-2">
+                <input 
+                    type="text" 
+                    className="grow" 
+                    placeholder="Search for a location..." 
+                    onChange={handleInputChange}
+                    value={inputValue}
+                />
+                <IconSearch fillRule="evenodd" />
+            </label>
+            {locations.length > 0 && (
+                <ul className="absolute menu dropdown-content bg-white rounded-box z-10 mt-2 w-full max-h-[300px] overflow-y-auto shadow-lg p-4">
+                    {locations.map((location, index) => (
+                        <li 
+                            key={index}
+                            onClick={() => handleSelect(location)}
+                            className="text-left p-2 cursor-pointer transition-colors duration-200 hover:bg-gray-200 text-black"
+                        >
+                            {location.displayName}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
     )
+
 }
 
 export default LocationSearchBox

@@ -4,6 +4,7 @@ import logic from '../../logic'
 import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
 import CurrentLocationBox from '../../components/Cards/CurrentLocationBox'
+import Header from '../../components/Others/Header'
 import { SunInfoBox } from '../../components/Cards'
 
 function Dashboard() {
@@ -67,45 +68,47 @@ function Dashboard() {
     }, [stamp])
 
     return (
-        <div className="grid grid-rows-2 grid-cols-2 h-screen">
-            {/* Columna 1 en la Fila 1 */}
-            {/* Seria mejor crear un componente y solo pasarle como objeto currentLocation*/}
-            {/* currentLocation contendria toda la info, tanto nombre, como variables*/}
-            <div className="col-span-1 text-black">
-                {currentLocation ? 
-                (<div className="h-full w-full">
-                    <CurrentLocationBox currentLocation={currentLocation}/>
-                </div> ) : 
-                (<p>Getting current location...</p>)
-                }
-            </div>
-        
-            {/* Columna 2 en la Fila 1 */}
-            <div className="col-span-1 overflow-y-auto h-full">
-            <LocationSearchBox setStamp={setStamp} />
-            {locations.length > 0 ? (
-                locations.map((location, index) => (
-                <LocationCard key={index} locationName={location.name} temperature={15} />
-                ))
-            ) : (
-                <p>No locations found</p>
-            )}
-            </div>
-            {/* Fila 2 (Ocupa todo el ancho, con 1/3 y 2/3) */}
-            <div className="col-span-2 grid grid-cols-3">
-                {currentLocation ?
-                (<div>
-                    <SunInfoBox currentLocation={currentLocation}/>
-                </div>) :
-                (<p>Getting current location...</p>)
-                }
-                {/* Columna 2 (2/3 del ancho) */}
-                <div className="col-span-2">
-                    Columna 2 (2/3 del ancho)
+        <div className="h-screen">
+                  <Header setStamp={setStamp}/>
+
+            <div className="grid grid-rows-2 grid-cols-2 gap-5 h-screen">
+                {/* Columna 1 en la Fila 1 */}
+                <div className="col-span-1 text-black">
+                    {currentLocation ? 
+                    (<div className="h-full w-full">
+                        <CurrentLocationBox currentLocation={currentLocation}/>
+                    </div> ) : 
+                    (<p>Getting current location...</p>)
+                    }
+                </div>
+            
+                {/* Columna 2 en la Fila 1 */}
+                <div className="col-span-1 overflow-y-auto h-full">
+                    <div className='w-full h-full m-4'>
+                        {locations.length > 0 ? (
+                            locations.map((location, index) => (
+                            <LocationCard key={index} locationName={location.name} temperature={15} />
+                            ))
+                        ) : (
+                            <p>No locations found</p>
+                        )}
+                    </div>
+                </div>
+                {/* Fila 2 (Ocupa todo el ancho, con 1/3 y 2/3) */}
+                <div className="col-span-2 grid grid-cols-3">
+                    {currentLocation ?
+                    (<div>
+                        <SunInfoBox currentLocation={currentLocation}/>
+                    </div>) :
+                    (<p>Getting current location...</p>)
+                    }
+                    {/* Columna 2 (2/3 del ancho) */}
+                    <div className="col-span-2">
+                        Columna 2 (2/3 del ancho)
+                    </div>
                 </div>
             </div>
         </div>
-
     )
 }
 

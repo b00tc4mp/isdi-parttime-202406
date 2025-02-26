@@ -30,13 +30,13 @@ function CurrentLocationBox({ currentLocation }) {
             {/* Columna derecha */}
             <div className="flex flex-col justify-between h-full max-h-full overflow-hidden">
                 {/* Icono del clima */}
-                <div className="flex justify-center items-center mb-4">
-                    <div className="overflow-hidden w-64 h-64">
+                <div className="flex justify-center items-center">
+                    <div className="overflow-hidden w-64 h-64 -mt-8">
                         {logicWeather.getWeatherIcon(currentWeather.weather_code, currentWeather.is_day)}
                     </div>
                 </div>
             {/* Otras variables del clima */}
-            <div className="grid grid-cols-3 gap-4 mt-2">
+            <div className="grid grid-cols-3 gap-4 -mt-2">
                 {/* Recuadro de Precipitación (vertical) */}
                 <div className="bg-blue-100 text-blue-700 text-center rounded-lg p-3 flex flex-col items-center">
                     <div className="text-2xl">🌧️</div>
