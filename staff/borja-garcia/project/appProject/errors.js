@@ -18,6 +18,16 @@ export class EmailNotValidError extends Error {
     }
   }
   
+
+  export class ApiError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, ApiError);
+      }
+    }
+  }
+
   export class UsernameNotValidError extends Error {
     constructor(message) {
       super(message);
@@ -55,7 +65,7 @@ export class EmailNotValidError extends Error {
       }
     }
   }
-  
+
   /*SERVER ERRORS (on server side)*/
   
   export class CredentialsError extends Error {
@@ -85,6 +95,15 @@ export class EmailNotValidError extends Error {
     }
   }
   
+  export class NotFoundError extends Error {
+    constructor(message) {
+      super(message);
+      if (Error.captureStackTrace) {
+        Error.captureStackTrace(this, NotFoundError);
+      }
+    }
+  }
+
   export class AuthError extends Error {
     constructor(message) {
       super(message);
@@ -123,3 +142,12 @@ export class EmailNotValidError extends Error {
     }
   }
   
+  
+export class TypeError extends Error {
+  constructor(message) {
+    super(message);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, TypeError);
+    }
+  }
+}

@@ -11,7 +11,7 @@ export default (error, req, res, next) => {
     error instanceof Errors.CastError
   ) {
     code = 400;
-    // Bad Request
+    error instanceof Errors.BadRequestError
   }
   if (
     error instanceof Errors.CredentialsError ||
@@ -25,7 +25,8 @@ export default (error, req, res, next) => {
     // Conflicto de datos
   }
   if (error instanceof Errors.ExistenceError ||
-      error instanceof Errors.NotFoundError 
+      error instanceof Errors.NotFoundError ||
+      error instanceof Errors.NotFoundError
   ) {
     code = 404;
     // No encontrado

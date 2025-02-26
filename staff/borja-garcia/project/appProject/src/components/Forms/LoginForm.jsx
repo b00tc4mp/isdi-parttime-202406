@@ -10,7 +10,6 @@ const Login = ({ setStamp }) => {
   const userLogin = async (email, password) => {
     try {
       const jsonToken = await userAuth(email, password);
-      console.log("Token Login: " + jsonToken.token);
       login(jsonToken.token);
         navigate("/home");
       setStamp();

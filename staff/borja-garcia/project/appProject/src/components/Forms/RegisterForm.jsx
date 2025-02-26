@@ -10,7 +10,6 @@ const RegisterUser = () => {
   const createUserFunc = async (email, username, password, repeatPassword) => {
     try {
       await createUser(username, email, password, repeatPassword);
-      console.log("El usuario fue creado correctamente");
       navigate("/login")
     } catch (err) {
       console.error("Error al crear el usuario:", err.message);

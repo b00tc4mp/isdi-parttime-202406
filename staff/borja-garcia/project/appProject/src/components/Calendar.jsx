@@ -86,7 +86,7 @@ const CalendarComponent = () => {
         category,
         userId
       );
-      console.log("El evento fue creado correctamente");
+      // Limpiamos state de evento
       setNewEvent({
         eventName: "",
         startDateTime: "",
@@ -139,7 +139,6 @@ const CalendarComponent = () => {
   };
 
   const handleCloseForm = () => {
-    console.log(events);
     setShowForm(false);
   };
 
@@ -340,45 +339,6 @@ const CalendarComponent = () => {
                         onClick={() => toolbar.onNavigate("NEXT")}
                       >
                         Siguiente
-                      </button>
-                      <button
-                        style={{
-                          backgroundColor: "#E0F7FA",
-                          color: "#424242",
-                          border: "none",
-                          padding: "8px",
-                          margin: "0 5px",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => toolbar.today()}
-                      >
-                        Hoy
-                      </button>
-                      <button
-                        style={{
-                          backgroundColor: "#E0F7FA",
-                          color: "#424242",
-                          border: "none",
-                          padding: "8px",
-                          margin: "0 5px",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => toolbar.view("month")}
-                      >
-                        Mes
-                      </button>
-                      <button
-                        style={{
-                          backgroundColor: "#E0F7FA",
-                          color: "#424242",
-                          border: "none",
-                          padding: "8px",
-                          margin: "0 5px",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => toolbar.view("week")}
-                      >
-                        Semana
                       </button>
                     </div>
                   </div>

@@ -20,7 +20,6 @@ const RegisterEmergencyContact = ({ onContactAdded }) => {
     const createEmergencyContactFunc = async (name, phone, relationship, userId) => {
         try {
             await createEmergencyContact(name, phone, relationship, userId);
-            console.log("Contacto creado correctamente");
             setShowModal(false); // Cerrar modal al crear exitosamente
             if (typeof onContactAdded === "function"){
                 onContactAdded();

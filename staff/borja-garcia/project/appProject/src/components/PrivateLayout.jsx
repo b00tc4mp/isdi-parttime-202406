@@ -33,7 +33,7 @@ const PrivateLayout = () => {
             </svg>
           </label>
           <div className="flex-grow">
-            <Outlet />
+           <div className="z-10"> <Outlet /></div> 
           </div>
         </div>
         <div className="drawer-side">
@@ -42,7 +42,7 @@ const PrivateLayout = () => {
             className="drawer-overlay"
             aria-label="Cerrar menú"
           ></label>
-          <ul className="menu bg-gray-100 text-gray-800 min-h-full w-max p-4 space-y-4 shadow-lg">
+          <ul className="menu bg-gray-100 text-gray-800 min-h-full w-max p-4 space-y-4 shadow-lg z-50">
             <li className="text-lg font-semibold border-b pb-2"> Opciones</li>
             <li>
               <Link

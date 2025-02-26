@@ -73,28 +73,28 @@ echo "6. Eliminar un contacto por ID"
 read -p "Ingrese el número de la operación: " OPTION
 
 case $OPTION in
-  1)
-    read -p "Ingrese el ID del usuario: " USER_ID
-    create_contact $USER_ID
-    ;;
-  2) get_contacts ;;
-  3)
-    read -p "Ingrese el ID del contacto: " CONTACT_ID
-    get_contact_by_id $CONTACT_ID
-    ;;
-  4)
-    read -p "Ingrese el ID del usuario: " USER_ID
-    get_contacts_by_user $USER_ID
-    ;;
-  5)
-    read -p "Ingrese el ID del contacto: " CONTACT_ID
-    update_contact_by_id $CONTACT_ID
-    ;;
-  6)
-    read -p "Ingrese el ID del contacto: " CONTACT_ID
-    delete_contact_by_id $CONTACT_ID
-    ;;
-  *)
-    echo "Opción no válida."
-    ;;
+1)
+  read -p "Ingrese el ID del usuario: " USER_ID
+  create_contact $USER_ID
+  ;;
+2) get_contacts ;;
+3)
+  read -p "Ingrese el ID del contacto: " CONTACT_ID
+  get_contact_by_id $CONTACT_ID
+  ;;
+4)
+  read -p "Ingrese el ID del usuario: " USER_ID
+  get_contacts_by_user $USER_ID
+  ;;
+5)
+  read -p "Ingrese el ID del contacto: " CONTACT_ID
+  update_contact_by_id $CONTACT_ID
+  ;;
+6)
+  read -p "Ingrese el ID del contacto: " CONTACT_ID
+  delete_contact_by_id $CONTACT_ID
+  ;;
+*)
+  echo "Opción no válida."
+  ;;
 esac

@@ -47,7 +47,6 @@ export class ServerError extends Error {
   }
 }
 
-/*SERVER ERRORS (on server side)*/
 
 export class CredentialsError extends Error {
   constructor(message) {
@@ -120,6 +119,7 @@ export class AuthError extends Error {
     }
   }
 }
+
 
 /*OTHER ERRORS*/
 export class UnexpectedError extends Error {

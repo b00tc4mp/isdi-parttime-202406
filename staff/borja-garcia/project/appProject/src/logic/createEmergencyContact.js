@@ -19,7 +19,7 @@ const createEmergencyContact = async (contactName, phone, relationship, userId) 
     return await response.json(); // Devuelve la respuesta JSON si fue exitosa
   } catch (err) {
     if (err instanceof TypeError) {
-      throw new Errors.ServerError("Server is not connected");
+      throw new Errors.TypeError("Los campos son erróneos.");
     }
     throw new Errors.UnexpectedError(err.message || "Unexpected error occurred");
   }
