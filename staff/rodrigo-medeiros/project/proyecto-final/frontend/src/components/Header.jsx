@@ -32,10 +32,10 @@ const Header = () => {
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="btn bg-yellow-500 flex items-center space-x-2"
               >
-                <IconUsername className="h-5 w-5" /> <span>My Menu</span>
+                <IconLogin className="h-5 w-5" /> <span>My Menu</span>
               </button>
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-blue-200 text-blue-900 rounded-md shadow-lg">
                   <Link
                     to="/myProfile"
                     className="block px-4 py-2 hover:bg-gray-200"

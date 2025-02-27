@@ -25,7 +25,7 @@ const UserMenu = () => {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
           <Link
-            to="/myProfile"
+            to="../pages/MyProfile"
             className="block px-4 py-2 hover:bg-gray-200"
             onClick={() => setIsOpen(false)}
           >

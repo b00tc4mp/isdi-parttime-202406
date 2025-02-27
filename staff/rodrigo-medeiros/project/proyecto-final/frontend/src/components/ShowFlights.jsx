@@ -47,4 +47,3 @@ function ShowFlights({ flights }) {
 }
 
 export default ShowFlights;
-

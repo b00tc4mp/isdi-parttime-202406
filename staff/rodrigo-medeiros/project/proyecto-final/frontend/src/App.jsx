@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn";
 import { Register } from "./pages";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyProfile from "./pages/MyProfile";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/myProfile" element={<MyProfile />} />
         </Routes>
       </div>
       <Footer className="mt-auto" />
