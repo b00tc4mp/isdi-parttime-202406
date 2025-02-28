@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-rain-day-1 {
                     fill: url(#Degradado_sin_nombre_49-4);
                 }
 
-                .cls-2 {
+                .light-rain-day-2 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-3 {
+                .light-rain-day-3 {
                     fill: url(#Degradado_sin_nombre_49-3);
                 }
 
-                .cls-4 {
+                .light-rain-day-4 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
 
-                .cls-5 {
+                .light-rain-day-5 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-6 {
+                .light-rain-day-6 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-7 {
+                .light-rain-day-7 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -66,13 +66,13 @@ export default function () {
                 <stop offset=".82" stopColor="#c1d1f1"/>
             </linearGradient>
         </defs>
-        <circle className="cls-7" cx="41.22" cy="58.33" r="14.49"/>
-        <circle className="cls-6" cx="58.37" cy="49.08" r="22.74"/>
-        <rect className="cls-4" x="40.35" y="85.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-        <rect className="cls-2" x="49.89" y="76.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-        <rect className="cls-3" x="68.04" y="76.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-        <rect className="cls-1" x="59.05" y="85.62" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-        <circle className="cls-5" cx="72.88" cy="54.67" r="18.15"/>
+        <circle className="light-rain-day-7" cx="41.22" cy="58.33" r="14.49"/>
+        <circle className="light-rain-day-6" cx="58.37" cy="49.08" r="22.74"/>
+        <rect className="light-rain-day-4" x="40.35" y="85.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+        <rect className="light-rain-day-2" x="49.89" y="76.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+        <rect className="light-rain-day-3" x="68.04" y="76.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+        <rect className="light-rain-day-1" x="59.05" y="85.62" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+        <circle className="light-rain-day-5" cx="72.88" cy="54.67" r="18.15"/>
         </svg>
     )
 }

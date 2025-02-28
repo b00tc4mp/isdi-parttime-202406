@@ -8,27 +8,27 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .fog-night-1 {
                     fill: url(#Degradado_sin_nombre_105);
                 }
 
-                .cls-2 {
+                .fog-night-2 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-3 {
+                .fog-night-3 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-4 {
+                .fog-night-4 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-5 {
+                .fog-night-5 {
                     fill: url(#Degradado_sin_nombre_105-3);
                 }
 
-                .cls-6 {
+                .fog-night-6 {
                     fill: url(#Degradado_sin_nombre_105-2);
                 }
                 `}
@@ -65,14 +65,14 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_105-3" data-name="Degradado sin nombre 105" x1="-528.47" y1="-467.84" x2="-533.31" y2="-467.84" gradientTransform="translate(588.93 556)" href="#Degradado_sin_nombre_105"/>
         </defs>
         <g>
-            <path className="cls-2" d="M52.58,65.12c-4.9,6.02-13.93,7.07-20.16,2.33-6.24-4.73-7.32-13.45-2.42-19.47,4.9-6.02,13.93-7.07,20.16-2.33s7.32,13.45,2.42,19.47Z"/>
-            <path className="cls-3" d="M80.04,56.48c-4.32,11.27-17.28,17.02-28.95,12.85-11.67-4.17-17.63-16.68-13.31-27.95s17.28-17.02,28.95-12.85c11.67,4.17,17.63,16.68,13.31,27.95Z"/>
-            <ellipse className="cls-4" cx="72.84" cy="55.3" rx="17.98" ry="17.36"/>
+            <path className="fog-night-2" d="M52.58,65.12c-4.9,6.02-13.93,7.07-20.16,2.33-6.24-4.73-7.32-13.45-2.42-19.47,4.9-6.02,13.93-7.07,20.16-2.33s7.32,13.45,2.42,19.47Z"/>
+            <path className="fog-night-3" d="M80.04,56.48c-4.32,11.27-17.28,17.02-28.95,12.85-11.67-4.17-17.63-16.68-13.31-27.95s17.28-17.02,28.95-12.85c11.67,4.17,17.63,16.68,13.31,27.95Z"/>
+            <ellipse className="fog-night-4" cx="72.84" cy="55.3" rx="17.98" ry="17.36"/>
         </g>
         <g>
-            <rect className="cls-1" x="73.63" y="74.13" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-2.9 155) rotate(-90)"/>
-            <rect className="cls-6" x="48.62" y="62.92" width="4.84" height="32.06" rx="2.42" ry="2.42" transform="translate(-27.91 129.99) rotate(-90)"/>
-            <rect className="cls-5" x="55.63" y="65.22" width="4.84" height="45.87" rx="2.42" ry="2.42" transform="translate(-30.11 146.2) rotate(-90)"/>
+            <rect className="fog-night-1" x="73.63" y="74.13" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-2.9 155) rotate(-90)"/>
+            <rect className="fog-night-6" x="48.62" y="62.92" width="4.84" height="32.06" rx="2.42" ry="2.42" transform="translate(-27.91 129.99) rotate(-90)"/>
+            <rect className="fog-night-5" x="55.63" y="65.22" width="4.84" height="45.87" rx="2.42" ry="2.42" transform="translate(-30.11 146.2) rotate(-90)"/>
         </g>
         </svg>
     )

@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .thunderstorm-day1 {
                     fill: url(#Degradado_sin_nombre_237);
                 }
 
-                .cls-2 {
+                .thunderstorm-day2 {
                     fill: url(#Degradado_sin_nombre_298);
                 }
 
-                .cls-3 {
+                .thunderstorm-day3 {
                     fill: url(#Degradado_sin_nombre_238);
                 }
 
-                .cls-4 {
+                .thunderstorm-day4 {
                     fill: url(#Degradado_sin_nombre_317);
                 }
 
-                .cls-5 {
+                .thunderstorm-day5 {
                     fill: url(#Degradado_sin_nombre_237-2);
                 }
 
-                .cls-6 {
+                .thunderstorm-day6 {
                     fill: url(#Degradado_sin_nombre_298-3);
                 }
 
-                .cls-7 {
+                .thunderstorm-day7 {
                     fill: url(#Degradado_sin_nombre_298-2);
                 }
                 `}
@@ -73,14 +73,14 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_298-3" data-name="Degradado sin nombre 298" x1="55.88" y1="55.43" x2="77.45" y2="77" gradientTransform="matrix(1,0,0,1,0,0)" href="#Degradado_sin_nombre_298"/>
         </defs>
         <g>
-            <path className="cls-1" d="M67.06,48.45c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13c3.19-3.75,9.07-4.4,13.13-1.45s4.77,8.38,1.57,12.13Z"/>
-            <path className="cls-3" d="M84.94,43.07c-2.81,7.02-11.25,10.61-18.86,8.01s-11.48-10.4-8.67-17.42c2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
-            <ellipse className="cls-5" cx="80.25" cy="42.33" rx="11.71" ry="10.81"/>
+            <path className="thunderstorm-day1" d="M67.06,48.45c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13c3.19-3.75,9.07-4.4,13.13-1.45s4.77,8.38,1.57,12.13Z"/>
+            <path className="thunderstorm-day3" d="M84.94,43.07c-2.81,7.02-11.25,10.61-18.86,8.01s-11.48-10.4-8.67-17.42c2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
+            <ellipse className="thunderstorm-day5" cx="80.25" cy="42.33" rx="11.71" ry="10.81"/>
         </g>
-        <path className="cls-2" d="M48.63,74.39c-4.36,5.01-12.4,5.88-17.96,1.94-5.55-3.94-6.52-11.19-2.15-16.2,4.36-5.01,12.4-5.88,17.96-1.94,5.55,3.94,6.52,11.19,2.15,16.2Z"/>
-        <path className="cls-7" d="M73.08,67.2c-3.85,9.38-15.39,14.17-25.78,10.7-10.39-3.47-15.7-13.89-11.85-23.27,3.85-9.38,15.39-14.17,25.78-10.7,10.39,3.47,15.7,13.89,11.85,23.27Z"/>
-        <polygon className="cls-4" points="45.82 68.36 41.14 82.54 45.82 82.54 45.82 92.94 54.94 77.44 50.26 77.44 54.94 68.36 45.82 68.36"/>
-        <ellipse className="cls-6" cx="66.67" cy="66.22" rx="16.01" ry="14.45"/>
+        <path className="thunderstorm-day2" d="M48.63,74.39c-4.36,5.01-12.4,5.88-17.96,1.94-5.55-3.94-6.52-11.19-2.15-16.2,4.36-5.01,12.4-5.88,17.96-1.94,5.55,3.94,6.52,11.19,2.15,16.2Z"/>
+        <path className="thunderstorm-day7" d="M73.08,67.2c-3.85,9.38-15.39,14.17-25.78,10.7-10.39-3.47-15.7-13.89-11.85-23.27,3.85-9.38,15.39-14.17,25.78-10.7,10.39,3.47,15.7,13.89,11.85,23.27Z"/>
+        <polygon className="thunderstorm-day4" points="45.82 68.36 41.14 82.54 45.82 82.54 45.82 92.94 54.94 77.44 50.26 77.44 54.94 68.36 45.82 68.36"/>
+        <ellipse className="thunderstorm-day6" cx="66.67" cy="66.22" rx="16.01" ry="14.45"/>
         </svg>
     )
 }

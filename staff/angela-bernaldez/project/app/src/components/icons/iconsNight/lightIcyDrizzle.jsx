@@ -8,35 +8,35 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-icy-drizzle-night-1 {
                     fill: url(#Degradado_sin_nombre_49-4);
                 }
 
-                .cls-2 {
+                .light-icy-drizzle-night-2 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-3 {
+                .light-icy-drizzle-night-3 {
                     fill: url(#Degradado_sin_nombre_49-3);
                 }
 
-                .cls-4 {
+                .light-icy-drizzle-night-4 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-5 {
+                .light-icy-drizzle-night-5 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-6 {
+                .light-icy-drizzle-night-6 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-7 {
+                .light-icy-drizzle-night-7 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
 
-                .cls-8 {
+                .light-icy-drizzle-night-8 {
                     fill: url(#Degradado_sin_nombre_72);
                 }
                 `}
@@ -88,18 +88,18 @@ export default function () {
             </linearGradient>
         </defs>
         <g>
-            <path className="cls-4" d="M53.18,65.81c-4.39,6.4-13.31,8.18-19.91,3.97s-8.39-12.81-3.99-19.21,13.31-8.18,19.91-3.97,8.39,12.81,3.99,19.21Z"/>
-            <path className="cls-5" d="M79.85,54.97c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
-            <ellipse className="cls-6" cx="72.57" cy="54.37" rx="17.98" ry="17.36" transform="translate(-4.19 6.09) rotate(-4.67)"/>
+            <path className="light-icy-drizzle-night-4" d="M53.18,65.81c-4.39,6.4-13.31,8.18-19.91,3.97s-8.39-12.81-3.99-19.21,13.31-8.18,19.91-3.97,8.39,12.81,3.99,19.21Z"/>
+            <path className="light-icy-drizzle-night-5" d="M79.85,54.97c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
+            <ellipse className="light-icy-drizzle-night-6" cx="72.57" cy="54.37" rx="17.98" ry="17.36" transform="translate(-4.19 6.09) rotate(-4.67)"/>
         </g>
         <g>
             <g>
-            <rect className="cls-7" x="33.11" y="84" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-2" x="41.65" y="75" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-3" x="55.8" y="75" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-1" x="49.81" y="84.55" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-icy-drizzle-night-7" x="33.11" y="84" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-icy-drizzle-night-2" x="41.65" y="75" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-icy-drizzle-night-3" x="55.8" y="75" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-icy-drizzle-night-1" x="49.81" y="84.55" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
             </g>
-            <path className="cls-8" d="M89.78,75.76l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
+            <path className="light-icy-drizzle-night-8" d="M89.78,75.76l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
         </g>
         </svg>
     )

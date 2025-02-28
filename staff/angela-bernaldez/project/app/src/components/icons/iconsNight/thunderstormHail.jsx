@@ -8,47 +8,47 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .thunderstorm-hail-night-1 {
                     fill: url(#Degradado_sin_nombre_324);
                 }
 
-                .cls-2 {
+                .thunderstorm-hail-night-2 {
                     fill: url(#Degradado_sin_nombre_317);
                 }
 
-                .cls-3 {
+                .thunderstorm-hail-night-3 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-4 {
+                .thunderstorm-hail-night-4 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-5 {
+                .thunderstorm-hail-night-5 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-6 {
+                .thunderstorm-hail-night-6 {
                     fill: url(#Degradado_sin_nombre_324-2);
                 }
 
-                .cls-7 {
+                .thunderstorm-hail-night-7 {
                     fill: url(#Degradado_sin_nombre_324-4);
                 }
 
-                .cls-8 {
+                .thunderstorm-hail-night-8 {
                     fill: url(#Degradado_sin_nombre_324-3);
                 }
 
-                .cls-9 {
+                .thunderstorm-hail-night-9 {
                     fill: url(#Degradado_sin_nombre_409-2);
                 }
 
-                .cls-10 {
+                .thunderstorm-hail-night-10 {
                     fill: url(#Degradado_sin_nombre_408-2);
                 }
 
-                .cls-11 {
+                .thunderstorm-hail-night-11 {
                     fill: url(#Degradado_sin_nombre_410-2);
                 }
                 `}
@@ -92,18 +92,18 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_324-4" data-name="Degradado sin nombre 324" x1="69.47" y1="76.02" x2="73.68" y2="71.81" href="#Degradado_sin_nombre_324"/>
         </defs>
         <g>
-            <path className="cls-3" d="M77.23,44.28c-2.45,2.88-6.96,3.38-10.08,1.12s-3.66-6.43-1.21-9.31c2.45-2.88,6.96-3.38,10.08-1.12s3.66,6.43,1.21,9.31Z"/>
-            <path className="cls-4" d="M90.95,40.15c-2.16,5.39-8.63,8.14-14.47,6.14s-8.81-7.97-6.65-13.36,8.63-8.14,14.47-6.14,8.81,7.97,6.65,13.36Z"/>
-            <ellipse className="cls-5" cx="87.35" cy="39.58" rx="8.98" ry="8.3"/>
+            <path className="thunderstorm-hail-night-3" d="M77.23,44.28c-2.45,2.88-6.96,3.38-10.08,1.12s-3.66-6.43-1.21-9.31c2.45-2.88,6.96-3.38,10.08-1.12s3.66,6.43,1.21,9.31Z"/>
+            <path className="thunderstorm-hail-night-4" d="M90.95,40.15c-2.16,5.39-8.63,8.14-14.47,6.14s-8.81-7.97-6.65-13.36,8.63-8.14,14.47-6.14,8.81,7.97,6.65,13.36Z"/>
+            <ellipse className="thunderstorm-hail-night-5" cx="87.35" cy="39.58" rx="8.98" ry="8.3"/>
         </g>
-        <path className="cls-10" d="M47.3,73.97c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
-        <path className="cls-9" d="M75.02,64.75c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
-        <polygon className="cls-2" points="43.28 67.03 38.6 81.21 43.28 81.21 43.28 91.61 52.4 76.11 47.72 76.11 52.4 67.03 43.28 67.03"/>
-        <circle className="cls-1" cx="30.94" cy="72.16" r="4.93"/>
-        <circle className="cls-6" cx="25.42" cy="86.95" r="2.33"/>
-        <ellipse className="cls-11" cx="67.75" cy="63.48" rx="18.15" ry="18.53"/>
-        <circle className="cls-8" cx="64.61" cy="84.21" r="4.93"/>
-        <circle className="cls-7" cx="71.58" cy="73.91" r="2.98"/>
+        <path className="thunderstorm-hail-night-10" d="M47.3,73.97c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
+        <path className="thunderstorm-hail-night-9" d="M75.02,64.75c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
+        <polygon className="thunderstorm-hail-night-2" points="43.28 67.03 38.6 81.21 43.28 81.21 43.28 91.61 52.4 76.11 47.72 76.11 52.4 67.03 43.28 67.03"/>
+        <circle className="thunderstorm-hail-night-1" cx="30.94" cy="72.16" r="4.93"/>
+        <circle className="thunderstorm-hail-night-6" cx="25.42" cy="86.95" r="2.33"/>
+        <ellipse className="thunderstorm-hail-night-11" cx="67.75" cy="63.48" rx="18.15" ry="18.53"/>
+        <circle className="thunderstorm-hail-night-8" cx="64.61" cy="84.21" r="4.93"/>
+        <circle className="thunderstorm-hail-night-7" cx="71.58" cy="73.91" r="2.98"/>
         </svg>
     )
 }

@@ -29,6 +29,7 @@ import MostlyClearIcon from './mostlyClear.jsx'
 import OvercastIcon from './overcast.jsx'
 import PartlyCloudyIcon from './partlyCloudy.jsx'
 import SnowGrainIcon from './snowGrain.jsx'
+import SunriseIcon from './sunrise.jsx'
 import ThunderstormIcon from './thunderstorm.jsx'
 import thunderstormHailIcon from './thunderstormHail.jsx'
 
@@ -52,6 +53,7 @@ const iconsDay = {
     OvercastIcon,
     PartlyCloudyIcon,
     SnowGrainIcon,
+    SunriseIcon,
     ThunderstormIcon,
     thunderstormHailIcon
 }

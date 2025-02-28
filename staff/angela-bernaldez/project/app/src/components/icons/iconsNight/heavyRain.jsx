@@ -8,35 +8,35 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .heavy-rain-night-1 {
                     fill: url(#Degradado_sin_nombre_118);
                 }
 
-                .cls-2 {
+                .heavy-rain-night-2 {
                     fill: url(#Degradado_sin_nombre_111);
                 }
 
-                .cls-3 {
+                .heavy-rain-night-3 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-4 {
+                .heavy-rain-night-4 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-5 {
+                .heavy-rain-night-5 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-6 {
+                .heavy-rain-night-6 {
                     fill: url(#Degradado_sin_nombre_111-2);
                 }
 
-                .cls-7 {
+                .heavy-rain-night-7 {
                     fill: url(#Degradado_sin_nombre_111-4);
                 }
 
-                .cls-8 {
+                .heavy-rain-night-8 {
                     fill: url(#Degradado_sin_nombre_111-3);
                 }
                 `}
@@ -87,16 +87,16 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_111-4" data-name="Degradado sin nombre 111" x1="65.47" y1="93.18" x2="65.47" y2="69.97" href="#Degradado_sin_nombre_111"/>
         </defs>
         <g>
-            <path className="cls-3" d="M48.66,72.17c-4.79,6.98-14.52,8.92-21.72,4.33-7.2-4.59-9.15-13.98-4.36-20.96,4.79-6.98,14.52-8.92,21.72-4.33,7.2,4.59,9.15,13.98,4.36,20.96Z"/>
-            <path className="cls-4" d="M77.76,60.34c-3.7,12.64-17.28,20.05-30.35,16.55-13.06-3.5-20.66-16.58-16.96-29.22,3.7-12.64,17.28-20.05,30.35-16.55,13.06,3.5,20.66,16.58,16.96,29.22Z"/>
-            <ellipse className="cls-5" cx="69.82" cy="59.69" rx="19.62" ry="18.94" transform="translate(-4.63 5.88) rotate(-4.67)"/>
+            <path className="heavy-rain-night-3" d="M48.66,72.17c-4.79,6.98-14.52,8.92-21.72,4.33-7.2-4.59-9.15-13.98-4.36-20.96,4.79-6.98,14.52-8.92,21.72-4.33,7.2,4.59,9.15,13.98,4.36,20.96Z"/>
+            <path className="heavy-rain-night-4" d="M77.76,60.34c-3.7,12.64-17.28,20.05-30.35,16.55-13.06-3.5-20.66-16.58-16.96-29.22,3.7-12.64,17.28-20.05,30.35-16.55,13.06,3.5,20.66,16.58,16.96,29.22Z"/>
+            <ellipse className="heavy-rain-night-5" cx="69.82" cy="59.69" rx="19.62" ry="18.94" transform="translate(-4.63 5.88) rotate(-4.67)"/>
         </g>
         <g>
-            <path className="cls-1" d="M75.26,41.53c-4.35-6.83-12.18-11.39-21.12-11.39-12.08,0-22.13,8.33-24.31,19.34-5.92,2.19-9.88,7.72-9.88,14.18,0,8.38,6.35,15.33,16.3,15.33,3.43,0,5.83-1.25,8.42-3.04,2.92,1.16,6.12,1.81,9.47,1.81,2.43,0,4.77-.34,6.98-.97,2.66,1.28,5.64,2.01,8.81,2.01,10.91,0,19.75-8.51,19.75-19,0-8.71-6.11-16.04-14.42-18.28Z"/>
-            <rect className="cls-2" x="35.88" y="74.52" width="4.84" height="23.15" rx="1.85" ry="1.85"/>
-            <rect className="cls-6" x="45.16" y="69.97" width="4.84" height="22.92" rx="2.34" ry="2.34"/>
-            <rect className="cls-8" x="54.38" y="74.52" width="4.84" height="23.15" rx="2.34" ry="2.34"/>
-            <rect className="cls-7" x="63.05" y="69.97" width="4.84" height="23.21" rx="2.34" ry="2.34"/>
+            <path className="heavy-rain-night-1" d="M75.26,41.53c-4.35-6.83-12.18-11.39-21.12-11.39-12.08,0-22.13,8.33-24.31,19.34-5.92,2.19-9.88,7.72-9.88,14.18,0,8.38,6.35,15.33,16.3,15.33,3.43,0,5.83-1.25,8.42-3.04,2.92,1.16,6.12,1.81,9.47,1.81,2.43,0,4.77-.34,6.98-.97,2.66,1.28,5.64,2.01,8.81,2.01,10.91,0,19.75-8.51,19.75-19,0-8.71-6.11-16.04-14.42-18.28Z"/>
+            <rect className="heavy-rain-night-2" x="35.88" y="74.52" width="4.84" height="23.15" rx="1.85" ry="1.85"/>
+            <rect className="heavy-rain-night-6" x="45.16" y="69.97" width="4.84" height="22.92" rx="2.34" ry="2.34"/>
+            <rect className="heavy-rain-night-8" x="54.38" y="74.52" width="4.84" height="23.15" rx="2.34" ry="2.34"/>
+            <rect className="heavy-rain-night-7" x="63.05" y="69.97" width="4.84" height="23.21" rx="2.34" ry="2.34"/>
         </g>
         </svg>
     )

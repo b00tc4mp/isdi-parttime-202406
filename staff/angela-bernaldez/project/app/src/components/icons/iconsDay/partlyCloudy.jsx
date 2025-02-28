@@ -8,51 +8,51 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .partly-cloudy-day-1 {
                     fill: url(#Degradado_sin_nombre_16-4);
                 }
 
-                .cls-2 {
+                .partly-cloudy-day-2 {
                     fill: url(#Degradado_sin_nombre_16-3);
                 }
 
-                .cls-3 {
+                .partly-cloudy-day-3 {
                     fill: url(#Degradado_sin_nombre_16-2);
                 }
 
-                .cls-4 {
+                .partly-cloudy-day-4 {
                     fill: url(#Degradado_sin_nombre_16-5);
                 }
 
-                .cls-5 {
+                .partly-cloudy-day-5 {
                     fill: url(#Degradado_sin_nombre_18-2);
                 }
 
-                .cls-6 {
+                .partly-cloudy-day-6 {
                     fill: url(#Degradado_sin_nombre_18-3);
                 }
 
-                .cls-7 {
+                .partly-cloudy-day-7 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-8 {
+                .partly-cloudy-day-8 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-9 {
+                .partly-cloudy-day-9 {
                     fill: url(#Degradado_sin_nombre_16);
                 }
 
-                .cls-10 {
+                .partly-cloudy-day-10 {
                     fill: url(#Degradado_sin_nombre_18);
                 }
 
-                .cls-11 {
+                .partly-cloudy-day-11 {
                     fill: url(#Degradado_sin_nombre_11);
                 }
 
-                .cls-12 {
+                .partly-cloudy-day-12 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -93,20 +93,20 @@ export default function () {
             </linearGradient>
         </defs>
         <g>
-            <circle className="cls-11" cx="65.3" cy="51.45" r="11.58"/>
-            <rect className="cls-9" x="61.46" y="25.45" width="7.8" height="10.89" rx="3.9" ry="3.9"/>
-            <rect className="cls-10" x="61.46" y="66.55" width="7.8" height="10.89" rx="3.9" ry="3.9"/>
-            <rect className="cls-5" x="82.01" y="46.06" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(137.42 -34.4) rotate(90)"/>
-            <rect className="cls-3" x="40.91" y="46.06" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(96.32 6.7) rotate(90)"/>
-            <rect className="cls-2" x="75.95" y="31.45" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(49.48 -45.66) rotate(45)"/>
-            <rect className="cls-1" x="46.89" y="60.51" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(61.51 -16.6) rotate(45)"/>
-            <rect className="cls-6" x="75.91" y="60.55" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(182.91 56.24) rotate(135)"/>
-            <rect className="cls-4" x="46.84" y="31.49" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(112.75 27.18) rotate(135)"/>
+            <circle className="partly-cloudy-day-11" cx="65.3" cy="51.45" r="11.58"/>
+            <rect className="partly-cloudy-day-9" x="61.46" y="25.45" width="7.8" height="10.89" rx="3.9" ry="3.9"/>
+            <rect className="partly-cloudy-day-10" x="61.46" y="66.55" width="7.8" height="10.89" rx="3.9" ry="3.9"/>
+            <rect className="partly-cloudy-day-5" x="82.01" y="46.06" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(137.42 -34.4) rotate(90)"/>
+            <rect className="partly-cloudy-day-3" x="40.91" y="46.06" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(96.32 6.7) rotate(90)"/>
+            <rect className="partly-cloudy-day-2" x="75.95" y="31.45" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(49.48 -45.66) rotate(45)"/>
+            <rect className="partly-cloudy-day-1" x="46.89" y="60.51" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(61.51 -16.6) rotate(45)"/>
+            <rect className="partly-cloudy-day-6" x="75.91" y="60.55" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(182.91 56.24) rotate(135)"/>
+            <rect className="partly-cloudy-day-4" x="46.84" y="31.49" width="7.8" height="10.89" rx="3.9" ry="3.9" transform="translate(112.75 27.18) rotate(135)"/>
         </g>
         <g>
-            <circle className="cls-12" cx="40.24" cy="78.45" r="13.85"/>
-            <circle className="cls-8" cx="56.63" cy="69.61" r="21.74"/>
-            <circle className="cls-7" cx="70.5" cy="74.95" r="17.34"/>
+            <circle className="partly-cloudy-day-12" cx="40.24" cy="78.45" r="13.85"/>
+            <circle className="partly-cloudy-day-8" cx="56.63" cy="69.61" r="21.74"/>
+            <circle className="partly-cloudy-day-7" cx="70.5" cy="74.95" r="17.34"/>
         </g>
         </svg>
     )

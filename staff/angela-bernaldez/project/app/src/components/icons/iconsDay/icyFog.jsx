@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .icy-fog-day-1 {
                     fill: url(#Degradado_sin_nombre_87-3);
                 }
 
-                .cls-2 {
+                .icy-fog-day-2 {
                     fill: url(#Degradado_sin_nombre_87-2);
                 }
 
-                .cls-3 {
+                .icy-fog-day-3 {
                     fill: url(#Degradado_sin_nombre_87);
                 }
 
-                .cls-4 {
+                .icy-fog-day-4 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-5 {
+                .icy-fog-day-5 {
                     fill: url(#Degradado_sin_nombre_72);
                 }
 
-                .cls-6 {
+                .icy-fog-day-6 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-7 {
+                .icy-fog-day-7 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -68,14 +68,14 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_87-3" data-name="Degradado sin nombre 87" x1="453.05" y1="-329.98" x2="457.89" y2="-329.98" gradientTransform="translate(-408.22 417.89)" href="#Degradado_sin_nombre_87"/>
         </defs>
         <g>
-            <circle className="cls-7" cx="41.22" cy="58.41" r="14.49"/>
-            <circle className="cls-6" cx="58.37" cy="50.16" r="22.74"/>
-            <circle className="cls-4" cx="72.88" cy="54.76" r="18.15"/>
+            <circle className="icy-fog-day-7" cx="41.22" cy="58.41" r="14.49"/>
+            <circle className="icy-fog-day-6" cx="58.37" cy="50.16" r="22.74"/>
+            <circle className="icy-fog-day-4" cx="72.88" cy="54.76" r="18.15"/>
         </g>
-        <path className="cls-5" d="M88.51,77.82l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
-        <rect className="cls-3" x="55.95" y="74.38" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-20.83 137.56) rotate(-90)"/>
-        <rect className="cls-2" x="38.23" y="69.87" width="4.84" height="18.65" rx="2.42" ry="2.42" transform="translate(-38.54 119.85) rotate(-90)"/>
-        <rect className="cls-1" x="44.83" y="71.98" width="4.84" height="31.85" rx="2.42" ry="2.42" transform="translate(-40.66 135.16) rotate(-90)"/>
+        <path className="icy-fog-day-5" d="M88.51,77.82l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
+        <rect className="icy-fog-day-3" x="55.95" y="74.38" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-20.83 137.56) rotate(-90)"/>
+        <rect className="icy-fog-day-2" x="38.23" y="69.87" width="4.84" height="18.65" rx="2.42" ry="2.42" transform="translate(-38.54 119.85) rotate(-90)"/>
+        <rect className="icy-fog-day-1" x="44.83" y="71.98" width="4.84" height="31.85" rx="2.42" ry="2.42" transform="translate(-40.66 135.16) rotate(-90)"/>
         </svg>
     )
 }

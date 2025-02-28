@@ -16,23 +16,36 @@ function Dashboard() {
     const fetchLocations = () => {
         return logic.getAllUserLocations()
             .then((_locations) => {
-                // need to update weather data for each location
                 const fifteenMinInMs = 15 * 60 * 1000
-                _locations.map((location) => {
-                    if (location.timeLastUpdated - Date.now() > fifteenMinInMs) {
-                        // need to update location weather data 
-                        console.log('need to update weather data')
+    
+                const updatePromises = _locations.map((location) => {
+                    if (Date.now() - new Date(location.timeLastUpdated).getTime() > fifteenMinInMs) {
+                        return logicWeather.retrieveWeatherData(location)
+                            .then((weatherData) => {
+                                return logicWeather.updateWeatherForLocation(location, weatherData)
+                            })
+                            .then((locationUpdated) => {
+                                return locationUpdated
+                            })
+                            .catch((error) => {
+                                console.log('Error updating location:', location, error)
+                                return location
+                            })
                     } else {
-                        console.log('there is no need to update weather data')
+                        console.log('No need to update weather data for:', location)
+                        return Promise.resolve(location)
                     }
                 })
-                setLocations(_locations)
-
+                return Promise.all(updatePromises)
+            })
+            .then((updatedLocations) => {
+                setLocations(updatedLocations)
             })
             .catch((error) => {
                 console.log('Error fetching locations:', error)
             })
     }
+    
 
     const fetchCurrentLocation = () => {
         return logicWeather.getLocationFromIp()
@@ -41,7 +54,6 @@ function Dashboard() {
                     .then(() => {
                         return logicWeather.retrieveWeatherData(currentLocation)
                         .then((weatherData) => {
-                            console.log(weatherData, 'THIS IS WEATHER DATA FROM THE FRONT END')
                             return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
                                 .then((currentLocation) => {
                                     setCurrentLocation(currentLocation)
@@ -87,7 +99,7 @@ function Dashboard() {
                     <div className='w-full h-full m-4'>
                         {locations.length > 0 ? (
                             locations.map((location, index) => (
-                            <LocationCard key={index} locationName={location.name} temperature={15} />
+                            <LocationCard key={index} locationData={location} />
                             ))
                         ) : (
                             <p>No locations found</p>

@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-rain-night-1 {
                     fill: url(#Degradado_sin_nombre_49-4);
                 }
 
-                .cls-2 {
+                .light-rain-night-2 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-3 {
+                .light-rain-night-3 {
                     fill: url(#Degradado_sin_nombre_49-3);
                 }
 
-                .cls-4 {
+                .light-rain-night-4 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-5 {
+                .light-rain-night-5 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-6 {
+                .light-rain-night-6 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-7 {
+                .light-rain-night-7 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
                 `}
@@ -76,15 +76,15 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_49-4" data-name="Degradado sin nombre 49" x1="61.46" y1="90.41" x2="61.46" y2="84.62" href="#Degradado_sin_nombre_49"/>
         </defs>
         <g>
-            <path className="cls-4" d="M53.35,65.75c-4.39,6.4-13.31,8.18-19.91,3.97-6.6-4.21-8.39-12.81-3.99-19.21,4.39-6.4,13.31-8.18,19.91-3.97,6.6,4.21,8.39,12.81,3.99,19.21Z"/>
-            <path className="cls-5" d="M80.01,54.91c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
-            <ellipse className="cls-6" cx="72.74" cy="54.31" rx="17.98" ry="17.36" transform="translate(-4.18 6.1) rotate(-4.67)"/>
+            <path className="light-rain-night-4" d="M53.35,65.75c-4.39,6.4-13.31,8.18-19.91,3.97-6.6-4.21-8.39-12.81-3.99-19.21,4.39-6.4,13.31-8.18,19.91-3.97,6.6,4.21,8.39,12.81,3.99,19.21Z"/>
+            <path className="light-rain-night-5" d="M80.01,54.91c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
+            <ellipse className="light-rain-night-6" cx="72.74" cy="54.31" rx="17.98" ry="17.36" transform="translate(-4.18 6.1) rotate(-4.67)"/>
         </g>
         <g>
-            <rect className="cls-7" x="40.34" y="84.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-2" x="49.88" y="75.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-3" x="68.03" y="75.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
-            <rect className="cls-1" x="59.04" y="84.62" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-rain-night-7" x="40.34" y="84.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-rain-night-2" x="49.88" y="75.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-rain-night-3" x="68.03" y="75.07" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
+            <rect className="light-rain-night-1" x="59.04" y="84.62" width="4.84" height="5.8" rx="2.42" ry="2.42"/>
         </g>
         </svg>
     )

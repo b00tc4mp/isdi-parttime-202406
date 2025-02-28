@@ -8,23 +8,23 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .heavy-drizzle-night-1 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-2 {
+                .heavy-drizzle-night-2 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-3 {
+                .heavy-drizzle-night-3 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-4 {
+                .heavy-drizzle-night-4 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-5 {
+                .heavy-drizzle-night-5 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
                 `}
@@ -65,13 +65,13 @@ export default function () {
             </radialGradient>
             <linearGradient id="Degradado_sin_nombre_49-2" data-name="Degradado sin nombre 49" x1="48.21" y1="90.55" x2="48.21" y2="76.68" href="#Degradado_sin_nombre_49"/>
         </defs>
-        <rect className="cls-5" x="68.27" y="67" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="heavy-drizzle-night-5" x="68.27" y="67" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
         <g>
-            <path className="cls-2" d="M53.35,65.61c-4.39,6.4-13.31,8.18-19.91,3.97-6.6-4.21-8.39-12.81-3.99-19.21,4.39-6.4,13.31-8.18,19.91-3.97s8.39,12.81,3.99,19.21Z"/>
-            <path className="cls-3" d="M80.01,54.77c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
-            <ellipse className="cls-4" cx="72.74" cy="54.18" rx="17.98" ry="17.36" transform="translate(-4.17 6.1) rotate(-4.67)"/>
+            <path className="heavy-drizzle-night-2" d="M53.35,65.61c-4.39,6.4-13.31,8.18-19.91,3.97-6.6-4.21-8.39-12.81-3.99-19.21,4.39-6.4,13.31-8.18,19.91-3.97s8.39,12.81,3.99,19.21Z"/>
+            <path className="heavy-drizzle-night-3" d="M80.01,54.77c-3.39,11.58-15.84,18.37-27.81,15.17-11.97-3.21-18.93-15.19-15.54-26.78s15.84-18.37,27.81-15.17c11.97,3.21,18.93,15.19,15.54,26.78Z"/>
+            <ellipse className="heavy-drizzle-night-4" cx="72.74" cy="54.18" rx="17.98" ry="17.36" transform="translate(-4.17 6.1) rotate(-4.67)"/>
         </g>
-        <rect className="cls-1" x="45.8" y="76.68" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="heavy-drizzle-night-1" x="45.8" y="76.68" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
         </svg>
     )
 }

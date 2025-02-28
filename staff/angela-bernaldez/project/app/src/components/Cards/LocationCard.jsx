@@ -1,18 +1,21 @@
-function LocationCard({locationName, temperature}) {
-    // I guess I´d need to pass as an argument of this function the location data
-    // location name, min and max temperature, etc.
+import getWeatherIcon from '../../logic-weather/getWeatherIcon'
 
-    // this component is to be called once for each favlocation for a specfic user
+function LocationCard({ locationData }) {
     return (
-        <div className="bg-slate-500 flex flex-row w-full h-[8rem] items-center justify-between mb-6">
-            <div className="w-2/3 pl-[1rem]">
-                <h1>{locationName}</h1>
+        <div className="bg-white cursor-pointer flex flex-row max-w-full h-[8rem] shadow-lg rounded-2xl items-center justify-between mb-6 mr-10 p-4">
+            {/* Contenedor principal de la información */}
+            <div className="flex flex-col w-2/3 pl-4">
+                <h1 className="text-xl font-semibold">{locationData.name}</h1>
+                <p className="text-gray-600 text-md">{locationData.current.temperature_2m}°C</p>
             </div>
-            <div className="w-1/3 text-right pr-[1rem]">
-                <p>{temperature}</p>
+
+            {/* Icono del clima */}
+            <div className="w-28 h-28 flex items-center justify-center mr-4">
+                {getWeatherIcon(locationData.current.weather_code)}
             </div>
         </div>
     )
 }
+
 
 export default LocationCard

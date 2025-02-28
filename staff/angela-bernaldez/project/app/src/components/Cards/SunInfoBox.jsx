@@ -1,3 +1,7 @@
+import iconsDay from '../icons/iconsDay'
+import iconsNight from '../icons/iconsNight'
+
+
 function secondsToHoursMinutes(seconds) {
     const hours = Math.floor(seconds / 3600)
     const minutes = Math.floor((seconds % 3600) / 60)
@@ -13,16 +17,21 @@ function getDateFromTimeString(timeString) {
 
 function SunInfoBox({ currentLocation }) {
 
-    console.log(currentLocation.dailyForecast)
     return (
         <div className="h-full w-full bg-white shadow-lg rounded-2xl p-6 m-4 mt-8">
             <div className="grid grid-cols-2 gap-6 h-full">
                 <div className="flex flex-col justify-center items-center bg-yellow-100 text-yellow-700 text-center rounded-lg p-6 h-32">
-                    🌅 Sunrise <br />
+                    🌅 Sunrise
+                    <div className="w-40 h-40">
+                        <iconsDay.SunriseIcon/>
+                    </div>
                     {getDateFromTimeString(currentLocation.dailyForecast.sunrise[0])}
                 </div>
                 <div className="flex flex-col justify-center items-center bg-orange-100 text-orange-700 text-center rounded-lg p-6 h-32">
-                    🌇 Sunset <br />
+                    🌇 Sunset 
+                    <div className="w-40 h-40">
+                        <iconsNight.SunsetIcon/>
+                    </div>
                     {getDateFromTimeString(currentLocation.dailyForecast.sunset[0])}
                 </div>
                 <div className="flex flex-col justify-center items-center bg-blue-100 text-blue-700 text-center rounded-lg p-6 h-32">

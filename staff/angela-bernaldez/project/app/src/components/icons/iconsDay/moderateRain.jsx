@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .moderate-rain-day-1 {
                     fill: url(#Degradado_sin_nombre_49-4);
                 }
 
-                .cls-2 {
+                .moderate-rain-day-2 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-3 {
+                .moderate-rain-day-3 {
                     fill: url(#Degradado_sin_nombre_49-3);
                 }
 
-                .cls-4 {
+                .moderate-rain-day-4 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
 
-                .cls-5 {
+                .moderate-rain-day-5 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-6 {
+                .moderate-rain-day-6 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-7 {
+                .moderate-rain-day-7 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -66,13 +66,13 @@ export default function () {
                 <stop offset=".82" stopColor="#c1d1f1"/>
             </linearGradient>
         </defs>
-        <circle className="cls-7" cx="41.22" cy="58.95" r="14.49"/>
-        <circle className="cls-6" cx="58.37" cy="49.7" r="22.74"/>
-        <rect className="cls-4" x="39.79" y="76.92" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <rect className="cls-2" x="67.29" y="65.51" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <rect className="cls-3" x="57.87" y="73.45" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <rect className="cls-1" x="48.96" y="69.39" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <circle className="cls-5" cx="72.88" cy="55.3" r="18.15"/>
+        <circle className="moderate-rain-day-7" cx="41.22" cy="58.95" r="14.49"/>
+        <circle className="moderate-rain-day-6" cx="58.37" cy="49.7" r="22.74"/>
+        <rect className="moderate-rain-day-4" x="39.79" y="76.92" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="moderate-rain-day-2" x="67.29" y="65.51" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="moderate-rain-day-3" x="57.87" y="73.45" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="moderate-rain-day-1" x="48.96" y="69.39" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <circle className="moderate-rain-day-5" cx="72.88" cy="55.3" r="18.15"/>
         </svg>
     )
 }

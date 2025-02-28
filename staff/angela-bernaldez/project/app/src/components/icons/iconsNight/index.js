@@ -17,6 +17,7 @@ import MostlyClearIcon from './mostlyClear.jsx'
 import OvercastIcon from './overcast.jsx'
 import PartlyCloudyIcon from './partlyCloudy.jsx'
 import SnowGrainIcon from './snowGrain.jsx'
+import SunsetIcon from './sunset.jsx'
 import ThunderstormIcon from './thunderstorm.jsx'
 import ThunderstormHailIcon from './thunderstormHail.jsx'
 
@@ -40,6 +41,7 @@ const iconsNight = {
     ModerateRainIcon,
     ModerateSnowIcon,
     SnowGrainIcon,
+    SunsetIcon,
     ThunderstormIcon,
     ThunderstormHailIcon
 }

@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .icy-fog-night-1 {
                     fill: url(#Degradado_sin_nombre_87-3);
                 }
 
-                .cls-2 {
+                .icy-fog-night-2 {
                     fill: url(#Degradado_sin_nombre_87-2);
                 }
 
-                .cls-3 {
+                .icy-fog-night-3 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-4 {
+                .icy-fog-night-4 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-5 {
+                .icy-fog-night-5 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-6 {
+                .icy-fog-night-6 {
                     fill: url(#Degradado_sin_nombre_87);
                 }
 
-                .cls-7 {
+                .icy-fog-night-7 {
                     fill: url(#Degradado_sin_nombre_72);
                 }
                 `}
@@ -77,15 +77,15 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_87-3" data-name="Degradado sin nombre 87" x1="-397.71" y1="-621.42" x2="-392.87" y2="-621.42" gradientTransform="translate(440.79 715.01)" href="#Degradado_sin_nombre_87"/>
         </defs>
         <g>
-            <path className="cls-3" d="M52.58,74.08c-4.9,6.02-13.93,7.07-20.16,2.33-6.24-4.73-7.32-13.45-2.42-19.47,4.9-6.02,13.93-7.07,20.16-2.33s7.32,13.45,2.42,19.47Z"/>
-            <path className="cls-4" d="M80.04,65.45c-4.32,11.27-17.28,17.02-28.95,12.85-11.67-4.17-17.63-16.68-13.31-27.95s17.28-17.02,28.95-12.85c11.67,4.17,17.63,16.68,13.31,27.95Z"/>
-            <ellipse className="cls-5" cx="72.84" cy="64.26" rx="17.98" ry="17.36"/>
+            <path className="icy-fog-night-3" d="M52.58,74.08c-4.9,6.02-13.93,7.07-20.16,2.33-6.24-4.73-7.32-13.45-2.42-19.47,4.9-6.02,13.93-7.07,20.16-2.33s7.32,13.45,2.42,19.47Z"/>
+            <path className="icy-fog-night-4" d="M80.04,65.45c-4.32,11.27-17.28,17.02-28.95,12.85-11.67-4.17-17.63-16.68-13.31-27.95s17.28-17.02,28.95-12.85c11.67,4.17,17.63,16.68,13.31,27.95Z"/>
+            <ellipse className="icy-fog-night-5" cx="72.84" cy="64.26" rx="17.98" ry="17.36"/>
         </g>
         <g>
-            <path className="cls-7" d="M86.75,83.5l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
-            <rect className="cls-6" x="54.19" y="80.06" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-28.27 141.49) rotate(-90)"/>
-            <rect className="cls-2" x="36.48" y="75.55" width="4.84" height="18.65" rx="2.42" ry="2.42" transform="translate(-45.98 123.77) rotate(-90)"/>
-            <rect className="cls-1" x="43.08" y="77.66" width="4.84" height="31.85" rx="2.42" ry="2.42" transform="translate(-48.09 139.09) rotate(-90)"/>
+            <path className="icy-fog-night-7" d="M86.75,83.5l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
+            <rect className="icy-fog-night-6" x="54.19" y="80.06" width="4.84" height="9.63" rx="2.42" ry="2.42" transform="translate(-28.27 141.49) rotate(-90)"/>
+            <rect className="icy-fog-night-2" x="36.48" y="75.55" width="4.84" height="18.65" rx="2.42" ry="2.42" transform="translate(-45.98 123.77) rotate(-90)"/>
+            <rect className="icy-fog-night-1" x="43.08" y="77.66" width="4.84" height="31.85" rx="2.42" ry="2.42" transform="translate(-48.09 139.09) rotate(-90)"/>
         </g>
         </svg>
     )

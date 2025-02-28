@@ -8,23 +8,23 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .heavy-drizzle-day-1 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-2 {
+                .heavy-drizzle-day-2 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
 
-                .cls-3 {
+                .heavy-drizzle-day-3 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-4 {
+                .heavy-drizzle-day-4 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-5 {
+                .heavy-drizzle-day-5 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -56,11 +56,11 @@ export default function () {
                 <stop offset=".82" stopColor="#c1d1f1"/>
             </linearGradient>
         </defs>
-        <circle className="cls-5" cx="41.22" cy="58.14" r="14.49"/>
-        <circle className="cls-4" cx="58.37" cy="48.89" r="22.74"/>
-        <rect className="cls-2" x="45.56" y="77.73" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <rect className="cls-1" x="68.04" y="68.06" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
-        <circle className="cls-3" cx="72.88" cy="54.48" r="18.15"/>
+        <circle className="heavy-drizzle-day-5" cx="41.22" cy="58.14" r="14.49"/>
+        <circle className="heavy-drizzle-day-4" cx="58.37" cy="48.89" r="22.74"/>
+        <rect className="heavy-drizzle-day-2" x="45.56" y="77.73" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <rect className="heavy-drizzle-day-1" x="68.04" y="68.06" width="4.84" height="13.87" rx="2.42" ry="2.42"/>
+        <circle className="heavy-drizzle-day-3" cx="72.88" cy="54.48" r="18.15"/>
         </svg>
     )
 }

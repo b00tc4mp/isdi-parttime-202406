@@ -6,7 +6,7 @@ const updateWeatherForLocation = (locationData, weatherData) => {
     const token = sessionStorage.getItem("token")
 
     return fetch(`${import.meta.env.VITE_API_URL}users/weather-data/`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`

@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-drizzle-day-1 {
                     fill: url(#Degradado_sin_nombre_324);
                 }
 
-                .cls-2 {
+                .light-drizzle-day-2 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-3 {
+                .light-drizzle-day-3 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-4 {
+                .light-drizzle-day-4 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
 
-                .cls-5 {
+                .light-drizzle-day-5 {
                     fill: url(#Degradado_sin_nombre_324-2);
                 }
 
-                .cls-6 {
+                .light-drizzle-day-6 {
                     fill: url(#Degradado_sin_nombre_324-4);
                 }
 
-                .cls-7 {
+                .light-drizzle-day-7 {
                     fill: url(#Degradado_sin_nombre_324-3);
                 }
                 `}
@@ -60,17 +60,17 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_324-4" data-name="Degradado sin nombre 324" x1="114.03" y1="92.51" x2="118.24" y2="88.3" gradientTransform="translate(182.04 176.18) rotate(-180)" href="#Degradado_sin_nombre_324"/>
         </defs>
         <g>
-            <circle className="cls-4" cx="41.22" cy="60.99" r="14.49"/>
-            <circle className="cls-3" cx="58.37" cy="51.74" r="22.74"/>
-            <circle className="cls-2" cx="72.88" cy="57.33" r="18.15"/>
+            <circle className="light-drizzle-day-4" cx="41.22" cy="60.99" r="14.49"/>
+            <circle className="light-drizzle-day-3" cx="58.37" cy="51.74" r="22.74"/>
+            <circle className="light-drizzle-day-2" cx="72.88" cy="57.33" r="18.15"/>
         </g>
         <g>
-            <circle className="cls-1" cx="43.09" cy="75.28" r="4.93"/>
-            <circle className="cls-5" cx="50.06" cy="64.98" r="2.98"/>
+            <circle className="light-drizzle-day-1" cx="43.09" cy="75.28" r="4.93"/>
+            <circle className="light-drizzle-day-5" cx="50.06" cy="64.98" r="2.98"/>
         </g>
         <g>
-            <circle className="cls-7" cx="72.88" cy="75.48" r="4.93"/>
-            <circle className="cls-6" cx="65.91" cy="85.78" r="2.98"/>
+            <circle className="light-drizzle-day-7" cx="72.88" cy="75.48" r="4.93"/>
+            <circle className="light-drizzle-day-6" cx="65.91" cy="85.78" r="2.98"/>
         </g>
         </svg>
     )

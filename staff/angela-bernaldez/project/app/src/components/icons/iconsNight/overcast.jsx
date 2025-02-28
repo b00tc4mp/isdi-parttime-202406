@@ -8,15 +8,15 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .overcast-night-1 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-2 {
+                .overcast-night-2 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-3 {
+                .overcast-night-3 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
                 `}
@@ -45,9 +45,9 @@ export default function () {
                 <stop offset=".94" stopColor="#061d48"/>
             </radialGradient>
         </defs>
-        <path className="cls-1" d="M52.52,75.1c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
-        <path className="cls-2" d="M80.24,65.89c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
-        <ellipse className="cls-3" cx="72.97" cy="64.62" rx="18.15" ry="18.53"/>
+        <path className="overcast-night-1" d="M52.52,75.1c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
+        <path className="overcast-night-2" d="M80.24,65.89c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
+        <ellipse className="overcast-night-3" cx="72.97" cy="64.62" rx="18.15" ry="18.53"/>
         </svg>
     )
 }

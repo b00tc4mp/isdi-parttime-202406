@@ -56,7 +56,7 @@ function LocationSearchBox({ setStamp }) {
     }
 
     return (
-        <div className="w-full relative max-w-[800px]"> 
+        <div className="w-full relative self-end max-w-[800px]"> 
             <label className="input input-bordered flex items-center gap-2">
                 <input 
                     type="text" 

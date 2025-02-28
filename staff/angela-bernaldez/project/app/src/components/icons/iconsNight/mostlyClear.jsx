@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .mostly-clear-night-1 {
                     fill: url(#Degradado_sin_nombre_393);
                 }
 
-                .cls-2 {
+                .mostly-clear-night-2 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-3 {
+                .mostly-clear-night-3 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-4 {
+                .mostly-clear-night-4 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-5 {
+                .mostly-clear-night-5 {
                     fill: url(#Degradado_sin_nombre_409-2);
                 }
 
-                .cls-6 {
+                .mostly-clear-night-6 {
                     fill: url(#Degradado_sin_nombre_408-2);
                 }
 
-                .cls-7 {
+                .mostly-clear-night-7 {
                     fill: url(#Degradado_sin_nombre_410-2);
                 }
                 `}
@@ -71,13 +71,13 @@ export default function () {
             <radialGradient id="Degradado_sin_nombre_409-2" data-name="Degradado sin nombre 409" cx="63.58" cy="51.55" fx="63.58" fy="51.55" r="40.67" href="#Degradado_sin_nombre_409"/>
             <radialGradient id="Degradado_sin_nombre_410-2" data-name="Degradado sin nombre 410" cx="73.58" cy="65.08" fx="73.58" fy="65.08" r="36.71" gradientTransform="translate(169.97 72.53) rotate(143.97) scale(1 .96)" href="#Degradado_sin_nombre_410"/>
         </defs>
-        <path className="cls-2" d="M69.78,52.78c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13,9.07-4.4,13.13-1.45c4.06,2.95,4.77,8.38,1.57,12.13Z"/>
-        <path className="cls-3" d="M87.66,47.4c-2.81,7.02-11.25,10.61-18.86,8.01-7.6-2.6-11.48-10.4-8.67-17.42,2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
-        <ellipse className="cls-4" cx="82.97" cy="46.66" rx="11.71" ry="10.81"/>
-        <path className="cls-1" d="M82.84,65.69c-15.76,0-28.54-12.78-28.54-28.54,0-3.99.82-7.78,2.3-11.23-11.07,3.93-19,14.48-19,26.9,0,15.76,12.78,28.54,28.54,28.54,11.77,0,21.88-7.13,26.24-17.31-2.98,1.06-6.19,1.64-9.54,1.64Z"/>
-        <path className="cls-6" d="M39.78,87.12c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13,9.07-4.4,13.13-1.45c4.06,2.95,4.77,8.38,1.57,12.13Z"/>
-        <path className="cls-5" d="M57.66,81.75c-2.81,7.02-11.25,10.61-18.86,8.01-7.6-2.6-11.48-10.4-8.67-17.42,2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
-        <ellipse className="cls-7" cx="52.97" cy="81" rx="11.71" ry="10.81"/>
+        <path className="mostly-clear-night-2" d="M69.78,52.78c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13,9.07-4.4,13.13-1.45c4.06,2.95,4.77,8.38,1.57,12.13Z"/>
+        <path className="mostly-clear-night-3" d="M87.66,47.4c-2.81,7.02-11.25,10.61-18.86,8.01-7.6-2.6-11.48-10.4-8.67-17.42,2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
+        <ellipse className="mostly-clear-night-4" cx="82.97" cy="46.66" rx="11.71" ry="10.81"/>
+        <path className="mostly-clear-night-1" d="M82.84,65.69c-15.76,0-28.54-12.78-28.54-28.54,0-3.99.82-7.78,2.3-11.23-11.07,3.93-19,14.48-19,26.9,0,15.76,12.78,28.54,28.54,28.54,11.77,0,21.88-7.13,26.24-17.31-2.98,1.06-6.19,1.64-9.54,1.64Z"/>
+        <path className="mostly-clear-night-6" d="M39.78,87.12c-3.19,3.75-9.07,4.4-13.13,1.45s-4.77-8.38-1.57-12.13,9.07-4.4,13.13-1.45c4.06,2.95,4.77,8.38,1.57,12.13Z"/>
+        <path className="mostly-clear-night-5" d="M57.66,81.75c-2.81,7.02-11.25,10.61-18.86,8.01-7.6-2.6-11.48-10.4-8.67-17.42,2.81-7.02,11.25-10.61,18.86-8.01s11.48,10.4,8.67,17.42Z"/>
+        <ellipse className="mostly-clear-night-7" cx="52.97" cy="81" rx="11.71" ry="10.81"/>
         </svg>
     )
 }

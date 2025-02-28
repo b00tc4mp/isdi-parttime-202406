@@ -8,35 +8,35 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-icy-rain-day-1 {
                     fill: url(#Degradado_sin_nombre_49-4);
                 }
 
-                .cls-2 {
+                .light-icy-rain-day-2 {
                     fill: url(#Degradado_sin_nombre_49-2);
                 }
 
-                .cls-3 {
+                .light-icy-rain-day-3 {
                     fill: url(#Degradado_sin_nombre_49-3);
                 }
 
-                .cls-4 {
+                .light-icy-rain-day-4 {
                     fill: url(#Degradado_sin_nombre_49);
                 }
 
-                .cls-5 {
+                .light-icy-rain-day-5 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-6 {
+                .light-icy-rain-day-6 {
                     fill: url(#Degradado_sin_nombre_72);
                 }
 
-                .cls-7 {
+                .light-icy-rain-day-7 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-8 {
+                .light-icy-rain-day-8 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -78,16 +78,16 @@ export default function () {
                 <stop offset="1" stopColor="#6dc2f6"/>
             </linearGradient>
         </defs>
-        <rect className="cls-4" x="33.74" y="81.55" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
-        <rect className="cls-2" x="61.02" y="68.17" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
-        <rect className="cls-3" x="51.88" y="76.71" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
-        <rect className="cls-1" x="42.75" y="71.87" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
+        <rect className="light-icy-rain-day-4" x="33.74" y="81.55" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
+        <rect className="light-icy-rain-day-2" x="61.02" y="68.17" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
+        <rect className="light-icy-rain-day-3" x="51.88" y="76.71" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
+        <rect className="light-icy-rain-day-1" x="42.75" y="71.87" width="4.84" height="9.68" rx="2.42" ry="2.42"/>
         <g>
-            <circle className="cls-8" cx="41.22" cy="58.52" r="14.49"/>
-            <circle className="cls-7" cx="58.37" cy="49.27" r="22.74"/>
-            <circle className="cls-5" cx="72.88" cy="54.86" r="18.15"/>
+            <circle className="light-icy-rain-day-8" cx="41.22" cy="58.52" r="14.49"/>
+            <circle className="light-icy-rain-day-7" cx="58.37" cy="49.27" r="22.74"/>
+            <circle className="light-icy-rain-day-5" cx="72.88" cy="54.86" r="18.15"/>
         </g>
-        <path className="cls-6" d="M84.02,78.57l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
+        <path className="light-icy-rain-day-6" d="M84.02,78.57l-4.69-3.08,4.51-3.08c1.1-.75,1.38-2.26.63-3.36-.75-1.1-2.26-1.38-3.36-.63l-3.63,2.49v-4.47c0-1.33-1.09-2.42-2.42-2.42s-2.42,1.09-2.42,2.42v4.66l-3.9-2.56c-1.11-.73-2.62-.42-3.35.7h0c-.73,1.11-.42,2.62.7,3.35l4.56,2.99-4.63,3.17c-1.1.75-1.38,2.26-.63,3.36.75,1.1,2.26,1.38,3.36.63l3.89-2.66v4.65c0,1.33,1.09,2.42,2.42,2.42s2.42-1.09,2.42-2.42v-4.66l3.9,2.56c1.11.73,2.62.42,3.35-.7.73-1.11.42-2.62-.7-3.35Z"/>
         </svg>
     )
 }

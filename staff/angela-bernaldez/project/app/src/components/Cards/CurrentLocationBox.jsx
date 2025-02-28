@@ -72,6 +72,4 @@ function CurrentLocationBox({ currentLocation }) {
 }
 
 
-
-
 export default CurrentLocationBox

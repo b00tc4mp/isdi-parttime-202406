@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .light-drizzle-night-1 {
                     fill: url(#Degradado_sin_nombre_324);
                 }
 
-                .cls-2 {
+                .light-drizzle-night-2 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-3 {
+                .light-drizzle-night-3 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-4 {
+                .light-drizzle-night-4 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-5 {
+                .light-drizzle-night-5 {
                     fill: url(#Degradado_sin_nombre_324-2);
                 }
 
-                .cls-6 {
+                .light-drizzle-night-6 {
                     fill: url(#Degradado_sin_nombre_324-4);
                 }
 
-                .cls-7 {
+                .light-drizzle-night-7 {
                     fill: url(#Degradado_sin_nombre_324-3);
                 }
                 `}
@@ -69,18 +69,18 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_324-4" data-name="Degradado sin nombre 324" x1="-457.08" y1="-1055.83" x2="-452.87" y2="-1060.04" gradientTransform="translate(-387.89 -968.65) rotate(-180)" href="#Degradado_sin_nombre_324"/>
         </defs>
         <g>
-            <path className="cls-2" d="M52.52,75.1c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
-            <path className="cls-3" d="M80.24,65.89c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
-            <ellipse className="cls-4" cx="72.97" cy="64.62" rx="18.15" ry="18.53"/>
+            <path className="light-drizzle-night-2" d="M52.52,75.1c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
+            <path className="light-drizzle-night-3" d="M80.24,65.89c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
+            <ellipse className="light-drizzle-night-4" cx="72.97" cy="64.62" rx="18.15" ry="18.53"/>
         </g>
         <g>
             <g>
-            <circle className="cls-1" cx="44.26" cy="78.79" r="4.93"/>
-            <circle className="cls-5" cx="51.23" cy="68.5" r="2.98"/>
+            <circle className="light-drizzle-night-1" cx="44.26" cy="78.79" r="4.93"/>
+            <circle className="light-drizzle-night-5" cx="51.23" cy="68.5" r="2.98"/>
             </g>
             <g>
-            <circle className="cls-7" cx="74.05" cy="78.99" r="4.93"/>
-            <circle className="cls-6" cx="67.08" cy="89.29" r="2.98"/>
+            <circle className="light-drizzle-night-7" cx="74.05" cy="78.99" r="4.93"/>
+            <circle className="light-drizzle-night-6" cx="67.08" cy="89.29" r="2.98"/>
             </g>
         </g>
         </svg>

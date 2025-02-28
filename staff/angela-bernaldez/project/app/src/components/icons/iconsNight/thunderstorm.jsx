@@ -8,31 +8,31 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .thunderstorm-night-1 {
                     fill: url(#Degradado_sin_nombre_317);
                 }
 
-                .cls-2 {
+                .thunderstorm-night-2 {
                     fill: url(#Degradado_sin_nombre_408);
                 }
 
-                .cls-3 {
+                .thunderstorm-night-3 {
                     fill: url(#Degradado_sin_nombre_409);
                 }
 
-                .cls-4 {
+                .thunderstorm-night-4 {
                     fill: url(#Degradado_sin_nombre_410);
                 }
 
-                .cls-5 {
+                .thunderstorm-night-5 {
                     fill: url(#Degradado_sin_nombre_409-2);
                 }
 
-                .cls-6 {
+                .thunderstorm-night-6 {
                     fill: url(#Degradado_sin_nombre_408-2);
                 }
 
-                .cls-7 {
+                .thunderstorm-night-7 {
                     fill: url(#Degradado_sin_nombre_410-2);
                 }
                 `}
@@ -69,14 +69,14 @@ export default function () {
             <radialGradient id="Degradado_sin_nombre_410-2" data-name="Degradado sin nombre 410" cx="93.18" cy="35.84" fx="93.18" fy="35.84" r="62.9" gradientTransform="translate(186.95 8.96) rotate(141.2) scale(.94 .93) skewX(-5.4)" href="#Degradado_sin_nombre_410"/>
         </defs>
         <g>
-            <path className="cls-2" d="M76.52,44.05c-2.45,2.88-6.96,3.38-10.08,1.12s-3.66-6.43-1.21-9.31c2.45-2.88,6.96-3.38,10.08-1.12s3.66,6.43,1.21,9.31Z"/>
-            <path className="cls-3" d="M90.24,39.92c-2.16,5.39-8.63,8.14-14.47,6.14-5.83-1.99-8.81-7.97-6.65-13.36s8.63-8.14,14.47-6.14c5.83,1.99,8.81,7.97,6.65,13.36Z"/>
-            <ellipse className="cls-4" cx="86.64" cy="39.36" rx="8.98" ry="8.3"/>
+            <path className="thunderstorm-night-2" d="M76.52,44.05c-2.45,2.88-6.96,3.38-10.08,1.12s-3.66-6.43-1.21-9.31c2.45-2.88,6.96-3.38,10.08-1.12s3.66,6.43,1.21,9.31Z"/>
+            <path className="thunderstorm-night-3" d="M90.24,39.92c-2.16,5.39-8.63,8.14-14.47,6.14-5.83-1.99-8.81-7.97-6.65-13.36s8.63-8.14,14.47-6.14c5.83,1.99,8.81,7.97,6.65,13.36Z"/>
+            <ellipse className="thunderstorm-night-4" cx="86.64" cy="39.36" rx="8.98" ry="8.3"/>
         </g>
-        <path className="cls-6" d="M48.02,73.6c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
-        <path className="cls-5" d="M75.73,64.39c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
-        <polygon className="cls-1" points="46.51 67.26 41.82 81.44 46.51 81.44 46.51 91.84 55.63 76.33 50.94 76.33 55.63 67.26 46.51 67.26"/>
-        <ellipse className="cls-7" cx="68.46" cy="63.12" rx="18.15" ry="18.53"/>
+        <path className="thunderstorm-night-6" d="M48.02,73.6c-4.95,6.43-14.06,7.54-20.35,2.49s-7.39-14.35-2.44-20.78c4.95-6.43,14.06-7.54,20.35-2.49,6.29,5.05,7.39,14.35,2.44,20.78Z"/>
+        <path className="thunderstorm-night-5" d="M75.73,64.39c-4.36,12.03-17.44,18.17-29.23,13.72-11.78-4.45-17.8-17.81-13.44-29.84,4.36-12.03,17.44-18.17,29.23-13.72,11.78,4.45,17.8,17.81,13.44,29.84Z"/>
+        <polygon className="thunderstorm-night-1" points="46.51 67.26 41.82 81.44 46.51 81.44 46.51 91.84 55.63 76.33 50.94 76.33 55.63 67.26 46.51 67.26"/>
+        <ellipse className="thunderstorm-night-7" cx="68.46" cy="63.12" rx="18.15" ry="18.53"/>
         </svg>
     )
 }

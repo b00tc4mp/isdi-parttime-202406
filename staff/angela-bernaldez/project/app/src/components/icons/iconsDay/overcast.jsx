@@ -8,15 +8,15 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .overcast-day-1 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-2 {
+                .overcast-day-2 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-3 {
+                .overcast-day-3 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
                 `}
@@ -36,9 +36,9 @@ export default function () {
                 <stop offset=".82" stopColor="#c1d1f1"/>
             </linearGradient>
         </defs>
-        <circle className="cls-3" cx="41.22" cy="67.62" r="14.49"/>
-        <circle className="cls-2" cx="58.37" cy="58.38" r="22.74"/>
-        <circle className="cls-1" cx="72.88" cy="63.97" r="18.15"/>
+        <circle className="overcast-day-3" cx="41.22" cy="67.62" r="14.49"/>
+        <circle className="overcast-day-2" cx="58.37" cy="58.38" r="22.74"/>
+        <circle className="overcast-day-1" cx="72.88" cy="63.97" r="18.15"/>
         </svg>
     )
 }

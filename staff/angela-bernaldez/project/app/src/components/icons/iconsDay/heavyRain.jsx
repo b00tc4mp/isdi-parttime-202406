@@ -8,35 +8,35 @@ export default function () {
         <defs>
             <style>
                 {`
-                .cls-1 {
+                .heavy-rain-day-1 {
                     fill: url(#Degradado_sin_nombre_118);
                 }
 
-                .cls-2 {
+                .heavy-rain-day-2 {
                     fill: url(#Degradado_sin_nombre_111);
                 }
 
-                .cls-3 {
+                .heavy-rain-day-3 {
                     fill: url(#Degradado_sin_nombre_30);
                 }
 
-                .cls-4 {
+                .heavy-rain-day-4 {
                     fill: url(#Degradado_sin_nombre_40);
                 }
 
-                .cls-5 {
+                .heavy-rain-day-5 {
                     fill: url(#Degradado_sin_nombre_26);
                 }
 
-                .cls-6 {
+                .heavy-rain-day-6 {
                     fill: url(#Degradado_sin_nombre_111-2);
                 }
 
-                .cls-7 {
+                .heavy-rain-day-7 {
                     fill: url(#Degradado_sin_nombre_111-4);
                 }
 
-                .cls-8 {
+                .heavy-rain-day-8 {
                     fill: url(#Degradado_sin_nombre_111-3);
                 }
                 `}
@@ -78,15 +78,15 @@ export default function () {
             <linearGradient id="Degradado_sin_nombre_111-4" data-name="Degradado sin nombre 111" x1="69.71" y1="86.47" x2="69.71" y2="63.25" href="#Degradado_sin_nombre_111"/>
         </defs>
         <g>
-            <circle className="cls-5" cx="41.48" cy="58.78" r="14.49"/>
-            <circle className="cls-4" cx="58.62" cy="49.53" r="22.74"/>
-            <circle className="cls-3" cx="73.13" cy="55.13" r="18.15"/>
+            <circle className="heavy-rain-day-5" cx="41.48" cy="58.78" r="14.49"/>
+            <circle className="heavy-rain-day-4" cx="58.62" cy="49.53" r="22.74"/>
+            <circle className="heavy-rain-day-3" cx="73.13" cy="55.13" r="18.15"/>
         </g>
-        <path className="cls-1" d="M77.51,37.67c-4-6.52-11.19-10.88-19.4-10.88-11.1,0-20.34,7.95-22.33,18.47-5.44,2.09-9.3,7.35-9.3,13.52,0,8,6.49,14.49,14.49,14.49,3.15,0,6.06-1.02,8.44-2.73,2.68,1.11,5.62,1.73,8.7,1.73,2.23,0,4.38-.33,6.41-.92,2.44,1.22,5.18,1.92,8.1,1.92,10.02,0,18.15-8.12,18.15-18.15,0-8.32-5.61-15.32-13.25-17.46Z"/>
-        <rect className="cls-2" x="40.12" y="67.81" width="4.84" height="23.15" rx="1.85" ry="1.85"/>
-        <rect className="cls-6" x="49.4" y="63.25" width="4.84" height="22.92" rx="2.34" ry="2.34"/>
-        <rect className="cls-8" x="58.62" y="67.81" width="4.84" height="23.15" rx="2.34" ry="2.34"/>
-        <rect className="cls-7" x="67.29" y="63.25" width="4.84" height="23.21" rx="2.34" ry="2.34"/>
+        <path className="heavy-rain-day-1" d="M77.51,37.67c-4-6.52-11.19-10.88-19.4-10.88-11.1,0-20.34,7.95-22.33,18.47-5.44,2.09-9.3,7.35-9.3,13.52,0,8,6.49,14.49,14.49,14.49,3.15,0,6.06-1.02,8.44-2.73,2.68,1.11,5.62,1.73,8.7,1.73,2.23,0,4.38-.33,6.41-.92,2.44,1.22,5.18,1.92,8.1,1.92,10.02,0,18.15-8.12,18.15-18.15,0-8.32-5.61-15.32-13.25-17.46Z"/>
+        <rect className="heavy-rain-day-2" x="40.12" y="67.81" width="4.84" height="23.15" rx="1.85" ry="1.85"/>
+        <rect className="heavy-rain-day-6" x="49.4" y="63.25" width="4.84" height="22.92" rx="2.34" ry="2.34"/>
+        <rect className="heavy-rain-day-8" x="58.62" y="67.81" width="4.84" height="23.15" rx="2.34" ry="2.34"/>
+        <rect className="heavy-rain-day-7" x="67.29" y="63.25" width="4.84" height="23.21" rx="2.34" ry="2.34"/>
         </svg>
     )
 }
