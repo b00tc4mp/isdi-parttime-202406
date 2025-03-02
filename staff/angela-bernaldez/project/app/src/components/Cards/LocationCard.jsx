@@ -2,7 +2,7 @@ import getWeatherIcon from '../../logic-weather/getWeatherIcon'
 
 function LocationCard({ locationData }) {
     return (
-        <div className="bg-white cursor-pointer flex flex-row max-w-full h-[8rem] shadow-lg rounded-2xl items-center justify-between mb-6 mr-10 p-4">
+        <div className="bg-white cursor-pointer hover:shadow-xl hover:border hover:border-gray-300 flex flex-row max-w-full h-[8rem] shadow-lg rounded-2xl items-center justify-between mb-6 mr-10 p-4">
             {/* Contenedor principal de la información */}
             <div className="flex flex-col w-2/3 pl-4">
                 <h1 className="text-xl font-semibold">{locationData.name}</h1>

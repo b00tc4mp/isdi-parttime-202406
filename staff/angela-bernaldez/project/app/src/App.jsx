@@ -21,11 +21,5 @@ function App() {
 
 export default App
 
-// si voy a usar daisy para los themes, buscar uno que me guste 
-// coger los componentes ya hechos y modificarlos un poco y ya quedan muy bien
 
-// si elijo algun tem daisy, coger uno que tenga tonos no muy estridenteds (tonos azulitos me iria bien)
-// si figma parece complicado usar canvas
-
-// intentar jugar con figma para tener un diseño sobre el que construir el front 
 

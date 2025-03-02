@@ -1,11 +1,8 @@
-import LocationSearchBox from '../../components/Others/LocationSearchBox'
-import LocationCard from '../../components/Cards/LocationCard'
 import logic from '../../logic'
 import logicWeather from '../../logic-weather'
 import { useEffect, useState } from 'react'
-import CurrentLocationBox from '../../components/Cards/CurrentLocationBox'
 import Header from '../../components/Others/Header'
-import { SunInfoBox } from '../../components/Cards'
+import { CurrentLocationBox, LocationCard, SunInfoBox, WeeklyForecast } from '../../components/Cards'
 
 function Dashboard() {
  
@@ -110,13 +107,16 @@ function Dashboard() {
                 <div className="col-span-2 grid grid-cols-3">
                     {currentLocation ?
                     (<div>
-                        <SunInfoBox currentLocation={currentLocation}/>
+                        <SunInfoBox locationData={currentLocation}/>
                     </div>) :
                     (<p>Getting current location...</p>)
                     }
                     {/* Columna 2 (2/3 del ancho) */}
                     <div className="col-span-2">
-                        Columna 2 (2/3 del ancho)
+                        {currentLocation ? 
+                        (<div>
+                            <WeeklyForecast dailyForecast={currentLocation.dailyForecast}/>
+                        </div>) : null}
                     </div>
                 </div>
             </div>
