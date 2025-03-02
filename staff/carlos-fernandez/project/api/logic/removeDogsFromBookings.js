@@ -29,7 +29,6 @@ export default ({ bookingId, userId, dogIds }) => {
          llamado noDeletingDogs    
       */
 
-      console.log("DOG IDS--------", dogIds);
       const noDeletingDogs = booking.dogs.filter(
         (dog) => !dogIds.includes(dog.toString())
       );

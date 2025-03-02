@@ -1,17 +1,17 @@
 import logic from "../logic/index.js";
 
 export default (req, res, next) => {
-  const { dogs, startDate, endDate } = req.body;
+  const { dogIds, startDate, endDate } = req.body;
   const userId = req.id;
 
   try {
     const bookingData = {
       userId,
-      dogs,
+      dogs: dogIds,
       startDate,
       endDate,
     };
-
+    console.log(bookingData);
     logic
       .createBooking(bookingData)
       .then(() => res.status(201).send())
