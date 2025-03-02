@@ -1,5 +1,5 @@
 import React from "react";
-import deleteDog from "../../logic/deleteDog";
+import deleteDog from "../../logic/index";
 
 function PetCard({ pet, refreshPets }) {
   const handleDeleteDog = () => {

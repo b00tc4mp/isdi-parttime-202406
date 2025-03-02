@@ -1,3 +1,6 @@
+import createBooking from "./createBooking.js";
+//import deleteBooking from "./deleteBooking.js";
+import deleteDog from "./deleteDog.js";
 import getUser from "./getUser.js";
 import getUserDogs from "./getUserDogs.js";
 import isUserLoggedIn from "./isUserLoggedIn.js";
@@ -8,6 +11,9 @@ import updatePhoneNumber from "./updatePhoneNumber.js";
 import userAuth from "./userAuth.js";
 
 const logic = {
+  createBooking,
+  // deleteBooking,
+  deleteDog,
   getUser,
   getUserDogs,
   isUserLoggedIn,
