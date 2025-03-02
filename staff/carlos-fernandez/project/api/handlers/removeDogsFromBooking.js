@@ -1,13 +1,13 @@
 import logic from "../logic/index.js";
 
 export default (req, res, next) => {
-  const { bookingId } = req.body;
+  const { bookingId, dogIds } = req.body;
   const userId = req.id;
 
   try {
     logic
-      .deleteBooking({ bookingId, userId })
-      .then(() => res.status(201).send())
+      .removeDogsFromBookings({ bookingId, userId, dogIds })
+      .then(() => res.status(200).send())
       .catch((error) => next(error));
   } catch (error) {
     next(error);

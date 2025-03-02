@@ -4,8 +4,6 @@ import { Errors, Validator } from "common";
 const { Booking } = models;
 
 export default ({ bookingId, userId }) => {
-  console.log("LOGICA BOOKING ID ------", bookingId);
-  console.log("LOGICA USER ID ---------", userId);
   Validator.id(bookingId);
   Validator.id(userId);
 

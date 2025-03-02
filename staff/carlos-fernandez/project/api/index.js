@@ -54,6 +54,13 @@ try {
         handlers.updatePassword
       );
 
+      server.patch(
+        "/users/update-booking",
+        verifyToken,
+        jsonBodyParser,
+        handlers.removeDogsFromBooking
+      );
+
       server.delete(
         "/users/me/pets/delete-dog/:petId",
         verifyToken,
@@ -63,6 +70,7 @@ try {
       server.delete(
         "/users/delete-booking",
         verifyToken,
+        jsonBodyParser,
         handlers.deleteBooking
       );
 
