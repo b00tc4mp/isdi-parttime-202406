@@ -1,6 +1,6 @@
 import logicWeather from '../../logic-weather'
 
-function CurrentLocationBox({ currentLocation }) {
+function LocationBox({ currentLocation }) {
     const currentWeather = currentLocation.current
 
     return (
@@ -72,4 +72,4 @@ function CurrentLocationBox({ currentLocation }) {
 }
 
 
-export default CurrentLocationBox
+export default LocationBox
