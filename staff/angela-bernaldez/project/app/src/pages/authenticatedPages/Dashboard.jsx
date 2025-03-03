@@ -87,7 +87,7 @@ function Dashboard() {
             // only sets selectedLocation the first time
             setSelectedLocation(currentLocation)
         }
-    })
+    }, [currentLocation])
 
     return (
         <div className="h-screen">

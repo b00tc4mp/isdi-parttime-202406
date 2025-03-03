@@ -12,7 +12,7 @@ const getUser = () => {
     })
     .then((res) => {
         if (res.status === 200) return res.json()
-            .then(body => body)
+            .then(body => body.user)
                 return res.json()
                     .then(body => {
                         const constructor = Errors[body.name]
