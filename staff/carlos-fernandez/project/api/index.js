@@ -40,6 +40,8 @@ try {
 
       server.get("/users/me/mydogs", verifyToken, handlers.getUserDogs);
 
+      server.get("/users/me/mybookings", verifyToken, handlers.getUserBookings);
+
       server.patch(
         "/users/update-phone-number",
         verifyToken,
