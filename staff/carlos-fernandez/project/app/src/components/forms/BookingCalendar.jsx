@@ -1,0 +1,129 @@
+import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import getUserDogs from "../../logic/getUserDogs.js";
+import classNames from "classnames";
+
+export default function BookingCalendar({ className, onSubmit }) {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [selectedDogs, setSelectedDogs] = useState([]);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [userDogs, setUserDogs] = useState([]);
+
+  useEffect(() => {
+    const fetchUserDogs = async () => {
+      try {
+        const petsData = await getUserDogs();
+        setUserDogs(petsData);
+      } catch (error) {
+        console.log(error);
+        setError(error.message);
+      }
+    };
+    fetchUserDogs();
+  }, []);
+
+  console.log("Enviando reserva con:", { startDate, endDate, selectedDogs });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    if (!startDate || !endDate || selectedDogs.length === 0) {
+      setError("Selecciona fechas y al menos un perro.");
+      return;
+    }
+
+    try {
+      await onSubmit({
+        dogIds: selectedDogs,
+        startDate,
+        endDate,
+      });
+      setSuccess("Reserva creada con éxito");
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    }
+  };
+
+  return (
+    <div className="w-full">
+      <div
+        className={classNames(
+          " animate-expandShadow bg-customBackground max-w-96 h-auto overflow-y rounded-xl",
+          className
+        )}
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="p-4 bg-white shadow-lg flex flex-col items-center mb-40 rounded-xl"
+        >
+          <h2 className="text-xl font-bold mb-4 text-black">Haz tu reserva</h2>
+
+          <label className="block mb-2 text-black font-semibold">
+            Selecciona Fecha de Inicio:
+          </label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            wrapperClassName="datepicker-wrapper"
+          />
+
+          <label className="block mt-4 mb-2 text-black font-semibold">
+            Selecciona Fecha de Fin:
+          </label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
+            wrapperClassName="datepicker-wrapper"
+          />
+
+          <label className="block mt-4 mb-2 text-black font-semibold">
+            Selecciona tus perros:
+          </label>
+          <div className="flex flex-wrap gap-2 text-black">
+            {userDogs.map((dog) => (
+              <label
+                key={dog._id}
+                className="flex items-center space-x-2 text-black"
+              >
+                <input
+                  type="checkbox"
+                  value={dog._id}
+                  onChange={(e) => {
+                    const selected = e.target.checked
+                      ? [...selectedDogs, dog._id]
+                      : selectedDogs.filter((id) => id !== dog._id);
+                    setSelectedDogs(selected);
+                  }}
+                  className="text-black"
+                />
+                <span>{dog.dogName}</span>
+              </label>
+            ))}
+          </div>
+
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+
+          <button
+            type="submit"
+            className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+          >
+            Reservar
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

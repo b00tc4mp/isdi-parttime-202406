@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import RegisterPetForm from "../../components/forms/RegisterPetForm";
 import { useModalError } from "../../context/ModalContext";
 import registerPet from "../../logic/registerPet.js";

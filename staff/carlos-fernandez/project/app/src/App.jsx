@@ -22,7 +22,7 @@ function App() {
           <HeaderMobile onUserLoggedOut={() => setTokenUpdated(Date.now())} />
         </div>
       </div>
-      <div className="pt-[91.01px] lg:pt-[122px]">
+      <div className="pt-[91.02px] lg:pt-[122px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />

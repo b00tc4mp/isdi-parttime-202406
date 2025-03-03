@@ -7,28 +7,24 @@ body {
 }
 
 @layer components {
-  .datepicker {
-    @apply relative z-10;
+  .datepicker-wrapper {
+    @apply relative;
   }
-  .datepicker > div {
-    @apply !input !input-bordered !input-ghost !glass;
+  .datepicker-wrapper > div {
+    @apply !input !input-bordered text-black;
   }
-  .datepicker > div > input {
-    @apply !text-base !pl-[28px] !h-full !ring-0 !grow focus:!text-white placeholder:!text-white placeholder:!text-opacity-70;
+  /* Fechas del calendario */
+  .datepicker-wrapper > div > input {
+    @apply !text-base !h-full !ring-0 !grow focus:!text-black placeholder:!text-black placeholder:!text-opacity-70; /* Cambiado a text-black */
   }
-  .datepicker > div > button {
-    @apply !left-0 !w-10 !px-4 !text-white;
+  .datepicker-wrapper > div > button {
+    @apply !left-0 !w-10 !px-4 !text-black;
   }
-  .datepicker > div > div > div {
-    @apply !bg-neutral-800;
+  .datepicker-wrapper > div > div > div {
+    @apply !bg-neutral-800 !z-50;
   }
 }
 
-@layer base {
-  :root {
-    --header-heigth: 64px;
-  }
-}
 body.modal-open {
   background-color: rgb(243, 236, 217) !important;
 }
