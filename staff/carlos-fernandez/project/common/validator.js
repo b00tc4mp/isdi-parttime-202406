@@ -257,7 +257,9 @@ class Validator {
 
     const currentDate = new Date();
     if (value < currentDate) {
-      throw new Errors.BookingNotValidError("Start date cannot be in the past");
+      throw new Errors.BookingNotValidError(
+        "No puedes hacer reservas en fechas pasadas"
+      );
     }
 
     return true;
