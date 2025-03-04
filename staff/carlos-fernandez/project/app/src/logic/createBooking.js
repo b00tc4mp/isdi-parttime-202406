@@ -7,6 +7,8 @@ const createBooking = ({ dogIds, startDate, endDate }) => {
 
   const token = sessionStorage.getItem("token");
 
+  console.log("LO QUE ENVIA EL FETCH INICIO: ", startDate);
+  console.log("LO QUE ENVIA EL FETCH FIN: ", endDate);
   return fetch(`${import.meta.env.VITE_APP_API_URL}users/booking`, {
     method: "POST",
     headers: {

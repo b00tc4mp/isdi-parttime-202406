@@ -1,7 +1,7 @@
 export default () => {
   const token = sessionStorage.getItem("token");
 
-  return fetch(`${import.meta.env.VITE_APP_API_URL}users/me/mydogs`, {
+  return fetch(`${import.meta.env.VITE_APP_API_URL}users/me/mybookings`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -10,7 +10,7 @@ export default () => {
     .then((res) => {
       if (res.status === 200) {
         return res.json().then((data) => {
-          return data.dogs;
+          return data.bookings;
         });
       } else {
         return res.json().then((body) => {
@@ -21,7 +21,7 @@ export default () => {
       }
     })
     .catch((error) => {
-      console.error("Error fetching user dogs:", error.message);
+      console.error("Error fetching bookings:", error.message);
       throw error;
     });
 };

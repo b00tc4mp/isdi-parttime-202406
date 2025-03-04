@@ -30,8 +30,6 @@ function RegisterPetForm({ className, onSubmit }) {
       allergy: inputAllergy.value,
     };
 
-    console.log("Data being sent:", dogData); // Verificar datos enviados
-
     // Enviamos los datos
     try {
       onSubmit(dogData)

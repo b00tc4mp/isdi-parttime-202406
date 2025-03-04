@@ -3,49 +3,36 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import getUserDogs from "../../logic/getUserDogs.js";
 import classNames from "classnames";
+import { formatDate } from "../../utils/formatDateUtils.js";
 
 export default function BookingCalendar({ className, onSubmit }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [selectedDogs, setSelectedDogs] = useState([]);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState("");
   const [userDogs, setUserDogs] = useState([]);
 
   useEffect(() => {
-    const fetchUserDogs = async () => {
-      try {
-        const petsData = await getUserDogs();
-        setUserDogs(petsData);
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
-      }
-    };
-    fetchUserDogs();
+    getUserDogs()
+      .then(setUserDogs)
+      .catch((err) => setError(err.message));
   }, []);
-
-  console.log("Enviando reserva con:", { startDate, endDate, selectedDogs });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
 
     if (!startDate || !endDate || selectedDogs.length === 0) {
-      setError("Selecciona fechas y al menos un perro.");
+      setError("Selecciona fechas y al menos una mascota.");
       return;
     }
 
     try {
       await onSubmit({
         dogIds: selectedDogs,
-        startDate,
-        endDate,
+        startDate: formattedStartDate, // Se mantiene igual sin cambio de zona horaria
+        endDate: formattedEndDate,
       });
-      setSuccess("Reserva creada con éxito");
     } catch (err) {
-      console.log(err);
       setError(err.message);
     }
   };
@@ -101,12 +88,14 @@ export default function BookingCalendar({ className, onSubmit }) {
                 <input
                   type="checkbox"
                   value={dog._id}
-                  onChange={(e) => {
-                    const selected = e.target.checked
-                      ? [...selectedDogs, dog._id]
-                      : selectedDogs.filter((id) => id !== dog._id);
-                    setSelectedDogs(selected);
-                  }}
+                  onChange={(e) =>
+                    setSelectedDogs(
+                      (prev) =>
+                        e.target.checked
+                          ? [...prev, dog._id] //Checkbox marcado? añadimos id del perro
+                          : prev.filter((id) => id !== dog._id) // Checkbox DESMARCADO? eliminamos el id del perro
+                    )
+                  }
                   className="text-black"
                 />
                 <span>{dog.dogName}</span>
