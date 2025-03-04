@@ -171,7 +171,7 @@ describe("Create booking", () => {
       })
       .catch((error) => {
         expect(error.message).to.equal(
-          "Selected dogs are already booked in these dates"
+          "Las mascotas seleccionadas ya tienen reserva para estos dias"
         );
       });
   });

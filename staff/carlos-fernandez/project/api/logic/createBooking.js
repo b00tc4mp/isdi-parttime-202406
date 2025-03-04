@@ -119,7 +119,7 @@ export default ({ userId, dogs, startDate, endDate }) => {
       // Si no hay dias disponibles
       if (daysToBook.length === 0) {
         throw new Errors.BookingNotValidError(
-          "No puedes reservar estos dias para esta mascota"
+          "Las mascotas seleccionadas ya tienen reserva para estos dias"
         );
       }
 
@@ -138,6 +138,12 @@ export default ({ userId, dogs, startDate, endDate }) => {
         dogs: dogs,
         startDate: daysToBook[0],
         endDate: daysToBook[daysToBook.length - 1],
+      }).then((createdBooking) => {
+        return {
+          ...createdBooking.toObject(),
+          startDate: createdBooking.startDate.toLocaleDateString(),
+          endDate: createdBooking.endDate.toLocaleDateString(),
+        };
       });
     });
   });

@@ -1,7 +1,7 @@
 import { Validator, Errors } from "common";
 import models from "../data/models.js";
 
-const { User, Booking } = models;
+const { Booking } = models;
 
 export default (id) => {
   Validator.id(id);
@@ -12,7 +12,7 @@ export default (id) => {
     .populate("endDate")
     .lean()
     .then((bookings) => {
-      if (!bookings) throw new Errors.NotFoundError("Bookings not found");
+      if (!bookings || bookings.length === 0) return [];
       return bookings;
     })
     .catch((error) => {

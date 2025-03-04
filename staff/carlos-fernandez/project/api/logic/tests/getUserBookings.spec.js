@@ -59,8 +59,8 @@ describe("Get bookings associated with a user", () => {
     const savedBooking = await Booking.create(booking);
 
     //Obtenemos las reservas del usuario
-    const stringedId = savedUser._id.toString();
-    const bookings = await getUserBookings(stringedId);
+    const userId = savedUser._id.toString();
+    const bookings = await getUserBookings(userId);
 
     // Comprobaciones
     expect(bookings).to.be.an("array").that.is.not.empty;

@@ -5,13 +5,13 @@ export default (req, res, next) => {
   const userId = req.id;
 
   try {
+    console.log("REcibido en el handler", req.body);
     const bookingData = {
       userId,
       dogs: dogIds,
       startDate,
       endDate,
     };
-    console.log(bookingData);
     logic
       .createBooking(bookingData)
       .then(() => res.status(201).send())
