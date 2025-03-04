@@ -56,19 +56,15 @@ describe("Create booking", () => {
     const bookingData = {
       userId: userId,
       dogs: [dogId],
-      startDate: new Date(Date.UTC(2025, 2, 20)), //Los meses empiezan en 0 (enero=0, febrero=1...)
-      endDate: new Date(Date.UTC(2025, 2, 25)),
+      startDate: "2025-03-20",
+      endDate: "2025-03-25",
     };
 
     return createBooking(bookingData).then((booking) => {
       expect(booking.owner.toString()).to.equal(userId);
       expect(booking.dogs[0].toString()).to.equal(dogId);
-      expect(booking.startDate.toISOString().split("T")[0]).to.equal(
-        "2025-03-20"
-      );
-      expect(booking.endDate.toISOString().split("T")[0]).to.equal(
-        "2025-03-25"
-      );
+      expect(booking.startDate).to.equal("20/3/2025");
+      expect(booking.endDate).to.equal("25/3/2025");
     });
   });
 
@@ -77,8 +73,8 @@ describe("Create booking", () => {
     const bookingData = {
       userId: new mongoose.Types.ObjectId().toString(),
       dogs: [dogId],
-      startDate: new Date("2025-05-01"),
-      endDate: new Date("2025-05-07"),
+      startDate: "2025-05-01", // Formato YYYY-MM-DD
+      endDate: "2025-05-07", // Formato YYYY-MM-DD
     };
 
     return createBooking(bookingData)
@@ -96,8 +92,8 @@ describe("Create booking", () => {
     const bookingData = {
       userId: userId,
       dogs: [new mongoose.Types.ObjectId().toString()],
-      startDate: new Date("2025-05-01"),
-      endDate: new Date("2025-05-07"),
+      startDate: "2025-05-01",
+      endDate: "2025-05-07",
     };
 
     return createBooking(bookingData)
@@ -115,16 +111,15 @@ describe("Create booking", () => {
     const bookingData = {
       userId: userId,
       dogs: [dogId],
-      startDate: new Date("2025-05-01"),
-      endDate: new Date("2025-05-07"),
+      startDate: "2025-05-01",
+      endDate: "2025-05-07",
     };
 
-    // Simular que ya existen 50 reservas para la misma fecha
     const bookings = Array.from({ length: 50 }, () => ({
-      owner: new mongoose.Types.ObjectId(), // usuarios distintos
-      dogs: [new mongoose.Types.ObjectId()], // Perros distintos
-      startDate: new Date("2025-05-01"),
-      endDate: new Date("2025-05-07"),
+      owner: new mongoose.Types.ObjectId(),
+      dogs: [new mongoose.Types.ObjectId()],
+      startDate: "2025-05-01",
+      endDate: "2025-05-07",
     }));
 
     return Booking.insertMany(bookings).then(() => {
@@ -139,7 +134,7 @@ describe("Create booking", () => {
         })
         .catch((error) => {
           expect(error.message).to.equal(
-            `Booking limit exceeded on 2025-05-01`
+            "Las mascotas seleccionadas ya tienen reserva para estos dias"
           );
         });
     });
@@ -149,17 +144,17 @@ describe("Create booking", () => {
     const existingBooking = {
       owner: userId,
       dogs: [dogId],
-      startDate: new Date("2025-06-01"),
-      endDate: new Date("2025-06-07"),
+      startDate: "2025-06-01",
+      endDate: "2025-06-07",
     };
 
     return Booking.create(existingBooking)
       .then(() => {
         const newBooking = {
           userId: userId,
-          dogs: [dogId], // Mismo perro que en la reserva anterior
-          startDate: new Date("2025-06-01"), // Mismas fechas
-          endDate: new Date("2025-06-07"),
+          dogs: [dogId],
+          startDate: "2025-06-01",
+          endDate: "2025-06-07",
         };
 
         return createBooking(newBooking);

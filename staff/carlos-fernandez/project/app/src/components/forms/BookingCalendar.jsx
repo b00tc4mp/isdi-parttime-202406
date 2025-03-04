@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import getUserDogs from "../../logic/getUserDogs.js";
 import classNames from "classnames";
-import { formatDate } from "../../utils/formatDateUtils.js";
 
 export default function BookingCalendar({ className, onSubmit }) {
   const [startDate, setStartDate] = useState(null);
@@ -25,6 +24,12 @@ export default function BookingCalendar({ className, onSubmit }) {
       setError("Selecciona fechas y al menos una mascota.");
       return;
     }
+
+    const formattedStartDate = startDate.toLocaleDateString("en-CA"); // YYYY-MM-DD sin conversión UTC
+    const formattedEndDate = endDate.toLocaleDateString("en-CA");
+
+    console.log("FECHA INICIO ENVIADA:", formattedStartDate);
+    console.log("FECHA FIN ENVIADA:", formattedEndDate);
 
     try {
       await onSubmit({
