@@ -24,6 +24,11 @@ module.exports = {
       fontSize: {
         xxs: "8px",
       },
+      screens: {
+        "custom-2xl": "1230px",
+        "custom-2md": "940px",
+        "custom-2sm": "640px",
+      },
     },
     keyframes: {
       ...keyframes,
