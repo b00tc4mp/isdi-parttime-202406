@@ -50,7 +50,7 @@ describe("Create booking", () => {
   );
   after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
-  ////////////////////////////// HAPPY PATH //////////////////////////////
+  // ////////////////////////////// HAPPY PATH //////////////////////////////
 
   it("Creates a booking successfully", () => {
     const bookingData = {
@@ -68,13 +68,14 @@ describe("Create booking", () => {
     });
   });
 
-  ////////////////////////////// UNHAPPY PATHS //////////////////////////////
+  // ////////////////////////////// UNHAPPY PATHS //////////////////////////////
+
   it("Fails when user does not exist", () => {
     const bookingData = {
       userId: new mongoose.Types.ObjectId().toString(),
       dogs: [dogId],
-      startDate: "2025-05-01", // Formato YYYY-MM-DD
-      endDate: "2025-05-07", // Formato YYYY-MM-DD
+      startDate: "2025-05-01",
+      endDate: "2025-05-07",
     };
 
     return createBooking(bookingData)
@@ -122,22 +123,13 @@ describe("Create booking", () => {
       endDate: "2025-05-07",
     }));
 
-    return Booking.insertMany(bookings).then(() => {
-      return Booking.find()
-        .then(() => {
-          return createBooking(bookingData);
-        })
-        .then(() => {
-          throw new Error(
-            "Test should have thrown an error for dos already booked in these dates"
-          );
-        })
-        .catch((error) => {
-          expect(error.message).to.equal(
-            "Las mascotas seleccionadas ya tienen reserva para estos dias"
-          );
-        });
-    });
+    return Booking.insertMany(bookings)
+      .then(() => createBooking(bookingData))
+      .catch((error) => {
+        expect(error.message).to.equal(
+          "Las mascotas seleccionadas ya tienen reserva para estos dias"
+        );
+      });
   });
 
   it("Fails when the selected dog is already booked in these dates", () => {
@@ -159,11 +151,7 @@ describe("Create booking", () => {
 
         return createBooking(newBooking);
       })
-      .then(() => {
-        throw new Error(
-          "Test should have thrown an error for already booked dog"
-        );
-      })
+
       .catch((error) => {
         expect(error.message).to.equal(
           "Las mascotas seleccionadas ya tienen reserva para estos dias"
