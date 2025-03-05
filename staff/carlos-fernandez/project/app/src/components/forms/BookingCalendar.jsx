@@ -30,10 +30,11 @@ export default function BookingCalendar({ className, onSubmit }) {
 
     console.log("FECHA INICIO ENVIADA:", formattedStartDate);
     console.log("FECHA FIN ENVIADA:", formattedEndDate);
+    console.log("PERROS ENVIADOS", selectedDogs);
 
     try {
       await onSubmit({
-        dogIds: selectedDogs,
+        dogs: selectedDogs,
         startDate: formattedStartDate, // Se mantiene igual sin cambio de zona horaria
         endDate: formattedEndDate,
       });

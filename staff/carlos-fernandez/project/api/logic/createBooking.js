@@ -1,16 +1,10 @@
 import models from "../data/models.js";
 import { Errors, Validator } from "common";
+import checkDailyCapacity from "../utils/bookingCapacity.js";
 
 const { User, Booking } = models;
 
-export default ({ userId, dogs, startDate, endDate }) => {
-  console.log("Solicitud recibida con-------", {
-    userId,
-    dogs,
-    startDate,
-    endDate,
-  });
-
+export default (userId, { dogs, startDate, endDate }) => {
   Validator.id(userId);
   if (!Array.isArray(dogs)) {
     throw new Errors.BookingNotValidError("DogId must be an array");
@@ -23,6 +17,7 @@ export default ({ userId, dogs, startDate, endDate }) => {
     throw new Errors.BookingNotValidError("startDate must be before endDate");
   }
 
+  // 1. PARTE 1 --- ESQUEMA USUARIO ---
   return User.findById(userId).then((user) => {
     if (!user) throw new Errors.NotFoundError("User not found");
 
@@ -32,78 +27,56 @@ export default ({ userId, dogs, startDate, endDate }) => {
       throw new Errors.CredentialsError("One or more dogs not found");
     }
 
+    console.log("USERID---", userId);
+    console.log("start date---", startDate);
+    console.log("ENDDATE----", endDate);
+    console.log("DOGS", dogs);
+
+    // 2. PARTE 2 --- ESQUEMA BOOKING ---
     return Booking.find({
       owner: userId,
-      dogs: { $in: dogs },
       startDate: { $lte: endDate },
       endDate: { $gte: startDate },
     }).then((reservations) => {
-      let dogBookings = {};
+      // Verificamos el aforo antes de cualquier modificación
+      checkDailyCapacity(reservations, dogs, startDate, endDate);
 
-      reservations.forEach((booking) => {
-        booking.dogs.forEach((dog) => {
-          if (dogs.includes(dog.toString())) {
-            let current = new Date(booking.startDate);
-            const bookingEnd = new Date(booking.endDate);
+      console.log("RESERVATIONS----", reservations);
+      // Comprobamos si existe una reserva para el usuario y las fechas
+      const existingReservation = reservations.find(
+        (reservation) =>
+          reservation.owner.toString() === userId &&
+          reservation.startDate.getTime() === new Date(startDate).getTime() &&
+          reservation.endDate.getTime() === new Date(endDate).getTime()
+      );
 
-            while (current <= bookingEnd) {
-              const dateKey = new Date(current.getTime())
-                .toISOString()
-                .split("T")[0];
-              if (!dogBookings[dog.toString()]) {
-                dogBookings[dog.toString()] = new Set();
-              }
-              dogBookings[dog.toString()].add(dateKey);
-              current.setDate(current.getDate() + 1);
-            }
-          }
-        });
-      });
-
-      console.log("DOGBOOOKIIINGS", dogBookings);
-
-      for (const dogId of dogs) {
-        let current = new Date(startDate);
-        while (current <= new Date(endDate)) {
-          const dateKey = new Date(current.getTime())
-            .toISOString()
-            .split("T")[0];
-          if (dogBookings[dogId]?.has(dateKey)) {
-            throw new Errors.BookingNotValidError(
-              "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
-            );
-          }
-          current.setDate(current.getDate() + 1);
-        }
-      }
-
-      let dailyCount = {};
-      let current = new Date(startDate);
-
-      while (current <= new Date(endDate)) {
-        const dateKey = new Date(current.getTime()).toISOString().split("T")[0];
-        dailyCount[dateKey] = (dailyCount[dateKey] || 0) + dogs.length;
-        current.setDate(current.getDate() + 1);
-      }
-
-      if (Object.values(dailyCount).some((count) => count > 50)) {
-        throw new Errors.BookingNotValidError(
-          "No se puede realizar la reserva, se excede el aforo"
+      console.log("RESERVA EXISTENTE:", existingReservation);
+      if (existingReservation) {
+        // Comprobamos si el perro ya está en la reserva
+        const existingDogs = existingReservation.dogs.map((dog) =>
+          dog.toString()
         );
-      }
+        const newDogs = dogs.filter((dogId) => !existingDogs.includes(dogId));
 
-      return Booking.create({
-        owner: userId,
-        dogs: dogs,
-        startDate: startDate,
-        endDate: endDate,
-      }).then((createdBooking) => {
-        return {
-          ...createdBooking.toObject(),
-          startDate: createdBooking.startDate.toLocaleDateString(),
-          endDate: createdBooking.endDate.toLocaleDateString(),
-        };
-      });
+        if (newDogs.length > 0) {
+          // Agregamos los nuevos perros a la reserva existente
+          existingReservation.dogs.push(
+            ...newDogs.map((dogId) => ({ _id: dogId }))
+          );
+          return existingReservation.save();
+        } else {
+          // El perro ya está en la reserva, no hacemos nada
+          return existingReservation;
+        }
+      } else {
+        // Creamos una nueva reserva
+        return Booking.create({
+          owner: userId,
+          dogs: dogs,
+          startDate: new Date(startDate),
+          endDate: new Date(endDate),
+        });
+      }
     });
   });
 };

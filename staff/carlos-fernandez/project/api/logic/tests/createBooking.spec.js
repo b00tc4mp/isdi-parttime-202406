@@ -54,13 +54,12 @@ describe("Create booking", () => {
 
   it("Creates a booking successfully", () => {
     const bookingData = {
-      userId: userId,
       dogs: [dogId],
       startDate: "2025-03-20",
       endDate: "2025-03-25",
     };
 
-    return createBooking(bookingData).then((booking) => {
+    return createBooking(userId, bookingData).then((booking) => {
       expect(booking.owner.toString()).to.equal(userId);
       expect(booking.dogs[0].toString()).to.equal(dogId);
       expect(booking.startDate).to.equal("20/3/2025");
@@ -71,14 +70,15 @@ describe("Create booking", () => {
   // ////////////////////////////// UNHAPPY PATHS //////////////////////////////
 
   it("Fails when user does not exist", () => {
+    let newUserId = new mongoose.Types.ObjectId().toString();
+
     const bookingData = {
-      userId: new mongoose.Types.ObjectId().toString(),
       dogs: [dogId],
       startDate: "2025-05-01",
       endDate: "2025-05-07",
     };
 
-    return createBooking(bookingData)
+    return createBooking(newUserId, bookingData)
       .then(() => {
         throw new Error(
           "Test should have thrown an error for non-existent user"
@@ -91,13 +91,12 @@ describe("Create booking", () => {
 
   it("Fails when one of the dogs does not exist", () => {
     const bookingData = {
-      userId: userId,
       dogs: [new mongoose.Types.ObjectId().toString()],
       startDate: "2025-05-01",
       endDate: "2025-05-07",
     };
 
-    return createBooking(bookingData)
+    return createBooking(userId, bookingData)
       .then(() => {
         throw new Error(
           "Test should have thrown an error for non-existent dog"
@@ -110,7 +109,6 @@ describe("Create booking", () => {
 
   it("Fails when the booking limit is exceeded", () => {
     const bookingData = {
-      userId: userId,
       dogs: [dogId],
       startDate: "2025-05-01",
       endDate: "2025-05-07",
@@ -124,7 +122,7 @@ describe("Create booking", () => {
     }));
 
     return Booking.insertMany(bookings)
-      .then(() => createBooking(bookingData))
+      .then(() => createBooking(userId, bookingData))
       .catch((error) => {
         expect(error.message).to.equal(
           "Las mascotas seleccionadas ya tienen reserva para estos dias"
@@ -143,18 +141,17 @@ describe("Create booking", () => {
     return Booking.create(existingBooking)
       .then(() => {
         const newBooking = {
-          userId: userId,
           dogs: [dogId],
           startDate: "2025-06-01",
           endDate: "2025-06-07",
         };
 
-        return createBooking(newBooking);
+        return createBooking(userId, newBooking);
       })
 
       .catch((error) => {
         expect(error.message).to.equal(
-          "Las mascotas seleccionadas ya tienen reserva para estos dias"
+          "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
         );
       });
   });
