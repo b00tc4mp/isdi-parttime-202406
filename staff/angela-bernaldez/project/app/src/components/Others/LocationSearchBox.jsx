@@ -49,7 +49,7 @@ function LocationSearchBox({ setStamp }) {
         const isCurrentLocation = false
         return logic.addUserLocation(selectedLocation, isCurrentLocation)
             .then(() => {
-                setInputValue('') // para que se muestre vacia la barra de busqueda tras seleccionar localizacion
+                setInputValue('') 
                 setLocations([])
                 setStamp(Date.now())
             })

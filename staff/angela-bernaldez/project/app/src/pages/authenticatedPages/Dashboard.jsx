@@ -30,7 +30,7 @@ function Dashboard() {
                                 return location
                             })
                     } else {
-                        // console.log('No need to update weather data for:', location)
+                        console.log('No need to update weather data for:', location)
                         return Promise.resolve(location)
                     }
                 })
@@ -43,7 +43,6 @@ function Dashboard() {
                 console.log('Error fetching locations:', error)
             })
     }
-    
 
     const fetchCurrentLocation = () => {
         return logicWeather.getLocationFromIp()
@@ -51,12 +50,14 @@ function Dashboard() {
                 return logic.addUserLocation(currentLocation, true)
                     .then(() => {
                         return logicWeather.retrieveWeatherData(currentLocation)
-                        .then((weatherData) => {
-                            return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
-                                .then((currentLocation) => {
-                                    setCurrentLocation(currentLocation)
-                                })
-                        })
+                            .then((weatherData) => {
+                                return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
+                                    .then((currentLocation) => {
+                                        console.log('Ubicación actualizada en la BD:', currentLocation)
+                                        setCurrentLocation(currentLocation)
+                                        setSelectedLocation(currentLocation)
+                                    })
+                            })
                     })
                     .catch((error) => {
                         // IMPROVE THIS ERROR LATER
@@ -82,19 +83,11 @@ function Dashboard() {
             })
     }, [stamp])
 
-    useEffect(() => {
-        if (currentLocation && !selectedLocation) {
-            // only sets selectedLocation the first time
-            setSelectedLocation(currentLocation)
-        }
-    }, [currentLocation])
-
     return (
         <div className="h-screen">
-                  <Header setStamp={setStamp}/>
-
+            <Header setStamp={setStamp}/>
             <div className="grid grid-rows-2 grid-cols-2 gap-5 h-screen">
-                {/* Columna 1 en la Fila 1 */}
+
                 <div className="col-span-1 text-black">
                     {selectedLocation ? 
                     (<div className="h-full w-full">
@@ -104,25 +97,29 @@ function Dashboard() {
                     }
                 </div>
             
-                {/* Columna 2 en la Fila 1 */}
                 <div className="col-span-1 overflow-y-auto h-full">
                     <div className='w-full h-full m-4'>
                         {currentLocation ? 
-                        (<LocationCard key='current' locationData={currentLocation} />) :
-                        null}
+                        (<LocationCard 
+                                key='current' 
+                                locationData={currentLocation}
+                                onLocationSelect={handleLocationSelect}
+                                isCurrentLocation={true}
+                                setStamp={setStamp}  /> 
+                        ) : null}
                         {locations.length > 0 ? (
                             locations.map((location, index) => (
                             <LocationCard 
                                 key={index} 
                                 locationData={location}
-                                onLocationSelect={handleLocationSelect} />
+                                onLocationSelect={handleLocationSelect}
+                                isCurrentLocation={false}
+                                setStamp={setStamp} />
                             ))
-                        ) : (
-                            <p>No locations found</p>
-                        )}
+                        ) : null}
                     </div>
                 </div>
-                {/* Fila 2 (Ocupa todo el ancho, con 1/3 y 2/3) */}
+
                 <div className="col-span-2 grid grid-cols-3">
                     {selectedLocation ?
                     (<div>
@@ -130,7 +127,7 @@ function Dashboard() {
                     </div>) :
                     (<p>Getting current location...</p>)
                     }
-                    {/* Columna 2 (2/3 del ancho) */}
+
                     <div className="col-span-2">
                         {selectedLocation ? 
                         (<div>

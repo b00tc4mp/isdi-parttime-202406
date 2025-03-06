@@ -17,20 +17,20 @@ mongoose.connect(process.env.MONGO_URI)
     const jsonBodyParser = json()
     server.use(cors())
 
+    // count number of endpoints in my internal API matches number of handlers (and logic functions)
     server.post('/users', jsonBodyParser, handlers.registerUser)
 
     server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
     server.get('/users/auth', verifyToken, handlers.getUser)
 
-    // pasar el id solo lo haria si quisiera acceder a la info de otro usuario (id diferente)
-    // x ejemplo si quisiera acceder a las localizaciones de mis amigos 
-    // desde el front lo haria accediendo a la info del usuario desde la base de datos 
+    server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
+
     server.get('/users/locations', verifyToken, handlers.getAllUserLocations)
 
     server.post('/users/locations', verifyToken, jsonBodyParser, handlers.addUserLocation)
 
-    server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
+    server.delete('/users/locations', verifyToken, jsonBodyParser, handlers.deleteUserLocation)
 
     server.post('/users/nominatim-locations', verifyToken, jsonBodyParser, handlersWeather.retrieveNominatimLocations)
 

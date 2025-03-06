@@ -7,8 +7,6 @@ export default (userId, locationData) => {
     const { name, latitude, longitude } = locationData 
     // add validators
 
-    console.log(userId)
-
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,precipitation_probability_max&timezone=auto`
 
     return User.findById(userId) 

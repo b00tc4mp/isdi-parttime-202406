@@ -15,10 +15,7 @@ export default (userId) => {
                     return response.json()
                         .then((data) => {
                             if (data.status === 'success') {
-                                // not calling the logic to add that location to user.currentLocation here
-                                // as it is prefered to have different functions performing different tasks
                                 const currentLocation = {
-                                    displayName: `${data.city}, ${data.regionName}, ${data.country}`,
                                     name: data.city, 
                                     latitude: data.lat,
                                     longitude: data.lon

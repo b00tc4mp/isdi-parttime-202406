@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
 const { Schema, Types } = mongoose
-
 const { ObjectId } = Types
 
 const LocationSchema = new Schema({
@@ -12,11 +11,11 @@ const LocationSchema = new Schema({
     latitude: {
         type: Number,
         required: true
-    }, 
+    },
     longitude: {
         type: Number,
         required: true
-    }, 
+    },
     timeLastUpdated: {
         type: Date,
         required: true
@@ -33,9 +32,9 @@ const LocationSchema = new Schema({
     dailyForecast_units: {
         type: Object
     }
-})
+});
 
-const Location = mongoose.model('Location', LocationSchema)
+const Location = mongoose.model('Location', LocationSchema);
 
 const UserSchema = new Schema({
     username: {
@@ -52,21 +51,18 @@ const UserSchema = new Schema({
         required: true
     },
     currentLocation: {
-        type: ObjectId,
+        type: ObjectId,  
         ref: 'Location'
     },
     favLocations: [{
-        type: ObjectId,
+        type: ObjectId,  
         ref: 'Location'
     }]
 })
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', UserSchema);
 
 export default {
-    Location, 
+    Location,
     User
 }
-
-// si quiero añadir cuantas personas x ejemplo tienen como fav una ciudad
-// tengo que hacer referencia en el esquema de localizaciones a los users tb 

@@ -15,12 +15,11 @@ export default (userId, locationData, weatherData) => {
             // comprobar que esa loc existe para ese usuario 
             return Location.findOne({name: locationData.name, latitude: locationData.latitude, longitude: locationData.longitude})
                 .then((location) => {
+                    if (!location) throw new Error('Location does not exist in the database. It needs to be added first.')
                     // comprobar que loc id esta en user.favlocs o user.current 
                     const isUserLoc = user.favLocations.some(favLoc => favLoc._id === location._id) || (user.currentLocation._id === location._id)
                     if (!isUserLoc) new Error('User does not have the requested location to fetch weather data')
 
-                    // NEED TO MODIFY KEYS HAVING _ WITH CAMELCASE 
-                    // replace wmo_code with wmoCode.
                     location.current = weatherData.current
                     location.current_units = weatherData.current_units
                     location.dailyForecast = weatherData.daily
