@@ -3,7 +3,7 @@ import { Errors, Validator } from "common";
 
 const { Booking } = models;
 
-export default ({ bookingId, userId, dogIds }) => {
+export default (userId, { bookingId, dogIds }) => {
   Validator.id(bookingId);
   Validator.id(userId);
 
