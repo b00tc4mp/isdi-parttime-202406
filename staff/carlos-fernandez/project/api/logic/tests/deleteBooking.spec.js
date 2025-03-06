@@ -17,8 +17,8 @@ describe("Delete booking logic", () => {
     return Booking.create({
       owner: userId,
       dogs: [dogId],
-      startDate: new Date(Date.UTC(2025, 2, 20)),
-      endDate: new Date(Date.UTC(2025, 2, 20)),
+      startDate: "2025-02-18",
+      endDate: "2025-02-20",
     }).then((bookingCreated) => {
       bookingId = bookingCreated._id.toString();
     });
@@ -33,7 +33,7 @@ describe("Delete booking logic", () => {
   ////////////////////////////// HAPPY PATH //////////////////////////////
 
   it("Deletes a bookig successfully", () => {
-    return deleteBooking({ bookingId, userId }).then((deletedBooking) => {
+    return deleteBooking(userId, { bookingId }).then((deletedBooking) => {
       expect(deletedBooking).to.exist;
       expect(deletedBooking._id.toString()).to.equal(bookingId);
       expect(deletedBooking.owner.toString()).to.equal(userId);
@@ -44,7 +44,7 @@ describe("Delete booking logic", () => {
 
   it("Throws an error if ownerId does not exist", () => {
     let newUserId = new mongoose.Types.ObjectId().toString();
-    return deleteBooking({ bookingId, userId: newUserId })
+    return deleteBooking(newUserId, { bookingId })
       .then(() => {
         throw new Error(
           "Test should have thrown an error for non-existent ownerId"
@@ -59,7 +59,7 @@ describe("Delete booking logic", () => {
 
   it("Throws an error if bookingId does not exist", () => {
     let nonExistentBookingId = new mongoose.Types.ObjectId().toString();
-    return deleteBooking({ bookingId: nonExistentBookingId, userId })
+    return deleteBooking(userId, { bookingId: nonExistentBookingId })
       .then(() => {
         throw new Error(
           "Test should have thrown an error for non-existent bookingId"
@@ -73,7 +73,7 @@ describe("Delete booking logic", () => {
   });
 
   it("Throws an error if bookingId is not a valid ObjectId", () => {
-    expect(() => deleteBooking({ bookingId: "invalid_id", userId })).to.throw(
+    expect(() => deleteBooking(userId, { bookingId: "invalid_id" })).to.throw(
       "Invalid ID format"
     );
   });
