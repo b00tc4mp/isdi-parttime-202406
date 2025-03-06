@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
-import BookingCard from "../../components/cards/BookingCard";
-import NoBookingMessage from "../../components/cards/NoBookingMessage";
-import BookingCalendar from "../../components/forms/BookingCalendar";
-import createBooking from "../../logic/createBooking.js";
-import getUserBookings from "../../logic/getUserBookings.js";
-import BookingSuccess from "../../components/cards/BookingSuccess.jsx";
+import {
+  BookingCard,
+  BookingCalendar,
+  BookingDeletedSuccessfully,
+  BookingSuccess,
+  NoBookingMessage,
+} from "../../components/index.jsx";
+import logic from "../../logic/index.js";
 
 function MyReservations() {
   const [bookings, setBookings] = useState([]); // Almacena las reservas
   const [isAddingBooking, setIsAddingBooking] = useState(false); // Boolean sobre el estado de añadir reserva
   const [isSuccess, setIsSuccess] = useState(false); // Boolean de exito al reservar
   const [stamp, setStamp] = useState(Date.now()); // Marca de tiempo para actualizar datos
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false); // Boolean de éxito al eliminar la reserva
 
   useEffect(() => {
-    getUserBookings()
+    logic
+      .getUserBookings()
       .then((requestedBookings) => {
         const formattedBookings = requestedBookings.map((booking) => ({
           id: booking._id,
@@ -28,7 +32,7 @@ function MyReservations() {
 
   const onSubmit = async (bookingData) => {
     try {
-      await createBooking(bookingData);
+      await logic.createBooking(bookingData);
       setIsAddingBooking(false);
       setIsSuccess(true);
       setStamp(Date.now()); // Actualiza el tiempo para recargar los datos
@@ -37,19 +41,43 @@ function MyReservations() {
     }
   };
 
+  const handleDeleteBooking = async (bookingId) => {
+    try {
+      await logic.deleteBooking(bookingId);
+      setIsDeleteSuccess(true);
+    } catch (error) {
+      console.error("Error al eliminar reserva", error);
+    }
+  };
+
   return (
     <div>
       {isSuccess && <BookingSuccess onClose={() => setIsSuccess(false)} />}
+      {isDeleteSuccess && (
+        <BookingDeletedSuccessfully
+          onClose={() => {
+            setIsDeleteSuccess(false);
+            setStamp(Date.now()); // Actualiza la lista de reservas solo al cerrar el mensaje
+          }}
+        />
+      )}
       {bookings.length === 0 ? (
-        isAddingBooking ? ( //No hay reservas pero estamos añadiendo una
+        isAddingBooking ? (
           <BookingCalendar onSubmit={onSubmit} />
         ) : (
-          // No hay reservas y no estamos añadiendo ninguna
-          <NoBookingMessage onAddBooking={() => setIsAddingBooking(true)} />
+          <NoBookingMessage
+            onAddBooking={() => {
+              setIsAddingBooking(true);
+              setIsDeleteSuccess(false);
+            }}
+          />
         )
       ) : (
-        // Hay reservas y no estamos añadiendo ninguna
-        <>{!isAddingBooking && <BookingCard bookings={bookings} />}</>
+        <>
+          {!isAddingBooking && (
+            <BookingCard bookings={bookings} onDelete={handleDeleteBooking} />
+          )}
+        </>
       )}
     </div>
   );

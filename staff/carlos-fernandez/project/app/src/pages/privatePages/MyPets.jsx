@@ -55,9 +55,6 @@ function MyPets() {
       throw error;
     }
   };
-  const handleCloseSuccess = () => {
-    setIsSuccess(false);
-  };
 
   const handleAddPet = () => {
     setIsAddingPet((prev) => {
@@ -71,7 +68,7 @@ function MyPets() {
       <div>
         {/* MENSAJE DE REGISTRO EXITOSO */}
         {isSuccess && (
-          <RegisteredDogSuccessfully onClose={handleCloseSuccess} />
+          <RegisteredDogSuccessfully onClose={() => setIsSuccess(false)} />
         )}
 
         {/* Si hay mascotas, el botón de añadir mascotas SIEMPRE se muestra */}

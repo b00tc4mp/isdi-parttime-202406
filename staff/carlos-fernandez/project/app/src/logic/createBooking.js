@@ -1,15 +1,11 @@
 import { Validator, Errors } from "common";
 
-const createBooking = ({ dogs, startDate, endDate }) => {
+export default ({ dogs, startDate, endDate }) => {
   // Validator.array(dogIds, "Dog IDs");
   Validator.startDate(startDate, "Start Date");
   Validator.endDate(endDate, "End Date");
 
   const token = sessionStorage.getItem("token");
-
-  console.log("LO QUE ENVIA EL FETCH INICIO: ", startDate);
-  console.log("LO QUE ENVIA EL FETCH FIN: ", endDate);
-  console.log("LO QUE ENVIA EL FETCH DOGS", dogs);
 
   return fetch(`${import.meta.env.VITE_APP_API_URL}users/booking`, {
     method: "POST",
@@ -32,5 +28,3 @@ const createBooking = ({ dogs, startDate, endDate }) => {
       throw error;
     });
 };
-
-export default createBooking;
