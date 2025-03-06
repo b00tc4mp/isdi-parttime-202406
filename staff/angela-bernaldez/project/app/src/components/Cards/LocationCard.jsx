@@ -24,15 +24,15 @@ function LocationCard({ locationData, onLocationSelect, isCurrentLocation, setSt
         >
             <div className="flex flex-col w-2/3 pl-4">
                 <h1 className="text-xl font-semibold">{locationData.name}</h1>
-                {locationData.current ? 
+                {locationData ? 
                 <p className="text-gray-600 text-md">{locationData.current.temperature_2m}°C</p> :
                 null 
                 } 
             </div>
 
             <div className="w-28 h-28 flex items-center justify-center mr-4">
-                {locationData.current ? 
-                getWeatherIcon(locationData.current.weather_code) :
+                {locationData ? 
+                getWeatherIcon(locationData.current.weather_code, locationData.current.is_day) :
                 null}
             </div>
 

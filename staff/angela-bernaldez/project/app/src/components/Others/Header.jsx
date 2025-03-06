@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom'
 import LocationSearchBox from './LocationSearchBox'
 import UserButton from '../Buttons/UserButton'
+import LogOutButton from '../Buttons/LogOutButton'
 
-function Header({ setStamp }) {
+function Header({ setStamp, onUserLoggedOut }) {
     const location = useLocation()
 
     return (
@@ -18,7 +19,9 @@ function Header({ setStamp }) {
                     </div>
                 ) : null}
                 <div>
-                    boton de log out
+                    <LogOutButton 
+                        onUserLoggedOut={onUserLoggedOut}
+                    />
                 </div>
             </div>
         </header>

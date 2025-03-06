@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Header from '../../components/Others/Header'
 import { LocationBox, LocationCard, SunInfoBox, WeeklyForecast } from '../../components/Cards'
 
-function Dashboard() {
+function Dashboard({ onUserLoggedOut }) {
  
     const [stamp, setStamp] = useState(Date.now())
     const [locations, setLocations] = useState([])
@@ -85,7 +85,10 @@ function Dashboard() {
 
     return (
         <div className="h-screen">
-            <Header setStamp={setStamp}/>
+            <Header 
+                setStamp={setStamp}
+                onUserLoggedOut={onUserLoggedOut}
+            />
             <div className="grid grid-rows-2 grid-cols-2 gap-5 h-screen">
 
                 <div className="col-span-1 text-black">
