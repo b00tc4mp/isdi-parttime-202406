@@ -9,32 +9,30 @@ function BookingCard({ bookings, onDelete }) {
           <li key={booking.id} className="p-4 flex justify-center">
             <div className="relative bg-customBackgroundBlue flex items-center w-full custom-2sm:w-1/2 sm:h-48 border border-gray-300 rounded-2xl shadow-lg sm:p-8">
               <div className="flex justify-between items-center w-full flex-col custom-2xl:flex-row custom-2xl:items-center">
-                <div className="flex items-center mr-4">
-                  <h2 className="text-black font-bold text-xl sm:text-3xl mb-2 lg:mb-0 ml-2 sm:ml-0">
+                <div className="flex flex-wrap justify-center custom-2xl:justify-center items-center w-full">
+                  <h2 className="text-black font-bold text-xl sm:text-3xl mb-2 xl:mb-0 ml-2 sm:ml-0">
                     {booking.dogNames}
                   </h2>
                 </div>
 
-                <div className="flex flex-row space-x-4 mb-2 sm:mb-0 custom-2xl:mt-4">
-                  <div className="w-[117.27px] flex flex-row sm:flex-col items-center border border-gray-300 rounded-lg p-2 bg-customBackground text-black">
-                    <span className="mr-2 sm:mr-0">📅</span>
-                    <span className="hidden custom-2md:block">
-                      {" "}
+                <div className="flex items-center justify-center gap-2 sm:gap-4 custom-2xl:justify-center custom-2xl:w-full">
+                  <div className="w-[117.27px] flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 bg-customBackground text-black">
+                    <span className="flex justify-center">📅</span>
+                    <span className="hidden sm:block text-center">
                       Fecha entrada
                     </span>
-                    <p> {booking.startDate}</p>
+                    <p className="text-center"> {booking.startDate}</p>
                   </div>
-                  <div className="w-[117.27px] flex flex-row sm:flex-col items-center border border-gray-300 rounded-lg p-2 bg-customBackground text-black">
-                    <span className="mr-2 sm:mr-0">📅</span>
-                    <span className="hidden custom-2md:block">
-                      {" "}
+                  <div className="min-w-[100px] flex flex-col items-center justify-center border border-gray-300 rounded-lg p-2 bg-customBackground text-black">
+                    <span className="flex justify-center">📅</span>
+                    <span className="hidden sm:block text-center">
                       Fecha salida
                     </span>
-                    <p> {booking.endDate}</p>
+                    <p className="text-center"> {booking.endDate}</p>
                   </div>
+                  <DeleteBookingButton onDelete={() => onDelete(booking.id)} />
                 </div>
               </div>
-              <DeleteBookingButton onDelete={() => onDelete(booking.id)} />
             </div>
           </li>
         ))}

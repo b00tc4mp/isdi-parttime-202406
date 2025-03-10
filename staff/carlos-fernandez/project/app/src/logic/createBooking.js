@@ -1,7 +1,10 @@
 import { Validator, Errors } from "common";
 
 export default ({ dogs, startDate, endDate }) => {
-  // Validator.array(dogIds, "Dog IDs");
+  if (!Array.isArray(dogs)) {
+    throw new Errors.BookingNotValidError("DogId must be an array");
+  }
+  dogs.forEach((dogId) => Validator.id(dogId));
   Validator.startDate(startDate, "Start Date");
   Validator.endDate(endDate, "End Date");
 

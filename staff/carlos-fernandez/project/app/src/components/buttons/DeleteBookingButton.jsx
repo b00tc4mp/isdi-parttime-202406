@@ -22,7 +22,7 @@ function DeleteBookingButton({ onDelete }) {
     <div className="relative" ref={dropdownRef}>
       <button
         className="bg-textPinkColor hover:bg-darkPink text-white text-s rounded-md flex flex-col items-center justify-center 
-        sm:w-24 sm:h-[90px] sm:ml-4 sm:mt-4
+        sm:w-24 sm:h-[90px] sm:mt-0
         xs:w-20 xs:h-16 xs:ml-2 xs:mt-2 "
         onClick={toggleDropdown}
       >
@@ -31,11 +31,11 @@ function DeleteBookingButton({ onDelete }) {
       </button>
 
       <ul
-        className={`absolute right-0 mt-2 w-52 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform
+        className={`absolute top-full ml-2 mt-2 max-w-screen sm:w-52 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform z-50
         ${
           isDropDownOpen
-            ? "scale-y-100 opacity-100"
-            : "scale-y-0 opacity-0 pointer-events-none"
+            ? "scale-100 opacity-100"
+            : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
         <li>

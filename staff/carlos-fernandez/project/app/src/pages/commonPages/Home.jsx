@@ -30,10 +30,6 @@ function Home() {
     }
   };
 
-  const handleCloseSuccess = () => {
-    setIsSuccess(false);
-  };
-
   return (
     <>
       <section
@@ -43,7 +39,9 @@ function Home() {
         {!isLoggedIn ? <NoAccountMessage /> : null}
         {isLoggedIn ? (
           <>
-            {isSuccess && <BookingSuccess onClose={handleCloseSuccess} />}
+            {isSuccess && (
+              <BookingSuccess onClose={() => setIsSuccess(false)} />
+            )}
             <BookingCalendar className="mx-auto" onSubmit={onSubmit} />
           </>
         ) : null}

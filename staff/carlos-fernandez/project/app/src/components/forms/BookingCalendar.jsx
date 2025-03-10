@@ -25,6 +25,11 @@ export default function BookingCalendar({ className, onSubmit }) {
       return;
     }
 
+    if (startDate < today || endDate < today) {
+      setError("No puedes seleccionar fechas anteriores a hoy.");
+      return;
+    }
+
     const formattedStartDate = startDate.toLocaleDateString("en-CA"); // YYYY-MM-DD sin conversión UTC
     const formattedEndDate = endDate.toLocaleDateString("en-CA");
 
@@ -43,6 +48,8 @@ export default function BookingCalendar({ className, onSubmit }) {
     }
   };
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); //comparamos solo fecha, sin horas
   return (
     <div className="w-full">
       <div
@@ -66,6 +73,7 @@ export default function BookingCalendar({ className, onSubmit }) {
             selectsStart
             startDate={startDate}
             endDate={endDate}
+            minDate={today}
             wrapperClassName="datepicker-wrapper"
           />
 
@@ -78,7 +86,7 @@ export default function BookingCalendar({ className, onSubmit }) {
             selectsEnd
             startDate={startDate}
             endDate={endDate}
-            minDate={startDate}
+            minDate={startDate || today}
             wrapperClassName="datepicker-wrapper"
           />
 
