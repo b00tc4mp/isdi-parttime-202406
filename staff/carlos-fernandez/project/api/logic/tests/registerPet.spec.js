@@ -121,4 +121,24 @@ describe("Register dog", () => {
         expect(error.message).to.equal("Birth date is not a valid date");
       });
   });
+
+  it("Fails when dogName is empty", () => {
+    const dogData = {
+      chip: "123456789012345",
+      dogName: "",
+      breed: "Border collie",
+      birthDate: "invalid-date",
+      sociability: true,
+      disease: "none",
+      allergy: "none",
+    };
+
+    return registerPet(userId, dogData)
+      .then(() => {
+        throw new Error("Test should have thrown an error for empty dogName");
+      })
+      .catch((error) => {
+        expect(error.message).to.equal("Dog's name is empty");
+      });
+  });
 });

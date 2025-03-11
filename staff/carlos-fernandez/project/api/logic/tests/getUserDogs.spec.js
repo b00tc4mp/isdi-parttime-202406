@@ -1,15 +1,13 @@
 import "dotenv/config";
-import getUsername from "../getUsername.js";
 import { describe, it } from "mocha";
 import models from "../../data/models.js";
 import mongoose from "mongoose";
-
 import { expect } from "chai";
 import getUserDogs from "../getUserDogs.js";
 
 const { User, Dog } = models;
 
-describe("Get dogs associated with a user", () => {
+describe("Get dogs associated to a user", () => {
   before(() => mongoose.connect(process.env.MONGO_URI_TEST));
   afterEach(() => User.deleteMany());
   after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
@@ -71,9 +69,26 @@ describe("Get dogs associated with a user", () => {
   it("Throws an error if user it doesn't exist", async () => {
     const existentId = "6762d9a87e65a2d92c12836e";
     try {
-      await getUsername(existentId);
+      await getUserDogs(existentId);
     } catch (error) {
-      expect(error.message).to.equal("User id doesn't belong to anyone");
+      expect(error.message).to.equal("User not found");
     }
+  });
+
+  it("Returns an empty array if user has no dogs", async () => {
+    const user = {
+      username: "Carlos",
+      surname: "Fernandez",
+      phoneNumber: "666014587",
+      nif: "38214569T",
+      email: "carlsos@gmail.com",
+      password: "hashedpassword",
+      dogs: [],
+    };
+
+    const createdUser = await User.create(user);
+    const dogs = await getUserDogs(createdUser._id.toString());
+
+    expect(dogs).to.be.an("array").that.is.empty;
   });
 });

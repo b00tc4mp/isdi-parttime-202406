@@ -19,6 +19,7 @@ describe("Register user", () => {
   });
   after(() => mongoose.disconnect(process.env.MONGO_URI_TEST));
 
+  //////////////////// HAPPY PATH ////////////////////
   it("Creates a new user", () => {
     return registerUser(
       "Carlos",
@@ -40,6 +41,7 @@ describe("Register user", () => {
     });
   });
 
+  //////////////////// UNHAPPY PATH ////////////////////
   it("Fails when nif already exists", () => {
     return User.create({
       username: "Juan",
@@ -84,6 +86,30 @@ describe("Register user", () => {
         .then(() => {})
         .catch((error) => {
           expect(error.message).to.equal("Email already in use");
+        });
+    });
+  });
+
+  it("Fails when phone number already exists", () => {
+    return User.create({
+      username: "Juan",
+      surname: "Lopez",
+      phoneNumber: "777777777",
+      nif: "38878569Z",
+      email: "juan@gmail.com",
+      password: "hashedpassword",
+    }).then(() => {
+      registerUser(
+        "Carlos",
+        "Martinez",
+        "777777777",
+        "38795701Z",
+        "juan@gmail.com",
+        "hashedpassword"
+      )
+        .then(() => {})
+        .catch((error) => {
+          expect(error.message).to.equal("Phone number already in use");
         });
     });
   });

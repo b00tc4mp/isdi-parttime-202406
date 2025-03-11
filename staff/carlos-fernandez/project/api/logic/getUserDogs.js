@@ -18,6 +18,8 @@ export default (id) => {
     .lean()
     .then((user) => {
       if (!user) throw new Errors.NotFoundError("User not found");
+      if (!user.dogs) throw new Errors.NotFoundError("Dogs not found");
+
       return user.dogs; //Devuelve la lista de perros
     })
     .catch((error) => {

@@ -27,11 +27,6 @@ export default (userId, { dogs, startDate, endDate }) => {
       throw new Errors.CredentialsError("One or more dogs not found");
     }
 
-    console.log("USERID---", userId);
-    console.log("start date---", startDate);
-    console.log("ENDDATE----", endDate);
-    console.log("DOGS", dogs);
-
     // 2. PARTE 2 --- ESQUEMA BOOKING ---
     return Booking.find({
       owner: userId,
@@ -41,7 +36,6 @@ export default (userId, { dogs, startDate, endDate }) => {
       // Verificamos el aforo antes de cualquier modificación
       checkDailyCapacity(reservations, dogs, startDate, endDate);
 
-      console.log("RESERVATIONS----", reservations);
       // Comprobamos si existe una reserva para el usuario y las fechas
       const existingReservation = reservations.find(
         (reservation) =>
@@ -50,7 +44,6 @@ export default (userId, { dogs, startDate, endDate }) => {
           reservation.endDate.getTime() === new Date(endDate).getTime()
       );
 
-      console.log("RESERVA EXISTENTE:", existingReservation);
       if (existingReservation) {
         // Comprobamos si el perro ya está en la reserva
         const existingDogs = existingReservation.dogs.map((dog) =>

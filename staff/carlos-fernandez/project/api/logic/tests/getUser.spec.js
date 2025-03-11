@@ -1,10 +1,10 @@
 import "dotenv/config";
 import getUser from "../getUser.js";
-import { describe, it } from "mocha";
+import { describe, it, afterEach, after, before } from "mocha";
 import models from "../../data/models.js";
 import mongoose from "mongoose";
-
 import { expect } from "chai";
+import { Errors } from "common";
 
 const { User } = models;
 
@@ -29,50 +29,37 @@ describe("Get user info from token", () => {
       const id = user._id.toString();
       return getUser(id).then((userGot) => {
         expect(userGot.username).to.equal(user.username);
+        expect(userGot.id).to.equal(id);
       });
     });
   });
 
   //////////////////////////////////////// UNHAPPY PATH ////////////////////////////////////////
 
-  it("Throws an error if username is not correct", async () => {
-    const user2 = {
-      username: "Jose",
-      surname: "Martinez",
-      phoneNumber: "632456258",
-      nif: "38521321R",
-      email: "josemarti@gmail.com",
-      password: "aaAA1234@",
-    };
+  it("Throws an AuthError if user does not exist", () => {
+    const nonExistentId = new mongoose.Types.ObjectId().toString();
 
-    const createdUser = await User.create(user2);
-    const id = createdUser._id.toString();
-
-    try {
-      await getUser(id); // Username incorrecto
-    } catch (error) {
-      // Validar que el error corresponde a un username no válido
-      expect(error.message).to.equal("Username not found");
-    }
+    return getUser(nonExistentId)
+      .then(() => {
+        throw new Error("Test should have thrown an AuthError");
+      })
+      .catch((error) => {
+        expect(error).to.be.an.instanceOf(Errors.AuthError);
+        expect(error.message).to.deep.equal(
+          "The provided user ID does not correspond to any user"
+        );
+      });
   });
 
-  it("Throws an error if id is not correct", async () => {
-    const user3 = {
-      username: "Paco",
-      surname: "Martinez",
-      phoneNumber: "632456258",
-      nif: "38521321R",
-      email: "pacomarti@gmail.com",
-      password: "aaAA1234@",
-    };
-
-    const createdUser2 = await User.create(user3);
-    const id = "asdfa";
+  it("Throws a TypeError if id is not a valid string", async () => {
+    const invalidId = 123; // ID no válido (número)
 
     try {
-      await getUser(id, "Paco");
+      await getUser(invalidId);
+      throw new Error("Test should have thrown a TypeError"); // Si no hay error, falla
     } catch (error) {
-      expect(error.message).to.equal("Invalid ID format");
+      expect(error).to.be.an.instanceOf(TypeError);
+      expect(error.message).to.equal("Id is not a string");
     }
   });
 });

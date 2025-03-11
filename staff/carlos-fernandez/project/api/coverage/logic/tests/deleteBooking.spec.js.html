@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/tests/updatePassword.spec.js</title>
+    <title>Code coverage report for logic/tests/deleteBooking.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> updatePassword.spec.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">logic/tests</a> deleteBooking.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">92.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>74/80</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">92.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>72/75</span>
+                <span class='fraction'>74/80</span>
             </div>
         
             
@@ -138,7 +138,12 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -154,9 +159,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -192,13 +206,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -214,78 +224,83 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "dotenv/config";
-import updatePassword from "../updatePassword.js";
-import { describe, it } from "mocha";
+import deleteBooking from "../deleteBooking.js";
+import { afterEach, describe, it, beforeEach } from "mocha";
 import models from "../../data/models.js";
 import mongoose from "mongoose";
 import { expect } from "chai";
-import bcrypt from "bcrypt";
 &nbsp;
-const { User } = models;
+const { Booking } = models;
 &nbsp;
-describe("Update password", () =&gt; {
+describe("Delete booking logic", () =&gt; {
   before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST));
-  afterEach(() =&gt; User.deleteMany());
-  after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
+  let bookingId;
+  let userId = new mongoose.Types.ObjectId().toString();
+  let dogId = new mongoose.Types.ObjectId().toString();
 &nbsp;
-  it("Updates password", async () =&gt; {
-    try {
-      const cryptPassword = await bcrypt.hash("aaAA1234@", 10);
-      const user = {
-        username: "Testname",
-        surname: "Surnametest",
-        phoneNumber: "666333222",
-        nif: "38878569J",
-        email: "testemail@mail.com",
-        password: cryptPassword,
-      };
-      const createdUser = await User.create(user);
-      const id = createdUser._id.toString();
-&nbsp;
-      await updatePassword(id, "aAaA1234@", "aaAA1234@");
-&nbsp;
-      const updatedUser = await User.findOne({ username: "Testname" });
-      const isPasswordValid = await bcrypt.compare(
-        "aAaA1234@",
-        updatedUser.password
-      );
-&nbsp;
-      expect(isPasswordValid).to.be.true;
-    } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error updating password:", error);</span>
-<span class="cstat-no" title="statement not covered" >      throw error;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-  });
-&nbsp;
-  /////////////////////////////////////// UNHAPPY PATH ///////////////////////////////////////
-  it("Fails when old password is incorrect", () =&gt; {
-    return bcrypt.hash("aaAA1234@", 10).then((cryptPassword) =&gt; {
-      const user2 = {
-        username: "Testnametwo",
-        surname: "Testsurnametwo",
-        phoneNumber: "622444512",
-        nif: "38521478C",
-        email: "testemailtwo@mail.com",
-        password: cryptPassword,
-      };
-      return User.create(user2).then((user) =&gt; {
-        const id = user._id.toString();
-        return updatePassword(id, "aAAa1234@", "wrongPassword").catch(
-          (error) =&gt; {
-            expect(error).to.exist;
-            expect(error.message).to.equal("Wrong Password");
-          }
-        );
-      });
+  beforeEach(() =&gt; {
+    return Booking.create({
+      owner: userId,
+      dogs: [dogId],
+      startDate: "2025-02-18",
+      endDate: "2025-02-20",
+    }).then((bookingCreated) =&gt; {
+      bookingId = bookingCreated._id.toString();
     });
   });
 &nbsp;
-  it("Fails when user ID is invalid", () =&gt; {
-    const invalidUserId = "invalidUserId123";
-    // Lo hago así porque es síncrono
-    expect(() =&gt; {
-      updatePassword(invalidUserId, "aAaA1234@", "aaAA1234@");
-    }).to.throw("Invalid ID format");
+  afterEach(() =&gt; {
+    Booking.deleteMany();
+  });
+&nbsp;
+  after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
+&nbsp;
+  ////////////////////////////// HAPPY PATH //////////////////////////////
+&nbsp;
+  it("Deletes a bookig successfully", () =&gt; {
+    return deleteBooking(userId, { bookingId }).then((deletedBooking) =&gt; {
+      expect(deletedBooking).to.exist;
+      expect(deletedBooking._id.toString()).to.equal(bookingId);
+      expect(deletedBooking.owner.toString()).to.equal(userId);
+    });
+  });
+&nbsp;
+  ////////////////////////////// UNHAPPY PATH //////////////////////////////
+&nbsp;
+  it("Throws an error if ownerId does not exist", () =&gt; {
+    let newUserId = new mongoose.Types.ObjectId().toString();
+    return deleteBooking(newUserId, { bookingId })
+      .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        throw new Error(</span>
+<span class="cstat-no" title="statement not covered" >          "Test should have thrown an error for non-existent ownerId"</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
+      })
+      .catch((error) =&gt; {
+        expect(error.message).to.equal(
+          "Booking or booking associated to this user not found"
+        );
+      });
+  });
+&nbsp;
+  it("Throws an error if bookingId does not exist", () =&gt; {
+    let nonExistentBookingId = new mongoose.Types.ObjectId().toString();
+    return deleteBooking(userId, { bookingId: nonExistentBookingId })
+      .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        throw new Error(</span>
+<span class="cstat-no" title="statement not covered" >          "Test should have thrown an error for non-existent bookingId"</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
+      })
+      .catch((error) =&gt; {
+        expect(error.message).to.equal(
+          "Booking or booking associated to this user not found"
+        );
+      });
+  });
+&nbsp;
+  it("Throws an error if bookingId is not a valid ObjectId", () =&gt; {
+    expect(() =&gt; deleteBooking(userId, { bookingId: "invalid_id" })).to.throw(
+      "Invalid ID format"
+    );
   });
 });
 &nbsp;</pre></td></tr></table></pre>

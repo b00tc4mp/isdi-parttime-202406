@@ -24,6 +24,9 @@ export default (id) => {
       return user;
     })
     .catch((error) => {
+      if (error instanceof Errors.AuthError) {
+        throw error;
+      }
       throw new Errors.UnexpectedError(error.message);
     });
 };

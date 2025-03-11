@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/updatePhoneNumber.js</title>
+    <title>Code coverage report for logic/getUserBookings.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> updatePhoneNumber.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> getUserBookings.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.83% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/24</span>
+                <span class='fraction'>20/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.83% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/24</span>
+                <span class='fraction'>20/21</span>
             </div>
         
             
@@ -84,56 +84,47 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Errors, Validator } from "common";
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Validator, Errors } from "common";
 import models from "../data/models.js";
 &nbsp;
-const { User } = models;
+const { Booking } = models;
 &nbsp;
-export default (id, newPhoneNumber) =&gt; {
+export default (id) =&gt; {
   Validator.id(id);
-  Validator.phoneNumber(newPhoneNumber);
 &nbsp;
-  return User.findById(id).then((user) =&gt; {
-    if (!user) throw new Errors.ExistenceError("No user with this ID");
-&nbsp;
-    return User.findByIdAndUpdate(id, { phoneNumber: newPhoneNumber })
-      .then((updatedUser) =&gt; {
-        if (!updatedUser)
-<span class="branch-0 cbranch-no" title="branch not covered" >          throw new Errors.UnexpectedError("Failed to update phone number");</span>
-        return updatedUser;
-      })
-      .catch((error) =&gt; {
-<span class="cstat-no" title="statement not covered" >        throw new Errors.UnexpectedError(error.message);</span>
-      });
-  });
+  return Booking.find({ owner: id })
+    .populate("dogs", "dogName")
+    .populate("startDate")
+    .populate("endDate")
+    .lean()
+    .then((bookings) =&gt; {
+      if (!bookings || bookings.length === 0) return [];
+      return bookings;
+    })
+    .catch((error) =&gt; {
+<span class="cstat-no" title="statement not covered" >      throw new Errors.UnexpectedError(error.message);</span>
+    });
 };
 &nbsp;</pre></td></tr></table></pre>
 

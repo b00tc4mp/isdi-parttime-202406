@@ -34,7 +34,7 @@ describe("Delete some dogs from booking logic", () => {
   ////////////////////////////// HAPPY PATH //////////////////////////////
 
   it("Deletes dogId1 from booking successfully", () => {
-    return removeDogsFromBookings({ bookingId, userId, dogIds: [dogId1] }).then(
+    return removeDogsFromBookings(userId, { bookingId, dogIds: [dogId1] }).then(
       (deletedBooking) => {
         expect(deletedBooking).to.exist;
         expect(deletedBooking._id.toString()).to.equal(bookingId);
@@ -46,9 +46,9 @@ describe("Delete some dogs from booking logic", () => {
   ////////////////////////////// UNHAPPY PATH //////////////////////////////
   it("Throws an error if userId does not exist", () => {
     let newUserId = new mongoose.Types.ObjectId().toString();
-    return removeDogsFromBookings({
+    return removeDogsFromBookings(newUserId, {
       bookingId,
-      userId: newUserId,
+
       dogIds: [dogId1],
     })
       .then(() => {
@@ -63,9 +63,9 @@ describe("Delete some dogs from booking logic", () => {
 
   it("Throws an error if bookingId does not exist", () => {
     let nonExistentBookingId = new mongoose.Types.ObjectId().toString();
-    return removeDogsFromBookings({
+    return removeDogsFromBookings(userId, {
       bookingId: nonExistentBookingId,
-      userId,
+
       dogIds: [dogId1],
     })
       .then(() => {
@@ -80,9 +80,9 @@ describe("Delete some dogs from booking logic", () => {
 
   it("Throws an error if bookingId is not a valid ObjectId", () => {
     expect(() =>
-      removeDogsFromBookings({
+      removeDogsFromBookings(userId, {
         bookingId: "invalid_id",
-        userId,
+
         dogIds: [dogId1],
       })
     ).to.throw("Invalid ID format");

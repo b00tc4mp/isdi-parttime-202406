@@ -22,7 +22,6 @@ export default (petId, userId) => {
       );
     })
     .catch((error) => {
-      console.error(error);
       throw error;
     });
 };
