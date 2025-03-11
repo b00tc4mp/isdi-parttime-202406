@@ -8,6 +8,7 @@ import isUserLoggedIn from "./isUserLoggedIn.js";
 import registerPet from "./registerPet.js";
 import registerUser from "./registerUser.js";
 import updatePassword from "./updatePassword.js";
+import removeDogsFromBooking from "./removeDogsFromBooking.js";
 import updatePhoneNumber from "./updatePhoneNumber.js";
 import userAuth from "./userAuth.js";
 
@@ -21,6 +22,7 @@ const logic = {
   isUserLoggedIn,
   registerPet,
   registerUser,
+  removeDogsFromBooking,
   updatePassword,
   updatePhoneNumber,
   userAuth,

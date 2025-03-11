@@ -7,6 +7,7 @@ import {
   NoBookingMessage,
 } from "../../components/index.jsx";
 import logic from "../../logic/index.js";
+import { useHeaderHeight } from "../../hooks/useHeaderHeight";
 
 function MyReservations() {
   const [bookings, setBookings] = useState([]); // Almacena las reservas
@@ -14,6 +15,8 @@ function MyReservations() {
   const [isSuccess, setIsSuccess] = useState(false); // Boolean de exito al reservar
   const [stamp, setStamp] = useState(Date.now()); // Marca de tiempo para actualizar datos
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false); // Boolean de éxito al eliminar la reserva
+
+  const headerHeight = useHeaderHeight();
 
   useEffect(() => {
     logic
@@ -24,6 +27,7 @@ function MyReservations() {
           dogNames: booking.dogs.map((dog) => dog.dogName).join(", "),
           startDate: new Date(booking.startDate).toLocaleDateString(),
           endDate: new Date(booking.endDate).toLocaleDateString(),
+          dogs: booking.dogs,
         }));
         setBookings(formattedBookings);
       })
@@ -50,8 +54,19 @@ function MyReservations() {
     }
   };
 
+  const handleRemoveDogsFromBooking = async (bookingId, dogIds) => {
+    try {
+      await logic.removeDogsFromBooking(bookingId, dogIds);
+      setIsDeleteSuccess(true);
+    } catch (error) {
+      console.error("Error al eliminar mascota", error);
+    }
+  };
   return (
-    <div>
+    <section
+      style={{ height: `calc(100vh - ${headerHeight}px)` }}
+      className=" sm:py-10"
+    >
       {isSuccess && <BookingSuccess onClose={() => setIsSuccess(false)} />}
       {isDeleteSuccess && (
         <BookingDeletedSuccessfully
@@ -75,11 +90,15 @@ function MyReservations() {
       ) : (
         <>
           {!isAddingBooking && (
-            <BookingCard bookings={bookings} onDelete={handleDeleteBooking} />
+            <BookingCard
+              bookings={bookings}
+              onDeleteBooking={handleDeleteBooking}
+              onRemoveDog={handleRemoveDogsFromBooking}
+            />
           )}
         </>
       )}
-    </div>
+    </section>
   );
 }
 

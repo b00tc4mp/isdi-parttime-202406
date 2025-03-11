@@ -3,6 +3,11 @@ import { Errors, Validator } from "common";
 export default (bookingId, dogIds) => {
   Validator.id(bookingId);
   dogIds.forEach((dogId) => Validator.id(dogId));
+  if (!dogIds.length) {
+    return Promise.reject(
+      new Errors.BadRequestError("No dogs selected for removal")
+    );
+  }
 
   const token = sessionStorage.getItem("token");
 
@@ -26,7 +31,7 @@ export default (bookingId, dogIds) => {
     })
     .catch((error) => {
       if (error instanceof Errors.BadRequestError)
-        throw new Errors.ServerError("Server in not connected");
+        throw new Errors.ServerError("Could not process request");
       throw error;
     });
 };

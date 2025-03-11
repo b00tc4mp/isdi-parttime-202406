@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteBookingButton from "../buttons/DeleteBookingButton";
 
-function BookingCard({ bookings, onDelete }) {
+function BookingCard({ bookings, onDeleteBooking, onRemoveDog }) {
   return (
     <div>
       <ul>
@@ -30,7 +30,12 @@ function BookingCard({ bookings, onDelete }) {
                     </span>
                     <p className="text-center"> {booking.endDate}</p>
                   </div>
-                  <DeleteBookingButton onDelete={() => onDelete(booking.id)} />
+                  <DeleteBookingButton
+                    bookingId={booking.id}
+                    onDeleteBooking={() => onDeleteBooking(booking.id)}
+                    dogs={booking.dogs}
+                    onRemoveDog={onRemoveDog}
+                  />
                 </div>
               </div>
             </div>

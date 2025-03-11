@@ -54,7 +54,7 @@ export default function BookingCalendar({ className, onSubmit }) {
     <div className="w-full">
       <div
         className={classNames(
-          " animate-expandShadow bg-customBackground max-w-96 h-auto overflow-y rounded-xl",
+          " animate-expandShadow bg-customBackground max-w-96 h-auto mx-auto overflow-y rounded-xl ",
           className
         )}
       >
