@@ -9,7 +9,7 @@ class Validator {
     const regExp = /^[A-Z][a-zA-Z0-9]{0,11}$/;
 
     if (!regExp.test(value)) {
-      throw new Errors.UsernameNotValidError(" Username format is not valid");
+      throw new Errors.UsernameNotValidError("Username format is not valid");
     }
     return true;
   }
@@ -45,7 +45,7 @@ class Validator {
   static nif(value) {
     if (typeof value !== "string") throw new TypeError("DNI is not a string");
     if (value.length !== 9) {
-      throw new Error("DNI must have 9 characters");
+      throw new Errors.NifNotValidError("DNI must have 9 characters");
     }
 
     // Extract the number and letter
@@ -95,7 +95,7 @@ class Validator {
 
   static confirmationPassword(value1, value2) {
     if (!(value1 === value2))
-      throw Errors.ConfirmationError("Passwords do not match");
+      throw new Errors.ConfirmationError("Passwords do not match");
 
     return true;
   }
@@ -104,7 +104,7 @@ class Validator {
     if (typeof value !== "string") throw new TypeError("Id is not a string");
     if (value.trim().length === 0) throw new Errors.ContentError("Id is empty");
     if (!mongoose.Types.ObjectId.isValid(value)) {
-      throw new Errors.CredentialsError("Invalid ID format");
+      throw new TypeError("Invalid ID format");
     }
     return true;
   }
