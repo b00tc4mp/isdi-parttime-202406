@@ -6,7 +6,7 @@ export default (req, res, next) => {
 
   try {
     logic
-      .removeDogsFromBookings({ bookingId, userId, dogIds })
+      .removeDogsFromBookings(userId, { bookingId, dogIds })
       .then(() => res.status(200).send())
       .catch((error) => next(error));
   } catch (error) {
