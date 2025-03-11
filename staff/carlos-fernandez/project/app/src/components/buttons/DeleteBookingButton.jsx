@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import DeleteConfirmation from "../modals/DeleteConfirmation";
 
 function DeleteBookingButton({
   bookingId,
@@ -10,13 +11,13 @@ function DeleteBookingButton({
   const [isDogListOpen, setIsDogListOpen] = useState(false);
   const [selectedDogs, setSelectedDogs] = useState([]);
   const dropdownRef = useRef(null);
-
-  console.log("Perros en la reserva:", dogs);
+  const dogListRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
+        setIsDogListOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -31,11 +32,43 @@ function DeleteBookingButton({
         return [...prev, dogId];
       }
     });
-    console.log("selectedDogs despues de handleSelectDog:", selectedDogs); // Inspeccionar selectedDogs después de la actualización
+  };
+
+  const confirmDeleteBooking = async () => {
+    const result = await DeleteConfirmation({
+      title: "Eliminar reserva",
+      text: "¿Estás seguro de que deseas eliminar esta reserva? Esta acción no se puede deshacer.",
+      confirmButtonText: "Sí, eliminar",
+    });
+
+    if (result.isConfirmed) {
+      onDeleteBooking();
+      setIsDropdownOpen(false);
+    }
+  };
+
+  const confirmRemoveDogs = async () => {
+    if (selectedDogs.length === 0) {
+      alert("Debes seleccionar al menos una mascota para eliminar.");
+      return;
+    }
+
+    const result = await DeleteConfirmation({
+      title: "Eliminar mascota(s)",
+      text: "¿Seguro que quieres eliminar las mascotas seleccionadas de la reserva?",
+      confirmButtonText: "Sí, eliminar",
+    });
+
+    if (result.isConfirmed) {
+      onRemoveDog(bookingId, selectedDogs);
+      setIsDogListOpen(false);
+      setSelectedDogs([]);
+    }
   };
 
   return (
     <div className="relative" ref={dropdownRef}>
+      {/* BOTÓN PRINCIPAL */}
       <button
         className="bg-textPinkColor hover:bg-darkPink text-white text-s rounded-md flex flex-col items-center justify-center 
         sm:w-24 sm:h-[90px] sm:mt-0
@@ -46,6 +79,7 @@ function DeleteBookingButton({
         <span>reserva</span>
       </button>
 
+      {/* PRIMER DROPDOWN */}
       <ul
         className={`absolute top-full ml-2 mt-2 max-w-screen sm:w-52 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform z-50
         ${
@@ -57,10 +91,7 @@ function DeleteBookingButton({
         <li>
           <button
             className="w-full px-4 py-2 text-left text-black hover:bg-red-100 transition duration-300"
-            onClick={() => {
-              onDeleteBooking();
-              setIsDropdownOpen(false);
-            }}
+            onClick={confirmDeleteBooking}
           >
             ❌ Eliminar reserva
           </button>
@@ -78,44 +109,43 @@ function DeleteBookingButton({
         </li>
       </ul>
 
-      {/* Lista de mascotas a eliminar */}
-      {isDogListOpen && (
-        <div>
-          <h3 className="text-center text-black">Selecciona mascotas</h3>
-          <ul className="overflow-y-auto text-black">
-            {dogs.map((dog) => (
-              <li
-                key={dog.id}
-                className="flex items-center p-2 text-black hover:bg-gray-100"
-              >
-                <input
-                  type="checkbox"
-                  id={dog.ig}
-                  checked={selectedDogs.includes(dog._id)}
-                  onChange={() => {
-                    console.log("dog.id seleccionado:", dog._id);
-                    handleSelectDog(dog._id);
-                  }}
-                />
-                <label htmlFor={dog._id} className="ml-2 cursos-pointer">
-                  {dog.dogName}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <button
-            className="w-full bg-red-500 text-white py-1 rounded mt-2 hover:bg-red-600"
-            onClick={() => {
-              console.log("selectedDogs antes de onRemoveDog:", selectedDogs); // Inspeccionar selectedDogs antes de onRemoveDog
-              onRemoveDog(bookingId, selectedDogs);
-              setIsDogListOpen(false);
-              setSelectedDogs([]);
-            }}
-          >
-            Eliminar mascotas seleccionadas
-          </button>
-        </div>
-      )}
+      {/* SEGUNDO DROPDOWN - LISTA DE PERROS */}
+
+      <div
+        className={`absolute flex flex-col py-2 items-center justify-center top-full ml-2 mt-2 max-w-screen sm:w-52 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform z-50
+        ${
+          isDogListOpen
+            ? "scale-100 opacity-100"
+            : "scale-0 opacity-0 pointer-events-none"
+        }`}
+        // Asegura que respeta la transición
+      >
+        <h3 className="text-center text-black">Selecciona tus mascotas</h3>
+        <ul className="overflow-y-auto text-black">
+          {dogs.map((dog) => (
+            <li key={dog.id} className="flex items-center p-2 text-black">
+              <input
+                type="checkbox"
+                id={dog.ig}
+                checked={selectedDogs.includes(dog._id)}
+                onChange={() => {
+                  console.log("dog.id seleccionado:", dog._id);
+                  handleSelectDog(dog._id);
+                }}
+              />
+              <label htmlFor={dog._id} className="ml-2 cursos-pointer">
+                {dog.dogName}
+              </label>
+            </li>
+          ))}
+        </ul>
+        <button
+          className="w-2/3 bg-red-500 text-white py-1 rounded mt-2 hover:bg-red-600"
+          onClick={confirmRemoveDogs}
+        >
+          Eliminar mascotas seleccionadas
+        </button>
+      </div>
     </div>
   );
 }

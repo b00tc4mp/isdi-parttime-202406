@@ -38,6 +38,14 @@ const registerUser = ({
       if (res.status === 201) return;
       return res.json().then((body) => {
         const constructor = Errors[body.name];
+        console.log("RESPUESTA", res.status);
+        console.log("CONSTRUCTOR", constructor);
+        if (res.status === 409 && constructor === Errors.DuplicityError) {
+          throw new Errors.DuplicityError(body.message);
+        }
+        if (constructor === Errors.ConfirmationError) {
+          throw new Errors.ConfirmationError(body.message);
+        }
         throw new constructor(`${body.message}`);
       });
     })

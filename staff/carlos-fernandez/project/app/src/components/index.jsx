@@ -16,6 +16,7 @@ export const UserAreaBtn = _UserAreaBtn;
 import _BookingCard from "./cards/BookingCard.jsx";
 import _BookingDeletedSuccessfully from "./cards/BookingDeletedSuccessfully.jsx";
 import _BookingSuccess from "./cards/BookingSuccess.jsx";
+import _DogRemovedSuccessfully from "./cards/DogRemovedSuccessfully.jsx";
 import _NoAccountMessage from "./cards/NoAccountMessage.jsx";
 import _NoBookingMessage from "./cards/NoBookingMessage.jsx";
 import _NoPetsMessage from "./cards/NoPetsMessage.jsx";
@@ -24,6 +25,7 @@ import _RegisteredDogSuccessfully from "./cards/RegisteredDogSuccessfully.jsx";
 export const BookingCard = _BookingCard;
 export const BookingDeletedSuccessfully = _BookingDeletedSuccessfully;
 export const BookingSuccess = _BookingSuccess;
+export const DogRemovedSuccessfully = _DogRemovedSuccessfully;
 export const NoAccountMessage = _NoAccountMessage;
 export const NoBookingMessage = _NoBookingMessage;
 export const NoPetsMessage = _NoPetsMessage;
@@ -49,7 +51,9 @@ export const UserProfile = _UserProfile;
   /* MODALS */
 }
 import _ConfirmationModal from "./modals/ConfirmationModal.jsx";
+import _DeleteConfirmation from "./modals/DeleteConfirmation.jsx";
 export const ConfirmationModal = _ConfirmationModal;
+export const DeleteConfirmation = _DeleteConfirmation;
 
 {
   /* OTHERS */

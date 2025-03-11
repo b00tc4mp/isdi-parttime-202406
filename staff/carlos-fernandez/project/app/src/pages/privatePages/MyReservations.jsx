@@ -4,6 +4,7 @@ import {
   BookingCalendar,
   BookingDeletedSuccessfully,
   BookingSuccess,
+  DogRemovedSuccessfully,
   NoBookingMessage,
 } from "../../components/index.jsx";
 import logic from "../../logic/index.js";
@@ -15,6 +16,7 @@ function MyReservations() {
   const [isSuccess, setIsSuccess] = useState(false); // Boolean de exito al reservar
   const [stamp, setStamp] = useState(Date.now()); // Marca de tiempo para actualizar datos
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false); // Boolean de éxito al eliminar la reserva
+  const [isDogRemoved, setIsDogRemoved] = useState(false);
 
   const headerHeight = useHeaderHeight();
 
@@ -57,7 +59,7 @@ function MyReservations() {
   const handleRemoveDogsFromBooking = async (bookingId, dogIds) => {
     try {
       await logic.removeDogsFromBooking(bookingId, dogIds);
-      setIsDeleteSuccess(true);
+      setIsDogRemoved(true);
     } catch (error) {
       console.error("Error al eliminar mascota", error);
     }
@@ -94,6 +96,14 @@ function MyReservations() {
               bookings={bookings}
               onDeleteBooking={handleDeleteBooking}
               onRemoveDog={handleRemoveDogsFromBooking}
+            />
+          )}
+          {isDogRemoved && (
+            <DogRemovedSuccessfully
+              onClose={() => {
+                setIsDogRemoved(false);
+                setStamp(Date.now());
+              }}
             />
           )}
         </>

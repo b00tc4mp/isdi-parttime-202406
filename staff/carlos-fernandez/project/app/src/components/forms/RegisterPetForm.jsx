@@ -21,13 +21,13 @@ function RegisterPetForm({ className, onSubmit }) {
     } = form;
 
     const dogData = {
-      chip: inputChip.value,
-      dogName: inputDogName.value,
-      breed: inputBreed.value,
+      chip: inputChip.value.trim(),
+      dogName: inputDogName.value.trim(),
+      breed: inputBreed.value.trim(),
       birthDate: inputBirthDate.value,
       sociability: inputSociability.checked,
-      disease: inputDisease.value,
-      allergy: inputAllergy.value,
+      disease: inputDisease.value.trim() || "ninguna",
+      allergy: inputAllergy.value.trim() || "ninguna",
     };
 
     // Enviamos los datos
@@ -120,6 +120,7 @@ function RegisterPetForm({ className, onSubmit }) {
                     className="grow focus:text-gray-600 placeholder:text-gray-600 placeholder:text-opacity-90 text-black appearance-none"
                     onFocus={(e) => (e.target.type = "date")} // Cambia el tipo a 'date' cuando se enfoca
                     onBlur={(e) => (e.target.type = "text")} // Cambia el tipo a 'text' cuando se pierde el foco
+                    max={new Date().toISOString().split("T")[0]}
                   />
                 </label>
               </div>

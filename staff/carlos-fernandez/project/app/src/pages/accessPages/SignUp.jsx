@@ -11,13 +11,9 @@ function SignUp() {
   const onSubmit = useMemo(
     () => (data) => {
       try {
-        return registerUser(data)
-          .then(() => {
-            navigate("/login");
-          })
-          .catch((err) => {
-            openModalError(err);
-          });
+        return registerUser(data).then(() => {
+          navigate("/login");
+        });
       } catch (error) {
         throw error;
       }

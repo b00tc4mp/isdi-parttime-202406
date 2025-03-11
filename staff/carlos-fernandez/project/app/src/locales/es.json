@@ -13,7 +13,7 @@
     "UnexpectedError": "Ha ocurrido un error inesperado, por favor, póngase en contacto con el equipo de soporte",
     "DateOfBirthNotValidError": "La fecha de nacimiento no es válida",
     "ConfirmationError": "Las contraseñas no coinciden",
-    "DuplicityError": "Ya existe un usuario con este email"
+    "DuplicityError": "Email o NIF ya existentes"
   },
   "modalErrors": {
     "default": {

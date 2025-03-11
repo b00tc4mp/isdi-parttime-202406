@@ -1,17 +1,25 @@
 import React from "react";
 import deleteDog from "../../logic/deleteDog.js";
 import { formatDate } from "../../utils/formatDateUtils.js";
+import DeleteConfirmation from "../modals/DeleteConfirmation.jsx";
 
 function PetCard({ pet, refreshPets }) {
-  const handleDeleteDog = () => {
-    deleteDog(pet._id)
-      .then(() => {
-        alert("Mascota eliminada correctamente");
-        refreshPets(); //Actualizamos la lista de mascotas
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  const confirmRemoveDog = async () => {
+    const result = await DeleteConfirmation({
+      title: "Eliminar mascota",
+      text: `¿Seguro que quieres eliminar a ${pet.dogName}?`,
+      confirmButtonText: "Sí, eliminar",
+    });
+
+    if (result.isConfirmed) {
+      deleteDog(pet._id)
+        .then(() => {
+          refreshPets();
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
   };
 
   ////////////////////////////////// COMPONENTE //////////////////////////////////
@@ -25,7 +33,7 @@ function PetCard({ pet, refreshPets }) {
           </h2>
           <button
             className="bg-textPinkColor hover:bg-darkPink text-white w-auto sm:w-[120px] px-4 py-1 sm:px-6 md:py-2 rounded-lg mt-2 sm:mt-0 ml-2 sm:ml-0"
-            onClick={handleDeleteDog}
+            onClick={confirmRemoveDog}
           >
             Eliminar
           </button>

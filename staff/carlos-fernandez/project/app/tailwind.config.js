@@ -44,16 +44,6 @@ module.exports = {
         "0%": { opacity: "0" },
         "100%": { opacity: "1" },
       },
-      wiggle: {
-        "0%, 100%": { transform: "rotate(-3deg)" },
-        "50%": { transform: "rotate(3deg)" },
-      },
-      buzzing: {
-        "0%, 50%, 72%, 85%, 95%": { filter: "opacity(1)" },
-        "30%, 90%, 100%": { filter: "opacity(0)" },
-        "65%": { filter: "opacity(60%)" },
-        "80%": { filter: "opacity(40%)" },
-      },
     },
     animation: {
       ...animation,

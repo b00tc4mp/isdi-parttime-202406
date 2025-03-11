@@ -10,14 +10,20 @@ import {
   IconNif,
 } from "../icons";
 import classNames from "classnames";
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { Errors } from "common";
 import { FormErrorsSection } from "..";
 import { Tooltip } from "react-tooltip";
 import { showPassword } from "../../utils/showPasswordUtils.js";
 
-function SignupForm({ className, onSubmit }) {
+function SignupForm({ className, onSubmit, formError }) {
   const [errors, setErrors] = useState(null);
+
+  useEffect(() => {
+    if (formError) {
+      setErrors([formError]);
+    }
+  }, [formError]);
 
   const submit = (event) => {
     event.preventDefault();
@@ -32,6 +38,19 @@ function SignupForm({ className, onSubmit }) {
       repeatPassword: inputRepeatPassword,
     } = event.target;
 
+    if (
+      !inputUsername.value ||
+      !inputSurname.value ||
+      !inputPhoneNumber.value ||
+      !inputNif.value ||
+      !inputEmail.value ||
+      !inputPassword.value ||
+      !inputRepeatPassword.value
+    ) {
+      setErrors([new Error("default")]); // Establecer error genérico
+      return; // Detener el envío del formulario
+    }
+
     try {
       onSubmit({
         username: inputUsername.value,
@@ -44,6 +63,10 @@ function SignupForm({ className, onSubmit }) {
       }).catch((error) => {
         if (error instanceof Errors.BadRequestError) return setErrors([error]);
         if (error instanceof Errors.ServerError) return setErrors([error]);
+        if (error instanceof Errors.DuplicityError) return setErrors([error]);
+        if (error instanceof Errors.NifNotValidError) return setErrors([error]);
+        if (error instanceof Errors.ConfirmationError)
+          return setErrors([error]);
         setErrors([new Errors.UnexpectedError()]);
       });
     } catch (error) {
