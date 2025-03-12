@@ -10,12 +10,12 @@ export default (userId, { dogs, startDate, endDate }) => {
     throw new Errors.BookingNotValidError("DogId must be an array");
   }
   dogs.forEach((dogId) => Validator.id(dogId));
-  Validator.startDate(startDate);
-  Validator.endDate(endDate);
 
   if (new Date(startDate) >= new Date(endDate)) {
     throw new Errors.BookingNotValidError("startDate must be before endDate");
   }
+  Validator.startDate(startDate);
+  Validator.endDate(endDate);
 
   // 1. PARTE 1 --- ESQUEMA USUARIO ---
   return User.findById(userId).then((user) => {
@@ -28,22 +28,36 @@ export default (userId, { dogs, startDate, endDate }) => {
     }
 
     // 2. PARTE 2 --- ESQUEMA BOOKING ---
+
+    //Buscar entre ALGUNAS de fechas
+
     return Booking.find({
       owner: userId,
       startDate: { $lte: endDate },
       endDate: { $gte: startDate },
     }).then((reservations) => {
-      // Verificamos el aforo antes de cualquier modificación
+      console.log("RESERVA EXISTENTE", reservations);
       checkDailyCapacity(reservations, dogs, startDate, endDate);
 
-      // Comprobamos si existe una reserva para el usuario y las fechas
+      // Verificación de reservas duplicadas
+      for (const dogId of dogs) {
+        for (const reservation of reservations) {
+          if (reservation.dogs.some((dog) => dog.toString() === dogId)) {
+            throw new Errors.BookingNotValidError(
+              "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
+            );
+          }
+        }
+      }
+
+      // Buscar EXACTAMENTE con estas fechas
       const existingReservation = reservations.find(
         (reservation) =>
           reservation.owner.toString() === userId &&
           reservation.startDate.getTime() === new Date(startDate).getTime() &&
           reservation.endDate.getTime() === new Date(endDate).getTime()
       );
-
+      console.log("EXISTING RESERVATION", existingReservation);
       if (existingReservation) {
         // Comprobamos si el perro ya está en la reserva
         const existingDogs = existingReservation.dogs.map((dog) =>
@@ -58,8 +72,10 @@ export default (userId, { dogs, startDate, endDate }) => {
           );
           return existingReservation.save();
         } else {
-          // El perro ya está en la reserva, no hacemos nada
-          return existingReservation;
+          // El perro ya está en la reserva, lanzamos el error
+          throw new Errors.BookingNotValidError(
+            "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
+          );
         }
       } else {
         // Creamos una nueva reserva

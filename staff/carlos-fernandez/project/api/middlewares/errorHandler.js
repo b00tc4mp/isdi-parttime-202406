@@ -17,7 +17,10 @@ export default (error, req, res, next) => {
   ) {
     code = 401;
   }
-  if (error instanceof Errors.DuplicityError) {
+  if (
+    error instanceof Errors.DuplicityError ||
+    error instanceof Errors.BookingNotValidError
+  ) {
     code = 409;
   }
   if (error instanceof Errors.ExistenceError) {

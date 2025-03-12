@@ -67,6 +67,42 @@ describe("Create booking", () => {
     });
   });
 
+  it("Creates a booking successfully with a new dow in the same dates", async () => {
+    await createBooking(userId, {
+      dogs: [dogId],
+      startDate: new Date("2025-08-01"),
+      endDate: new Date("2025-08-07"),
+    });
+
+    const newDog = await Dog.create({
+      dogName: "NewDog",
+      chip: "987654321098766",
+      breed: "Poodle",
+      birthDate: new Date("2021-01-01"),
+      sociability: true,
+      disease: "none",
+      allergy: "none",
+      owner: userId,
+    });
+    const newDogId = newDog._id.toString();
+
+    await User.findByIdAndUpdate(
+      userId,
+      { $push: { dogs: newDogId } },
+      { new: true }
+    );
+
+    const updatedBooking = await createBooking(userId, {
+      dogs: [newDogId],
+      startDate: "2025-08-01",
+      endDate: "2025-08-07",
+    });
+
+    expect(updatedBooking.dogs.map((dog) => dog.toString())).to.include(
+      newDogId
+    );
+  });
+
   // ////////////////////////////// UNHAPPY PATHS //////////////////////////////
 
   it("Fails when user does not exist", () => {
@@ -130,7 +166,7 @@ describe("Create booking", () => {
       });
   });
 
-  it("Fails when the selected dog is already booked in these dates", () => {
+  it("Fails when the selected dog is already booked in some of these dates", () => {
     const existingBooking = {
       owner: userId,
       dogs: [dogId],
@@ -154,5 +190,86 @@ describe("Create booking", () => {
           "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
         );
       });
+  });
+
+  // async-await porque es un error de validador
+  it("Fails when dogs is not an array", async () => {
+    const invalidBooking = {
+      dogs: "not-an-array",
+      startDate: "2025-06-01",
+      endDate: "2025-06-07",
+    };
+
+    try {
+      await createBooking(userId, invalidBooking);
+      throw new Error("Test should fail");
+    } catch (error) {
+      expect(error.message).to.equal("DogId must be an array");
+    }
+  });
+
+  it("Throws an error if startDate is after endDate", async () => {
+    const invalidBooking = {
+      owner: userId,
+      dogs: [dogId],
+      startDate: "2025-01-31",
+      endDate: "2025-01-01",
+    };
+
+    try {
+      await createBooking(userId, invalidBooking);
+      throw new Error("Test should fail");
+    } catch (error) {
+      expect(error.message).to.equal("startDate must be before endDate");
+    }
+  });
+
+  it("Fails when the selected dog is already booked in overlapping dates", async () => {
+    // Crear una reserva existente para el perro1
+    const createdBooking = await Booking.create({
+      owner: userId,
+      dogs: [dogId],
+      startDate: new Date("2025-04-01"),
+      endDate: new Date("2025-04-03"),
+    });
+
+    // Intentar crear una nueva reserva para el mismo perro con fechas superpuestas
+    try {
+      await createBooking(userId, {
+        dogs: [dogId],
+        startDate: "2025-04-03",
+        endDate: "2025-04-05",
+      });
+
+      throw new Error("Test should have failed due to overlapping dates");
+    } catch (error) {
+      expect(error.message).to.equal(
+        "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
+      );
+    }
+  });
+
+  it("Fails when trying to book the same dog for the exact same dates", async () => {
+    // 1. Crear una reserva existente con el perro
+    await Booking.create({
+      owner: userId,
+      dogs: [dogId],
+      startDate: new Date("2025-10-01"),
+      endDate: new Date("2025-10-07"),
+    });
+
+    // 2. Intentar reservar el mismo perro para las mismas fechas exactas
+    try {
+      await createBooking(userId, {
+        dogs: [dogId],
+        startDate: "2025-10-01",
+        endDate: "2025-10-07",
+      });
+      throw new Error("Test should have failed");
+    } catch (error) {
+      expect(error.message).to.equal(
+        "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
+      );
+    }
   });
 });
