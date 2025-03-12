@@ -9,7 +9,7 @@ function LocationBox({ currentLocation }) {
             <div className="flex flex-col justify-start h-full">
                 {/* 📍 Ubicación + Información general */}
                 <div className="flex flex-col space-y-2 mb-6 mt-8">
-                    <div className="text-gray-800 text-3xl font-bold">📍 {currentLocation.name}</div>
+                    <div className="text-secondary text-3xl font-bold">📍 {currentLocation.name}</div>
                     <div className="text-gray-500 text-xl font-medium">Weather</div>
                     <div className="text-gray-500 text-lg font-medium">Now</div>
                 </div>

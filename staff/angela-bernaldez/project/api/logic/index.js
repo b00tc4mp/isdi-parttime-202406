@@ -5,6 +5,8 @@ import deleteUserLocation from './deleteUserLocation.js'
 import getAllUserLocations from './getAllUserLocations.js'
 import getUser from './getUser.js'
 import registerUser from './registerUser.js'
+import updatePassword from './updatePassword.js'
+import updateUsername from './updateUsername.js'
 
 export default {
     addUserLocation,
@@ -13,6 +15,8 @@ export default {
     deleteUserLocation,
     getAllUserLocations,
     getUser,
-    registerUser
+    registerUser,
+    updatePassword,
+    updateUsername
 }
 

@@ -35,6 +35,10 @@ describe('deleteUserLocation', () => {
         user = _user
     })
 
+    afterEach(() => User.deleteMany())  // SON ASINCRONAS, DEBO PONER ASYNC???
+    afterEach(() => Location.deleteMany())
+    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
+
     it('delete a fav location for an user', () => {
         return deleteUserLocation(user._id.toString(), location)
             .then(() => {
@@ -48,10 +52,6 @@ describe('deleteUserLocation', () => {
                     })
             })
     })
-
-    afterEach(() => User.deleteMany())  // SON ASINCRONAS, DEBO PONER ASYNC???
-    afterEach(() => Location.deleteMany())
-    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
 
 
 })

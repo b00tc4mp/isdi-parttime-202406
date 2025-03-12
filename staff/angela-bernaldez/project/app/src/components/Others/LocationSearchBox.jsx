@@ -45,7 +45,6 @@ function LocationSearchBox({ setStamp }) {
 
     const handleSelect = (selectedLocation) => {
         console.log('Selected location is:', selectedLocation)
-        // llamar a la logica que lleva la nueva localizacion al back
         const isCurrentLocation = false
         return logic.addUserLocation(selectedLocation, isCurrentLocation)
             .then(() => {

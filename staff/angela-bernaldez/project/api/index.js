@@ -22,9 +22,13 @@ mongoose.connect(process.env.MONGO_URI)
 
     server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)
 
-    server.get('/users/auth', verifyToken, handlers.getUser)
-
     server.delete('/users', verifyToken, jsonBodyParser, handlers.deleteUser)
+
+    server.patch('/users/username', verifyToken, jsonBodyParser, handlers.updateUsername)
+
+    server.patch('/users/password', verifyToken, jsonBodyParser, handlers.updatePassword)
+
+    server.get('/users/auth', verifyToken, handlers.getUser)
 
     server.get('/users/locations', verifyToken, handlers.getAllUserLocations)
 

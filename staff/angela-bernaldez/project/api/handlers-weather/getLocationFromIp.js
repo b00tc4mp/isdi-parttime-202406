@@ -6,8 +6,8 @@ export default (req, res, next) => {
 
     try {
         logicWeather.getLocationFromIp(userId)
-        .then((currentLocation) => {
-            res.status(200).json({ currentLocation })
+        .then(() => {
+            res.status(200).json({})
         })
     } catch(error) {
         next(error)

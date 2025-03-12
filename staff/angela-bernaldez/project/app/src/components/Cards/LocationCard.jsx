@@ -23,11 +23,17 @@ function LocationCard({ locationData, onLocationSelect, isCurrentLocation, setSt
             onMouseLeave={() => setShowDelete(false)}
         >
             <div className="flex flex-col w-2/3 pl-4">
-                <h1 className="text-xl font-semibold">{locationData.name}</h1>
-                {locationData ? 
-                <p className="text-gray-600 text-md">{locationData.current.temperature_2m}°C</p> :
-                null 
-                } 
+                {isCurrentLocation && (
+                    <p className="text-gray-600 text-xl font-bold">My Location 🧭</p>
+                )}
+                <h1 className={`text-xl font-semibold ${isCurrentLocation ? 'text-lg' : ''}`}>
+                    {locationData.name}
+                </h1>
+                {locationData.current && (
+                    <p className="text-gray-600 text-md">
+                        {locationData.current.temperature_2m}°C
+                    </p>
+                )}
             </div>
 
             <div className="w-28 h-28 flex items-center justify-center mr-4">

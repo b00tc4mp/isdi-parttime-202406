@@ -9,7 +9,7 @@ export default (id) => {
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             user.id = user._id.toString()
-            // NO DEVOLVER CONTRASEÑAAAAAAAAA
+            delete user.password
             delete user._id
             return user
         })

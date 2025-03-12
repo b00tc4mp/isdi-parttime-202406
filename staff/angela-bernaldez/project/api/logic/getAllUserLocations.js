@@ -13,8 +13,12 @@ export default (id) => {
 
             return Location.find({ '_id': {$in: user.favLocations }})
                 .then((locationsFound) => {
-                    return locationsFound
-                    // need to check this works as expected
+                    const orderedLocations = user.favLocations.map(id => 
+                        locationsFound.find(location => location._id.toString() === id.toString())
+                    )
+                    // NEED TO CHECK HOW CAN LOCATIONS BE RETURNED IN THE SAME ORDER 
+                    // THEY APPEAR IN USER.FAVLOCATIONS 
+                    return orderedLocations
                 })
         })
         .catch((error) => {
