@@ -45,7 +45,9 @@ export default (userId, { bookingId, dogIds }) => {
         booking.dogs = noDeletingDogs;
         return booking.save().then(() => booking); //guardamos
       } else {
-        return booking;
+        throw new Errors.BookingNotValidError(
+          "No dogs were removed from the booking."
+        );
       }
     }
   });

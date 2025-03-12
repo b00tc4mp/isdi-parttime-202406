@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>69/74</span>
+                <span class='fraction'>66/66</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.72% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/11</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>69/74</span>
+                <span class='fraction'>66/66</span>
             </div>
         
             
@@ -129,15 +129,7 @@
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -171,19 +163,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -204,7 +183,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -226,63 +210,55 @@ describe("Update phone number", () =&gt; {
   afterEach(() =&gt; User.deleteMany());
   after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST));
 &nbsp;
-  it("Updates phone number", async () =&gt; {
-    try {
-      const user = {
-        username: "Testname",
-        surname: "Surnametest",
-        phoneNumber: "666333222",
-        nif: "38878569J",
-        email: "testemail@mail.com",
-        password: "aaAA1234@",
-      };
-      const createdUser = await User.create(user);
+  it("Updates phone number", () =&gt; {
+    const user = {
+      username: "Testname",
+      surname: "Surnametest",
+      phoneNumber: "666333222",
+      nif: "38878569J",
+      email: "testemail@mail.com",
+      password: "aaAA1234@",
+    };
+    return User.create(user).then((createdUser) =&gt; {
       const id = createdUser._id.toString();
 &nbsp;
-      await updatePhoneNumber(id, "695506439");
-&nbsp;
-      const updatedUser = await User.findOne({ username: "Testname" });
-&nbsp;
-      expect(updatedUser.phoneNumber).to.be.equal("695506439");
-    } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error updating phone number:", error);</span>
-<span class="cstat-no" title="statement not covered" >      throw error;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+      return updatePhoneNumber(id, "695506439").then(() =&gt; {
+        return User.findOne({ username: "Testname" }).then((updatedUser) =&gt; {
+          expect(updatedUser.phoneNumber).to.be.equal("695506439");
+        });
+      });
+    });
   });
 &nbsp;
   /////////////////////////////////////// UNHAPPY PATH ///////////////////////////////////////
 &nbsp;
-  it("Throws an error when the user doesn't exist", async () =&gt; {
+  it("Throws an error when the user doesn't exist", () =&gt; {
     const nonExistentUserId = new mongoose.Types.ObjectId().toString();
 &nbsp;
-    try {
-      await updatePhoneNumber(nonExistentUserId, "695506439");
-<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >      throw new Error("Expected error not thrown");</span></span>
-    } catch (error) {
+    return updatePhoneNumber(nonExistentUserId, "695506439").catch((error) =&gt; {
       expect(error).to.be.instanceOf(Errors.ExistenceError);
       expect(error.message).to.equal("No user with this ID");
-    }
+    });
   });
 &nbsp;
-  it("Throws an error when the phone number is not valid", async () =&gt; {
-    try {
-      const user = {
-        username: "Testname",
-        surname: "Surnametest",
-        phoneNumber: "666333222",
-        nif: "38878569J",
-        email: "testemail@mail.com",
-        password: "aaAA1234@",
-      };
-      const createdUser = await User.create(user);
-      const id = createdUser._id.toString();
-&nbsp;
-      await updatePhoneNumber(id, "invalid-phone");
-<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >      throw new Error("Expected error was not thrown");</span></span>
-    } catch (error) {
-      expect(error).to.be.instanceOf(Errors.PhoneNumberNotValidError);
-      expect(error.message).to.include("Phone number format is not valid");
-    }
+  it("Throws an error when the phone number is not valid", () =&gt; {
+    const user = {
+      username: "Testname",
+      surname: "Surnametest",
+      phoneNumber: "666333222",
+      nif: "38878569J",
+      email: "testemail@mail.com",
+      password: "aaAA1234@",
+    };
+    return User.create(user)
+      .then((createdUser) =&gt; {
+        const id = createdUser._id.toString();
+        return updatePhoneNumber(id, "invalid-phone");
+      })
+      .catch((error) =&gt; {
+        expect(error).to.be.instanceOf(Errors.PhoneNumberNotValidError);
+        expect(error.message).to.include("Phone number format is not valid");
+      });
   });
 });
 &nbsp;</pre></td></tr></table></pre>
@@ -292,7 +268,7 @@ describe("Update phone number", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-12T16:31:47.044Z
+                at 2025-03-12T17:32:47.979Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

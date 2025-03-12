@@ -43,6 +43,18 @@ describe("Delete some dogs from booking logic", () => {
     );
   });
 
+  it("Deletes all dogs from booking successfully", () => {
+    return removeDogsFromBookings(userId, {
+      bookingId,
+      dogIds: [dogId1, dogId2],
+    }).then(() => {
+      // Verificar que la reserva ya no existe en la base de datos
+      return Booking.findById(bookingId).then((foundBooking) => {
+        expect(foundBooking).to.be.null;
+      });
+    });
+  });
+
   ////////////////////////////// UNHAPPY PATH //////////////////////////////
   it("Throws an error if userId does not exist", () => {
     let newUserId = new mongoose.Types.ObjectId().toString();
@@ -59,6 +71,18 @@ describe("Delete some dogs from booking logic", () => {
       .catch((error) => {
         expect(error.message).to.equal("User is not the owner of this booking");
       });
+  });
+
+  it("Throws an error if dogIds is not an array", async () => {
+    try {
+      await removeDogsFromBookings(userId, {
+        bookingId,
+        dogIds: "not an array",
+      });
+      throw new Error("Test should throw an error");
+    } catch (error) {
+      expect(error.message).to.equal("dogIds must be an array");
+    }
   });
 
   it("Throws an error if bookingId does not exist", () => {

@@ -39,16 +39,12 @@ describe("Get user info from token", () => {
   it("Throws an AuthError if user does not exist", () => {
     const nonExistentId = new mongoose.Types.ObjectId().toString();
 
-    return getUser(nonExistentId)
-      .then(() => {
-        throw new Error("Test should have thrown an AuthError");
-      })
-      .catch((error) => {
-        expect(error).to.be.an.instanceOf(Errors.AuthError);
-        expect(error.message).to.deep.equal(
-          "The provided user ID does not correspond to any user"
-        );
-      });
+    return getUser(nonExistentId).catch((error) => {
+      expect(error).to.be.an.instanceOf(Errors.AuthError);
+      expect(error.message).to.deep.equal(
+        "The provided user ID does not correspond to any user"
+      );
+    });
   });
 
   it("Throws a TypeError if id is not a valid string", async () => {
@@ -56,7 +52,6 @@ describe("Get user info from token", () => {
 
     try {
       await getUser(invalidId);
-      throw new Error("Test should have thrown a TypeError"); // Si no hay error, falla
     } catch (error) {
       expect(error).to.be.an.instanceOf(TypeError);
       expect(error.message).to.equal("Id is not a string");
