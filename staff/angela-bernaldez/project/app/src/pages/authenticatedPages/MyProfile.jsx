@@ -1,9 +1,12 @@
+import MyProfileForm from '../../components/Forms/MyProfileForm'
+import Header from '../../components/Others/Header'
+
 function MyProfile() {
 
     return (
-        <div>
-            Hello this is my profile page
-
+        <div className="h-screen">
+            <Header />
+            <MyProfileForm />
             {/* 
 
                 things to add here: Hello, username

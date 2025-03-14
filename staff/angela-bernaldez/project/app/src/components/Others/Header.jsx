@@ -8,20 +8,17 @@ function Header({ setStamp, onUserLoggedOut }) {
 
     return (
         <header className="sticky top-0 bg-white shadow-md p-4 z-50">
-            <div className="w-full flex items-center gap-4">
-                <div className='ml-12'>
-                    <UserButton />
-                </div>
+            <div className="w-full flex items-center gap-4 px-6">
+                <UserButton />
 
-                {location.pathname === '/dashboard' ? (
-                    <div className="ml-auto w-full max-w-[400px]">
-                        <LocationSearchBox setStamp={setStamp}/>
+                {location.pathname === '/dashboard' && (
+                    <div className="w-full max-w-[400px] mr-4"> 
+                        <LocationSearchBox setStamp={setStamp} />
                     </div>
-                ) : null}
-                <div>
-                    <LogOutButton 
-                        onUserLoggedOut={onUserLoggedOut}
-                    />
+                )}
+
+                <div className="ml-auto w-auto flex-shrink-0">
+                    <LogOutButton onUserLoggedOut={onUserLoggedOut} />
                 </div>
             </div>
         </header>

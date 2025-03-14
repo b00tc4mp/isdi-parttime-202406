@@ -20,9 +20,9 @@ export default (id) => {
                     // THEY APPEAR IN USER.FAVLOCATIONS 
                     return orderedLocations
                 })
-        })
-        .catch((error) => {
-            // change this to a specific type of error
-            console.log(error)
+                .catch((error) => {
+                    // change this to a specific type of error
+                    console.log(error)
+                })
         })
 }

@@ -28,7 +28,6 @@ export default (id, locationData, isCurrentLocation = false) => {
                 .then((location) => {
                     return getOrCreateLocation(location, locationData)
                         .then((newLocation) => {
-                            console.log(newLocation._id, 'ID NEW LOCATIONNNNNN', isCurrentLocation, 'IS CURRENT LOC')
                             // if adding current location, save it or overwrite exisiting one
                             if (isCurrentLocation) {
                                 user.currentLocation = newLocation._id

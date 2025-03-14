@@ -1,10 +1,11 @@
 import logic from '../../logic'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 function UserButton() {
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [username, setUsername] = useState(null)
 
@@ -16,7 +17,8 @@ function UserButton() {
     }, [])
 
     const handleClick = () => {
-        navigate('/myprofile')
+        if (location.pathname === '/dashboard') navigate('/myprofile')
+        else if (location.pathname === '/myprofile') navigate('/dashboard')
     }
 
     return (
@@ -26,8 +28,8 @@ function UserButton() {
                 onClick={handleClick}
             >
                 <div className="text-center">
-                    <p>Welcome</p>
-                    {username && <p>{username}</p>}
+                    <p>{location.pathname === '/myprofile' ? 'My Dashboard' : 'Welcome'}</p>
+                    {username && location.pathname !== '/myprofile' && <p>{username}</p>}
                 </div>
             </button>
         </div>

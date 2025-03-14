@@ -47,6 +47,7 @@ function Dashboard({ onUserLoggedOut }) {
     const fetchCurrentLocation = () => {
         return logicWeather.getLocationFromIp()
             .then((currentLocation) => {
+                console.log('LOCATION OBTAINED FROM IP', currentLocation)
                 return logic.addUserLocation(currentLocation, true)
                     .then(() => {
                         return logicWeather.retrieveWeatherData(currentLocation)
