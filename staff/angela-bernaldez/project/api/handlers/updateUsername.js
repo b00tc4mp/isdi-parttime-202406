@@ -2,7 +2,9 @@ import logic from '../logic/index.js'
 
 export default(req, res, next) => {
     const userId = req.id
-    const { newUsername } = req.body
+    const { 'new-username': newUsername } = req.body
+
+    console.log(req.body, 'IMPRIMIENDO BODY EN EL BACK HANDLER')
 
     try {
         logic.updateUsername(userId, newUsername)
