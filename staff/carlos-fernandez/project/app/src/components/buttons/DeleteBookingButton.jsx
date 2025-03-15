@@ -88,7 +88,7 @@ function DeleteBookingButton({
             : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
-        <li>
+        <li key="delete-booking">
           <button
             className="w-full px-4 py-2 text-left text-black hover:bg-red-100 transition duration-300"
             onClick={confirmDeleteBooking}
@@ -96,7 +96,7 @@ function DeleteBookingButton({
             ❌ Eliminar reserva
           </button>
         </li>
-        <li>
+        <li key="delete-dogs">
           <button
             className="w-full px-4 py-2 text-left text-black hover:bg-blue-100 transition duration-300"
             onClick={() => {
