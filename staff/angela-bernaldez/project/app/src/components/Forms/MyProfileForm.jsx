@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logic from '../../logic'
 
-function MyProfile() {
+function MyProfile({ onUserLoggedOut }) {
     const navigate = useNavigate()
     const [userData, setUserData] = useState(null)
     const [newUsername, setNewUsername] = useState("")
@@ -20,7 +20,6 @@ function MyProfile() {
         })
     }, [])
 
-    // Manejar cambio de nombre de usuario
     const handleUsernameChange = () => {
         logic.updateUsername(newUsername)
             .then(() => {
@@ -33,7 +32,7 @@ function MyProfile() {
     const handlePasswordChange = () => {
         logic.updatePassword(oldPassword, newPassword)
             .then(() => {
-                setChangingPassword(false);
+                setChangingPassword(false)
                 setOldPassword("")
                 setNewPassword("")
             })
@@ -44,6 +43,8 @@ function MyProfile() {
         logic.deleteUser(deletePassword)
             .then(() => {
                 console.log("Account deleted successfully")
+                onUserLoggedOut()
+                sessionStorage.clear()
                 navigate('/')
             })
             .catch((error) => console.error("Error deleting account:", error))

@@ -8,7 +8,6 @@ import 'dotenv/config'
 
 // change port from 4321 to another number :)
 
-
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.info(`connected to db: ${process.env.MONGO_URI}`)

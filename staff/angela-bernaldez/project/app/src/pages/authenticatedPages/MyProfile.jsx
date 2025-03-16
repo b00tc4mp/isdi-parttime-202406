@@ -1,12 +1,12 @@
 import MyProfileForm from '../../components/Forms/MyProfileForm'
 import Header from '../../components/Others/Header'
 
-function MyProfile() {
+function MyProfile({ onUserLoggedOut }) {
 
     return (
         <div className="h-screen">
             <Header />
-            <MyProfileForm />
+            <MyProfileForm onUserLoggedOut={onUserLoggedOut}/>
         </div>
     )
 }

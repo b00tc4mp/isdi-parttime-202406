@@ -5,7 +5,7 @@ function Authenticated({ onUserLoggedOut }) {
     return <>
         <Routes>
             <Route path='/dashboard' element={<Dashboard onUserLoggedOut={onUserLoggedOut} />} />
-            <Route path='/myprofile' element={<MyProfile/>} />
+            <Route path='/myprofile' element={<MyProfile onUserLoggedOut={onUserLoggedOut} />} />
             {/*Solamente deberia pasar el onuserloggedout a las pags/comp donde esta el boton de log out*/}
         </Routes>
     <Outlet />
