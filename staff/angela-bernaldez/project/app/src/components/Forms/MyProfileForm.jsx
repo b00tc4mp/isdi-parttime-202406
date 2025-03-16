@@ -1,48 +1,50 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import logic from '../../logic'
 
 function MyProfile() {
+    const navigate = useNavigate()
     const [userData, setUserData] = useState(null)
-    const [editingUsername, setEditingUsername] = useState(false)
     const [newUsername, setNewUsername] = useState("")
-    const [changingPassword, setChangingPassword] = useState(false)
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
+    const [editingUsername, setEditingUsername] = useState(false)
+    const [changingPassword, setChangingPassword] = useState(false)
     const [deletingAccount, setDeletingAccount] = useState(false)
     const [deletePassword, setDeletePassword] = useState("")
 
     useEffect(() => {
-        logic.getUser().then((user) => {
+        logic.getUser()
+        .then((user) => {
             setUserData(user)
         })
     }, [])
 
+    // Manejar cambio de nombre de usuario
     const handleUsernameChange = () => {
         logic.updateUsername(newUsername)
             .then(() => {
-                setUserData({ ...userData, username: newUsername })
+                setUserData(prev => ({ ...prev, username: newUsername }));
                 setEditingUsername(false)
-                // call logic to change username 
             })
             .catch((error) => console.error("Error changing username:", error))
-    };
+    }
 
     const handlePasswordChange = () => {
         logic.updatePassword(oldPassword, newPassword)
             .then(() => {
-                setOldPassword("");
-                setNewPassword("");
-                setChangingPassword(false)
-                // call logic to change password
+                setChangingPassword(false);
+                setOldPassword("")
+                setNewPassword("")
             })
             .catch((error) => console.error("Error changing password:", error))
     }
 
     const handleDeleteAccount = () => {
-        logic.deleteAccount(deletePassword)
+        logic.deleteUser(deletePassword)
             .then(() => {
                 console.log("Account deleted successfully")
-                // redirect to landing page
+                navigate('/')
             })
             .catch((error) => console.error("Error deleting account:", error))
     }
@@ -118,8 +120,8 @@ function MyProfile() {
                             <form 
                                 className="w-full"
                                 onSubmit={(e) => {
-                                    e.preventDefault()
-                                    handlePasswordChange()
+                                    e.preventDefault();
+                                    handlePasswordChange();
                                 }}
                             >
                                 <input
@@ -192,8 +194,8 @@ function MyProfile() {
                                 <button 
                                     className="flex-1 bg-gray-300 text-gray-700 font-medium py-2 rounded-md hover:bg-gray-400"
                                     onClick={() => {
-                                        setDeletingAccount(false)
-                                        setDeletePassword("")
+                                        setDeletingAccount(false);
+                                        setDeletePassword("");
                                     }}
                                 >
                                     Cancel

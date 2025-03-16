@@ -7,16 +7,6 @@ function MyProfile() {
         <div className="h-screen">
             <Header />
             <MyProfileForm />
-            {/* 
-
-                things to add here: Hello, username
-
-                edit your profile: 
-                - change password
-                - change username
-                - delete account
-            
-            */}
         </div>
     )
 }
