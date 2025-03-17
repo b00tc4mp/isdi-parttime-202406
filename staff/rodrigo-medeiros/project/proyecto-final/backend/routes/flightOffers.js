@@ -1,6 +1,6 @@
 import express from "express";
 import axios from "axios";
-import getAmadeusToken from "../logic/amadeusAuth.js"; // Certifique-se de que o caminho está correto
+import getAmadeusToken from "../logic/flightRelated/amadeusAuth.js"; //Certifique-se de que o caminho está correto
 
 const router = express.Router();
 const AMADEUS_API_BASE =

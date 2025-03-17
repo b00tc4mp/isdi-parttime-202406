@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { isUserLoggedIn } from "../logic/isUserLoggedIn";
 import AirportPicker from "./AirportPicker";
 import { SearchLogo } from "./icons.jsx";
 import ShowFlights from "./ShowFlights";
+import { handleAddToFavourites } from '../handlers/flightHandlers/handleAddToFavourites.js';
 import {
   handleIncrement,
   handleDecrement,
@@ -14,6 +17,7 @@ import {
 import axios from "axios";
 
 function SearchFlightsForm() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tripType, setTripType] = useState("one-way");
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
@@ -33,6 +37,34 @@ function SearchFlightsForm() {
     adults: 1,
     tripType: "one-way",
   });
+  const location = useLocation();
+
+  useEffect(() => {
+  setIsLoggedIn(isUserLoggedIn());
+
+  if (location.state) {
+    const { from, to, departureDate, returnDate, adults, children, cabinClass } = location.state;
+
+    setFrom(from);
+    setTo(to);
+    setDepartureDate(departureDate);
+    setReturnDate(returnDate || ""); // Garante que não fique `undefined`
+    setAdults(adults);
+    setChildren(children);
+    setCabinClass(cabinClass);
+
+    setSearchParams({
+      from,
+      to,
+      departureDate,
+      returnDate: returnDate || "",
+      adults,
+      children,
+      cabinClass,
+      tripType: returnDate ? "round-trip" : "one-way",
+    });
+  }
+}, [location.state]);
   
 
   // Ensure the date values update correctly
@@ -84,7 +116,8 @@ function SearchFlightsForm() {
       departureDate: departureDate?.trim(),
       adults: Number(adults), // Certifica que adultos é um número
     };
-  
+
+     
     if (returnDate) {
       requestParams.returnDate = returnDate?.trim(); // Adiciona apenas se existir
     }
@@ -108,6 +141,7 @@ function SearchFlightsForm() {
       );
     }
   };
+  const routeData = { from, to, departureDate, returnDate, adults, cabinClass };
 
   
   
@@ -199,6 +233,12 @@ function SearchFlightsForm() {
           <SearchLogo className="h-4 w-4" />
           <span className="ml-2">Buscar</span>
         </button>
+
+        {isLoggedIn && ( // Exibe o botão apenas se o usuário estiver logado
+        <button type="button" onClick={() => handleAddToFavourites(routeData, from, to, departureDate)}>
+          Adicionar aos Favoritos
+        </button>
+ )}
       </div>
 
       {showResults && <ShowFlights flights={flights} />}

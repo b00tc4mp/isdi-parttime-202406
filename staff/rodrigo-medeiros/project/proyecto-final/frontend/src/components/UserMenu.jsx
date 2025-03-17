@@ -32,7 +32,7 @@ const UserMenu = () => {
             My Profile
           </Link>
           <Link
-            to="/myFavouriteRoutes"
+            to="../pages/MyFavouriteRoutes"
             className="block px-4 py-2 hover:bg-gray-200"
             onClick={() => setIsOpen(false)}
           >

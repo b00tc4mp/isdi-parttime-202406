@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { login } from '../../../backend/logic/login';
+import { login } from '../logic/login';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');

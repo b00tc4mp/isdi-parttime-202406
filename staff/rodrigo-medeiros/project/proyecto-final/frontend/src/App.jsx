@@ -7,6 +7,7 @@ import { Register } from "./pages";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyProfile from "./pages/MyProfile";
+import MyFavouriteRoutes from "./pages/MyFavouriteRoutes";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/myProfile" element={<MyProfile />} />
+          <Route path="/MyFavouriteRoutes" element={<MyFavouriteRoutes />} />
         </Routes>
       </div>
       <Footer className="mt-auto" />

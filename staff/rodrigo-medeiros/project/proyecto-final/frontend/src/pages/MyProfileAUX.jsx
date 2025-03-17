@@ -9,6 +9,8 @@ import {
   handleEmailEdit,
   handleFullNameEdit,
   handleDateOfBirthEdit,
+  
+  handleFullNameUpdate,
   handleDateOfBirthUpdate,
   handlePasswordUpdate,
   handlePasswordEdit
@@ -43,59 +45,41 @@ const MyProfile = () => {
   const [showDeletePasswordConfirm, setShowDeletePasswordConfirm] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   
-  const fetchUserData = async () => {
+  useEffect(() => {
     const token = sessionStorage.getItem("authToken");
     if (!token) {
       navigate("/signin");
       return;
     }
-  
-    try {
-      const response = await fetch("http://localhost:5000/api/user/profile", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
+    
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/user/profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const data = await response.json();
+        setUserData({
+          username: data.username,
+          dateOfBirth: data.dateOfBirth,
+          email: data.email,
+          password: "",
+        });
+      } catch (err) {
+        setError(err.message);
       }
-  
-      const data = await response.json();
-      setUserData({
-        username: data.username,
-        dateOfBirth: data.dateOfBirth,
-        email: data.email,
-        password: "",
-      });
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-  
-  useEffect(() => {
+    };
+
     fetchUserData();
   }, [navigate]);
-  
-  const handleUsernameUpdate = async () => {
-    console.log("handleUsernameUpdate chamado!");
-    setIsUpdating(true);
-    try {
-      const data = await handleUpdateName(newFullName, currentPassword); // Armazenando a resposta da API
-      console.log(data); // Agora `data` será a resposta da API
-      console.log("Username atualizado!");
-      
-      await fetchUserData(); // Chamando diretamente sem timeout
-      console.log("fetchUserData executado!");
-    } catch (err) {
-      console.error("Erro ao atualizar o nome de usuário:", err);
-    } finally {
-      setIsUpdating(false);
-      setShowFullNameConfirm(false);
-    }
-  };
   
   const handleEmailUpdate = async () => {
     setIsUpdating(true);
@@ -104,9 +88,7 @@ const MyProfile = () => {
       console.log("Email atualizado!");
       
       // Atualiza os dados do usuário
-      
-        await fetchUserData();
-    
+      await fetchUserData();
     } catch (err) {
       console.error(err);
     } finally {
@@ -158,7 +140,7 @@ const MyProfile = () => {
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
               <div className="flex justify-between">
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg" onClick={handleUsernameUpdate}>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-lg" onClick={handleUpdateName}>
                   Confirm
                 </button>
                 <button className="bg-blue-900 px-4 py-2 rounded-lg" onClick={() => setShowFullNameConfirm(false)}>

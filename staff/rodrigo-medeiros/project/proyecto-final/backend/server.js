@@ -15,7 +15,7 @@ const app = express();
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
@@ -33,8 +33,8 @@ mongoose
 // Configurações do Express
 app.use(express.json());
 
-// Rotas de usuário
-app.use("/api", userRoutes);
+// Rotas de usuário (inclui as rotas favoritas)
+app.use("/api/user", userRoutes);
 
 // Rotas de ofertas de voos
 app.use("/api/flights", flightOffersRouter);
