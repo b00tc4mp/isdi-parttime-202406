@@ -1,6 +1,7 @@
 import iconsDay from '../components/icons/iconsDay'
 import iconsNight from '../components/icons/iconsNight'
 import React from 'react'
+import { Validator, Errors } from 'common'
 
 const weatherMap = {
     0: 'ClearIcon',
@@ -35,6 +36,9 @@ const weatherMap = {
 
 const getWeatherIcon = (weatherCode, isDay) => {
 
+    Validator.weatherCode(weatherCode)
+    Validator.isDay(isDay)
+
     //isDay would be 1 for true and 0 for false
     const iconFolder = isDay ? iconsDay : iconsNight
     const iconName = weatherMap[weatherCode]
@@ -43,7 +47,7 @@ const getWeatherIcon = (weatherCode, isDay) => {
     if (Icon) {
         return React.createElement(Icon)
     } else {
-        console.log('No icon has been found for the requested weather code', weatherCode)
+        throw new Errors.WeatherCodeError(`No icon found for the specified weather code: ${weatherCode}`)
     }
 } 
 

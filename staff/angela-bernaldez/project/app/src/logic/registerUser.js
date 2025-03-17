@@ -1,7 +1,12 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const registerUser = ( username, email, password, repeatPassword ) => {
-    // TODO: add validators
+    
+    Validator.username(username)
+    Validator.email(email)
+    Validator.password(password)
+    Validator.password(repeatPassword)
+    Validator.confirmationPassword(password, repeatPassword)
 
     const user = {
         username,

@@ -127,6 +127,15 @@ export class ContentError extends Error {
     }
 }
 
+export class WeatherCodeError extends Error {
+    constructor(message) {
+        super(message)
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, ContentError)
+        }
+    }
+}
+
 export class ConfirmationError extends Error {
     constructor(message) {
         super(message)

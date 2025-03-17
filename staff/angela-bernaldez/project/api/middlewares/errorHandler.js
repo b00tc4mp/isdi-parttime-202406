@@ -12,8 +12,13 @@ export default (error, req, res, next) => {
     if (error instanceof Errors.DuplicityError) {
         code = 409
     }
-    if (error instanceof Errors.ExistenceError) {
+    if (error instanceof Errors.ExistenceError || error instanceof Errors.LocationNotFoundError) {
         code = 404
+    }
+
+    // Errors from external services 
+    if (error instanceof Errors.NominatimAPIConnectionError || error instanceof Errors.OpenMeteoAPIConnectionError) {
+        code = 503 
     }
 
     console.error(error)

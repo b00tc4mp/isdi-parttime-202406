@@ -1,11 +1,12 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const addUserLocation = (locationData, isCurrentLocation = false) => {
-    // include validators 
+    
+    Validator.locationData(locationData)
+    Validator.isCurrentLocation(isCurrentLocation)
 
     const token = sessionStorage.getItem("token")
 
-    // aqui hago llamada a la api
     return fetch(`${import.meta.env.VITE_API_URL}users/locations`, {
         method: 'POST',
         headers: {
@@ -14,19 +15,19 @@ const addUserLocation = (locationData, isCurrentLocation = false) => {
         },
         body: JSON.stringify({ locationData, isCurrentLocation })
     })
-        .then((res) => {
-            if (res.status === 201) return
-            return res.json()
-                .then(body => {
-                    const constructor = Errors[body.name]
-                    throw new constructor(`${body.message}`)
-                })
-        })
-        .catch((error) => {
-            if (error instanceof Errors.BadRequestError)
-                throw new Errors.ServerError("Server in not connected");
-            throw error
-        })
+    .then((res) => {
+        if (res.status === 201) return
+        return res.json()
+            .then(body => {
+                const constructor = Errors[body.name]
+                throw new constructor(`${body.message}`)
+            })
+    })
+    .catch((error) => {
+        if (error instanceof Errors.BadRequestError)
+            throw new Errors.ServerError("Server in not connected")
+        throw error
+    })
 }
 
 export default addUserLocation

@@ -1,8 +1,8 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const retrieveNominatimLocations = (locationString) => {
 
-    // include validators de que sea un string
+    Validator.locationString(locationString)
 
     const token = sessionStorage.getItem("token")
 

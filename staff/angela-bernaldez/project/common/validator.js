@@ -120,6 +120,22 @@ class Validator {
 
         return true
     }
+
+    static weatherCode(value) {
+        if (typeof value !== 'number' || isNaN(value)) {
+            throw new Errors.ContentError('Weather code must be a valid number')
+        }
+
+        return true 
+    }
+
+    static isDay(value) {
+        if (typeof value !== 'boolean') {
+            throw new Errors.ContentError('isDay must be a boolean (true or false)')
+        }
+    
+        return true
+    }
 }
 
 export default Validator

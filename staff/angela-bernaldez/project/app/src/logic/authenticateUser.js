@@ -1,7 +1,9 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const authenticateUser = ( email, password ) => {
-    // TODO: add validators
+    
+    Validator.email(email)
+    Validator.password(password)
 
     return fetch(`${import.meta.env.VITE_API_URL}users/auth`, {
         method: 'POST',
@@ -16,11 +18,11 @@ const authenticateUser = ( email, password ) => {
         return res.json()
             .then(body => {
                 const constructor = Errors[body.name]
-                throw new constructor(`${body.message}`);
+                throw new constructor(`${body.message}`)
             })
       })
-    .catch((err) => {
-        if (err instanceof TypeError)
+    .catch((error) => {
+        if (error instanceof TypeError)
             throw new Errors.ServerError('Server in not connected')
         throw new Errors.UnexpectedError()
     })

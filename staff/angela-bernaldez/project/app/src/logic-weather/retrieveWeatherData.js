@@ -1,10 +1,10 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const retrieveWeatherData = (locationData) => {
 
-    const token = sessionStorage.getItem("token")
+    Validator.locationData(locationData)
 
-    // necesito userId(sale del token) y locationData
+    const token = sessionStorage.getItem("token")
 
     return fetch(`${import.meta.env.VITE_API_URL}users/weather-data/`, {
         method: 'POST',

@@ -1,6 +1,9 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const updatePassword = (oldPassword, newPassword) => {
+
+    Validator.password(oldPassword)
+    Validator.password(newPassword)
 
     const token = sessionStorage.getItem("token")
 
@@ -11,7 +14,7 @@ const updatePassword = (oldPassword, newPassword) => {
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ oldPassword, newPassword })
-        // preguntar si puedo usar camelCase o tengo que usar: 'old-password': oldPassword
+        // change this to 'old-password': oldPassword
     })
     .then((res) => {
         if (res.status === 200) return res.json()

@@ -1,7 +1,8 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const deleteUser = ( password ) => {
-    // TODO: add validators
+    
+    Validator.password(password)
 
     const token = sessionStorage.getItem("token")
 
@@ -21,7 +22,7 @@ const deleteUser = ( password ) => {
                 throw new constructor(`${body.message}`);
             })
       })
-    .catch((err) => {
+    .catch((error) => {
         if (error instanceof Errors.BadRequestError)
             throw new Errors.ServerError('Server in not connected')
         throw error

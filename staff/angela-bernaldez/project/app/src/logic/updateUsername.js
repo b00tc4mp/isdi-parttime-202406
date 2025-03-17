@@ -1,11 +1,10 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const updateUsername = (newUsername) => {
 
+    Validator.username(newUsername)
+
     const token = sessionStorage.getItem("token")
-
-    console.log('UPDATING USERNAME LOGIC FRONT', newUsername)
-
     
     return fetch(`${import.meta.env.VITE_API_URL}users/username`, {
         method: 'PATCH',
@@ -25,7 +24,7 @@ const updateUsername = (newUsername) => {
     })
     .catch((error) => {
         if (error instanceof Errors.BadRequestError)
-            throw new Errors.ServerError("Server in not connected");
+            throw new Errors.ServerError("Server in not connected")
         throw error
     })
 }
