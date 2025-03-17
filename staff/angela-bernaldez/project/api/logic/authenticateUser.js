@@ -1,4 +1,4 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 import bcrypt from 'bcrypt'
 import models from '../data/models.js'
 
@@ -6,7 +6,8 @@ const { User } = models
 
 export default (email, password) => {
 
-    // TODO: add validators
+    Validator.email(email)
+    Validator.password(password)
 
     return User.findOne({ email: email })
         .then((user) => {
@@ -16,8 +17,11 @@ export default (email, password) => {
 
                     if (!isPasswordValid) throw new Errors.CredentialsError('Wrong Password')
 
-                    return (user._id).toString()
+                    return user._id.toString()
 
-                }).catch((error) => { throw new Errors.UnexpectedError(error.message) })
+                })
+        })
+        .catch((error) => { 
+            throw new Errors.UnexpectedError(error.message) 
         })
 }

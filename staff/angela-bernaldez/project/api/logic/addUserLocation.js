@@ -1,12 +1,10 @@
 import models from '../data/models.js'
+import { Validator, Errors } from 'common'
 
 const { User, Location } = models
 
 const getOrCreateLocation = async (location, locationData) => {
     if (location) return location
-
-    // si la localizacion no existia antes, timeLastUpdated es la fecha de ahora mismo
-    // variables añadir las variables que tenga elegidas por defecto
 
     return Location.create({
         name: locationData.name,
@@ -16,12 +14,15 @@ const getOrCreateLocation = async (location, locationData) => {
     })
 } 
 
-export default (id, locationData, isCurrentLocation = false) => {
-    // add validators
+export default (userId, locationData, isCurrentLocation = false) => {
+    
+    Validator.id(userId)
+    Validator.locationData(locationData)
+    Validator.isCurrentLocation(isCurrentLocation)
 
     const { name, latitude, longitude } = locationData
 
-    return User.findById(id)
+    return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             return Location.findOne({name: name, latitude: latitude, longitude: longitude})
@@ -41,10 +42,9 @@ export default (id, locationData, isCurrentLocation = false) => {
                                 return user.save()
                             }
                         })
-                        .catch((error) => {
-                            // change this to a specific type of error
-                            console.log(error)
-                        })
                 })
+        })
+        .catch((error) => {
+            throw new Errors.UnexpectedError(error.message)
         })
 }

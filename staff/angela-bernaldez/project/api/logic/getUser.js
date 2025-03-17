@@ -1,11 +1,13 @@
 import models from '../data/models.js'
+import { Validator, Errors } from 'common'
 
 const { User } = models
 
-export default (id) => {
-    // validate id
+export default (userId) => {
+    
+    Validator.id(userId)
 
-    return User.findById(id)
+    return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             // need to convert user to plain object as it is a mongo object
@@ -16,5 +18,7 @@ export default (id) => {
             delete user._id
             return user
         })
-        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
+        .catch((error) => {
+            throw new Errors.UnexpectedError(error.message) 
+        })
 }

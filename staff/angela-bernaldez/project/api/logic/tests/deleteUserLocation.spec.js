@@ -16,8 +16,6 @@ describe('deleteUserLocation', () => {
     let location, user
 
     beforeEach(async () => {
-        await Location.deleteMany()
-        await User.deleteMany()
 
         const _location = await Location.create({ 
             name: 'Brighton', 
@@ -44,8 +42,6 @@ describe('deleteUserLocation', () => {
             .then(() => {
                 return User.findOne({ email: 'test@mail.com' })
                     .then((user) => {
-                        console.log(user)
-                        console.log(location._id, 'location id')
                         const locationStillExists = user.favLocations.some(favLoc => favLoc.equals(location._id.toString()))
         
                         expect(locationStillExists).to.be.false

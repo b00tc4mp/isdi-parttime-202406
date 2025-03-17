@@ -1,12 +1,13 @@
 import models from '../data/models.js'
+import { Validator, Errors } from 'common'
 
 const { User, Location } = models
 
-export default (id) => {
+export default (userId) => {
 
-    // add validator id
+    Validator.id(userId)
 
-    return User.findById(id)
+    return User.findById(userId)
         .then((user) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             if (user.favLocations.length === 0) return []
@@ -16,13 +17,10 @@ export default (id) => {
                     const orderedLocations = user.favLocations.map(id => 
                         locationsFound.find(location => location._id.toString() === id.toString())
                     )
-                    // NEED TO CHECK HOW CAN LOCATIONS BE RETURNED IN THE SAME ORDER 
-                    // THEY APPEAR IN USER.FAVLOCATIONS 
                     return orderedLocations
                 })
-                .catch((error) => {
-                    // change this to a specific type of error
-                    console.log(error)
-                })
+        })
+        .catch((error) => {
+            throw new Errors.UnexpectedError(error.message) 
         })
 }

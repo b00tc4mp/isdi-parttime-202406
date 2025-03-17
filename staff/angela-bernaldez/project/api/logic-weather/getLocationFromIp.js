@@ -1,9 +1,12 @@
 import models from '../data/models.js'
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const { User } = models
 
 export default (userId) => {
+
+    Validator.id(userId)
+
     const ipApiUrl = 'http://ip-api.com/json'
 
     return User.findById(userId)
@@ -23,7 +26,9 @@ export default (userId) => {
                                 return currentLocation
                             }
                         })
-                        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
                 })
+        })
+        .catch((error) => { 
+            throw new Errors.UnexpectedError(error.message) 
         })
 }

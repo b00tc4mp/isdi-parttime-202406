@@ -1,13 +1,12 @@
 import models from '../data/models.js'
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 
 const { User } = models
 
 export default (userId, locationString) => {
-    // validate locationString?
-    // user types something in the front and goes to the back. make sure to catch a string
-
-    // userId is passed to make sure only registered users can use the api
+    
+    Validator.id(userId)
+    Validator.locationString(locationString)
     
     const nominatimUrl = `https://nominatim.openstreetmap.org/search?q=${locationString}&limit=5&format=json`
 
@@ -16,17 +15,18 @@ export default (userId, locationString) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             return fetch(nominatimUrl)
                 .then((response) => {
-                    if (!response.ok) throw new Error('Unable to stablish connection with Nominatim API')
+                    if (!response.ok) throw new Errors.NominatimAPIConnectionError('Unable to stablish connection with Nominatim API')
                     return response.json()
                         .then((locationsFound) => {
                             if (!locationsFound || locationsFound.length === 0) {
-                                throw new Error('No locations found')
+                                throw new Errors.LocationNotFoundError(error.message)
                             }
-                            console.log(locationsFound)
                             return locationsFound
                         })
-                        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
                 })
-    })
+        })
+        .catch((error) => { 
+            throw new Errors.UnexpectedError(error.message) 
+        })
 }
 

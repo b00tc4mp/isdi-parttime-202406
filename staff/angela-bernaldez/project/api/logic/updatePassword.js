@@ -1,13 +1,14 @@
 import bcrypt from 'bcrypt'
+import { Validator, Errors } from 'common'
 import models from '../data/models.js'
 
 const { User } = models
 
 export default (userId, oldPassword, newPassword) => {
 
-    // validate userId
-    // validate newPassword
-    // validate oldPassword
+    Validator.id(userId)
+    Validator.password(oldPassword)
+    Validator.password(newPassword)
 
     return User.findById(userId)
         .then((user) => {
@@ -20,7 +21,9 @@ export default (userId, oldPassword, newPassword) => {
                         .then((cryptPassword) => {
                             return User.findByIdAndUpdate(userId, { password: cryptPassword })
                         })
-                        .catch((error) => { throw new Errors.UnexpectedError(error.message) })
                 })
+        })
+        .catch((error) => { 
+            throw new Errors.UnexpectedError(error.message) 
         })
 }

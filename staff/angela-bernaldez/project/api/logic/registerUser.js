@@ -1,4 +1,4 @@
-import { Errors } from 'common'
+import { Validator, Errors } from 'common'
 import bcrypt from 'bcrypt'
 import models from '../data/models.js'
 
@@ -6,7 +6,9 @@ const { User } = models
 
 export default (username, email, password) => {
 
-    // TODO: add validators 
+    Validator.username(username)
+    Validator.email(email)
+    Validator.password(password)
 
     return User.findOne({ email: email })
         .then((user) => {
@@ -21,7 +23,9 @@ export default (username, email, password) => {
                         
                         return User.create(user)
                     })
-                    .catch((error) => { throw new Errors.UnexpectedError(error.message) })
+        })
+        .catch((error) => { 
+            throw new Errors.UnexpectedError(error.message) 
         })
 }
 
