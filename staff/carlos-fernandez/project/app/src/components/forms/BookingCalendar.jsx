@@ -30,17 +30,17 @@ export default function BookingCalendar({ className, onSubmit }) {
       return;
     }
 
-    const formattedStartDate = startDate.toLocaleDateString("en-CA"); // YYYY-MM-DD sin conversión UTC
+    const formattedStartDate = startDate.toLocaleDateString("en-CA");
     const formattedEndDate = endDate.toLocaleDateString("en-CA");
 
     console.log("FECHA INICIO ENVIADA:", formattedStartDate);
     console.log("FECHA FIN ENVIADA:", formattedEndDate);
-    console.log("PERROS ENVIADOS", selectedDogs);
+    console.log("PERROS ENVIADOS", selectedDogs); // <-- Aquí verás los IDs correctos
 
     try {
       await onSubmit({
         dogs: selectedDogs,
-        startDate: formattedStartDate, // Se mantiene igual sin cambio de zona horaria
+        startDate: formattedStartDate,
         endDate: formattedEndDate,
       });
     } catch (err) {
@@ -49,7 +49,8 @@ export default function BookingCalendar({ className, onSubmit }) {
   };
 
   const today = new Date();
-  today.setHours(0, 0, 0, 0); //comparamos solo fecha, sin horas
+  today.setHours(0, 0, 0, 0);
+
   return (
     <div className="w-full">
       <div
@@ -103,11 +104,10 @@ export default function BookingCalendar({ className, onSubmit }) {
                   type="checkbox"
                   value={dog._id}
                   onChange={(e) =>
-                    setSelectedDogs(
-                      (prev) =>
-                        e.target.checked
-                          ? [...prev, dog._id] //Checkbox marcado? añadimos id del perro
-                          : prev.filter((id) => id !== dog._id) // Checkbox DESMARCADO? eliminamos el id del perro
+                    setSelectedDogs((prev) =>
+                      e.target.checked
+                        ? [...prev, dog._id]
+                        : prev.filter((id) => id !== dog._id)
                     )
                   }
                   className="text-black"
