@@ -38,6 +38,7 @@ Este proyecto es un sistema de reservas para una residencia canina. Los usuarios
 - **Base de datos:** 🗃️ MongoDB, 🏛️ Mongoose
 - **Autenticación:** 🔑 JSON Web Tokens (JWT)
 - **Testing:** 🧪 Mocha, 🏹 Chai
+- **Hasheo de contraseña:** Bcrypt
 
 ### 📂 Modelos de datos
 
@@ -74,7 +75,9 @@ Este proyecto es un sistema de reservas para una residencia canina. Los usuarios
 
 ## 🎨 UX/UI
 
-![🖌️ Diseño UX/UI](ruta/a/la/imagen.png)
+[Este proyecto está basado en esta web ya existente](https://dosrosaspetresort.es)
+
+![Web de referencia](./app/src/assets/Captura%20de%20pantalla%202025-03-15%20123041.png)
 
 ## 🏗️ Epic & Stories
 
