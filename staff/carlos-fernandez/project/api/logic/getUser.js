@@ -13,6 +13,7 @@ export default (id) => {
   Validator.id(id);
 
   return User.findById(id)
+    .lean()
     .then((user) => {
       if (!user) {
         throw new Errors.AuthError(
@@ -21,6 +22,8 @@ export default (id) => {
       }
       user.id = user._id.toString();
       delete user._id;
+      delete user.__v;
+      delete user.password;
       return user;
     })
     .catch((error) => {

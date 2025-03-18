@@ -2,6 +2,6 @@ TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZDAzNTU3NmE2MWNiNmVkODBi
 
 
 # Comando curl para obtener los perros del usuario
-curl -X GET "http://localhost:4444/users/me/mydogs" \
+curl -X GET "http://localhost:4444/users/me/mybookings" \
   -H "Authorization: Bearer ${TOKEN}" \
   -v

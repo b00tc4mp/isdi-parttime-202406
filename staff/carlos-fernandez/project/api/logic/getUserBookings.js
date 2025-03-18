@@ -7,9 +7,11 @@ export default (id) => {
   Validator.id(id);
 
   return Booking.find({ owner: id })
-    .populate("dogs", "dogName")
-    .populate("startDate")
-    .populate("endDate")
+    .populate({
+      path: "dogs",
+      select: "-_id -__v",
+    })
+    .select("-_id -__v")
     .lean()
     .then((bookings) => {
       if (!bookings || bookings.length === 0) return [];

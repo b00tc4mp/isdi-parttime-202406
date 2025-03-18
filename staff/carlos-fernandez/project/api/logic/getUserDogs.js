@@ -14,7 +14,10 @@ export default (id) => {
 
   // Buscamos al usuario por el id
   return User.findById(id)
-    .populate("dogs") // Trae perros asociados
+    .populate({
+      path: "dogs",
+      select: "-_id -__v",
+    }) // Trae perros asociados
     .lean()
     .then((user) => {
       if (!user) throw new Errors.NotFoundError("User not found");
