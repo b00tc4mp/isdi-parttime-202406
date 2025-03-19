@@ -71,11 +71,13 @@ Este proyecto es un sistema de reservas para una residencia canina. Los usuarios
 
 ## ✅ Test coverage
 
-![📊 Test Coverage](ruta/a/la/imagen.png)
+![📊 Test Coverage](./app/src/assets/Coverage.jpg)
 
 ## 🎨 UX/UI
 
 [Este proyecto está basado en esta web ya existente](https://dosrosaspetresort.es)
+
+[Esquema de diseño](https://miro.com/app/board/uXjVIOV6Yz0=/)
 
 ![Web de referencia](./app/src/assets/Captura%20de%20pantalla%202025-03-15%20123041.png)
 
