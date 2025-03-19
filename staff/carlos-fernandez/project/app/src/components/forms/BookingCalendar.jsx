@@ -32,7 +32,7 @@ export default function BookingCalendar({ className, onSubmit }) {
 
     const formattedStartDate = startDate.toLocaleDateString("en-CA");
     const formattedEndDate = endDate.toLocaleDateString("en-CA");
-
+    console.log("PERROS DEL USUARIO:", userDogs);
     console.log("FECHA INICIO ENVIADA:", formattedStartDate);
     console.log("FECHA FIN ENVIADA:", formattedEndDate);
     console.log("PERROS ENVIADOS", selectedDogs); // <-- Aquí verás los IDs correctos
@@ -102,12 +102,12 @@ export default function BookingCalendar({ className, onSubmit }) {
               >
                 <input
                   type="checkbox"
-                  value={dog._id}
+                  value={dog.id}
                   onChange={(e) =>
                     setSelectedDogs((prev) =>
                       e.target.checked
-                        ? [...prev, dog._id]
-                        : prev.filter((id) => id !== dog._id)
+                        ? [...prev, dog.id]
+                        : prev.filter((id) => id !== dog.id)
                     )
                   }
                   className="text-black"

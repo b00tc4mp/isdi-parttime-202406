@@ -24,13 +24,15 @@ function MyReservations() {
     logic
       .getUserBookings()
       .then((requestedBookings) => {
+        console.log("BOOKINGS REQUESTED a MYRESERVATIONS", requestedBookings);
         const formattedBookings = requestedBookings.map((booking) => ({
-          id: booking._id,
+          id: booking.id,
           dogNames: booking.dogs.map((dog) => dog.dogName).join(", "),
           startDate: new Date(booking.startDate).toLocaleDateString(),
           endDate: new Date(booking.endDate).toLocaleDateString(),
           dogs: booking.dogs,
         }));
+
         setBookings(formattedBookings);
       })
       .catch((err) => console.error("Error al cargar reservas", err));

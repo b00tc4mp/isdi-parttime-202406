@@ -11,7 +11,7 @@ function DeleteBookingButton({
   const [isDogListOpen, setIsDogListOpen] = useState(false);
   const [selectedDogs, setSelectedDogs] = useState([]);
   const dropdownRef = useRef(null);
-  const dogListRef = useRef(null);
+  console.log(bookingId);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -127,13 +127,13 @@ function DeleteBookingButton({
               <input
                 type="checkbox"
                 id={dog.ig}
-                checked={selectedDogs.includes(dog._id)}
+                checked={selectedDogs.includes(dog.id)}
                 onChange={() => {
-                  console.log("dog.id seleccionado:", dog._id);
-                  handleSelectDog(dog._id);
+                  console.log("dog.id seleccionado:", dog.id);
+                  handleSelectDog(dog.id);
                 }}
               />
-              <label htmlFor={dog._id} className="ml-2 cursos-pointer">
+              <label htmlFor={dog.id} className="ml-2 cursos-pointer">
                 {dog.dogName}
               </label>
             </li>

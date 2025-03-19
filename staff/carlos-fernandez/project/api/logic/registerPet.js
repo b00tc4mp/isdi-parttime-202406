@@ -45,7 +45,11 @@ export default (id, dogData) => {
 
         // Push en el array de perros del usuario
         return dog.save().then((createdDog) => {
-          user.dogs.push(createdDog._id);
+          createdDog = createdDog.toObject();
+          createdDog.id = createdDog._id.toString();
+          delete createdDog._id;
+          delete createdDog.__v;
+          user.dogs.push(createdDog.id);
           return user.save().then(() => createdDog);
         });
       });

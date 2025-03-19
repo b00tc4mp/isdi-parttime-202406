@@ -12,7 +12,7 @@ function PetCard({ pet, refreshPets }) {
     });
 
     if (result.isConfirmed) {
-      deleteDog(pet._id)
+      deleteDog(pet.id)
         .then(() => {
           refreshPets();
         })

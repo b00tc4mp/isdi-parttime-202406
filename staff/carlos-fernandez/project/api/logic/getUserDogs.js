@@ -3,27 +3,25 @@ import models from "../data/models.js";
 
 const { User } = models;
 
-/**
- * Obtiene los perros asociados a un usuario mediante su ID.
- * @param {string} id - ID del usuario.
- * @returns {Promise<Array>} - Lista de perros asociados al usuario.
- */
-
 export default (id) => {
   Validator.id(id);
 
-  // Buscamos al usuario por el id
   return User.findById(id)
-    .populate({
-      path: "dogs",
-      select: "-_id -__v",
-    }) // Trae perros asociados
+    .populate("dogs")
     .lean()
     .then((user) => {
       if (!user) throw new Errors.NotFoundError("User not found");
       if (!user.dogs) throw new Errors.NotFoundError("Dogs not found");
 
-      return user.dogs; //Devuelve la lista de perros
+      const dogsWithId = user.dogs.map((dog) => {
+        dog.id = dog._id.toString(); // Asigna _id a .id
+        delete dog.__v; // Elimina __v
+        delete dog._id;
+        console.log("CONSULTA DE PERRO:", dog);
+        return dog;
+      });
+
+      return dogsWithId;
     })
     .catch((error) => {
       throw new Errors.UnexpectedError(error.message);

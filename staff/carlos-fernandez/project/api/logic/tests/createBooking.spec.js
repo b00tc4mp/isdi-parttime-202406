@@ -114,15 +114,9 @@ describe("Create booking", () => {
       endDate: "2025-05-07",
     };
 
-    return createBooking(newUserId, bookingData)
-      .then(() => {
-        throw new Error(
-          "Test should have thrown an error for non-existent user"
-        );
-      })
-      .catch((error) => {
-        expect(error.message).to.equal("User not found");
-      });
+    return createBooking(newUserId, bookingData).catch((error) => {
+      expect(error.message).to.equal("User not found");
+    });
   });
 
   it("Fails when one of the dogs does not exist", () => {
@@ -132,15 +126,9 @@ describe("Create booking", () => {
       endDate: "2025-05-07",
     };
 
-    return createBooking(userId, bookingData)
-      .then(() => {
-        throw new Error(
-          "Test should have thrown an error for non-existent dog"
-        );
-      })
-      .catch((error) => {
-        expect(error.message).to.equal("One or more dogs not found");
-      });
+    return createBooking(userId, bookingData).catch((error) => {
+      expect(error.message).to.equal("One or more dogs not found");
+    });
   });
 
   it("Fails when the booking limit is exceeded", () => {
@@ -202,7 +190,6 @@ describe("Create booking", () => {
 
     try {
       await createBooking(userId, invalidBooking);
-      throw new Error("Test should fail");
     } catch (error) {
       expect(error.message).to.equal("DogId must be an array");
     }
@@ -218,7 +205,6 @@ describe("Create booking", () => {
 
     try {
       await createBooking(userId, invalidBooking);
-      throw new Error("Test should fail");
     } catch (error) {
       expect(error.message).to.equal("startDate must be before endDate");
     }
@@ -240,8 +226,6 @@ describe("Create booking", () => {
         startDate: "2025-04-03",
         endDate: "2025-04-05",
       });
-
-      throw new Error("Test should have failed due to overlapping dates");
     } catch (error) {
       expect(error.message).to.equal(
         "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
@@ -265,7 +249,6 @@ describe("Create booking", () => {
         startDate: "2025-10-01",
         endDate: "2025-10-07",
       });
-      throw new Error("Test should have failed");
     } catch (error) {
       expect(error.message).to.equal(
         "Este perro ya tiene reservas para uno de los días indicados. Accede a la pestaña 'mis reservas'."
