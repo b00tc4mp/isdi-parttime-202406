@@ -13,11 +13,10 @@ const updatePassword = (oldPassword, newPassword) => {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ oldPassword, newPassword })
-        // change this to 'old-password': oldPassword
+        body: JSON.stringify({ 'old-password': oldPassword, 'new-password': newPassword })
     })
     .then((res) => {
-        if (res.status === 200) return res.json()
+        if (res.status === 201) return res.json()
             return res.json()
                 .then(body => {
                     const constructor = Errors[body.name]

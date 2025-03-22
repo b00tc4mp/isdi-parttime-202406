@@ -85,25 +85,25 @@ export class LocationNotFoundError extends Error {
     constructor(message) {
         super(message)
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, AuthError)
+            Error.captureStackTrace(this, LocationNotFoundError)
         }
     }
 }
 
 export class NominatimAPIConnectionError extends Error {
     constructor(message) {
-        super(message);
+        super(message)
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, AuthError)
+            Error.captureStackTrace(this, NominatimAPIConnectionError)
         }
     }
 }
 
 export class OpenMeteoAPIConnectionError extends Error {
     constructor(message) {
-        super(message);
+        super(message)
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, AuthError)
+            Error.captureStackTrace(this, OpenMeteoAPIConnectionError)
         }
     }
 }
@@ -131,7 +131,7 @@ export class WeatherCodeError extends Error {
     constructor(message) {
         super(message)
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, ContentError)
+            Error.captureStackTrace(this, WeatherCodeError)
         }
     }
 }

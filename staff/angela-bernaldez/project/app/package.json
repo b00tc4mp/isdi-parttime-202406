@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
-    "common": "file:../common",
+    "common": "link:../common",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.0.2",

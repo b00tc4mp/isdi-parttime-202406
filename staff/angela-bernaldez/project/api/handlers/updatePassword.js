@@ -2,7 +2,7 @@ import logic from '../logic/index.js'
 
 export default(req, res, next) => {
     const userId = req.id
-    const { oldPassword, newPassword } = req.body
+    const { 'old-password': oldPassword, 'new-password': newPassword } = req.body
 
     try {
         logic.updatePassword(userId, oldPassword, newPassword)

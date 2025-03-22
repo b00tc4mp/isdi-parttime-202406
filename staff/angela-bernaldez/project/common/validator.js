@@ -1,6 +1,7 @@
+import * as Errors from "./errors.js"
+
 class Validator {
     static email(value) {
-
         if (typeof value !== 'string') throw new TypeError('Email is not a string')
         if (value.trim().length === 0) throw new Errors.ContentError('Email is empty')
 
@@ -130,8 +131,8 @@ class Validator {
     }
 
     static isDay(value) {
-        if (typeof value !== 'boolean') {
-            throw new Errors.ContentError('isDay must be a boolean (true or false)')
+        if (value !== 1 && value !== 0) {
+            throw new Errors.ContentError('isDay must be either 1 (true) or 0 (false)')
         }
     
         return true

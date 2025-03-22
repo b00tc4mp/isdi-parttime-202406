@@ -17,7 +17,7 @@
     "bcrypt": "^5.1.1",
     "c8": "^10.1.3",
     "chai": "^5.1.2",
-    "common": "file:../common",
+    "common": "link:../common",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

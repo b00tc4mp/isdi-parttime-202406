@@ -15,7 +15,7 @@ const updateUsername = (newUsername) => {
         body: JSON.stringify({ 'new-username': newUsername })
     })
     .then((res) => {
-        if (res.status === 200) return
+        if (res.status === 201) return
         return res.json()
             .then(body => {
                 const constructor = Errors[body.name]

@@ -47,14 +47,12 @@ function Dashboard({ onUserLoggedOut }) {
     const fetchCurrentLocation = () => {
         return logicWeather.getLocationFromIp()
             .then((currentLocation) => {
-                console.log('LOCATION OBTAINED FROM IP', currentLocation)
                 return logic.addUserLocation(currentLocation, true)
                     .then(() => {
                         return logicWeather.retrieveWeatherData(currentLocation)
                             .then((weatherData) => {
                                 return logicWeather.updateWeatherForLocation(currentLocation, weatherData)
                                     .then((currentLocation) => {
-                                        console.log('Ubicación actualizada en la BD:', currentLocation)
                                         setCurrentLocation(currentLocation)
                                         setSelectedLocation(currentLocation)
                                     })
@@ -68,7 +66,6 @@ function Dashboard({ onUserLoggedOut }) {
     }
 
     const handleLocationSelect = (location) => {
-        console.log('SELECTED LOCATION IS:', location)
         setSelectedLocation(location)
     }
 
