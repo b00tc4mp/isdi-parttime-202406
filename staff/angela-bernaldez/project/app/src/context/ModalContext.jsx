@@ -1,61 +1,61 @@
-import { createContext, useContext, useState } from 'react'
-import EN from '../locals/en.json'
+import { createContext, useContext, useState, useRef } from 'react'
+import ES from '../locals/en.json'
 
-const Context = createContext(null)
+const ModalContext = createContext()
 
-function Provider({ children }) {
-  const [data, setData] = useState({
-    title: 'hola',
-    paragraph: 'que tal todo',
-  })
+function Modal({ modalRef, modalData }) {
+  return (
+    <dialog 
+      ref={modalRef} 
+      className="modal" 
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} 
+    >
+      <div className="modal-box bg-white text-error-content">
+        <form method="dialog">
+          <button 
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-red-600" 
+            onClick={() => modalRef.current.close()}
+          >
+            ✕
+          </button>
+        </form>
+        <h3 className="font-bold text-lg">{modalData.title}</h3>
+        <p className="py-4">{modalData.paragraph}</p>
+      </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>Close</button>
+      </form>
+    </dialog>
+  )
+}
+
+function ModalProvider({ children }) {
+  const [modalData, setModalData] = useState({ title: "", paragraph: "" })
+  const modalRef = useRef(null);
 
   const openModalError = (error) => {
-    setData({
-      title:
-        EN.modalErrors[error.constructor.name]?.title ??
-        EN.modalErrors.default.title,
-      paragraph:
-        EN.modalErrors[error.constructor.name]?.paragraph ??
-        EN.modalErrors.default.paragraph,
+    setModalData({
+      title: ES.modalErrors[error.constructor.name]?.title ?? ES.modalErrors.default.title,
+      paragraph: ES.modalErrors[error.constructor.name]?.paragraph ?? ES.modalErrors.default.paragraph,
     })
-    setTimeout(() => document.getElementById('modalError').showModal(), 0)
+
+    setTimeout(() => modalRef.current?.showModal(), 0)
   }
 
   return (
-    <>
-      <Context.Provider value={{ openModalError }}>
-        {children}
-        <dialog id='modalError' className='modal'>
-          <div className='modal-box bg-error text-error-content'>
-            <form method='dialog'>
-              <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
-                ✕
-              </button>
-            </form>
-            <h3 className='font-bold text-lg'>{data.title}</h3>
-            <div className='prose prose-sm text-error-content'>
-              <p className='py-4'>{data.paragraph}</p>
-            </div>
-          </div>
-          <form method='dialog' className='modal-backdrop'>
-            <button>close</button>
-          </form>
-        </dialog>
-      </Context.Provider>
-    </>
+    <ModalContext.Provider value={{ openModalError }}>
+      {children}
+      <Modal modalRef={modalRef} modalData={modalData} />
+    </ModalContext.Provider>
   )
 }
 
 const useModalError = () => {
-  const { openModalError } = useContext(Context)
-
-  return openModalError
+  return useContext(ModalContext).openModalError
 }
 
-const ModalContext = {
-  Context,
-  Provider,
-  useModalError,
+export {
+  ModalProvider, 
+  useModalError
 }
 
-export default ModalContext

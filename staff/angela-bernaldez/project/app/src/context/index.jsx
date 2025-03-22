@@ -1,3 +1,5 @@
-import _ModalContext from './ModalContext.jsx'
+import { ModalProvider } from './ModalContext.jsx'
 
-export const ModalContext = _ModalContext
+export default {
+    ModalProvider
+}
