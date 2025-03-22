@@ -1,100 +1,105 @@
-import { IconEmail, 
-    IconHidePassword,
-    IconUser,
-    IconPassword,
-    IconShowPassword } from '../icons/icons.jsx'
+import { IconEmail, IconUser, IconPassword } from '../icons/icons.jsx'
 import logic from '../../logic'
-import classNames from 'classnames'
 import { useNavigate, Link } from 'react-router-dom'
+import classNames from 'classnames'
 
 function SignUpForm({ className }) {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const sendSignUpForm = (event) => {
-        event.preventDefault()
+  const sendSignUpForm = (event) => {
+    event.preventDefault()
 
-        const { username, email, password, repeatPassword } = event.target
+    const { username, email, password, repeatPassword } = event.target
 
-        try {
-            logic.registerUser(username.value, email.value, password.value, repeatPassword.value)
-                .then(() => {
-                    navigate('/login')
-                })
-                .catch((error) => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
+    try {
+      logic.registerUser(username.value, email.value, password.value, repeatPassword.value)
+        .then(() => {
+          navigate('/login')
+        })
+        .catch((error) => alert(error.message))
+    } catch (error) {
+      alert(error.message)
     }
+  }
 
-    return (
-        <div 
-          className={classNames(
-            "bg-neutral-800 w-1/3 h-1/2 mx-auto mt-72 flex flex-col items-center justify-center", 
-            className 
-          )}
-        >
-          <h1 className="text-3xl font-bold text-white mb-8">My Weather App</h1> 
-          <form onSubmit={sendSignUpForm} className="w-full">
-            <div className="flex flex-col items-center justify-center mb-6">
-              <label className="flex items-center gap-2">
-                <IconEmail fill="white" />
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="your email"
-                  className="input input-bordered input-ghost glass w-full focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                />
-              </label>
-            </div>
-            <div className="flex flex-col items-center justify-center mb-6">
-              <label className="flex items-center gap-2">
-                <IconUser fill="white" /> 
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Username"
-                  className="input input-bordered input-ghost glass w-full focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                />
-              </label>
-            </div>
-            <div className="flex flex-col items-center justify-center mb-6">
-              <label className="flex items-center gap-2">
-                <IconPassword fill="white" />
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  className="input input-bordered input-ghost glass w-full focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                />
-              </label>
-            </div>
-            <div className="flex flex-col items-center justify-center mb-6">
-              <label className="flex items-center gap-2">
-                <IconPassword fill="white" /> 
-                <input
-                  type="password"
-                  id="repeatPassword" 
-                  placeholder="Confirm Password"
-                  className="input input-bordered input-ghost glass w-full focus:text-white placeholder:text-white placeholder:text-opacity-70"
-                />
-              </label>
-            </div>
-            <div className="mt-4"> 
-              <button
-                type="submit"
-                className="btn btn-primary btn-block text-base"
-              >
-                Sign Up
-              </button>
-            </div>
-            <div className="text-xs flex justify-center mb-6">
-              <Link to="/login" target="_self" className="link link-secondary">
-                Already have an account?
-              </Link>
-            </div>
-          </form>
-        </div>
-      )
+  return (
+    <div 
+      className={classNames(
+        "flex justify-center items-center min-h-screen bg-primary-100", 
+        className
+      )}
+    >
+      <div className="bg-white max-w-lg w-full px-12 py-16 rounded-xl shadow-xl"> 
+        <h1 className="text-4xl font-bold text-center text-primary-900 mb-10">Sign Up</h1> 
+
+        <form onSubmit={sendSignUpForm} className="w-full">
+          {/* Email Field */}
+          <div className="flex flex-col mb-8 relative">
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg" 
+            />
+            <IconEmail fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" /> 
+          </div>
+
+          {/* Username Field */}
+          <div className="flex flex-col mb-8 relative">
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+            />
+            <IconUser fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
+          </div>
+
+          {/* Password Field */}
+          <div className="flex flex-col mb-8 relative">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+            />
+            <IconPassword fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
+          </div>
+
+          {/* Confirm Password Field */}
+          <div className="flex flex-col mb-8 relative">
+            <input
+              type="password"
+              id="repeatPassword"
+              placeholder="Confirm your password"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+            />
+            <IconPassword fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
+          </div>
+
+          {/* Submit Button */}
+          <div className="mt-6">
+            <button
+              type="submit"
+              className="btn btn-primary btn-block text-base text-white bg-primary-600 hover:bg-primary-700 py-3"
+            >
+              Sign Up
+            </button>
+          </div>
+
+          {/* Login Link */}
+          <div className="mt-6 text-xs text-primary-800 text-center">
+            <Link
+              to="/login"
+              className="link link-secondary hover:text-primary-500"
+            >
+              Already have an account? Log in
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default SignUpForm
