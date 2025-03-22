@@ -14,7 +14,6 @@ function App() {
   return (
     <Context.ModalProvider>
       <main>
-      <MyComponent />
         <Routes>
           <Route path='/*' element={logic.isUserLoggedIn() ? <Authenticated onUserLoggedOut={() => setTokenUpdated(Date.now())} /> : <Public onUserLoggedIn={() => setTokenUpdated(Date.now())} />} />
         </Routes>
