@@ -24,7 +24,11 @@ function UpdatePasswordSection() {
       setConfirmNewPassword("");
       setPasswordError(null);
     } catch (error) {
-      setPasswordError(error.message);
+      if (error.message === "Password is empty") {
+        setPasswordError("Revise los campos");
+      } else {
+        setPasswordError(error.message);
+      }
     }
   };
 
