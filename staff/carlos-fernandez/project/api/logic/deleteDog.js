@@ -15,7 +15,6 @@ export default (petId, userId) => {
 
       return Dog.findOneAndDelete({ _id: petId, owner: userId }).then(
         (deletedPet) => {
-          console.log(deletedPet);
           if (!deletedPet) {
             throw new Errors.ExistenceError("Dog not found");
           }

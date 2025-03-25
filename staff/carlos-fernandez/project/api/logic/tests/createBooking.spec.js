@@ -55,15 +55,15 @@ describe("Create booking", () => {
   it("Creates a booking successfully", () => {
     const bookingData = {
       dogs: [dogId],
-      startDate: "2025-03-20",
-      endDate: "2025-03-25",
+      startDate: "2025-05-20",
+      endDate: "2025-05-25",
     };
 
     return createBooking(userId, bookingData).then((booking) => {
       expect(booking.owner.toString()).to.equal(userId);
       expect(booking.dogs[0].toString()).to.equal(dogId);
-      expect(booking.startDate).to.deep.equal(new Date("2025-03-20")); // Comparar objetos Date
-      expect(booking.endDate).to.deep.equal(new Date("2025-03-25"));
+      expect(booking.startDate).to.deep.equal(new Date("2025-05-20")); // Comparar objetos Date
+      expect(booking.endDate).to.deep.equal(new Date("2025-05-25"));
     });
   });
 
