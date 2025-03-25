@@ -17,7 +17,7 @@ class Validator {
   static surname(value) {
     if (typeof value !== "string")
       throw new TypeError("Surname is not a string");
-    const regExp = /^[A-Z][a-zA-Z0-9]{0,11}$/;
+    const regExp = /^[A-Z][a-zA-Z0-9 ]{0,20}$/;
 
     if (!regExp.test(value)) {
       throw new Errors.SurnameNotValidError(" Surname format is not valid");
