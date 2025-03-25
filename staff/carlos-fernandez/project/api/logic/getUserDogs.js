@@ -17,7 +17,6 @@ export default (id) => {
         dog.id = dog._id.toString(); // Asigna _id a .id
         delete dog.__v; // Elimina __v
         delete dog._id;
-        console.log("CONSULTA DE PERRO:", dog);
         return dog;
       });
 

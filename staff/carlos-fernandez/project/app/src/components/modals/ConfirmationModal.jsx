@@ -21,7 +21,7 @@ export const ConfirmationModal = async ({
       url("https://i.gifer.com/XZ9.gif")
       fixed
       top center
-      no-repeat
+      repeat
     `,
     customClass: {
       popup: "swal-custom-modal",

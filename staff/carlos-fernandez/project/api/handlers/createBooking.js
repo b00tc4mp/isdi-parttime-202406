@@ -4,7 +4,6 @@ export default (req, res, next) => {
   const { dogs, startDate, endDate } = req.body;
   const userId = req.id;
 
-  console.log("Cuerpo de la petición", req.body);
   try {
     logic
       .createBooking(userId, { dogs, startDate, endDate })

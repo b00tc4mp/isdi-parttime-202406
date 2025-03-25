@@ -21,25 +21,23 @@ export default (userId, { dogs, startDate, endDate }) => {
   return User.findById(userId).then((user) => {
     if (!user) throw new Errors.NotFoundError("User not found");
 
-    const userDogs = user.dogs.map((dog) => dog._id.toString());
-    const invalidDogs = dogs.filter((dogId) => !userDogs.includes(dogId));
+    const userDogs = user.dogs.map((dog) => dog._id.toString()); //Lista con los id de los perros del user
+    const invalidDogs = dogs.filter((dogId) => !userDogs.includes(dogId)); // Que los perros coincidan con los del usuario
     if (invalidDogs.length > 0) {
       throw new Errors.CredentialsError("One or more dogs not found");
     }
 
     // 2. PARTE 2 --- ESQUEMA BOOKING ---
 
-    //Buscar entre ALGUNAS de fechas
-
+    //Buscar entre ALGUNAS de esas fechas
     return Booking.find({
       owner: userId,
       startDate: { $lte: endDate },
       endDate: { $gte: startDate },
     }).then((reservations) => {
-      console.log("RESERVA EXISTENTE", reservations);
       checkDailyCapacity(reservations, dogs, startDate, endDate);
 
-      // Verificación de reservas duplicadas
+      // Comprobar si el perro que se quiere reservar ya tiene reserva en alguna de las reservas existentes
       for (const dogId of dogs) {
         for (const reservation of reservations) {
           if (reservation.dogs.some((dog) => dog.toString() === dogId)) {
@@ -57,7 +55,7 @@ export default (userId, { dogs, startDate, endDate }) => {
           reservation.startDate.getTime() === new Date(startDate).getTime() &&
           reservation.endDate.getTime() === new Date(endDate).getTime()
       );
-      console.log("EXISTING RESERVATION", existingReservation);
+
       if (existingReservation) {
         // Comprobamos si el perro ya está en la reserva
         const existingDogs = existingReservation.dogs.map((dog) =>
@@ -65,6 +63,7 @@ export default (userId, { dogs, startDate, endDate }) => {
         );
         const newDogs = dogs.filter((dogId) => !existingDogs.includes(dogId));
 
+        //Si hay perros nuevos que no están en la reserva
         if (newDogs.length > 0) {
           // Agregamos los nuevos perros a la reserva existente
           existingReservation.dogs.push(
@@ -78,7 +77,7 @@ export default (userId, { dogs, startDate, endDate }) => {
           );
         }
       } else {
-        // Creamos una nueva reserva
+        // Si no hay reserva igual, creamos una nueva reserva
         return Booking.create({
           owner: userId,
           dogs: dogs,

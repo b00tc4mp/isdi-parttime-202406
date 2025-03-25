@@ -16,10 +16,7 @@ export const DeleteConfirmation = async ({
     padding: "3em",
     color: "rgb(235, 63, 115, 0.821)",
     background: "rgb(253, 204, 225)",
-    backdrop: `
-      rgba(243, 236, 217, 0.5)
-     
-    `,
+    backdrop: false,
     customClass: {
       popup: "swal-custom-modal",
     },
