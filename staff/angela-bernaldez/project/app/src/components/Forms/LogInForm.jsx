@@ -1,8 +1,13 @@
 import { IconEmail, IconPassword } from '../icons/icons.jsx'
 import { useNavigate, Link } from 'react-router-dom'
 import logic from '../../logic/index.js'
+import { useState } from 'react'
+import FormErrorsSection from './FormErrorsSection.jsx'
+import { Errors } from 'common'
+
 
 function LogInForm({ onUserLoggedIn }) {
+  const [errors, setErrors] = useState(null)
   const navigate = useNavigate()
 
   const sendLogInForm = (event) => {
@@ -10,16 +15,23 @@ function LogInForm({ onUserLoggedIn }) {
 
     const { email, password } = event.target
 
-    try {
-      logic.authenticateUser(email.value, password.value)
-        .then(() => {
-          navigate('/dashboard')
-          onUserLoggedIn()
-        })
-        .catch((error) => alert(error.message))
-    } catch (error) {
-      alert(error.message)
-    }
+    logic.authenticateUser(email.value, password.value)
+      .then(() => {
+        navigate('/dashboard')
+        onUserLoggedIn()
+      })
+      .catch((error) => {
+        if (error instanceof PasswordNotValidError) {
+          return setErrors([new Errors.PasswordNotValidError()])
+        }
+        if (error instanceof CredentialsError) {
+          return setErrors([new Errors.CredentialsError()])
+        }
+        if (error instanceof Errors.BadRequestError)
+          return setErrors([new Errors.CredentialsError()])
+        if (error instanceof Errors.ServerError) return setErrors([new Errors.ServerError()])
+        setErrors([new Errors.UnexpectedError()])
+      })
   }
 
   return (

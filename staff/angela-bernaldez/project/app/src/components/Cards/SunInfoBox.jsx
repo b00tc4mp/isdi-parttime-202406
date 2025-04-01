@@ -17,8 +17,8 @@ function getDateFromTimeString(timeString) {
 
 function SunInfoBox({ locationData }) {
     return (
-        <div className="h-full w-full bg-white shadow-lg rounded-2xl p-6">
-            <div className="grid grid-cols-2 gap-2">
+        <div className="h-auto w-full p-6 bg-white shadow-lg rounded-2xl">
+            <div className="grid grid-cols-2">
                 <div className="flex flex-col justify-center items-center bg-yellow-100 text-yellow-700 text-center rounded-lg h-32">
                     <div className="w-32 h-32 -mt-8 -mb-12">
                         <iconsDay.SunriseIcon />

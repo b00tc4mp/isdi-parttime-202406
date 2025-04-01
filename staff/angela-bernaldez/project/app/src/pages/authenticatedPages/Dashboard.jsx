@@ -82,53 +82,55 @@ function Dashboard({ onUserLoggedOut }) {
     }, [stamp])
 
     return (
-        <div className="h-screen">
+        <div className="h-full w-screen flex flex-col overflow-hidden">
             <Header 
                 setStamp={setStamp}
                 onUserLoggedOut={onUserLoggedOut}
             />
-            <div className="grid grid-rows-2 grid-cols-2 gap-5 h-screen">
+            <div className="grid grid-rows-5">
+                <div className="h-full grid grid-cols-2 row-span-3 m-4">
+                    <div className="col-span-1 text-black">
+                        {selectedLocation ? 
+                        (<div className="">
+                            <LocationBox currentLocation={selectedLocation}/>
+                        </div> ) : 
+                        (<p>Getting current location...</p>)
+                        }
+                    </div>
 
-                <div className="col-span-1 text-black">
-                    {selectedLocation ? 
-                    (<div className="h-full w-full">
-                        <LocationBox currentLocation={selectedLocation}/>
-                    </div> ) : 
-                    (<p>Getting current location...</p>)
-                    }
-                </div>
-            
-                <div className="col-span-1 overflow-y-auto h-full">
-                    <div className='w-full h-full m-4'>
-                        {currentLocation ? 
-                        (<LocationCard 
-                                key='current' 
-                                locationData={currentLocation}
-                                onLocationSelect={handleLocationSelect}
-                                isCurrentLocation={true}
-                                setStamp={setStamp}  /> 
-                        ) : null}
-                        {locations.length > 0 ? (
-                            locations.map((location, index) => (
-                            <LocationCard 
-                                key={index} 
-                                locationData={location}
-                                onLocationSelect={handleLocationSelect}
-                                isCurrentLocation={false}
-                                setStamp={setStamp} />
-                            ))
-                        ) : null}
+                    <div className=''>
+                        <div className="overflow-y-auto max-h-[47vh] m-4 mt-0 mb-0">
+                                {currentLocation ? 
+                                (<LocationCard 
+                                        key='current' 
+                                        locationData={currentLocation}
+                                        onLocationSelect={handleLocationSelect}
+                                        isCurrentLocation={true}
+                                        setStamp={setStamp}  /> 
+                                ) : null}
+                                {locations.length > 0 ? (
+                                    locations.map((location, index) => (
+                                    <LocationCard 
+                                        key={index} 
+                                        locationData={location}
+                                        onLocationSelect={handleLocationSelect}
+                                        isCurrentLocation={false}
+                                        setStamp={setStamp} />
+                                    ))
+                                ) : null}
+                        </div>
                     </div>
                 </div>
 
-                <div className="col-span-2 grid grid-cols-3">
-                    {selectedLocation ?
-                    (<div>
-                        <SunInfoBox locationData={selectedLocation}/>
-                    </div>) :
-                    (<p>Getting current location...</p>)
-                    }
-
+                <div className="grid grid-cols-3 row-span-2 mr-4 gap-4">
+                    <div className="col-span-1">
+                        {selectedLocation ?
+                        (<div>
+                            <SunInfoBox locationData={selectedLocation}/>
+                        </div>) :
+                        (<p>Getting current location...</p>)
+                        }
+                    </div>
                     <div className="col-span-2">
                         {selectedLocation ? 
                         (<div>

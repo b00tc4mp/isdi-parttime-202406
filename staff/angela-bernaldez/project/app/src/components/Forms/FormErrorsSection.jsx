@@ -1,19 +1,14 @@
-import classNames from 'classnames'
 import EN from '../../locals/en.json'
 
-
-
-function FormErrorsSection({ className, errors }) {
-  errors?.sort((a, b) => a.order - b.order);
+function FormErrorsSection({ errors }) {
+  if (!Array.isArray(errors) || errors.length === 0) return null
+  errors?.sort((a, b) => a.order - b.order)
 
   return (
     <>
       {errors instanceof Array && (
         <ul
-          className={classNames(
-            "p-4 prose-sm prose w-full min-w-full text-error bg-opacity-5 bg-white",
-            className
-          )}
+          className="p-4 prose-sm prose w-full min-w-full text-error bg-opacity-5 bg-white"
         >
           {errors.map((error, index) => (
             <li key={index} className="">
@@ -26,7 +21,7 @@ function FormErrorsSection({ className, errors }) {
         </ul>
       )}
     </>
-  );
+  )
 }
 
 export default FormErrorsSection

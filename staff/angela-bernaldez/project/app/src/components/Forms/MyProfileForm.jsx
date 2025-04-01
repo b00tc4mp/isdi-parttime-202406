@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logic from '../../logic'
 
+
+// TODO: AÑADIR CONFIRMACION PASSWORD CUANDO CAMBIANDOLA
+
 function MyProfile({ onUserLoggedOut }) {
     const navigate = useNavigate()
     const [userData, setUserData] = useState(null)
@@ -121,8 +124,8 @@ function MyProfile({ onUserLoggedOut }) {
                             <form 
                                 className="w-full"
                                 onSubmit={(e) => {
-                                    e.preventDefault();
-                                    handlePasswordChange();
+                                    e.preventDefault()
+                                    handlePasswordChange()
                                 }}
                             >
                                 <input

@@ -35,7 +35,7 @@ function WeeklyForecast({ dailyForecast }) {
     const maxTemp = Math.max(...forecastData.map(item => item.tmax))
     
     return (
-        <div className="w-full h-[350px] bg-white shadow-md rounded-lg p-4">
+        <div className="w-auto h-[300px] bg-white shadow-md rounded-2xl p-6">
             <h2 className="text-lg font-bold mb-2 text-center">Weekly Forecast</h2>
 
             <ResponsiveContainer width="100%" height="80%">

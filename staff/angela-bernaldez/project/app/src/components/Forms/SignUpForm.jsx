@@ -1,9 +1,8 @@
 import { IconEmail, IconUser, IconPassword } from '../icons/icons.jsx'
 import logic from '../../logic'
 import { useNavigate, Link } from 'react-router-dom'
-import classNames from 'classnames'
 
-function SignUpForm({ className }) {
+function SignUpForm() {
   const navigate = useNavigate()
 
   const sendSignUpForm = (event) => {
@@ -24,10 +23,8 @@ function SignUpForm({ className }) {
 
   return (
     <div 
-      className={classNames(
-        "flex justify-center items-center min-h-screen bg-primary-100", 
-        className
-      )}
+      className=
+        "flex justify-center items-center min-h-screen bg-primary-100"
     >
       <div className="bg-white max-w-lg w-full px-12 py-16 rounded-xl shadow-xl"> 
         <h1 className="text-4xl font-bold text-center text-primary-900 mb-10">Sign Up</h1> 

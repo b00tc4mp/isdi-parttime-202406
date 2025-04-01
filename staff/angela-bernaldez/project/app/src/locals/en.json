@@ -7,8 +7,7 @@
     "BadRequestError": "The data provided is incorrect.",
     "ServerError": "An unexpected issue occurred, please try again later.",
     "UnexpectedError": "An unexpected error occurred, please contact support.",
-    "UsernameNotValidError": "The username is invalid.",
-    "DateOfBirthNotValidError": "The date of birth provided is invalid."
+    "UsernameNotValidError": "The username is invalid."
   },
   "modalErrors": {
     "default": {

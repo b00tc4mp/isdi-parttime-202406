@@ -108,6 +108,8 @@ export class OpenMeteoAPIConnectionError extends Error {
     }
 }
 
+// crear otro error para la api que detecta ubicacion actual
+
 /*OTHER ERRORS*/
 export class UnexpectedError extends Error {
     constructor(message) {

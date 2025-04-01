@@ -17,7 +17,7 @@ function LocationCard({ locationData, onLocationSelect, isCurrentLocation, setSt
 
     return (
         <div 
-            className="bg-white cursor-pointer hover:shadow-xl hover:border hover:border-gray-300 flex flex-row max-w-full h-[8rem] shadow-lg rounded-2xl items-center justify-between mb-6 mr-10 p-4 relative"  // Agregado relative aquí
+            className="bg-white cursor-pointer hover:shadow-xl hover:border hover:border-gray-300 flex flex-row max-w-full h-[7rem] shadow-lg rounded-2xl items-center justify-between mb-4 relative"  
             onClick={() => onLocationSelect(locationData)}
             onMouseEnter={() => setShowDelete(true)}
             onMouseLeave={() => setShowDelete(false)}

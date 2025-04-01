@@ -45,6 +45,8 @@ function LocationSearchBox({ setStamp }) {
 
     const handleSelect = (selectedLocation) => {
         console.log('Selected location is:', selectedLocation)
+        selectedLocation.latitude = Number(selectedLocation.latitude)
+        selectedLocation.longitude = Number(selectedLocation.longitude)
         const isCurrentLocation = false
         return logic.addUserLocation(selectedLocation, isCurrentLocation)
             .then(() => {
@@ -67,7 +69,7 @@ function LocationSearchBox({ setStamp }) {
                 <IconSearch fillRule="evenodd" />
             </label>
             {locations.length > 0 && (
-                <ul className="absolute menu dropdown-content bg-white rounded-box z-10 mt-2 w-full max-h-[300px] overflow-y-auto shadow-lg p-4">
+                <ul className="absolute menu dropdown-content bg-white rounded-box z-10 mt-2 w-full max-h-[400px] overflow-y-auto shadow-lg p-4">
                     {locations.map((location, index) => (
                         <li 
                             key={index}
