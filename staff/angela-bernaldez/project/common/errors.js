@@ -108,7 +108,14 @@ export class OpenMeteoAPIConnectionError extends Error {
     }
 }
 
-// crear otro error para la api que detecta ubicacion actual
+export class GeoLocationAPIError extends Error {
+    constructor(message) {
+        super(message)
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, GeoLocationAPIError)
+        }
+    }
+}
 
 /*OTHER ERRORS*/
 export class UnexpectedError extends Error {

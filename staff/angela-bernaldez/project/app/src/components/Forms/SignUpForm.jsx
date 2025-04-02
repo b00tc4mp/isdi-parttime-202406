@@ -1,8 +1,12 @@
 import { IconEmail, IconUser, IconPassword } from '../icons/icons.jsx'
 import logic from '../../logic'
 import { useNavigate, Link } from 'react-router-dom'
+import { useState } from 'react'
+import FormErrorsSection from './FormErrorsSection.jsx'
+import { Errors } from 'common'
 
 function SignUpForm() {
+  const [errors, setErrors] = useState(null)
   const navigate = useNavigate()
 
   const sendSignUpForm = (event) => {
@@ -12,12 +16,24 @@ function SignUpForm() {
 
     try {
       logic.registerUser(username.value, email.value, password.value, repeatPassword.value)
-        .then(() => {
-          navigate('/login')
-        })
-        .catch((error) => alert(error.message))
+      .then(() => {
+        navigate('/login')
+      })
+      .catch((error) => {
+        console.log('entro aquiiiii')
+        if (error instanceof Errors.BadRequestError) 
+          return setErrors([new Errors.BadRequestError()])
+        if (error instanceof Errors.ServerError) 
+          return setErrors([new Errors.ServerError()])
+        if (error instanceof Errors.DuplicityError) 
+          return setErrors([new Errors.DuplicityError()])
+        if (error instanceof Errors.ConfirmationError) 
+          return setErrors([new Errors.ConfirmationError()])
+        setErrors([new Errors.UnexpectedError()])
+      })
     } catch (error) {
-      alert(error.message)
+      console.log('Error capturado en el try/catch:', error) 
+      setErrors([error])
     }
   }
 
@@ -73,6 +89,8 @@ function SignUpForm() {
             />
             <IconPassword fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
           </div>
+
+          {errors && <FormErrorsSection errors={errors} className="mb-5" />}
 
           {/* Submit Button */}
           <div className="mt-6">

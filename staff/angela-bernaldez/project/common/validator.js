@@ -20,7 +20,7 @@ class Validator {
     
         const regExp = /^(?=.*\d)[a-z\d]{8,}$/
     
-        if (!regExp.test(value)) throw new Errors.ContentError('Password is not strong enough')
+        if (!regExp.test(value)) throw new Errors.PasswordNotValidError('Password is not strong enough. It needs to have at least 8 alphanumeric characters')
     
         return true
     }
@@ -30,7 +30,7 @@ class Validator {
         if (typeof value !== 'string') throw new TypeError('Username is not a string')
         if (value.trim().length === 0) throw new Errors.ContentError('Username is empty')
         const regExp = new RegExp(/^[a-zA-Z0-9]{1,12}$/)
-        if (!regExp.test(value)) throw new Errors.UsernameNotValidError('Username format is not valid')
+        if (!regExp.test(value)) throw new Errors.UsernameNotValidError('Username can only have letters (A-Z, a-z) and numbers (0-9), max 12 characters.')
     
         return true
     }

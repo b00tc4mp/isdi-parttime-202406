@@ -82,7 +82,7 @@ function Dashboard({ onUserLoggedOut }) {
     }, [stamp])
 
     return (
-        <div className="h-full w-screen flex flex-col overflow-hidden">
+        <div className="h-full w-screen overflow-hidden">
             <Header 
                 setStamp={setStamp}
                 onUserLoggedOut={onUserLoggedOut}

@@ -14,7 +14,7 @@ export default (userId) => {
             if (!user) throw new Errors.AuthError('User id does not belong to anyone')
             return fetch(ipApiUrl)
                 .then((response) => {
-                    if (!response.ok) throw new Error('Unable to stablish connection with IP API to obtain current location')
+                    if (!response.ok) throw new Errors.GeoLocationAPIError('Unable to stablish connection with IP API to obtain current location')
                     return response.json()
                         .then((data) => {
                             if (data.status === 'success') {

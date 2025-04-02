@@ -1,13 +1,14 @@
 {
   "formsErrors": {
     "default": "Please check all the fields.",
-    "EmailNotValidError": "The email provided is invalid.",
-    "PasswordNotValidError": "The password provided is invalid.",
+    "EmailNotValidError": "Email format is not valid",
+    "UsernameNotValidError": "Username can only have letters (A-Z, a-z) and numbers (0-9), max 12 characters",
+    "PasswordNotValidError": "Password is not strong enough. It needs to have at least 8 alphanumeric characters",
+    "ConfirmationError" : "Passwords do not match",
     "CredentialsError": "No user exists with the provided credentials.",
     "BadRequestError": "The data provided is incorrect.",
     "ServerError": "An unexpected issue occurred, please try again later.",
-    "UnexpectedError": "An unexpected error occurred, please contact support.",
-    "UsernameNotValidError": "The username is invalid."
+    "UnexpectedError": "An unexpected error occurred, please contact support."
   },
   "modalErrors": {
     "default": {

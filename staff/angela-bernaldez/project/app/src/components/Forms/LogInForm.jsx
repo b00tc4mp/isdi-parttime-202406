@@ -21,15 +21,14 @@ function LogInForm({ onUserLoggedIn }) {
         onUserLoggedIn()
       })
       .catch((error) => {
-        if (error instanceof PasswordNotValidError) {
+        if (error instanceof PasswordNotValidError) 
           return setErrors([new Errors.PasswordNotValidError()])
-        }
-        if (error instanceof CredentialsError) {
+        if (error instanceof CredentialsError) 
           return setErrors([new Errors.CredentialsError()])
-        }
         if (error instanceof Errors.BadRequestError)
           return setErrors([new Errors.CredentialsError()])
-        if (error instanceof Errors.ServerError) return setErrors([new Errors.ServerError()])
+        if (error instanceof Errors.ServerError) 
+          return setErrors([new Errors.ServerError()])
         setErrors([new Errors.UnexpectedError()])
       })
   }
@@ -71,6 +70,8 @@ function LogInForm({ onUserLoggedIn }) {
               Forgot password?
             </Link>
           </div>
+
+          {errors && <FormErrorsSection errors={errors} className="mb-5" />}
 
           {/* Submit Button */}
           <div className="mt-6">
