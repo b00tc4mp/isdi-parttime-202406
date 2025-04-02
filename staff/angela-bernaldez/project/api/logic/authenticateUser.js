@@ -22,6 +22,6 @@ export default (email, password) => {
                 })
         })
         .catch((error) => { 
-            throw new Errors.UnexpectedError(error.message) 
+            throw new Errors.CredentialsError(error.message) 
         })
 }

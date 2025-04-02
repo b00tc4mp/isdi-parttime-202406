@@ -20,12 +20,11 @@ export default (username, email, password) => {
                             email,
                             password: cryptPassword
                         }
-                        
                         return User.create(user)
                     })
         })
         .catch((error) => { 
-            throw new Errors.UnexpectedError(error.message) 
+            throw new Errors.DuplicityError(error.message) 
         })
 }
 

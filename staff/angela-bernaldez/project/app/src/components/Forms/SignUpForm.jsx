@@ -20,7 +20,6 @@ function SignUpForm() {
         navigate('/login')
       })
       .catch((error) => {
-        console.log('entro aquiiiii')
         if (error instanceof Errors.BadRequestError) 
           return setErrors([new Errors.BadRequestError()])
         if (error instanceof Errors.ServerError) 
@@ -29,6 +28,10 @@ function SignUpForm() {
           return setErrors([new Errors.DuplicityError()])
         if (error instanceof Errors.ConfirmationError) 
           return setErrors([new Errors.ConfirmationError()])
+        if (error instanceof Errors.CredentialsError)
+          return setErrors([new Errors.CredentialsError()])
+        if (error instanceof Errors.DuplicityError) 
+          return setErrors([new Errors.DuplicityError()])
         setErrors([new Errors.UnexpectedError()])
       })
     } catch (error) {

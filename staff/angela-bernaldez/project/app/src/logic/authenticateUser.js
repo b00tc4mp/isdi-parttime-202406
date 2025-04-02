@@ -24,6 +24,8 @@ const authenticateUser = ( email, password ) => {
     .catch((error) => {
         if (error instanceof TypeError)
             throw new Errors.ServerError('Server in not connected')
+        if (error instanceof Errors.CredentialsError)
+            throw new Errors.CredentialsError()
         throw new Errors.UnexpectedError()
     })
 }

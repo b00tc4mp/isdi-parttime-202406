@@ -1,5 +1,6 @@
-import { ModalProvider } from './ModalContext.jsx'
+import { ModalProvider, useModal } from './ModalContext.jsx'
 
-export default {
-    ModalProvider
+export {
+    ModalProvider,
+    useModal
 }

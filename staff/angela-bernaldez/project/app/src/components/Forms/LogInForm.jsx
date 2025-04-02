@@ -21,9 +21,9 @@ function LogInForm({ onUserLoggedIn }) {
         onUserLoggedIn()
       })
       .catch((error) => {
-        if (error instanceof PasswordNotValidError) 
+        if (error instanceof Errors.PasswordNotValidError) 
           return setErrors([new Errors.PasswordNotValidError()])
-        if (error instanceof CredentialsError) 
+        if (error instanceof Errors.CredentialsError) 
           return setErrors([new Errors.CredentialsError()])
         if (error instanceof Errors.BadRequestError)
           return setErrors([new Errors.CredentialsError()])

@@ -1,57 +1,71 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logic from '../../logic'
-
-
-// TODO: AÑADIR CONFIRMACION PASSWORD CUANDO CAMBIANDOLA
+import { Errors, Validator } from 'common'
+import { useModal } from '../../context'
+import modals from '../../modals/modals.json'
 
 function MyProfile({ onUserLoggedOut }) {
-    const navigate = useNavigate()
-    const [userData, setUserData] = useState(null)
-    const [newUsername, setNewUsername] = useState("")
-    const [oldPassword, setOldPassword] = useState("")
-    const [newPassword, setNewPassword] = useState("")
-    const [editingUsername, setEditingUsername] = useState(false)
-    const [changingPassword, setChangingPassword] = useState(false)
-    const [deletingAccount, setDeletingAccount] = useState(false)
-    const [deletePassword, setDeletePassword] = useState("")
+  const navigate = useNavigate()
+  const [userData, setUserData] = useState(null)
+  const [newUsername, setNewUsername] = useState("")
+  const [oldPassword, setOldPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [repeatedNewPassword, setRepeatedNewPassword] = useState("")
+  const [editingUsername, setEditingUsername] = useState(false)
+  const [changingPassword, setChangingPassword] = useState(false)
+  const [deletingAccount, setDeletingAccount] = useState(false)
+  const [deletePassword, setDeletePassword] = useState("")
 
-    useEffect(() => {
-        logic.getUser()
-        .then((user) => {
-            setUserData(user)
-        })
-    }, [])
+  const { openModal, openModalError } = useModal()
 
-    const handleUsernameChange = () => {
-        logic.updateUsername(newUsername)
-            .then(() => {
-                setUserData(prev => ({ ...prev, username: newUsername }));
-                setEditingUsername(false)
-            })
-            .catch((error) => console.error("Error changing username:", error))
-    }
+  useEffect(() => {
+    logic.getUser()
+      .then((user) => {
+        setUserData(user)
+      })
+  }, [])
 
-    const handlePasswordChange = () => {
-        logic.updatePassword(oldPassword, newPassword)
-            .then(() => {
-                setChangingPassword(false)
-                setOldPassword("")
-                setNewPassword("")
-            })
-            .catch((error) => console.error("Error changing password:", error))
-    }
+  const handleUsernameChange = () => {
+    Validator.username(newUsername)
+    logic.updateUsername(newUsername)
+      .then(() => {
+        setUserData(prev => ({ ...prev, username: newUsername }))
+        setEditingUsername(false);
+      })
+      .catch((error) => new Errors.UnexpectedError('Error changing username:', error))
+  }
 
-    const handleDeleteAccount = () => {
+  const handlePasswordChange = () => {
+    Validator.confirmationPassword(newPassword, repeatedNewPassword)
+    logic.updatePassword(oldPassword, newPassword)
+      .then(() => {
+        setChangingPassword(false)
+        setOldPassword("")
+        setNewPassword("")
+        setRepeatedNewPassword("")
+      })
+      .catch((error) => new Errors.UnexpectedError('Error changing password:', error))
+  }
+
+  const handleDeleteAccount = () => {
+    openModal({
+      ...modals.delete, 
+      onConfirm: () => {
         logic.deleteUser(deletePassword)
-            .then(() => {
-                console.log("Account deleted successfully")
-                onUserLoggedOut()
-                sessionStorage.clear()
-                navigate('/')
-            })
-            .catch((error) => console.error("Error deleting account:", error))
-    }
+          .then(() => {
+            console.log('Account deleted successfully')
+            onUserLoggedOut()
+            sessionStorage.clear()
+            navigate('/')
+          })
+          .catch((error) => {
+            console.error("Error deleting account:", error);
+            openModalError(new Errors.UnexpectedError("Error deleting account"))
+          })
+      }
+    })
+  }
 
     return (
         <div className="h-screen flex justify-center items-center">
@@ -143,6 +157,14 @@ function MyProfile({ onUserLoggedOut }) {
                                     onChange={(e) => setNewPassword(e.target.value)}
                                     className="w-full p-2 border rounded-md mb-2"
                                     autoComplete='new-password'
+                                />
+                                <input 
+                                    type="password"
+                                    placeholder="Repeat new password"
+                                    value={repeatedNewPassword}
+                                    onChange={(e) => setRepeatedNewPassword(e.target.value)}
+                                    className="w-full p-2 border rounded-md mb-2"
+                                    autoComplete='repeat-new-password'
                                 />
                                 <div className="flex gap-2">
                                     <button 

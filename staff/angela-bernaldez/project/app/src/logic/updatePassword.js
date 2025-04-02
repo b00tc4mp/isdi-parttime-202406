@@ -16,12 +16,12 @@ const updatePassword = (oldPassword, newPassword) => {
         body: JSON.stringify({ 'old-password': oldPassword, 'new-password': newPassword })
     })
     .then((res) => {
-        if (res.status === 201) return res.json()
-            return res.json()
-                .then(body => {
-                    const constructor = Errors[body.name]
-                    throw new constructor(`${body.message}`)
-                })
+        if (res.status === 201) return 
+        return res.json()
+            .then(body => {
+                const constructor = Errors[body.name]
+                throw new constructor(`${body.message}`)
+            })
     })
     .catch((error) => {
         if (error instanceof Errors.BadRequestError)

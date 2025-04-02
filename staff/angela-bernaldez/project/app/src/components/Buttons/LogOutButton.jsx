@@ -1,14 +1,24 @@
 import { useNavigate } from 'react-router-dom'
+import { useModal } from '../../context'
+import modals from '../../modals/modals.json'
 
 function LogOutButton({ onUserLoggedOut }) {
 
     const navigate = useNavigate()
 
+    const { openModal, openModalError } = useModal()
+
     const handleLogOut = () => {
-        onUserLoggedOut()
-        sessionStorage.clear()
-        navigate('/')
+        openModal({
+            ...modals.logout,
+            onConfirm: () => {
+                onUserLoggedOut()
+                sessionStorage.clear()
+                navigate('/')
+            }
+        })
     }
+    
 
     return (
         <div className='w-full h-full'>

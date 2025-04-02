@@ -5,10 +5,11 @@
     "UsernameNotValidError": "Username can only have letters (A-Z, a-z) and numbers (0-9), max 12 characters",
     "PasswordNotValidError": "Password is not strong enough. It needs to have at least 8 alphanumeric characters",
     "ConfirmationError" : "Passwords do not match",
-    "CredentialsError": "No user exists with the provided credentials.",
-    "BadRequestError": "The data provided is incorrect.",
-    "ServerError": "An unexpected issue occurred, please try again later.",
-    "UnexpectedError": "An unexpected error occurred, please contact support."
+    "CredentialsError": "Incorrect password",
+    "DuplicityError": "Email already in use", 
+    "BadRequestError": "The data provided is incorrect",
+    "ServerError": "An unexpected issue occurred, please try again later",
+    "UnexpectedError": "An unexpected error occurred, please contact support"
   },
   "modalErrors": {
     "default": {

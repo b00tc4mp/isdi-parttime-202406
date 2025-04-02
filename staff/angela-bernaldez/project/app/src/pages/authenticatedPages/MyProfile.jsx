@@ -3,9 +3,10 @@ import Header from '../../components/Others/Header'
 
 function MyProfile({ onUserLoggedOut }) {
 
+    // TODO: arreglar el alto de la pagina para que no haga overflow
     return (
         <div className="h-screen">
-            <Header />
+            <Header onUserLoggedOut={onUserLoggedOut}/>
             <MyProfileForm onUserLoggedOut={onUserLoggedOut}/>
         </div>
     )

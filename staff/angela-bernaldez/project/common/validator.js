@@ -24,7 +24,6 @@ class Validator {
     
         return true
     }
-    
 
     static username(value) {
         if (typeof value !== 'string') throw new TypeError('Username is not a string')
@@ -36,7 +35,7 @@ class Validator {
     }
 
     static confirmationPassword(value1, value2) {
-        if (value1 !== value2) throw Errors.ConfirmationError('Passwords do not match')
+        if (value1 !== value2) throw new Errors.ConfirmationError('Passwords do not match')
     
         return true
     }
