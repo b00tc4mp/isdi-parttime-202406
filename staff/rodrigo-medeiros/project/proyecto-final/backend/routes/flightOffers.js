@@ -17,6 +17,8 @@ router.get("/search", async (req, res) => {
       departureDate,
       returnDate,
       adults,
+      children,
+      travelClass,
     } = req.query;
 
     if (
@@ -42,6 +44,8 @@ router.get("/search", async (req, res) => {
       adults,
     };
     if (returnDate) params.returnDate = returnDate; // Adiciona apenas se não for undefined
+    if (children) params.children = children; // Corrigido de 'child' para 'children'
+    if (travelClass) params.travelClass = travelClass; // Adiciona travelClass, se disponível
 
     // Fazer requisição para a Amadeus API
     const response = await axios.get(AMADEUS_API_BASE, {

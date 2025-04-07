@@ -2,8 +2,8 @@
 import Amadeus from "amadeus";
 
 const amadeus = new Amadeus({
-  clientId: "YtIARh2OUk7V95BZLKBiDVRPqSN4HwE", // Substitua com seu client ID
-  clientSecret: "t1IRq9Wx9YWF3ouC", // Substitua com seu client secret
+  clientId: "qH95EuZGB1FuiG5M5JqB3q15ZIAiXLfk", // Substitua com seu client ID
+  clientSecret: "H4iXd9bhSjb5f8AB", // Substitua com seu client secret
 });
 
 export default amadeus;

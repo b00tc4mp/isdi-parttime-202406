@@ -1,10 +1,12 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { isUserLoggedIn } from "../logic/isUserLoggedIn";
 import AirportPicker from "./AirportPicker";
+import airports from "../airports.js";
 import { SearchLogo } from "./icons.jsx";
 import ShowFlights from "./ShowFlights";
-import { handleAddToFavourites } from '../handlers/flightHandlers/handleAddToFavourites.js';
+import { handleAddToFavourites } from '../handlers/userHandlers/handleAddToFavourites.js';
+import { handleSearch } from "../handlers/flightHandlers/handleSearch.js";
 import {
   handleIncrement,
   handleDecrement,
@@ -27,7 +29,7 @@ function SearchFlightsForm() {
   const [to, setTo] = useState(null);
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [showResults, setShowResults] = useState(false);
+  //const [showResults, setShowResults] = useState(false);
   const [flights, setFlights] = useState([]);
   const [searchParams, setSearchParams] = useState({
     from: null,
@@ -37,6 +39,7 @@ function SearchFlightsForm() {
     adults: 1,
     tripType: "one-way",
   });
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -52,6 +55,9 @@ function SearchFlightsForm() {
     setAdults(adults);
     setChildren(children);
     setCabinClass(cabinClass);
+
+    // Ajuste para setar o tipo de viagem corretamente
+    setTripType(returnDate ? "round-trip" : "one-way");
 
     setSearchParams({
       from,
@@ -91,31 +97,45 @@ function SearchFlightsForm() {
     setFrom(airport);
     setSearchParams((prevParams) => ({
       ...prevParams,
-      from: airport.iata_code, // Store IATA code
+      from: airport, // Armazena o objeto completo
     }));
   };
-
+  
   const handleSelectTo = (airport) => {
     setTo(airport);
     setSearchParams((prevParams) => ({
       ...prevParams,
-      to: airport.iata_code, // Store IATA code
+      to: airport, // Armazena o objeto completo
     }));
   };
+  
 
-  const handleSearch = async () => {
+  /*const handleSearch = async () => {
     console.log("🔍 Iniciando busca de voos...");
   
     const { from, to, departureDate, returnDate, adults } = searchParams;
     console.log("📌 Parâmetros de entrada:", searchParams);
+    const cabinClassMap = {
+      "Economy": "ECONOMY",
+      "Premium Economy": "PREMIUM_ECONOMY",
+      "Business Class": "BUSINESS",
+      "First Class": "FIRST"
+    };
+    
+    const formattedCabinClass = cabinClassMap[cabinClass] || "ECONOMY"; // Padrão: Economy
+    
   
     // Construção dos parâmetros da requisição, garantindo que apenas valores válidos sejam enviados
     const requestParams = {
-      originLocationCode: from?.trim(), // Remove espaços extras
+      originLocationCode: from?.trim(),
       destinationLocationCode: to?.trim(),
       departureDate: departureDate?.trim(),
-      adults: Number(adults), // Certifica que adultos é um número
+      returnDate: returnDate ? returnDate.trim() : undefined,
+      adults: Number(adults),
+      children: Number(children), // Corrigido de "child" para "children"
+      travelClass: formattedCabinClass // Usando o valor formatado corretamente
     };
+    
 
      
     if (returnDate) {
@@ -141,7 +161,29 @@ function SearchFlightsForm() {
       );
     }
   };
-  const routeData = { from, to, departureDate, returnDate, adults, cabinClass };
+*/
+const performSearch = async () => {
+  console.log("Iniciando busca com handler reutilizável...");
+  // Chama o handler reutilizável e obtém os dados dos voos
+  const flightsData = await handleSearch(searchParams);
+  
+  // Navega para a página de resultados, passando os dados obtidos
+  navigate('/FlightResults', { state: { flights: flightsData, searchParams } });
+};
+
+  
+
+  const routeData = { 
+    from,
+    to,
+    departureDate,
+    returnDate,
+    adults,
+    children,
+    cabinClass
+};
+
+  
 
   
   
@@ -173,7 +215,7 @@ function SearchFlightsForm() {
 
         <input
           type="date"
-          className="bg-yellow-500 text-black p-2 rounded-lg"
+          className="bg-yellow-500 text-blue-900 p-2 rounded-lg"
           placeholder="Partida"
           value={departureDate}
           onChange={handleDepartureChange}
@@ -229,23 +271,28 @@ function SearchFlightsForm() {
           )}
         </div>
 
-        <button onClick={handleSearch} className="bg-yellow-500 flex items-center justify-center p-2 rounded-lg w-full">
-          <SearchLogo className="h-4 w-4" />
-          <span className="ml-2">Buscar</span>
-        </button>
+        <button onClick={performSearch} className="bg-yellow-500 flex items-center justify-center p-2 rounded-lg w-full">
+  <SearchLogo className="h-4 w-4" />
+  <span className="ml-2">Buscar</span>
+</button>
 
         {isLoggedIn && ( // Exibe o botão apenas se o usuário estiver logado
-        <button type="button" onClick={() => handleAddToFavourites(routeData, from, to, departureDate)}>
-          Adicionar aos Favoritos
-        </button>
- )}
+  <button
+  type="button"
+  onClick={() => handleAddToFavourites(routeData)} // Pass routeData as the whole object
+  className="bg-yellow-500 text-blue-900 p-2 rounded-lg"
+>
+  Add to Favourites!
+</button>
+)}
+
       </div>
 
-      {showResults && <ShowFlights flights={flights} />}
+      
 
     </main>
   );
 }
 
 export default SearchFlightsForm;
-
+//{showResults && <ShowFlights flights={flights} />}

@@ -1,11 +1,11 @@
-// UserMenu.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IconLogin } from './icons';
 import { logout } from '../logic/logout';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,8 +13,23 @@ const UserMenu = () => {
     navigate('/signin');
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside, true);
+    }
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="btn bg-yellow-500 flex items-center space-x-2"
@@ -51,3 +66,4 @@ const UserMenu = () => {
 };
 
 export default UserMenu;
+

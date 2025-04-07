@@ -21,6 +21,24 @@ class Validator {
       );
     }
   }
+  static dateOfBirth(value) {
+    const birthDate = new Date(value);
+    if (isNaN(birthDate.getTime())) {
+      throw new BadRequestError("Invalid date format");
+    }
+
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    if (
+      age < 18 ||
+      (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))
+    ) {
+      throw new BadRequestError("User must be at least 18 years old");
+    }
+  }
 
   static username(value) {
     const regExp = /^[a-zA-Z0-9]{1,12}$/;

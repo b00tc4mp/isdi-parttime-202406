@@ -14,3 +14,4 @@ export class ServerError extends AppError {}
 export class UnexpectedError extends AppError {}
 export class CredentialsError extends AppError {}
 export class UsernameNotValidError extends AppError {}
+export class NotFoundError extends AppError {}

@@ -1,10 +1,9 @@
-// favouritesController.js
-//import FavouriteRoute from "../../models/FavouriteRoute";
-//import Favourite from "../../models/FavouriteRoute"; // Supondo que você tenha um model de "Favourite"
-//import User from "../../models/User"; // Supondo que você tenha um model de "User"
+//favouriteRoutes.js
+import User from "../../models/User.js";
 
 export const addToFavourites = async (req, res) => {
-  const { from, to, departureDate, returnDate, adults, cabinClass } = req.body;
+  const { from, to, departureDate, returnDate, adults, children, cabinClass } =
+    req.body;
   const userId = req.user.id; // Supondo que você tenha um middleware de autenticação
 
   try {
@@ -18,6 +17,7 @@ export const addToFavourites = async (req, res) => {
       departureDate,
       returnDate,
       adults,
+      children,
       cabinClass,
       userId,
     });

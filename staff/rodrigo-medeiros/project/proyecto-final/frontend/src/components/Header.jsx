@@ -23,7 +23,10 @@ const Header = () => {
           <span className="italic font-extrabold text-yellow-500">fly easy!</span>
         </Link>
         <div className="flex space-x-8">
-          <button className="btn bg-yellow-500 flex items-center space-x-2">
+        <button
+            onClick={() => navigate("/")}
+            className="btn bg-yellow-500 flex items-center space-x-2"
+          >
             <IconFlights className="h-5 w-5" /> <span>Flights</span>
           </button>
           {isUserLoggedIn() ? (

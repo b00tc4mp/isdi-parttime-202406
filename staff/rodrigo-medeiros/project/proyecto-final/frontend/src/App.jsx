@@ -3,11 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import { Footer, Header } from "./components";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
-import { Register } from "./pages";
+import { Register, FlightResults } from "./pages";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyProfile from "./pages/MyProfile";
 import MyFavouriteRoutes from "./pages/MyFavouriteRoutes";
+
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/myProfile" element={<MyProfile />} />
           <Route path="/MyFavouriteRoutes" element={<MyFavouriteRoutes />} />
+          <Route path="/FlightResults" element={<FlightResults />} />
         </Routes>
       </div>
       <Footer className="mt-auto" />
