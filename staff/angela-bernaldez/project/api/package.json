@@ -23,6 +23,8 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mocha": "^11.0.1",
-    "mongoose": "^8.8.4"
+    "mongoose": "^8.8.4",
+    "node-fetch": "^3.3.2",
+    "sinon": "^20.0.0"
   }
 }

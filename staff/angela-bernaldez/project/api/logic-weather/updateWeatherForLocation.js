@@ -15,9 +15,9 @@ export default (userId, locationData, weatherData) => {
             return Location.findOne({name: locationData.name, latitude: locationData.latitude, longitude: locationData.longitude})
                 .then((location) => {
                     if (!location) throw new Errors.ExistenceError('Location does not exist in the database. It needs to be added first.')
-                    // comprobar que loc id esta en user.favlocs o user.current 
-                    const isUserLoc = user.favLocations.some(favLoc => favLoc._id === location._id) || (user.currentLocation._id === location._id)
-                    if (!isUserLoc) new Errors.ExistenceError('User does not have the requested location to fetch weather data')
+
+                    const isUserLoc = user.favLocations.some(favLoc => favLoc._id.toString() === location._id.toString()) || (user.currentLocation._id.toString() === location._id.toString())
+                    if (!isUserLoc) throw new Errors.ExistenceError('User does not have the requested location to fetch weather data')
 
                     location.current = weatherData.current
                     location.current_units = weatherData.current_units
@@ -28,6 +28,6 @@ export default (userId, locationData, weatherData) => {
                 })
         })
         .catch((error) => { 
-            throw new Errors.UnexpectedError(error.message) 
+            throw error 
         })
 }

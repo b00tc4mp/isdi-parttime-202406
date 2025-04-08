@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.82% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/34</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.82% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/34</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,34 +102,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import models from '../data/models.js'
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import models from '../data/models.js'
 import { Validator, Errors } from 'common'
 &nbsp;
 const { Location, User } = models
@@ -145,22 +145,22 @@ export default (userId, locationData) =&gt; {
 &nbsp;
     return User.findById(userId) 
         .then((user) =&gt; {
-<span class="cstat-no" title="statement not covered" >            if (!user) throw new Errors.AuthError('User id does not belong to anyone')</span>
-<span class="cstat-no" title="statement not covered" >            return Location.findOne({name: name, latitude: latitude, longitude: longitude})</span>
-<span class="cstat-no" title="statement not covered" >                .then((location) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    if (!location) throw new Errors.ExistenceError('Location does not exist in the database. It needs to be added first.')</span>
-<span class="cstat-no" title="statement not covered" >                    return fetch(weatherUrl)</span>
-<span class="cstat-no" title="statement not covered" >                        .then((response) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                            if (!response.ok) throw new Errors.OpenMeteoAPIConnectionError('Unable to stablish connection with Weather API')</span>
-<span class="cstat-no" title="statement not covered" >                            return response.json()</span>
-<span class="cstat-no" title="statement not covered" >                                .then((weatherData) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                                    return weatherData</span>
-<span class="cstat-no" title="statement not covered" >                                })</span>
-<span class="cstat-no" title="statement not covered" >                        })</span>
-<span class="cstat-no" title="statement not covered" >                })</span>
+            if (!user) throw new Errors.AuthError('User id does not belong to anyone')
+            return Location.findOne({name: name, latitude: latitude, longitude: longitude})
+                .then((location) =&gt; {
+                    if (!location) throw new Errors.ExistenceError('Location does not exist in the database. It needs to be added first.')
+                    return fetch(weatherUrl)
+                        .then((response) =&gt; {
+                            if (!response.ok) throw new Errors.OpenMeteoAPIConnectionError('Unable to stablish connection with Weather API')
+                            return response.json()
+                                .then((weatherData) =&gt; {
+                                    return weatherData
+                                })
+                        })
+                })
         }) 
         .catch((error) =&gt; { 
-<span class="cstat-no" title="statement not covered" >            throw new Errors.UnexpectedError(error.message) </span>
+            throw error
         })
 }</pre></td></tr></table></pre>
 
@@ -169,7 +169,7 @@ export default (userId, locationData) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-08T16:46:54.139Z
+                at 2025-04-08T17:37:21.598Z
             </div>
         <script src="../prettify.js"></script>
         <script>

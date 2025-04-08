@@ -19,14 +19,14 @@ export default (userId, locationString) => {
                     return response.json()
                         .then((locationsFound) => {
                             if (!locationsFound || locationsFound.length === 0) {
-                                throw new Errors.LocationNotFoundError(error.message)
+                                throw new Errors.LocationNotFoundError('Unable to find locations with the provided location string')
                             }
                             return locationsFound
                         })
                 })
         })
         .catch((error) => { 
-            throw new Errors.UnexpectedError(error.message) 
+            throw error
         })
 }
 

@@ -1,85 +1,106 @@
 import 'dotenv/config'
 import updateWeatherForLocation from '../updateWeatherForLocation.js'
 import { describe, it } from 'mocha'
-import { expect } from 'chai'
 import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
+import { expect } from 'chai'
+import { Errors } from 'common'
 
-const { Location, User } = models
+const { User, Location } = models
 
 describe('updateWeatherForLocation', () => {
+  before(() => mongoose.connect(process.env.MONGO_URI_TEST))
 
-    before(() => mongoose.connect(process.env.MONGO_URI_TEST))
-    afterEach(() => User.deleteMany())
-    afterEach(() => Location.deleteMany())
-    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
+  let user, location, weatherData
 
-    it('update weather data', () => {
-        const location = {
-            name: 'Brighton', 
-            latitude: 50.1245,
-            longitude: -0.154, 
-            timeLastUpdated: Date.now()
-        }
-        const weatherData = {
-            current: {
-                time: '2025-02-21T20:45',
-                interval: 900,
-                temperature_2m: 11.5,
-                relative_humidity_2m: 87,
-                is_day: 0,
-                precipitation: 0,
-                weather_code: 61,
-                wind_speed_10m: 31.7
-              },
-            daily: { 
-                time: [
-                '2025-02-21',
-                '2025-02-22',
-                '2025-02-23',
-                '2025-02-24',
-                '2025-02-25',
-                '2025-02-26',
-                '2025-02-27'
-              ],
-              weather_code: [
-                80, 61, 61, 61,
-                61, 80,  3
-              ],
-              temperature_2m_max: [
-                12.4, 10.7, 11.2,
-                10.5,  9.8,  8.6,
-                 7.7
-              ],
-              temperature_2m_min: [
-                10.9, 9.8, 8.4,
-                 9.9, 8.4, 7.7,
-                 6.6
-              ]
-            }
-        }
-        return Location.create(location)
-            .then((location) => {
-                return bcrypt.hash('123456789', 1)
-                    .then((cryptPassword) => {
-                        const user = {
-                            username: 'nametest',
-                            email: 'test@mail.com',
-                            password: cryptPassword,
-                            currentLocation: location._id
-                        }
-                        return User.create(user)
-                            .then((user) => {
-                                return updateWeatherForLocation(user._id, location, weatherData)
-                                    .then((locationWeatherUpdated) => {
-                                        console.log(Object.keys(locationWeatherUpdated._doc))
-                                        console.log(locationWeatherUpdated, 'imprimiendo weather updated aqui en el test')
-                                        expect(locationWeatherUpdated).to.have.property('current')
-                                        expect(locationWeatherUpdated).to.have.property('dailyForecast')
-                                    })
-                            })
-                    })
-            })     
-    })       
+  beforeEach(async () => {
+    location = await Location.create({
+      name: 'London',
+      latitude: 51.5074,
+      longitude: -0.1278,
+      timeLastUpdated: new Date()
+    })
+
+    const cryptPassword = await bcrypt.hash('123456789', 1)
+
+    user = await User.create({
+      username: 'testuser',
+      email: 'test@mail.com',
+      password: cryptPassword,
+      favLocations: [location._id],
+      currentLocation: location._id
+    })
+
+    weatherData = {
+      current: {
+        temperature_2m: 15,
+        wind_speed_10m: 5,
+      },
+      current_units: {
+        temperature_2m: '°C',
+        wind_speed_10m: 'km/h',
+      },
+      daily: {
+        temperature_2m_max: [18],
+        temperature_2m_min: [10],
+      },
+      daily_units: {
+        temperature_2m_max: '°C',
+        temperature_2m_min: '°C',
+      }
+    }
+  })
+
+  afterEach(async () => {
+    await User.deleteMany()
+    await Location.deleteMany()
+  })
+
+  after(() => mongoose.disconnect())
+
+  it('updates weather data for a user location', async () => {
+    await updateWeatherForLocation(user._id.toString(), location, weatherData)
+
+    const updatedLocation = await Location.findById(location._id)
+
+    expect(updatedLocation.current.temperature_2m).to.equal(15)
+    expect(updatedLocation.dailyForecast.temperature_2m_max[0]).to.equal(18)
+    expect(updatedLocation.timeLastUpdated).to.be.a('date')
+  })
+
+  it('throws AuthError if user not found', async () => {
+    try {
+      await updateWeatherForLocation('000000000000000000000000', location, weatherData)
+    } catch (error) {
+      expect(error).to.be.instanceOf(Errors.AuthError)
+      expect(error.message).to.equal('User id does not belong to anyone')
+    }
+  })
+
+  it('throws ExistenceError if location not in DB', async () => {
+    await location.deleteOne()
+    try {
+      await updateWeatherForLocation(user._id.toString(), location, weatherData)
+    } catch (error) {
+      expect(error).to.be.instanceOf(Errors.ExistenceError)
+      expect(error.message).to.equal('Location does not exist in the database. It needs to be added first.')
+    }
+  })
+
+  it('throws ExistenceError if user does not have the new location saved', async () => {
+    const newLocation = await Location.create({
+      name: 'New York',
+      latitude: 40.7128,
+      longitude: -74.0060,
+      timeLastUpdated: new Date()
+    })
+  
+    try {
+      await updateWeatherForLocation(user._id.toString(), newLocation, weatherData)
+    } catch (error) {
+      expect(error).to.be.instanceOf(Errors.ExistenceError)
+      expect(error.message).to.equal('User does not have the requested location to fetch weather data')
+    }
+  })
 })

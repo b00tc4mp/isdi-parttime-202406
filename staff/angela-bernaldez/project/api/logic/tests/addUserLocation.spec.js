@@ -5,6 +5,7 @@ import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import { expect } from 'chai'
+import { Errors } from 'common'
 
 const { User, Location } = models
 
@@ -71,7 +72,7 @@ describe('addUserLocation', () => {
     try {
       await addUserLocation('000000000000000000000000', location, false)
     } catch (error) {
-      expect(error).to.exist
+        expect(error).to.be.instanceOf(Errors.AuthError)
       expect(error.message).to.equal('User id does not belong to anyone')
     }
   })
