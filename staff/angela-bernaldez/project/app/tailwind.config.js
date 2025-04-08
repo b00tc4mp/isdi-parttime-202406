@@ -25,13 +25,30 @@ module.exports = {
         "65%": { filter: "opacity(60%)" },
         "80%": { filter: "opacity(40%)" },
       },
+      // Animación para mover las sombras en la dirección del degradado
+      moveShadow: {
+        "0%": { 
+          transform: "translate(0px, 0px)",
+          boxShadow: "0 0 120px 80px rgba(255, 208, 143, 0.7), 0 0 180px 110px rgba(0, 119, 247, 0.6)",
+        },
+        "50%": { 
+          transform: "translate(10px, -10px)", 
+          boxShadow: "0 0 150px 100px rgba(255, 208, 143, 0.8), 0 0 220px 130px rgba(0, 119, 247, 0.7)",
+        },
+        "100%": { 
+          transform: "translate(-10px, 10px)", 
+          boxShadow: "0 0 120px 80px rgba(255, 208, 143, 0.7), 0 0 180px 110px rgba(0, 119, 247, 0.6)",
+        },
+      },
     },
     animation: {
       ...animation,
       "spin-slow": "spin 10s linear infinite",
       wiggle: "wiggle 2s ease-in-out infinite",
       "low-pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-      buzzing: "buzzing 2s ease-in-out infinite",
+      buzzing: "buzzing 10s ease-in-out infinite",
+      moveShadow: "moveShadow 3s ease-in-out infinite", 
+      'bounce-smooth': 'bounceSmooth 2s ease-in-out infinite'
     },
     fontFamily: {
       ...fontFamily,
@@ -59,11 +76,11 @@ module.exports = {
       themes: [
         {
           mytheme: {
-            "primary": "#B1F0F7", 
-            "secondary": "#81BFDA", 
-            "accent": "#F5F0CD",
-            "neutral": "#FADA7A", 
-            "base-100": "#EEF5FF"
+            "primary": "#f9d08f", 
+            "secondary": "#68a4fc", 
+            "accent": "#0d77f7",
+            "neutral": "#f9b233", 
+            "base-100": "#aacef9"
           },
         },
       ],
