@@ -24,6 +24,6 @@ export default (userId, oldPassword, newPassword) => {
                 })
         })
         .catch((error) => { 
-            throw new Errors.UnexpectedError(error.message) 
+            throw error
         })
 }

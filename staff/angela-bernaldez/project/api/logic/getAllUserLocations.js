@@ -21,6 +21,6 @@ export default (userId) => {
                 })
         })
         .catch((error) => {
-            throw new Errors.UnexpectedError(error.message) 
+            throw error
         })
 }

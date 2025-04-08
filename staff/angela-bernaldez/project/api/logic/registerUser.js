@@ -24,7 +24,7 @@ export default (username, email, password) => {
                     })
         })
         .catch((error) => { 
-            throw new Errors.DuplicityError(error.message) 
+            throw error
         })
 }
 

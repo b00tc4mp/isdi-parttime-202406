@@ -20,7 +20,7 @@ class Validator {
     
         const regExp = /^(?=.*\d)[a-z\d]{8,}$/
     
-        if (!regExp.test(value)) throw new Errors.PasswordNotValidError('Password is not strong enough. It needs to have at least 8 alphanumeric characters')
+        if (!regExp.test(value)) throw new Errors.PasswordNotValidError('Password must be at least 8 characters long and contain only lowercase letters and numbers. It must also include at least one number')
     
         return true
     }

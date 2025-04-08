@@ -35,16 +35,18 @@ export default (userId, locationData, isCurrentLocation = false) => {
                                 return user.save()
                             }
 
-                            const foundLocation = user.favLocations.find((location) => location._id === newLocation._id)
+                            const foundLocation = user.favLocations.find((location) => location._id.toString() === newLocation._id.toString())
 
                             if (!foundLocation) {
                                 user.favLocations.push(newLocation._id)
                                 return user.save()
                             }
+
+                            return user
                         })
                 })
         })
         .catch((error) => {
-            throw new Errors.UnexpectedError(error.message)
+            throw new Errors.AuthError(error.message)
         })
 }

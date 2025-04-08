@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>53/53</span>
+                <span class='fraction'>52/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/53</span>
+                <span class='fraction'>52/52</span>
             </div>
         
             
@@ -132,6 +132,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -159,74 +167,66 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
 import authenticateUser from '../authenticateUser.js'
 import { describe, it } from 'mocha'
 import models from '../../data/models.js'
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import { expect } from 'chai'
+import { Errors } from 'common'
 &nbsp;
 const { User } = models
 &nbsp;
 describe('authenticateUser', () =&gt; {
-&nbsp;
     before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST))
-    afterEach(() =&gt; User.deleteMany())
-    after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST))
 &nbsp;
-    it('returns id if user exists and password is correct', () =&gt; {
-        return bcrypt.hash('123456789', 1)
-            .then((cryptPassword) =&gt; {
-                const user = {
-                    username: 'angelines',
-                    email: 'angela-test@mail.com',
-                    password: cryptPassword
-                }
-                return User.create(user)
-                    .then((user) =&gt; {
-                        return authenticateUser('angela-test@mail.com', '123456789')
-                            .then((id) =&gt; {
-                                expect(id).to.equal(user._id.toString())
-                            })
-                    })
-            })
+    let user
+&nbsp;
+    beforeEach(async () =&gt; {
+        await User.deleteMany()
+        const cryptPassword = await bcrypt.hash('123456789', 1)
+&nbsp;
+        user = await User.create({
+            username: 'nametest',
+            email: 'test-mail@mail.com',
+            password: cryptPassword
+        })
     })
 &nbsp;
-    it('throws error "Wrong password" if password wrong', () =&gt; {
-        return bcrypt.hash('123456789', 1)
-            .then((cryptPassword) =&gt; {
-                const user = {
-                    username: 'angelines',
-                    email: 'angela-test@mail.com',
-                    password: cryptPassword
-                }
-                return User.create(user)
-                    .then((user) =&gt; {
-                        return authenticateUser('angela-test@mail.com', '123')
-                            .then(() =&gt; {})
-                            .catch((error =&gt; {
-                                expect(error.message).to.equal('Wrong Password')
-                            }))
-                    })
-            })
+    after(() =&gt; mongoose.disconnect())
+&nbsp;
+    it('returns id if user exists and password is correct', async () =&gt; {
+        const id = await authenticateUser('test-mail@mail.com', '123456789')
+        expect(id).to.equal(user._id.toString())
     })
-})</pre></td></tr></table></pre>
+&nbsp;
+    it('throws error "Wrong Password" if password is incorrect', async () =&gt; {
+        try {
+            await authenticateUser('test-mail@mail.com', 'wrongpassword12')
+<span class="branch-0 cbranch-no" title="branch not covered" >        } c</span>atch (error) {
+            expect(error).to.be.instanceOf(Errors.CredentialsError)
+            expect(error.message).to.equal('Wrong Password')
+        }
+    })
+&nbsp;
+    it('throws error "No user with this email" if email does not exist', async () =&gt; {
+        try {
+            await authenticateUser('fake@mail.com', '123456789')
+<span class="branch-0 cbranch-no" title="branch not covered" >        } c</span>atch (error) {
+            expect(error).to.be.instanceOf(Errors.ExistenceError)
+            expect(error.message).to.equal('No user with this email')
+        }
+    })
+})
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-16T22:18:21.436Z
+                at 2025-04-08T16:46:54.139Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

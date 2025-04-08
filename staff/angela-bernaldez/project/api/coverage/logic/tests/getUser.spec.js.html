@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>45/45</span>
+                <span class='fraction'>49/49</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>45/45</span>
+                <span class='fraction'>49/49</span>
             </div>
         
             
@@ -107,7 +107,36 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -132,77 +161,63 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import bcrypt from 'bcrypt'
-import 'dotenv/config'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 'dotenv/config'
 import getUser from '../getUser.js'
 import { describe, it } from 'mocha'
 import models from '../../data/models.js'
-import mongoose, { Types } from 'mongoose'
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 import { expect } from 'chai'
 &nbsp;
 const { User } = models
-const { ObjectId } = Types
+import { Errors } from 'common'
 &nbsp;
-describe('getAllUserLocations', () =&gt; {
+describe('getUser', () =&gt; {
+  before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST))
 &nbsp;
-    before(() =&gt; mongoose.connect(process.env.MONGO_URI_TEST))
-    afterEach(() =&gt; User.deleteMany())
-    after(() =&gt; mongoose.disconnect(process.env.MONGO_URI_TEST))
+  let user
 &nbsp;
-    it('returns all user locations when at least one exists', () =&gt; { 
-        return bcrypt.hash('123456789', 1)
-            .then((cryptPassword) =&gt; {
-                const user = {
-                    username: 'nametest',
-                    email: 'test@mail.com',
-                    password: cryptPassword,
-                    favLocations: [
-                        new mongoose.Types.ObjectId(),
-                        new mongoose.Types.ObjectId()],
-                    currentLocation: new mongoose.Types.ObjectId()
-                }
-                return User.create(user)
-                    .then((user) =&gt; {
-                        const userId  = user._id.toString()
-                        return getUser(userId) 
-                            .then((user) =&gt; {
-                                expect(user.username).to.equal('nametest')
-                                expect(user.email).to.equal('test@mail.com')
-                                expect(user._id).to.be.instanceOf(ObjectId)
-                                expect(user.favLocations.length).to.equal(2)
-                                expect(user.currentLocation).to.be.instanceOf(ObjectId)
+  beforeEach(async () =&gt; {
+    await User.deleteMany()
 &nbsp;
-                            })
-                    })
-            })
+    const cryptPassword = await bcrypt.hash('123456789', 1)
+    user = await User.create({
+      username: 'nametest',
+      email: 'test@mail.com',
+      password: cryptPassword,
     })
-})</pre></td></tr></table></pre>
+  })
+&nbsp;
+  after(() =&gt; mongoose.disconnect())
+&nbsp;
+  it('should return public user info without password and with id instead of _id', async () =&gt; {
+    const publicInfo = await getUser(user._id.toString())
+&nbsp;
+    expect(publicInfo).to.have.property('id', user._id.toString())
+    expect(publicInfo).to.have.property('username', 'nametest')
+    expect(publicInfo).to.have.property('email', 'test@mail.com')
+&nbsp;
+    expect(publicInfo).to.not.have.property('password')
+    expect(publicInfo).to.not.have.property('_id')
+  })
+&nbsp;
+  it('should throw AuthError if user does not exist', async () =&gt; {
+    try {
+      await getUser('000000000000000000000000')
+<span class="branch-0 cbranch-no" title="branch not covered" >    } c</span>atch (error) {
+      expect(error).to.be.instanceOf(Errors.AuthError)
+      expect(error.message).to.equal('User id does not belong to anyone')
+    }
+  })
+})
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-16T22:18:21.436Z
+                at 2025-04-08T16:46:54.139Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for logic/registerUser.js</title>
+    <title>Code coverage report for logic-weather/retrieveWeatherData.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">logic</a> registerUser.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">logic-weather</a> retrieveWeatherData.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">58.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>20/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">58.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>20/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,21 +93,10 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -117,43 +106,63 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Validator, Errors } from 'common'
-import bcrypt from 'bcrypt'
-import models from '../data/models.js'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import models from '../data/models.js'
+import { Validator, Errors } from 'common'
 &nbsp;
-const { User } = models
+const { Location, User } = models
 &nbsp;
-export default (username, email, password) =&gt; {
+export default (userId, locationData) =&gt; {
 &nbsp;
-    Validator.username(username)
-    Validator.email(email)
-    Validator.password(password)
+    Validator.id(userId)
+    Validator.locationData(locationData)
 &nbsp;
-    return User.findOne({ email: email })
+    const { name, latitude, longitude } = locationData 
+&nbsp;
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&amp;longitude=${longitude}&amp;current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,precipitation_probability_max&amp;timezone=auto`
+&nbsp;
+    return User.findById(userId) 
         .then((user) =&gt; {
-            if (user) throw new Errors.DuplicityError('Email already in use')
-                return bcrypt.hash(password, 15)
-                    .then((cryptPassword) =&gt; {
-                        const user = {
-                            username,
-                            email,
-                            password: cryptPassword
-                        }
-                        return User.create(user)
-                    })
-        })
+<span class="cstat-no" title="statement not covered" >            if (!user) throw new Errors.AuthError('User id does not belong to anyone')</span>
+<span class="cstat-no" title="statement not covered" >            return Location.findOne({name: name, latitude: latitude, longitude: longitude})</span>
+<span class="cstat-no" title="statement not covered" >                .then((location) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    if (!location) throw new Errors.ExistenceError('Location does not exist in the database. It needs to be added first.')</span>
+<span class="cstat-no" title="statement not covered" >                    return fetch(weatherUrl)</span>
+<span class="cstat-no" title="statement not covered" >                        .then((response) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                            if (!response.ok) throw new Errors.OpenMeteoAPIConnectionError('Unable to stablish connection with Weather API')</span>
+<span class="cstat-no" title="statement not covered" >                            return response.json()</span>
+<span class="cstat-no" title="statement not covered" >                                .then((weatherData) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                                    return weatherData</span>
+<span class="cstat-no" title="statement not covered" >                                })</span>
+<span class="cstat-no" title="statement not covered" >                        })</span>
+<span class="cstat-no" title="statement not covered" >                })</span>
+        }) 
         .catch((error) =&gt; { 
-            throw error
+<span class="cstat-no" title="statement not covered" >            throw new Errors.UnexpectedError(error.message) </span>
         })
-}
-&nbsp;
-&nbsp;</pre></td></tr></table></pre>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

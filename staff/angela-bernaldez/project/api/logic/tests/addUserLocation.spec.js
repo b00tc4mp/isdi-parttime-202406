@@ -9,66 +9,70 @@ import { expect } from 'chai'
 const { User, Location } = models
 
 describe('addUserLocation', () => {
+  before(() => mongoose.connect(process.env.MONGO_URI_TEST))
 
-    // BEFORE EACH CREAR USUARIO Y LOCATION SI LO NECESITO
-    // Y ASI NO TENGO QUE CREARLO EN CADA TEST INDIVIDUAL 
-    // ANTES DE CADA TEST SE CREA
-    // Y CON EL AFTEREACH SE BORRA
+  let user, location
 
-    // CREATE ANOTHER FOLDER INSIDE LOGIC FOR TESTS
+  beforeEach(async () => {
+    await User.deleteMany()
+    await Location.deleteMany()
 
-    before(() => mongoose.connect(process.env.MONGO_URI_TEST))
+    const cryptPassword = await bcrypt.hash('123456789', 1)
 
-    let user, location
-
-    beforeEach(async () => {
-
-        const _user = await User.create({
-            username: 'nametest',
-            email: 'test@mail.com',
-            password: '123456789',
-        }) 
-        user = _user
-        location = { 
-            name: 'Brighton', 
-            latitude: 51, 
-            longitude: -0.5, 
-            timeLastUpdated: new Date()}
+    user = await User.create({
+      username: 'nametest',
+      email: 'test@mail.com',
+      password: cryptPassword,
     })
 
-    afterEach(() => User.deleteMany())
-    afterEach(() => Location.deleteMany())
-    after(() => mongoose.disconnect(process.env.MONGO_URI_TEST))
+    location = {
+      name: 'Brighton',
+      latitude: 51,
+      longitude: -0.5,
+      timeLastUpdated: new Date(),
+    }
+  })
 
-    it('add location when location does not exist and user does not have any fav locations', () => {
-        const isCurrentLocation = false
-        return addUserLocation(user._id.toString(), location, isCurrentLocation)
-            .then((userModified) => {
-                return Location.findOne({ name: 'Brighton', latitude: 51, longitude: -0.5})
-                    .then((newLocation) => {
-                        expect(userModified.favLocations[userModified.favLocations.length - 1]).to.deep.equal(newLocation._id)
-                        expect(newLocation.name).to.equal('Brighton')
-                        expect(newLocation.latitude).to.equal(51)
-                        expect(newLocation.longitude).to.equal(-0.5)
-                    })
-            })
-    })
+  after(() => mongoose.disconnect())
 
-    it('add location when location already exists but not for that user', () => {
-        const isCurrentLocation = false
-        return Location.create(location)
-            .then((newLocation) => {
-                return addUserLocation(user._id.toString(), location, isCurrentLocation)
-                    .then((userModified) => {
-                        expect(userModified.favLocations[userModified.favLocations.length - 1]).to.deep.equal(newLocation._id)
-                        expect(newLocation.name).to.equal('Brighton')
-                        expect(newLocation.latitude).to.equal(51)
-                        expect(newLocation.longitude).to.equal(-0.5)
-                    }) 
-            })
-    })
+  it('adds location when it does not exist and user has no fav locations', async () => {
+    const userModified = await addUserLocation(user._id.toString(), location, false)
+    const newLocation = await Location.findOne({ name: 'Brighton' })
 
-    // it for add location when other locations already exist
-    // it for add location when location already exists for that user
+    expect(userModified.favLocations).to.include(newLocation._id)
+  })
 
+  it('adds location when it already exists but not for that user', async () => {
+    const newLocation = await Location.create(location)
+    const userModified = await addUserLocation(user._id.toString(), location, false)
+
+    expect(userModified.favLocations).to.include(newLocation._id)
+  })
+
+  it('does not duplicate location if already exists in user favLocations', async () => {
+    const newLocation = await Location.create(location)
+    user.favLocations.push(newLocation._id)
+    await user.save()
+
+    const userModified = await addUserLocation(user._id.toString(), location, false)
+
+    expect(userModified.favLocations.length).to.equal(1)
+    expect(userModified.favLocations[0].toString()).to.equal(newLocation._id.toString())
+  })
+
+  it('sets location as currentLocation when isCurrentLocation is true', async () => {
+    const userModified = await addUserLocation(user._id.toString(), location, true)
+    const newLocation = await Location.findOne({ name: 'Brighton' })
+
+    expect(userModified.currentLocation.toString()).to.equal(newLocation._id.toString())
+  })
+
+  it('throws error if user does not exist', async () => {
+    try {
+      await addUserLocation('000000000000000000000000', location, false)
+    } catch (error) {
+      expect(error).to.exist
+      expect(error.message).to.equal('User id does not belong to anyone')
+    }
+  })
 })

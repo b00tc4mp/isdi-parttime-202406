@@ -27,7 +27,6 @@ describe('retrieveNominatimLocations', () => {
                         const userId = user._id.toString()
                         return retrieveNominatimLocations(userId, 'Brighton')
                             .then((locationsRetrieved) => {
-                                console.log(locationsRetrieved)
                                 // as limit has been set to 5, first 5 locations found should be retrieved
                                 expect(locationsRetrieved).to.have.lengthOf(5)
                             })
