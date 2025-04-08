@@ -7,7 +7,7 @@ function Header({ setStamp, onUserLoggedOut }) {
     const location = useLocation()
 
     return (
-        <header className="sticky top-0 bg-white shadow-md p-4 z-50">
+        <header className="sticky top-0 bg-blue-100 shadow-md p-4 z-50">
             <div className="w-full flex items-center gap-4 px-6">
                 <UserButton />
 

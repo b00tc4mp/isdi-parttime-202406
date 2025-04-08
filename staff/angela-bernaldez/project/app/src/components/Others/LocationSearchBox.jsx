@@ -58,10 +58,10 @@ function LocationSearchBox({ setStamp }) {
 
     return (
         <div className="w-full relative self-end max-w-[800px]"> 
-            <label className="input input-bordered flex items-center gap-2">
+            <label className="bg-blue-100 input input-bordered flex items-center gap-2">
                 <input 
                     type="text" 
-                    className="grow" 
+                    className="grow text-gray-600 focus:text-gray-600" 
                     placeholder="Search for a location..." 
                     onChange={handleInputChange}
                     value={inputValue}

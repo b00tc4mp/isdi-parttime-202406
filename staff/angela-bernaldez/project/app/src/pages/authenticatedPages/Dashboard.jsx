@@ -82,7 +82,7 @@ function Dashboard({ onUserLoggedOut }) {
     }, [stamp])
 
     return (
-        <div className="h-full w-screen overflow-hidden">
+        <div className="h-screen w-screen overflow-hidden bg-blue-100">
             <Header 
                 setStamp={setStamp}
                 onUserLoggedOut={onUserLoggedOut}
@@ -122,7 +122,7 @@ function Dashboard({ onUserLoggedOut }) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 row-span-2 mr-4 gap-4">
+                <div className="grid grid-cols-3 row-span-2 ml-4 mr-4 gap-4">
                     <div className="col-span-1">
                         {selectedLocation ?
                         (<div>
