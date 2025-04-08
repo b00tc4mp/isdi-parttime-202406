@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import { SignUp, Landing, LogIn } from './publicPages'
 
 function Public({ onUserLoggedIn }) {
@@ -10,7 +10,6 @@ function Public({ onUserLoggedIn }) {
                 <Route path='/signup' element={<SignUp />} />
             </Routes>
         </div>
-        <Outlet />
     </>
 }
 

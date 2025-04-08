@@ -99,7 +99,7 @@ function SignUpForm() {
           <div className="mt-6">
             <button
               type="submit"
-              className="btn btn-primary btn-block text-base text-white bg-primary-600 hover:bg-primary-700 py-3"
+              className="btn btn-secondary btn-block text-base text-white bg-primary-600 hover:bg-primary-700 py-3"
             >
               Sign Up
             </button>

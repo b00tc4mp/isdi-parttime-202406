@@ -30,7 +30,6 @@ function Landing() {
         </div>
       </div>
       
-      {/* Contenedor derecho: Botones centrados a la derecha */}
       <div className="w-1/2 flex justify-center items-center z-10">
         <div className="space-x-4">
           <Link
@@ -48,7 +47,7 @@ function Landing() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 
