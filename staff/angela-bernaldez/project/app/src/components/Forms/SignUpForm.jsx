@@ -45,50 +45,50 @@ function SignUpForm() {
       className=
         "flex justify-center items-center min-h-screen bg-primary-100"
     >
-      <div className="bg-white max-w-lg w-full px-12 py-16 rounded-xl shadow-xl"> 
+      <div className="bg-white max-w-lg w-full px-12 py-10 rounded-xl shadow-xl"> 
         <h1 className="text-4xl font-bold text-center text-primary-900 mb-10">Sign Up</h1> 
 
         <form onSubmit={sendSignUpForm} className="w-full">
           {/* Email Field */}
-          <div className="flex flex-col mb-8 relative">
+          <div className="flex flex-col mb-4 relative">
             <input
               type="email"
               id="email"
               placeholder="Enter your email"
-              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg" 
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-base" 
             />
             <IconEmail fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" /> 
           </div>
 
           {/* Username Field */}
-          <div className="flex flex-col mb-8 relative">
+          <div className="flex flex-col mb-4 relative">
             <input
               type="text"
               id="username"
               placeholder="Enter your username"
-              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-base"
             />
             <IconUser fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
           </div>
 
           {/* Password Field */}
-          <div className="flex flex-col mb-8 relative">
+          <div className="flex flex-col mb-4 relative">
             <input
               type="password"
               id="password"
               placeholder="Enter your password"
-              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-base"
             />
             <IconPassword fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
           </div>
 
           {/* Confirm Password Field */}
-          <div className="flex flex-col mb-8 relative">
+          <div className="flex flex-col mb-4 relative">
             <input
               type="password"
               id="repeatPassword"
               placeholder="Confirm your password"
-              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-lg"
+              className="input input-bordered input-ghost w-full focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder:text-gray-500 pl-12 py-3 text-base"
             />
             <IconPassword fill="currentColor" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-7 h-7 opacity-60" />
           </div>
