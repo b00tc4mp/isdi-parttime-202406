@@ -4,7 +4,7 @@ function LocationBox({ currentLocation }) {
     const currentWeather = currentLocation.current
 
     return (
-        <div className="grid grid-cols-2 h-full w-full p-6 bg-white shadow-lg rounded-2xl">
+        <div className="grid grid-cols-2 h-full w-full p-6 pb-16 bg-white shadow-lg rounded-2xl">
             {/* Left column */}
             <div className="flex flex-col justify-start h-full">
                 {/* 📍 Location + General info */}
@@ -42,7 +42,7 @@ function LocationBox({ currentLocation }) {
                         <div className="text-2xl">🌧️</div>
                         <div>Precipitation</div>
                         <div className="text-xl">
-                            {currentWeather.precipitation} {currentLocation.current_units.precipitation}
+                            {Math.round(currentWeather.precipitation)} {currentLocation.current_units.precipitation}
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@ function LocationBox({ currentLocation }) {
                         <div className="text-2xl">💧</div>
                         <div>Humidity</div>
                         <div className="text-xl">
-                            {currentWeather.relative_humidity_2m} {currentLocation.current_units.relative_humidity_2m}
+                            {Math.round(currentWeather.relative_humidity_2m)} {currentLocation.current_units.relative_humidity_2m}
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@ function LocationBox({ currentLocation }) {
                         <div className="text-2xl">💨</div>
                         <div>Wind</div>
                         <div className="text-xl">
-                            {currentWeather.wind_speed_10m} {currentLocation.current_units.wind_speed_10m}
+                            {Math.round(currentWeather.wind_speed_10m)} {currentLocation.current_units.wind_speed_10m}
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,7 @@ function Dashboard({ onUserLoggedOut }) {
                 setLocations(updatedLocations)
             })
             .catch((error) => {
-                console.log('Error fetching locations:', error)
+                throw error 
             })
     }
 
@@ -59,8 +59,7 @@ function Dashboard({ onUserLoggedOut }) {
                             })
                     })
                     .catch((error) => {
-                        // IMPROVE THIS ERROR LATER
-                        console.error('Error adding user current location', error)
+                        throw error 
                     })
             })
     }

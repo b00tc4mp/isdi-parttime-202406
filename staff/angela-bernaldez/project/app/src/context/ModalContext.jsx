@@ -50,7 +50,7 @@ function ModalProvider({ children }) {
   const openModal = (modalData) => {
     setModalData(modalData)
     setTimeout(() => modalRef.current?.showModal(), 0)
-  };
+  }
 
   const openModalError = (error) => {
     setModalData({
@@ -66,11 +66,11 @@ function ModalProvider({ children }) {
       {children}
       <Modal modalRef={modalRef} modalData={modalData} onConfirm={modalData.onConfirm} />
     </ModalContext.Provider>
-  );
+  )
 }
 
 const useModal = () => {
   return useContext(ModalContext)
-};
+}
 
 export { ModalProvider, useModal }

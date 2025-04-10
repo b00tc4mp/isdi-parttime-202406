@@ -1,2 +1,2 @@
 curl -X POST http://localhost:4321/users/current-location \
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGQ2ODFlZmM0MGVmYTY0MjFmYTg5ZiIsImlhdCI6MTczOTg5ODU3M30.Kloh4spQ7sKnVh1N9YUewepPLH08VausQ823354vNrE" -v
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjY5NWM2YTg4MDBmYjk2NmQwMGNjZSIsImlhdCI6MTc0NDIxMzkzOX0.BDrZJgnb0DhKJKZElS_0ocgQRCVvkBUeF7QljiKo5ok" -v

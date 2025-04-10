@@ -16,6 +16,7 @@ export default (userId) => {
             user.id = user._id.toString()
             delete user.password
             delete user._id
+            delete user.__v
             return user
         })
         .catch((error) => {

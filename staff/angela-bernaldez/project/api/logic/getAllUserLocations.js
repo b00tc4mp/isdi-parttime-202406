@@ -14,9 +14,15 @@ export default (userId) => {
 
             return Location.find({ '_id': {$in: user.favLocations }})
                 .then((locationsFound) => {
-                    const orderedLocations = user.favLocations.map(id => 
-                        locationsFound.find(location => location._id.toString() === id.toString())
-                    )
+                    const orderedLocations = user.favLocations.map(id => {
+                        const loc = locationsFound.find(location => location._id.toString() === id.toString())
+                        if (!loc) return null
+                      
+                        const { _id, __v, ...rest } = loc.toObject()
+                        return { ...rest, id: _id }
+                      }).filter(Boolean)
+                      
+                    console.log(orderedLocations)
                     return orderedLocations
                 })
         })

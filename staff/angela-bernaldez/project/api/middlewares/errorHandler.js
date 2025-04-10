@@ -17,7 +17,7 @@ export default (error, req, res, next) => {
     }
 
     // Errors from external services 
-    if (error instanceof Errors.NominatimAPIConnectionError || error instanceof Errors.OpenMeteoAPIConnectionError) {
+    if (error instanceof Errors.NominatimAPIConnectionError || error instanceof Errors.OpenMeteoAPIConnectionError || error instanceof Errors.GeoLocationAPIError ) {
         code = 503 
     }
 
