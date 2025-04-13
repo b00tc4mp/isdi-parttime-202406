@@ -10,6 +10,9 @@ export default (req, res, next) => {
         .then((locationUpdated) => {
             res.status(200).json({ locationUpdated })
         })
+        .catch(error => {
+            next(error)
+        })
     } catch(error) {
         next(error)
     }

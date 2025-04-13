@@ -22,7 +22,6 @@ export default (userId) => {
                         return { ...rest, id: _id }
                       }).filter(Boolean)
                       
-                    console.log(orderedLocations)
                     return orderedLocations
                 })
         })

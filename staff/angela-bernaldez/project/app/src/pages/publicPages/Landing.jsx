@@ -34,15 +34,15 @@ function Landing() {
         <div className="space-x-4">
           <Link
             to="/signup"
-            className="btn btn-secondary btn-md"
+            className="btn btn-secondary btn-md text-lg"
           >
-            Go to Sign Up Form
+            Go to Sign Up 
           </Link>
           <Link
             to="/login"
-            className="btn btn-secondary btn-md"
+            className="btn btn-secondary btn-md text-lg"
           >
-            Go to Log In Form
+            Go to Log In 
           </Link>
         </div>
       </div>

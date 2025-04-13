@@ -6,8 +6,12 @@ export default(req, res, next) => {
 
     try {
         logic.updateUsername(userId, newUsername)
-        .then(() => res.status(201).send())
-        .catch(error => next(error))
+        .then(() => 
+            res.status(201).send()
+        )
+        .catch(error => 
+            next(error)
+        )
     } catch(error) {
         next(error)
     }

@@ -121,7 +121,7 @@ function Dashboard({ onUserLoggedOut }) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 row-span-2 ml-4 mr-4 gap-4">
+                <div className="grid grid-cols-3 row-span-2 ml-4 mr-4 gap-4 ">
                     <div className="col-span-1">
                         {selectedLocation ?
                         (<div>

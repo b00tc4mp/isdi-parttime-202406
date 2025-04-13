@@ -1,7 +1,10 @@
 curl -X POST http://localhost:4321/users/weather-data/ \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWJiZmY2Mjk4NThkNDVjYmI3MTM4OCIsImlhdCI6MTczODI2MDUxM30.fJFw6iT77ZzwxZUCLwcTvYo-IjNHIEjbC8TzSoJdix8" \
-    -d '{"name": "Sevilla", "latitude": "37.3886303", "longitude": "-5.9953403"}' -v
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjY5NWM2YTg4MDBmYjk2NmQwMGNjZSIsImlhdCI6MTc0NDIxMzkzOX0.BDrZJgnb0DhKJKZElS_0ocgQRCVvkBUeF7QljiKo5ok" \
+    -d '{
+    "locationData": {
+        "name": "Imaginary location", 
+        "latitude": 30.99, 
+        "longitude": 2.05
+    }}' -v
 
-
-# tampoco me funciona el test no se xq

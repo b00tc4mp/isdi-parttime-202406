@@ -6,8 +6,12 @@ export default(req, res, next) => {
 
     try {
         logic.updatePassword(userId, oldPassword, newPassword)
-        .then(() => res.status(201).send())
-        .catch(error => next(error))
+        .then(() => 
+            res.status(201).send()
+        )
+        .catch(error => 
+            next(error)
+        )
     } catch(error) {
         next(error)
     }

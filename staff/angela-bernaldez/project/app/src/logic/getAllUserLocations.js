@@ -20,8 +20,6 @@ const getAllUserLocations = () => {
                     })
     })
     .catch((error) => {
-        if (error instanceof Errors.BadRequestError)
-            throw new Errors.ServerError("Server in not connected")
         throw error
     })
 }

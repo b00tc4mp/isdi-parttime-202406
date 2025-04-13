@@ -6,7 +6,12 @@ export default (req, res, next) => {
 
     try {
         logic.addUserLocation(userId, locationData, isCurrentLocation)
-            .then(() => res.status(201).send())
+            .then(() => 
+                res.status(201).send()
+            )
+            .catch(error => {
+                next(error)
+            })
     } catch(error) {
         next(error)
     }

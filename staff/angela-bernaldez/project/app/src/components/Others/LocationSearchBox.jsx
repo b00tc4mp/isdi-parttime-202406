@@ -6,7 +6,8 @@ import { IconSearch } from '../icons/icons.jsx'
 function LocationSearchBox({ setStamp }) {
 
     const [locations, setLocations] = useState([])
-    const [inputValue, setInputValue] = useState('')    
+    const [locationsFound, setLocationsFound] = useState(null)
+    const [inputValue, setInputValue] = useState('')  
     
     const debounceTimeout = useRef(null) // used to store timeout between different renders
 
@@ -33,12 +34,13 @@ function LocationSearchBox({ setStamp }) {
                             latitude: item.lat,
                             longitude: item.lon 
                         })))
-                    } else {
-                        setLocations([])
-                    }
+                        setLocationsFound(true)
+                    } 
                 })
                 .catch((error) => {
-                    console.error('Error fetching locations:', error)
+                    setLocations([])
+                    setLocationsFound(false)
+                    console.log('Error fetching locations:', error)
                 })
         }, 1000)
     }
@@ -68,7 +70,7 @@ function LocationSearchBox({ setStamp }) {
                 />
                 <IconSearch fillRule="evenodd" />
             </label>
-            {locations.length > 0 && (
+            {locations.length > 0 && locationsFound === true && (
                 <ul className="absolute menu dropdown-content bg-white rounded-box z-10 mt-2 w-full max-h-[400px] overflow-y-auto shadow-lg p-4">
                     {locations.map((location, index) => (
                         <li 
@@ -79,6 +81,15 @@ function LocationSearchBox({ setStamp }) {
                             {location.displayName}
                         </li>
                     ))}
+                </ul>
+            )} 
+            { locationsFound === false && (
+                <ul className="absolute menu dropdown-content bg-white rounded-box z-10 mt-2 w-full max-h-[400px] overflow-y-auto shadow-lg p-4">
+                    <li 
+                        className="text-left p-2 transition-colors duration-200 hover:bg-gray-200 text-black"
+                    >
+                        No locations found
+                    </li>
                 </ul>
             )}
         </div>

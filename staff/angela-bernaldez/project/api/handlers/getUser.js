@@ -8,7 +8,9 @@ export default (req, res, next) => {
         .then((user) => {
             res.status(200).json({ user: user })
         })
-        .catch(error => next(error))
+        .catch(error => 
+            next(error)
+        )
     } catch(error) {
         next(error)
     }

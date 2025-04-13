@@ -11,8 +11,11 @@ export default (req, res, next) => {
                             id: id.toString()
             }, process.env.JWT_SECRET)
 
-            res.status(200).json({ token: token })})
-        .catch((error) => next(error))
+            res.status(200).json({ token: token })
+        })
+        .catch((error) => 
+            next(error)
+        )
     } catch (error) {
         next(error)
     }

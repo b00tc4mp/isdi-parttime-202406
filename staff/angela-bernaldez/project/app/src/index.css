@@ -31,15 +31,15 @@
 
 .shadow-box {
   box-shadow: 
-    0 0 120px 80px rgba(255, 208, 143, 0.7),  
-    0 0 180px 110px rgba(0, 119, 247, 0.6);    
-
+    0 0 120px 80px rgba(255, 208, 143, 0.3), 
+    0 0 180px 110px rgba(0, 119, 247, 0.2);  
+  
   background: linear-gradient(
     135deg, 
-    rgba(168, 206, 249, 0.9),  
-    rgba(104, 164, 252, 0.8),  
-    rgba(255, 208, 143, 0.6)  
+    rgba(168, 206, 249, 0.6), 
+    rgba(104, 164, 252, 0.5),  
+    rgba(255, 208, 143, 0.4) 
   );
   background-size: 200% 200%; 
-  animation: moveGradient 10s ease-in-out infinite
+  animation: moveGradient 7s ease-in-out infinite;
 }

@@ -60,7 +60,7 @@ function MyProfile({ onUserLoggedOut }) {
             navigate('/')
           })
           .catch((error) => {
-            console.error("Error deleting account:", error);
+            console.log("Error deleting account:", error)
             openModalError(new Errors.UnexpectedError("Error deleting account"))
           })
       }
@@ -68,7 +68,7 @@ function MyProfile({ onUserLoggedOut }) {
   }
 
     return (
-        <div className="h-screen flex justify-center items-center">
+        <div className="h-1/3 flex justify-center items-center">
             <div className="max-w-xl w-full bg-white shadow-xl rounded-2xl p-8">
                 {/* Email Section */}
                 <div className="mb-6 border-b pb-4">

@@ -16,7 +16,6 @@ mongoose.connect(process.env.MONGO_URI)
     const jsonBodyParser = json()
     server.use(cors())
 
-    // count number of endpoints in my internal API matches number of handlers (and logic functions)
     server.post('/users', jsonBodyParser, handlers.registerUser)
 
     server.post('/users/auth', jsonBodyParser, handlers.authenticateUser)

@@ -10,6 +10,9 @@ export default (req, res, next) => {
         .then((weatherData) => {
             res.status(200).json({ weatherData })
         })
+        .catch(error => {
+            next(error)
+        })
     } catch(error) {
         next(error)
     }

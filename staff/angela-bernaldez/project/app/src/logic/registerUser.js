@@ -30,10 +30,6 @@ const registerUser = ( username, email, password, repeatPassword ) => {
         })
     })
     .catch((error) => {
-        if (error instanceof TypeError)
-          throw new Errors.ServerError('Server in not connected')
-        if (error instanceof Errors.DuplicityError)
-            throw new Errors.DuplicityError()
         throw error
     })
 }

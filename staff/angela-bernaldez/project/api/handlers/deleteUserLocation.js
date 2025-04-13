@@ -9,7 +9,10 @@ export default(req, res, next) => {
         logic.deleteUserLocation(userId, locationData)
         .then(() => {
             res.status(200).send()
-        }).catch(error => next(error))
+        })
+        .catch(error => 
+            next(error)
+        )
     } catch(error) {
         next(error)
     }
