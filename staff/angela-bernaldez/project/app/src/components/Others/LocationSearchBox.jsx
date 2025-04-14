@@ -46,7 +46,6 @@ function LocationSearchBox({ setStamp }) {
     }
 
     const handleSelect = (selectedLocation) => {
-        console.log('Selected location is:', selectedLocation)
         selectedLocation.latitude = Number(selectedLocation.latitude)
         selectedLocation.longitude = Number(selectedLocation.longitude)
         const isCurrentLocation = false

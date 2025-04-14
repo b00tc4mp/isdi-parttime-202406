@@ -2,13 +2,13 @@
 
 ![Weather Web App Logo](./app/public/logo1.png)
 
-## Introduction 
+### Introduction 
 
-**Nimbux** is an intuitive weather web app that allows the user track the weather for their favourite locations with ease.
+**Nimbux** is an intuitive weather web app that allows the user to track the weather for their favourite locations with ease.
 
-It provides real-time weather updates, sunrise and sunset times, and a detailed weekly forecast — all within a clean and user-friendly dashboard.
+It provides 🌦️ real-time weather updates and 📅 forecasts for the upcoming 7 days, both for the user's 📍 current location and any place in the world. Users can view detailed information such as 🌡️ temperature, 🌧️ precipitation, 💨 wind, 🌤️ sky conditions, 🌅 sunrise and sunset times, and 🌞 total daylight hours — all within a clean and user-friendly dashboard.
 
-Nimbux requires users to register and log in to access its core functionalities, such as saving locations and viewing personalized forecasts.
+Nimbux requires users to 🔐 register and log in to access its core functionalities, such as saving locations and viewing personalized forecasts.
 
 ### Use Cases
 
@@ -29,7 +29,7 @@ Nimbux requires users to register and log in to access its core functionalities,
 - **🌞 Daylight and Sunlight Hours**: Users can track the total amount of daylight and sunlight hours for any given location.
 
 
-## UI/UX Design
+### UI/UX Design
 
 The design of Nimbux was inspired by several existing weather web applications. I aimed to combine features from various apps to create a seamless and intuitive user experience. The goal was to provide a clean, easy-to-navigate interface while ensuring that all key weather information is accessible at a glance.
 
@@ -46,6 +46,7 @@ The logo was created by a friend, who is a UX designer. She also provided the ic
 #### Authentication: 🔑 JSON Web Token (JWT)  
 #### Password Encryption: 🔒 bcrypt  
 #### Testing: 🔍 Mocha, 🍵 Chai
+#### Charts: 📊 Recharts (used to plot weather data)
 
 ### APIs
 
@@ -80,6 +81,14 @@ Stores user information and current and favourite locations.
 
 ### Test Coverage
 
-![Test Coverage](./app/src/assets/coverage.png)
+<img src="./app/src/assets/coverage.png" alt="Test Coverage" width="1000"/>
+
+
+### 🔮 Future Versions
+- **🗑️ Improve Location Deletion Logic**: Currently, deleting a location only removes it from the user's list. In the future, unused locations should also be deleted from the database. 
+
+- **🌦️ Add More Weather Data**: Expand the current weather information with additional variables such as UV Index, total precipitation for the upcoming days, visibility, or air pressure.
+
+- **⚙️ User Preferences for Units**: Allow users to switch between metric and imperial units (e.g., Celsius/Fahrenheit, km/h vs. mph, mm vs. in) based on their preferences.
 
 

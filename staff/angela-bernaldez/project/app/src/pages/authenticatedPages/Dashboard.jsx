@@ -30,7 +30,6 @@ function Dashboard({ onUserLoggedOut }) {
                                 return location
                             })
                     } else {
-                        console.log('No need to update weather data for:', location)
                         return Promise.resolve(location)
                     }
                 })

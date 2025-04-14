@@ -23,8 +23,8 @@ function WeeklyForecast({ dailyForecast }) {
                 <div className="text-center text-sm font-medium text-gray-700">
                     <p>{label}</p>
                     <p className="text-sm">{getWeatherIcon(data.weather_code, 1)}</p>
-                    <p>Max: {data.tmax}°C</p>
-                    <p>Min: {data.tmin}°C</p>
+                    <p>Max: {Math.round(data.tmax)}°C</p>
+                    <p>Min: {Math.round(data.tmin)}°C</p>
                     <p>Precipitation: {data.precipitation}%</p>
                 </div>
             </div>
