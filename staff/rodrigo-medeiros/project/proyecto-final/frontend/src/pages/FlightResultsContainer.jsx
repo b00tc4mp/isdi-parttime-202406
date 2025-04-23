@@ -55,6 +55,11 @@ const FlightResultsContainer = () => {
 
   const applyFilters = () => {
     let filtered = [...flights];
+  
+    // Corrigir priceFilter se estiver fora do intervalo
+    const correctedMin = Math.max(minPrice, priceFilter[0]);
+    const correctedMax = Math.min(maxPrice, priceFilter[1]);
+  
     // Filtro de companhia aérea
     if (selectedAirlines.length > 0) {
       filtered = filtered.filter((flight) => {
@@ -62,19 +67,23 @@ const FlightResultsContainer = () => {
         return selectedAirlines.includes(airlineCode);
       });
     }
+  
     // Filtro de preço
     filtered = filtered.filter((flight) => {
       const price = flight.price?.total || 0;
-      return price >= priceFilter[0] && price <= priceFilter[1];
+      return price >= correctedMin && price <= correctedMax;
     });
+  
     setFilteredFlights(filtered);
   };
 
   // Handlers de filtros
   const handlePriceFilterChange = (e) => {
-    const newValue = parseInt(e.target.value, 10);
-    setPriceFilter([priceFilter[0], newValue]);
+    const newMax = parseInt(e.target.value, 10);
+    const correctedMax = Math.max(newMax, minPrice);
+    setPriceFilter([minPrice, correctedMax]);
   };
+  
 
   const handleAirlineChange = (e, airlineCode) => {
     if (e.target.checked) {

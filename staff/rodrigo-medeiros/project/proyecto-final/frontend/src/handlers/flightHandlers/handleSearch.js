@@ -7,7 +7,15 @@ export const handleSearch = async (searchParams) => {
     console.error("Erro: Parâmetros de busca inválidos!", searchParams);
     return;
   }
-
+  const normalizeCabinClass = (value) => {
+    const map = {
+      Economy: "ECONOMY",
+      "Premium Economy": "PREMIUM_ECONOMY",
+      "Business Class": "BUSINESS",
+      "First Class": "FIRST",
+    };
+    return map[value] || "ECONOMY";
+  };
   const requestParams = {
     originLocationCode: searchParams.from.iata_code?.trim(),
     destinationLocationCode: searchParams.to.iata_code?.trim(),
@@ -22,7 +30,7 @@ export const handleSearch = async (searchParams) => {
     requestParams.children = Number(searchParams.children); // Corrigido de 'child' para 'children'
   }
   if (searchParams.cabinClass) {
-    requestParams.travelClass = searchParams.cabinClass; // Corrigido para `travelClass`
+    requestParams.travelClass = normalizeCabinClass(searchParams.cabinClass);
   }
 
   console.log("📤 Parâmetros formatados para API:", requestParams);

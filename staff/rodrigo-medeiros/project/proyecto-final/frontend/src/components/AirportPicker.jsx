@@ -1,29 +1,46 @@
-import React, { useState, useEffect, useRef } from "react";
+// AirportPicker.jsx
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Fuse from "fuse.js";
 import airports from "../airports";
 
-const AirportPicker = ({ placeholder, onSelect }) => {
-  const [query, setQuery] = useState("");
+// Hook genérico de busca com fuse.js
+function useFuseSearch(data, { keys, threshold = 0.3, limit = 5 }) {
+  const fuse = useMemo(() => new Fuse(data, { keys, threshold }), [data, keys, threshold]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
-  const inputRef = useRef(null);
-
-  const fuse = new Fuse(airports, {
-    keys: ["iata_code", "name", "city"],
-    threshold: 0.3,
-  });
 
   useEffect(() => {
-    if (query.length > 0) {
-      setResults(fuse.search(query).map(result => result.item).slice(0, 5));
+    if (searchTerm) {
+      const items = fuse.search(searchTerm).map(r => r.item).slice(0, limit);
+      setResults(items);
     } else {
       setResults([]);
     }
-  }, [query]);
+  }, [fuse, searchTerm, limit]);
 
-  const handleSelect = (airport) => {
-    setQuery(`${airport.iata_code} - ${airport.name}`);
-    setResults([]);
+  return { results, setSearchTerm };
+}
+
+const AirportPicker = ({ placeholder, onSelect }) => {
+  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+  const { results, setSearchTerm } = useFuseSearch(airports, {
+    keys: ["iata_code", "name", "city"],
+    threshold: 0.3,
+    limit: 5,
+  });
+
+  const handleChange = e => {
+    setInputValue(e.target.value);
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSelect = airport => {
+    const label = `${airport.iata_code} - ${airport.name}`;
+    setInputValue(label);
+    setSearchTerm("");          // limpa o termo de busca
     onSelect(airport);
+    inputRef.current.blur();    // opcional: remove foco para fechar teclado móvel
   };
 
   return (
@@ -32,22 +49,20 @@ const AirportPicker = ({ placeholder, onSelect }) => {
         ref={inputRef}
         type="text"
         placeholder={placeholder}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="bg-yellow-500 border p-2 rounded w-full text-black placeholder-black"
+        value={inputValue}
+        onChange={handleChange}
+        className="bg-yellow-500 border p-2 rounded w-full text-blue-900 placeholder-blue-900"
       />
+
       {results.length > 0 && (
         <ul className="absolute left-0 right-0 bg-yellow-500 border rounded mt-1 shadow-lg z-10">
-          {results.map((item, index) => (
+          {results.map(item => (
             <li
               key={item.iata_code}
-              className="p-2 cursor-pointer hover:bg-gray-200 text-black"
-              onMouseDown={(e) => {
-                e.preventDefault(); // Prevents input from losing focus before selection
-                handleSelect(item);
-              }}
+              onClick={() => handleSelect(item)}
+              className="p-2 cursor-pointer hover:bg-gray-200 text-blue-900"
             >
-              {item.iata_code} - {item.name}, {item.city}
+              {item.iata_code} – {item.name}, {item.city}
             </li>
           ))}
         </ul>
