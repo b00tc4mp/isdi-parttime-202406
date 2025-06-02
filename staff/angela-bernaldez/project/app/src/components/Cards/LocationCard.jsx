@@ -8,10 +8,14 @@ function LocationCard({ locationData, onLocationSelect, isCurrentLocation, setSt
 
     const handleClicToDelete = (event) => {
         event.stopPropagation() // to avoid clic being considered as a clic in the main div
+        // todo envuelto en un try/catch para evitar posibles errores sincronos 
         logic.deleteUserLocation(locationData)
         .then(() => {
             console.log('location is going to be deleted')
             setStamp(Date.now())
+        })
+        .catch((error) => {
+            throw error
         })
     }
 

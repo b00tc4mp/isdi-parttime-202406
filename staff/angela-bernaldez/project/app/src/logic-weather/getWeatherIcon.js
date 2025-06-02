@@ -52,3 +52,5 @@ const getWeatherIcon = (weatherCode, isDay) => {
 } 
 
 export default getWeatherIcon
+
+// se podria mover a otra parte, no es ideal tenerlo en la parte de logic -> function helper 
