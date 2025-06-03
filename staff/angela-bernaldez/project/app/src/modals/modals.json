@@ -1,0 +1,12 @@
+{
+    "logout": {
+      "title": "Log out",
+      "paragraph": "You will have to provide your credentials again to log in.",
+      "action": true
+    },
+    "delete": {
+      "title": "Delete Account",
+      "paragraph": "Are you sure you want to delete your account? This action cannot be undone.",
+      "action": true
+    }
+  }
