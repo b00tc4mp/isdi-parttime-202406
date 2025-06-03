@@ -1,0 +1,20 @@
+name: Deploy Pixel-Art Angela
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploying to surge
+    
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Deploy to Surge
+        run: |
+          npm install -g surge
+          surge ./staff/angela-bernaldez/pixel-art ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+        if: github.repository != 'b00tc4mp/isdi-parttime-202406' && github.actor == 'angelabernaldz'

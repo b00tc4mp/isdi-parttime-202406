@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --header-heigth: 64px;
+  }
+
+  body {
+    @apply bg-base-100 w-screen min-h-screen h-full max-w-full text-secondary font-sans;
+  }
+
+  html {
+    @apply !bg-black;
+  }
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%; /* Comienza en el inicio del gradiente */
+  }
+  50% {
+    background-position: 100% 50%; /* El gradiente se mueve a la derecha */
+  }
+  100% {
+    background-position: 0% 50%; /* El gradiente vuelve al inicio */
+  }
+}
+
+.shadow-box {
+  box-shadow: 
+    0 0 120px 80px rgba(255, 208, 143, 0.3), 
+    0 0 180px 110px rgba(0, 119, 247, 0.2);  
+  
+  background: linear-gradient(
+    135deg, 
+    rgba(168, 206, 249, 0.6), 
+    rgba(104, 164, 252, 0.5),  
+    rgba(255, 208, 143, 0.4) 
+  );
+  background-size: 200% 200%; 
+  animation: moveGradient 7s ease-in-out infinite;
+}

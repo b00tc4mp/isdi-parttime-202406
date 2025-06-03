@@ -1,0 +1,17 @@
+{
+  "name": "biblio",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./index.test.js",
+    "test-inspect": "mocha --inspect-brk ./index.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "10.7.3",
+    "chai": "4.5.0"
+  }
+}

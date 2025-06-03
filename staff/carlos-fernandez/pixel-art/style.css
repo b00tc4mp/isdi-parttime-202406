@@ -1,0 +1,60 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #a1d1a1; /* Fondo blanco */
+}
+
+.pixel-art {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.pixel {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+
+.empty {
+  background-color: #FFFFFF; /* Fondo blanco */
+  background-color: #a1d1a1;
+}
+
+.leaf {
+  background-color: #2E8B57; /* Verde hoja */
+}
+
+.branch {
+  background-color: #8B4513; /* Marrón ramita */
+}
+
+.lemon {
+  background-color: #ffd900; /* Amarillo limón */
+}
+
+.dark {
+  background-color: #d3b822;
+}
+
+.bright {
+  background-color: #fce668;
+}
+
+.semi-bright {
+  background-color: #f8e749;
+}
+
+.branch2 {
+  background-color: #af5f27;
+}
+
+.leaf-brigth {
+  background-color: #4cbe7e;
+}
