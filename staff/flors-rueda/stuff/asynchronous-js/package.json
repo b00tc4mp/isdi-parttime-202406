@@ -1,0 +1,19 @@
+{
+    "name": "asynchronous-js-demo",
+    "version": "0.0.1",
+    "description": "small demo to understand better asynchronous behaviour on js",
+    "type": "module",
+    "scripts": {
+        "callback": "node --inspect-brk ./callback.js",
+        "promises-then": "node --inspect-brk ./promises-then.js",
+        "promise-all": "node --inspect-brk ./promise-all.js",
+        "async-await": "node --inspect-brk ./async-await.js"
+    },
+    "keywords": [
+        "asynchronous",
+        "javascript",
+        "js"
+    ],
+    "author": "rucev",
+    "license": "ISC"
+}
