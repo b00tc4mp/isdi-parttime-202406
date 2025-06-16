@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "lucatiel@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": "2",
+      "email": "sif@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": "3",
+      "email": "artorias@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": "4",
+      "email": "moonknight@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": "5",
+      "email": "benhart@gmail.com",
+      "password": "1234abcdA@"
+    },
+    {
+      "id": "fb0e",
+      "username": "ItsMePo",
+      "dateOfBirth": "31/1/1994",
+      "email": "borjaggds@gmail.com",
+      "password": "Panda.1234",
+      "repeatPassword": "Panda.1234"
+    },
+    {
+      "id": "e472",
+      "username": "Test123",
+      "dateOfBirth": "1/2/1954",
+      "email": "test@test.com",
+      "password": "Hola.1234",
+      "repeatPassword": "Hola.1234"
+    },
+    {
+      "id": "c677",
+      "username": "ItsMePo",
+      "dateOfBirth": "01/10/2006",
+      "email": "Holaangela@holdddaaaaa.com",
+      "password": "Holiwi.123",
+      "repeatPassword": "Holiwi.123"
+    },
+    {
+      "id": "fe36",
+      "username": "abcde",
+      "dateOfBirth": "01/11/2006",
+      "email": "bababa@bababa.com",
+      "password": "Baba.123",
+      "repeatPassword": "Baba.123"
+    }
+  ],
+  "auth": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  }
+}
