@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .prose {
+    @apply text-white;
+  }
+}
+
+@layer base {
+  :root {
+    --header-heigth: 64px;
+  }
+
+  body {
+    @apply bg-black w-screen h-screen max-w-full text-white font-mono;
+  }
+}
+
+@layer components {
+  .datepicker {
+    @apply relative z-10;
+  }
+  .datepicker > div {
+    @apply !input !input-bordered !input-ghost !glass;
+  }
+  .datepicker > div > input {
+    @apply !text-base !pl-[28px] !h-full !ring-0 !grow focus:!text-white placeholder:!text-white placeholder:!text-opacity-70 !transition-none !w-full !pr-2;
+  }
+  .datepicker > div > button {
+    @apply !left-0 !w-10 !px-4 !text-white;
+  }
+  .datepicker > div > div > div {
+    @apply !bg-neutral-800;
+  }
+}

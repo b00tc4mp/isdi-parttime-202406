@@ -1,0 +1,13 @@
+{
+  "name": "social-common",
+  "version": "1.0.0",
+  "description": "Esta carpeta se instala como dependencia y contiene valdiadores y errores utilizables tanto en social-api como en social-app.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+

@@ -1,0 +1,2 @@
+curl -X GET http://localhost:4321/users \
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDc1ZDM0OWJkNDUwOWM0YTQ1ODg2NSIsImlhdCI6MTczMjgxNjI5MX0.bDJO5NEeR9r_RGd7CMjtYKnUEu-9GVBVpuRAgP-5nKk" -v
