@@ -1,0 +1,10 @@
+/staff/borja-garcia/project/appProjectApi/.env
+coverage  
+        ../../../.expo/
+        ../../../.gitignore
+        ../../../.vscode/
+        ../.gitignore
+        ../.nyc_output/
+        ../biblio/
+        ../package-lock.json
+        ../social-app/

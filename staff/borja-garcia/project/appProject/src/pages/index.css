@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+    @apply flex max-w-none justify-center items-center h-screen bg-gradient-to-b from-blue-900 via-purple-700 to-pink-800;
+  }
+
+  html:has(.drawer-toggle:checked) {
+    scrollbar-gutter: auto !important;
+}
