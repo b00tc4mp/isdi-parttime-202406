@@ -1,0 +1,1 @@
+Aquí van validadores, errores y código que se usa tanto en app como en api
