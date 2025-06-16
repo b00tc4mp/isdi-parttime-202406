@@ -1,0 +1,26 @@
+{
+  "name": "social-api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "inspect": "node --inspect-brk index.js",
+    "test-inspect": "mocha --inspect-brk ./logic/getOneUser.spec.js",
+    "test": "mocha --timeout 10000 ./logic/*.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "5.1.1",
+    "chai": "4.5.0",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.21.1",
+    "jsonwebtoken": "9.0.2",
+    "mocha": "10.8.2",
+    "mongoose": "8.8.2",
+    "social-common": "link:..\\social-common"
+  }
+}
