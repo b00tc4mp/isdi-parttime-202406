@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import FlightResultsPresentation from "../components/FlightResultsPresentation";
-import getAirlineName from "../airlines_iata_codes";
+import FlightResultsPresentation from "./FlightResultsPresentation";
+import getAirlineName from "../../data/airlines_iata_codes";
 
 const FlightResultsContainer = () => {
   const location = useLocation();

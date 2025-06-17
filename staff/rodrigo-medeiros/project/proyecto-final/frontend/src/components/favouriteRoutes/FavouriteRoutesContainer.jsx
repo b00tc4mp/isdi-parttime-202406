@@ -1,22 +1,25 @@
+// src/components/FavouriteRoutesContainer.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSearch } from "../handlers/flightHandlers/handleSearch.js";
-import { handleDeleteFavouriteRoute } from "../handlers/userHandlers/handleDeleteFavouriteRoute.js";
-import FavouriteRoutesPresentation from "../components/FavouriteRoutesPresentation";
-import { useFavouriteRoutes } from "../hooks/useFavouriteRoutes";
+import { handleSearch } from "../../handlers/flightHandlers/handleSearch.js";
+import { handleDeleteFavouriteRoute } from "../../handlers/userHandlers/handleDeleteFavouriteRoute.js";
+import { useFavouriteRoutes } from "../../hooks/useFavouriteRoutes.js";
+import { useAlert } from "../../context/AlertContext.jsx";
+import FavouriteRoutesPresentation from "./FavouriteRoutesPresentation.jsx";
 
-const MyFavouriteRoutesContainer = () => {
-  // Extraímos a lógica de busca e gerenciamento de rotas para o hook useFavouriteRoutes
+const FavouriteRoutesContainer = () => {
   const { routes, error, fetchFavouriteRoutes, setRoutes } = useFavouriteRoutes();
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
 
-  // Handler para refazer a busca de voos a partir de uma rota favorita
   const handleSearchAgain = async (route) => {
     if (!route) {
       console.error("Error: route is undefined");
       return;
     }
-    console.log("🔍 Searching again for favourite route...", route);
+
+    showAlert("Searching the best offers", "info");
+
     try {
       const flights = await handleSearch(route);
       navigate("/flightResults", {
@@ -24,20 +27,24 @@ const MyFavouriteRoutesContainer = () => {
       });
     } catch (error) {
       console.error("Error searching again:", error);
+      showAlert("Error searching for flights", "error");
     }
   };
 
-  // Handler para deletar uma rota favorita
   const deleteRoute = async (routeId) => {
     try {
       const result = await handleDeleteFavouriteRoute(routeId);
+
       if (result.favouriteRoutes) {
         setRoutes(result.favouriteRoutes);
       } else {
         fetchFavouriteRoutes();
       }
+
+      showAlert("Favourite route successfully deleted", "success");
     } catch (error) {
       console.error("Error deleting route:", error);
+      showAlert("Failed to delete favourite route", "error");
     }
   };
 
@@ -51,4 +58,4 @@ const MyFavouriteRoutesContainer = () => {
   );
 };
 
-export default MyFavouriteRoutesContainer;
+export default FavouriteRoutesContainer;

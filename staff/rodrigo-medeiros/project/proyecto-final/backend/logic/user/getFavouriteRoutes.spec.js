@@ -1,129 +1,116 @@
-import mongoose from "mongoose";
-import { describe, it, before, beforeEach, afterEach, after } from "mocha";
-import { expect } from "chai";
-import User from "../../models/User.js";
-import { getFavouriteRoutes } from "./getFavouriteRoutes.js";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import path from "path";
+import mongoose from "mongoose";
+import * as chai from "chai";
+import chaiAsPromised from "chai-as-promised";
 
-// Carregar o arquivo .env.test explicitamente
-const envPath = path.resolve(".env.test");
-dotenv.config({ path: envPath });
+import User from "../../models/User.js";
+import { getFavouriteRoutesService } from "./getFavouriteRoutes.js";
+import { NotFoundError, ServerError } from "../../tools/errors.js";
 
-console.log("🚀 Arquivo .env.test carregado!");
-console.log(
-  "✅ MONGO_URI_TEST:",
-  process.env.MONGO_URI_TEST || "❌ Não definida"
-);
+chai.use(chaiAsPromised);
+const { expect } = chai;
 
-let user;
+// Garante que .env.test será carregado corretamente
+dotenv.config({ path: path.resolve("backend/.env.test") });
 
-before(async function () {
+describe("logic/user/getFavouriteRoutesService", function () {
   this.timeout(20000);
-  await mongoose.connect(process.env.MONGO_URI_TEST);
-});
 
-beforeEach(function (done) {
-  // ✅ Função normal TEM CONTEXTO this
-  this.timeout(10000);
+  before(async function () {
+    const uri = process.env.MONGO_URI_TEST;
+    if (!uri) throw new Error("MONGO_URI_TEST is not defined in .env.test");
+    console.log(`Connecting to MongoDB Atlas at ${uri}`);
+    try {
+      await mongoose.connect(uri);
+    } catch (error) {
+      console.error("Failed to connect to MongoDB Atlas:", error);
+      throw error;
+    }
+  });
 
-  (async () => {
-    const hashedPassword = await bcrypt.hash("testPassword", 10);
-    user = await User.create({
-      username: "TestUser",
-      dateOfBirth: "1995-07-20",
-      email: "testuser@mail.com",
-      password: hashedPassword,
+  after(async function () {
+    await mongoose.disconnect();
+  });
+
+  beforeEach(async function () {
+    await User.deleteMany();
+  });
+
+  afterEach(async function () {
+    await User.deleteMany();
+  });
+
+  it("throws NotFoundError if user does not exist", async function () {
+    await expect(
+      getFavouriteRoutesService("000000000000000000000000")
+    ).to.be.rejectedWith(NotFoundError);
+  });
+
+  it("returns favouriteRoutes when user exists", async function () {
+    const testUser = new User({
+      username: "testuser",
+      email: "testuser@example.com",
+      password: "Test1234!",
       favouriteRoutes: [
         {
-          from: "NYC",
-          to: "LAX",
+          from: {
+            iata_code: "JFK",
+            longitude: -73.7781,
+            region: "NA",
+            time_offset: "-5",
+            country: "USA",
+            name: "John F Kennedy Intl",
+            iso_country: "US",
+            latitude: 40.6413,
+            city: "New York",
+            timezone: "America/New_York",
+          },
+          to: {
+            iata_code: "LAX",
+            longitude: -118.4085,
+            region: "NA",
+            time_offset: "-8",
+            country: "USA",
+            name: "Los Angeles Intl",
+            iso_country: "US",
+            latitude: 33.9416,
+            city: "Los Angeles",
+            timezone: "America/Los_Angeles",
+          },
           departureDate: "2025-06-01",
-          returnDate: "2025-06-10",
+          returnDate: "2025-06-15",
           adults: 1,
           children: 0,
-          cabinClass: "economy",
+          cabinClass: "ECONOMY",
         },
       ],
     });
-    done();
-  })().catch(done);
-});
 
-afterEach(async () => {
-  await User.deleteMany();
-});
+    await testUser.save();
 
-after(async () => {
-  await mongoose.disconnect();
-});
+    const routes = await getFavouriteRoutesService(testUser._id.toString());
 
-describe("getFavouriteRoutes", () => {
-  it("should retrieve all favourite routes successfully", async () => {
-    const req = { user: { id: user._id } };
-    const res = {
-      json: function (output) {
-        this.output = output;
-      },
-      status: function (code) {
-        this.statusCode = code;
-        return this;
-      },
-    };
-
-    await getFavouriteRoutes(req, res);
-
-    expect(res.statusCode).to.equal(200);
-    expect(res.output).to.be.an("array");
-    expect(res.output.length).to.equal(1);
-    expect(res.output[0].from).to.equal("NYC");
-    expect(res.output[0].to).to.equal("LAX");
+    expect(routes).to.be.an("array");
+    expect(routes).to.have.lengthOf(1);
+    expect(routes[0].from.iata_code).to.equal("JFK");
+    expect(routes[0].to.iata_code).to.equal("LAX");
   });
 
-  it("should return an empty array if the user has no favourite routes", async () => {
-    // Criar um usuário sem rotas favoritas
-    const emptyUser = await User.create({
-      username: "EmptyUser",
-      dateOfBirth: "1990-01-01",
-      email: "emptyuser@mail.com",
-      password: await bcrypt.hash("testPassword", 10),
-      favouriteRoutes: [],
+  it("throws ServerError if DB read fails", async function () {
+    const user = new User({
+      username: "failtest",
+      email: "fail@test.com",
+      password: "Senha1234!",
     });
+    await user.save();
 
-    const req = { user: { id: emptyUser._id } };
-    const res = {
-      json: function (output) {
-        this.output = output;
-      },
-      status: function (code) {
-        this.statusCode = code;
-        return this;
-      },
-    };
+    await mongoose.disconnect(); // simula falha
 
-    await getFavouriteRoutes(req, res);
+    await expect(
+      getFavouriteRoutesService(user._id.toString())
+    ).to.be.rejectedWith(ServerError);
 
-    expect(res.statusCode).to.equal(200);
-    expect(res.output).to.be.an("array");
-    expect(res.output.length).to.equal(0);
-  });
-
-  it("should return 404 if user is not found", async () => {
-    const req = { user: { id: new mongoose.Types.ObjectId() } };
-    const res = {
-      json: function (output) {
-        this.output = output;
-      },
-      status: function (code) {
-        this.statusCode = code;
-        return this;
-      },
-    };
-
-    await getFavouriteRoutes(req, res);
-
-    expect(res.statusCode).to.equal(404);
-    expect(res.output.message).to.equal("User not found");
+    await mongoose.connect(process.env.MONGO_URI_TEST); // reconecta para cleanup
   });
 });

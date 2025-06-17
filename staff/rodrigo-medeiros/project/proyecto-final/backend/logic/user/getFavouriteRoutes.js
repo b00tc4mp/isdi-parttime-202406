@@ -1,16 +1,25 @@
-// getFavouriteRoutes.js
+// backend/logic/user/getFavouriteRoutes.js
 import User from "../../models/User.js";
+import { NotFoundError, ServerError } from "../../tools/errors.js";
 
-export const getFavouriteRoutes = async (req, res) => {
+/**
+ * Regra de negócio para obter as rotas favoritas de um usuário.
+ * @param {string} userId — ID do usuário
+ * @returns {Array} favouriteRoutes
+ * @throws {NotFoundError} se o usuário não existir
+ * @throws {ServerError} em caso de falha inesperada no DB
+ */
+export async function getFavouriteRoutesService(userId) {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" }); // 🔥 Removido ponto final
+      throw new NotFoundError("User not found");
     }
-    res.status(200).json(user.favouriteRoutes); // ✅ Agora define status 200 corretamente
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching favourite routes.", error });
+    return user.favouriteRoutes;
+  } catch (err) {
+    if (err instanceof NotFoundError) {
+      throw err;
+    }
+    throw new ServerError("Error fetching favourite routes.");
   }
-};
+}

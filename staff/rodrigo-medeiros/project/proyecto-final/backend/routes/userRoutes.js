@@ -7,11 +7,12 @@ import { updateEmail } from "../logic/user/updateEmail.js";
 import { updateUsername } from "../logic/user/updateUsername.js";
 import { updateDateOfBirth } from "../logic/user/updateDateOfBirth.js";
 import { updatePassword } from "../logic/user/updatePassword.js";
-import { registerUser } from "../logic/user/registerUser.js";
-import { deleteUser } from "../logic/user/deleteUser.js";
-import { addNewFavouriteRoute } from "../logic/user/addNewFavouriteRoute.js";
-import { getFavouriteRoutes } from "../logic/user/getFavouriteRoutes.js";
-import { deleteFavouriteRoute } from "../logic/user/deleteFavouriteRoute.js";
+import { forgotPassword } from "../logic/user/forgotPassword.js";
+import { handlerRegisterUser } from "../handlers/user/handlerRegisterUser.js";
+import { handlerDeleteUser } from "../handlers/user/handlerDeleteUser.js";
+import { handlerAddNewFavouriteRoute } from "../handlers/user/handlerAddNewFavouriteRoute.js";
+import { handlerGetFavouriteRoutes } from "../handlers/user/handlerGetFavouriteRoutes.js";
+import { handlerDeleteFavouriteRoute } from "../handlers/user/handlerDeleteFavouriteRoute.js";
 
 const router = express.Router();
 // Rotas de dados do usuário
@@ -43,7 +44,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Erro no servidor." });
   }
 });
-router.post("/registerUser", registerUser);
+router.post("/registerUser", handlerRegisterUser);
 
 // Exemplo de rota protegida com autenticação
 router.get("/profile", authMiddleware, async (req, res) => {
@@ -70,21 +71,25 @@ router.patch("/updateemail", authMiddleware, updateEmail);
 router.patch("/updateDateOfBirth", authMiddleware, updateDateOfBirth);
 
 router.patch("/updatePassword", authMiddleware, updatePassword);
+
+// Rota para redefinir senha sem e-mail (usando data de nascimento)
+router.post("/forgot-password", forgotPassword);
+
 // Rotas de voos favoritos
 
 // Rota para deletar um usuário
-router.delete("/deleteUser", authMiddleware, deleteUser);
+router.delete("/deleteUser", authMiddleware, handlerDeleteUser);
 
 //rotas para manejar as rotas favoritas
 //adicionar novas rotas
-router.post("/favouriteRoutes", authMiddleware, addNewFavouriteRoute);
+router.post("/favouriteRoutes", authMiddleware, handlerAddNewFavouriteRoute);
 //obter as rotas salvas
-router.get("/favouriteRoutes", authMiddleware, getFavouriteRoutes);
+router.get("/favouriteRoutes", authMiddleware, handlerGetFavouriteRoutes);
 //deletar uma rota
 router.delete(
   "/favouriteRoutes/:routeId",
   authMiddleware,
-  deleteFavouriteRoute
+  handlerDeleteFavouriteRoute
 );
 
 export default router;

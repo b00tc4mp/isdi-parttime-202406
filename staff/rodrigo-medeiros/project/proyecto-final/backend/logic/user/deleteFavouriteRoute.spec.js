@@ -1,100 +1,121 @@
-// deleteFavouriteRoute.spec.js
-import mongoose from "mongoose";
-import { describe, it, before, beforeEach, afterEach, after } from "mocha";
-import { expect } from "chai";
-import User from "../../models/User.js";
-import { deleteFavouriteRoute } from "./deleteFavouriteRoute.js"; // Ou deleteFavouriteRoute.js, conforme o teste
-import bcrypt from "bcrypt";
+// backend/logic/user/deleteFavouriteRoute.spec.js
 import dotenv from "dotenv";
 import path from "path";
+import mongoose from "mongoose";
+import * as chai from "chai";
+import chaiAsPromised from "chai-as-promised";
 
-// Carregar o arquivo .env.test explicitamente
-const envPath = path.resolve(".env.test");
-dotenv.config({ path: envPath });
+import User from "../../models/User.js";
+import { deleteFavouriteRoute } from "./deleteFavouriteRoute.js";
+import { BadRequestError, NotFoundError } from "../../tools/errors.js";
 
-console.log("🚀 Arquivo .env.test carregado!");
-console.log(
-  "✅ MONGO_URI_TEST:",
-  process.env.MONGO_URI_TEST || "❌ Não definida"
-);
+chai.use(chaiAsPromised);
+const { expect } = chai;
 
-describe("deleteFavouriteRoute", function () {
-  this.timeout(10000); // Aumenta o timeout para 10 segundos
+// Carrega variáveis de ambiente de teste
+dotenv.config({ path: path.resolve(process.cwd(), "backend/.env.test") });
 
-  let user;
+describe("logic/user/deleteFavouriteRoute", function () {
+  this.timeout(10000);
 
-  before(async function () {
-    this.timeout(10000); // Garante mais tempo para conectar
-    try {
-      await mongoose.connect(process.env.MONGO_URI_TEST);
-      console.log("✅ Conectado ao MongoDB de teste");
-    } catch (error) {
-      console.error("🚨 Erro ao conectar ao MongoDB:", error);
-    }
+  // Conecta ao MongoDB de teste antes de toda a suíte
+  before(function (done) {
+    mongoose
+      .connect(process.env.MONGO_URI_TEST)
+      .then(() => done())
+      .catch(done);
   });
 
-  beforeEach(async function () {
-    this.timeout(10000); // Mais tempo para criar o usuário
-    try {
-      const hashedPassword = await bcrypt.hash("testPassword", 10);
-      user = await User.create({
-        username: "TestUser",
-        dateOfBirth: "1995-07-20",
-        email: "testuser@mail.com",
-        password: hashedPassword,
-        favouriteRoutes: [
-          {
-            from: "NYC",
-            to: "LAX",
-            departureDate: "2025-06-01",
-            returnDate: "2025-06-10",
-            adults: 1,
-            children: 0,
-            cabinClass: "economy",
-          },
-        ],
-      });
-    } catch (error) {
-      console.error("Erro ao criar usuário de teste:", error);
-    }
-  });
-
+  // Limpa os usuários após cada teste
   afterEach(async () => {
     await User.deleteMany();
   });
 
+  // Desconecta ao final de todos os testes
   after(async () => {
     await mongoose.disconnect();
   });
 
-  it("should delete a favourite route successfully", async () => {
-    const favouriteRouteId = user.favouriteRoutes[0]._id.toString(); // Converte para string
+  let user;
+  // Exemplo completo de rota de teste
+  const sampleRoute = {
+    from: {
+      iata_code: "NYC",
+      name: "New York John F Kennedy Intl",
+      city: "New York",
+      country: "United States",
+      iso_country: "US",
+      latitude: 40.6413,
+      longitude: -73.7781,
+      timezone: "America/New_York",
+      time_offset: "-05:00",
+    },
+    to: {
+      iata_code: "LAX",
+      name: "Los Angeles Intl",
+      city: "Los Angeles",
+      country: "United States",
+      iso_country: "US",
+      latitude: 33.9416,
+      longitude: -118.4085,
+      timezone: "America/Los_Angeles",
+      time_offset: "-08:00",
+    },
+    departureDate: "2025-06-01",
+    returnDate: "2025-06-10",
+    adults: 1,
+    children: 0,
+    cabinClass: "Economy",
+  };
 
-    const req = {
-      user: { id: user._id.toString() }, // Converte user ID para string
-      params: { routeId: favouriteRouteId },
-    };
+  // Cria um usuário com uma rota favorita antes de cada teste
+  beforeEach(async () => {
+    user = await User.create({
+      username: "TestUser",
+      email: "test@mail.com",
+      password: "hashedpassword",
+      favouriteRoutes: [sampleRoute],
+    });
+  });
 
-    // Mock da resposta
-    const res = {
-      statusCode: null,
-      output: null,
-      json: function (output) {
-        this.output = output;
-      },
-      status: function (code) {
-        this.statusCode = code;
-        return this; // Retorna o próprio objeto para encadear os métodos
-      },
-    };
+  it("should delete an existing favourite route successfully", async () => {
+    // Obtém o ID da rota criada
+    const routeId = user.favouriteRoutes[0]._id.toString();
 
-    await deleteFavouriteRoute(req, res);
+    // Executa a lógica de deleção
+    const updated = await deleteFavouriteRoute(user._id.toString(), routeId);
 
-    const updatedUser = await User.findById(user._id);
-    expect(updatedUser.favouriteRoutes.length).to.equal(0); // Agora deve passar ✅
-    expect(res.statusCode).to.equal(200); // Verifica se o código de status é 200
-    expect(res.output.message).to.equal(
-      "Favourite route successfully removed."
-    ); // Verifica a mensagem correta
+    // Verifica retorno da função
+    expect(updated).to.be.an("array").with.lengthOf(0);
+
+    // Verifica no banco de dados
+    const freshUser = await User.findById(user._id);
+    expect(freshUser.favouriteRoutes).to.have.lengthOf(0);
+  });
+
+  it("should throw BadRequestError for invalid route ID", async () => {
+    // Tenta remover com ID inválido
+    await expect(
+      deleteFavouriteRoute(user._id.toString(), "not-a-valid-id")
+    ).to.be.rejectedWith(BadRequestError, "Invalid route ID.");
+  });
+
+  it("should throw NotFoundError if user does not exist", async () => {
+    // Gera um userId inexistente
+    const fakeUserId = new mongoose.Types.ObjectId().toHexString();
+    const realRouteId = user.favouriteRoutes[0]._id.toString();
+
+    await expect(
+      deleteFavouriteRoute(fakeUserId, realRouteId)
+    ).to.be.rejectedWith(NotFoundError, "User not found.");
+  });
+
+  it("should throw NotFoundError if favourite route not found", async () => {
+    // Gera um routeId que não pertence ao usuário
+    const otherRouteId = new mongoose.Types.ObjectId().toHexString();
+
+    await expect(
+      deleteFavouriteRoute(user._id.toString(), otherRouteId)
+    ).to.be.rejectedWith(NotFoundError, "Favourite route not found.");
   });
 });

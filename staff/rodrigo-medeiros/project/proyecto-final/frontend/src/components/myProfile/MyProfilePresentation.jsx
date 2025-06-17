@@ -1,9 +1,9 @@
 import React from "react";
-import FullNameEditModal from "./modals/FullNameEditModal";
-import DateOfBirthEditModal from "./modals/DateOfBirthEditModal";
-import EmailEditModal from "./modals/EmailEditModal";
-import PasswordEditModal from "./modals/PasswordEditModal";
-import DeleteAccountModal from "./modals/DeleteAccountModal";
+import FullNameEditModal from "../modals/FullNameEditModal";
+import DateOfBirthEditModal from "../modals/DateOfBirthEditModal";
+import EmailEditModal from "../modals/EmailEditModal";
+import PasswordEditModal from "../modals/PasswordEditModal";
+import DeleteAccountModal from "../modals/DeleteAccountModal";
 
 const UserProfileForm = ({
   userData,

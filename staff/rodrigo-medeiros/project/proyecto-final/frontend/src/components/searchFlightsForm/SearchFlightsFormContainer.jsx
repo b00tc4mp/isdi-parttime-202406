@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../logic/isUserLoggedIn";
-import SearchFlightsFormPresentation from "../components/SearchFlightsFormPresentation";
-import { handleAddToFavourites } from "../handlers/userHandlers/handleAddToFavourites.js";
-import { handleSearch } from "../handlers/flightHandlers/handleSearch.js";
+import { isUserLoggedIn } from "../../logic/isUserLoggedIn.js";
+import SearchFlightsFormPresentation from "./SearchFlightsFormPresentation.jsx";
+import { handleAddToFavourites } from "../../handlers/userHandlers/handleAddToFavourites.js";
+import { handleSearch } from "../../handlers/flightHandlers/handleSearch.js";
+import { useAlert } from "../../context/AlertContext"; // ✅ Importação do alerta
 
 const SearchFlightsFormContainer = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,9 +17,10 @@ const SearchFlightsFormContainer = () => {
   const [to, setTo] = useState(null);
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  
+
   const navigate = useNavigate();
   const location = useLocation();
+  const { showAlert } = useAlert(); // ✅ Hook de alerta
 
   useEffect(() => {
     setIsLoggedIn(isUserLoggedIn());
@@ -37,27 +39,16 @@ const SearchFlightsFormContainer = () => {
     }
   }, [location.state]);
 
-  // Handlers para mudança das datas
-  const handleDepartureChange = (e) => {
-    setDepartureDate(e.target.value);
-  };
-
-  const handleReturnChange = (e) => {
-    setReturnDate(e.target.value);
-  };
-
+  const handleDepartureChange = (e) => setDepartureDate(e.target.value);
+  const handleReturnChange = (e) => setReturnDate(e.target.value);
   const handleSelectFrom = (airport) => setFrom(airport);
   const handleSelectTo = (airport) => setTo(airport);
 
-  // Handlers para mudança do tipo de viagem
   const handleTripTypeChange = (type) => {
     setTripType(type);
-    if (type === "one-way") {
-      setReturnDate("");
-    }
+    if (type === "one-way") setReturnDate("");
   };
 
-  // Handlers para o painel de passageiros e classe
   const togglePassengersForm = () => setIsPassengersOpen(!isPassengersOpen);
   const handleIncrement = (field) => {
     if (field === "adults") setAdults((prev) => Math.min(prev + 1, 8));
@@ -68,31 +59,41 @@ const SearchFlightsFormContainer = () => {
     else if (field === "children") setChildren((prev) => Math.max(prev - 1, 0));
   };
   const handleCabinClassChange = (e) => setCabinClass(e.target.value);
-  
   const handleDoneClick = () => setIsPassengersOpen(false);
 
-  // Função para retornar o resumo da seleção de passageiros e classe
-  const getSelectionSummary = (adults, children, cabinClass) => {
-    return `${adults} adult(s)${children > 0 ? `, ${children} child(ren)` : ""}, ${cabinClass}`;
-  };
+  const getSelectionSummary = (adults, children, cabinClass) =>
+    `${adults} adult(s)${children > 0 ? `, ${children} child(ren)` : ""}, ${cabinClass}`;
 
-  // Handler para realizar a busca de voos
+  // ✅ Alerta ao iniciar busca de voos
   const performSearch = async () => {
     const routeData = { from, to, departureDate, returnDate, adults, children, cabinClass };
+    showAlert("Searching the best offers", "info");
+
     try {
       const flightsData = await handleSearch(routeData);
       navigate("/flightResults", { state: { flights: flightsData, searchParams: routeData } });
     } catch (error) {
       console.error("Error during search:", error);
+      showAlert("An error occurred while searching for flights", "error");
     }
   };
 
-  // Handler para adicionar rota favorita (você pode incluir a verificação de duplicados no próprio handler)
+  // ✅ NOVO: Alerta ao salvar rota favorita
   const handleAddRouteToFavourites = async () => {
     try {
-      await handleAddToFavourites({ from, to, departureDate, returnDate, adults, children, cabinClass });
+      await handleAddToFavourites({
+        from,
+        to,
+        departureDate,
+        returnDate,
+        adults,
+        children,
+        cabinClass,
+      });
+      showAlert("Route saved to favorites", "success"); // ✅ Alerta de sucesso
     } catch (error) {
       console.error("Error adding favourite route:", error);
+      showAlert("Failed to save favorite route", "error"); // ✅ Alerta de erro
     }
   };
 

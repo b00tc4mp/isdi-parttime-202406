@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "tests": "echo \"Error: no test specified\" && exit 1",
-    "test": "mocha --require esm 'logic/user/*.spec.js' --timeout 5000"
+   "test": "mocha --require esm --timeout 10000 \"handlers/user/*.spec.js\" \"logic/user/*.spec.js\""
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "chai": "^5.1.2",
+    "chai-as-promised": "^8.0.1",
     "esm": "^3.2.25",
     "mocha": "^11.1.0"
   },

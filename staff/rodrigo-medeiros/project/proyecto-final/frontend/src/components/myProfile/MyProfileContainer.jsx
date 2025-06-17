@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IconLogo } from "../components/icons";
-import { logout } from "../logic/logout.js";
+import { IconLogo } from "../icons";
+import { logout } from "../../logic/logout.js";
 import {
   handleUpdateEmail,
   handleUpdateName,
   handleUpdatePassword,
   handleUpdateDateOfBirth,
   handleDeleteUser,
-} from "../handlers/userHandlers/";
-import { useUserData } from "../hooks/useUserData";
-import UserProfileForm from "../components/userProfileForm.jsx";
+} from "../../handlers/userHandlers/";
+import { useUserData } from "../../hooks/useUserData";
+import MyProfilePresentation from "./MyProfilePresentation.jsx";
 
 const MyProfileContainer = () => {
   const navigate = useNavigate();
   const { userData, error, fetchUserData } = useUserData();
 
-  // Estados para inputs e modais
   const [showFullNameModal, setShowFullNameModal] = useState(false);
   const [showDateOfBirthModal, setShowDateOfBirthModal] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
@@ -30,7 +29,6 @@ const MyProfileContainer = () => {
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
-  // Handlers de atualização
   const handleUsernameUpdate = async () => {
     setIsUpdating(true);
     try {
@@ -48,7 +46,6 @@ const MyProfileContainer = () => {
     setIsUpdating(true);
     try {
       await handleUpdateDateOfBirth(newDateOfBirth, currentPassword, navigate);
-      // Delay para depuração
       await new Promise((resolve) => setTimeout(resolve, 2000));
       await fetchUserData();
     } catch (err) {
@@ -106,28 +103,24 @@ const MyProfileContainer = () => {
   return (
     <div className="flex flex-col items-center bg-blue-200 min-h-screen pt-6">
       <IconLogo className="h-8 w-8 text-yellow-500 mr-2" />
-      <UserProfileForm
+      <MyProfilePresentation
         userData={userData}
         error={error}
-        // Callbacks para abertura dos modais
         onOpenFullNameModal={() => setShowFullNameModal(true)}
         onOpenDateOfBirthModal={() => setShowDateOfBirthModal(true)}
         onOpenEmailModal={() => setShowEmailModal(true)}
         onOpenPasswordModal={() => setShowPasswordModal(true)}
         onOpenDeleteModal={() => setShowDeleteModal(true)}
-        // Handlers para as ações
         handleUsernameUpdate={handleUsernameUpdate}
         handleDateOfBirthUpdate={handleDateOfBirthUpdate}
         handleEmailUpdate={handleEmailUpdate}
         handlePasswordUpdate={handlePasswordUpdate}
         handleDeleteAccount={handleDeleteAccount}
-        // Estados dos modais
         showFullNameModal={showFullNameModal}
         showDateOfBirthModal={showDateOfBirthModal}
         showEmailModal={showEmailModal}
         showPasswordModal={showPasswordModal}
         showDeleteModal={showDeleteModal}
-        // Estados dos inputs e seus setters
         newFullName={newFullName}
         newDateOfBirth={newDateOfBirth}
         newEmail={newEmail}
@@ -140,7 +133,6 @@ const MyProfileContainer = () => {
         onCurrentPasswordChange={setCurrentPassword}
         onNewPasswordChange={setNewPassword}
         onRepeatNewPasswordChange={setRepeatNewPassword}
-        // Callbacks para fechamento dos modais
         onCloseFullNameModal={() => setShowFullNameModal(false)}
         onCloseDateOfBirthModal={() => setShowDateOfBirthModal(false)}
         onCloseEmailModal={() => setShowEmailModal(false)}

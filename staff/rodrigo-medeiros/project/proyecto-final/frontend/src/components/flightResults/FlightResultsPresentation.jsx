@@ -1,5 +1,5 @@
 import React from "react";
-import getAirlineName from "../airlines_iata_codes";
+import getAirlineName from "../../data/airlines_iata_codes";
 
 
 

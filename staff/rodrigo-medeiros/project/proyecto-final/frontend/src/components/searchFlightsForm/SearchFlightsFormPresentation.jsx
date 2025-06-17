@@ -1,6 +1,6 @@
 import React from "react";
-import AirportPicker from "./AirportPicker";
-import { SearchLogo } from "./icons.jsx";
+import AirportPicker from "../airportPicker/AirportPickerContainer.jsx";
+import { SearchLogo } from "../icons.jsx";
 
 const SearchFlightsFormPresentation = ({
   isLoggedIn,

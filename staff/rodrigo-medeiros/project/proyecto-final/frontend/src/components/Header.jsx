@@ -1,3 +1,4 @@
+/*
 // Header.jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +17,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full p-4 bg-blue-900 text-white z-50">
       <div className="flex justify-between items-center">
-        {/* Logo e texto clicáveis */}
+        // Logo e texto clicáveis 
         <Link to="/" className="flex items-center space-x-2 cursor-pointer">
           <IconLogo className="h-6 w-6 text-yellow-500" />
           <span className="font-bold">RotaTour</span>
@@ -73,4 +74,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header;*/

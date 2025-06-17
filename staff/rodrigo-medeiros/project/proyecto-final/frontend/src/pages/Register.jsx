@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IconLogo } from "../components/icons";
-import RegisterForm from "../components/RegisterForm";
+import RegisterFormContainer from "../components/registerForm/RegisterFormContainer";
 
 function Register() {
     return (
@@ -11,7 +11,7 @@ function Register() {
             <IconLogo className="h-8 w-8 text-yellow-500 mr-2" /> 
             <span className="text-yellow-500">Register</span> 
           </h2>
-          <RegisterForm />
+          <RegisterFormContainer />
         </div>
       </div>
     );

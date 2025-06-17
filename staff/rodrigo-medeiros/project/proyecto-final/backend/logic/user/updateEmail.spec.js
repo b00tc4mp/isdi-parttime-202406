@@ -1,64 +1,59 @@
 import dotenv from "dotenv";
 import path from "path";
-
-// Carregar o arquivo .env.test explicitamente
-const envPath = path.resolve(".env.test");
-dotenv.config({ path: envPath });
-
-console.log("🚀 Arquivo .env.test carregado!");
-console.log(
-  "✅ MONGO_URI_TEST:",
-  process.env.MONGO_URI_TEST || "❌ Não definida"
-);
-
 import mongoose from "mongoose";
-import { describe, it, before, afterEach, after } from "mocha";
 import { expect } from "chai";
+import bcrypt from "bcrypt";
 import User from "../../models/User.js";
 import { updateEmail } from "./updateEmail.js";
-import bcrypt from "bcrypt";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-// Configuração do banco de teste
-before(function (done) {
-  this.timeout(10000); // Aumenta o tempo limite para 10 segundos
+// Configuração segura para carregar .env.test
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, "../../.env.test") });
 
-  mongoose
-    .connect(process.env.MONGO_URI_TEST)
-    .then(() => {
-      console.log("✅ Conectado ao MongoDB de teste com sucesso!");
-      done();
-    })
-    .catch((err) => {
-      console.error("❌ Erro ao conectar ao MongoDB:", err);
-      done(err);
-    });
-});
-afterEach(() => User.deleteMany());
-after(() => mongoose.disconnect());
+describe("updateEmail", function () {
+  this.timeout(15000);
 
-describe("updateEmail", () => {
   let user;
 
-  beforeEach(async () => {
+  before(async function () {
+    const uri = process.env.MONGO_URI_TEST;
+    if (!uri) throw new Error("MONGO_URI_TEST não definida");
+    await mongoose.connect(uri);
+  });
+
+  after(async function () {
+    await mongoose.disconnect();
+  });
+
+  afterEach(async function () {
+    await User.deleteMany();
+  });
+
+  beforeEach(async function () {
     const hashedPassword = await bcrypt.hash("cryptPassword", 10);
     user = await User.create({
       username: "NombreTest",
-      dateOfBirth: new Date("07/20/1995"),
+      dateOfBirth: "1995-07-20",
       email: "nombre@mail.com",
       password: hashedPassword,
     });
   });
 
-  it("should update the email successfully", async () => {
+  it("should update the email successfully", async function () {
     const req = {
       body: { email: "new@mail.com", password: "cryptPassword" },
       user: { id: user._id },
     };
     const res = {
-      json: function (output) {
+      output: {},
+      statusCode: null,
+      json(output) {
         this.output = output;
       },
-      status: function (code) {
+      status(code) {
         this.statusCode = code;
         return this;
       },
@@ -72,16 +67,18 @@ describe("updateEmail", () => {
     expect(res.output.message).to.equal("Email atualizado com sucesso!");
   });
 
-  it("should fail if user does not exist", async () => {
+  it("should fail if user does not exist", async function () {
     const req = {
       body: { email: "new@mail.com", password: "cryptPassword" },
       user: { id: new mongoose.Types.ObjectId() },
     };
     const res = {
-      json: function (output) {
+      output: {},
+      statusCode: null,
+      json(output) {
         this.output = output;
       },
-      status: function (code) {
+      status(code) {
         this.statusCode = code;
         return this;
       },
@@ -92,16 +89,18 @@ describe("updateEmail", () => {
     expect(res.output.message).to.equal("User not found");
   });
 
-  it("should fail if email is invalid", async () => {
+  it("should fail if email is invalid", async function () {
     const req = {
       body: { email: "invalid-email", password: "cryptPassword" },
       user: { id: user._id },
     };
     const res = {
-      json: function (output) {
+      output: {},
+      statusCode: null,
+      json(output) {
         this.output = output;
       },
-      status: function (code) {
+      status(code) {
         this.statusCode = code;
         return this;
       },
@@ -112,16 +111,18 @@ describe("updateEmail", () => {
     expect(res.output.message).to.equal("Invalid email format");
   });
 
-  it("should fail if password is incorrect", async () => {
+  it("should fail if password is incorrect", async function () {
     const req = {
       body: { email: "new@mail.com", password: "wrongPassword" },
       user: { id: user._id },
     };
     const res = {
-      json: function (output) {
+      output: {},
+      statusCode: null,
+      json(output) {
         this.output = output;
       },
-      status: function (code) {
+      status(code) {
         this.statusCode = code;
         return this;
       },

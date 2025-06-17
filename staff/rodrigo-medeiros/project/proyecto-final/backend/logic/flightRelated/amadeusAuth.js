@@ -26,7 +26,7 @@ const getAmadeusToken = async () => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
-    console.log("🔑 Token obtido:", response.data.access_token);
+    //console.log("🔑 Token obtido:", response.data.access_token);
 
     // Return the access token
     return response.data.access_token;

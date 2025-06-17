@@ -1,56 +1,48 @@
 import dotenv from "dotenv";
 import path from "path";
-
-// Carregar o arquivo .env.test explicitamente
-const envPath = path.resolve(".env.test");
-dotenv.config({ path: envPath });
-
-console.log("🚀 Arquivo .env.test carregado!");
-console.log(
-  "✅ MONGO_URI_TEST:",
-  process.env.MONGO_URI_TEST || "❌ Não definida"
-);
-
 import mongoose from "mongoose";
-import { describe, it, before, afterEach, after } from "mocha";
 import { expect } from "chai";
 import bcrypt from "bcrypt";
 import User from "../../models/User.js";
 import { updatePassword } from "./updatePassword.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-// Configuração do banco de teste
-before(function (done) {
-  this.timeout(10000); // Aumenta o tempo limite para 10 segundos
+// Configuração segura do .env.test
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, "../../.env.test") });
 
-  mongoose
-    .connect(process.env.MONGO_URI_TEST)
-    .then(() => {
-      console.log("✅ Conectado ao MongoDB de teste com sucesso!");
-      done();
-    })
-    .catch((err) => {
-      console.error("❌ Erro ao conectar ao MongoDB:", err);
-      done(err);
-    });
-});
+describe("updatePassword", function () {
+  this.timeout(15000);
 
-afterEach(async () => await User.deleteMany());
-after(async () => await mongoose.disconnect());
-
-describe("updatePassword", () => {
   let user;
 
-  beforeEach(async () => {
+  before(async function () {
+    const uri = process.env.MONGO_URI_TEST;
+    if (!uri) throw new Error("MONGO_URI_TEST não definida");
+    await mongoose.connect(uri);
+  });
+
+  after(async function () {
+    await mongoose.disconnect();
+  });
+
+  afterEach(async function () {
+    await User.deleteMany();
+  });
+
+  beforeEach(async function () {
     const hashedPassword = await bcrypt.hash("NewP@ssword0", 10);
     user = await User.create({
       username: "NombreTest",
-      dateOfBirth: new Date("1995-07-20"),
+      dateOfBirth: "1995-07-20",
       email: "nombre@mail.com",
       password: hashedPassword,
     });
   });
 
-  it("should update the password successfully", async () => {
+  it("should update the password successfully", async function () {
     const req = {
       body: {
         currentPassword: "NewP@ssword0",
@@ -59,6 +51,8 @@ describe("updatePassword", () => {
       user: { id: user._id },
     };
     const res = {
+      output: {},
+      statusCode: null,
       json(output) {
         this.output = output;
       },
@@ -81,7 +75,7 @@ describe("updatePassword", () => {
     expect(res.output.message).to.equal("Password atualizado com sucesso!");
   });
 
-  it("should fail if user does not exist", async () => {
+  it("should fail if user does not exist", async function () {
     const req = {
       body: {
         currentPassword: "NewP@ssword0",
@@ -90,6 +84,8 @@ describe("updatePassword", () => {
       user: { id: new mongoose.Types.ObjectId() },
     };
     const res = {
+      output: {},
+      statusCode: null,
       json(output) {
         this.output = output;
       },
@@ -104,7 +100,7 @@ describe("updatePassword", () => {
     expect(res.output.message).to.equal("User not found");
   });
 
-  it("should fail if current password is incorrect", async () => {
+  it("should fail if current password is incorrect", async function () {
     const req = {
       body: {
         currentPassword: "NewP@ssword2",
@@ -113,6 +109,8 @@ describe("updatePassword", () => {
       user: { id: user._id },
     };
     const res = {
+      output: {},
+      statusCode: null,
       json(output) {
         this.output = output;
       },
@@ -123,20 +121,18 @@ describe("updatePassword", () => {
     };
 
     await updatePassword(req, res);
-    if (res.statusCode !== 401) {
-      console.error("Erro esperado: 401, mas recebeu:", res.statusCode);
-    }
     expect(res.statusCode).to.equal(401);
-
     expect(res.output.message).to.equal("Incorrect password");
   });
 
-  it("should fail if required fields are missing", async () => {
+  it("should fail if required fields are missing", async function () {
     const req = {
       body: { newPassword: "NewP@ssword4" }, // currentPassword está faltando
       user: { id: user._id },
     };
     const res = {
+      output: {},
+      statusCode: null,
       json(output) {
         this.output = output;
       },

@@ -53,7 +53,7 @@ router.get("/search", async (req, res) => {
       params,
     });
 
-    console.log("✅ Resposta da Amadeus recebida!");
+    //console.log("✅ Resposta da Amadeus recebida!");
     res.json(response.data);
   } catch (error) {
     console.error(

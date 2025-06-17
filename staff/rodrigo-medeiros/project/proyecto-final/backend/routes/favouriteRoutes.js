@@ -1,4 +1,4 @@
-//import express from "express";
+/*//import express from "express";
 //import FavouriteRoute from "../models/FavouriteRoute.js";
 //import authMiddleware from "../middlewares/authMiddleware.js";
 
@@ -55,4 +55,4 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-export default router;
+export default router;*/
