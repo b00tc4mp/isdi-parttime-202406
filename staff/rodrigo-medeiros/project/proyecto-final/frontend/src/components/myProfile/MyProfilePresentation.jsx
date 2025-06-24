@@ -6,6 +6,7 @@ import PasswordEditModal from "../modals/PasswordEditModal";
 import DeleteAccountModal from "../modals/DeleteAccountModal";
 
 const UserProfileForm = ({
+  isLoggedIn,
   userData,
   error,
   onOpenFullNameModal,

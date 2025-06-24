@@ -5,7 +5,7 @@ import RegisterFormContainer from "../components/registerForm/RegisterFormContai
 
 function Register() {
     return (
-      <div className="flex flex-col items-center bg-blue-200 min-h-screen pt-6"> 
+      <div className="flex flex-col items-center bg-blue-200 min-h-screen pt-16"> 
         <div className="w-full max-w-sm">
           <h2 className="text-2xl font-bold text-center mb-6 flex items-center justify-center">
             <IconLogo className="h-8 w-8 text-yellow-500 mr-2" /> 

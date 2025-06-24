@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconLogo } from "../icons";
-import { logout } from "../../logic/logout.js";
 import {
   handleUpdateEmail,
   handleUpdateName,
@@ -11,10 +10,12 @@ import {
 } from "../../handlers/userHandlers/";
 import { useUserData } from "../../hooks/useUserData";
 import MyProfilePresentation from "./MyProfilePresentation.jsx";
+import { useAuth } from "../../context/AuthContext"; // ⬅️ novo
 
 const MyProfileContainer = () => {
   const navigate = useNavigate();
   const { userData, error, fetchUserData } = useUserData();
+  const { isLoggedIn, logout } = useAuth(); // ⬅️ novo
 
   const [showFullNameModal, setShowFullNameModal] = useState(false);
   const [showDateOfBirthModal, setShowDateOfBirthModal] = useState(false);
@@ -93,7 +94,7 @@ const MyProfileContainer = () => {
     }
     try {
       await handleDeleteUser(currentPassword);
-      logout(navigate);
+      logout(); // ⬅️ via contexto
     } catch (err) {
       console.error("Erro ao deletar conta:", err);
       alert(err.message || "Erro ao tentar excluir a conta.");
@@ -104,6 +105,7 @@ const MyProfileContainer = () => {
     <div className="flex flex-col items-center bg-blue-200 min-h-screen pt-6">
       <IconLogo className="h-8 w-8 text-yellow-500 mr-2" />
       <MyProfilePresentation
+        isLoggedIn={isLoggedIn}
         userData={userData}
         error={error}
         onOpenFullNameModal={() => setShowFullNameModal(true)}

@@ -7,421 +7,177 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-```
-proyecto-final
-├─ backend
-│  ├─ logic
-│  │  ├─ flightRelated
-│  │  │  └─ amadeusAuth.js
-│  │  └─ user
-│  │     ├─ addNewFavouriteRoute.js
-│  │     ├─ addNewFavouriteRoute.spec.js
-│  │     ├─ deleteFavouriteRoute.js
-│  │     ├─ deleteFavouriteRoute.spec.js
-│  │     ├─ deleteUser.js
-│  │     ├─ deleteUser.spec.js
-│  │     ├─ favouriteRoutes.js
-│  │     ├─ getFavouriteRoutes.js
-│  │     ├─ getFavouriteRoutes.spec.js
-│  │     ├─ index.js
-│  │     ├─ registerUser.js
-│  │     ├─ registerUser.spec.js
-│  │     ├─ updateDateOfBirth.js
-│  │     ├─ updateDateOfBirth.spec.js
-│  │     ├─ updateEmail.js
-│  │     ├─ updateEmail.spec.js
-│  │     ├─ updatePassword.js
-│  │     ├─ updatePassword.spec.js
-│  │     ├─ updateUsername.js
-│  │     └─ updateUsername.spec.js
-│  ├─ middlewares
-│  │  └─ authMiddleware.js
-│  ├─ models
-│  │  ├─ FavouriteRoute.js
-│  │  └─ User.js
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ routes
-│  │  ├─ amadeusClient.js
-│  │  ├─ favouriteRoutes.js
-│  │  ├─ flightOffers.js
-│  │  └─ userRoutes.js
-│  ├─ server.js
-│  ├─ tests
-│  └─ tools
-│     ├─ errors.js
-│     ├─ index.js
-│     └─ validator.js
-├─ frontend
-│  ├─ eslint.config.js
-│  ├─ index.html
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ postcss.config.js
-│  ├─ public
-│  │  └─ vite.svg
-│  ├─ src
-│  │  ├─ airlines.js
-│  │  ├─ airlines_iata_codes.js
-│  │  ├─ airports.js
-│  │  ├─ App.jsx
-│  │  ├─ assets
-│  │  │  └─ react.svg
-│  │  ├─ components
-│  │  │  ├─ AirportPicker.jsx
-│  │  │  ├─ DatePickerYellow.jsx
-│  │  │  ├─ FavouriteRoutesPresentation.jsx
-│  │  │  ├─ FlightResultsPresentation.jsx
-│  │  │  ├─ Footer.jsx
-│  │  │  ├─ handlers.jsx
-│  │  │  ├─ Header.jsx
-│  │  │  ├─ icons.jsx
-│  │  │  ├─ index.jsx
-│  │  │  ├─ LoginForm.jsx
-│  │  │  ├─ modals
-│  │  │  │  ├─ DateOfBirthEditModal.jsx
-│  │  │  │  ├─ DeleteAccountModal.jsx
-│  │  │  │  ├─ EmailEditModal.jsx
-│  │  │  │  ├─ FullNameEditModal.jsx
-│  │  │  │  └─ PasswordEditModal.jsx
-│  │  │  ├─ RegisterForm.jsx
-│  │  │  ├─ SearchFlightsFormPresentation.jsx
-│  │  │  ├─ ShowFlights.jsx
-│  │  │  ├─ UserMenu.jsx
-│  │  │  └─ UserProfileForm.jsx
-│  │  ├─ handlers
-│  │  │  ├─ flightHandlers
-│  │  │  │  └─ handleSearch.js
-│  │  │  └─ userHandlers
-│  │  │     ├─ handleAddToFavourites.js
-│  │  │     ├─ handleDeleteFavouriteRoute.js
-│  │  │     ├─ handleDeleteUser.js
-│  │  │     ├─ handleGetFavouriteRoutes.js
-│  │  │     ├─ handleUpdateDateOfBirth.js
-│  │  │     ├─ handleUpdateEmail.js
-│  │  │     ├─ handleUpdateName.js
-│  │  │     ├─ handleUpdatePassword.js
-│  │  │     └─ index.js
-│  │  ├─ hooks
-│  │  │  ├─ useFavouriteRoutes.js
-│  │  │  ├─ useSearchParams.js
-│  │  │  └─ useUserData.js
-│  │  ├─ index.css
-│  │  ├─ index.jsx
-│  │  ├─ locales
-│  │  │  └─ es.json
-│  │  ├─ logic
-│  │  │  ├─ deleteUser.js
-│  │  │  ├─ isUserLoggedIn.js
-│  │  │  ├─ login.js
-│  │  │  └─ logout.js
-│  │  ├─ pages
-│  │  │  ├─ FlightResultsContainer.jsx
-│  │  │  ├─ Home.jsx
-│  │  │  ├─ index.jsx
-│  │  │  ├─ MyFavouriteRoutesContainer.jsx
-│  │  │  ├─ MyProfileContainer.jsx
-│  │  │  ├─ Register.jsx
-│  │  │  ├─ SearchFlightsFormContainer.jsx
-│  │  │  └─ SignIn.jsx
-│  │  ├─ reportWebVitals.js
-│  │  └─ tools
-│  │     ├─ errors.js
-│  │     ├─ index.js
-│  │     └─ validator.js
-│  ├─ tailwind.config.js
-│  └─ vite.config.js
-├─ git-filter-repo
-│  ├─ contrib
-│  │  └─ filter-repo-demos
-│  │     ├─ barebones-example
-│  │     ├─ bfg-ish
-│  │     ├─ clean-ignore
-│  │     ├─ convert-svnexternals
-│  │     ├─ filter-branch-ish
-│  │     ├─ filter-lamely
-│  │     ├─ insert-beginning
-│  │     ├─ lint-history
-│  │     ├─ README.md
-│  │     └─ signed-off-by
-│  ├─ COPYING
-│  ├─ COPYING.gpl
-│  ├─ COPYING.mit
-│  ├─ Documentation
-│  │  ├─ Contributing.md
-│  │  ├─ converting-from-bfg-repo-cleaner.md
-│  │  ├─ converting-from-filter-branch.md
-│  │  ├─ examples-from-user-filed-issues.md
-│  │  ├─ FAQ.md
-│  │  └─ git-filter-repo.txt
-│  ├─ git-filter-repo
-│  ├─ git_filter_repo.py
-│  ├─ INSTALL.md
-│  ├─ Makefile
-│  ├─ pyproject.toml
-│  ├─ README.md
-│  └─ t
-│     ├─ run_coverage
-│     ├─ run_tests
-│     ├─ t9390
-│     │  ├─ basic
-│     │  ├─ basic-filename
-│     │  ├─ basic-mailmap
-│     │  ├─ basic-message
-│     │  ├─ basic-numbers
-│     │  ├─ basic-replace
-│     │  ├─ basic-ten
-│     │  ├─ basic-twenty
-│     │  ├─ degenerate
-│     │  ├─ degenerate-evil-merge
-│     │  ├─ degenerate-globme
-│     │  ├─ degenerate-keepme
-│     │  ├─ degenerate-keepme-noff
-│     │  ├─ degenerate-moduleA
-│     │  ├─ empty
-│     │  ├─ empty-keepme
-│     │  ├─ less-empty-keepme
-│     │  ├─ more-empty-keepme
-│     │  ├─ sample-mailmap
-│     │  ├─ sample-message
-│     │  ├─ sample-replace
-│     │  ├─ unusual
-│     │  ├─ unusual-filtered
-│     │  └─ unusual-mailmap
-│     ├─ t9390-filter-repo-basics.sh
-│     ├─ t9391
-│     │  ├─ commit_info.py
-│     │  ├─ create_fast_export_output.py
-│     │  ├─ emoji-repo
-│     │  ├─ erroneous.py
-│     │  ├─ file_filter.py
-│     │  ├─ print_progress.py
-│     │  ├─ rename-master-to-develop.py
-│     │  ├─ splice_repos.py
-│     │  ├─ strip-cvs-keywords.py
-│     │  └─ unusual.py
-│     ├─ t9391-filter-repo-lib-usage.sh
-│     ├─ t9392-filter-repo-python-callback.sh
-│     ├─ t9393
-│     │  ├─ lfs
-│     │  └─ simple
-│     ├─ t9393-filter-repo-rerun.sh
-│     ├─ t9394
-│     │  └─ date-order
-│     ├─ t9394-filter-repo-sanity-checks-and-bigger-repo-setup.sh
-│     ├─ test-lib-functions.sh
-│     └─ test-lib.sh
-├─ package-lock.json
-├─ package.json
-└─ README.md
+# ✈️ Rotatur - Flight Search API
+
+## 📌 Descripción (Español)
+
+**Rotatur** es una aplicación completa para buscar vuelos, guardar rutas favoritas y administrar datos personales. Está compuesta por un backend en Node.js y un frontend en React, utilizando la API de Amadeus.
+
+---
+
+## 🧱 Arquitectura del Proyecto
 
 ```
-
+proyecto-final/
+├── backend/                  # API REST Express + MongoDB
+│   ├── handlers/             # Controladores
+│   ├── logic/                # Lógica de negocio
+│   ├── models/               # Esquemas Mongoose
+│   ├── tools/                # Utilidades (encriptación, tokens, etc.)
+│   ├── errors/               # Manejo centralizado de errores
+│   ├── validator.js          # Validación de entradas
+│   └── server.js             # Punto de entrada
+│
+├── frontend/                 # Aplicación React
+│   ├── components/           # Componentes y contenedores
+│   ├── context/              # Contextos globales (Auth, Alert)
+│   ├── handlers/             # Lógica de interacción con API
+│   ├── hooks/                # Hooks personalizados
+│   ├── logic/                # Autenticación local
+│   ├── pages/                # Rutas principales (Login, Perfil...)
+│   └── AppRoutes.jsx         # Definición de rutas (React Router)
 ```
-proyecto-final
-├─ backend
-│  ├─ logic
-│  │  ├─ flightRelated
-│  │  │  └─ amadeusAuth.js
-│  │  └─ user
-│  │     ├─ addNewFavouriteRoute.js
-│  │     ├─ addNewFavouriteRoute.spec.js
-│  │     ├─ deleteFavouriteRoute.js
-│  │     ├─ deleteFavouriteRoute.spec.js
-│  │     ├─ deleteUser.js
-│  │     ├─ deleteUser.spec.js
-│  │     ├─ favouriteRoutes.js
-│  │     ├─ getFavouriteRoutes.js
-│  │     ├─ getFavouriteRoutes.spec.js
-│  │     ├─ index.js
-│  │     ├─ registerUser.js
-│  │     ├─ registerUser.spec.js
-│  │     ├─ updateDateOfBirth.js
-│  │     ├─ updateDateOfBirth.spec.js
-│  │     ├─ updateEmail.js
-│  │     ├─ updateEmail.spec.js
-│  │     ├─ updatePassword.js
-│  │     ├─ updatePassword.spec.js
-│  │     ├─ updateUsername.js
-│  │     └─ updateUsername.spec.js
-│  ├─ middlewares
-│  │  └─ authMiddleware.js
-│  ├─ models
-│  │  ├─ FavouriteRoute.js
-│  │  └─ User.js
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ routes
-│  │  ├─ amadeusClient.js
-│  │  ├─ favouriteRoutes.js
-│  │  ├─ flightOffers.js
-│  │  └─ userRoutes.js
-│  ├─ server.js
-│  ├─ tests
-│  └─ tools
-│     ├─ errors.js
-│     ├─ index.js
-│     └─ validator.js
-├─ frontend
-│  ├─ eslint.config.js
-│  ├─ index.html
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ postcss.config.js
-│  ├─ public
-│  │  └─ vite.svg
-│  ├─ src
-│  │  ├─ airlines.js
-│  │  ├─ airlines_iata_codes.js
-│  │  ├─ airports.js
-│  │  ├─ App.jsx
-│  │  ├─ assets
-│  │  │  └─ react.svg
-│  │  ├─ components
-│  │  │  ├─ AirportPicker.jsx
-│  │  │  ├─ FavouriteRoutesPresentation.jsx
-│  │  │  ├─ FlightResultsPresentation.jsx
-│  │  │  ├─ Footer.jsx
-│  │  │  ├─ handlers.jsx
-│  │  │  ├─ Header.jsx
-│  │  │  ├─ icons.jsx
-│  │  │  ├─ index.jsx
-│  │  │  ├─ LoginForm.jsx
-│  │  │  ├─ modals
-│  │  │  │  ├─ DateOfBirthEditModal.jsx
-│  │  │  │  ├─ DeleteAccountModal.jsx
-│  │  │  │  ├─ EmailEditModal.jsx
-│  │  │  │  ├─ FullNameEditModal.jsx
-│  │  │  │  └─ PasswordEditModal.jsx
-│  │  │  ├─ RegisterForm.jsx
-│  │  │  ├─ SearchFlightsFormPresentation.jsx
-│  │  │  ├─ ShowFlights.jsx
-│  │  │  ├─ UserMenu.jsx
-│  │  │  └─ UserProfileForm.jsx
-│  │  ├─ handlers
-│  │  │  ├─ flightHandlers
-│  │  │  │  └─ handleSearch.js
-│  │  │  └─ userHandlers
-│  │  │     ├─ handleAddToFavourites.js
-│  │  │     ├─ handleDeleteFavouriteRoute.js
-│  │  │     ├─ handleDeleteUser.js
-│  │  │     ├─ handleGetFavouriteRoutes.js
-│  │  │     ├─ handleUpdateDateOfBirth.js
-│  │  │     ├─ handleUpdateEmail.js
-│  │  │     ├─ handleUpdateName.js
-│  │  │     ├─ handleUpdatePassword.js
-│  │  │     └─ index.js
-│  │  ├─ hooks
-│  │  │  ├─ useFavouriteRoutes.js
-│  │  │  ├─ useSearchParams.js
-│  │  │  └─ useUserData.js
-│  │  ├─ index.css
-│  │  ├─ index.jsx
-│  │  ├─ locales
-│  │  │  └─ es.json
-│  │  ├─ logic
-│  │  │  ├─ deleteUser.js
-│  │  │  ├─ isUserLoggedIn.js
-│  │  │  ├─ login.js
-│  │  │  └─ logout.js
-│  │  ├─ pages
-│  │  │  ├─ FlightResultsContainer.jsx
-│  │  │  ├─ Home.jsx
-│  │  │  ├─ index.jsx
-│  │  │  ├─ MyFavouriteRoutesContainer.jsx
-│  │  │  ├─ MyProfileContainer.jsx
-│  │  │  ├─ Register.jsx
-│  │  │  ├─ SearchFlightsFormContainer.jsx
-│  │  │  └─ SignIn.jsx
-│  │  ├─ reportWebVitals.js
-│  │  └─ tools
-│  │     ├─ errors.js
-│  │     ├─ index.js
-│  │     └─ validator.js
-│  ├─ tailwind.config.js
-│  └─ vite.config.js
-├─ git-filter-repo
-│  ├─ contrib
-│  │  └─ filter-repo-demos
-│  │     ├─ barebones-example
-│  │     ├─ bfg-ish
-│  │     ├─ clean-ignore
-│  │     ├─ convert-svnexternals
-│  │     ├─ filter-branch-ish
-│  │     ├─ filter-lamely
-│  │     ├─ insert-beginning
-│  │     ├─ lint-history
-│  │     ├─ README.md
-│  │     └─ signed-off-by
-│  ├─ COPYING
-│  ├─ COPYING.gpl
-│  ├─ COPYING.mit
-│  ├─ Documentation
-│  │  ├─ Contributing.md
-│  │  ├─ converting-from-bfg-repo-cleaner.md
-│  │  ├─ converting-from-filter-branch.md
-│  │  ├─ examples-from-user-filed-issues.md
-│  │  ├─ FAQ.md
-│  │  └─ git-filter-repo.txt
-│  ├─ git-filter-repo
-│  ├─ git_filter_repo.py
-│  ├─ INSTALL.md
-│  ├─ Makefile
-│  ├─ pyproject.toml
-│  ├─ README.md
-│  └─ t
-│     ├─ run_coverage
-│     ├─ run_tests
-│     ├─ t9390
-│     │  ├─ basic
-│     │  ├─ basic-filename
-│     │  ├─ basic-mailmap
-│     │  ├─ basic-message
-│     │  ├─ basic-numbers
-│     │  ├─ basic-replace
-│     │  ├─ basic-ten
-│     │  ├─ basic-twenty
-│     │  ├─ degenerate
-│     │  ├─ degenerate-evil-merge
-│     │  ├─ degenerate-globme
-│     │  ├─ degenerate-keepme
-│     │  ├─ degenerate-keepme-noff
-│     │  ├─ degenerate-moduleA
-│     │  ├─ empty
-│     │  ├─ empty-keepme
-│     │  ├─ less-empty-keepme
-│     │  ├─ more-empty-keepme
-│     │  ├─ sample-mailmap
-│     │  ├─ sample-message
-│     │  ├─ sample-replace
-│     │  ├─ unusual
-│     │  ├─ unusual-filtered
-│     │  └─ unusual-mailmap
-│     ├─ t9390-filter-repo-basics.sh
-│     ├─ t9391
-│     │  ├─ commit_info.py
-│     │  ├─ create_fast_export_output.py
-│     │  ├─ emoji-repo
-│     │  ├─ erroneous.py
-│     │  ├─ file_filter.py
-│     │  ├─ print_progress.py
-│     │  ├─ rename-master-to-develop.py
-│     │  ├─ splice_repos.py
-│     │  ├─ strip-cvs-keywords.py
-│     │  └─ unusual.py
-│     ├─ t9391-filter-repo-lib-usage.sh
-│     ├─ t9392-filter-repo-python-callback.sh
-│     ├─ t9393
-│     │  ├─ lfs
-│     │  └─ simple
-│     ├─ t9393-filter-repo-rerun.sh
-│     ├─ t9394
-│     │  └─ date-order
-│     ├─ t9394-filter-repo-sanity-checks-and-bigger-repo-setup.sh
-│     ├─ test-lib-functions.sh
-│     └─ test-lib.sh
-├─ package-lock.json
-├─ package.json
-└─ README.md
 
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+### Backend
+
+```bash
+cd backend
+npm install
+node server.js
 ```
+
+Crear `.env` con:
+
+```env
+PORT=3000
+AMADEUS_API_KEY=tu_api_key
+AMADEUS_API_SECRET=api_secret
+MONGO_URI=mongodb://localhost:27017/rotatur
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## ✅ Tests Backend
+
+```bash
+npm run test
+```
+
+- Cobertura: >96%
+- Framework: Jest
+- Archivos probados: lógica, validaciones, servicios
+
+Rotatur cuenta con una cobertura de pruebas rigurosa. La siguiente imagen muestra el resultado completo de los tests:
+
+-------------------------------|---------|----------|---------|---------|-------------------
+File | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------------------|---------|----------|---------|---------|-------------------
+All files | 96.71 | 73.91 | 100 | 98.15 |  
+ logic/user | 97.04 | 76.85 | 100 | 98.6 |  
+ addNewFavouriteRoute.js | 100 | 85.71 | 100 | 100 | 28  
+ addNewFavouriteRoute.spec.js | 100 | 100 | 100 | 100 |  
+ deleteFavouriteRoute.js | 100 | 100 | 100 | 100 |  
+ deleteFavouriteRoute.spec.js | 100 | 100 | 100 | 100 |  
+ deleteUserService.js | 100 | 100 | 100 | 100 |  
+ deleteUserService.spec.js | 100 | 100 | 100 | 100 |  
+ forgotPassword.js | 100 | 94.11 | 100 | 100 | 49  
+ forgotPassword.spec.js | 98.48 | 50 | 100 | 100 | 23  
+ getFavouriteRoutes.js | 100 | 100 | 100 | 100 |  
+ getFavouriteRoutes.spec.js | 93.18 | 50 | 100 | 95.34 | 27-28  
+ registerUser.js | 100 | 100 | 100 | 100 |  
+ registerUser.spec.js | 97.5 | 50 | 100 | 100 | 22  
+ updateDateOfBirth.js | 96.15 | 78.57 | 100 | 100 | 14,36-40  
+ updateDateOfBirth.spec.js | 98.46 | 50 | 100 | 100 | 23  
+ updateEmail.js | 95.65 | 78.57 | 100 | 95.45 | 15  
+ updateEmail.spec.js | 98.46 | 50 | 100 | 100 | 23  
+ updatePassword.js | 70.58 | 50 | 100 | 76.66 | 24,47-54  
+ updatePassword.spec.js | 98.48 | 50 | 100 | 100 | 23  
+ updateUsername.js | 96.15 | 78.57 | 100 | 100 | 15,37-40  
+ updateUsername.spec.js | 98.46 | 50 | 100 | 100 | 23  
+ models | 100 | 100 | 100 | 100 |  
+ User.js | 100 | 100 | 100 | 100 |  
+ tools | 90.24 | 52.94 | 100 | 87.87 | updateUsername.spec.js | 98.4 updateUsername.spec.js | 98.46 | 50 | 100 | 100 | 23  
+ models | 100 | 100 | 100 | 100 |  
+ User.js | 100 | 100 | 100 | 100 |  
+ tools | 90.24 | 52.94 | 100 | 87.87 | updateUsername.spec.js | 98.46 | 50 | 100 | 100 | 23
+models | 100 | 100 | 100 | 100 |  
+ User.js | 100 | 100 | 100 | 100 |  
+ tools | 90.24 | 52.94 | 100 | 87.87 |  
+ errors.js | 100 | 50 | 100 | 100 | 4
+validator.js | 80.95 | 53.33 | 100 | 80.95 | 19,27,39,46  
+-------------------------------|---------|----------|---------|---------|-------------------
+
+---
+
+## 🔐 Seguridad
+
+- Autenticación por token (JWT)
+- Middleware de validación por rol
+- Validación de entradas con Express Validator
+
+---
+
+# ✈️ Rotatur - Flight Search API (English)
+
+## 📌 Overview
+
+**Rotatur** is a full-stack application to search flights, save favorite routes, and manage user info. It combines a Node.js backend with a React frontend and connects to Amadeus API.
+
+## 🧱 Architecture
+
+(see project tree above)
+
+## ⚙️ Setup
+
+### Backend
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+Create `.env`:
+
+```env
+PORT=3000
+AMADEUS_API_KEY=your_api_key
+AMADEUS_API_SECRET=api_secret
+MONGO_URI=mongodb://localhost:27017/rotatur
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 🧪 Tests
+
+```bash
+npm run test
+```
+
+## 🔐 Security
+
+- JWT authentication
+- Role-based middleware
+- Input validation
+
+## 📄 License
+
+MIT License

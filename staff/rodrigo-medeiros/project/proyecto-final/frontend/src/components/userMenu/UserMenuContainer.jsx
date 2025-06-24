@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../logic/logout.js";
+import { useAuth } from "../../context/AuthContext"; // ⬅️ novo hook
 import UserMenuPresentation from "./UserMenuPresentation.jsx";
 
 const UserMenuContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuth(); // ⬅️ contexto
 
   const onToggle = () => setIsOpen(open => !open);
   const onClose = () => setIsOpen(false);
 
   const onLogout = () => {
-    logout();
-    navigate("/signin");
+    logout(); // ⬅️ contexto cuida de tudo (logout + redirect + estado)
   };
 
   useEffect(() => {
@@ -29,6 +29,8 @@ const UserMenuContainer = () => {
     return () => document.removeEventListener("click", handleClickOutside, true);
   }, [isOpen]);
 
+  if (!isLoggedIn) return null;
+
   return (
     <UserMenuPresentation
       isOpen={isOpen}
@@ -41,3 +43,4 @@ const UserMenuContainer = () => {
 };
 
 export default UserMenuContainer;
+

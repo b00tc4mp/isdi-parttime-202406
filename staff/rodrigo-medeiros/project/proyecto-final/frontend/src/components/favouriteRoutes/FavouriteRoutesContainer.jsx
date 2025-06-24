@@ -5,9 +5,11 @@ import { handleSearch } from "../../handlers/flightHandlers/handleSearch.js";
 import { handleDeleteFavouriteRoute } from "../../handlers/userHandlers/handleDeleteFavouriteRoute.js";
 import { useFavouriteRoutes } from "../../hooks/useFavouriteRoutes.js";
 import { useAlert } from "../../context/AlertContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx"; // ⬅️ novo
 import FavouriteRoutesPresentation from "./FavouriteRoutesPresentation.jsx";
 
 const FavouriteRoutesContainer = () => {
+  const { isLoggedIn } = useAuth(); // ⬅️ agora obtém status de login do contexto
   const { routes, error, fetchFavouriteRoutes, setRoutes } = useFavouriteRoutes();
   const navigate = useNavigate();
   const { showAlert } = useAlert();
@@ -50,6 +52,7 @@ const FavouriteRoutesContainer = () => {
 
   return (
     <FavouriteRoutesPresentation
+      isLoggedIn={isLoggedIn}
       routes={routes}
       error={error}
       onSearchAgain={handleSearchAgain}
@@ -59,3 +62,4 @@ const FavouriteRoutesContainer = () => {
 };
 
 export default FavouriteRoutesContainer;
+

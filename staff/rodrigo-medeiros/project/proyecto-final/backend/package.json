@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "tests": "echo \"Error: no test specified\" && exit 1",
-   "test": "mocha --require esm --timeout 10000 \"handlers/user/*.spec.js\" \"logic/user/*.spec.js\""
+   "test": "mocha ./logic/**/*.spec.js",
+    "test-coverage": "c8 --experimental-monocart --reporter=text --reporter=v8 mocha ./logic/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +25,9 @@
     "chai": "^5.1.2",
     "chai-as-promised": "^8.0.1",
     "esm": "^3.2.25",
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "c8": "^10.1.3",
+    "monocart-coverage-reports": "^2.12.6"
   },
   "description": ""
 }

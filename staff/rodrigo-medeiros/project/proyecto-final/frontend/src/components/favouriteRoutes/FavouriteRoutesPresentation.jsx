@@ -1,6 +1,6 @@
 import React from "react";
 
-const FavouriteRoutesPresentation = ({ routes, onSearchAgain, onDeleteRoute }) => {
+const FavouriteRoutesPresentation = ({ isLoggedIn, routes, onSearchAgain, onDeleteRoute }) => {
   if (!routes || routes.length === 0) {
     return (
       <div className="bg-blue-200 min-h-screen w-full text-blue-900 p-6">
@@ -12,7 +12,8 @@ const FavouriteRoutesPresentation = ({ routes, onSearchAgain, onDeleteRoute }) =
 
   return (
     <div className="bg-blue-200 min-h-screen w-full text-blue-900 p-6">
-      <h1 className="text-2xl font-bold mb-4">My Favourite Routes</h1>
+
+      
       <ul>
         {routes.map((route, index) => (
           <li

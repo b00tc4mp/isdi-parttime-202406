@@ -1,20 +1,14 @@
 // src/components/HeaderContainer.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../../logic/isUserLoggedIn.js";
-import { logout } from "../../logic/logout.js";
+import { useAuth } from "../../context/AuthContext"; // ⬅️ usa o contexto
 import HeaderPresentation from "./HeaderPresentation.jsx";
 
 const HeaderContainer = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
-
-  // Checa login ao montar
-  useEffect(() => {
-    setLoggedIn(isUserLoggedIn());
-  }, []);
+  const { isLoggedIn, logout } = useAuth(); // ⬅️ novo
 
   // Fecha menu ao clicar fora
   useEffect(() => {
@@ -30,16 +24,19 @@ const HeaderContainer = () => {
 
   // Callbacks delegados
   const onToggleMenu = () => setMenuOpen(open => !open);
-  const onCloseMenu  = () => setMenuOpen(false);
-  const onLogout     = () => logout(navigate);
-  const onNavigateHome    = () => navigate("/");
+  const onCloseMenu = () => setMenuOpen(false);
+  const onLogout = () => {
+    logout(); // agora centralizado via contexto
+    setMenuOpen(false);
+  };
+  const onNavigateHome = () => navigate("/");
   const onNavigateFlights = () => navigate("/");
-  const onNavigateSignin  = () => navigate("/signin");
+  const onNavigateSignin = () => navigate("/signin");
 
   return (
     <div ref={menuRef}>
       <HeaderPresentation
-        isLoggedIn={loggedIn}
+        isLoggedIn={isLoggedIn}
         menuOpen={menuOpen}
         onToggleMenu={onToggleMenu}
         onCloseMenu={onCloseMenu}
@@ -53,3 +50,4 @@ const HeaderContainer = () => {
 };
 
 export default HeaderContainer;
+
