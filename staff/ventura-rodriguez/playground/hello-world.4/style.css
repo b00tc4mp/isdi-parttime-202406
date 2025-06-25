@@ -1,0 +1,40 @@
+/*  cleanner */
+html,
+body {
+  font-family: "Playwrite HR", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background: white;
+  color: black;
+}
+
+.box {
+  background-color: cornflowerblue;
+  width: 400px;
+  height: 600px;
+}
+
+.box--small {
+  background-color: yellowgreen;
+  width: 80px;
+  height: 80px;
+}
+
+.box--middle-size {
+  position: relative;
+  z-index: 100;
+  left: 50px;
+  top: 100px;
+  background-color: hotpink;
+  width: 150px;
+  height: 150px;
+}
+
+.box--big {
+  position: relative;
+  z-index: 99;
+  background-color: chocolate;
+  width: 250px;
+  height: 250px;
+}
